@@ -1,0 +1,130 @@
+% \PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[fontset=windows]{beamer}
+
+\usepackage{xeCJK}
+% \input{../settings/settings_chinese_fonts.tex} % 中文字体设定
+
+
+\usetheme{metropolis}           % Use metropolis theme
+
+
+\title{复数和复变函数}
+% \subtitle{A modern beamer theme \textit{摩登主题}}
+
+% \date{\today}
+\author{罗凯}
+\institute{南京理工大学物理学院}
+\begin{document}
+  % \maketitle
+
+  
+  % 好的，我将为你创建一个详细的Beamer幻灯片，专注于第一小节“复数”的内容。每个知识点都会详细展开，包括定义、运算和几何意义。以下是幻灯片的内容：
+
+  % ```latex
+  % \documentclass{beamer}
+  % \usetheme{Madrid} % 选择一个主题
+  % \usepackage{amsmath} % 引入数学公式宏包
+  % \usepackage{amsfonts} % 引入数学字体宏包
+  % \usepackage{graphicx} % 引入图形宏包
+  
+  % \title{数学物理方法：复数}
+  % \author{罗凯}
+  % \date{\today}
+  
+  % \begin{document}
+  
+  \begin{frame}
+  \titlepage
+  \end{frame}
+  
+  \begin{frame}{目录}
+  \tableofcontents
+  \end{frame}
+  
+  \section{复数}
+  \subsection{复数的定义}
+  \begin{frame}{复数的定义}
+  \begin{itemize}
+  \item 复数 \( z \) 定义为 \( z = x + iy \)，其中 \( x, y \in \mathbb{R} \)，\( x \) 和 \( y \) 分别为复数 \( z \) 的实部和虚部，记作 \( \text{Re}(z) \) 和 \( \text{Im}(z) \)。
+  \item 复数域用 \( \mathbb{C} \) 表示。
+  \item 例如，复数 \( z = 3 + 4i \) 的实部是 3，虚部是 4。
+  \end{itemize}
+  \end{frame}
+  
+  \subsection{复数的表示形式}
+  \begin{frame}{复数的表示形式}
+  \begin{itemize}
+  \item 代数形式：\( z = x + iy \)。
+  \item 三角形式：\( z = r(\cos \theta + i \sin \theta) \)，其中 \( r = |z| = \sqrt{x^2 + y^2} \)，\( \theta = \arg(z) = \arctan\left(\frac{y}{x}\right) \)。
+  \item 指数形式：\( z = re^{i\theta} \)。
+  \end{itemize}
+  \end{frame}
+  
+  \subsection{复数的运算}
+  \begin{frame}{复数的加法和减法}
+  \begin{itemize}
+  \item 加法：\( z_1 + z_2 = (x_1 + x_2) + i(y_1 + y_2) \)。
+  \item 减法：\( z_1 - z_2 = (x_1 - x_2) + i(y_1 - y_2) \)。
+  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( z_1 + z_2 = (3 + 1) + i(4 + 2) = 4 + 6i \)。
+  \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{复数的乘法和除法}
+  \begin{itemize}
+  \item 乘法：\( z_1 z_2 = (x_1 x_2 - y_1 y_2) + i(x_1 y_2 + x_2 y_1) \)。
+  \item 除法：\( \frac{z_1}{z_2} = \frac{z_1 \overline{z_2}}{|z_2|^2} \)，其中 \( \overline{z_2} \) 是 \( z_2 \) 的共轭。
+  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( z_1 z_2 = (3 \cdot 1 - 4 \cdot 2) + i(3 \cdot 2 + 4 \cdot 1) = -5 + 10i \)。
+  \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{复数的共轭}
+  \begin{itemize}
+  \item 共轭：\( \overline{z} = x - iy \)。
+  \item 共轭的性质：
+    \[
+    \overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}, \quad \overline{z_1 z_2} = \overline{z_1} \overline{z_2}
+    \]
+  \item 例如，\( z = 3 + 4i \)，则 \( \overline{z} = 3 - 4i \)。
+  \end{itemize}
+  \end{frame}
+  
+  \subsection{复数的几何意义}
+  \begin{frame}{复数的几何意义}
+  \begin{itemize}
+  \item 复数 \( z = x + iy \) 可以表示为复平面上的点 \( (x, y) \)。
+  \item 复数的加法和减法可以类比为向量的加法和减法。
+  \item 共轭运算可以理解为对 \( z \) 以实轴为对称轴的镜面对称。
+  \item 复数的模表示点到原点的距离。
+  \item 复数的辐角表示点与正实轴的夹角。
+  \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{复数的模和辐角}
+  \begin{itemize}
+  \item 模：\( |z| = \sqrt{x^2 + y^2} \)。
+  \item 辐角：\( \arg(z) = \arctan\left(\frac{y}{x}\right) \)。
+  \item 例如，\( z = 3 + 4i \)，则 \( |z| = \sqrt{3^2 + 4^2} = 5 \)，\( \arg(z) = \arctan\left(\frac{4}{3}\right) \)。
+  \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{复数的三角不等式}
+  \begin{itemize}
+  \item 三角不等式：对于任意复数 \( z_1 \) 和 \( z_2 \)，
+    \[
+    ||z_1| - |z_2|| \leq |z_1 + z_2| \leq |z_1| + |z_2|
+    \]
+  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( |z_1| = 5 \)，\( |z_2| = \sqrt{5} \)，\( |z_1 + z_2| = |4 + 6i| = \sqrt{52} \)。
+  \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{复数的几何表示}
+  \begin{itemize}
+  \item 复数 \( z = x + iy \) 可以在复平面上表示为点 \( (x, y) \)。
+  \item 复数的加法和减法可以类比为向量的加法和减法。
+  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( z_1 + z_2 = 4 + 6i \)。
+  \end{itemize}
+  % \includegraphics[width=0.6\textwidth]{complex_plane.png}
+  \end{frame}
+  
+
+\end{document}
