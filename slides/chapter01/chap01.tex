@@ -413,17 +413,63 @@ $$
 
   \subsection{区域的概念}
 
+\begin{frame}{区域的概念}
+
+\small  在解析函数论中, 函数的定义域或者值域不是一般的点集,而是满足一定条件的点集,称为{\bf 区域},用 $B$ 表示.
+为了说明区域的概念, 首先介绍邻域、内点、外点以及边界点的概念.
+
+\begin{itemize}
+\item {\bf 邻域} \quad 以复数 $z_0$ 为圆心, 以任意小正实数 $\varepsilon$ 为半径作一圆, 则圆内所有 点的集合称为 $z_0$ 的\blue{邻域}.
+\item {\bf 内点} \quad 若 $z_0$ 及其邻域均属于点集 $Z$, 则称 $z_0$ 为该点集的\blue{内点}.
+\item {\bf 外点} \quad 若 $z_0$ 及其邻域均不属于点集 $Z$, 则称 $z_0$ 为该点集的\blue{外点}.
+\item {\bf 边界点}  \quad 若在 $z_0$ 的每个邻域内, 既有属于 $Z$ 的点, 也有不属于 $Z$ 的点, 
+        则称 $z_0$ 为该点集的\blue{边界点}, 它既不是 $Z$ 的内点, 也不是 $Z$ 的外点. 边界点的 全体称为\blue{边界线}.
+\end{itemize}
+\end{frame}
 
 
+  \begin{frame}{区域的概念}
 
-  \begin{frame}{复数的几何表示}
-  \begin{itemize}
-  \item 复数 \( z = x + iy \) 可以在复平面上表示为点 \( (x, y) \).
-  \item 复数的加法和减法可以类比为向量的加法和减法.
-  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( z_1 + z_2 = 4 + 6i \).
-  \end{itemize}
-  % \includegraphics[width=0.6\textwidth]{complex_plane.png}
+    \begin{figure}[htb]
+      \centering
+      \scalebox{0.6}{
+        \input{tikz/region.tex}}
+      \caption{邻域、内点、外点、边界点和区域示意图.}
+      \label{fig:region}
+  \end{figure}
+  
+  \small
+  
+  现在介绍区域的概念. 
+  
+  \textbf{区域} \quad 直观地说,  区域就是宗量 $z$ 在复数平面上的取值范围,用$B$表示. 
+  确切地说,区域是指满足下列两个条件的点集:
+      \begin{enumerate}
+          \item 全由内点组成;
+          \item 具有连通性, 即点集中的任意两点都可以用一条折线连接起来, 且 折线上的点全都属于该点集.
+      \end{enumerate}
   \end{frame}
   
+
+  \begin{frame}{闭区域}
+    \small
+    \textbf{闭区域} \quad 区域$B$ 及其边界线所组成的点集称为闭区域,以 $\bar{B}$ 表示.区域可以是各种各样的, 例如圆形域及环形域(如图\ref{fig:annular}所示). 
+    圆形域可以用不等式 $\left|z-z_0\right|<r$ 来表示, 式中 $z_0$ 为圆心, $r$ 为半径; 
+    环形域可以用 $a<\left|z-z_0\right|<b$ 来表示, $z_0$ 为环心, 式中 $a$ 为内半径, $b$ 为外半径.
+     若将其中的 “<” 换成 $“ \leqslant ”$, 则这两个式子分别表示\blue{闭圆域}和\blue{闭环域}.
+    
+    \begin{figure}
+        \centering
+    
+        % \input{tikz/region.tex}
+        % \quad
+        \scalebox{0.6}{
+        \input{tikz/annular.tex}
+        }
+        % \caption{左图:邻域、内点、外点、边界点和区域示意图.右图:圆形区域$\left|z-z_0\right|<r$和环形区域$a<\left|z-z_0\right|<b$示意图 .}
+        \caption{ 圆形区域$\left|z-z_0\right|<r$和环形区域$a<\left|z-z_0\right|<b$示意图 .}
+        \label{fig:annular}
+    \end{figure}
+  \end{frame}
 
 \end{document}
