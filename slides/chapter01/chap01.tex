@@ -1,11 +1,28 @@
 % \PassOptionsToPackage{quiet}{xeCJK}
 \documentclass[fontset=windows]{beamer}
 
+\usepackage{wrapfig}
+
 \usepackage{xeCJK}
 % \input{../settings/settings_chinese_fonts.tex} % 中文字体设定
+\usepackage{tikz}
+\usepackage{pgfplots}
+% \usepgfplotslibrary{intersections} 
+
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary {arrows.meta}
+\usetikzlibrary{decorations.markings}
+
 
 
 \usetheme{metropolis}           % Use metropolis theme
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}  % orange is supported in xcolor
+
 
 
 \title{复数和复变函数}
@@ -42,15 +59,93 @@
   \end{frame}
   
   \section{复数}
+
   \subsection{复数的定义}
-  \begin{frame}{复数的定义}
+
+  \begin{frame}{复数的引入}
+    一元二次方程$a x^2 + b x + c = 0 (a\neq 0, b,c \in \mathbb{R})$的求解大家一定都不陌生.当$\Delta \equiv b^2 - 4 a c \geq 0$时,方程有解,求根公式可得
+\begin{equation}
+    x = \frac{-b \pm \sqrt{\Delta}}{2a} .
+  \end{equation}
+
+  当$\Delta < 0$时,方程\red{无解}. 这里的无解其实是指没有\blue{实数解}.
+  当我们引入以下这一核心定义后,
+\begin{equation}
+    \imath ^2 = -1 \quad \textrm{或} \quad \imath = \sqrt{-1} . 
+\end{equation}
+$\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的两个解,当$\Delta < 0$时,方程有两个复数解:
+\begin{equation}
+    x = \frac{-b \pm \imath \sqrt{-\Delta}}{2a} .
+\end{equation}
+\end{frame}
+
+\begin{frame}{复数的定义}
+  复数(complex number) $z$定义为
+\begin{equation}
+    \label{eq:complex_alg}
+    z = x + \imath \; y ,
+\end{equation}
+
   \begin{itemize}
-  \item 复数 \( z \) 定义为 \( z = x + iy \)，其中 \( x, y \in \mathbb{R} \)，\( x \) 和 \( y \) 分别为复数 \( z \) 的实部和虚部，记作 \( \text{Re}(z) \) 和 \( \text{Im}(z) \)。
-  \item 复数域用 \( \mathbb{C} \) 表示。
-  \item 例如，复数 \( z = 3 + 4i \) 的实部是 3，虚部是 4。
+  \item  其中$x,y \in {\mathbb{R}}$. $x,y$分别为复数$z$的 \textbf{实部}(real part) 和 \textbf{ 虚部}(imaginary part), 分别记作$\Re z$和$\Im z$.
+ 例如，复数 \( z = 3 + 4i \) 的实部是 3，虚部是 4。
+
+  \item 上式\eqref{eq:complex_alg}称为复数的\red{代数式}. 复数域常用$\mathbb{C}$来表示.
+若将$z$看成是由$x,y$组成的有序对$(x,y)$,记为
+\begin{equation}
+  z \equiv (x,y),
+\end{equation}
+则有$1 = (1,0), \imath = (0, 1)$.
+
+  \item \textbf{复数域}用 \( \mathbb{C} \) 表示。
   \end{itemize}
   \end{frame}
   
+
+  \begin{frame}{复数的几何表示}
+    \begin{wrapfigure}{r}{0.55\textwidth}
+      \centering
+      \scalebox{1.0}{
+        \input{tikz/complex_plane.tex}
+        }
+        \caption{复数的平面表示.} \label{fig:complex_plane}
+  \end{wrapfigure}
+如果将$x,y$当做平面上点的坐标,复数$z$就和平面上的点一一对应起来,
+形成的图叫做\textbf{阿干特图}(Argand diagram).
+形成的平面叫做{\bf 复数平面},坐标轴成为{\bf 实轴}和{\bf 虚轴}.
+
+\end{frame}
+
+  \begin{frame}{复数的极坐标表示}
+
+    \begin{wrapfigure}{r}{0.5\textwidth}
+        \scalebox{1.0}{
+          \input{tikz/complex_plane.tex}
+          }
+    \end{wrapfigure}
+
+      自然我们可以改用\blue{极坐标}来表示,
+      \begin{align}
+          & \rho = \sqrt{x^2 + y^2}\\
+          & \varphi = \arctan y/x
+      \end{align}
+      或
+      \begin{align}
+          & x = \rho \cos\varphi \\
+          & y = \rho \sin\varphi 
+      \end{align}
+      
+      则我们得到复数$z$的\blue{三角式}
+      \begin{equation}
+          z = \rho (\cos\varphi +  \imath\; \sin\varphi) ,
+      \end{equation}
+      或\blue{指数式}
+      \begin{equation}
+          z = \rho e^{\imath \varphi} .
+      \end{equation}
+      其中$\rho$称为复数$z$的\textbf{模}(modulus), $\varphi$称为复数$z$的\textbf{辐角}(argument).
+\end{frame}
+
   \subsection{复数的表示形式}
   \begin{frame}{复数的表示形式}
   \begin{itemize}
