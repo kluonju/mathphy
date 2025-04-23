@@ -1,5 +1,5 @@
 % \PassOptionsToPackage{quiet}{xeCJK}
-\documentclass[fontset=windows]{beamer}
+\documentclass[fontset=windows, chinese]{beamer}
 
 \usepackage{wrapfig}
 
@@ -13,9 +13,20 @@
 \usetikzlibrary {arrows.meta}
 \usetikzlibrary{decorations.markings}
 
-
+%配合主题，
+% \usefonttheme{professionalfonts} 
+%和配色包如 
+% \usecolortheme{dove}
 
 \usetheme{metropolis}           % Use metropolis theme
+% \usetheme{Boadilla}
+% \usetheme{Madrid}
+% \usetheme{Berkeley}
+% \usetheme{Hannover}
+
+% \usepackage{beamerthemeNanjing}
+\usepackage{beamercolorthemeHistNanjing}
+
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
@@ -23,7 +34,7 @@
 \newcommand{\gray}[1]{\textcolor{gray}{#1}}
 \newcommand{\orange}[1]{\textcolor{orange}{#1}}  % orange is supported in xcolor
 
-
+\include{macro}
 
 \title{复数和复变函数}
 % \subtitle{A modern beamer theme \textit{摩登主题}}
@@ -35,7 +46,7 @@
   % \maketitle
 
   
-  % 好的，我将为你创建一个详细的Beamer幻灯片，专注于第一小节“复数”的内容。每个知识点都会详细展开，包括定义、运算和几何意义。以下是幻灯片的内容：
+  % 好的，我将为你创建一个详细的Beamer幻灯片，专注于第一小节“复数”的内容.每个知识点都会详细展开，包括定义、运算和几何意义.以下是幻灯片的内容：
 
   % ```latex
   % \documentclass{beamer}
@@ -54,12 +65,19 @@
   \titlepage
   \end{frame}
   
-  \begin{frame}{目录}
-  \tableofcontents
-  \end{frame}
+  % \begin{frame}{目录}
+  % \tableofcontents
+  % \end{frame}
   
+  \AtBeginSubsection{
+    \begin{frame}{目录}
+      \tableofcontents[currentsection,currentsubsection]
+    \end{frame}
+  }
+
   \section{复数}
 
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \subsection{复数的定义}
 
   \begin{frame}{复数的引入}
@@ -68,16 +86,30 @@
     x = \frac{-b \pm \sqrt{\Delta}}{2a} .
   \end{equation}
 
-  当$\Delta < 0$时,方程\red{无解}. 这里的无解其实是指没有\blue{实数解}.
+  \onslide<2->{
+    当$\Delta < 0$时,方程\red{无解} . 
+
+  这里的无解其实是指没有\blue{实数解}.
+  }
+  
+  \onslide<3->{
   当我们引入以下这一核心定义后,
 \begin{equation}
     \imath ^2 = -1 \quad \textrm{或} \quad \imath = \sqrt{-1} . 
 \end{equation}
-$\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的两个解,当$\Delta < 0$时,方程有两个复数解:
+$\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的两个解. 
+  }
+  
+\onslide<4-> 
+{
+  当$\Delta < 0$时,方程有两个复数解:
 \begin{equation}
     x = \frac{-b \pm \imath \sqrt{-\Delta}}{2a} .
 \end{equation}
+}
+
 \end{frame}
+
 
 \begin{frame}{复数的定义}
   复数(complex number) $z$定义为
@@ -88,7 +120,7 @@ $\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的�
 
   \begin{itemize}
   \item  其中$x,y \in {\mathbb{R}}$. $x,y$分别为复数$z$的 \textbf{实部}(real part) 和 \textbf{ 虚部}(imaginary part), 分别记作$\Re z$和$\Im z$.
- 例如，复数 \( z = 3 + 4i \) 的实部是 3，虚部是 4。
+ 例如，复数 \( z = 3 + 4i \) 的实部是 3，虚部是 4.
 
   \item 上式\eqref{eq:complex_alg}称为复数的\red{代数式}. 复数域常用$\mathbb{C}$来表示.
 若将$z$看成是由$x,y$组成的有序对$(x,y)$,记为
@@ -97,7 +129,7 @@ $\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的�
 \end{equation}
 则有$1 = (1,0), \imath = (0, 1)$.
 
-  \item \textbf{复数域}用 \( \mathbb{C} \) 表示。
+  \item \textbf{复数域}用 \( \mathbb{C} \) 表示.
   \end{itemize}
   \end{frame}
   
@@ -117,14 +149,12 @@ $\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的�
 \end{frame}
 
   \begin{frame}{复数的极坐标表示}
-
-    \begin{wrapfigure}{r}{0.5\textwidth}
+    \begin{wrapfigure}{r}{0.45\textwidth}
         \scalebox{1.0}{
           \input{tikz/complex_plane.tex}
           }
     \end{wrapfigure}
-
-      自然我们可以改用\blue{极坐标}来表示,
+    自然我们可以改用\blue{极坐标}来表示,
       \begin{align}
           & \rho = \sqrt{x^2 + y^2}\\
           & \varphi = \arctan y/x
@@ -135,7 +165,7 @@ $\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的�
           & y = \rho \sin\varphi 
       \end{align}
       
-      则我们得到复数$z$的\blue{三角式}
+      我们得到复数$z$的\blue{三角式}
       \begin{equation}
           z = \rho (\cos\varphi +  \imath\; \sin\varphi) ,
       \end{equation}
@@ -143,80 +173,254 @@ $\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的�
       \begin{equation}
           z = \rho e^{\imath \varphi} .
       \end{equation}
-      其中$\rho$称为复数$z$的\textbf{模}(modulus), $\varphi$称为复数$z$的\textbf{辐角}(argument).
+      其中$\rho = | z| $称为复数$z$的\textbf{模}(modulus), $\varphi$称为复数$z$的\textbf{辐角}(argument), 记作$\Arg z$.
 \end{frame}
 
-  \subsection{复数的表示形式}
-  \begin{frame}{复数的表示形式}
+\begin{frame}{复数的辐角}
+  对于任意一个复数$z=\rho e^{\imath \varphi}$,由于恒等式$e^{\imath 2\pi n} = 1$, $n = 0, \pm 1, \pm 2, \dots, \in \mathbb{Z}$,
+可以知道辐角$\Arg z$不能唯一确定,它们之间相差$2\pi$的整数倍,
+其中满足
+\begin{align}
+    0 \leq \Arg z < 2\pi ,
+\end{align}
+的辐角为$z$的\textbf{主辐角},记为$\arg z$. \\$\arg z$ 为$\Arg z$的\textbf{主值}.
+\begin{align}
+    \Arg z = \arg z + 2 n \pi \quad (n = 0, \pm 1, \pm 2\dots).
+\end{align}
+\begin{alertblock}{注意: }%text}
+  {\small 有的书上限定$-\pi < \arg z \leq \pi$, 但我们这里采用的是$0 \leq \arg z < 2\pi$.}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}{小结}
+  复数(complex number) $z$定义为
+  \begin{equation*}
+    z = x + \imath \; y ,
+\end{equation*}
+$x,y$分别为复数$z$的 \textbf{实部}(real part) 和 \textbf{ 虚部}(imaginary part), 分别记作$\Re z$和$\Im z$.
+
+常见的三种表示形式：
   \begin{itemize}
-  \item 代数形式：\( z = x + iy \)。
-  \item 三角形式：\( z = r(\cos \theta + i \sin \theta) \)，其中 \( r = |z| = \sqrt{x^2 + y^2} \)，\( \theta = \arg(z) = \arctan\left(\frac{y}{x}\right) \)。
-  \item 指数形式：\( z = re^{i\theta} \)。
+  \item 代数形式：\( z = x + iy \).
+  \item 三角形式：\( z = \rho (\cos \varphi + i \sin \varphi) \)，其中 \(\rho = |z| = \sqrt{x^2 + y^2} \)，\( \varphi = \arg z = \arctan\left(\frac{y}{x}\right) \).
+  \item 指数形式：\( z = \rho e^{i\varphi} \).
   \end{itemize}
   \end{frame}
-  
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \subsection{复数的运算}
-  \begin{frame}{复数的加法和减法}
-  \begin{itemize}
-  \item 加法：\( z_1 + z_2 = (x_1 + x_2) + i(y_1 + y_2) \)。
-  \item 减法：\( z_1 - z_2 = (x_1 - x_2) + i(y_1 - y_2) \)。
-  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( z_1 + z_2 = (3 + 1) + i(4 + 2) = 4 + 6i \)。
-  \end{itemize}
+
+  \begin{frame}{复数的加法和乘法}
+我们可以利用有序实数对的方式对复数进行基本运算: 加减乘除运算.{\bf 加法}运算可以定义为
+\begin{align}
+    z_1 + z_2 = (x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2) .
+\end{align}
+{\bf 乘法}运算定义为
+\begin{align}
+    z_1 \cdot z_2 = (x_1, y_1) \cdot (x_2, y_2) = (x_1 x_2 - y_1 y_2, x_1 y_2 + x_2 y_1) .
+\end{align}
+显然加法和乘法满足{\bf 交换律}和{\bf 结合律},以后乘法运算符号$\cdot$均省略.
+
   \end{frame}
   
-  \begin{frame}{复数的乘法和除法}
-  \begin{itemize}
-  \item 乘法：\( z_1 z_2 = (x_1 x_2 - y_1 y_2) + i(x_1 y_2 + x_2 y_1) \)。
-  \item 除法：\( \frac{z_1}{z_2} = \frac{z_1 \overline{z_2}}{|z_2|^2} \)，其中 \( \overline{z_2} \) 是 \( z_2 \) 的共轭。
-  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( z_1 z_2 = (3 \cdot 1 - 4 \cdot 2) + i(3 \cdot 2 + 4 \cdot 1) = -5 + 10i \)。
-  \end{itemize}
+  \begin{frame}{复数的加法和乘法}
+    同实数一样,根据以上定义我们可以得到复数域中的一些特殊元素.对于任意复数$z$,复数域中存在元素$e$满足以下性质
+    \begin{align}
+        & e + z = z + e = z ,\\ 
+        & e \cdot z = z \cdot e = z , 
+    \end{align}
+    可以得到对应的分别为
+    \begin{align}
+        (0, 0) &= 0\\
+        (1, 0) &= 1 ,
+    \end{align}
   \end{frame}
   
+\begin{frame}{复数的减法和除法}
+  通过元素$(0,0)$,我们可以定义$-z$使得 $-z + z = 0$. 于是有,$- z = (-x, -y)$.于是我们定义\red{减法}运算为 
+\begin{align}
+    z_1 - z_2 \equiv z_1 + (-z_2) = (x_1 - x_2, y_1 - y_2) ,
+\end{align}
+通过元素$(1,0)$,我们定义$z^{-1}$使得
+$z^{-1} \cdot z = 1$,于是有 
+  $$z^{-1} =e^{-\imath \varphi}/\rho,  $$ 
+或
+$$z^{-1} = (\frac{x}{x^2 + y^2}, -\frac{y}{x^2 + y^2}). $$ 
+\red{ 除法}运算定义为
+\begin{align}
+    z_1 / z_2 \equiv z_1 \cdot z_2^{-1} = \frac{x_1 x_2 - y_1 y_2} {x_2^2  +  y_2^2 }  + \imath \frac{y_1 x_2 - x_1 y_2} {x_2^2  +  y_2^2 } . 
+\end{align}
+
+\begin{alertblock}{注意：}
+  {\small 往往乘除写成极坐标表达更简洁:
+      $ z_1 z_2 = \rho_1 e^{\imath \varphi_1 } \rho_2 e^{\imath \varphi_2 } = \rho_1 \rho_2 e^{\imath (\varphi_1 + \varphi_2)} $
+  }
+\end{alertblock}
+\end{frame}
+
+
+
   \begin{frame}{复数的共轭}
-  \begin{itemize}
-  \item 共轭：\( \overline{z} = x - iy \)。
-  \item 共轭的性质：
-    \[
-    \overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}, \quad \overline{z_1 z_2} = \overline{z_1} \overline{z_2}
-    \]
-  \item 例如，\( z = 3 + 4i \)，则 \( \overline{z} = 3 - 4i \)。
-  \end{itemize}
+    此外,复数还有一种运算较为特殊,称为{\bf 共轭}(complex conjugation)运算.共轭运算表示为
+\begin{align}
+    z^{*} \equiv (x, -y) = x - \imath y ,
+\end{align}
+也记为$\bar{z}$, 例如，\( z = 3 + 4i \)，则 \( \overline{z} = 3 - 4i \).
+实部虚部可以通过
+\begin{equation}
+    \operatorname{Re} a=\frac{a+\bar{a}}{2}, \quad \Im a=\frac{a-\bar{a}}{2 \mathrm{i}}
+\end{equation}
+复数和其共轭来表示. 不难验证
+
+\begin{equation}
+    \begin{aligned}
+    & \overline{a+b}=\bar{a}+\bar{b} \\
+    & \overline{a b}=\bar{a} \bar{b}
+    \end{aligned}
+\end{equation}
+
+  \end{frame}
+
+  \begin{frame}{复数的共轭}
+    作为应用, 考虑方程
+$$
+c_0 z^n+c_1 z^{n-1}+\cdots+c_{n-1} z+c_n=0 .
+$$
+如果 $\zeta$ 是这个方程的一个根, 则 $\bar{\zeta}$ 是方程
+$$
+\bar{c}_0 z^n+\bar{c}_1 z^{n-1}+\cdots+\bar{c}_{n-1} z+\bar{c}_n=0 .
+$$
+的根. 特别地, 如果系数为实数, 则 $\zeta$ 和 $\bar{\zeta}$ 是同一方程的根, 
+而且我们得到定理：实系数方程的非实根以成对的共轭根出现.
+
+为了得到$z$的模,我们可以利用共轭运算,$|z| = \sqrt{zz^{*}}$. 注意区分$|z|^2$和$z^2$的不同.
+
   \end{frame}
   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \subsection{复数的几何意义}
   \begin{frame}{复数的几何意义}
+
+    由Argand图可知, 复数的几何意义主要体现在以下几个方面:
   \begin{itemize}
-  \item 复数 \( z = x + iy \) 可以表示为复平面上的点 \( (x, y) \)。
-  \item 复数的加法和减法可以类比为向量的加法和减法。
-  \item 共轭运算可以理解为对 \( z \) 以实轴为对称轴的镜面对称。
-  \item 复数的模表示点到原点的距离。
-  \item 复数的辐角表示点与正实轴的夹角。
+  \item 复数 \( z = x + iy \) 可以表示为复平面上的点 \( (x, y) \).
+  \item 复数的加法和减法可以类比为向量的加法和减法.
+  \item 共轭运算可以理解为对 \( z \) 以实轴为对称轴的镜面对称.
+  \item 复数的模表示点到原点的距离,  复数的辐角表示点与正实轴的夹角.
   \end{itemize}
+
+\end{frame}
+
+\begin{frame}{复数的几何意义}
+  部分复数运算可以映射到复平面上.如共轭运算可以理解为对$z$以实轴为对称轴的镜面对称.对任意的$z_1,z_2$,它们的加减
+同向量的加减完全等价,由三角形的三边关系可得
+\begin{equation}
+    \left| |z|- |z'| \right| \leq |z \pm z'| \leq |z| + |z'| .
+\end{equation}
+% 很显然,$z+z^{*} = 2 \Re z$, $z-z^{*} = 2\imath \Im z$.
+\begin{figure}[htb]
+    \centering
+    \scalebox{0.9}{
+    \input{tikz/zminus.tex}
+    \input{tikz/zaddition.tex}
+}
+        \caption{左图:共轭$z^{*}$与$z$的关系; 右图:$z_1, z_2$的加减关系.}
+\end{figure}
+
   \end{frame}
   
-  \begin{frame}{复数的模和辐角}
-  \begin{itemize}
-  \item 模：\( |z| = \sqrt{x^2 + y^2} \)。
-  \item 辐角：\( \arg(z) = \arctan\left(\frac{y}{x}\right) \)。
-  \item 例如，\( z = 3 + 4i \)，则 \( |z| = \sqrt{3^2 + 4^2} = 5 \)，\( \arg(z) = \arctan\left(\frac{4}{3}\right) \)。
-  \end{itemize}
+  \begin{frame}{例题}
+    \begin{example}
+      求$\sqrt[3]{-\imath}$.
+  \end{example}
+
+  \begin{solution}
+    \scalebox{0.6}{
+      \begin{minipage}{1.0\textwidth}
+
+          首先,我们有恒等式$e^{\imath 2\pi n} = 1$,且
+          \begin{align*}
+              e^{\imath \frac{\pi}{2}}  = i & \quad  e^{\imath \pi}  =-1 \\
+              e^{\imath \frac{3\pi}{2}} = -i & \quad e^{\imath 2\pi} = 1.
+          \end{align*}
+      题目就是要求方程$z^3 =-\imath$的根.可以得到
+          \begin{align*}
+              e^{\frac{1}{3}(\imath 2\pi n + \imath \frac{3\pi}{2})} & = (-i)^{\frac{1}{3}} \\
+              e^{(\imath \frac{2}{3}\pi n + \imath \frac{\pi}{2})}   & =  (-i)^{\frac{1}{3}} \\
+          \end{align*}
+      得到的解分三种情况
+          \begin{align*}
+              z_1 &=e^{\imath \frac{\pi}{2}} = \imath , n = 3k \\
+              z_2 &=e^{\imath \frac{7\pi}{6}} = -\frac{\sqrt{3}}{2} - \frac{\imath}{2} , n = 3k +1 \\
+              z_3 &=e^{\imath \frac{11\pi}{6}} = \frac{\sqrt{3}}{2} - \frac{\imath}{2} , n = 3k +2 
+          \end{align*}
+
+          % \begin{figure}
+      \end{minipage}
+      }
+      \scalebox{0.6}
+      {   
+      \begin{minipage}{0.5\textwidth}
+        它们在复平面上的分布如下图所示,它们之间的夹角为$120^\circ$,模为单位长度$1$.
+
+          \begin{figure} 
+          \centering
+        \scalebox{1.2}{
+              \input{tikz/rotate.tex}
+        }
+          \caption{$\sqrt[3]{-\imath}$的三个根示意图.}
+          \end{figure}
+    \end{minipage}
+    }
+
+  \end{solution}
+
   \end{frame}
   
-  \begin{frame}{复数的三角不等式}
-  \begin{itemize}
-  \item 三角不等式：对于任意复数 \( z_1 \) 和 \( z_2 \)，
-    \[
-    ||z_1| - |z_2|| \leq |z_1 + z_2| \leq |z_1| + |z_2|
-    \]
-  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( |z_1| = 5 \)，\( |z_2| = \sqrt{5} \)，\( |z_1 + z_2| = |4 + 6i| = \sqrt{52} \)。
-  \end{itemize}
+  \begin{frame}{例题}
+
+    \onslide<1->{
+    \begin{example}
+      讨论$\Re \frac{1}{z} = 2$在复平面上的意义.
+    \end{example}
+    }
+% \scalebox{0.6}{
+\onslide<2->{
+    \begin{solution}
+ \small
+          \begin{align*}
+              \Re \frac{1}{z} &= 2\\
+              \Re \frac{1}{x+\imath y} &  = 2 \\
+              \frac{x}{x^2 +y^2} & = 2 .
+          \end{align*}
+          % }
+      因此,我们得到方程
+      \[
+          (x-\frac{1}{4})^2 + y^2 = \left( \frac{1}{4}\right)^2,
+      \]
+      它表示以$(\frac{1}{4},0)$为圆心,$\frac{1}{4}$为半径的圆上各点集合.
+      % }
+      \end{solution}
+  % }
+}
   \end{frame}
   
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{复变函数}
+
+  \subsection{区域的概念}
+
+
+
+
   \begin{frame}{复数的几何表示}
   \begin{itemize}
-  \item 复数 \( z = x + iy \) 可以在复平面上表示为点 \( (x, y) \)。
-  \item 复数的加法和减法可以类比为向量的加法和减法。
-  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( z_1 + z_2 = 4 + 6i \)。
+  \item 复数 \( z = x + iy \) 可以在复平面上表示为点 \( (x, y) \).
+  \item 复数的加法和减法可以类比为向量的加法和减法.
+  \item 例如，\( z_1 = 3 + 4i \) 和 \( z_2 = 1 + 2i \)，则 \( z_1 + z_2 = 4 + 6i \).
   \end{itemize}
   % \includegraphics[width=0.6\textwidth]{complex_plane.png}
   \end{frame}
