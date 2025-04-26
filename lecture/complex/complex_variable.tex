@@ -1,5 +1,55 @@
 
+\subsection{预备知识}
+\label{sec:preknowledge}
 
+\textit{数集与逻辑符号}
+\vspace{1em} 
+首先介绍本书常用的数集和逻辑符号
+\begin{itemize}
+    \item 数集
+    \begin{itemize}
+        \item $\mathbb{N}$: 自然数集
+        \item $\mathbb{Z}$: 整数集
+        \item $\mathbb{R}$: 实数集
+        \item $\mathbb{C}$: 复数集
+    \end{itemize}
+    \item 逻辑符号
+    \begin{itemize}
+        \item $\forall$: 表示 ``对任意一个“, ``对每一个“. 例如, $\forall x \in \mathbb{R}$表示对任一实数$x$.
+        \item $\exists$: 表示 ``存在某个” 或``至少有一个". 例如, $\exists n \in \mathbb{N}$表示存在某一正整数$n$.
+        \item $I\Rightarrow II$: 表示``由 I可推出 II", ``I 是II成立的充分条件", ``II 是 I 成立的必要条件". 
+        \item $I\Leftrightarrow II$: 表示``I等价于II", 或 ``II 是 I 成立的充分必要条件".
+        \item $I \equiv II$: 表示``用II来定义I''.
+        \item $\square$: 表示一个定理或命题证明完毕.
+    \end{itemize}
+\end{itemize}
+正确运用逻辑符号，可简化文字叙述，且简捷明了。
+
+\vspace{1em}
+\textit{ 映射与函数}
+\vspace{1em} 
+\begin{definition}{(映射)}
+    设$A,B$是两个非空集合, 若$\forall x  \in A $, 按某对应法则$f$, 都有唯一的$y\in B$与之对应, 则称$f$为从$A$到$B$的\textbf{映射}. 
+    记作
+    \begin{equation}
+        f: A \to B .
+    \end{equation}
+    $A$称为$f$的定义域, $B$称为$f$的值域.
+\end{definition}
+几类特殊的映射:
+\begin{itemize}
+    \item \textbf{单射}(injective): $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$.
+    \item \textbf{满射}(surjective): $\forall y \in B$, $\exists x \in A$使得$f(x) = y$.
+    \item \textbf{双射}(bijective): 又称为\textbf{$1-1$映射}, $f$既是单射又是满射.
+\end{itemize}
+
+\begin{definition}{函数}
+    设$A \subset \mathbb{R} $ (或$\mathbb{C})$, 称映射$f: A\to \mathbb{R} $（或$\mathbb{C}$)为\textbf{函数}, 记为函数 
+    $f: A\to  \mathbb{R} $ (或$\mathbb{C})$, 或函数 $y = f(x), x \in A$. 称$x$为\textbf{自变量}, $y$为\textbf{因变量}.
+    称$f(x)$为函数在$x$处的\textbf{函数值}, 也称为$f$在$x$处的\textbf{像}(image).
+    其中$D(f) \equiv A$称为$f$的 \textbf{定义域},  $f(A) \equiv { f(x) | x \in A} $ 称为函数的\textbf{值域}.
+
+\end{definition}
 
 \subsection{复数的定义}
 一元二次方程$a x^2 + b x + c = 0 (a\neq 0, b,c \in \mathbb{R})$的求解大家一定都不陌生.当$\Delta \equiv b^2 - 4 a c \geq 0$时,方程有解,求根公式可得
