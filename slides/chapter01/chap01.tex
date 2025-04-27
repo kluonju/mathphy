@@ -4,6 +4,7 @@
 \usepackage{wrapfig}
 
 \usepackage{xeCJK}
+\usepackage{zhnumber}
 % \input{../settings/settings_chinese_fonts.tex} % 中文字体设定
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -39,7 +40,7 @@
 \title{复数和复变函数}
 % \subtitle{A modern beamer theme \textit{摩登主题}}
 
-% \date{\today}
+\date{\zhdigits{2025},\zhganzhinian{2025}年秋}
 \author{罗凯}
 \institute{南京理工大学物理学院}
 
@@ -118,7 +119,7 @@
 \end{frame}
 
 \begin{frame}{映射与函数}
-  \textit{ 映射与函数}
+  % \textit{ 映射与函数}
   \vspace{1em} 
   \begin{definition}{(映射)}
       设$A,B$是两个非空集合, 若$\forall x  \in A $, 按某对应法则$f$, 都有唯一的$y\in B$与之对应, 则称$f$为从$A$到$B$的\textbf{映射}. 
