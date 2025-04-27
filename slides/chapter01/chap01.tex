@@ -1,5 +1,5 @@
 % \PassOptionsToPackage{quiet}{xeCJK}
-\documentclass[fontset=windows, chinese]{beamer}
+\documentclass[fontset=windows, chinese, 10pt]{beamer}
 
 \usepackage{wrapfig}
 
@@ -42,6 +42,20 @@
 % \date{\today}
 \author{罗凯}
 \institute{南京理工大学物理学院}
+
+% \logo{
+  
+% \includegraphics[height=1cm]{njust-logo.jpeg}
+
+% }
+
+\usebackgroundtemplate{%
+\begin{tikzpicture}[remember picture,overlay]
+  \node[opacity=0.05, at=(current page.center)] {
+    \includegraphics[width=0.6\paperwidth]{njust-logo.jpeg}
+  };
+\end{tikzpicture}}
+
 \begin{document}
   % \maketitle
 
@@ -76,6 +90,52 @@
   }
 
   \section{复数}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \subsection{预备知识}
+\label{sec:preknowledge}
+
+\begin{frame}{数集与逻辑符号}
+  常用的数集和逻辑符号
+  \begin{itemize}
+      \item 数集
+      \begin{itemize}
+          \item $\mathbb{N}$: 自然数集
+          \item $\mathbb{Z}$: 整数集
+          \item $\mathbb{R}$: 实数集
+          \item $\mathbb{C}$: 复数集
+      \end{itemize}
+      \item 逻辑符号
+      \begin{itemize}
+          \item $\forall$: 表示 ``对任意一个“, ``对每一个“. 例如, $\forall x \in \mathbb{R}$表示对任一实数$x$.
+          \item $\exists$: 表示 ``存在某个” 或``至少有一个". 例如, $\exists n \in \mathbb{N}$表示存在某一正整数$n$.
+          \item $I\Rightarrow II$: 表示``由 I可推出 II", ``I 是II成立的充分条件", ``II 是 I 成立的必要条件". 
+          \item $I\Leftrightarrow II$: 表示``I等价于II", 或 ``II 是 I 成立的充分必要条件".
+          \item $I \equiv II$: 表示``用II来定义I''.
+          \item $\square$: 表示一个定理或命题证明完毕.
+      \end{itemize}
+  \end{itemize}
+  % 正确运用逻辑符号，可简化文字叙述，且简捷明了。
+\end{frame}
+
+\begin{frame}{映射与函数}
+  \textit{ 映射与函数}
+  \vspace{1em} 
+  \begin{definition}{(映射)}
+      设$A,B$是两个非空集合, 若$\forall x  \in A $, 按某对应法则$f$, 都有唯一的$y\in B$与之对应, 则称$f$为从$A$到$B$的\textbf{映射}. 
+      记作
+      \begin{equation}
+          f: A \to B .
+      \end{equation}
+      $A$称为$f$的定义域, $B$称为$f$的值域.
+  \end{definition}
+  几类特殊的映射:
+  \begin{itemize}
+      \item \textbf{单射}(injective): $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$.
+      \item \textbf{满射}(surjective): $\forall y \in B$, $\exists x \in A$使得$f(x) = y$.
+      \item \textbf{双射}(bijective): 又称为\textbf{$1-1$映射}, $f$既是单射又是满射.
+  \end{itemize}
+\end{frame}
+
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \subsection{复数的定义}
@@ -188,7 +248,7 @@ $\imath$为{\bf 虚数},将定义域扩展到复数,二次方程就有确定的�
     \Arg z = \arg z + 2 n \pi \quad (n = 0, \pm 1, \pm 2\dots).
 \end{align}
 \begin{alertblock}{注意: }%text}
-  {\small 有的书上限定$-\pi < \arg z \leq \pi$, 但我们这里采用的是$0 \leq \arg z < 2\pi$.}
+  { 有的书上限定$-\pi < \arg z \leq \pi$, 但我们这里采用的是$0 \leq \arg z < 2\pi$.}
 \end{alertblock}
 
 \end{frame}
@@ -203,7 +263,7 @@ $x,y$分别为复数$z$的 \textbf{实部}(real part) 和 \textbf{ 虚部}(imagi
 常见的三种表示形式：
   \begin{itemize}
   \item 代数形式：\( z = x + iy \).
-  \item 三角形式：\( z = \rho (\cos \varphi + i \sin \varphi) \)，其中 \(\rho = |z| = \sqrt{x^2 + y^2} \)，\( \varphi = \arg z = \arctan\left(\frac{y}{x}\right) \).
+  \item 三角形式：\( z = \rho (\cos \varphi + \imath\sin \varphi) \)，其中 \(\rho = |z| = \sqrt{x^2 + y^2} \)，\( \varphi = \arg z = \arctan\left(\frac{y}{x}\right) \).
   \item 指数形式：\( z = \rho e^{i\varphi} \).
   \end{itemize}
   \end{frame}
@@ -253,7 +313,7 @@ $$z^{-1} = (\frac{x}{x^2 + y^2}, -\frac{y}{x^2 + y^2}). $$
 \end{align}
 
 \begin{alertblock}{注意：}
-  {\small 往往乘除写成极坐标表达更简洁:
+  { 往往乘除写成极坐标表达更简洁:
       $ z_1 z_2 = \rho_1 e^{\imath \varphi_1 } \rho_2 e^{\imath \varphi_2 } = \rho_1 \rho_2 e^{\imath (\varphi_1 + \varphi_2)} $
   }
 \end{alertblock}
@@ -342,8 +402,8 @@ $$
 
           首先,我们有恒等式$e^{\imath 2\pi n} = 1$,且
           \begin{align*}
-              e^{\imath \frac{\pi}{2}}  = i & \quad  e^{\imath \pi}  =-1 \\
-              e^{\imath \frac{3\pi}{2}} = -i & \quad e^{\imath 2\pi} = 1.
+              e^{\imath \frac{\pi}{2}}  = \imath& \quad  e^{\imath \pi}  =-1 \\
+              e^{\imath \frac{3\pi}{2}} = -\imath& \quad e^{\imath 2\pi} = 1.
           \end{align*}
       题目就是要求方程$z^3 =-\imath$的根.可以得到
           \begin{align*}
@@ -389,7 +449,7 @@ $$
 % \scalebox{0.6}{
 \onslide<2->{
     \begin{solution}
- \small
+%  
           \begin{align*}
               \Re \frac{1}{z} &= 2\\
               \Re \frac{1}{x+\imath y} &  = 2 \\
@@ -415,7 +475,7 @@ $$
 
 \begin{frame}{区域的概念}
 
-\small  在解析函数论中, 函数的定义域或者值域不是一般的点集,而是满足一定条件的点集,称为{\bf 区域},用 $B$ 表示.
+  在解析函数论中, 函数的定义域或者值域不是一般的点集,而是满足一定条件的点集,称为{\bf 区域},用 $B$ 表示.
 为了说明区域的概念, 首先介绍邻域、内点、外点以及边界点的概念.
 
 \begin{itemize}
@@ -438,7 +498,7 @@ $$
       \label{fig:region}
   \end{figure}
   
-  \small
+  
   
   现在介绍区域的概念. 
   
@@ -452,7 +512,7 @@ $$
   
 
   \begin{frame}{闭区域}
-    \small
+    
     \textbf{闭区域} \quad 区域$B$ 及其边界线所组成的点集称为闭区域,以 $\bar{B}$ 表示.区域可以是各种各样的, 例如圆形域及环形域(如图\ref{fig:annular}所示). 
     圆形域可以用不等式 $\left|z-z_0\right|<r$ 来表示, 式中 $z_0$ 为圆心, $r$ 为半径; 
     环形域可以用 $a<\left|z-z_0\right|<b$ 来表示, $z_0$ 为环心, 式中 $a$ 为内半径, $b$ 为外半径.
@@ -472,7 +532,7 @@ $$
     \end{figure}
   \end{frame}
 
-  \subsection{复变函数}
+  \subsection{复变函数的定义}
   \begin{frame}{复变函数定义}
     \begin{definition}
       存在复数平面的点集$Z$,每一点$z\in Z$有一个或多个复数值$w$与之对应, 则称$w$为$z$的函数--复变函数. 记作
@@ -495,7 +555,7 @@ $f(z)$的复共轭为$u(x,y) - \imath \; v(x,y)$.取决于$f(z)$,二者可能相
   \end{frame}
 
   \begin{frame}{常见复变函数}
-    % \small 
+    %  
     这里我们列举一些常见复变函数.
     % \tightlist
 
@@ -533,7 +593,7 @@ $f(z)$的复共轭为$u(x,y) - \imath \; v(x,y)$.取决于$f(z)$,二者可能相
 \begin{frame}{例题}
   \only<1>
   {\begin{example}
-    \small  验证$
+      验证$
         |\sin z|=\frac{1}{2} \sqrt{\left(e^{2 y}+e^{-2 y}\right)+2\left(\sin ^2 x-\cos ^2 x\right)} .
        $
     \end{example}
@@ -541,7 +601,7 @@ $f(z)$的复共轭为$u(x,y) - \imath \; v(x,y)$.取决于$f(z)$,二者可能相
   \onslide<2>
   {
     \begin{solution}
-      \small  由正弦函数定义得
+        由正弦函数定义得
  
         \begin{align*}
             \sin z &= \frac{e^{\imath z} - e^{-\imath z}}{2\imath}  = \frac{e^{\imath x - y} - e^{-\imath x + y}}{2\imath}
@@ -593,13 +653,13 @@ $$
 \begin{align}
     \cosh iz &= \cos z
     \\
-    \sinh iz &= i \sin z.
+    \sinh iz &= \imath\sin z.
 \end{align}
 不难验证下面两个等式成立
 \begin{equation}
     \begin{aligned}
-    & \sin (x+i y)=\sin x \cosh y+i \cos x \sinh y, \\
-    & \cos (x+i y)=\cos x \cosh y-i \sin x \sinh y.
+    & \sin (x+\imath y)=\sin x \cosh y+\imath\cos x \sinh y, \\
+    & \cos (x+\imath y)=\cos x \cosh y-\imath\sin x \sinh y.
     \end{aligned}
 \end{equation}
 \end{frame}
@@ -608,7 +668,7 @@ $$
 
 对于三角函数,有一很重要的de Moivre(棣莫弗)公式.我们可以用两种方式表示$\exp(\imath n \theta)$,于是有
 \begin{align}
-    \cos n \theta + \imath \sin n\theta = (\cos \theta + i \sin \theta)^n  .
+    \cos n \theta + \imath \sin n\theta = (\cos \theta + \imath\sin \theta)^n  .
 \end{align}
 于是可以验证三角函数的倍角公式
 \begin{align}
@@ -636,7 +696,7 @@ $$
     应用de Moivre公式计算 $\sin(5\theta)$.
 \end{example}
  }
-\small
+
  \only<2>{
 \begin{solution}
     考虑复数 $z = \cos\theta + i\sin\theta$.根据de Moivre定理,计算 $z^5$：
@@ -668,7 +728,7 @@ $$
 \begin{solution}
 $  \cos^5\theta + 5i\cos^4\theta \sin\theta - 10\cos^3\theta \sin^2\theta  - 10i\cos^2\theta \sin^3\theta + 5\cos\theta \sin^4\theta + i\sin^5\theta $
 
-    \small
+    
     将实部和虚部分离：
     \begin{eqnarray*}
       \cos(5\theta) = \cos^5\theta - 10\cos^3\theta \sin^2\theta + 5\cos\theta \sin^4\theta \\
@@ -685,7 +745,7 @@ $  \cos^5\theta + 5i\cos^4\theta \sin\theta - 10\cos^3\theta \sin^2\theta  - 10i
  \end{frame}
  
  \begin{frame}{例题}
-  \small
+  
 
  \begin{solution}
     \[
@@ -712,4 +772,249 @@ $  \cos^5\theta + 5i\cos^4\theta \sin\theta - 10\cos^3\theta \sin^2\theta  - 10i
 \end{solution}
 \end{frame}
 
+
+\begin{frame}{反函数}
+  利用$\cos \theta = \sqrt{1 - \sin ^2 \theta }$(取正),可以得到
+\begin{equation}
+  e^{\imath \theta} = \sqrt{ 1 - \sin ^2 \theta } + \imath \sin \theta .  
+\end{equation} 
+令$\sin \theta = z$,$\theta = \sin^{-1} (z)$,对两边同时求对数得到
+\begin{equation}
+    \sin^{-1} (z) = -\imath \ln \left[ \imath z + \sqrt{1-z^2} \right]
+\end{equation}
+这样我们便通过对数函数表示出三角函数的反函数.
+类似的,
+\begin{equation}
+    \begin{array}{l}
+    \sin ^{-1}(z) =-\imath\ln \left[\imath z+\sqrt{1-z^2}\right],  \\
+     \tan ^{-1}(z) =\frac{\imath}{2}[\ln (1-\imath z)-\ln (1+\imath z)], \\
+    \sinh ^{-1}(z) =\ln \left[z+\sqrt{1+z^2}\right], \\
+     \tanh ^{-1}(z) =\frac{1}{2}[\ln (1+z)-\ln (1-z)] .
+    \end{array}
+\end{equation}
+\end{frame}
+
+\begin{frame}{例题}
+\only<1>{
+  \begin{example}
+    根据双曲正切函数的定义证明
+  $$   \tanh \frac{z}{2}=\frac{\sinh x+i \sin y}{\cosh x+\cos y} .  $$
+\end{example}
+}
+\only<2>{
+\begin{solution}
+  
+   
+  \begin{align*}
+      \tanh \frac{z}{2} &= \frac{\sinh \frac{z}{2} }{ \cosh \frac{z}{2}} = \frac{e^{\frac{z}{2}} - e^{-\frac{z}{2}}}{e^{\frac{z}{2}} + e^{-\frac{z}{2}}}
+      \\
+      &= \frac{e^{z} - 1}{e^{z} + 1} = \frac{e^{x+\imath y } -1 } { e^{x + \imath y } + 1}
+      \\
+      &=\frac{e^{\imath y } -e^{-x} } { e^{\imath y } + e^{-x}}
+  \end{align*}   
+  分子分母同乘以分母的复共轭可得
+  \begin{align*}
+      &=\frac{e^{\imath y } -e^{-x} } { e^{\imath y } + e^{-x}} \frac{e^{-\imath y } + e^{-x}} { e^{-\imath y } + e^{-x}}
+      \\
+      &=\frac{ 1 - e^{-2x} + 2 \imath \sin y e^{-x}}{1+ e^{-2x} + 2 \cos y e^{-x} }
+      \\
+      &= \frac{\sinh x + \imath \sin y} {\cosh x + \cos y} .  
+  \end{align*}
+ $ \square$
+  \end{solution}
+  }
+
+\end{frame}
+
+\begin{frame}{双曲正余切函数}
+  此外,类似于三角函数,我们有以下双曲函数
+  \begin{equation}
+      \begin{aligned}
+      \tanh z & =\frac{\sinh z}{\cosh z}=\frac{e^z-e^{-z}}{e^z+e^{-z}}, \\
+      \operatorname{sech} z & =\frac{1}{\cosh z}=\frac{2}{e^z+e^{-z}}, \\
+      \operatorname{cosech} z & =\frac{1}{\sinh z}=\frac{2}{e^z-e^{-z}}, \\
+      \coth z & =\frac{1}{\tanh z}=\frac{e^z+e^{-z}}{e^z-e^{-z}} . 
+      \end{aligned}
+  \end{equation}
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{复变函数的导数}
+
+\begin{frame}{极限和连续}
+  首先,我们来讨论一下函数的极限和连续性问题.
+  \begin{definition}
+      设$w=f(z)$在$z_0$的邻域有定义,对于任意
+  $\epsilon > 0$,存在$\delta > 0$,使得$|z-z_0| < \delta$时,有
+  \begin{equation}
+      |f(z) - w_0| < \delta ,
+  \end{equation}
+  称$z\to z_0$时$w_0$为$f(z)$的{\bf 极限},记为
+  \begin{equation}
+      \lim_{z\to z_0} f(z) = w_0 .
+  \end{equation}
+  \end{definition}
+  当$z$以任意方式趋近$z_0$时都有$ \lim_{z\to z_0} f(z) = w_0$,称$f(z)$在$z_0$点{\bf 连续}.
+  如果$f(z)$ 在$z_0=x_0 + \imath y_0$点连续,可以等价为
+  \begin{align}
+      \lim_{\substack{x\to x_0\\y\to y_0}} \left(u(x,y), v(x,y)\right) = \left(u(x_0, y_0), v(x_0, y_0)\right) . 
+  \end{align}
+\end{frame}
+
+
+\begin{frame}{导数的定义}
+  复变函数的导数定义同实函数一样,定义为
+  \begin{align}
+      \label{eq:derivative_def}
+      f'(z) = \frac{df}{dz} 
+      \equiv\lim_{\Delta z \to 0} \frac{\Delta w} {\Delta z} 
+      = \lim_{\Delta z\to 0} \frac{f(z+\Delta z) - f(z) } {(z+\Delta z ) - z}
+  \end{align}
+  \begin{itemize}
+    \item   这里的前提条件是该极限与$\Delta z \to 0$的方式无关.  该极限为函数$f(z)$在$z$点的导数.
+    \item  通过该定义,实函数的求导公式对于复变函数同样试用,如
+    $(f+g)' = f' + g', (fg)' =f'g + fg'$等. 
+    \item   与实变函数求导不同的是,复变函数导数存在条件是$\Delta z$以任意方式趋于$0$,因而可导条件的要求比较严格.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{柯西黎曼条件}
+
+
+按照图\eqref{fig:limits})两种方式逼近$z_0$,可以得到
+\begin{align}
+    \lim _{\Delta z \rightarrow 0} \frac{\Delta f}{\Delta z} &=\lim _{\Delta x \rightarrow 0}\left(\frac{\Delta u}{\Delta x}+i \frac{\Delta v}{\Delta x}\right)=\frac{\partial u}{\partial x}+i \frac{\partial v}{\partial x},
+\\
+    \lim _{\Delta z \rightarrow 0} \frac{\Delta f}{\Delta z} &=\lim _{\Delta y \rightarrow 0}\left(-i \frac{\Delta u}{\Delta y}+\frac{\Delta v}{\Delta y}\right)=-i \frac{\partial u}{\partial y}+\frac{\partial v}{\partial y}
+\end{align}
+\begin{figure}
+  \centering
+  \input{tikz/limits.tex}
+  \caption{逼近$z_0$的两种特殊方式.}
+  \label{fig:limits}
+\end{figure}
+\end{frame}
+
+\begin{frame}{柯西黎曼条件}
+  \begin{align*}
+    \lim _{\Delta z \rightarrow 0} \frac{\Delta f}{\Delta z} &=\lim _{\Delta x \rightarrow 0}\left(\frac{\Delta u}{\Delta x}+i \frac{\Delta v}{\Delta x}\right)=\frac{\partial u}{\partial x}+i \frac{\partial v}{\partial x},
+\\
+    \lim _{\Delta z \rightarrow 0} \frac{\Delta f}{\Delta z} &=\lim _{\Delta y \rightarrow 0}\left(-i \frac{\Delta u}{\Delta y}+\frac{\Delta v}{\Delta y}\right)=-i \frac{\partial u}{\partial y}+\frac{\partial v}{\partial y}
+\end{align*}
+
+  由上面两式可得令实部虚部分别相等,即
+\begin{equation}
+    \begin{cases}
+        \frac{\partial u}{\partial x}=\frac{\partial v}{\partial y} \\
+        \frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y} .
+    \end{cases}
+\end{equation}
+这就是著名的\blue{ \textbf{ 柯西-黎曼条件}}(Cauchy-Riemann conditions)或
+\blue{\bf 柯西-黎曼方程},是复变函数可导的必要条件,但不是充分条件.
+
+\end{frame}
+
+\begin{frame}{柯西黎曼条件}
+  \small  下面我们证明:若$u(x,y), v(x,y)$偏微分存在且连续,并满足柯西-黎曼条件,则$f(z)$可导.
+  \begin{proof}
+      由于$u,v$偏微分连续,可得
+      \[
+          \Delta f=\left(\frac{\partial u}{\partial x}+\imath \frac{\partial v}{\partial x}\right) \Delta x+\left(\frac{\partial u}{\partial y}+ \imath \frac{\partial v}{\partial y}\right) \Delta y
+      \]
+      利用柯西-黎曼方程,将上式转换为
+      \[
+          \begin{aligned}
+          \Delta f & =\left(\frac{\partial u}{\partial x}+ \imath \frac{\partial v}{\partial x}\right) \Delta x+\left(-\frac{\partial v}{\partial x}+ \imath\frac{\partial u}{\partial x}\right) \Delta y \\
+          & =\left(\frac{\partial u}{\partial x}+ \imath \frac{\partial v}{\partial x}\right)(\Delta x+ \imath \Delta y) 
+          \\
+          & = \left(\frac{\partial u}{\partial x}+ \imath \frac{\partial v}{\partial x}\right) \Delta z
+          \end{aligned}
+      \]
+  可以看到右式与$\Delta z\to 0$的方式无关,因此根据可导的定义判断$f(z)$可导.
+\end{proof}
+
+\end{frame}
+\begin{frame}{极坐标系下的柯西黎曼条件}
+  对于极坐标系,我们也可以得到相应的柯西-黎曼方程,
+  \begin{equation}
+      \left\{\begin{array}{l}
+      \frac{\partial u}{\partial \rho}=\frac{1}{\rho} \frac{\partial v}{\partial \varphi} \\
+      \frac{1}{\rho} \frac{\partial u}{\partial \varphi}=-\frac{\partial v}{\partial \rho}
+      \end{array}\right.
+      \end{equation}
+  其中两种推导作为习题.
+\end{frame}
+
+
+\begin{frame}{解析}
+  利用$z,\bar{z}$的关于$x,y$的定义,不难有
+  \begin{equation}
+      d z=d x+i d y, \quad d \bar{z}=d x-i d y
+  \end{equation}
+  可得到
+  \begin{equation}
+      \frac{\partial}{\partial z}=\frac{1}{2}\left(\frac{\partial}{\partial x}-i \frac{\partial}{\partial y}\right), \quad \frac{\partial}{\partial z}=\frac{1}{2}\left(\frac{\partial}{\partial x}+i \frac{\partial}{\partial y}\right)
+  \end{equation}
+  因此, 柯西黎曼方程意味着
+  \begin{equation}
+      \frac{\partial f}{\partial \bar{z}}=0.
+  \end{equation}
+  $f$的全微分 仅由关于 $z$的微分给出, 即
+  \begin{equation}
+  \mathrm{d}f \equiv \frac{\partial f}{\partial z} \mathrm{~d} z+\frac{\partial f}{\partial \bar{z}} \mathrm{~d} \bar{z}=\frac{\partial f}{\partial z} \mathrm{~d} z
+  \end{equation}
+  这实际上就是解析的本质.
+\end{frame}
+
+\begin{frame}{xxx}
+
+\end{frame}
+
+\begin{frame}{xxx}
+
+\end{frame}
+
+\begin{frame}{xxx}
+
+\end{frame}
+\begin{frame}{xxx}
+
+\end{frame}
+
+\begin{frame}{xxx}
+
+\end{frame}
+\begin{frame}{xxx}
+
+\end{frame}
+
+\begin{frame}{xxx}
+
+\end{frame}
+\begin{frame}{xxx}
+
+\end{frame}
+
+\begin{frame}{xxx}
+
+\end{frame}
+\begin{frame}{xxx}
+
+\end{frame}
+
+\begin{frame}{xxx}
+
+\end{frame}
+\begin{frame}{xxx}
+
+\end{frame}
+
+\begin{frame}{xxx}
+
+\end{frame}
+\begin{frame}{xxx}
+
+\end{frame}
 \end{document}
