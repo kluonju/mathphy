@@ -1,3 +1,101 @@
+\subsection{正交函数组}
+\begin{definition}
+  \label{def:orthogonal_function}
+  设$f(x), g(x) $为定义在区间$[a,b]$上的函数, 积分
+  \begin{equation}
+    (f, g) \equiv \int_a^b f(x) g(x) dx
+  \end{equation}
+叫做二函数$f(x)$和$g(x)$的内积$(f,g)$或$(fg)$.
+\end{definition}
+内积满足施瓦茨不等式(Schwarz inequality)
+\begin{equation}
+  |(f,g)|^2 \leq (f,f)(g,g)
+\end{equation}
+当且仅当$f(x)$和$g(x)$线性相关时,等号成立.
+如果$(f,g) = 0$,则称$f(x)$和$g(x)$是\textbf{正交}的. 函数$f(x)$和它自己的内积称为\textbf{范数}或\textbf{模},记作
+$N f$,
+\begin{equation}
+  N f \equiv (f,f) = \int  f(x)^2 dx
+\end{equation}
+范数为1的函数称为\textbf{单位函数}或\textbf{归一化函数}. 一组归一化函数$\varphi_1(x), \varphi_2(x), \cdots, \varphi_n(x)$,其中任意二者皆正交，
+称\textbf{正交归一组}, 表示为
+\begin{equation}
+  (\varphi_i, \varphi_j) = \delta_{ij} .
+\end{equation}
+对于复变函数， 内积定义为
+\begin{equation}
+  (\bar f,g) = \int_a^b f^*(x) g(x) dx
+\end{equation}
+其中$\bar f$为$f$的复共轭.  若$N f = \int | f|^2 dx = 1$, 称函数$f(x)$是归一化的. 
+
+若对于所有$x$都成立的常系数齐次线性关系
+\begin{equation}
+  \sum_{i=1}^n c_i \varphi_i(x) = 0,
+\end{equation}
+其中系数不全为零, 我们称这$n$个函数$f_1, f_2, \cdots, f_n$是\textbf{线性相关}的. 否则称为\textbf{线性无关}的. 值得注意的是
+正交组中的各函数永远是线性无关的. 因为, 若恒等式
+\begin{equation}
+  \sum_{i=1}^n c_i \varphi_i(x) = 0,
+\end{equation}
+成立，我们可以左乘$\varphi_j(x)$并积分可得$c_j = 0$.
+
+我们可以类比于线性代数中向量的施密特正交化的方法对函数组进行正交化. 设$f_1(x), f_2(x), \cdots, f_n(x)$是线性无关的函数组, 我们可以通过
+\begin{equation}
+  \varphi_1(x) = f_1(x), \quad \varphi_2(x) = f_2(x) - \frac{(f_2, \varphi_1)}{(\varphi_1, \varphi_1)} \varphi_1(x), \cdots
+  \varphi_n(x) = f_n(x) - \sum_{j=1}^{n-1} \frac{(f_n, \varphi_j)}{(\varphi_j, \varphi_j)} \varphi_j(x)
+\end{equation}
+
+下面我们来讨论正交函数组的完备性. 设$\varphi_1(x), \varphi_2(x), \cdots, \varphi_n(x)$是正交归一组, 我们可以定义
+\begin{equation}
+  f(x) = \sum_{i=1}^n c_i \varphi_i(x)
+\end{equation}
+其中系数$c_i$为
+\begin{equation}
+  c_i = (f, \varphi_i) = \int f(x) \varphi_i(x) dx
+\end{equation}
+成为\textbf{展开系数}或\textbf{分量}.
+
+由关系式
+\begin{equation}
+  \int \left( f(x) - \sum_{i=1}^n c_i \varphi_i(x) \right)^2 dx \geq  0
+\end{equation}
+展开个平方并逐项积分, 我们可以得到
+\begin{equation}
+ \int f^2(x) dx +  \sum_{i=1}^n c_i^2  -  2 \sum_{i=1}^n   c_i \int f  \varphi_i  dx \geq 0 
+\end{equation}
+因此有,
+\begin{equation}
+  \sum_{i=1}^n c_i^2 \leq N f 
+\end{equation}
+上式可以令$n \to \infty$, 也可以得到
+\begin{equation}
+  \sum_{i=1}^{\infty} c_i^2 \leq N f
+\end{equation}
+这称为\textbf{贝塞尔不等式}(Bessel's inequality). 它对每一个正交归一组都成立, 它证明了展开系数的平方和是收敛有界的.
+
+假如有一正交归一组$\varphi_1(x), \varphi_2(x), \cdots, $, 使得对任意分段连续函数$f(x)$,都有$n$使
+平均平方误差
+$$
+\int \left( f(x) - \sum_{i=1}^n c_i \varphi_i(x) \right)^2 dx 
+$$
+小于任意给定正数$\epsilon$, 那么我们称$\varphi_1(x), \varphi_2(x), \cdots$是\textbf{完备的}. 对于完备的正交归一组而言, 贝塞尔不等式
+对任意函数$f(x)$都成为等式:
+\begin{equation}
+  \sum_{i=1}^{\infty} c_i^2 = N f
+  \label{eq:completeness}
+\end{equation}
+这个关系称为``完备性关系''. 更一般的形式为
+\begin{equation}
+  \sum_{i=1}^{\infty} c_i d_i = (f, g) \quad \text{其中} \quad  c_i = (f, \varphi_i) , d_i = (g, \varphi_i)
+\end{equation}
+可以验证, 对$f+g$ 应用完备性关系~\ref{eq:completeness},
+\begin{equation}
+  N (f + g) = Nf  + Ng + 2 (f, g) = \sum_{i = 1}^{\infty} (c_i + d_i)^2 = \sum_{i=1}^{\infty} (c_i^2 + d_i^2 + 2  c_i d_i) 
+\end{equation}
+并减去相应的$f,g$的范数.
+
+%  该不等式说明了展开系数的平方和是有界的, 但并不能保证展开系数的平方和等于函数的模平方. 也就是说, 我们并不能保证
+
 \subsection{傅里叶级数的引入}
 \label{subsec:fourier_series}
 Fourier曾试图解决一个问题,在此过程中发展了傅里叶级数的概念.此问题处理长度为$\ell$的一维均匀棒的热传播过程,即
