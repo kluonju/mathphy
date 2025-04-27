@@ -472,6 +472,7 @@ $$
     \end{figure}
   \end{frame}
 
+  \subsection{复变函数}
   \begin{frame}{复变函数定义}
     \begin{definition}
       存在复数平面的点集$Z$,每一点$z\in Z$有一个或多个复数值$w$与之对应, 则称$w$为$z$的函数--复变函数. 记作
@@ -492,4 +493,223 @@ $$
 $f(z)$的复共轭为$u(x,y) - \imath \; v(x,y)$.取决于$f(z)$,二者可能相等也可能不等.
 
   \end{frame}
+
+  \begin{frame}{常见复变函数}
+    % \small 
+    这里我们列举一些常见复变函数.
+    % \tightlist
+
+\begin{itemize}
+  % \setlength\itemsep{0.em} % or even 0em
+    \item 多项式:
+        $
+            a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n , \quad n\in \mathbb{Z}^+ ,
+       $
+    \item 有理分式:       
+         $
+        \frac{a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n}{{b_0 + b_1 z + b_2 z^2 + \cdots + b_m z^m}} , \quad  n,m\in \mathbb{Z}^+ ,
+       $
+    \item 根式:
+        $
+            (z-a)^{m/n} , \quad  n,m\in \mathbb{Z}^+ ,
+       $
+    \item 对数、指数
+        $
+            \ln z = \ln |z| + \imath \Arg z, \quad z^s = e^{s\ln z} ,
+       $
+    \item 正余弦,正余切函数 
+        $
+            \sin z , \cos z , \tan z, \cot z ,
+       $
+    \item 双曲正余弦, 双曲正余切函数
+        $
+            \sinh z , \cosh z , \tanh z, \coth z  .
+       $
+\end{itemize}
+以上所有出现的常数均为复数.
+
+\end{frame}
+
+\begin{frame}{例题}
+  \only<1>
+  {\begin{example}
+    \small  验证$
+        |\sin z|=\frac{1}{2} \sqrt{\left(e^{2 y}+e^{-2 y}\right)+2\left(\sin ^2 x-\cos ^2 x\right)} .
+       $
+    \end{example}
+  }
+  \onslide<2>
+  {
+    \begin{solution}
+      \small  由正弦函数定义得
+ 
+        \begin{align*}
+            \sin z &= \frac{e^{\imath z} - e^{-\imath z}}{2\imath}  = \frac{e^{\imath x - y} - e^{-\imath x + y}}{2\imath}
+            \\ 
+            & = \frac{1}{2\imath}\left( e^{-y} (\cos x + \imath \sin x ) - e^{y} (\cos x - \imath \sin x ) \right) 
+            \\
+            & = \frac{1}{2\imath} \left( \cos x (e^{-y} - e^{y}) + \imath \sin x (e^{-y} + e^{y}) \right)
+        \end{align*}
+
+        取模后可得,
+        \begin{align*}
+            |\sin z | &= \frac{1}{2}\sqrt{ \cos^2x (e^{2y} + e^{-2y} -2) + \sin^2 x (e^{2y} + e^{-2y} +2) }
+            \\
+            &=\frac{1}{2}\sqrt{\left(e^{2 y}+e^{-2 y}\right)+2\left(\sin ^2 x-\cos ^2 x\right)}
+        \end{align*}
+        可见,与实函数不同的是,$|\sin z|$的取值完全可以大于$1$.
+    \end{solution}
+  }
+\end{frame}
+
+\begin{frame}{双曲函数}
+  双曲函数(hyperbolic functions)为三角函数(trigonometric functions)的复数类比.
+  许多同三角函数一样的等式和积分上都可以类似的应用在双曲函数上.
+  通过复数的引入,我们很容易定义三角函数,如正余弦函数(sine/cosine function)可以表示为互为共轭的指数函数的和差
+  \begin{align}
+      \cos \theta = \frac{e^{\imath \theta} + e^{ -\imath \theta} }{2}
+      \\
+      \sin \theta = \frac{e^{\imath \theta} - e^{ -\imath \theta} }{2\imath}
+  \end{align}
+  双曲正余弦函数(hyperbolic sine/cosine function)表达为
+  \begin{align}
+      \cosh \theta &= \frac{e^{\theta} + e^{ - \theta} }{2}
+      \\
+      \sinh \theta &= \frac{e^{\theta} - e^{ - \theta} }{2} .
+  \end{align}
+\end{frame}
+
+\begin{frame}{双曲函数}
+正余弦函数
+$$
+\cos \theta = \frac{e^{\imath \theta} + e^{ -\imath \theta} }{2}, \quad     \sin \theta = \frac{e^{\imath \theta} - e^{ -\imath \theta} }{2\imath}
+$$
+双曲正余弦函数
+$$
+\cosh \theta = \frac{e^{\theta} + e^{ - \theta} }{2}, \quad     \sinh \theta = \frac{e^{\theta} - e^{ - \theta} }{2} .
+$$
+
+比较两组方程可以得到
+\begin{align}
+    \cosh iz &= \cos z
+    \\
+    \sinh iz &= i \sin z.
+\end{align}
+不难验证下面两个等式成立
+\begin{equation}
+    \begin{aligned}
+    & \sin (x+i y)=\sin x \cosh y+i \cos x \sinh y, \\
+    & \cos (x+i y)=\cos x \cosh y-i \sin x \sinh y.
+    \end{aligned}
+\end{equation}
+\end{frame}
+
+\begin{frame}{de Moivre定理}
+
+对于三角函数,有一很重要的de Moivre(棣莫弗)公式.我们可以用两种方式表示$\exp(\imath n \theta)$,于是有
+\begin{align}
+    \cos n \theta + \imath \sin n\theta = (\cos \theta + i \sin \theta)^n  .
+\end{align}
+于是可以验证三角函数的倍角公式
+\begin{align}
+    \sin(2\theta) = 2\sin\theta \cos\theta, \quad \cos (2\theta) = \cos^2\theta - \sin^2\theta .
+\end{align}
+
+
+  % \begin{theorem}[de Moivre定理]
+  %   设 $z = \rho e^{\imath \varphi}$, 则
+  %   \begin{equation}
+  %       z^n = \rho^n e^{\imath n \varphi} .
+  %   \end{equation}
+  % \end{theorem}
+  % 该定理可以推广到复数的任意次幂, 即
+  % \begin{equation}
+  %     z^n = r^n e^{\imath n \varphi} .
+  % \end{equation}
+
+\end{frame}
+
+
+\begin{frame}{例题}
+ \only<1> {
+  \begin{example}
+    应用de Moivre公式计算 $\sin(5\theta)$.
+\end{example}
+ }
+\small
+ \only<2>{
+\begin{solution}
+    考虑复数 $z = \cos\theta + i\sin\theta$.根据de Moivre定理,计算 $z^5$：
+    \[
+    z^5 = (\cos\theta + i\sin\theta)^5 = \cos(5\theta) + i\sin(5\theta)
+    \]
+
+    展开 $(\cos\theta + i\sin\theta)^5$ 使用二项式定理并简化每一项,
+    \begin{eqnarray*}
+      & & (\cos\theta + i\sin\theta)^5  \\
+        &=& \sum_{k=0}^{5} \binom{5}{k} (\cos\theta)^{5-k} (i\sin\theta)^k \\
+        &=& \binom{5}{0} \cos^5\theta + \binom{5}{1} \cos^4\theta(i\sin\theta) + \binom{5}{2} \cos^3\theta(i\sin\theta)^2 
+        \\
+        & & +  \binom{5}{3} \cos^2\theta(i\sin\theta)^3 +  \binom{5}{4} \cos\theta(i\sin\theta)^4 + \binom{5}{5}(i\sin\theta)^5
+        \\
+        &=&  \cos^5\theta + 5i\cos^4\theta \sin\theta - 10\cos^3\theta \sin^2\theta 
+        \\
+        &&  - 10i\cos^2\theta \sin^3\theta + 5\cos\theta \sin^4\theta + i\sin^5\theta
+    \end{eqnarray*}
+    
+
+\end{solution}
+ }
+
+\end{frame}
+
+\begin{frame}{例题}
+
+\begin{solution}
+$  \cos^5\theta + 5i\cos^4\theta \sin\theta - 10\cos^3\theta \sin^2\theta  - 10i\cos^2\theta \sin^3\theta + 5\cos\theta \sin^4\theta + i\sin^5\theta $
+
+    \small
+    将实部和虚部分离：
+    \begin{eqnarray*}
+      \cos(5\theta) = \cos^5\theta - 10\cos^3\theta \sin^2\theta + 5\cos\theta \sin^4\theta \\
+      \sin(5\theta) = 5\cos^4\theta \sin\theta - 10\cos^2\theta \sin^3\theta + \sin^5\theta
+  \end{eqnarray*}
+    
+    利用幂次公式,$\cos^2\theta = 1 - \sin^2\theta$ 和 $\sin^2\theta = 1 - \cos^2\theta$,我们可以将 $\sin(5\theta)$ 表示为 $\sin\theta$ 和 $\cos\theta$ 的函数：
+    \[
+    \sin(5\theta) = 5\cos^4\theta \sin\theta - 10\cos^2\theta \sin^3\theta + \sin^5\theta
+    \]
+    
+  \end{solution}
+ 
+ \end{frame}
+ 
+ \begin{frame}{例题}
+  \small
+
+ \begin{solution}
+    \[
+    \sin(5\theta) = 5\cos^4\theta \sin\theta - 10\cos^2\theta \sin^3\theta + \sin^5\theta
+    \]
+
+    进一步化简 $\cos^4\theta = (1 - \sin^2\theta)^2$ 和 $\cos^2\theta = 1 - \sin^2\theta$,我们得到：
+    
+    \[
+    \sin(5\theta) = 5(1 - \sin^2\theta)^2\sin\theta - 10(1 - \sin^2\theta)\sin^3\theta + \sin^5\theta
+    \]
+    
+    这就是 $\sin(5\theta)$ 以 $\sin\theta$ 的表示形式.
+    
+    最终,简化表达式：
+    \[
+    \sin(5\theta) = 5\sin\theta - 20\sin^3\theta + 16\sin^5\theta
+    \]
+    
+    因此,$\sin(5\theta)$ 通过de Moivre公式可以表示为 $\sin\theta$ 的函数：
+    \[
+    \sin(5\theta) = 5\sin\theta - 20\sin^3\theta + 16\sin^5\theta.
+    \]
+\end{solution}
+\end{frame}
+
 \end{document}
