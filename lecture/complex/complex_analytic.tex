@@ -17,7 +17,7 @@
     接着,我们来看$f(z) = |z|^2 = (x^2 + y ^2)$,可以知道只有在$(0,0)$处满足可导条件,其他点均不解析.因此,$f(z)=|z|^2$的奇点数有无数个.
  \end{solution}
 
- 解析函数实际上有着深刻的内涵.其中要义之一就是其实部和虚部(统一用$\psi$来表示)都必须满足二维的拉普拉斯方程即
+ 解析函数实际上有着深刻的内涵. 其中要义之一就是其实部和虚部(统一用$\psi$来表示)都必须满足二维的拉普拉斯方程即
  \begin{equation}
     \label{eq:Laplace_eq}
     \frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}=0
@@ -30,7 +30,19 @@
     \nabla u \cdot \nabla v = \frac{\partial u}{\partial x} 
     \frac{\partial v}{\partial x}+\frac{\partial u}{\partial y} \frac{\partial v}{\partial y}=0 ,
 \end{equation}
-由于$\nabla u, \nabla v$代表两曲线的法向矢量,因此两曲线是正交的.
+由于$\nabla u, \nabla v$代表两曲线的法向矢量,因此两曲线是正交的. 例如, $f(z) = z^2$的实部和虚部分别为
+\begin{equation}
+    u(x,y) = x^2 - y^2, \; v(x,y) = 2xy .
+\end{equation}
+可以画出$u(x,y) = C_1$和$v(x,y)= C_2$的曲线,如图\ref{fig:orthogonal_level_curves}所示. 
+其中蓝色曲线为$u(x,y) = C_1$,红色曲线为$v(x,y)=C_2$. 可以看到,两曲线在交点处是正交的.
+
+\begin{figure}
+      \centering
+        \input{tikz/orthogo.tex}
+        \caption{正交曲线族}
+        \label{fig:orthogonal_level_curves}
+\end{figure}
 
 第三要义就是,当解析函数的实部(或虚部)给定,可以根据柯西-黎曼条件求解相应的虚部(或实部),进而确定该解析函数.
 如已知实部,可以发现

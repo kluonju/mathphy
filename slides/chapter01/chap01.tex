@@ -2,7 +2,7 @@
 \documentclass[fontset=windows, chinese, 10pt]{beamer}
 
 \usepackage{wrapfig}
-
+% \usepackage{ctex}
 \usepackage{xeCJK}
 \usepackage{zhnumber}
 % \input{../settings/settings_chinese_fonts.tex} % 中文字体设定
@@ -10,9 +10,14 @@
 \usepackage{pgfplots}
 % \usepgfplotslibrary{intersections} 
 
+% \uselanguage{chinese}
+
 \usetikzlibrary{quotes,angles}
 \usetikzlibrary {arrows.meta}
 \usetikzlibrary{decorations.markings}
+\pgfplotsset{compat=1.18}
+
+  % \newcommand{\exampletitle}{例题} %
 
 %配合主题，
 % \usefonttheme{professionalfonts} 
@@ -969,53 +974,215 @@ $  \cos^5\theta + 5i\cos^4\theta \sin\theta - 10\cos^3\theta \sin^2\theta  - 10i
   这实际上就是解析的本质.
 \end{frame}
 
-\begin{frame}{xxx}
+\begin{frame}{解析函数}
+\begin{definition}
+若函数 $f(z)$ 在点 $z_0$ 及其邻域上处处可导, 则称 $f(z)$ 在 $z_0$ 点解析.\\
+ 又若 $f(z)$ 在区域 $B$ 上每一点都解析, 则称 $f(z)$ 是区域 $B$ 上的解析函数.
+\end{definition} 
+
+ 可见, 函数若在某一点解析, 则必在该点可导. 反之却不一定成立. 若在全复数域上解析,我们
+ 称其为{\bf 完全函数}(entire function).
+ 若$f(z)$在某点$z_0$不可导,$z_0$称为$f(z)$的一个{\bf 奇点}(singular point).
+
+
 
 \end{frame}
 
-\begin{frame}{xxx}
+\begin{frame}{解析函数例题}
+  \begin{example}
+说明$f(z)=z^2$是完全函数,而$f(z)=|z|^2$的奇点数有无数个.
+\end{example}
+\onslide<2->{
+\begin{solution}
+    首先,$f(z) =z^2 = (x^2 - y ^2) + \imath 2 x y$,实部和虚部分别为$u(x,y) = x^2 - y^2, v(x,y)=2x y$,
+连续条件和柯西-黎曼条件在全实数域均满足,可知$f(z)$在全复平面每点均可导.因此,$f(z)=z^2$是完全函数. 
+类似的,我们可以知道$f(z)=z^n, n\in N$的也是完全函数.\\ \pause
+    接着,我们来看$f(z) = |z|^2 = (x^2 + y ^2)$,可以知道只有在$(0,0)$处满足可导条件,其他点均不解析.
+    因此,$f(z)=|z|^2$的奇点数有无数个.
+ \end{solution}
+}
+\end{frame}
+
+\begin{frame}{解析函数的要义}
+解析函数实际上有着深刻的内涵. 
+
+其中要义之一就是其实部和虚部(统一用$\psi$来表示)都必须满足二维的拉普拉斯方程即
+ \begin{equation}
+    \label{eq:Laplace_eq}
+    \frac{\partial^2 \psi}{\partial x^2}+\frac{\partial^2 \psi}{\partial y^2}=0
+ \end{equation}
+该方程也叫做\textbf{调和方程}(harmonic equation), 其解称为调和函数(harmonic function). 
+\footnote{$u,v$被成为调和函数或谐函数(harmonic functions)(注意不要同球谐函数spherical harmonics混淆).}
+\\
+上式可以利用柯西-黎曼条件进行验证, 作为作业. 
 
 \end{frame}
 
-\begin{frame}{xxx}
+\begin{frame}{解析函数的要义}
+  \small
+第二要义就是,满足$u(x,y) = C_1$和$v(x,y)= C_2$的曲线为正交曲线族.
+再次利用柯西-黎曼条件,可以验证梯度$\nabla u $和$\nabla v$正交,
+\begin{equation}
+    \nabla u \cdot \nabla v = \frac{\partial u}{\partial x} 
+    \frac{\partial v}{\partial x}+\frac{\partial u}{\partial y} \frac{\partial v}{\partial y}=0 ,
+\end{equation}
+由于$\nabla u, \nabla v$代表两曲线的法向矢量,因此两曲线是正交的.
 
-\end{frame}
-\begin{frame}{xxx}
+\begin{figure}
+  \centering
+    \scalebox{0.8}
+  {
+\input{tikz/orthogo.tex}
+  }
 
-\end{frame}
-
-\begin{frame}{xxx}
-
-\end{frame}
-\begin{frame}{xxx}
-
-\end{frame}
-
-\begin{frame}{xxx}
-
-\end{frame}
-\begin{frame}{xxx}
-
-\end{frame}
-
-\begin{frame}{xxx}
-
-\end{frame}
-\begin{frame}{xxx}
-
+  % \caption{正交曲线族示意图.}
+  % \label{fig:orthogo}
+\end{figure}
 \end{frame}
 
-\begin{frame}{xxx}
+\begin{frame}{解析函数的要义}
+第三要义就是,当解析函数的实部(或虚部)给定,可以根据柯西-黎曼条件求解相应的虚部(或实部),进而确定该解析函数.
+如已知实部,可以发现
+\begin{equation}
+    d v = \funcpd{v}{x} dx + \funcpd{v}{y} dy = -\funcpd{u}{y} dx + \funcpd{u}{x} dy
+\end{equation}
+可以验证 
+$$
+\funcpd{}{y} \left( - \funcpd{u}{y} \right) = \funcpd{}{x} \left( \funcpd{u}{x} \right) , 
+$$
+可知, $dv$是一全微分, $v = \int dv$.
+\end{frame}
+
+
+\begin{frame}{第三要义}
+\begin{example}
+解析函数实部为$u(x,y) = x^2 - y^2$,求解该解析函数.
+\end{example}
+\begin{solution}
+首先,可以验证$u$为调和函数.然后,利用柯西-黎曼条件可得
+\begin{equation}
+    \frac{\partial u}{\partial x } = 2x, \; \frac{\partial u}{\partial y } = -2y  ,
+\end{equation}
+因此
+\begin{equation}
+    d v = \frac{\partial v}{\partial x } dx + \frac{\partial v}{\partial y } dy = 2y dx + 2x dy .
+\end{equation}
+该积分与路径无关,可以用几种方法得到.容易得到$v(x,y) = 2xy + C$, $C$为积分常数.解析函数为$f(z)=x^2 - y^2 + \imath (2x y + C) = z^2 + \imath C$.
+\end{solution}
+\end{frame}
+
+\begin{frame}{多值函数}
+在定义解析函数的时候,其中一个条件就是要求函数为单值的.
+然而除了单值函数外,还有许多多值函数,例如对数函数和根式函数等.
+碰巧的是,解析函数的许多性质仍然可以应用到多值函数上,但前提是要到
+多值函数的 \textbf{支点} (branch points).
+
+一般来说,多值函数$f(z)$,若$z$绕某点一周,$f(z)$不会返回原值,
+我们称该点为多值函数的\textbf{支点}.若$z$绕该支点$n$周,$f(z)$复原,
+则称该点为多值函数$f(z)$的$n$阶支点.
+以$f(z) = z^{1/2}$为例,我们来介绍多值函数的性质.
+
+易知,\[
+    f(z) = \sqrt{r} e^{\imath \half  \Arg z}
+    =  \sqrt{r} e^{\imath \left( \half \arg z + n \pi \right)},
+    \]
+于是,对于$n= 2k$和$n=2k+1$,$f(z)$有两个值.
+\end{frame}
+
+
+\begin{frame}{多值函数}
+于是,对于$n= 2k$和$n=2k+1$,$f(z)$有两个值.
+\begin{equation}
+    \left\{\begin{aligned}
+    f_1(z) & =\sqrt{r}  e^{\imath(\arg z) / 2} \\
+    f_2(z) & =-\sqrt{r}  e^{\imath(\arg z) / 2} \\
+    \end{aligned}\right.
+\end{equation}
+这两个函数成为$f(z)= z^{1/2}$的两个\textbf{单值分支}.可以发现,
+取任意包含$z=0$的闭合路径(或围道)$C$,沿着该路径绕行一圈,辐角增加$2\pi$,
+可以发现$f(z)$从其一单值分支$f_1(z)$进入到另一单值分支$f_2(z)$.
+若绕行两周,则回归原分支$f_1(z)$.根据定义,可知$z=0$为该函数的支点, 且
+为2阶支点.
+
+\begin{alertblock}{注意}
+  \small
+    这里的支点是指$z=0$为支点,而不是$f(z)=0$为支点.
+    例如,对于$f(z) = z^{1/2}$, $f(z)$在$z=0$处有支点,而在$f(z)=0$处没有支点.
+    另外, $f(z) = \sqrt{z}$在$z=0$处有支点,而在$f(z)=0$处没有支点.
+    
+    此外, 关于阶数的定义与梁昆淼的说法不同.
+\end{alertblock}
+此外,利用变换$z=1/t$,可以发现$z=\infty$也是2阶支点.
 
 \end{frame}
-\begin{frame}{xxx}
 
+\begin{frame}{割线}
+
+为了能够像对待单值函数一样对待多值函数,我们需要定义复平面Argand diagram
+中的\textbf{割线}(branch cut).割线可以被认为是复平面里一个人为
+设定的不可穿过的壁垒.割线的存在,使得我们能够避免形成一个包含支点的路径,
+这样一来,在割线之间多值函数仍然是单值的.
+
+对于$f(z)=z^{1/2}$,可以取任意一条过$z=0$的指向$|z|=\infty$的割线,使得
+无法形成包含$z=0$支点的闭合路径.按照约定,我们通常沿着实轴或者虚轴取这样的割线.
+由于割线的存在,辐角被限制在$(0,2\pi)$,因而$f(z)$保持单值.
+割线的取法多种多样, 正确连接各支点,同时规定辐角的值即可.
 \end{frame}
 
-\begin{frame}{xxx}
 
-\end{frame}
-\begin{frame}{xxx}
+\begin{frame}{例题}
+  \small
+\only<1>{
+  \begin{example}
+找出函数$f(z) = \sqrt{z^2 + 1}$的支点,并取合适的割线.
+\end{example}
+}
+\onslide<2->{
+\begin{solution}
+不难看出,$
+  f(z) = \sqrt{z + \imath} \sqrt{z-\imath} $. 
+前面我们了解了$f(z)=\sqrt{z}$的支点为$z=0$,不难看出来,$z=\pm \imath$也会成为
+该函数的两个支点.
+如图\ref{fig:contours}所示,令
+\[ z - i = r_1 e^{\imath \theta_1 } \quad 
+    z + i = r_2 e^{\imath \theta 2}
+\]
+我们有\[f(z) = \sqrt{r_1 r_2} e^{\imath \half (\theta_1 + \theta_2)}.\]
+如果我们做以下几种情况的闭合路径$C$,我们会得到不同的情况.若$C$
+\begin{enumerate}
+    \item[(i)] 不包含两个支点,那么$\theta_1 \to \theta_1, \theta_2 \to \theta_2$, 于是$f(z)\to f(z)$;
+    \item[(ii)] 包含$\imath$但不含$-\imath$,那么$\theta_1 \to \theta_1 + 2\pi, \theta_2 \to \theta_2$, 于是$f(z)\to - f(z)$;
+    \item[(iii)] 包含$-\imath$但不含$\imath$,那么$\theta_1 \to \theta_1, \theta_2 \to \theta_2  + 2\pi$, 于是$f(z)\to - f(z)$;
+    \item[(iv)] 包含$\pm \imath$两个支点,那么$\theta_1 \to \theta_1  + 2\pi, \theta_2 \to \theta_2  + 2\pi$, 于是$f(z)\to  f(z)$.
+\end{enumerate}
+因此,为了阻止闭合路径绕支点完成完整的回路,我们必须选择合适的割线.图中连接$\pm \imath$的标红线段是一种选择.
+\end{solution}
 
+}
 \end{frame}
+
+\begin{frame}{例题}
+
+\begin{figure}[htbp]
+    \centering
+    \scalebox{0.9}{
+    \input{tikz/branchcut.tex}
+    }
+    % \input{tikz/limits.tex}
+    \caption{对函数$f(z) = \sqrt{z^2 + 1}$的路径选取和割线示意图.}
+    \label{fig:contours}
+\end{figure}
+\end{frame}
+
+
+% \begin{frame}{xxx}
+
+% \end{frame}
+
+% \begin{frame}{xxx}
+
+% \end{frame}
+% \begin{frame}{xxx}
+
+% \end{frame}
 \end{document}
