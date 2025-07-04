@@ -1,0 +1,157 @@
+% \PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[fontset=windows, chinese, 10pt]{beamer}
+
+\usepackage{wrapfig}
+\usepackage{esint}
+
+% \usepackage{ctex}
+\usepackage{xeCJK}
+\usepackage{zhnumber}
+% \input{../settings/settings_chinese_fonts.tex} % 中文字体设定
+\usepackage{tikz}
+\usepackage{pgfplots}
+% \usepgfplotslibrary{intersections} 
+
+% \uselanguage{chinese}
+
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary {arrows.meta}
+\usetikzlibrary{decorations.markings}
+\pgfplotsset{compat=1.18}
+
+  % \newcommand{\exampletitle}{例题} %
+
+%配合主题，
+% \usefonttheme{professionalfonts} 
+%和配色包如 
+% \usecolortheme{dove}
+
+\usetheme{metropolis}           % Use metropolis theme
+% \usetheme{Boadilla}
+% \usetheme{Madrid}
+% \usetheme{Berkeley}
+% \usetheme{Hannover}
+
+% \usepackage{beamerthemeNanjing}
+\usepackage{beamercolorthemeHistNanjing}
+
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}  % orange is supported in xcolor
+
+\include{macro}
+
+\title{数学物理方法概述}
+% \subtitle{A modern beamer theme \textit{摩登主题}}
+
+\date{\zhdigits{2025},\zhganzhinian{2025}年秋}
+\author{罗凯}
+\institute{南京理工大学物理学院}
+
+% \logo{
+  
+% \includegraphics[height=1cm]{njust-logo.jpeg}
+
+% }
+
+\usebackgroundtemplate{%
+\begin{tikzpicture}[remember picture,overlay]
+  \node[opacity=0.05, at=(current page.center)] {
+    \includegraphics[width=0.6\paperwidth]{njust-logo.jpeg}
+  };
+\end{tikzpicture}}
+
+\begin{document}
+  % \maketitle
+
+  
+  % 好的，我将为你创建一个详细的Beamer幻灯片，专注于第一小节“复数”的内容.每个知识点都会详细展开，包括定义、运算和几何意义.以下是幻灯片的内容：
+
+  % ```latex
+  % \documentclass{beamer}
+  % \usetheme{Madrid} % 选择一个主题
+  % \usepackage{amsmath} % 引入数学公式宏包
+  % \usepackage{amsfonts} % 引入数学字体宏包
+  % \usepackage{graphicx} % 引入图形宏包
+  
+  % \title{数学物理方法：复数}
+  % \author{罗凯}
+  % \date{\today}
+  
+  % \begin{document}
+  
+  \begin{frame}
+  \titlepage
+  \end{frame}
+  
+  % \begin{frame}{目录}
+  % \tableofcontents
+  % \end{frame}
+  
+  \AtBeginSubsection{
+    \begin{frame}{目录}
+      \tableofcontents[currentsection,currentsubsection]
+    \end{frame}
+  }
+
+  \section{课程大纲}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:outline}
+
+\begin{frame}{成绩构成}
+  \begin{itemize}
+    \item 课程总评：100分
+    \item 平时成绩：60\%
+    \begin{itemize}
+      \item 作业：40\%
+      \item 测验： 5\%
+      \item 签到、课堂表现：15\%
+    \end{itemize}
+    \item 期末考试：40\%
+    \begin{itemize}
+      \item 期末考试内容为全学期所学内容
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{学习方法}
+\begin{frame}{学习的三种境界}
+
+  王国维《人间词话》之二六：
+  \begin{quote}
+    古今之成大事业、大学问者，必经过三种之境界。
+    \begin{enumerate}
+      \item \textit{“昨夜西风凋碧树，独上高楼，望尽天涯路”，此第一境也；}
+      \item \textit{“衣带渐宽终不悔，为伊消得人憔悴”，此第二境也；}
+      \item \textit{“众里寻他千百度，蓦然回首，那人却在灯火阑珊处”，此第三境也。}
+    \end{enumerate}
+    此等语皆非大词人不能道。然遽以此意解释诸词，恐晏、欧诸公所不许也。
+  \end{quote}
+
+  % \vspace{1em}
+  % \begin{block}{三种境界的启示}
+  %   后人常以此三种境界象征奋斗路上的心路历程。
+  % \end{block}
+  \end{frame}
+
+\begin{frame}{学习方法}
+
+\begin{itemize}
+  \item 学好\red{先行课}相关知识，\blue{打好基础}
+  \item \red{珍视}课堂学习，\blue{专心听讲}、\green{积极思维}
+  \item \red{勤于练习}、\blue{勤于思考}、\green{勤于提疑}
+  \item \red{善于总结}、\blue{善于分析}、\green{善于对比}
+  \item \red{乐于交流}，\blue{乐于讨论}，\green{乐于创新}
+  \item \red{学会举一反三}，懂得\blue{由树木见森林}
+  \item \red{熟记}重要公式、结果，\blue{简化求解过程}
+  \item \red{勤奋学习}，\blue{树立信心}，\green{水到渠成}
+\end{itemize}
+\end{frame}
+
+\section{预备知识}
+  
+  
+\end{document}
