@@ -1,0 +1,189 @@
+% filepath: /home/kluo/Documents/repos/kluo/mathphy/homework/2025/hw1_v2.tex
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{graphicx, multicol, array}
+\usepackage{ctex} 
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+
+% Fix headheight warning
+\setlength{\headheight}{15.12pt}
+\addtolength{\topmargin}{-3.12pt}
+
+% Chinese punctuation handling
+\let\oldjuhao=。
+\catcode`\。=\active
+\newcommand{。}{\ifmmode\text{\oldjuhao}\else\oldjuhao\fi}
+
+\let\olddouhao=，
+\catcode`\，=\active
+\newcommand{，}{\ifmmode\text{\olddouhao}\else\olddouhao\fi}
+
+% Mathematical symbols
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ii}{\mathrm{i}}
+% Remove conflicting Re and Im definitions since they're already defined
+% \DeclareMathOperator{\Re}{Re}
+% \DeclareMathOperator{\Im}{Im}
+
+% Problem environment with better styling
+\theoremstyle{definition}
+\newtheorem{problem}{题目}[section]
+
+% Colors for better visual hierarchy
+\definecolor{headercolor}{RGB}{25,25,112}
+\definecolor{problemcolor}{RGB}{70,130,180}
+
+% Enhanced header rule
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+% Date configuration
+\newcommand{\duedate}{\zhdate{2024/10/08}}
+\pagestyle{fancy}
+
+% Header and footer setup
+\fancyhf{} % clear all fields
+\fancyhead[L]{\color{headercolor}\textbf{数学物理方法}}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{\color{headercolor}\textbf{课后习题\zhnumber{1}}}
+
+\fancyfoot[L]{\small 截止日期: \duedate}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\small 任课教师: 罗凯}
+
+% Title page styling
+\title{
+    \vspace{-1cm}
+    {\Huge\color{headercolor}\textbf{数学物理方法}}\\
+    \vspace{0.5cm}
+    {\Large 课后习题一}
+}
+\author{
+    \textbf{任课教师:} 罗凯\\
+    \textbf{截止日期:} \duedate
+}
+\date{}
+
+\begin{document}
+
+% Custom enumerate styles
+\setlist[enumerate,1]{label=(\arabic*), leftmargin=*, itemsep=0.5em}
+\setlist[enumerate,2]{label=(\arabic{enumi}.\arabic*), leftmargin=*, itemsep=0.3em}
+\setlist[itemize]{leftmargin=*, itemsep=0.3em}
+
+\maketitle
+\thispagestyle{fancy}
+
+% Simplified problem box styling (compatible with basic tcolorbox)
+\tcbset{
+    problembox/.style={
+        colback=blue!5!white,
+        colframe=problemcolor,
+        fonttitle=\bfseries,
+        coltitle=white,
+        title style={colback=problemcolor}
+    }
+}
+
+% \section{复数基础}
+
+\begin{tcolorbox}[problembox, title=题目 1]
+写出下列复数的实部、虚部、模和辐角。
+\begin{enumerate}
+    \item $1 + \ii \sqrt{3}$
+    \item $\displaystyle\frac{1-\ii}{1+\ii}$
+    \item $e^{z}$（其中 $z = x + \ii y$）
+    \item $e^{1+\ii}$
+    \item $e^{\ii \varphi(x)}$，其中 $\varphi(x)$ 是实数 $x$ 的实函数
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[problembox, title=题目 2]
+证明以下规律：
+\begin{enumerate}
+    \item 复数的加法和乘法满足结合律，即
+    \begin{itemize}
+        \item $(z_1 + z_2 ) + z_3 = z_1 +( z_2 + z_3)$
+        \item $(z_1 \cdot z_2) \cdot z_3 = z_1 \cdot (z_2 \cdot z_3)$
+    \end{itemize}
+    \item 复数乘积的共轭等于复数共轭的乘积，即
+    \[(z_1 \cdot z_2)^* = z_1^* z_2^*\]
+\end{enumerate}
+\end{tcolorbox}
+
+\section{复平面几何}
+
+\begin{tcolorbox}[problembox, title=题目 3]
+找出复平面上满足方程
+\[|z - \ii a| = \lambda |z + \ii a|, \quad \lambda > 0\]
+的所有点 $z = x + \ii y$。请分 $\lambda$ 的三种情况分别绘制图形：
+\begin{enumerate}
+    \item $\lambda < 1$
+    \item $\lambda > 1$ 
+    \item $\lambda = 1$
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[problembox, title=题目 4]
+若 $|z| = 1$，$a, b$ 为任意复数，试证明
+\[\left| \frac{az + b}{\bar{b}z + \bar{a}} \right| = 1\]
+\end{tcolorbox}
+
+% \section{复数的幂与根}
+
+\begin{tcolorbox}[problembox, title=题目 5]
+试用 $\cos\varphi$、$\sin\varphi$ 表示 $\cos 4\varphi$。
+\end{tcolorbox}
+
+\begin{tcolorbox}[problembox, title=题目 6]
+求下列方程的根，并在复平面上画出它们的位置。
+\begin{enumerate}
+    \item $z^4 + 1 = 0$
+    \item $z^2 + 2z\cos\lambda + 1 = 0$，其中 $0 < \lambda < \pi$
+\end{enumerate}
+\end{tcolorbox}
+
+% \section{复函数}
+
+\begin{tcolorbox}[problembox, title=题目 7]
+验证
+\[\tan^{-1}(z) = \frac{\ii}{2}[\ln(1-\ii z) - \ln(1+\ii z)]\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[problembox, title=题目 8]
+试证明极坐标下的柯西-黎曼方程：
+\[\left\{\begin{aligned}
+\frac{\partial u}{\partial \rho} &= \frac{1}{\rho} \frac{\partial v}{\partial \varphi}\\
+\frac{1}{\rho} \frac{\partial u}{\partial \varphi} &= -\frac{\partial v}{\partial \rho}
+\end{aligned}\right.\]
+\end{tcolorbox}
+
+\begin{tcolorbox}[problembox, title=题目 9]
+已知解析函数 $f(z)$ 的实部 $u(x, y)$ 或虚部 $v(x, y)$，求该解析函数。
+\begin{enumerate}
+    \item $u = e^x \sin y$
+    \item $u = x^2 - y^2 + xy$，且 $f(0) = 0$
+\end{enumerate}
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+\textcolor{gray}{\hrulefill \quad 作业要求 \quad \hrulefill}\\
+\vspace{0.3cm}
+\small
+请工整书写，步骤完整，逻辑清晰。\\
+如有疑问，请及时联系任课教师。
+\end{center}
+
+\end{document}
