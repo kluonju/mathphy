@@ -76,7 +76,7 @@ $x,y \in {\mathbb{R}}$.$x,y$分别为复数$z$的{\bf 实部}(real part) 和{\bf
     z \equiv (x,y),
 \end{equation}
 则有$1 = (1,0), \imath = (0, 1)$.如果将$x,y$当做平面上点的坐标,复数$z$就和平面上的点一一对应起来,形成的图叫做\textbf{阿干特图}(Argand diagram).
-形成的平面叫做{\bf 复数平面},坐标轴成为{\bf 实轴}和{\bf 虚轴}.
+形成的平面叫做{\bf 复数平面}(complex plane),坐标轴成为{\bf 实轴}(real axis)和{\bf 虚轴}(imaginary axis).
 \begin{figure}[htb]
     \centering
     \input{tikz/complex_plane.tex}
@@ -104,14 +104,31 @@ $\rho = |z|$ 为复数的{\bf 模}(modulus), $\varphi$为复数的{\bf 辐角}(a
 对于任意一个$z=\rho e^{\imath \varphi}$,由于恒等式$e^{\imath 2\pi n} = 1$, $n = 0, \pm 1, \pm 2, \dots, \in \mathbb{Z}$,
 可以知道辐角$\Arg z$不能唯一确定,它们之间相差$2\pi$的整数倍,其中满足
 \begin{align}
-    0 \leq \Arg z < 2\pi ,
+    -\pi < \Arg z \leq \pi ,
 \end{align}
 的辐角为$z$的主辐角,记为$\arg z$.$\arg z$ 为$\Arg z$的主值.
 \begin{align}
     \Arg z = \arg z + 2 n \pi \quad (n = 0, \pm 1, \pm 2\dots).
 \end{align}
+\begin{note}
+有些文献中, 主值的大小写与这里的规定刚好相反, 注意区分.
+\end{note}
 
-
+\begin{example}
+试将复数$z_1 = -1 + \sqrt{3} \imath$ 和复数$z_2 = 1 + \cos \theta + \imath \sin\theta 
+(-\pi < \theta \leq \pi)$ 化为三角式和指数表示式.
+\end{example}
+\begin{solution}
+    由于$r = |z_1| = \sqrt{(-1)^2 + (\sqrt{3})^2} = 2$, 
+    $\arg z_1 = \arctan (\frac{\sqrt{3}}{-1}) = \frac{2\pi}{3}$,
+    有三角式$z_1  = 2(\cos \frac{2\pi}{3} + \imath \sin \frac{2\pi}{3})$和指数式
+    $z_1 = 2 e^{\imath \frac{2\pi }{3}}$.
+    
+    类似地, $r = |z_2| = 2 \cos \frac{\theta}{2}$, $\arg z_2 = \arctan \frac{\sin \theta}{1 + \cos \theta}
+    = \frac{\theta}{2}$. 
+    有三角式$z_2 = 2 \cos\frac{\theta}{2} ( \cos\frac{\theta}{2} + \imath \sin \frac{\theta}{2})$
+和指数式 $z_2 = 2\cos\frac{\theta}{2} e^{\imath \frac{\theta}{2}}$.
+\end{solution}
 
 \subsection{复数的运算}
 我们可以利用有序实数对的方式对复数进行基本运算: 加减乘除运算.{\bf 加法}运算可以定义为
