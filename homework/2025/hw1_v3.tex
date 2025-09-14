@@ -1,0 +1,231 @@
+% filepath: /home/kluo/Documents/repos/kluo/mathphy/homework/2025/hw1_v3.tex
+\documentclass[11pt]{ctexart}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{graphicx, multicol, array}
+\usepackage{ctex} 
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+
+% Fix headheight warning
+\setlength{\headheight}{15.12pt}
+\addtolength{\topmargin}{-3.12pt}
+
+% Chinese punctuation handling
+\let\oldjuhao=。
+\catcode`\。=\active
+\newcommand{。}{\ifmmode\text{\oldjuhao}\else\oldjuhao\fi}
+
+\let\olddouhao=，
+\catcode`\，=\active
+\newcommand{，}{\ifmmode\text{\olddouhao}\else\olddouhao\fi}
+
+% Mathematical symbols
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ii}{\mathrm{i}}
+
+% Colors for enhanced visual hierarchy
+\definecolor{headercolor}{RGB}{25,25,112}
+\definecolor{problemcolor}{RGB}{70,130,180}
+\definecolor{sectioncolor}{RGB}{47,79,79}
+\definecolor{accentcolor}{RGB}{220,20,60}
+
+% Enhanced header rule with ornaments
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\color{headercolor}\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+% Date configuration
+\newcommand{\duedate}{\zhdate{2025/9/22}}
+
+% Enhanced problem box styling
+\tcbset{
+    problembox/.style={
+        enhanced,
+        colback=blue!3!white,
+        colframe=problemcolor,
+        colbacktitle=problemcolor,
+        fonttitle=\bfseries\large,
+        coltitle=white,
+        boxrule=1.2pt,
+        arc=3pt,
+        left=8pt, right=8pt, top=8pt, bottom=8pt,
+        toptitle=6pt, bottomtitle=6pt,
+        attach boxed title to top left={yshift=-2mm,xshift=3mm},
+        boxed title style={arc=2pt,boxrule=0.8pt}
+    }
+}
+
+% Custom problem environment
+\newtcolorbox{hwproblem}[1]{
+    problembox,
+    title=题目 #1
+}
+
+\pagestyle{fancy}
+
+% Header and footer setup with enhanced styling
+\fancyhf{} % clear all fields
+\fancyhead[L]{\color{headercolor}\textbf{数学物理方法}}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{\color{headercolor}\textbf{课后习题\zhnumber{1}}}
+
+\fancyfoot[L]{\small\color{gray}截止日期: \duedate}
+\fancyfoot[C]{\color{headercolor}\textbf{\thepage}}
+\fancyfoot[R]{\small\color{gray}任课教师: 罗凯}
+
+% Enhanced title page styling
+\title{
+    \vspace{-1.5cm}
+    {\Huge\color{headercolor}\textbf{数学物理方法}}\\
+    \vspace{0.3cm}
+    {\color{accentcolor}\rule{8cm}{1pt}}\\
+    \vspace{0.3cm}
+    {\Large\color{sectioncolor}课后习题一}
+}
+\author{
+    \begin{tabular}{rl}
+        \textbf{\color{sectioncolor}任课教师:} & 罗凯\\[0.2cm]
+        \textbf{\color{sectioncolor}截止日期:} & \duedate
+    \end{tabular}
+}
+\date{}
+
+\begin{document}
+
+% Custom enumerate styles with better spacing
+\setlist[enumerate,1]{label=\color{problemcolor}(\arabic*), leftmargin=*, itemsep=0.6em, parsep=0.2em}
+\setlist[enumerate,2]{label=\color{problemcolor}(\arabic{enumi}.\arabic*), leftmargin=*, itemsep=0.4em, parsep=0.1em}
+\setlist[itemize]{label=\color{problemcolor}$\bullet$, leftmargin=*, itemsep=0.4em, parsep=0.1em}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{hwproblem}{1}
+写出下列复数的\textbf{实部}、\textbf{虚部}、\textbf{模}和\textbf{辐角}。
+\begin{enumerate}
+    \item $1 + \ii \sqrt{3}$
+    \item $\displaystyle\frac{1-\ii}{1+\ii}$
+    \item $e^{z}$（其中 $z = x + \ii y$）
+    \item $e^{1+\ii}$
+    \item $e^{\ii \varphi(x)}$，其中 $\varphi(x)$ 是实数 $x$ 的实函数
+\end{enumerate}
+\end{hwproblem}
+
+\vspace{0.5cm}
+
+\begin{hwproblem}{2}
+证明以下\textbf{代数运算规律}：
+\begin{enumerate}
+    \item 复数的加法和乘法满足\textbf{结合律}，即
+    \begin{itemize}
+        \item $(z_1 + z_2 ) + z_3 = z_1 +( z_2 + z_3)$
+        \item $(z_1 \cdot z_2) \cdot z_3 = z_1 \cdot (z_2 \cdot z_3)$
+    \end{itemize}
+    \item 复数乘积的共轭等于复数共轭的乘积，即
+    \[(z_1 \cdot z_2)^* = z_1^* z_2^*\]
+\end{enumerate}
+\end{hwproblem}
+
+\vspace{0.5cm}
+
+\begin{hwproblem}{3}
+找出复平面上满足方程
+\[|z - \ii a| = \lambda |z + \ii a|, \quad \lambda > 0\]
+的所有点 $z = x + \ii y$。请分 $\lambda$ 的\textbf{三种情况}分别绘制图形：
+\begin{enumerate}
+    \item $\lambda < 1$（阿波罗尼乌斯圆，内部情况）
+    \item $\lambda > 1$（阿波罗尼乌斯圆，外部情况）
+    \item $\lambda = 1$（垂直平分线）
+\end{enumerate}
+\end{hwproblem}
+
+\vspace{0.5cm}
+
+\begin{hwproblem}{4}
+若 $|z| = 1$，$a, b$ 为任意复数，试证明
+\[\left| \frac{az + b}{\bar{b}z + \bar{a}} \right| = 1\]
+\textit{提示：考虑使用复数模的性质和共轭运算。}
+\end{hwproblem}
+
+\vspace{0.5cm}
+
+\begin{hwproblem}{5}
+试用 $\cos\varphi$、$\sin\varphi$ 表示 $\cos 4\varphi$。
+
+\textit{提示：利用欧拉公式 $e^{\ii\varphi} = \cos\varphi + \ii\sin\varphi$ 和二项定理。}
+\end{hwproblem}
+
+\vspace{0.5cm}
+
+\begin{hwproblem}{6}
+求下列方程的\textbf{所有根}，并在复平面上画出它们的位置。
+\begin{enumerate}
+    \item $z^4 + 1 = 0$
+    \item $z^2 + 2z\cos\lambda + 1 = 0$，其中 $0 < \lambda < \pi$
+\end{enumerate}
+\textit{要求：用极坐标形式表示根，并标注在复平面图中。}
+\end{hwproblem}
+
+\vspace{0.5cm}
+
+\begin{hwproblem}{7}
+验证反正切函数的复数表示：
+\[\tan^{-1}(z) = \frac{\ii}{2}[\ln(1-\ii z) - \ln(1+\ii z)]\]
+\textit{提示：从 $\tan w = z$ 出发，利用欧拉公式推导。}
+\end{hwproblem}
+
+\vspace{0.5cm}
+
+\begin{hwproblem}{8}
+试证明\textbf{极坐标形式}的柯西-黎曼方程：
+\[\left\{\begin{aligned}
+\frac{\partial u}{\partial \rho} &= \frac{1}{\rho} \frac{\partial v}{\partial \varphi}\\[0.3em]
+\frac{1}{\rho} \frac{\partial u}{\partial \varphi} &= -\frac{\partial v}{\partial \rho}
+\end{aligned}\right.\]
+其中 $z = \rho e^{\ii\varphi}$，$f(z) = u(\rho,\varphi) + \ii v(\rho,\varphi)$。
+\end{hwproblem}
+
+\vspace{0.5cm}
+
+\begin{hwproblem}{9}
+已知解析函数 $f(z)$ 的实部 $u(x, y)$ 或虚部 $v(x, y)$，求该\textbf{解析函数}。
+\begin{enumerate}
+    \item $u = e^x \sin y$
+    \item $u = x^2 - y^2 + xy$，且 $f(0) = 0$
+\end{enumerate}
+\textit{提示：利用柯西-黎曼条件和调和函数的性质。}
+\end{hwproblem}
+
+\vfill
+
+% Enhanced footer section
+\begin{center}
+\begin{tcolorbox}[
+    colback=gray!5!white,
+    colframe=gray!50!black,
+    boxrule=0.5pt,
+    arc=2pt,
+    width=0.9\textwidth,
+    left=10pt, right=10pt, top=5pt, bottom=5pt
+]
+\centering
+\textcolor{sectioncolor}{\large\textbf{作业要求}}\\[0.3cm]
+\begin{itemize}[label=\color{accentcolor}$\star$, leftmargin=2em]
+    \item 请用\textbf{工整清楚}的字迹书写，\textbf{步骤完整}，逻辑清晰
+    \item 复数计算请给出\textbf{详细过程}，图形绘制要\textbf{准确标注}
+    \item 证明题需要\textbf{严格的数学推理}，避免跳步
+    \item 如有疑问，请及时联系任课教师
+\end{itemize}
+\end{tcolorbox}
+\end{center}
+
+\end{document}

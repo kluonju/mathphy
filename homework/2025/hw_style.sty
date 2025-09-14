@@ -1,0 +1,179 @@
+% hw_style.sty - Advanced styling package for homework assignments
+% Based on hw1_v3.tex professional styling
+% Created for Mathematical Physics Methods course
+% Author: Kai Luo
+
+\ProvidesPackage{hw_style}[2025/09/14 Enhanced homework styling package v2.0]
+
+% Required packages
+\RequirePackage[margin=1in]{geometry} 
+\RequirePackage{amsmath,amsthm,amssymb,mathtools}
+\RequirePackage{graphicx, multicol, array}
+\RequirePackage{ctex} 
+\RequirePackage{fancyhdr}
+\RequirePackage{fontspec}
+\RequirePackage{fourier-orns}
+\RequirePackage{xcolor}
+\RequirePackage{enumitem}
+\RequirePackage[most]{tcolorbox}
+
+% Fix headheight warning
+\setlength{\headheight}{15.12pt}
+\addtolength{\topmargin}{-3.12pt}
+
+% Chinese font configuration as requested (commented out for compatibility)
+% \setCJKmainfont[BoldFont=STHeiti,ItalicFont=STKaiti]{STSong}
+% \setCJKsansfont[BoldFont=STHeiti]{STXihei}
+% \setCJKmonofont{STFangsong}
+
+% Use system default fonts for better compatibility
+% Uncomment and adjust the above lines if the specific fonts are available on your system
+
+% Chinese punctuation handling
+\let\oldjuhao=。
+\catcode`\。=\active
+\newcommand{。}{\ifmmode\text{\oldjuhao}\else\oldjuhao\fi}
+
+\let\olddouhao=，
+\catcode`\，=\active
+\newcommand{，}{\ifmmode\text{\olddouhao}\else\olddouhao\fi}
+
+% Mathematical symbols
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}     
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ii}{\mathrm{i}}
+
+% Colors for enhanced visual hierarchy (from hw1_v3.tex)
+\definecolor{headercolor}{RGB}{25,25,112}
+\definecolor{problemcolor}{RGB}{70,130,180}
+\definecolor{sectioncolor}{RGB}{47,79,79}
+\definecolor{accentcolor}{RGB}{220,20,60}
+
+% Enhanced header rule with ornaments (from hw1_v3.tex)
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\color{headercolor}\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+% Enhanced problem box styling (from hw1_v3.tex)
+\tcbset{
+    problembox/.style={
+        enhanced,
+        colback=blue!3!white,
+        colframe=problemcolor,
+        colbacktitle=problemcolor,
+        fonttitle=\bfseries\large,
+        coltitle=white,
+        boxrule=1.2pt,
+        arc=3pt,
+        left=8pt, right=8pt, top=8pt, bottom=8pt,
+        toptitle=6pt, bottomtitle=6pt,
+        attach boxed title to top left={yshift=-2mm,xshift=3mm},
+        boxed title style={arc=2pt,boxrule=0.8pt}
+    }
+}
+
+% Custom problem environment
+\newtcolorbox{hwproblem}[1]{
+    problembox,
+    title=题目 #1
+}
+
+% Chinese number mapping for homework numbers (to avoid font compatibility issues)
+\newcommand{\hwchinesenumber}[1]{%
+    \ifcase#1\relax
+    \or 一%
+    \or 二%
+    \or 三%
+    \or 四%
+    \or 五%
+    \or 六%
+    \or 七%
+    \or 八%
+    \or 九%
+    \or 十%
+    \fi
+}
+
+% Setup homework header and footer with enhanced styling
+\newcommand{\hwnumber}[1]{
+    \newcommand{\duedate}{\zhdate{2025/\hwduemonth/\hwdueday}}
+    \pagestyle{fancy}
+    \fancyhf{} % clear all fields
+    \fancyhead[L]{\color{headercolor}\textbf{数学物理方法}}
+    \fancyhead[R]{\color{headercolor}\textbf{课后习题\hwchinesenumber{#1}}}
+    
+    \fancyfoot[L]{\small\color{gray}截止日期: \duedate}
+    \fancyfoot[C]{\color{headercolor}\textbf{\thepage}}
+    \fancyfoot[R]{\small\color{gray}任课教师: 罗凯}
+}
+
+% Due date configuration - to be set in each homework file
+\newcommand{\hwduemonth}{09}
+\newcommand{\hwdueday}{22}
+\newcommand{\setduedate}[2]{
+    \renewcommand{\hwduemonth}{#1}
+    \renewcommand{\hwdueday}{#2}
+}
+
+% Enhanced enumerate and itemize styles (from hw1_v3.tex)
+\AtBeginDocument{
+    \setlist[enumerate,1]{label=\color{problemcolor}(\arabic*), leftmargin=*, itemsep=0.6em, parsep=0.2em}
+    \setlist[enumerate,2]{label=\color{problemcolor}(\arabic{enumi}.\arabic*), leftmargin=*, itemsep=0.4em, parsep=0.1em}
+    \setlist[itemize]{label=\color{problemcolor}$\bullet$, leftmargin=*, itemsep=0.4em, parsep=0.1em}
+}
+
+% Enhanced title page styling (from hw1_v3.tex)
+\newcommand{\hwtitle}[1]{
+    \title{
+        \vspace{-1.5cm}
+        {\Huge\color{headercolor}\textbf{数学物理方法}}\\
+        \vspace{0.3cm}
+        {\color{accentcolor}\rule{8cm}{1pt}}\\
+        \vspace{0.3cm}
+        {\Large\color{sectioncolor}课后习题\hwchinesenumber{#1}}
+    }
+    \author{
+        \begin{tabular}{rl}
+            \textbf{\color{sectioncolor}任课教师:} & 罗凯\\[0.2cm]
+            \textbf{\color{sectioncolor}截止日期:} & \duedate
+        \end{tabular}
+    }
+    \date{}
+    % Enable title page
+    \AtBeginDocument{
+        \maketitle
+        \thispagestyle{fancy}
+    }
+}
+
+% Enhanced homework requirements footer (from hw1_v3.tex)
+\newcommand{\hwrequirements}{
+    \vfill
+    \begin{center}
+    \begin{tcolorbox}[
+        colback=gray!5!white,
+        colframe=gray!50!black,
+        boxrule=0.5pt,
+        arc=2pt,
+        width=0.9\textwidth,
+        left=10pt, right=10pt, top=5pt, bottom=5pt
+    ]
+    \centering
+    \textcolor{sectioncolor}{\large\textbf{作业要求}}\\[0.3cm]
+    \begin{itemize}[label=\color{accentcolor}$\star$, leftmargin=2em]
+        \item 请用\textbf{工整清楚}的字迹书写，\textbf{步骤完整}，逻辑清晰
+        \item 复数计算请给出\textbf{详细过程}，图形绘制要\textbf{准确标注}
+        \item 证明题需要\textbf{严格的数学推理}，避免跳步
+        \item 如有疑问，请及时联系任课教师
+    \end{itemize}
+    \end{tcolorbox}
+    \end{center}
+}
+
+% Compatibility command for old problem environment
+\theoremstyle{remark}
+\newtheorem{problem}{}
+
+\endinput
