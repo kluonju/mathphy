@@ -1,0 +1,458 @@
+% \PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[fontset=windows, chinese, 10pt]{beamer}
+
+\usepackage{wrapfig}
+\usepackage{esint}
+
+% \usepackage{ctex}
+\usepackage{xeCJK}
+\usepackage{zhnumber}
+% \input{../settings/settings_chinese_fonts.tex} % 中文字体设定
+\usepackage{tikz}
+\usepackage{pgfplots}
+% \usepgfplotslibrary{intersections} 
+
+% \uselanguage{chinese}
+
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary {arrows.meta}
+\usetikzlibrary{decorations.markings}
+\pgfplotsset{compat=1.18}
+
+  % \newcommand{\exampletitle}{例题} %
+
+%配合主题，
+% \usefonttheme{professionalfonts} 
+%和配色包如 
+% \usecolortheme{dove}
+
+\usetheme{metropolis}           % Use metropolis theme
+% \usetheme{Boadilla}
+% \usetheme{Madrid}
+% \usetheme{Berkeley}
+% \usetheme{Hannover}
+
+% \usepackage{beamerthemeNanjing}
+\usepackage{beamercolorthemeHistNanjing}
+
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}  % orange is supported in xcolor
+
+\include{macro}
+
+\title{复数级数}
+% \subtitle{A modern beamer theme \textit{摩登主题}}
+
+\date{\zhdigits{2025},\zhganzhinian{2025}年秋}
+\author{罗凯}
+\institute{南京理工大学物理学院}
+
+% \logo{
+  
+% \includegraphics[height=1cm]{njust-logo.jpeg}
+
+% }
+
+\usebackgroundtemplate{%
+\begin{tikzpicture}[remember picture,overlay]
+  \node[opacity=0.05, at=(current page.center)] {
+    \includegraphics[width=0.6\paperwidth]{njust-logo.jpeg}
+  };
+\end{tikzpicture}}
+
+\begin{document}
+  % \maketitle
+
+  
+  % 好的，我将为你创建一个详细的Beamer幻灯片，专注于第一小节“复数”的内容.每个知识点都会详细展开，包括定义、运算和几何意义.以下是幻灯片的内容：
+
+  % ```latex
+  % \documentclass{beamer}
+  % \usetheme{Madrid} % 选择一个主题
+  % \usepackage{amsmath} % 引入数学公式宏包
+  % \usepackage{amsfonts} % 引入数学字体宏包
+  % \usepackage{graphicx} % 引入图形宏包
+  
+  % \title{数学物理方法：复数}
+  % \author{罗凯}
+  % \date{\today}
+  
+  % \begin{document}
+  
+  \begin{frame}
+  \titlepage
+  \end{frame}
+  
+  % \begin{frame}{目录}
+  % \tableofcontents
+  % \end{frame}
+  
+  \AtBeginSubsection{
+    \begin{frame}{目录}
+      \tableofcontents[currentsection,currentsubsection]
+    \end{frame}
+  }
+
+\section{复数级数}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{级数的基本性质}
+\label{sec:preknowledge}
+
+\begin{frame}{级数举例}
+  \small
+物理学和工程学中的一些函数常常可以用无穷级数来表示.
+一个很有用的例子,
+\begin{equation}
+    1+ x + x^2 + x^3 + \cdots = \frac{1}{1-x} .
+\end{equation}
+有了该式,我们可以处理更复杂的级数,如
+\begin{equation}
+    1 + a \cos \theta + a^2 \cos 2\theta + a^3 \cos 3\theta + \cdots = ? 
+\end{equation}
+有了前面的复数概念,我们有
+\begin{equation}
+    \cos \theta = \Re e^{\imath \theta} = \frac{e^{\imath \theta} +e^{-\imath \theta} }{2} .
+\end{equation}
+
+\end{frame}
+
+\begin{frame}{级数举例}
+  \small
+
+  于是, 将
+\begin{equation}
+    \cos \theta = \Re e^{\imath \theta} = \frac{e^{\imath \theta} +e^{-\imath \theta} }{2} .
+\end{equation}
+代入得
+\begin{align*}
+   & 1 + a \cos \theta + a^2 \cos 2\theta + a^3 \cos 3\theta + \cdots 
+    \\  
+ = &  1 + \half a e^{\imath \theta} + \half a e^{- \imath \theta} + \half a^2 e^{2\imath \theta} + \half a^2 e^{-2\imath \theta}  + \cdots 
+ \\  
+ =   & \half \left( 1 + a e^{\imath \theta} + a^2 e^{2\imath \theta} + \cdots \right)  
++ \half \left( 1 + a e^{- \imath \theta} + a^2 e^{-2\imath \theta}  + \cdots \right) 
+\\  
+= &  \half \frac{1}{1 - a e^{\imath \theta} } + \half \frac{1}{1 - a e^{-\imath \theta} }
+\\  
+= &  \half \left[ \frac{1-a\cos\theta + \imath a \sin \theta }{(1-a\cos\theta)^2 + (a\sin \theta)^2} + \frac{1-a\cos\theta - \imath a \sin \theta}{(1-a\cos\theta)^2 + (a\sin \theta)^2} \right]
+ \\  
+= &  \frac{1-a\cos\theta}{1-2 a \cos\theta + a^2} .
+\end{align*}
+\end{frame}
+
+\begin{frame}{对数的级数}
+  \small
+现在我们要处理一个稍微复杂的级数,
+\begin{equation}
+    S(x) = 1 - \frac{x}{2} + \frac{x^2}{3} - \frac{x^3}{4} + \cdots
+\end{equation}
+为了将上式化简,我们需要把它转换成一个我们熟知的形式.
+\onslide<2->{
+  由于分母比较特殊,我们想办法摆脱这些数字.
+为此,我们对$x S(x)$求导,得到
+\begin{align*}
+    \frac{d}{dx} ( x S(x))  &=   \frac{d}{dx} \left( x- \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} \right)
+    \nonumber \\ 
+    &= 1 - x + x^2 - x^3  + x^4 + \cdots 
+    \nonumber \\ 
+    & = \frac{1}{1+x} \,
+\end{align*}
+}
+\onslide<3->{
+  于是我们得到了
+于是我们有,
+\begin{eqnarray*}
+      x S(x) = \ln (1 + x) + C .
+\end{eqnarray*}
+当$x=0$, $S(x) = 1, \ln (1+x) = 0$, 有$C=0$.最终我们得到了
+\begin{equation}
+    \ln (1+x) = x -  \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots = \sum_{k=1}^{\infty} \frac{(-1)^{k+1} x^k}{k} .
+\end{equation}
+}
+\end{frame}
+
+
+
+  \begin{frame}{指数级数}
+  \small
+我们还可以利用指数的级数表示
+\begin{equation}
+    e^{x} = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots 
+\end{equation}
+来求解正余弦函数的级数表示.
+
+\begin{align*}
+  \sin x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!}, \quad
+  \cos x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} .
+\end{align*}
+前几项可以写成
+\begin{align*}
+  \sin x & = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots , \\
+  \cos x & = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots .
+\end{align*}
+\end{frame}
+
+
+\begin{frame}{几何级数和调和级数}
+\small
+下面来看两个重要的级数:
+\begin{enumerate}
+    \item 几何级数: $ 1 + x + x^2 + x^3 + \cdots + x^n$, 收敛于$\frac{1}{1-x}$.
+    \item 调和级数: $ 1 + \half + \frac{1}{3} + \cdot +\frac{1}{k} = \sum_{k=1} \frac{1}{k}$,发散.
+\end{enumerate}
+
+值得注意的是,以上的求和表示实际上假定了$|x|<1$这个条件.容易验证,$|x|\geq 1$,级数是发散的.
+
+
+\end{frame}
+
+
+\begin{frame}{级数的收敛与发散}
+  \small
+ 随着,$n\to \infty$,部分求和$s_n$趋于一个定值$S$,即
+\begin{equation}
+    \lim_{n\to \infty} s_n = S ,
+\end{equation}
+我们称无穷级数 $\sum_{k=1}^{n} a_{k}${\bf 收敛}并趋于$S$.
+如果级数的求和趋于$\pm \infty$,级数{\bf 发散}.
+
+对于如
+\begin{equation}
+    \sum_{k=1}^{\infty} (-1)^k = 1 - 1 + 1 - 1 \cdots 
+\end{equation}
+这样的级数取值在$0,1$之间振荡,我们也称其发散.级数收敛的必要条件很显然是$\lim_{k\to \infty} a_k = 0$.对于级数是否收敛,在什么条件下收敛显得十分重要.
+对级数收敛的充分条件寻找,派生出了各种各样的判据.
+
+一般的,我们将复数的概念拓展到级数,
+\begin{equation}
+    s_n = \sum_{k=1}^{n} w_{k}
+\end{equation}
+称为\textbf{复数级数}.
+  \end{frame}
+
+
+
+
+
+
+  
+
+  \begin{frame}{函数项级数}
+    \small 复数级数
+\begin{equation*}
+    s_n = \sum_{k=1}^{n} w_{k}
+\end{equation*}
+若级数通项每一个都是函数形式$w_k(z)$,我们称之为\textbf{函数项级数}.
+对于函数项级数,我们记部分求和$s_n(z)$的极限为
+\begin{equation}
+    S(z) = \lim_{n\to \infty} s_n(z) =  \sum_{k=1}^{\infty} w_k (z). 
+\end{equation}
+
+\end{frame}
+
+\begin{frame}{一致收敛}
+  \small
+  如果函数项级数$\sum w_k(z)$在某个区域 $B$ 上所有的点, 级数都收敛, 
+则称级数在 $B$ 上收敛. 
+  应用柯西判据, 级数在 $B$上收敛的充分必要条件是, 
+在 $B$ 上各点 $z$, 对于任一给定的小正数 $\epsilon$, 必有 $N(z)$ 存在, 
+使得当 $n>N(z)$ 时,
+$$
+\left|\sum_{k=n+1}^{n+p} w_k(z)\right|<\epsilon,
+$$
+式中 $p$ 为任意正整数. 若 $N$ 跟 $z$ 无关, 则称级数在 $B$ 上\textbf{一致收敛}.
+对于一致收敛的级数,可以逐项求极限
+$$
+\lim _{z \rightarrow z_0} \sum_{k=1}^{\infty} w_k(z)=\sum_{k=1}^{\infty} \lim _{z \rightarrow t_0} w_k(z)
+$$
+求导
+$$
+S' (z) = [ \sum_{k=1}^{\infty} w_k(z)]' =\sum_{k=1}^{\infty}  w_k'(z),
+$$
+和积分
+$$
+\int_l S(z) dz = \int_l \sum_{k=1}^{\infty} w_k(z) dz=\sum_{k=1}^{\infty} \int_l w_k(z) dz .
+$$
+
+\end{frame}
+
+\subsection{级数的收敛判定法}
+
+\begin{frame}{柯西判据}
+\small
+柯西判据(Cauchy criterion)说的是,对于$\epsilon>0$, 总存在固定的$N$使得$|s_j - s_i|< \epsilon$, 其中$i,j$是任意大于$N$的整数.也就是说,若$j>i$,
+\begin{equation}
+    | w_{i+1} + w_{i+2} + \cdots + w_{j} | < \epsilon ,
+\end{equation}
+直观地理解,也就是说某项以后的所有求和可以忽略不计,即部分求和趋于某一值,级数收敛.对于复数项级数,一样成立.如果将复数项级数的每一项都取模组成新的级数,
+记为
+\begin{equation}
+    \sum_{k=1} |w_k| = \sum_{k=1}\sqrt { u_k^2 + v_k^2},
+\end{equation}
+若该级数收敛,则称原级数\textbf{绝对收敛}.绝对收敛的级数必然是收敛的.如果级数收敛,但非绝对收敛,那么我们称它为\textbf{条件收敛}.
+
+\end{frame}
+
+\begin{frame}{比较判定法}
+\small
+如果我们有某一已知正项级数 $\sum_k a_k$收敛,若级数的每一项都满足 $0 \leq w_k \leq a_k$, 那么可以判定$\sum_k w_k$收敛.
+这可以利用柯西判据进行证明.
+
+相反的, 若同发散级数$\sum_{k} a_k$比较有,$0 \leq a_k  \leq w_k$, 那么可以判定$\sum_k w_k$发散.
+对于复数项级数,比较判据可以表示为$0 \leq |w_k| \leq a_k$.
+
+\onslide<2->{
+\begin{example}
+试判定级数$\sum_{k=1} k^{-p}, p\leq 1$收敛还是发散.
+\end{example}
+}
+\onslide<3->{
+\begin{solution}
+    已知调和级数$\sum_{k=1}1/k$是发散的,而 $k^{-p} > k^{-1}$, 根据比较判定法,可知该级数发散.
+\end{solution}
+}
+\end{frame}
+
+\begin{frame}{达朗贝尔判据}
+\small
+达朗贝尔方法又称比值判定法(D'Alembert Ratio Criterion).
+若任意项级数 $\sum_{n=1}^{\infty} w_n$ 通项满足:
+$$
+\lim _{n \to \infty}\left|\frac{w_{n+1}}{w_n}\right|=q ,
+$$
+\begin{enumerate}
+    \item 当 $q<1$ 时, 级数绝对收敛;
+    \item 当 $q>1$ 时, 级数发散;
+    \item 当 $q=1$ 时, 此方法无效,需要其他方法判定.
+\end{enumerate}
+\onslide<2->{
+\begin{example}
+试判断级数$\sum_{k=1} k/2^k$的收敛性.
+\end{example}
+}
+\onslide<3->{
+\begin{solution}
+    利用比值判定法
+    \[ 
+        \lim_{k\to \infty} \frac{w_{k+1}}{w_k}=\lim_{k\to \infty} \frac{k+1}{2^{k+1}} / \frac{k}{2^{k}}=\frac{1}{2} 
+        = \lim_{k\to \infty} \frac{1}{2}\left(1+\frac{1}{k}\right) 
+        = \half < 1
+    \]
+    可见该级数是收敛的.
+}
+\end{solution}
+
+
+  \end{frame}
+
+  \begin{frame}{根式判别法}
+对极限
+$$
+\lim_{k\to \infty} \sqrt[n]{w_n} = r,
+$$
+若$r<1$则级数收敛,若$r\geq 1$,则级数发散. 
+证明可以通过对通项取$n$次幂,通过比较判别法确定.
+
+
+  \end{frame}
+  
+  \begin{frame}{莱布尼兹判据(Leibniz Criterion)}
+   此外,还有很多其他判定方法, 对于交错级数可以利用莱布尼兹判据(Leibniz Criterion).
+交错级数的形式为$\sum_{n=1} (-1)^{n+1} w_n, w_n >0$. 莱布尼兹判据说的是对于交错级数通项$w_n$单调递减且极限为零,则级数收敛.
+
+试着自己验证一下交错调和级数
+\begin{equation}
+    \sum_{n=1}^{\infty}(-1)^{n-1} n^{-1}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots+\frac{(-1)^{n-1}}{n}+\cdots
+\end{equation}
+是条件收敛的.
+
+  \end{frame}
+  
+  \subsection{幂级数(Power Series)}
+
+\begin{frame}{幂级数}
+ 
+本讲专门讨论在函数项级数中非常重要的一类级数,叫做幂级数.
+幂级数的各项都是幂函数,
+\begin{equation}
+    \sum_{k=0}^{\infty} a_k\left(z-z_0\right)^k=a_0+a_1\left(z-z_0\right)+a_2\left(z-z_0\right)^2+\cdots
+\end{equation}
+其中$z_0, a_i$都是复常数.这样的级数称为以 $z_0$ 为中心的幂级数.
+
+该幂级数可能收敛,也可能发散.如果幂级数是收敛的,
+称$z$为该级数的\textbf{收敛点};反之若它是发散的,
+称$z$为该级数的\textbf{发散点}.
+
+函数项级数式的所有收敛点的集合称为其\textbf{收敛域},
+所有发散点的集合称为其\textbf{发散域}.
+
+
+\end{frame}
+
+
+
+  \begin{frame}{幂级数的收敛半径}
+  \small
+    现在利用达朗贝尔比值判定法,如果
+\begin{equation}
+    \lim _{k \rightarrow \infty} \frac{\left|a_{k+1}\right|\left|z-z_0\right|^{k+1}}{\left|a_k\right|\left|z-z_0\right|^k}
+    =\lim _{k \rightarrow \infty}\left|\frac{a_{k+1}}{a_k}\right|\left|z-z_0\right|<1
+\end{equation}
+则级数绝对收敛.若记
+\begin{equation}
+    % \lim_{k \rightarrow \infty} \left|\frac{a_{k+1}}{a_k}\right| = R^{-1},
+    \lim_{k \rightarrow \infty} \left|\frac{a_{k}}{a_{k+1}}\right| = R,
+\end{equation}
+那么当$|z-z_0| < R$时,级数绝对收敛.若$|z-z_0| > R$时, 级数的模越来越大,级数发散.
+称 $R$为该幂级数的\textbf{收敛半径}.
+
+对于$|z-z_0| = R$的时候,无法简单判定.
+例如幂级数$\sum_{k=0} \frac{1}{k} |z-z_0|^k$,可知$R=1$. $|z-z_0|=1$有两种情况:
+
+当$z-z_0 = +1$时, 由调和级数知道,该级数发散;
+
+而当$z-z_0 = -1$时,由莱布尼兹判定法可知该级数收敛.
+
+对于有些幂级数,根式判别法的使用有时更加简便,应当在这两种方法灵活选择.
+根式判别法的收敛半径可由
+\begin{equation}
+    R = \lim_{k \rightarrow \infty} \frac{1}{\sqrt[k]{a_k}}
+\end{equation}
+得到.
+
+
+
+  \end{frame}
+
+  \begin{frame}{幂级数的收敛半径}
+  \small
+以$z_0$ 为圆心作一个半径为$R$的圆$C_R$.
+幂级数在圆的内部绝对收敛, 在圆外发散. 
+这个圆因而称为幂级数的\textbf{收敛圆}, 
+它的半径则称为\textbf{收敛半径}. 
+至于在收敛圆周上的收敛情况则需要具体分析.
+
+\onslide<2->{
+\begin{example}
+求幂级数$1 - z^2 + z^4 - z^6\cdots$的收敛圆,$z$为复变数.
+\end{example}
+}
+\onslide<3->{
+\begin{solution}
+    将$z^2$记作$t$,则本例的级数化成$1-t + t^2 - t^3\cdots$.系数$a_k =(-1)^k$, 因此t平面上收敛半径$R=1$. 
+    $z$平面上以$z=0$为圆心,收敛半径为$\sqrt{R}=1$.
+\end{solution}
+}
+  \end{frame}
+  
+
+
+
+  
+  
+\end{document}

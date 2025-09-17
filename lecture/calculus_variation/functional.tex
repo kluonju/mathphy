@@ -75,13 +75,17 @@ $$
 
 \end{itemize}
 
+\subsection{泛函导数}
+对于一般的
+
+
 \subsection{泛函的极值}
 
 对于一般的情况,有函数到数的映射写成
 \begin{equation}
   J[u] = \int_{a}^{b}  dx L(u, u', u'', \cdots| x), 
 \end{equation}
-其中$L(u, u', u'',\cdots | x)$为$u$的局域泛函, $u' \equiv du/dx, u'' \equiv = du^2/dx^2$.
+其中$L(u, u', u'',\cdots | x)$为$u$的半局域泛函, $u' \equiv du/dx, u'' \equiv = du^2/dx^2$.
 对于不包含一阶以上的导数时,即$L = L(u,u')$,对函数$u(x)$作一微小变化$\delta u(x)$,称为$u(x)$的\textbf{变分},在积分上下限处,
 有$\delta u(a) = \delta u(b) = 0$. $J[u]$取最小值时,需满足$\delta J[u] \equiv = J[u + \delta u] - J[u]$
 为零.利用$\delta u' = \funcpd{}{x} \delta u$和$fg' = (fg)' - f'g$,
