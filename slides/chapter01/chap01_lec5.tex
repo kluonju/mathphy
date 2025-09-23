@@ -1,0 +1,771 @@
+% \PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[fontset=windows, chinese, 10pt]{beamer}
+
+\usepackage{wrapfig}
+\usepackage{esint}
+
+% \usepackage{ctex}
+\usepackage{xeCJK}
+\usepackage{zhnumber}
+% \input{../settings/settings_chinese_fonts.tex} % 中文字体设定
+\usepackage{tikz}
+\usepackage{pgfplots}
+% \usepgfplotslibrary{intersections} 
+
+% \uselanguage{chinese}
+
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary {arrows.meta}
+\usetikzlibrary{decorations.markings}
+\pgfplotsset{compat=1.18}
+
+  % \newcommand{\exampletitle}{例题} %
+
+%配合主题，
+% \usefonttheme{professionalfonts} 
+%和配色包如 
+% \usecolortheme{dove}
+
+\usetheme{metropolis}           % Use metropolis theme
+% \usetheme{Boadilla}
+% \usetheme{Madrid}
+% \usetheme{Berkeley}
+% \usetheme{Hannover}
+
+% \usepackage{beamerthemeNanjing}
+\usepackage{beamercolorthemeHistNanjing}
+
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}  % orange is supported in xcolor
+
+\include{macro}
+
+\title{留数定理及应用}
+% \subtitle{A modern beamer theme \textit{摩登主题}}
+
+\date{\zhdigits{2025},\zhganzhinian{2025}年秋}
+\author{罗凯}
+\institute{南京理工大学物理学院}
+
+% \logo{
+  
+% \includegraphics[height=1cm]{njust-logo.jpeg}
+
+% }
+
+\usebackgroundtemplate{%
+\begin{tikzpicture}[remember picture,overlay]
+  \node[opacity=0.05, at=(current page.center)] {
+    \includegraphics[width=0.6\paperwidth]{njust-logo.jpeg}
+  };
+\end{tikzpicture}}
+
+\begin{document}
+  % \maketitle
+
+  
+  % 好的，我将为你创建一个详细的Beamer幻灯片，专注于第一小节“复数”的内容.每个知识点都会详细展开，包括定义、运算和几何意义.以下是幻灯片的内容：
+
+  % ```latex
+  % \documentclass{beamer}
+  % \usetheme{Madrid} % 选择一个主题
+  % \usepackage{amsmath} % 引入数学公式宏包
+  % \usepackage{amsfonts} % 引入数学字体宏包
+  % \usepackage{graphicx} % 引入图形宏包
+  
+  % \title{数学物理方法：复数}
+  % \author{罗凯}
+  % \date{\today}
+  
+  % \begin{document}
+  
+  \begin{frame}
+  \titlepage
+  \end{frame}
+  
+  % \begin{frame}{目录}
+  % \tableofcontents
+  % \end{frame}
+  
+  \AtBeginSubsection{
+    \begin{frame}{目录}
+      \tableofcontents[currentsection,currentsubsection]
+    \end{frame}
+  }
+
+\section{留数定理及应用}
+
+\subsection{留数定理}
+\label{subsec:residue_theorem}
+
+
+\begin{frame}{留数定理的引入}
+  \small
+柯西定理指出,若被积函数$f(z)$在回路$\ell$所围区域是解析的,则回路积分$\oint_\ell f(z) dz$为零.下面讨论所围区域包含奇点的情况.
+假设一个含有$m$阶极点$z=z_0$的函数,它可以展开为洛朗级数
+$$
+  f(z) = \sum_{k = -m} ^{\infty} a_k (z - z_0)^k  
+$$
+取圆环内包含$z_0$的闭合回路,由柯西定理可知,回路积分$\oint_\ell f(z) dz = \oint_C f(z) dz$, 将洛朗展开带入逐项积分,可得
+$$
+\oint_\ell f(z) dz = \sum_{k = -m} ^{\infty} \oint_C  (z - z_0)^k dz,
+$$
+由前面例题可知,只有$a_{-1}$项不为零,其他项为零.而$a_{-1}$项的积分为$2\pi\imath$.因此,我们得到
+\begin{equation}
+    \oint_\ell f(z) dz = 2\pi \imath a_{-1} .
+\end{equation}
+\end{frame}
+
+\begin{frame}{留数定理的引入}
+  \small
+
+
+又因为$a_{-1}$为函数$f(z)$在$z=z_0$处的留数,记为$\Res f(z_0)$.于是有
+\begin{equation}
+    \oint_\ell f(z) dz = 2\pi \imath \Res f(z_0) .
+\end{equation}
+扩展到多个奇点的情况,不难得到
+\begin{equation}
+    \oint_\ell f(z) dz = 2\pi \imath \sum_{j=1}^{n} \Res f(z_j) .
+\end{equation}
+上式为\textbf{留数定理}的数学表达式,即
+\textbf{回路积分可以写成被积函数在回路所围区域上各个奇点的留数之和.}
+
+\end{frame}
+
+\begin{frame}{计算留数的方法}
+  \small
+  下面介绍一下计算留数的一种方法.
+通常,我们并不总是要将一个函数展开为洛朗级数来找出$a_{-1}$的值.如果$f(z)$有
+$n$阶极点$z_0$,那么有
+\begin{equation}
+    \left(z-z_0\right)^n f(z)=a_{-n}+\cdots+a_{-1}\left(z-z_0\right)^{n-1}+a_0\left(z-z_0\right)^n+\cdots .
+\end{equation}
+不断求导后可以验证
+\begin{equation}
+    a_{-1}=\frac{1}{(n-1) !} \lim _{z \to z_0}\left[\frac{d^{n-1}}{d z^{n-1}}\left(\left(z-z_0\right)^n f(z)\right)\right]
+\end{equation}
+此外,另外一种方法也比较常见. 若 $f(z)$ 可以表示为 $P(z) / Q(z)$ 的特殊形式, 其中 $P(z)$ 和 $Q(z)$ 都在 $z_0$ 点 解析, $z_0$ 是 $Q(z)$ 的一阶零点. $P\left(z_0\right) \neq 0$, 从而 $z_0$ 是 $f(z)$ 的一阶极点, 则
+\begin{equation}
+    \Res f\left(z_0\right)=\lim _{z \to z_0}\left(z-z_0\right) \frac{P(z)}{Q(z)}=\frac{P\left(z_0\right)}{Q^{\prime}\left(z_0\right)} .
+\end{equation}
+上式最后一步应用了罗毕达法则.
+下面给出一些计算留数的例子.
+
+\end{frame}
+
+\begin{frame}{计算留数的例子}
+  \small
+% \begin{example}
+% 计算留数.
+% \end{example}
+\begin{solution}
+    \begin{enumerate}
+        \item $\frac{1}{\sin z}$在$z=0$处的留数为$\lim_{z\to 0} \frac{z}{\sin{z}} = 1$.
+       \only<2->{ \item $\frac{\ln{z}}{z^2 + 4}$在$z=2e^{\imath \half \pi}$处的留数为$\lim_{z\to 2e^{\imath \half \pi}} \frac{(z-2e^{\imath \half\pi})\ln{z} }{z^2 + 4} = 
+        \frac{\ln 2 + \imath \half \pi}{4\imath} = \frac{\pi}{8} - \frac{\imath\ln{2}}{4}.$}
+        \only<3->{
+        \item $f(z) = \frac{\cot{\pi z}}{z(z+2)}$在$z=0$处的留数.\\
+            $$
+              f(z) = \frac{1}{z} \left[\frac{1}{\pi z} + O(z) \right]\frac{1}{2} \left[1 - \frac{z}{2} + O(z^2)\right]  
+            $$
+            可以得到该函数的留数为$-1/(4\pi)$.}
+
+    \end{enumerate}
+\end{solution}
+\end{frame}
+
+\begin{frame}{计算留数的例子}
+  \begin{solution}
+\begin{enumerate}
+    \item $f(z) = \frac{1}{z^n - 1}$在$z=1$处的留数可通过如下方法.可知
+        $$
+          f(z)=\frac{1}{z^n-1}=\frac{1}{(z-1)\left(z^{n-1}+z^{n-2}+\cdots+z+1\right)},
+        $$
+        因此,有
+        $$
+          \begin{aligned}
+             \operatorname{\Res} f(1) & =\lim _{z \to 1}\left[(z-1) \frac{1}{(z-1)\left(z^{n-1}+z^{n-2}+\cdots+z+1\right)}\right] \\
+             & 
+            \only<2->{=\lim _{z \to 1} \frac{1}{z^{n-1}+z^{n-2}+\cdots+z+1}=\frac{1}{n} .}
+          \end{aligned}
+        $$
+
+  \onslide<3->{
+        或者用 $$
+        \lim _{z \to 1}\left[\frac{1}{\left(z^n-1\right)^{\prime}}\right]=\lim _{z \to 1} \frac{1}{n z^{n-1}}=\frac{1}{n} .
+        $$ 因此,此函数在$z=1$处的留数为$1/n$.
+  }
+\end{enumerate}
+\end{solution}
+\end{frame}
+
+  \begin{frame}{求解待定系数}
+  \small
+留数的概念还可以帮助求解裂项分解时的待定系数,如
+$$
+    f(z) = \frac{1}{(z-1)(z-2)(z-3)} = \frac{A}{z-1} + \frac{B}{z-2} + \frac{C}{z-3},
+$$
+中求待定系数$A,B,C$这样的只包含一阶极点的问题. 不难看出$A,B,C$分别对应$f(z)$在$z=1,2,3$的留数.
+于是有
+\begin{eqnarray*}
+    A &=& \Res f(1) = \lim_{z\to 1} (z-1) f(z) = \half,
+    \\
+    B &=& \Res f(2) = \lim_{z\to 2} (z-2) f(z) = -1,
+    \\
+    C &=& \Res f(3) = \lim_{z\to 3} (z-3) f(z) = \half.
+\end{eqnarray*}
+\end{frame}
+
+
+\begin{frame}{高阶下的待定系数}
+  \small
+\small
+对于高阶极点的情况,可以类似处理.
+$$
+\frac{1}{(z-1)^2(z-2)(z-3)}=\frac{A}{(z-1)^2}+\frac{B}{z-1}+\frac{C}{z-2}+\frac{D}{z-3}
+$$
+注意$A$的处理
+\begin{eqnarray*}
+    A &=& \Res  (z-1) f(z) |_{z=1}  = \half,
+    \\
+    B &=& \Res f(1) =  \lim_{z\to 1} \frac{d}{dz} \left[ (z-1)^2 f(z) \right] = \frac{3}{4},
+    \\
+    C &=& \Res f(2) = \lim_{z\to 2} (z-2) f(z) = -1,
+    \\
+    D &=& \Res f(3) = \lim_{z\to 3} (z-3) f(z) = \frac{1}{4}.
+\end{eqnarray*}
+\end{frame}
+
+\subsection{留数定理应用}
+
+
+\begin{frame}{三角函数的积分}
+  \small
+ \onslide<1->{对于实变函数的定积分,我们已经学会了一些积分技巧,如变量代换,分部积分等.这一章节我们
+将介绍利用留数定理的积分技巧,并介绍以物理学家Richard P. Feynman命名的
+特殊技巧.}
+\onslide<2->{
+
+% \subsubsection{三角函数的积分}
+考虑积分区间为$\left[ 0, 2\pi \right]$,被积函数为三角函数有理式的积分
+\begin{equation}
+    \int_{0}^{2\pi} R(\cos{x}, \sin{x}) dx,
+\end{equation}
+当实变数 $x$ 从 0 变到 $2 \pi$ 时, 复变数 $z=e^{\imath x}$ 从 $z=1$ 出发沿单位圆 $|z|=1$ 逆时针 走一圈又回到 $z=1$,
+实变定积分化为复变回路积分, 就可以应用留数定理了. 至于实变定积分里的 $\cos x, \sin x$ 和 $d x$, 作如下变换:
+$$
+\cos x=\frac{1}{2}\left(z+z^{-1}\right), \quad \sin x=\frac{1}{2 \imath}\left(z-z^{-1}\right), \quad d x=\frac{1}{\imath z} d z .
+$$
+于是, 原积分化为
+$$
+I=\oint_{|z|=1} R\left(\frac{z+z^{-1}}{2}, \frac{z-z^{-1}}{2 \imath}\right) \frac{d z}{\imath z}
+$$
+利用留数定理即可求得.
+}
+  \end{frame}
+
+
+
+
+
+
+  
+
+  \begin{frame}{例题}
+    \small 
+    \onslide<1->{
+\begin{example}
+求定积分\[I=\int_0^{2 \pi} \frac{d \theta}{1+a \cos \theta}, \quad|a|<1 \]
+\end{example}
+}
+\onslide<2->{
+\begin{solution}
+    根据上面的方法,可得
+    \[
+        \begin{aligned}
+        I & =-\imath \oint_{|z|=1} \frac{d z}{z\left[1+(a / 2)\left(z+z^{-1}\right)\right]} \\
+        & =-\imath \frac{2}{a} \oint \frac{d z}{z^2+(2 / a) z+1} .
+        \end{aligned}
+    \]
+    两个极点分别为
+    \[
+        z_1=-\frac{1+\sqrt{1-a^2}}{a} \quad \text {和} \quad z_2=-\frac{1-\sqrt{1-a^2}}{a}
+    \]
+    不难看出,$z_1$在单位圆外,$z_2$在单位圆内.积分可以写成
+    \[
+      \oint \frac{dz}{(z-z_1)(z-z_2)}   
+    \]
+    留数则为$\frac{1}{z_2 - z_1}$, 利用留数定理可得 
+    \[
+      I=  -\imath \frac{2}{a} 2\pi\imath \frac{1}{z_2 - z_1} = \frac{2 \pi }{\sqrt{1 - a^2}} . 
+    \]
+\end{solution}
+}
+
+\end{frame}
+
+\begin{frame}{积分上下限为$( -\infty, \infty)$}
+  \small
+  考虑如下形式的定积分
+ \[
+    \int_{-\infty}^{\infty} f(x) dx
+ \]
+ 我们先讨论复变函数 $f(z)$ 在实轴上没有奇点的情况,有奇点的情况后面讨论. 
+被积函数在上半平面除有限个奇点外是解析的; 当 $z$ 在上半平面及实轴上 $\to \infty$ 时, 
+$z f(z)$ 一致地 $\to 0$.
+
+取如图所示的上半平面的半径为$R$的半圆路径$\ell$.路径积分可以写成两部分的和
+\begin{equation}
+    \oint_l f(z) d z=\int_{-R}^R f(x) d x+\int_{C_R} f(z) d z .
+\end{equation}
+根据留数定理,上式等于$2\pi \imath  \sum_j \Res f(z_j)$.
+%\input{tikz/semicircle.tex}
+
+\begin{figure}[htb!]
+    \centering
+    \scalebox{0.6}{\input{tikz/semicircle.tex}}
+    \caption{半圆路径.}
+    \label{fig:semicircle}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{证明}
+\small
+下面证明上式第二项为零.一般的对于任意$\theta_1 \leq \theta \leq \theta_2$, 
+有$\lim_{R\to \infty} zf(z) = 0$,可以证明对于该角度对应的圆弧$C$有,
+\begin{equation}
+    \lim_{R \rightarrow \infty} \int_C f(z) dz = 0 .
+\end{equation}
+
+\[
+    \begin{aligned}
+    \lim _{R \rightarrow \infty}\left|\int_C f(z) d z\right| \leq \int_{\theta_1}^{\theta_2} \lim _{R \rightarrow \infty}\left|f\left(R e^{i \theta}\right) i R e^{i \theta}\right| & d \theta \\
+    & \leq\left(\theta_2-\theta_1\right) \lim _{R \rightarrow \infty}\left|f\left(R e^{i \theta}\right) R e^{i \theta}\right|=0 .
+    \end{aligned}
+\]
+也就是说,
+\begin{equation}
+    \int_{-R}^R f(x) d x = 2\pi \imath  \sum_{z_j\in \textrm{上半平面}} \Res f(z_j),
+\end{equation}
+
+\end{frame}
+
+\begin{frame}{例题}
+\small
+\onslide<1->{
+\begin{example}
+    计算\[ 
+    I = \int_{-\infty}^{\infty} \frac{dx}{1 + x^2}   .
+    \]
+\end{example}
+}
+\onslide<2->{
+\begin{solution}
+    由$f(z) = \frac{1}{1+ x^2} = \frac{1}{(z-\imath)(z+\imath)}$可知
+    其单极点$\pm \imath$,其中$\imath$在上半平面.
+    \[
+      \Res f(+\imath) = \frac{1}{2\imath}  
+    \]
+    因此,$I = 2\pi \imath  \frac{1}{2\imath} = \pi$.由于该积分是一个常见积分
+    亦可以通过原函数$\arctan(x)$得到.留数定理的还可以计算这样的积分,
+    \[
+      I = \int_{-\infty}^{\infty} \frac{dx}{(1 + x^2)^n} 
+    \]
+    具体求解过程参考梁昆淼数学物理方法的解.
+\end{solution}
+}
+\end{frame}
+
+\begin{frame}{带复指数的定积分}
+\small
+考虑以下类型的定积分
+ \begin{equation}
+    I=\int_{-\infty}^{\infty} f(x) e^{\imath m x} d x
+\end{equation}
+其中,$m$为正实数;$f(z)$在上半平面除有限个奇点外是解析的,且$\lim_{|z|\to \infty} f(z) = 0, 0 \leq arg z \leq \pi$.
+我们使用同样的半圆路径,类似的可以通过留数定理将实轴的积分转换为环路积分求得.
+为了使用留数定理,我们先需要证明在半圆上的路径积分为零,这里就要用到\textbf{约旦引理}(Jordan lemma
+).
+即证明
+\begin{equation}
+    \lim _{R \rightarrow \infty} \int_{C_R} f(z) e^{\imath m z} d z=0 .
+\end{equation}
+
+\end{frame}
+
+  \begin{frame}{一个等式}
+当$R$足够大时,我们有$|f(z)| < \epsilon$.半圆积分
+\begin{align}
+    I_R&=\int_0^\pi f\left(R e^{\imath \theta}\right) 
+    e^{\imath m R \cos \theta- m R \sin \theta} \imath R e^{\imath \theta} d \theta
+    \\
+    &\leq \epsilon R \int_0^\pi e^{-m R \sin \theta} d \theta=2 \epsilon R \int_0^{\pi / 2} e^{-m R \sin \theta} d \theta,
+\end{align}
+可以发现在$\left[ 0, \pi/2\right]$时,
+\begin{equation}
+    \frac{2}{\pi}\theta \leq \sin{\theta},
+\end{equation}
+于是有
+\begin{equation}
+    I_R \leq 2 \epsilon R \int_0^{\pi / 2} e^{-2 m R \theta / \pi} d \theta=2 \epsilon R \frac{1-e^{-m R}}{2 m R / \pi}<\frac{\pi}{m} \epsilon
+\end{equation}
+即
+\begin{equation}
+    \lim_{R\to \infty} I_R = 0.
+\end{equation}
+
+  \end{frame}
+  
+  \begin{frame}{结论}
+    \small
+  回到定积分$I$,可以得
+\begin{equation}
+    \label{eq:complex_exponential_integral}
+    I=\int_{-\infty}^{\infty} f(x) e^{ \imath m x} d x = 2\pi \imath \sum_{z_j \in \text{上半平面}} \Res e^{\imath m z_j} f(z_j)
+\end{equation}
+
+对于以下类型的积分,可以利用上述结论.如
+\begin{equation}
+    \int_{0}^{\infty} f(x) \cos {m x} dx, \int_{0}^{\infty} G(x) \sin{m x} dx
+\end{equation}
+其中,$F(z)$为偶函数,$G(z)$为奇函数,它们在实轴上没有奇点,上半平面上除有限个奇点外解析.
+很容易通过$\cos{mx} = \frac{1}{2}\left( e^{\imath m x} + e^{-\imath mx}\right)$等变换得到,即
+$$
+\begin{aligned}
+\int_0^{\infty} F(x) \cos m x d x & =\int_0^{\infty} F(x) \frac{1}{2}\left(e^{\imath m x}+e^{-\imath m x}\right) d x \\
+& =\frac{1}{2} \int_0^{\infty} F(x) e^{\imath m x} d x+\frac{1}{2} \int_0^{\infty} F(x) e^{-\imath m x} d x 
+\\
+& = \frac{1}{2} \int_{-\infty}^{\infty} F(x) e^{\imath m x} d x. 
+\end{aligned}
+$$
+  \end{frame}
+
+
+  
+\begin{frame}{例题}
+  \small
+\begin{example}
+计算 $\int_0^{\infty} \frac{\cos m x}{x^2+a^2} d x$.
+\end{example}
+\onslide<2->{
+\begin{solution}
+偶函数$F(z) e^{\imath m z}=\frac{1}{z^2+a^2} e^{\imath m z}$ 有两个单极点 $\pm a \imath$, 其中 $+a \imath$ 在上半平面. 而 $e^{\imath m z} /\left(z^2+a^2\right)$ 在单极点 $+a \imath$ 的留数为
+    $$
+    \lim _{z \rightarrow a \imath}\left[(z-a \imath) \frac{e^{\imath m z}}{z^2+a^2}\right]=\lim _{z \rightarrow a \imath}\left[\frac{e^{\imath m z}}{z+a \imath}\right]=\frac{e^{-m a}}{2 a \imath}
+    $$
+    应用\eqref{eq:complex_exponential_integral},
+    $$
+    \int_0^{\infty} \frac{\cos m x}{x^2+a^2} d x=\pi \imath \frac{e^{-m a}}{2 a \imath}=\frac{\pi}{2 a} e^{-m a}.
+    $$
+\end{solution}
+}
+\end{frame}
+
+\subsection{Feynman技巧}
+
+  \begin{frame}{复变量代换}
+  \small
+以一个例子说明复变量代换的方法.求解定积分
+$$
+    I =  \int_0^{\infty} e^{-a x} \cos b x d x 
+$$
+
+利用$\cos{bx} = \frac{1}{2}\left( e^{\imath b x} + e^{-\imath bx}\right)$
+\[    
+\begin{aligned}
+    I= & \frac{1}{2} \int_{0}^{\infty} \left(e^{-(a-\imath b) x} + e^{-(a + \imath b) x} \right)  d x \\
+    = & \frac{1}{2} \left( \frac{1}{a-\imath b} +  \frac{1}{a+\imath b} \right)\\
+    = & \frac{a}{a^2+b^2}
+\end{aligned}
+\]
+\end{frame}
+
+  \begin{frame}{参数微分}
+  \small
+求解定积分
+$$
+    I =  \int_0^{\infty} x e^{-a x} \cos b x d x 
+$$
+我们令
+$$
+  S(a) =   \int_0^{\infty} e^{-a x} \cos b x d x 
+$$
+已知 $S(a) = \frac{a}{a^2+b^2}$,通过对$S(a)$对$a$的求导得到
+$$
+    I = - S'(a)  = \frac{a^2 - b^2}{(a^2 +b^2)^2}    
+$$
+\onslide<2->{
+对于一般的含参数的微分,我们有
+\begin{equation}
+    \begin{aligned}
+    \frac{d}{d \alpha} \int_{x_1(\alpha)}^{x_2(\alpha)} f(x, \alpha) d x= & \int_{x_1}^{x_2} \frac{\partial}{\partial \alpha} f(x, \alpha) d x \\
+    & \left[\frac{d x_2(\alpha)}{d \alpha} \right] f(x_2, \alpha)- 
+    \left[\frac{d x_1(\alpha)}{d \alpha}\right] f(x_1, \alpha)
+    \end{aligned}
+\end{equation}
+}
+  \end{frame}
+  
+
+  \begin{frame}{被积函数添加函数因子}
+ 求解定积分
+\[
+    I =  \int_0^{\infty} \frac{\sin{x}}{x} d x 
+\]
+
+\onslide<2->{
+可以通过乘以一个函数因子$e^{-a x}$来构造参数函数
+\[
+ S(a) =     \int_0^{\infty}  e^{-a x} \frac{\sin{x}}{x} d x 
+\]
+这样我们有
+\[
+  S'(a) = -  \int_0^{\infty}  e^{-a x} \sin{x} d x  = \frac{1}{1+a^2}
+\]
+对于$a \to \infty$, 有 $S(\infty) = 0$.
+而$\frac{1}{1+x^2}$的原函数为$\arctan{x}$,因此
+\[S(a) = - \arctan{a} + C\]
+可确定$C = \frac{\pi}{2}$,因此我们有$S(a) = \frac{\pi}{2} - \arctan{\alpha}$.
+因此,
+\[
+  I = S(0) = \frac{\pi}{2} .    
+\]
+该结果我们已通过留数定理求得.
+}
+
+  \end{frame}
+
+
+\subsection{泰勒级数(Taylor Series)和洛朗级数(Laurent Series)}
+
+\label{subsec:taylor_laurent_series}
+\begin{frame}{泰勒级数}
+\small
+同实变函数泰勒级数展开一样,复变函数中解析函数自然也可以展为复变项的\textbf{泰勒级数}(Taylor series).
+若$f(z)$在以$z_0$为圆心半径为$R$的圆$C_R$内(含圆上)解析,对圆内任意$z$,$f(z)$可以展为
+\begin{equation}
+    f(z) = \sum_{k=0}^{\infty} a_k (z-z_0)^k,
+\end{equation}
+其中
+\begin{equation}
+    a_k=\frac{1}{2 \pi \imath} \oint_{C_{R}} \frac{f(\zeta)}{\left(\zeta-z_0\right)^{k+1}} d \zeta
+    =\frac{f^{(k)}\left(z_0\right)}{k !} ,
+\end{equation}
+且该展开唯一.
+
+\end{frame}
+  
+
+\begin{frame}{证明}
+  \small
+  以上的证明如下.
+  利用$1/(\zeta -z)$围绕$z_0$为圆心的几何级数,构造
+\[
+\frac{1}{\zeta -z} = \frac{1}{(\zeta -z_0) - (z - z_0)} = \frac{1}{\zeta - z_0}\frac{1}{ 1 - \frac{z-z_0}{\zeta - z_0}}
+ = \sum_{k=0}^{\infty}\frac{(z-z_0)^k}{(\zeta - z_0)^{k+1}}.    
+\]
+将上式带入柯西公式有
+\begin{equation}
+    \begin{aligned}
+        f(z) & = \frac{1}{2\pi \imath} \oint_C \frac{f(\zeta)}{\zeta - z} d \zeta \\
+        & \only<2->{= \frac{1}{2\pi \imath} \sum_{k=0} ^{\infty} \oint_C \frac{f(\zeta)(z-z_0)^k}{(\zeta - z_0)^{k+1}} d \zeta} \\
+        & \only<3->{= \frac{1}{2\pi \imath} \sum_{k=0} ^{\infty}(z-z_0)^k 2\pi \imath \frac{f^{(k)}(z_0)}{k!}} \\
+        & \only<4->{= \sum_{k=0} ^{\infty}  \frac{f^{(k)}(z_0)}{k!} (z-z_0)^k}
+    \end{aligned}
+\end{equation}
+\textbf{思考: 如何证明泰勒展开的唯一性?}
+\end{frame}
+
+\begin{frame}{推论}
+  \small
+以下是一个重要推论.
+
+若$f(z)$, $g(z)$在区域$R$解析,
+且在某些子区域$S\subset R$有$f(z)=g(z)$,那么全区域$R$内都有$f(z)=g(z)$.
+
+该证明可通过构造$h(z) = f(z) - g(z)$然后利用该式在区域$R$内
+任意一点的的泰勒展开进行系数比较,可得$h(z)$在全区域内为零.
+%
+\end{frame}
+
+\begin{frame}{例题}
+  \small
+  \onslide<1>{
+  \begin{example}
+在$z_0=1$的邻域上将$f(z) = \ln{z}$进行泰勒展开.
+\end{example}
+  }
+  \onslide<2->
+  {
+\begin{solution}
+    首先,$f(z) = \ln z $的支点为$0,\infty$.这里的展开中心为$z_0=1$非支点,各个单值分支互相独立.
+    根据泰勒展开公式,我们需要将各个系数计算出来.
+    \[
+        \begin{array}{ll}
+            f(z)=\ln z, & f(1)=\ln 1=n 2 \pi \imath \quad(n \text { 为整数 }) \text {; } \\
+            f^{\prime}(z)=\frac{1}{z}, & f^{\prime}(1)=+1 ; \\
+            f^{\prime \prime}(z)=-\frac{1 !}{z^2}, & f^{\prime \prime}(1)=-1 ! ; \\
+            f^{(3)}(z)=\frac{2 !}{z^3}, & f^{(3)}(1)=+2 ! ; \\
+            f^{(4)}(z)=-\frac{3 !}{z^4}, & f^{(4)}(1)=-3 ! ; \\
+            \ldots & \cdots
+            \end{array}
+    \]
+    于是,可以得到
+    \[
+    \ln z = 2 n \pi \imath + (z-1) - \frac{(z-1)^2}{2} +  \frac{(z-1)^3}{3} -  \frac{(z-1)^4}{4} \cdots
+    \]
+    按照比值判定法,该级数的收敛半径为$1$,需附加上$|z-1|< 1$这个收敛条件.
+    我们称$n=0$的单值分支为$\ln z $的\textbf{主值}.
+\end{solution}
+}
+\end{frame}
+
+\begin{frame}{洛朗级数}
+目前为止,泰勒级数的展开的前提条件为区域内解析.然而,如果$f(z)$在区域内$z=z_0$的有奇点,那么泰勒展开就无法进行.假设$f(z)$仅在$z_0$有
+一$p$阶\textbf{极点}(pole),其他区域均解析,
+于是,我们可以将$f(z)$表示为
+\begin{equation}
+    f(z) = a_{-p} (z-z_0)^{-p} + \cdots a_{-1}(z-z_0)^{-1} + a_0 + a_{1} (z-z_0) + a_{2} (z-z_0)^2 + \cdots 
+\end{equation}
+作为泰勒级数的延伸,这样的级数我们称为\textbf{洛朗级数}(Laurent series).
+
+我们有$g(z) = (z-z_0)^p f(z)$在区域内解析.因此,我们可以在$z_0$处进行泰勒展开
+\begin{equation}
+    g(z) = \sum_{k=0}^{\infty} b_k (z-z_0)^{k} .
+\end{equation}
+比较$(z-z_0)^k$的展开系数,不难得到$a_k = b_{k+p}$,
+\begin{equation}
+    a_k = b_{k+p} = \frac{1}{2\pi \imath} \oint \frac{g(\zeta)}{(\zeta - z_0)^{k+1+p}} d\zeta 
+    = \frac{1}{2\pi \imath} \oint \frac{f(\zeta)}{(\zeta - z_0)^{k+1}} d\zeta
+\end{equation}
+
+\end{frame}
+
+\begin{frame}{洛朗级数的注意事项}
+% 比较展开系数,不难得到$a_k = b_{k+p}$,
+% \begin{equation}
+%     a_k = b_{k+p} = \frac{1}{2\pi \imath} \oint \frac{g(\zeta)}{(\zeta - z_0)^{k+1+p}} d\zeta 
+%     = \frac{1}{2\pi \imath} \oint \frac{f(\zeta)}{(\zeta - z_0)^{k+1}} d\zeta
+% \end{equation}
+
+\textbf{注意}:尽管含$z-z_0$的负幂项,$z_0$可能也可能不是函数$f(z)$的奇点,如$f(z) = 1/(z^2-1)$的洛朗级数展开为
+$$
+\frac{1}{z^2} + \frac{1}{z^4} + \frac{1}{z^6}\cdots,
+$$
+包含了无数多负幂项,但展开中心$z=0$本身却不是函数的奇点,函数的奇点在$z=\pm 1$处. 此外注意,虽然洛朗级数展开的系数同泰勒展开的系数公式
+相同但不论$z_0$是否为$f(z)$的奇点,
+$$a_k \neq \frac{f^{(k)}(z_0)}{k!}.
+$$
+如果$z_0$是奇点,$f^{(k)}(z_0)$不存在;若$z_0$不是奇点, $f^{(k)}(z_0)$存在, 上式成立的条件是在以$C$为边界的区域内解析,而现在该区域(环状)内是有
+奇点的(否则就不需要进行洛朗展开了).
+
+\end{frame}
+
+\begin{frame}{洛朗级数的主部}
+  \small
+洛朗级数所有幂次$k\geq 0$的项称为\textbf{解析部}(analytic part), 
+其余由$z-z_0$负幂次项称为\textbf{主部}(principal part).
+
+解析部的收敛半径记为
+$R_1$.如果
+主部收敛,那么对$|(z-z_0)^{-1}|$比某半径小的圆内收敛.若该圆半径为$1/R_2$,可以知当$|z-z_0|> R_2$,主部收敛.
+如果$R_2 < R_1$那么级数在环域$R_2 < |z- z_0| < R_1$内绝对一致收敛,级数求和为解析函数,级数可以逐项求导.该环域称为\textbf{收敛环}.
+如果$R_2 > R_1$那么该级数发散.
+\end{frame}
+
+\begin{frame}{例题}
+  \small
+  \onslide<1>{
+
+\begin{example}
+在$z_0 = 0$的邻域上将$e^{1/z}$展开.
+\end{example}
+  }
+  \onslide<2->{
+\begin{solution}
+指数$e^z$的泰勒展开为
+\[
+    e^z=\sum_{k=0}^{\infty} \frac{1}{k !} z^k=1+\frac{1}{1 !} z+\frac{1}{2 !} z^2+\frac{1}{3 !} z^3+\cdots \quad(|z|<\infty),    
+\]
+替换$z$成$1/z$得到
+\[
+    e^{\frac{1}{z}}=\sum_{k=0}^{\infty} \frac{1}{k !} z^k=1+\frac{1}{1 !} \frac{1}{z}+\frac{1}{2 !} \frac{1}{z^2}+\frac{1}{3 !} \frac{1}{z^3}+\cdots \quad(|\frac{1}{z}|<\infty),    
+\]
+即有
+\[
+e^{\frac{1}{z}} = \sum_{k=-\infty}^{0} \frac{1}{(-k)!} z^k ( |z| > 0) .
+\]
+\end{solution}
+  }
+\end{frame}
+
+
+\subsection{奇点的分类}
+\label{subsec:singular_points}
+
+\begin{frame}{奇点的分类}
+  \small
+利用函数$f(z)$的在$z=z_0$处的洛朗级数展开,我们可以刻画函数在此处的行为.
+容易知道,若$f(z)$在$z=z_0$处解析,那么所有负幂项系数为零,即$a_k = 0$, $k<0$.
+若$f(z)$在$z=z_0$处非解析,那么两种情况会出现.
+\begin{enumerate}
+    \item 能找到整数$p$使得$a_{-p} \neq 0$, 对所有$k>0$有$a_{-p - k}=0$.
+    \item 无法找到上述最小的$-p$.
+\end{enumerate}
+对于第一种情况,$f(z)$在$z=z_0$处有$p$阶\textbf{极点}. $a_{-1}$称为$f(z)$在极点$z=z_0$处的\textbf{留数}(residue),记为$\Res f(z_0)$.
+对于第二种情况,如果有无穷多负幂项,我们称之为\textbf{本性奇点}(essential singularity).
+
+若函数$f(z)$在某点$z_0$不可导,但在$z_0$的任意小邻域内除$z_0$外处处可导,我们称$z_0$为$f(z)$的\textbf{孤立奇点}.
+若在$z_0$的邻域内可以找到其他不可导的点,则称之为\textbf{非孤立奇点}.
+
+\end{frame}
+
+\begin{frame}{例题}
+  \small
+
+\begin{example}
+找出\[
+    f(z) = \frac{1}{z( z- 2)^3} 
+    \]
+    在$z=0$和$z=2$处的洛朗级数展开,并验证$z=0$时一阶极点,$z=2$是三阶极点,并找出两个极点的留数.
+\end{example}
+
+\end{frame}
+
+
+\begin{frame}{例题}
+  \small
+\begin{solution}
+对于极点$z=0$处的洛朗级数展开,我们可以利用$(1-\alpha z)^n$的泰勒展开.有
+\[
+    \begin{aligned}
+    f(z) &= -\frac{1}{8z(1-z/2)^3}
+    \\
+     &= -\frac{1}{8z}\left[ 1 + (-3) (-\frac{z}{2}) + \frac{(-3)(-4)}{2!} \left( -\frac{z}{2}\right)^2 + \cdots \right] 
+    \\
+     &= -\frac{1}{8z} - \frac{3}{16} - \frac{3z}{16} + \cdots   
+    \end{aligned}
+\]
+由定义可知,$z=0$为一阶奇点,留数为$-1/8$.对于$z=2$的洛朗级数展开,我们将函数写成
+\[
+    \begin{aligned}
+        f(z) &= \frac{1}{(z-2)^3} \frac{1}{z-2 + 2}
+        \\
+        &= \frac{1}{2(z-2)^3} \frac{1}{1+\frac{z-2}{2}}
+        \\
+        &= \frac{1}{2(z-2)^3} \left[ 1 - \left(\frac{z-2}{2} \right) + \left(\frac{z-2}{2}\right)^2 - \left(\frac{z-2}{2}\right)^3 \cdots \right] 
+        \\
+        &= \frac{1}{2(z-2)^3} - \frac{1}{4(z-2)^2} + \frac{1}{8(z-2)} - \frac{1}{16} + \cdots
+    \end{aligned}
+\]
+由定义可知,$z=2$为三阶极点,留数为$1/8$.
+\end{solution}
+\end{frame}
+
+\end{document}
