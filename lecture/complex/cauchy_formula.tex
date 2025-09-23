@@ -107,6 +107,71 @@ I = \oint_\gamma \frac{e^z}{z^n} \, dz =
 \end{solution}
 
 
+\begin{example}
+计算曲线积分
+\[
+\oint_{l}\frac{e^{z}}{z^{n}}\,dz,\qquad n=0,\pm1,\pm2,\pm3,\dots,
+\]
+其中 \(l\) 为以原点为圆心、半径 \(1\) 的正向单位圆： \(|z|=1\)。
+\end{example}
+% \begin{center}
+% % 若要绘图，请在导言区加载 \usepackage{tikz}
+% \begin{tikzpicture}[scale=1.0,>=stealth]
+%   % 单位圆
+%   \draw[thick,->] (0,0) -- (2,0) node[right] {$\Re z$};
+%   \draw[thick,->] (0,0) -- (0,2) node[above] {$\Im z$};
+%   \draw[thick] (0,0) circle (1);
+%   \node at (1.1,0.1) {$l:\ |z|=1$};
+%   \fill (0,0) circle (0.6pt) node[below left] {$0$};
+%   % 方向箭头（示意正向）
+%   \draw[->,thick] ({cos(60)},{sin(60)}) arc (60:20:1);
+% \end{tikzpicture}
+% \end{center}
+
+
+
+\begin{solution}
+% 方法一（Laurent 级数展开）：在圆心周围展开
+% \[
+% e^{z}=\sum_{k=0}^{\infty}\frac{z^{k}}{k!}.
+% \]
+% 因此
+% \[
+% \frac{e^{z}}{z^{n}}=\sum_{k=0}^{\infty}\frac{z^{k-n}}{k!}.
+% \]
+% 曲线积分只取 Laurent 展开中 \(z^{-1}\) 项的系数乘以 \(2\pi i\)。令
+% \[
+% k-n=-1\quad\Longrightarrow\quad k=n-1.
+% \]
+% 因为级数索引 \(k\) 只从 \(0\) 开始取非负整数，所以上述方程只有在 \(n-1\ge0\)（即 \(n\ge1\)）时有解。当 \(n\ge1\) 时，所对应项的系数为 \(1/(n-1)!\)，于是
+% \[
+% \boxed{\;\oint_{l}\frac{e^{z}}{z^{n}}\,dz=\frac{2\pi i}{(n-1)!},\qquad n=1,2,3,\dots\;}
+% \]
+% 当 \(n\le0\) 时不存在 \(k=n-1\ge0\) 的解，级数中无 \(z^{-1}\) 项，故积分为 \(0\)：
+% \[
+% \boxed{\;\oint_{l}\frac{e^{z}}{z^{n}}\,dz=0,\qquad n=0,-1,-2,\dots\;}
+% \]
+
+% 方法二（广义柯西积分公式）：
+设 \(m=n\)。若 \(m\ge1\)，则广义柯西公式给出
+\[
+\oint_{l}\frac{f(z)}{(z-0)^{m}}\,dz=\frac{2\pi i}{(m-1)!}f^{(m-1)}(0).
+\]
+取 \(f(z)=e^{z}\)，由于 \(f^{(k)}(0)=1\) , $\forall k$,  代入可得。
+若 \(m\le0\)，被积函数在圆内解析，积分为零。
+
+综上所述，整合写成分支形式为
+\[
+\oint_{l}\frac{e^{z}}{z^{n}}\,dz=
+\begin{cases}
+\dfrac{2\pi i}{(n-1)!}, & n=1,2,3,\dots,\\[6pt]
+0, & n=0,-1,-2,\dots .
+\end{cases}
+\]
+\end{solution}
+
+
+
 下面介绍柯西公式的重要推论.
 
 \textbf{模数原理} $f(z)$在闭区域上解析,$|f(z)|$只能在边界线上取极大值.

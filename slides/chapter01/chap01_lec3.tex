@@ -138,8 +138,149 @@ $\int_{\ell} f(z) dz$,即
 这样一来,复变函数的路径积分就转化成了两个实变函数的线积分.
 因此,很多实函数线积分的性质可以应用在复变函数路径积分上.
 
+\end{frame}
+
+\begin{frame}{积分例子}
+\small
+\begin{example}
+计算积分
+\[
+\int_{l} z^{2}\,dz
+\]
+如图所示, 其中终点为 \(A=(2,i)\)，起点为原点 \(O\)。分别沿路径 (1)——从 \(O\) 到 \(A\) 的直线段；
+以及路径 (2)——先沿实轴从 \(O\) 到 \(B=(2,0)\)，再从 \(B\) 垂直上升到 \(A\)——计算该积分，并比较结果。
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,scale=1]
+    % 坐标轴
+    \draw[->,thick] (0,0) -- (3.2,0) node[right] {$x$};
+    \draw[->,thick] (0,0) -- (0,2.2) node[above] {$y$};
+    \node[left] at (0,0) {$O$};
+
+    % 点 A 和 B
+    \coordinate (A) at (2,1.6);
+    \coordinate (B) at (2,0);
+
+    % 路径 (1)
+    \draw[thick] (0,0) -- (A) node[midway,above left] {$(1)$};
+    
+    % 路径 (2)
+    \draw[thick,green] (0,0) -- (B) -- (A) node[midway,right] {$(2)$};
+
+    % 标记点
+    \fill (A) circle (1pt) node[right] {$A(2,i)$};
+    \fill (B) circle (1pt) node[above] {$B$};
+    \node[below] at (2,0) {$2$};
+    \node[left] at (0,1.6) {$i$};
+\end{tikzpicture}
+\end{center}
 
 
+\end{example}
+
+
+
+
+% \onslide<2->{
+% \begin{solution}
+%   分别沿路径 (1) 和 (2)，如图所示。
+
+% 由复变数定义可得
+% \[
+% z^2 = x^2 - y^2 + i \, 2xy.
+% \]
+% \end{solution}
+% }
+
+\end{frame}
+
+\begin{frame}{积分例子求解}
+\small
+\begin{solution}
+  \small
+先写出复函数的形式
+\[
+z^2 = x^2 - y^2 + i\,2xy.
+\]
+
+\textbf{路径 (1)：} 直线段 \(O\to A\)。
+
+参数化取
+\[
+z(t)=(2+i)t,\qquad 0\le t\le 1,
+\]
+因此 \(dz=(2+i)\,dt\) 且
+\[
+z(t)^2=(2+i)^2 t^2=(3+4i)\,t^2.
+\]
+于是
+\[
+\int_{(1)} z^2\,dz
+=\int_{0}^{1} (3+4i)t^2\,(2+i)\,dt
+=(3+4i)(2+i)\int_{0}^{1} t^2\,dt.
+\]
+计算常数乘积与定积分：
+\[
+(3+4i)(2+i)=2+11i,\qquad \int_0^1 t^2\,dt=\frac{1}{3},
+\]
+因此
+\[
+\boxed{\;\int_{(1)} z^2\,dz=\frac{2}{3}+\frac{11}{3}i\;.}
+\]
+\end{solution}
+\end{frame}
+
+\begin{frame}
+\begin{solution}
+  \small
+
+\textbf{路径 (2)：} 分两段，记为 (2a) 和 (2b)。
+
+(2a) 实轴段 \(O\to B\)，参数化 \(z=x\) (\(0\le x\le 2\))，有 \(dz=dx\)，且 \(z^2=x^2\)。于是
+\[
+\int_{(2a)} z^2\,dz=\int_{0}^{2} x^2\,dx=\left.\frac{x^3}{3}\right|_{0}^{2}=\frac{8}{3}.
+\]
+
+(2b) 垂直段 \(B\to A\)，参数化 \(z=2+i y\) (\(0\le y\le 1\))，有 \(dz=i\,dy\)。计算
+\[
+z^2=(2+i y)^2=4- y^2 + i\,4y.
+\]
+因此
+\[
+\int_{(2b)} z^2\,dz
+=\int_{0}^{1} (4- y^2 + i\,4y)\,i\,dy
+=\int_{0}^{1}\big(4i - i y^2 -4y\big)\,dy.
+\]
+对每项积分得
+\[
+\int_0^1 4i\,dy = 4i,\quad
+\int_0^1 (-i y^2)\,dy = -\frac{i}{3},\quad
+\int_0^1 (-4y)\,dy = -2.
+\]
+故
+\[
+\int_{(2b)} z^2\,dz = -2 + \frac{11}{3}i.
+\]
+\end{solution}
+\end{frame}
+
+\begin{frame}
+  \small
+  \begin{solution}
+将两段相加得到路径 (2) 的总积分：
+\[
+\int_{(2)} z^2\,dz
+= \frac{8}{3} + \Big(-2 + \frac{11}{3}i\Big)
+= \frac{2}{3} + \frac{11}{3}i.
+\]
+
+两条路径的结果一致：
+\[
+\boxed{\;\int_{(1)} z^2\,dz=\int_{(2)} z^2\,dz=\frac{2}{3}+\frac{11}{3}i\;.}
+\]
+这符合期望，因为 \(f(z)=z^2\) 在全平面解析，因此对同一端点的曲线积分与路径无关（亦可由柯西定理/原函数原理说明：原函数为 \(F(z)=\tfrac{1}{3}z^3\)）。
+
+\end{solution}
 \end{frame}
 
 
@@ -452,7 +593,12 @@ $|\zeta - z|$的极小值为$\delta$, $C$的长度为$s$,则
 有$n$个根.
 
   \end{frame}
+ \begin{frame}{总结}
+本节主要内容包括复变函数的积分计算、留数定理及其应用、模数原理和刘维尔定理等重要概念和定理。
+  通过对这些内容的学习，我们可以更深入地理解复变函数的性质及其在数学分析中的应用。
 
+
+ \end{frame}
 
   
   
