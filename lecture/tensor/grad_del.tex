@@ -1,0 +1,85 @@
+% The Gradient and the Del Operator (中文转录，基于 vector_analysis.pdf)
+\section{梯度与算子 $\nabla$（del）}
+
+设标量场 $f$。在直角坐标下微分变化可写为
+\[
+df=\frac{\partial f}{\partial x}dx+\frac{\partial f}{\partial y}dy+\frac{\partial f}{\partial z}dz
+\]
+定义梯度为向量算子作用于标量场所得的向量：
+\[
+\nabla f=\frac{\partial f}{\partial x}\,\mathbf{i}_x+\frac{\partial f}{\partial y}\,\mathbf{i}_y+\frac{\partial f}{\partial z}\,\mathbf{i}_z.
+\]
+因此微分可写为内积形式 $df=\nabla f\cdot d\mathbf{l}$，其中微分位移为 $d\mathbf{l}=dx\,\mathbf{i}_x+dy\,\mathbf{i}_y+dz\,\mathbf{i}_z$。
+
+在圆柱坐标 $(r,\phi,z)$ 中，微分位移为
+\[
+d\mathbf{l}=dr\,\mathbf{i}_r+r\,d\phi\,\mathbf{i}_\phi+dz\,\mathbf{i}_z,
+\]
+且梯度为
+\[
+\nabla f=\frac{\partial f}{\partial r}\,\mathbf{i}_r+\frac{1}{r}\frac{\partial f}{\partial\phi}\,\mathbf{i}_\phi+\frac{\partial f}{\partial z}\,\mathbf{i}_z.
+\]
+
+在球坐标 $(r,\theta,\phi)$ 中，微分位移为
+\[
+d\mathbf{l}=dr\,\mathbf{i}_r+r\,d\theta\,\mathbf{i}_\theta+r\sin\theta\,d\phi\,\mathbf{i}_\phi,
+\]
+且梯度为
+\[
+\nabla f=\frac{\partial f}{\partial r}\,\mathbf{i}_r+\frac{1}{r}\frac{\partial f}{\partial\theta}\,\mathbf{i}_\theta+\frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}\,\mathbf{i}_\phi.
+\]
+
+\subsection{例题 1-4（梯度）}
+求下列函数的梯度，其中 $a,b$ 为常数：
+\begin{enumerate}
+\item[(a)] $f=ax^2y+by^2z$;
+\item[(b)] $f=ar^2\sin\phi+brz\cos2\phi$（圆柱坐标）;
+\item[(c)] $f=a+br\sin\theta\cos\phi$（球坐标，注意题中 $r$ 在分母处的项）。
+\end{enumerate}
+
+\paragraph{解}
+(a) 在直角坐标下逐分量求偏导：
+\[
+\frac{\partial f}{\partial x}=2ax y,\qquad \frac{\partial f}{\partial y}=ax^2+2by z,\qquad \frac{\partial f}{\partial z}=by^2.
+\]
+因此
+\[
+\nabla f=2ax y\,\mathbf{i}_x+(ax^2+2by z)\,\mathbf{i}_y+by^2\,\mathbf{i}_z.
+\]
+
+(b) 题中给出函数为圆柱坐标表达。使用圆柱坐标的梯度公式（见上）：
+\[
+\nabla f=\frac{\partial f}{\partial r}\,\mathbf{i}_r+\frac{1}{r}\frac{\partial f}{\partial\phi}\,\mathbf{i}_\phi+\frac{\partial f}{\partial z}\,\mathbf{i}_z.
+\]
+计算偏导：
+\[
+\frac{\partial f}{\partial r}=2ar\sin\phi+b z\cos2\phi,
+\qquad \frac{\partial f}{\partial\phi}=ar^2\cos\phi-2br z\sin2\phi,
+\qquad \frac{\partial f}{\partial z}=br\cos2\phi.
+\]
+代入得：
+\[
+\nabla f=(2ar\sin\phi+b z\cos2\phi)\,\mathbf{i}_r+\frac{1}{r}(ar^2\cos\phi-2br z\sin2\phi)\,\mathbf{i}_\phi+br\cos2\phi\,\mathbf{i}_z.
+\]
+
+(c) 在球坐标下使用球坐标的梯度公式：
+\[
+\nabla f=\frac{\partial f}{\partial r}\,\mathbf{i}_r+\frac{1}{r}\frac{\partial f}{\partial\theta}\,\mathbf{i}_\theta+\frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}\,\mathbf{i}_\phi.
+\]
+给定 $f=a+br\sin\theta\cos\phi$，计算偏导：
+\[
+\frac{\partial f}{\partial r}=b\sin\theta\cos\phi,
+\qquad \frac{\partial f}{\partial\theta}=br\cos\theta\cos\phi,
+\qquad \frac{\partial f}{\partial\phi}=-br\sin\theta\sin\phi.
+\]
+代入并整理：
+\[
+\nabla f=b\sin\theta\cos\phi\,\mathbf{i}_r+\frac{1}{r}(br\cos\theta\cos\phi)\,\mathbf{i}_\theta+\frac{1}{r\sin\theta}(-br\sin\theta\sin\phi)\,\mathbf{i}_\phi.
+\]
+即
+\[
+\nabla f=b\sin\theta\cos\phi\,\mathbf{i}_r+b\frac{\cos\theta\cos\phi}{ }\,\mathbf{i}_\theta- b\frac{\sin\phi}{ }\,\mathbf{i}_\phi.
+\]
+（注：最后两项可分别简化为 $b\cos\theta\cos\phi\,\mathbf{i}_\theta/r$ 与 $-b\sin\phi\,\mathbf{i}_\phi/(r\sin\theta)$；上式保留形式用于逐项展示。）
+
+% end of grad_del.tex
