@@ -429,7 +429,7 @@ $$
 
   \end{frame}
 
-  \begin{frame}{幂级数的收敛半径}
+  \begin{frame}{幂级数的收敛圆}
   \small
 以$z_0$ 为圆心作一个半径为$R$的圆$C_R$.
 幂级数在圆的内部绝对收敛, 在圆外发散. 
@@ -450,6 +450,34 @@ $$
 }
   \end{frame}
   
+
+  % \begin{frame}{例题}
+  %   \small
+  %   \begin{example}
+  %     求幂级数 $\sum_{k=0}^{\infty}(-1)^k z^{2 k}$ 的收敛半径。
+  %   \end{example}
+      
+  %   \begin{solution}
+  %   由题，幂级数为 $\sum_{k=0}^{\infty}(-1)^k z^{2k}$，即 $a_k = (-1)^k$，通项为 $a_k z^{2k}$。
+
+  %   利用根式判别法，收敛半径 $R$ 为
+  %   \[
+  %   R = \lim_{k \to \infty} \frac{1}{\sqrt[2k]{|a_k|}}
+  %   \]
+  %   由于 $|a_k| = 1$，所以
+  %   \[
+  %   R = \lim_{k \to \infty} \frac{1}{\sqrt[2k]{1}} = 1
+  %   \]
+
+  %   也可以用比值判别法：
+  %   \[
+  %   \lim_{k \to \infty} \left| \frac{a_{k+1} z^{2(k+1)}}{a_k z^{2k}} \right| = \lim_{k \to \infty} |z^2| = |z|^2
+  %   \]
+  %   令其小于 1，则 $|z|^2 < 1$，即 $|z| < 1$。
+
+  %   因此，收敛半径为 $R = 1$。
+  %   \end{solution}
+  % \end{frame}
 
 
 
