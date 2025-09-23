@@ -474,8 +474,8 @@ $$
 \end{frame}
 
 
-
   \begin{frame}{例题}
+    \small
     考虑函数 \( f(z) = \frac{1}{z^2 - 1} \)，它在 \( z = 1 \) 和 \( z = -1 \) 处有简单极点.
     我们选择半径为 2 的圆 \( \gamma \) 作为积分路径，
     如下图所示：
@@ -491,6 +491,7 @@ $$
   \end{frame}
 
   \begin{frame}{例题}
+    \small
 由(\ref{eq:cauchy_integral_summation})可以知道,
     关于路径 \( \gamma \)的积分
     可以转换为由以下两个部分的路径积分
@@ -518,6 +519,7 @@ $$
 
 
   \begin{frame}{例题}
+    \small
     \only<1>{
 \begin{example}
     计算 
@@ -551,6 +553,37 @@ I = \oint_\gamma \frac{e^z}{z^n} \, dz =
 \end{frame}
 
 
+\begin{frame}{例题}
+\small
+\begin{example}
+计算曲线积分
+\[
+\oint_{l}\frac{e^{z}}{z^{n}}\,dz,\qquad n=0,\pm1,\pm2,\pm3,\dots,
+\]
+其中 \(l\) 为以原点为圆心、半径 \(1\) 的正向单位圆： \(|z|=1\)。
+\end{example}
+\onslide<2->
+{
+\begin{solution}
+设 \(m=n\)。若 \(m\ge1\)，则广义柯西公式给出
+\[
+\oint_{l}\frac{f(z)}{(z-0)^{m}}\,dz=\frac{2\pi i}{(m-1)!}f^{(m-1)}(0).
+\]
+取 \(f(z)=e^{z}\)，由于 \(f^{(k)}(0)=1\) , $\forall k$,  代入可得。
+若 \(m\le0\)，被积函数在圆内解析，积分为零。
+
+综上所述，整合写成分支形式为
+\[
+\oint_{l}\frac{e^{z}}{z^{n}}\,dz=
+\begin{cases}
+\dfrac{2\pi i}{(n-1)!}, & n=1,2,3,\dots,\\[6pt]
+0, & n=0,-1,-2,\dots .
+\end{cases}
+\]
+\end{solution}
+
+}
+\end{frame}
 
 
 \begin{frame}{模数原理}
@@ -594,9 +627,30 @@ $|\zeta - z|$的极小值为$\delta$, $C$的长度为$s$,则
 
   \end{frame}
  \begin{frame}{总结}
-本节主要内容包括复变函数的积分计算、留数定理及其应用、模数原理和刘维尔定理等重要概念和定理。
-  通过对这些内容的学习，我们可以更深入地理解复变函数的性质及其在数学分析中的应用。
+  \small
+柯西积分定理： 解析函数的闭合回路积分为零。
 
+重要结论:
+$$
+    \begin{aligned}
+        & \frac{1}{2 \pi \imath} \oint_l \frac{d z}{z-\alpha}= \begin{cases}0 & (l \text { 不包围 } \alpha), \\
+        1 & (l \text { 包围 } \alpha) . \end{cases} \\
+        & \frac{1}{2 \pi \imath} \oint_l(z-\alpha)^n d z=0 \quad(n \neq-1) .
+        \end{aligned}
+  $$
+
+
+
+  柯西积分公式及其导数公式
+        \begin{equation*}
+            f(z) = \frac{1}{2\pi \imath} \oint_C \frac{f(\zeta)}{\zeta - z} d \zeta.
+            \label{eq:cauchy_formula}
+        \end{equation*}
+
+        \begin{equation*}
+    f^{(n)}(z) = \frac{n!}{2\pi \imath} \oint_C \frac{f(\zeta)}{(\zeta - z)^{n+1}} d \zeta.
+    \label{eq:cauchy_formula_nth_derivative}
+\end{equation*}
 
  \end{frame}
 
