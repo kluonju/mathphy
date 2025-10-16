@@ -74,10 +74,21 @@
     }
 }
 
-% Custom problem environment
-\newtcolorbox{hwproblem}[1]{
+% Counter-backed problem environment with optional subtitle
+\newcounter{hwproblem}
+\newcommand{\hwproblem@title}[1]{%
+    \refstepcounter{hwproblem}%
+    \if\relax\detokenize{#1}\relax
+        题目~\thehwproblem
+    \else
+        题目~\thehwproblem：#1
+    \fi
+}
+
+\newtcolorbox{hwproblem}[2][]{
     problembox,
-    title=题目 #1
+    title={\hwproblem@title{#2}},
+    #1
 }
 
 % Chinese number mapping for homework numbers (to avoid font compatibility issues)
