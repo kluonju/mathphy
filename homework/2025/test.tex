@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{ctex}
+\usepackage{geometry}
+\geometry{a4paper,margin=25mm}
+\title{变分题 完整题目与解答}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{题目（完整表述）}
+求使泛函
+\[
+J[y_1,y_2]=\int_{0}^{1}\bigl(y_1'(x)^2 + y_2'(x)^2\bigr)\,\mathrm{d}x
+\]
+取得极小的函数对 \(y_1(x),y_2(x)\)，满足积分约束
+\[
+\int_{0}^{1} y_1(x)\,y_2(x)\,\mathrm{d}x = C,
+\]
+并假设两函数在端点取定值（Dirichlet 边界条件）
+\[
+y_1(0)=\alpha_1,\quad y_1(1)=\beta_1,\qquad y_2(0)=\alpha_2,\quad y_2(1)=\beta_2,
+\]
+其中 \(C,\alpha_i,\beta_i\) 为给定常数。请写出带乘子的变分方程并求出一般解的结构，说明如何由边界条件与约束确定常数。
+
+\vspace{1ex}
+
+\section*{解答}
+为引入约束，使用拉格朗日乘子法。构造扩展泛函（作用于两个函数对）
+\[
+\widetilde{J}[y_1,y_2;\lambda]=\int_0^1\Bigl( y_1'^2 + y_2'^2 + \lambda\,y_1 y_2\Bigr)\,\mathrm{d}x,
+\]
+其中 \(\lambda\) 为常数乘子（未定常数）。极值条件为对任意满足端点零变分的 \(\eta_1,\eta_2\)：
+\[
+\delta \widetilde J=0.
+\]
+
+对 \(y_1\) 做变分：
+\[
+\delta_{y_1}\widetilde J = \int_0^1\bigl(2y_1'\eta_1' + \lambda y_2 \eta_1\bigr)\,\mathrm{d}x
+= \Bigl[2y_1'\eta_1\Bigr]_0^1 - \int_0^1\bigl(2y_1'' - \lambda y_2\bigr)\eta_1\,\mathrm{d}x.
+\]
+由于 \(\eta_1(0)=\eta_1(1)=0\)，边界项消失，得 Euler--Lagrange 方程
+\[
+2y_1'' - \lambda y_2 = 0 \quad\Longrightarrow\quad y_1'' = \frac{\lambda}{2}\,y_2.
+\]
+
+同理对 \(y_2\)：
+\[
+2y_2'' - \lambda y_1 =0 \quad\Longrightarrow\quad y_2'' = \frac{\lambda}{2}\,y_1.
+\]
+
+于是我们得到耦合常微分方程组
+\begin{equation}\label{eq:coupled}
+\begin{cases}
+y_1''(x) = \dfrac{\lambda}{2}\,y_2(x),\\[6pt]
+y_2''(x) = \dfrac{\lambda}{2}\,y_1(x),
+\end{cases}
+\qquad x\in(0,1),
+\end{equation}
+并伴随 Dirichlet 边界条件 \(y_i(0)=\alpha_i,\ y_i(1)=\beta_i\)，以及积分约束
+\[
+\int_0^1 y_1(x)y_2(x)\,\mathrm{d}x = C.
+\]
+
+\subsection*{解耦与一般解的结构}
+为解耦，引入
+\[
+u(x)=y_1(x)+y_2(x),\qquad v(x)=y_1(x)-y_2(x).
+\]
+对 \(\eqref{eq:coupled}\) 做代数变换，可得
+\[
+u''(x) = \frac{\lambda}{2}\,u(x),\qquad v''(x) = -\frac{\lambda}{2}\,v(x).
+\]
+因此 \(u\) 与 \(v\) 各自满足独立的二阶线性常系数微分方程：
+
+\begin{itemize}
+  \item 若 \(\lambda/2 = \mu > 0\)，即 \(\lambda>0\)，则
+  \[
+  u(x)=A_1 e^{\sqrt{\mu}\,x}+A_2 e^{-\sqrt{\mu}\,x},\qquad
+  v(x)=B_1\cos(\sqrt{\mu}\,x)+B_2\sin(\sqrt{\mu}\,x).
+  \]
+  \item 若 \(\lambda/2 = \mu < 0\)，令 \(\mu=-\nu\)（\(\nu>0\)），则
+  \[
+  u(x)=A_1\cos(\sqrt{\nu}\,x)+A_2\sin(\sqrt{\nu}\,x),\qquad
+  v(x)=B_1 e^{\sqrt{\nu}\,x}+B_2 e^{-\sqrt{\nu}\,x}.
+  \]
+  \item 若 \(\lambda=0\)，则 \(u''=0,\ v''=0\)，
+  \[
+  u(x)=a_0+a_1 x,\quad v(x)=b_0+b_1 x.
+  \]
+\end{itemize}
+
+由 \(u\) 和 \(v\) 可恢复
+\[
+y_1=\tfrac{1}{2}(u+v),\qquad y_2=\tfrac{1}{2}(u-v).
+\]
+
+常数 \(A_i,B_i\)（或 \(a_j,b_j\)）由四个边界条件 \(y_i(0)=\alpha_i,\ y_i(1)=\beta_i\) 决定（共四个线性方程），而乘子 \(\lambda\) 则由积分约束
+\[
+\int_0^1 y_1 y_2\,\mathrm{d}x = \frac{1}{4}\int_0^1 (u^2 - v^2)\,\mathrm{d}x = C
+\]
+决定。通常的解法流程为：
+\begin{enumerate}
+  \item 根据假定的 \(\lambda\) 类型（正/负/零）写出 \(u,v\) 的一般解；
+  \item 用边界条件求出与 \(\lambda\) 相关的常数表达式（线性代数问题）；
+  \item 将得到的 \(y_1,y_2\) 代入积分约束，解出 \(\lambda\)（通常得到关于 \(\lambda\) 的代数或超越方程）。
+\end{enumerate}
+
+\subsection*{特例：齐次 Dirichlet 边界（零端点）}
+若取 \(\alpha_1=\alpha_2=\beta_1=\beta_2=0\)，则边界条件为
+\[
+y_1(0)=y_1(1)=y_2(0)=y_2(1)=0.
+\]
+在该情况下存在非零解的条件会把问题变为一个本征值问题。具体地，对 $u$ 有
+\[
+u''=\frac{\lambda}{2}u,\qquad u(0)=u(1)=0,
+\]
+非平凡解需 $\lambda/2=-k^2\pi^2$，即
+\[
+\lambda = -2 k^2\pi^2,\qquad k\in\mathbb{N}.
+\]
+对应的 $u(x)=\sin(k\pi x)$。同时 $v'' = -\frac{\lambda}{2} v = k^2\pi^2 v$，在零边界下 $v$ 的非零解需指数项满足边界（通常在此情况下，若要求 $v(0)=v(1)=0$，则 $v\equiv 0$）。一种常见一致解为取
+\[
+u(x)=A\sin(k\pi x),\qquad v(x)\equiv 0,
+\]
+从而
+\[
+y_1(x)=y_2(x)=\tfrac{A}{2}\sin(k\pi x).
+\]
+将其代入约束可解出 \(A\)（及从而满足指定的 \(C\)）：
+\[
+\int_0^1 y_1 y_2\,\mathrm{d}x = \frac{A^2}{4}\int_0^1 \sin^2(k\pi x)\,\mathrm{d}x = \frac{A^2}{8} = C
+\quad\Longrightarrow\quad A=\pm 2\sqrt{2C},
+\]
+（前提为 \(C>0\)）。因此在齐次 Dirichlet 边界下，若要有非平凡解，\(\lambda\) 必须取上述离散值之一；对应的极小化解可由选定的本征模态给出（并由约束确定幅值）。
+
+\subsection*{ Remarks（说明）}
+\begin{itemize}
+  \item 上述求解流程体现了带积分约束的变分问题的一般策略：引入拉格朗日乘子，把约束并入泛函，得到耦合的 Euler--Lagrange 方程；再通过线性组合解耦，最后用边界条件与约束确定未知常数与乘子。
+  \item 在实际计算中，通常会遇到需要解关于 \(\lambda\) 的超越方程（尤其在非齐次边界或更复杂约束时），这时可借助数值方法（例如牛顿法）求 \(\lambda\)。
+  \item 若对函数空间作更严格的规范化（例如在希尔伯特空间 $H_0^1(0,1)$ 中最小化并加上正则化项），问题与算子本征值问题的联系会更明确——此处的特例已经展示了与 Sturm--Liouville 本征问题的关联。
+\end{itemize}
+
+\section*{结论（简短）}
+带积分约束的双函数变分问题经过拉格朗日乘子法后给出耦合二阶方程组，解可通过 $u=y_1+y_2$ 与 $v=y_1-y_2$ 解耦得到。边界条件给出线性条件，而积分约束用于确定乘子 \(\lambda\)（或幅值）。在特殊的齐次 Dirichlet 情形下，非平凡解对应离散的 \(\lambda\)（本征值），并由约束决定模态的幅度。
+
+\end{document}

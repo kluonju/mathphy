@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+\usepackage{ctex}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{a4paper,margin=25mm}
+\title{直接求解 Euler--Lagrange 微分方程的详细步骤}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{问题}
+从变分问题得到的欧拉--拉格朗日方程（引入拉格朗日乘子 $\lambda$ 后）为
+\[
+\frac{d}{dx}\!\left(\frac{y'}{\sqrt{1+y'^2}}\right)=\lambda,
+\qquad x\in[x_0,x_1].
+\tag{1}
+\]
+要求对该微分方程作解析求解，并把常数关系与几何意义写明。
+
+\section*{第一步：做替换，化为一阶方程}
+令辅助函数
+\[
+p(x):=\frac{y'(x)}{\sqrt{1+y'(x)^2}}.
+\]
+由定义可见 $p(x)\in(-1,1)$ 且 $p$ 与 $y'$ 单射可互化。方程 (1) 变为
+\[
+p'(x)=\lambda.
+\]
+对 $x$ 积分得到（$C$ 为积分常数）
+\[
+\boxed{\,p(x)=\lambda x + C\,.}
+\tag{2}
+\]
+
+\section*{第二步：由 $p$ 恢复 $y'$}
+由 $p$ 的定义，
+\[
+p=\frac{y'}{\sqrt{1+y'^2}}
+\]
+两边平方并解出 $y'^2$：
+\[
+p^2=\frac{y'^2}{1+y'^2}
+\quad\Longrightarrow\quad
+y'^2=\frac{p^2}{1-p^2}.
+\]
+因此取正/负号（由问题的单调性或端点条件决定）
+\[
+\boxed{\,y'(x)=\frac{p(x)}{\sqrt{1-p(x)^2}}\,.}
+\tag{3}
+\]
+将 (2) 代入 (3)：
+\[
+\boxed{\,y'(x)=\frac{\lambda x + C}{\sqrt{1-(\lambda x + C)^2}}\,.}
+\tag{4}
+\]
+
+\section*{第三步：积分得到 $y(x)$}
+做换元 $u=\lambda x + C$，则 $du=\lambda\,dx$，从而
+\[
+dy = y'\,dx = \frac{u}{\sqrt{1-u^2}}\cdot\frac{du}{\lambda}.
+\]
+对两边积分：
+\[
+y(x)=\int \frac{u}{\lambda\sqrt{1-u^2}}\,du + D
+= -\frac{1}{\lambda}\sqrt{1-u^2} + D,
+\]
+其中 $D$ 为积分常数。把 $u=\lambda x + C$ 代回，得到显式形式
+\[
+\boxed{\,y(x) = -\frac{1}{\lambda}\sqrt{1-(\lambda x + C)^2} + D\,.}
+\tag{5}
+\]
+
+\section*{第四步：化为圆的标准方程}
+对 (5) 两边适当代数变形可得到圆的方程。先将等式改写为
+\[
+\lambda\bigl(D-y(x)\bigr)=\sqrt{1-(\lambda x + C)^2}.
+\]
+两边平方：
+\[
+\lambda^2 (D-y)^2 = 1 - (\lambda x + C)^2.
+\]
+移项并整理：
+\[
+(\lambda x + C)^2 + \lambda^2 (D-y)^2 = 1.
+\]
+令
+\[
+R=\frac{1}{\lambda},\qquad x_c=-\frac{C}{\lambda},\qquad y_c=D,
+\]
+则上式等价于
+\[
+\boxed{(x-x_c)^2 + (y-y_c)^2 = R^2,}
+\]
+即解为以 $(x_c,y_c)$ 为圆心、半径 $R$ 的圆的上（或下）半弧。这里 $\lambda=0$ 时需单独讨论（见下）。
+
+\section*{第五步：曲率解释与特例}
+\begin{itemize}
+  \item 从方程 (1) 可直接得到
+  \[
+  \frac{y''}{(1+y'^2)^{3/2}}=\lambda,
+  \]
+  而左边正是平面曲线 $y(x)$ 的曲率 $\kappa(x)$。因此 $\kappa(x)=\lambda$ 为常数，故曲线为圆（当 $\lambda\neq0$），当 $\lambda=0$ 时曲率为 $0$，曲线退化为直线（$y'=\text{const}$）。
+  \item $\lambda$ 的正负决定圆弧的凸性：$\lambda>0$ 对应向上凸（圆心在曲线的上方），$\lambda<0$ 对应向下凸。
+\end{itemize}
+
+\section*{第六步：由边界条件与面积约束确定常数}
+若给定两个端点条件
+\[
+y(x_0)=y_0,\qquad y(x_1)=y_1,
+\]
+将它们代入圆方程
+\[
+(x_0-x_c)^2 + (y_0-y_c)^2 = R^2,
+\qquad
+(x_1-x_c)^2 + (y_1-y_c)^2 = R^2,
+\]
+可得到关于未知量 $(x_c,y_c,R)$ 的两条方程；再若有面积约束（例如
+\[
+\int_{x_0}^{x_1} y(x)\,dx = A_0
+\]
+），则该积分表达式（将 $y(x)$ 以 (5) 形式代入并积分）将给出第三个关于 $(x_c,y_c,R)$ 的方程，从而可确定三个未知常数。对于对称情形（例如本题中 $x_0=0,x_1=1,y_0=y_1=0$），可利用对称性令 $x_c=\tfrac{1}{2}$，简化求解：
+\[
+R^2=\Bigl(\tfrac{1}{2}\Bigr)^2 + h^2,\quad y_c=h,
+\]
+并由圆段面积公式
+\[
+A_0 = R^2\Bigl(\theta - \sin\theta\cos\theta\Bigr),\qquad \sin\theta=\frac{1}{2R},
+\]
+求出 $R$（从而 $\lambda=1/R$）和 $h$。
+\medskip
+
+\noindent 以上给出了解常数确定的步骤；在一般非对称情况下，代入边界条件与面积约束会得到关于 $\lambda,C,D$ 的代数或超越方程，通常需数值方法求解。
+
+\section*{第七步：处理符号与退化情况}
+\begin{itemize}
+  \item 在 (3) 中，选择 $y'$ 的正负号应由问题中曲线的单调性或端点斜率决定；若 $y$ 在区间上单调增加则取 $+$，单调减少则取 $-$。
+  \item 退化情况 $\lambda=0$：从 (1) 有 $\dfrac{d}{dx}\!\bigl(\dfrac{y'}{\sqrt{1+y'^2}}\bigr)=0$，即 $\dfrac{y'}{\sqrt{1+y'^2}}=C$，故 $y'=$ 常数，解为直线 $y=ax+b$。
+\end{itemize}
+
+\section*{结论}
+对 Euler--Lagrange 给出的方程作直接求解，经过一次积分与代换，可以得到显式的 $y'(x)$ 及 $y(x)$ 形式，并可证明通解为圆（或直线）的方程：
+\[
+(x-x_c)^2 + (y-y_c)^2 = R^2,
+\qquad R=\frac{1}{\lambda},\ x_c=-\frac{C}{\lambda},\ y_c=D.
+\]
+
+\vfill
+\noindent ----- 结束 -----
+
+\end{document}
