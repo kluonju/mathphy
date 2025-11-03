@@ -189,6 +189,7 @@ $f(x)$ 和 $F(\omega)$ 分别称为傅里叶变换的\textbf{原函数}和\textb
     其中 $f_1(x) \star f_2(x)=\int_{-\infty}^{\infty} f_1(\alpha) f_2(\alpha-x) d \alpha$ 称为 $f_1(x)$ 与 $f_2(x)$ 的卷积.
 \end{enumerate}
 以上部分定理作为作业由大家完成.
+
 \subsection{高维傅里叶变换}
 
 二维连续函数 $f(x, y)$ 的傅里叶变换定义如下:
@@ -201,7 +202,8 @@ $$
 f(x, y)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F\left(k_1, k_2\right) e^{\imath\left(k_1 x+k_2 y\right)} d k_1 d k_2
 $$
 为 $F\left(k_1, k_2\right)$ 的逆变换.
-$f(x, y)$ 和 $F\left(k_1, k_2\right)$ 称为傅里叶变换对.
+$f(x, y)$ 和 $F\left(k_1, k_2\right)$ 称为傅里叶变换对. 注意这里可以取对称的形式,只有一个系数
+$\frac{1}{(2 \pi)^2}$, 结果与上面形式相同.
 
 \begin{example}
     求函数 $f(x, y)= \begin{cases}A, & |x| \leq X,|y| \leq Y \\ 0, & |x|>X,|y|>Y\end{cases}$ 的傅里叶变换 (矩孔费琅和夫衍射).
