@@ -1,10 +1,45 @@
 
 \section{二阶线性常微分方程（齐次）}
+我们现在转向本章的主要内容——二阶线性常微分方程。这类方程极为重要，
+因为它们出现在量子力学、电磁理论以及物理学其他领域中求解偏微分方程的常用方法里。
+与一阶线性常微分方程不同，二阶线性常微分方程通常没有普适的封闭解，
+一般需要采用幂级数形式的解法。在讨论级数解法的一般方法之前，我们首先考察微分方程中奇点的概念。
+
+奇点
+
+微分方程的奇点概念对我们有两方面的重要意义：
+（1）它有助于对微分方程进行分类，并识别那些可以转化为常见形式的方程
+（本小节后面会讨论）；（2）它关系到能否找到级数解的可行性。
+
+% 解的可行性，这正是 Fuchs 定理（稍后将讨论）的主题。
+
+当一个线性齐次二阶常微分方程写成如下形式时：
+
 $$
 y''+p(x) y '+q(x) y=0
 $$
-$x_0$ 时, $p\left(x_0\right), q\left(x_0\right)$ 有限,称 $x_0$为ODE的常点
-$p\left(x_0\right), q\left(x_0\right) \rightarrow \infty$称 $x_0$为ODE的奇点
+
+若 $p(x)$ 和 $q(x)$ 在 $x_0$ 处有限，则称 $x_0$ 为该方程的常点（ordinary point）。如果 $p(x)$ 或 $q(x)$ 在 $x \rightarrow x_0$ 时发散，则 $x_0$ 称为奇点（singular point）。奇点进一步分为正则奇点（regular）和非常奇点（irregular，也称为本性奇点 essential singularity）：
+\begin{itemize}
+    \item 若 $x_0$ 为奇点，但 $\left(x-x_0\right) p(x)$ 和 $\left(x-x_0\right)^2 q(x)$ 在 $x_0$ 处仍有限，则 $x_0$ 为正则奇点。
+    \item 若 $p(x)$ 发散速度快于 $1 /\left(x-x_0\right)$，使得 $\left(x-x_0\right) p(x)$ 在 $x \rightarrow x_0$ 时趋于无穷，或 $q(x)$ 发散快于 $1 /\left(x-x_0\right)^2$，使得 $\left(x-x_0\right)^2 q(x)$ 在 $x \rightarrow x_0$ 时趋于无穷，则 $x_0$ 为非常奇点。
+\end{itemize}
+
+这些定义适用于所有有限的 $x_0$。
+\begin{note}
+    注意这里的$\infty$为常奇点的情况具体
+    解释我们并没有给出, 它的解决需要用$z=1/x$的代换研究$z=0$时的情形, 具体讨论这里略去.
+\end{note}
+
+% 若要分析 $x \rightarrow \infty$ 处的行为，可令 $x=1 / z$，代入微分方程，
+% 并考察 $z \rightarrow 0$ 的极限。此时原本关于 $y(x)$ 的方程将转化为关于 $w(z)$ 的方程，
+% 其中 $w(z)=y\left(z^{-1}\right)$。对导数进行如下变换，
+
+% $$
+% y''+p(x) y '+q(x) y=0
+% $$
+% $x_0$ 时, $p\left(x_0\right), q\left(x_0\right)$ 有限,称 $x_0$为ODE的常点
+% $p\left(x_0\right), q\left(x_0\right) \rightarrow \infty$称 $x_0$为ODE的奇点
 
 常奇点(或正则奇点) $$\left\{\begin{array}{l}
     \left(x-x_0\right) p\left(x_0\right) \text{有限}
@@ -49,10 +84,7 @@ $p\left(x_0\right), q\left(x_0\right) \rightarrow \infty$称 $x_0$为ODE的奇�
     $$
     常奇点$0$.
 \end{enumerate}
-\begin{note}
-    注意这里的$\infty$为常奇点的情况具体
-    解释我们并没有给出, 它的解决需要用$z=1/x$的代换研究$z=0$时的情形, 具体讨论这里略去.
-\end{note}
+
 
 \subsection{几类特殊的二阶方程}
 \subsubsection{ $y'' = f(x)$ 型}
@@ -72,6 +104,41 @@ $$ u' = f(x,u)$$
 
 
 \subsection{常点邻域上的级数解}
+
+考虑线性（经典）振子方程
+$$
+\frac{d^2 y}{d x^2}+\omega^2 y=0
+$$
+
+我们已经用其他方法解过这个方程，得到的解为 $y=\sin \omega x$ 和 $\cos \omega x$。
+
+我们尝试设
+
+$$
+\begin{aligned}
+y(x) & =x^s\left(a_0+a_1 x+a_2 x^2+a_3 x^3+\cdots\right) \\
+& =\sum_{j=0}^{\infty} a_j x^{s+j}, \quad a_0 \neq 0
+\end{aligned}
+$$
+
+其中指数 $s$ 以及所有系数 $a_j$ 都尚未确定。注意 $s$ 不必为整数。对 $y(x)$ 两次求导，得到
+
+$$
+\begin{aligned}
+\frac{d y}{d x} & =\sum_{j=0}^{\infty} a_j(s+j) x^{s+j-1}, \\
+\frac{d^2 y}{d x^2} & =\sum_{j=0}^{\infty} a_j(s+j)(s+j-1) x^{s+j-2} .
+\end{aligned}
+$$
+
+将上述表达式代入方程，有
+
+$$
+\sum_{j=0}^{\infty} a_j(s+j)(s+j-1) x^{s+j-2}+\omega^2 \sum_{j=0}^{\infty} a_j x^{s+j}=0 .
+$$
+
+
+
+
 $\left|x-x_0\right|<R$ 上.$x_0$为常点.
 
 $$
@@ -80,7 +147,7 @@ $$
 这里以谐振子为例
 $$
 \text { 令 } \begin{aligned}
-y(x) & =x^s\left(a_0+a_1 x+c_2 x^2+\cdots\right) \\
+y(x) & =x^s\left(a_0+a_1 x+a_2 x^2+\cdots\right) \\
 & =\sum_{j=0}^{\infty} a_j x^{s+j}, a_0 \neq 0 .
 \end{aligned}
 $$
