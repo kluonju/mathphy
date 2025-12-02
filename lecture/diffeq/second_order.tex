@@ -139,48 +139,62 @@ $$
 
 
 
-$\left|x-x_0\right|<R$ 上.$x_0$为常点.
+% $\left|x-x_0\right|<R$ 上.$x_0$为常点.
 
-$$
-y(x)=\sum_{k=0} a_k\left(x-x_0\right)^k, a_1, a_2, a_k \cdots \text { 待定. }
-$$
-这里以谐振子为例
-$$
-\text { 令 } \begin{aligned}
-y(x) & =x^s\left(a_0+a_1 x+a_2 x^2+\cdots\right) \\
-& =\sum_{j=0}^{\infty} a_j x^{s+j}, a_0 \neq 0 .
-\end{aligned}
-$$
+% $$
+% y(x)=\sum_{k=0} a_k\left(x-x_0\right)^k, a_1, a_2, a_k \cdots \text { 待定. }
+% $$
+% 这里以谐振子为例
+% $$
+% \text { 令 } \begin{aligned}
+% y(x) & =x^s\left(a_0+a_1 x+a_2 x^2+\cdots\right) \\
+% & =\sum_{j=0}^{\infty} a_j x^{s+j}, a_0 \neq 0 .
+% \end{aligned}
+% $$
 
-\begin{note}
-这里课堂上采用了直接令$s=0$的讲法.
-\end{note}
+% \begin{note}
+% 这里课堂上采用了直接令$s=0$的讲法.
+% \end{note}
+% $$
+% \begin{aligned}
+% & \frac{d y}{d x}=\sum_{j=0}^{\infty} a_j(j+s) x^{s+j-1} \\
+% & \frac{d^2 y}{d x^2}=\sum_{j=0}^{\infty} a_j(j+s)(j+s-1) x^{s+j-2}
+% \end{aligned}
+% $$
+
+% 代入原方程.
+% $$
+% \sum_{j=0}^{\infty} a_j(s+j)(s+j-1) x^{s+j-2}+\omega^2 \sum_{j=0}^{\infty} a_j x^{s+j=0} \text {. }
+% $$
+由于幂级数的性质, 各个系数必须为零.
+% $$
+% \text { 任意阶 } x^{s+j} \text { 都满足 }
+% $$
+% ,系数必为零.
+对于最低幂次项有
+$$
+ a_0(s)(s-1)=0 
+$$
+这个方程来自于最低次幂$x$的系数，被称为判别方程（indicial equation）。
+判别方程及其根对我们的分析至关重要。在本例中，它清楚地告诉我们$s=0$或$s=1$，
+因此我们的级数解必须以$x^0$或$x^1$项开始。
+
+进一步考察, 我们发现下一个最低次幂$x$，即$x^{s-1}$，
+也只在一项中出现（即第一组求和中$j=1$时）。令$x^{s-1}$的系数为零，有
+$$
+a_1(s+1)s=0 .
+$$
+这表明如果$s=1$，则必须有$a_1=0$。而如果$s=0$，该方程对系数没有任何限制。
+
 $$
 \begin{aligned}
-& \frac{d y}{d x}=\sum_{j=0}^{\infty} a_j(j+s) x^{s+j-1} \\
-& \frac{d^2 y}{d x^2}=\sum_{j=0}^{\infty} a_j(j+s)(j+s-1) x^{s+j-2}
-\end{aligned}
-$$
-
-代入原方程.
-$$
-\sum_{j=0}^{\infty} a_j(s+j)(s+j-1) x^{s+j-2}+\omega^2 \sum_{j=0}^{\infty} a_j x^{s+j=0} \text {. }
-$$
-
-$$
-\text { 任意阶 } x^{s+j} \text { 都满足 }
-$$
-,系数必为零.
-
-$$
-\begin{aligned}
-& x^{s-2} a_0(s)(s-1)=0 \quad\left(a_0 \neq 0\right) \\
+% & x^{s-2} a_0(s)(s-1)=0 \quad\left(a_0 \neq 0\right) \\
 & x^{s-1}: a_1(s+1)(s)=0 \\
 & x^s: a_2(s+2)(s+1)+a_0 w^2=0
 \end{aligned}
 $$
 
-$\Rightarrow$ 若 $s=0, y \sim  a_0+a_1 x+\cdots$
+若 $s=0$, $y \sim  a_0+a_1 x+\cdots$
 若 $s=1, y \sim a_0 x+a_1 x^2+\cdots$
 当 $s=1$时, $a_1=0$.
 当 $s=0$ 时, $a_1$ 任意, 因此我们取$a_1=0$.
@@ -192,9 +206,10 @@ $$
 $$
 
 递推关系.
+若$s=0$ 
 $$
 \begin{aligned}
-& \text { 若 } s=0 \Rightarrow a_{j+2}=\frac{-\omega^2}{(j+2)(j+1)} a_j \\
+a_{j+2}=\frac{-\omega^2}{(j+2)(j+1)} a_j \\
 & a_2=-\frac{w^2}{2 !} a_0 \\
 & a_4=-\frac{a_2}{3^3 4}=+\frac{w^4}{4 !} a_0 \\
 & a_6=-\frac{a_0^{3.4}}{5.6}=-\frac{w 6}{6 !} a_0 \\
@@ -212,10 +227,9 @@ y & \left.=a_0\left[1-\frac{(\omega x)^2}{2 !}+\frac{(\omega x}{4}\right)^4-\fra
 & =a_0 \cos \omega x .
 \end{aligned}
 $$
-
+若 $s=1$ 
 $$
 \begin{aligned}
-& \text { 若 } s=1 . \Rightarrow \\
 & a_{j+2}=-a_j \frac{\omega^2}{(j+3) (j+2)} \\
 & \Rightarrow a_2=-a_0 \frac{\omega^2}{2 \cdot 3}=\frac{\omega^2}{3 !} a_0 \\
 & a_4=-a_2 \frac{\omega^2}{5 \cdot 4}=\frac{\omega^4}{5 !} a_0 \\
