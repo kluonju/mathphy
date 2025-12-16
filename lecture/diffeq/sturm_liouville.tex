@@ -3,104 +3,184 @@
 
 
 
-\section*{文件 1}
+% \section*{文件 1}
 
-\begin{align*}
-W(x)L(x) &= \frac{1}{\rho_0} \int \frac{1}{x} dx + \frac{1}{\rho} \frac{d}{dx} + \rho(x) W(x) P(x) \\
-\rho_0 &= e^{\int \frac{P(x)}{\rho(x)} dx} \\
-\rho_1 &= \frac{\rho_1}{\rho_0} e^{\int \frac{P(x)}{\rho(x)} dx} \\
-W(x)L(x) &= \frac{1}{\rho_0} e^{\int \frac{P(x)}{\rho(x)} dx} \left[ \rho(x) \frac{d^2}{dx^2} + P(x) \frac{d}{dx} + Q(x) \right] \\
-\rho_0' &= \rho_1, \quad \rho_0'' = \left( \int \frac{P(x)}{\rho(x)} dx \right)' e^{\int \frac{P(x)}{\rho(x)} dx} = \frac{P(x)}{\rho(x)} e^{\int \frac{P(x)}{\rho(x)} dx}
-\end{align*}
+% \begin{align*}
+% W(x)L(x) &= \frac{1}{\rho_0} \int \frac{1}{x} dx + \frac{1}{\rho} \frac{d}{dx} + \rho(x) W(x) P(x) \\
+% \rho_0 &= e^{\int \frac{P(x)}{\rho(x)} dx} \\
+% \rho_1 &= \frac{\rho_1}{\rho_0} e^{\int \frac{P(x)}{\rho(x)} dx} \\
+% W(x)L(x) &= \frac{1}{\rho_0} e^{\int \frac{P(x)}{\rho(x)} dx} \left[ \rho(x) \frac{d^2}{dx^2} + P(x) \frac{d}{dx} + Q(x) \right] \\
+% \rho_0' &= \rho_1, \quad \rho_0'' = \left( \int \frac{P(x)}{\rho(x)} dx \right)' e^{\int \frac{P(x)}{\rho(x)} dx} = \frac{P(x)}{\rho(x)} e^{\int \frac{P(x)}{\rho(x)} dx}
+% \end{align*}
 
-\begin{itemize}
-    \item $WL = L'$ 是自伴的。
-    \item $\int_a^b w(x) L u \, dx = \int_a^b v^* L' u \, dx$
-    \item $= \left[ v^* u - v^* \rho u' \right]_a^b + \int_a^b w(x) (Lv)^* u \, dx$
-    \item $\Rightarrow \langle v | L u \rangle = \langle L v | u \rangle$
-\end{itemize}
+% \begin{itemize}
+%     \item $WL = L'$ 是自伴的。
+%     \item $\int_a^b w(x) L u \, dx = \int_a^b v^* L' u \, dx$
+%     \item $= \left[ v^* u - v^* \rho u' \right]_a^b + \int_a^b w(x) (Lv)^* u \, dx$
+%     \item $\Rightarrow \langle v | L u \rangle = \langle L v | u \rangle$
+% \end{itemize}
 
-值得强调的是，自伴性定义对边界条件有要求。
+% 值得强调的是，自伴性定义对边界条件有要求。
 
-\begin{itemize}
-    \item $L = L^+$，称为厄米算符（Hermitian operator），厄米算符特征值为实。
-\end{itemize}
+% \begin{itemize}
+%     \item $L = L^+$，称为厄米算符（Hermitian operator），厄米算符特征值为实。
+% \end{itemize}
 
-例：考虑 $L \psi = \lambda \psi$，
-\begin{itemize}
-    \item $L = x \frac{d^2}{dx^2} + (1-x) \frac{d}{dx}$
-    \item $\psi$ 在 $0 \leq x < \infty$ 非奇异的无奇点。
-    \item $\lim_{x \to \infty} \psi(x) = 0$
-    \item $p(x) = x, \quad \rho(x) = (1-x)$ 显然 $L$ 非自伴 $p(x) \neq \rho(x)$
-\end{itemize}
+% 例：考虑 $L \psi = \lambda \psi$，
+% \begin{itemize}
+%     \item $L = x \frac{d^2}{dx^2} + (1-x) \frac{d}{dx}$
+%     \item $\psi$ 在 $0 \leq x < \infty$ 非奇异的无奇点。
+%     \item $\lim_{x \to \infty} \psi(x) = 0$
+%     \item $p(x) = x, \quad \rho(x) = (1-x)$ 显然 $L$ 非自伴 $p(x) \neq \rho(x)$
+% \end{itemize}
 
-\section*{文件 2}
+% \section*{文件 2}
 
-\begin{itemize}
-    \item Sturm-Liouville 理论，常遇到本征值问题
-    \item $Lf = \lambda f$
-    \item $L^* y = \lambda y$
-\end{itemize}
+% \begin{itemize}
+%     \item Sturm-Liouville 理论，常遇到本征值问题
+%     \item $Lf = \lambda f$
+%     \item $L^* y = \lambda y$
+% \end{itemize}
 
-\begin{align*}
-L(x)u &= \frac{d}{dx} \left( p(x) \frac{d}{dx} u \right) + q(x) u \\
-\text{这里最关键问题在于使 } L \text{ 成为厄米算符的等价条件。}
-\end{align*}
+% \begin{align*}
+% L(x)u &= \frac{d}{dx} \left( p(x) \frac{d}{dx} u \right) + q(x) u \\
+% \text{这里最关键问题在于使 } L \text{ 成为厄米算符的等价条件。}
+% \end{align*}
 
-自伴算符 ODE:
-\begin{itemize}
-    \item $(v, Lu) = (Mv, u)$
-    \item $(Lu, v) = \int v^* (Lu) \, dx$
-\end{itemize}
+% 自伴算符 ODE:
+% \begin{itemize}
+%     \item $(v, Lu) = (Mv, u)$
+%     \item $(Lu, v) = \int v^* (Lu) \, dx$
+% \end{itemize}
 
-\begin{align*}
-L(x)u &= \frac{d}{dx} \left( p(x) \frac{d}{dx} u \right) + p(x) u \\
-\text{若 } p(x) &= \rho(x) \\
-\text{则 } L(x) \text{ 称为自伴算符，是解的 ODE。}
-\end{align*}
+% \begin{align*}
+% L(x)u &= \frac{d}{dx} \left( p(x) \frac{d}{dx} u \right) + p(x) u \\
+% \text{若 } p(x) &= \rho(x) \\
+% \text{则 } L(x) \text{ 称为自伴算符，是解的 ODE。}
+% \end{align*}
 
-\begin{itemize}
-    \item $M$ 记为 $L^+$，若 $L = L^+$ 则称 $L$ 为自伴算符。
-    \item 例：$Lu = \frac{1}{\rho(x)} \frac{d}{dx} u(a) = u(b)$
-\end{itemize}
+% \begin{itemize}
+%     \item $M$ 记为 $L^+$，若 $L = L^+$ 则称 $L$ 为自伴算符。
+%     \item 例：$Lu = \frac{1}{\rho(x)} \frac{d}{dx} u(a) = u(b)$
+% \end{itemize}
 
-\begin{align*}
-(D, Lu) &= \int_0^\infty \frac{1}{\rho} \frac{d}{dx} u \frac{d}{dx} v \, dx \\
-(Lv, u) &= \int_0^\infty \frac{d}{dx} \left( \frac{1}{\rho} \frac{d}{dx} v \right) u \, dx \\
-&= v \frac{d}{dx} \left[ \frac{1}{\rho} \frac{d}{dx} u \right]_a^b + \int_a^b v \frac{d}{dx} \left( \frac{d}{dx} u \right) \frac{1}{\rho} \, dx \\
-&= v \frac{d}{dx} \left[ \frac{1}{\rho} \frac{d}{dx} u \right]_a^b + \int_a^b v \frac{d}{dx} u \frac{d}{dx} \frac{1}{\rho} \, dx + \int_a^b v \frac{d^2}{dx^2} u \frac{1}{\rho} \, dx
-\end{align*}
+% \begin{align*}
+% (D, Lu) &= \int_0^\infty \frac{1}{\rho} \frac{d}{dx} u \frac{d}{dx} v \, dx \\
+% (Lv, u) &= \int_0^\infty \frac{d}{dx} \left( \frac{1}{\rho} \frac{d}{dx} v \right) u \, dx \\
+% &= v \frac{d}{dx} \left[ \frac{1}{\rho} \frac{d}{dx} u \right]_a^b + \int_a^b v \frac{d}{dx} \left( \frac{d}{dx} u \right) \frac{1}{\rho} \, dx \\
+% &= v \frac{d}{dx} \left[ \frac{1}{\rho} \frac{d}{dx} u \right]_a^b + \int_a^b v \frac{d}{dx} u \frac{d}{dx} \frac{1}{\rho} \, dx + \int_a^b v \frac{d^2}{dx^2} u \frac{1}{\rho} \, dx
+% \end{align*}
 
-\begin{itemize}
-    \item $L(x)u = (p_0(x) \frac{d}{dx} + p_1(x)) \frac{d}{dx} + p_2(x)$
-\end{itemize}
+% \begin{itemize}
+%     \item $L(x)u = (p_0(x) \frac{d}{dx} + p_1(x)) \frac{d}{dx} + p_2(x)$
+% \end{itemize}
 
-\begin{align*}
-&\text{若 } p_0'(x) = p_1(x), \text{ 则 } L(x) \text{ 称为自伴算符，是解的 ODE。} \\
-&\text{若 } p_0(x) = p_1(x), \\
-&L(x)u = (p_0(x) \frac{d}{dx} + p_2(x)) \frac{d}{dx} + p_2(x)u.
-\end{align*}
+% \begin{align*}
+% &\text{若 } p_0'(x) = p_1(x), \text{ 则 } L(x) \text{ 称为自伴算符，是解的 ODE。} \\
+% &\text{若 } p_0(x) = p_1(x), \\
+% &L(x)u = (p_0(x) \frac{d}{dx} + p_2(x)) \frac{d}{dx} + p_2(x)u.
+% \end{align*}
 
-\begin{align*}
-&\text{若 } L(x) \text{ 满足自伴条件，} \\
-&\int_a^b y_m(x) y_n(x) w(x) dx = N_m^2 \delta_{mn}, \\
-&\Rightarrow f_m = \frac{1}{N_m^2} \int_a^b f(\xi) y_m(\xi) w(\xi) d\xi.
-\end{align*}
+% \begin{align*}
+% &\text{若 } L(x) \text{ 满足自伴条件，} \\
+% &\int_a^b y_m(x) y_n(x) w(x) dx = N_m^2 \delta_{mn}, \\
+% &\Rightarrow f_m = \frac{1}{N_m^2} \int_a^b f(\xi) y_m(\xi) w(\xi) d\xi.
+% \end{align*}
 
 
-\begin{align*}
-    &\text{若 } (v^* p_0 u' - v^* p_1 u) \Big|_a^b = 0 \text{ 则 } L \text{ 是自伴的。} \\
-    &\text{若 } u, v = 0 \text{ 在边界上有满足。} \\
-    &\text{若 } u'' = 0 \text{ 在边界上，第二类边界条件满足。} \\
-    &\text{若周期性，} u|_a = u|_b, v|_a = v|_b \text{ 则满足。} \\
-    &\text{自然的，} u'|_a = u'|_b, v'|_a = v'|_b. \\
-    &\text{若 } \lambda u, \lambda v \text{ 是本征函数，} L u = \lambda u, L v = \lambda v \\
-    &\Rightarrow (\lambda u - \lambda v) \int_a^b u \, dx = p(a) u'(a) - v'(a) \Big|_a^b \\
-    &\Rightarrow \text{若右边为0，则 } \int_a^b u \, dx = 0, \quad u \neq \lambda.
-    \end{align*}
+% \begin{align*}
+%     &\text{若 } (v^* p_0 u' - v^* p_1 u) \Big|_a^b = 0 \text{ 则 } L \text{ 是自伴的。} \\
+%     &\text{若 } u, v = 0 \text{ 在边界上有满足。} \\
+%     &\text{若 } u'' = 0 \text{ 在边界上，第二类边界条件满足。} \\
+%     &\text{若周期性，} u|_a = u|_b, v|_a = v|_b \text{ 则满足。} \\
+%     &\text{自然的，} u'|_a = u'|_b, v'|_a = v'|_b. \\
+%     &\text{若 } \lambda u, \lambda v \text{ 是本征函数，} L u = \lambda u, L v = \lambda v \\
+%     &\Rightarrow (\lambda u - \lambda v) \int_a^b u \, dx = p(a) u'(a) - v'(a) \Big|_a^b \\
+%     &\Rightarrow \text{若右边为0，则 } \int_a^b u \, dx = 0, \quad u \neq \lambda.
+%     \end{align*}
     
-    \textbf{构造的伴随 ODE (若 $p_0(x) \neq p_1(x)$):}
-    \begin{align*}
-    w(x) L y(x) &= \lambda w(x) y(x), \\
-    w(x) &= \frac{1}{\rho_0} e^{\int \frac{p_1(x)}{p_0(x)} dx}.
-    \end{align*}
+%     \textbf{构造的伴随 ODE (若 $p_0(x) \neq p_1(x)$):}
+%     \begin{align*}
+%     w(x) L y(x) &= \lambda w(x) y(x), \\
+%     w(x) &= \frac{1}{\rho_0} e^{\int \frac{p_1(x)}{p_0(x)} dx}.
+%     \end{align*}
+
+% --- 以下为已翻译并整理的中文讲义片段 ---
+\subsection{Sturm--Liouville 理论（简明讲义）}
+\label{sec:sturm_handout}
+
+\subsubsection{概述}
+Sturm--Liouville 理论研究一类二阶线性微分算子及相应的本征值问题。该理论给出在适当加权内积下的正交本征函数，并能将函数展开为这些本征函数的级数。
+
+\subsubsection{伴算符与自伴算符}
+\begin{definition}
+设线性微分算子 $L$ 在区间 $[a,b]$ 的某个定义域上作用，并在加权内积
+\[
+\langle f,g\rangle_w=\int_a^b f(x)\overline{g(x)}\,w(x)\,dx
+\]
+下给出。伴算符 $L^+$ 定义为满足
+\[
+\langle Lf,g\rangle_w = \langle f, L^+ g\rangle_w
+\]
+对域内任意 $f,g$ 成立（在分部积分时边界项被域上的边界条件处理掉）。
+\end{definition}
+
+\begin{definition}
+若 $L^+=L$（在同一定义域和边界条件下），则称 $L$ 为自伴算符（Hermitian）。
+\end{definition}
+
+\subsubsection{Sturm--Liouville 规范形式}
+规范的 S--L 形式为
+\[
+-(p(x)y')' + q(x)y = \lambda w(x) y,
+\]
+其中 $p(x)>0,\ w(x)>0$，并在 $a<x<b$ 上定义合适边界条件。该微分表达式在形式上是自伴的；通过分部积分可见双线性形式相等，仅差边界项。
+
+\subsubsection{如何将一般二阶算子写成自伴形式}
+给定一般二阶算子
+\[
+L[y]=a_2(x)y''+a_1(x)y'+a_0(x)y,
+\]
+可寻找正的权函数 $w(x)$，使得 $w(x)L$ 具有自伴表达式，即
+\[
+w a_2 y'' + w a_1 y' + w a_0 y = -\frac{d}{dx}(P(x) y') + Q(x) y.
+\]
+计算可得权函数必须满足一阶方程
+\[
+\frac{w'}{w} = -\frac{a_1 + a_2'}{a_2}.
+\]
+因此可取
+\[
+w(x)=\frac{1}{a_2(x)}\exp\left(-\int^x \frac{a_1(t)}{a_2(t)}\,dt\right).
+\]
+该方法常称为“积分因子法”。
+
+\subsubsection{边界条件与自伴域}
+为了真正得到自伴算子，必须在算子上指定满足使分部积分得到的边界项为零的边界条件。
+常见的分离型边界条件为
+\[
+\alpha_1 y(a)+\alpha_2 p(a) y'(a)=0,\qquad \beta_1 y(b)+\beta_2 p(b) y'(b)=0,
+\]
+包括 Dirichlet、Neumann 与 Robin 条件。周期条件也常用于封闭区间。
+
+\subsubsection{主要结论}
+\begin{itemize}
+    \item 自伴问题的本征值为实数。
+    \item 对应不同本征值的本征函数在权 $w(x)$ 下正交。
+    \item 在常规（regular）S--L 问题下，本征函数构成 $L^2([a,b],w)$ 的完备基，可以用于函数展开。
+\end{itemize}
+
+\subsubsection{示例（要点）}
+\begin{enumerate}
+    \item Legendre 方程：
+    \[\frac{d}{dx}\big[(1-x^2)y'\big]+\ell(\ell+1)y=0,\quad x\in(-1,1),\quad w(x)=1.\]
+    \item Bessel 型（在 $(0,R)$ 上）：
+    \[\frac{d}{dx}\big(x y'\big)+\big(\lambda x-\nu^2/x\big)y=0,\quad p(x)=x,\ w(x)=x.\]
+    \item 来自一般算子的示例：
+    从 $L[y]=x y''+(1-x)y'$ 出发，可得权函数（积分因子）比例为 $w(x)\propto e^{x}x^{-2}$，需在 $x=0$ 与无穷远处仔细选择定义域。
+\end{enumerate}
+
+\subsubsection{实用建议}
+对奇异端点应用 limit-point/limit-circle 理论以判定边界条件类型；数值离散化前将问题写成 S--L 形式更利于保持对称性与数值稳定性。
+
+% --- 结束中文讲义片段 ---
