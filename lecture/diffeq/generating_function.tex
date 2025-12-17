@@ -38,8 +38,9 @@ $$
 
 若能将 $g$ 与 $\partial g / \partial t$ 联系，就能得到 $f_n$ 与
 $f_{n+1}$ 的关系。对 $g(x, t)$ 关于 $x$ 求导，还可推导 $f_n(x)$
-\begin{equation}\label{eq:hermite-gen}
+\begin{equation}
 e^{-t^2+2 t x}=\sum_{n=0}^{\infty} H_n(x) \frac{t^n}{n!}
+\label{eq:hermite-gen}
 \end{equation}
 $$
 e^{-t^2+2 t x}=\sum_{n=0}^{\infty} H_n(x) \frac{t^n}{n!}
@@ -47,9 +48,9 @@ $$
 
 为推导 $H_n$ 的递推公式，计算
 
-$$
-\begin{equation}\label{eq:hermite-dt}
+\begin{equation}
 \frac{\partial}{\partial t} e^{-t^2+2 t x}=(2 x-2 t) e^{-t^2+2 t x}=\sum_{n=0}^{\infty} n H_n(x) \frac{t^{n-1}}{n!} .
+\label{eq:hermite-dt}
 \end{equation}
 将指数函数在等式\eqref{eq:hermite-dt}中间项展开（暂省 $H_n$ 的自变量），有
 
@@ -70,8 +71,9 @@ $$
 2 x H_n(x)-2 n H_{n-1}(x)=H_{n+1}(x) .
 $$
 
-\begin{equation}\label{eq:hermite-recur}
-2 x H_n(x)-2 n H_{n-1}(x)=H_{n+1}(x) .
+\begin{equation}
+2 x H_n(x)-2 n H_{n-1}(x)=H_{n+1}(x) 
+\label{eq:hermite-recur}
 \end{equation}
 
 $$
@@ -99,8 +101,9 @@ $$
 对于或多或少任意的一类函数而言，这一问题一直是数学研究中的一个活跃课题。
 在过去的一个世纪中，Rainville、Weisner、Truesdell 等人发展出了多种不同的方法。
 有关这方面的工作，可参见“补充阅读”中 McBride 和 Talman 的著作。
-\begin{equation}\label{eq:gen-schlaefli}
+\begin{equation}
 g(x, t)=\frac{1}{w(x)} \sum_{n=0}^{\infty} c_n t^n \frac{n!}{2 \pi i} \oint_C \frac{w(z)[p(z)]^n}{(z-x)^{n+1}} d z
+\label{eq:gen-schlaefli}
 \end{equation}
 
 $$
@@ -129,13 +132,14 @@ $$
 g(x, t)=\sum_{n=0}^{\infty}\left(\frac{(-1)^n t^n}{2^n n!}\right) \frac{n!}{2 \pi i} \oint_C \frac{\left(1-z^2\right)^n}{(z-x)^{n+1}} d z
 $$
 
-将求和與積分互換（下文将对此进行说明），依赖于 $n$ 的因子构成一个几何级数，可以合并求和：
+将求和与积分互换（下文将对此进行说明），依赖于 $n$ 的因子构成一个几何级数，可以合并求和：
 
-\begin{equation}\label{eq:geo-sum}
+\begin{equation}
 \begin{aligned}
 \sum_{n=0}^{\infty}\left(\frac{\left(z^2-1\right) t}{2(z-x)}\right)^n \frac{1}{z-x} & =\frac{1}{z-x-\frac{1}{2}\left(z^2-1\right) t} \\
 & =-\frac{2}{t}\left[z^2-\frac{2 z}{t}+\frac{2 x-t}{t}\right]^{-1}
 \end{aligned}
+\label{eq:geo-sum}
 \end{equation}
 
 
