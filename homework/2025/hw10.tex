@@ -3,30 +3,43 @@
 \usepackage{hw_style}
 
 % Set due date for this homework (updated to 2025)
-\setduedate{12}{19}
+\setduedate{12}{24}
 
 % Setup homework number and header
 \hwnumber{10}
 
 \begin{document}
 
-% \begin{hwproblem}{1}
-%   厄米多项式(Hermite polynomials) $H_n(x)$的生成函数为
-%   $$
-%   e^{-t^2+2 t x}=\sum_{n=0}^{\infty} H_n(x) \frac{t^n}{n !}
-%   $$
-%   请利用生成函数推导出下面的递推关系式,
-%   \begin{itemize}
-%     \item[(1)] $2 x H_n(x)-2 n H_{n-1}(x)=H_{n+1}(x)$;
-%     \item[(2)] $2 n H_{n-1}(x)=H_n^{\prime}(x)$ . 
-%   \end{itemize}
-% \end{hwproblem}
+\begin{hwproblem}{}
+ 请利用大语言模型，根据Sturm-Liouville本征值问题的理论，导出一般的罗德里格斯(Rodrigues)公式:
+ $$
+ f_n(x)=\frac{a_n}{w(x)} \frac{d^n}{d x^n}\left[w(x)(p(x))^n\right] ,
+ $$
+ 其中$a_n$为与归一化有关的常数. 利用回路积分导出施列夫利(Schlaefli)积分表示:
+ $$
+ f_n(x)=\frac{1}{w(x)} \frac{n!}{2 \pi i} \oint_C \frac{w(z)(p(z))^n}{(z-x)^{n+1}} d z ,
+ $$
+ 其中$C$为包含点$x$的闭合回路.
+\end{hwproblem}
+
+
+\begin{hwproblem}{}
+  厄米多项式(Hermite polynomials) $H_n(x)$的生成函数为
+  $$
+  e^{-t^2+2 t x}=\sum_{n=0}^{\infty} H_n(x) \frac{t^n}{n !}
+  $$
+  请利用生成函数推导出下面的递推关系式,
+  \begin{itemize}
+    \item[(1)] $2 x H_n(x)-2 n H_{n-1}(x)=H_{n+1}(x)$;
+    \item[(2)] $2 n H_{n-1}(x)=H_n^{\prime}(x)$ . 
+  \end{itemize}
+\end{hwproblem}
 
 \vspace{0.5cm}
 
 % \vspace{4em}
 
-\begin{hwproblem}{2}
+\begin{hwproblem}{}
 根据勒让德函数的生成函数,推导下面的递推关系式
 \begin{itemize}
   \item[(1)] $
@@ -44,7 +57,7 @@
   
 % \vspace{4em}
 
-% \begin{hwproblem}{3}
+% \begin{hwproblem}{}
 %   使用递推关系(recurrence relation)或生成函数或罗德里格斯公式验证连带勒让德函数满足
 %   $$
 %   \begin{aligned}
@@ -59,7 +72,7 @@
 
 
 
-\begin{hwproblem}{4}
+\begin{hwproblem}{}
 计算下列积分
 \begin{itemize}
   \item[(1)] $$
@@ -74,7 +87,7 @@ $$
 
 \vspace{0.5cm}
 
-\begin{hwproblem}{5}
+\begin{hwproblem}{}
   求解下列定解问题: 
   $$\left\{\begin{array}{l}
     \nabla^2 u=0, a<r<b, \\ 
@@ -85,18 +98,18 @@ $$
 \vspace{0.5cm}
 
 
-\begin{hwproblem}{6}
-  球谐函数的一般表达式为
-  $$
-  Y_l^m(\theta, \varphi) \equiv \sqrt{\frac{2 l+1}{4 \pi} \frac{(l-m) !}{(l+m) !}} P_l^m(\cos \theta) e^{i m \varphi}
-  $$
-  请求出确定以下的具体表达式$m$的取值范围,写出其中$m\geq 0$关于$\theta,\varphi$的表达式, 并转换成直角坐标系的形式
-  \begin{itemize}
-    \item[(1)] $Y_0^m(\theta,\varphi)$
-    \item[(2)] $Y_1^m(\theta,\varphi)$
-    \item[(3)] $Y_2^m(\theta,\varphi)$
-  \end{itemize}
-  \end{hwproblem}
+% \begin{hwproblem}{}
+%   球谐函数的一般表达式为
+%   $$
+%   Y_l^m(\theta, \varphi) \equiv \sqrt{\frac{2 l+1}{4 \pi} \frac{(l-m) !}{(l+m) !}} P_l^m(\cos \theta) e^{i m \varphi}
+%   $$
+%   请求出确定以下的具体表达式$m$的取值范围,写出其中$m\geq 0$关于$\theta,\varphi$的表达式, 并转换成直角坐标系的形式
+%   \begin{itemize}
+%     \item[(1)] $Y_0^m(\theta,\varphi)$
+%     \item[(2)] $Y_1^m(\theta,\varphi)$
+%     \item[(3)] $Y_2^m(\theta,\varphi)$
+%   \end{itemize}
+%   \end{hwproblem}
 
 \vspace{0.5cm}
 
