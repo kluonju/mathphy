@@ -13,11 +13,11 @@
 \renewcommand{\syllabus}{11044102}                               %教学大纲编号
 \renewcommand{\fullmark}{100}                                            %满分分值
 \renewcommand{\composer}{罗凯}            %组卷教师
-\renewcommand{\composedate}{\today}                   %组卷日期
+\renewcommand{\composedate}{2026年1月}                   %组卷日期
 \renewcommand{\validator}{}                                        %审定人
 \renewcommand{\coursetype}{1}                                            % 1 为必修, 0 为选修
 \renewcommand{\exammethod}{1}                                         % 1 为闭卷, 0 为开卷
-\renewcommand{\testpaper}{B}                                              % A 或 B
+\renewcommand{\testpaper}{A}                                              % A 或 B
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \makehead % 生成试卷表头
@@ -26,7 +26,7 @@
 
 
 \begin{problem}
-  复数 $z = \lambda e^{\imath \theta}$, 
+  复数 $z = \lambda e^{\imath \theta}$ (其中$\lambda, \theta  > 0$) 的, 
   其实部为\fillout{$\lambda \cos \theta$}, 虚部为\fillout{$\lambda \sin \theta$}, 
   模为\fillout{$\lambda$}, 主辐角为\fillout{$\theta$}. 
  它的复共轭为\fillout{$\lambda e^{-\imath \theta}$}.
@@ -42,7 +42,8 @@
   \end{problem}
   
   \begin{problem}
-  某解析函数实部为 $u(x, y) = x^2 - y^2 + 4$, 则该解析函数的虚部为\fillout{$2xy$}加一常数$C$. 
+  某解析函数实部为 $u(x, y) = x^2 - y^2 + 2026$, 则该解析函数的虚部为\fillout{$2xy$}加一常数$C$.
+  根据柯西定理可知其沿某一闭合回路的积分值为\fillout{$0$}. 
   \end{problem}
   
   % \begin{problem}
@@ -52,7 +53,7 @@
   级数$\sum (\frac{z}{2})^n$的收敛半径为\fillout{2};
   级数$\sum \frac{n !}{n^n} z^n$的收敛半径为\fillout{e}. 
   % 级数$\sum \frac{n !}{n^n} z^n$的收敛半径为\fillout{e};
-  级数$\sum n^{\ln{n}} z^n$的收敛半径为\fillout{1}. 
+  % 级数$\sum n^{\ln{n}} z^n$的收敛半径为\fillout{1}. 
   % 如果复幂级数$\sum_{n=0}^{\infty} d_n z^n$的收敛半径为$R = 3$, 
   % 那么它在复平面上的绝对收敛区域是 $\{z \in \mathbb{C} \mid |z| < \fillout{} \}$. 
  \end{problem}
@@ -67,7 +68,8 @@
   \end{problem}
   
   \begin{problem}
-  典型的数理方程分为\fillout{波动方程}、\fillout{输运方程}和\fillout{稳定场方程}, 
+  % 典型的数理方程分为\fillout{波动方程}、\fillout{输运方程}和\fillout{稳定场方程}, 
+  典型的数理方程分为波动方程、输运方程和稳定场方程, 
   它们大致对应数学上二阶偏微分方程的分类, 即\fillout{双曲型}、\fillout{椭圆型}和 \fillout{抛物型}. 
   \end{problem}
   
@@ -81,9 +83,9 @@
   $\Gamma(\frac{3}{2}) = $\fillout{$\frac{1}{2}\sqrt{\pi}$}.
   \end{problem}
   
-\begin{problem}
+% \begin{problem}
  
-\end{problem}
+% \end{problem}
 
 
 \begin{problem}
@@ -614,21 +616,21 @@ $$f(z) = \sum_{n=0}^{\infty}\left(2^n-1^n\right) z^{-n-1}. \score{10} $$
 
 
 
-% \begin{problem}{(6分)}
-%   计算下面的围道积分
-%   $$\oint_{C} \frac{\sin \frac{\pi z}{4}}{z^2-1} dz,  $$
-%    其中$C$为$|z-1|=1$. 
-% \end{problem}
-% \vfill
+\begin{problem}{(10分)}
+  计算下面的围道积分
+  $$\oint_{C} \frac{\cos \frac{\pi z}{4}}{z^2-1} dz,  $$
+   其中$C$为$|z-1|=1$. 
+\end{problem}
+\vfill
 
-% \begin{solution}
-% % \everymath{\displaystyle}%
-% \? 被积函数$f(z) = \frac{\sin \frac{\pi z}{4}}{z^2-1}$含两个奇点$z_1=1,  z_2=-1$. \\ 
-% \+ 路径$C$只包含其中$z_1=1$这一奇点.  \score{2}
-% \+ 不难得到$f(z)$在$z=z_1$处的留数为 $$\text{Res} f(z) |_ {z\to z_1} = \lim_{z \to z_1} (z-z_1) f(z) =\frac{\sqrt{2}}{4}\score{4}$$
-% \+ 因此根据留数定理, 最终结果为
-% $$ 2\pi \imath \frac{\sqrt{2}}{4} = \frac{\pi\imath}{\sqrt{2}}\score{6}$$ 
-% \end{solution}
+\begin{solution}
+% \everymath{\displaystyle}%
+\? 被积函数$f(z) = \frac{\cos \frac{\pi z}{4}}{z^2-1}$含两个奇点$z_1=1,  z_2=-1$. \\ 
+\+ 路径$C$只包含其中$z_1=1$这一奇点.  \score{2}
+\+ 不难得到$f(z)$在$z=z_1$处的留数为 $$\text{Res} f(z) |_ {z\to z_1} = \lim_{z \to z_1} (z-z_1) f(z) =\frac{\sqrt{2}}{4}\score{4}$$
+\+ 因此根据留数定理, 最终结果为
+$$ 2\pi \imath \frac{\sqrt{2}}{4} = \frac{\pi\imath}{\sqrt{2}}\score{6}$$ 
+\end{solution}
 % \bigskip
 
 
@@ -720,9 +722,23 @@ $$I(3, \frac{\pi}{6})=  \cos{ \frac{\pi}{2}}  \Gamma(3) = 0.  \score{10}$$
 % \end{problem}
 
 
+\begin{problem}{(10分)}
+    对于屏蔽效应的描述可以使用Yukawa势来表示
+$$
+V(\mathbf{r}) = \frac{e^{-\alpha r}}{r},
+$$
+其中$\alpha$描述屏蔽的强弱.
+\begin{enumerate}
+  \item[(a)] 试在球坐标系下求出三维傅里叶变换;
+  \item[(b)] 当$\alpha=Z$时, 函数$e^{-Zr}$可描述类氢原子的$1s$轨道, 对其傅里叶变换关于$Z$求偏导
+  $-\frac{\partial}{\partial Z} \mathcal{F} \left[ \frac{e^{-Z r}}{r}\right]$;
+  \item[(c)] 若是三维高斯形式$V(\mathbf{r}) = e^{-\alpha r^2}$, 求其傅里叶变换.
+\end{enumerate}
+\end{problem}
 
+\begin{solution}
 
-
+\end{solution}
 
 % \begin{problem}{(8分)}
 %   计算积分 $$\int_0^{2 \pi} \frac{\dx}{(a+b \cos x)^2},  \quad a>b>0$$. 
@@ -753,51 +769,53 @@ $$I(3, \frac{\pi}{6})=  \cos{ \frac{\pi}{2}}  \Gamma(3) = 0.  \score{10}$$
 
 % \vfill
 
+% \begin{problem}{(10分)}
+% 求谐振子常微分方程$$\frac{d^2y}{d x^2 } + \omega^2 y = 0,$$
+% \end{problem}
+% 在$x=0$处为偶函数的级数解.
+% \smallskip
+
+% \begin{solution}
+%   由$p(x) = 1, q(x) = \omega^2$,可知$x=0$为常微分方程的常点. \score{2}
+%   解可以写成
+%   $y(x)=\sum_{k=0}^{\infty} a_k\left(x-x_0\right)^k$.
+% 其导数为
+% $$y^{\prime}(x)=\sum_{k=0}^{\infty} a_k \cdot k\left(x-x_0\right)^{k-1},$$
+% 二阶导数为
+% $$y^{\prime \prime}(x)=\sum_{k=0}^{\infty} a_k k(k-1)\left(x-x_0\right)^{k-2}$$% \score{4}
+% 带入原方程得到\smallskip
+% $$y^n+w^2 y=\sum_{k=0}^{\infty} a_k \cdot k(k-1)\left(x-x_0\right)^{k-2}+w^2 \sum_{k=0}^{\infty} a_k\left(x-x_0\right)^k=0. \score{4}
+% $$
+% 下面分析各项的系数有
+% \?$$x^0: \quad a_2 \cdot 2 \cdot 1+w_2 a_0=0 ,$$
+% \+$$x^1: a_3 \cdot 3 \cdot 2+w^2 a_1=0,$$
+% \+$$x^2: \quad a_4 \cdot 4 \cdot 3+w^1 a_2=0, $$ 
+% \+$$x^3: a_5 \cdot 5.4+w^2 a_3=0. \score{6} $$
+
+% 由此得到
+% $a_{j+2}=\frac{-\omega^2}{(j+2)(j+1)} a_j$
+%  由偶函数要求知$a_1=0$, 从而$a_3=0, a_5=0, \cdots$ \score{8}
+%  对于偶数阶项, 有
+% $$a_2=-\frac{w^2}{2\cdot1 } a_0 = -\frac{w^2}{2!} a_0,  
+%  \quad a_4=-\frac{w^2 }{4 \cdot 3} a_2=+\frac{w^4}{4 !} a_0,
+%  \quad a_6=-\frac{w^2}{6 \cdot 5} a_4=-\frac{w 6}{6 !} a_0 .
+%  $$
+% 则解为
+% $$y  \left.=a_0\left[1-\frac{(\omega x)^2}{2 !}+\frac{(\omega x}{4}\right)^4-\frac{\omega x x^6}{6 !}+\omega\right] 
+%  =a_0 \cos \omega x . \score{10}$$
+% \end{solution}
+% \bigskip
+
+
 \begin{problem}{(10分)}
-求谐振子常微分方程$$\frac{d^2y}{d x^2 } + \omega^2 y = 0,$$
-\end{problem}
-在$x=0$处为偶函数的级数解.
-\smallskip
-
-\begin{solution}
-  由$p(x) = 1, q(x) = \omega^2$,可知$x=0$为常微分方程的常点. \score{2}
-  解可以写成
-  $y(x)=\sum_{k=0}^{\infty} a_k\left(x-x_0\right)^k$.
-其导数为
-$$y^{\prime}(x)=\sum_{k=0}^{\infty} a_k \cdot k\left(x-x_0\right)^{k-1},$$
-二阶导数为
-$$y^{\prime \prime}(x)=\sum_{k=0}^{\infty} a_k k(k-1)\left(x-x_0\right)^{k-2}$$% \score{4}
-带入原方程得到\smallskip
-$$y^n+w^2 y=\sum_{k=0}^{\infty} a_k \cdot k(k-1)\left(x-x_0\right)^{k-2}+w^2 \sum_{k=0}^{\infty} a_k\left(x-x_0\right)^k=0. \score{4}
-$$
-下面分析各项的系数有
-\?$$x^0: \quad a_2 \cdot 2 \cdot 1+w_2 a_0=0 ,$$
-\+$$x^1: a_3 \cdot 3 \cdot 2+w^2 a_1=0,$$
-\+$$x^2: \quad a_4 \cdot 4 \cdot 3+w^1 a_2=0, $$ 
-\+$$x^3: a_5 \cdot 5.4+w^2 a_3=0. \score{6} $$
-
-由此得到
-$a_{j+2}=\frac{-\omega^2}{(j+2)(j+1)} a_j$
- 由偶函数要求知$a_1=0$, 从而$a_3=0, a_5=0, \cdots$ \score{8}
- 对于偶数阶项, 有
-$$a_2=-\frac{w^2}{2\cdot1 } a_0 = -\frac{w^2}{2!} a_0,  
- \quad a_4=-\frac{w^2 }{4 \cdot 3} a_2=+\frac{w^4}{4 !} a_0,
- \quad a_6=-\frac{w^2}{6 \cdot 5} a_4=-\frac{w 6}{6 !} a_0 .
- $$
-则解为
-$$y  \left.=a_0\left[1-\frac{(\omega x)^2}{2 !}+\frac{(\omega x}{4}\right)^4-\frac{\omega x x^6}{6 !}+\omega\right] 
- =a_0 \cos \omega x . \score{10}$$
-\end{solution}
-\bigskip
-
-\begin{problem}{(10分)}
-求解下列定解问题: 
+对于定解问题: 
 $\left\{\begin{array}{l}
   \nabla^2 u=0,  \quad 0\leq r \leq a \\ 
-  \left. u\right|_{r=a}=\lambda_0 \cos^2 \theta,  \\
+  \left. u\right|_{r=a}=\lambda \cos^2 \theta,  \\
   \left. u\right|_{r=0} \text{有限}. 
-  %\left. u\right|_{r=b}=\lambda_0 \cos ^2 \theta. 
+  %\left. u\right|_{r=b}=\lambda \cos ^2 \theta. 
 \end{array}\right. $
+写出分离变量的过程, 并求出该定解问题的解.
 \end{problem} 
 \bigskip
 
@@ -810,16 +828,16 @@ $$
 因此, 对$r=a$处的边界条件带入, 得
 $$
 \sum_{l=0}^{\infty}  A_l r^l  P_{l} (\cos \theta) 
-= \lambda_0 \cos^2 \theta = \lambda_0 x^2 \score{4} 
+= \lambda \cos^2 \theta = \lambda x^2 \score{4} 
 $$ 
 勒让德多项式中$$P_0(x) = 1,  P_1(x) = x,  P_2 (x) = \frac{1}{2}(3x^2 - 1)$$ \\
 不难得到 $$x^2 = \frac{2}{3} P_2(x) + \frac{1}{3} P_0(x), \score{6}$$  \\
 比较两边系数, 得
-$$A_0 = \frac{\lambda_0}{3}, \\
- A_2 = \frac{2 \lambda_0}{3a^2}, \\
+$$A_0 = \frac{\lambda}{3}, \\
+ A_2 = \frac{2 \lambda}{3a^2}, \\
   A_l = 0 (l\neq 0,  2).  \score{8} $$ 
 这样, 
-$$u(r, \theta) = \frac{\lambda_0}{3} + \frac{2 \lambda_0}{3a^2} r^2 P_2(\cos \theta).  \score{10} $$ 
+$$u(r, \theta) = \frac{\lambda}{3} + \frac{2 \lambda}{3a^2} r^2 P_2(\cos \theta).  \score{10} $$ 
 \end{solution}
 
 
