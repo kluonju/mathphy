@@ -3,7 +3,7 @@
 \documentclass{njustexam}
 
 %注意:注释掉这条命令则显示答案, 为存档用, 交教务处. 使用这条命令则为学生考试用, 交印刷厂印刷
-% \answerfalse 
+\answerfalse 
 
 \begin{document}
 %%%%%%%%%%%%%%%%% 以下内容根据需要更改%%%%%%%%%%%
@@ -542,7 +542,7 @@ $
 % \item $J_n(x) \sim \frac{(-1)^n}{n!}x^n$
 
 
-\makepart{计算证明题}{共~50~分}%共~6~小题, 每小题~8~分, 共~48~分}
+\makepart{计算证明题}{共~50~分}%共~6~小题, 每小题~8~分, 共~48~分
 
 
 \begin{problem}{(8分)}
@@ -637,7 +637,7 @@ $$\operatorname{Res} F(a)=\lim _{z \rightarrow a} \frac{z-a}{z-a}
 %   利用留数定理计算积分 
 %   $$I = \int_{-\infty}^{\infty} \frac{d x}{(x^2 + 1)(x^2+4)}. $$
 %   \end{problem}
-% \smallskip
+% \bigskip
 
 %   \begin{solution}
 %   被积函数$f(z) =\frac{1}{(z^2+1)(z^2+4)}$ 有四个一阶极点: 
@@ -664,7 +664,7 @@ $$\operatorname{Res} F(a)=\lim _{z \rightarrow a} \frac{z-a}{z-a}
 将函数$$f(z) = \frac{1}{(z-3)(z-2)}$$ 
 在 $|z|>3$的环域展开为洛朗级数. 
 \end{problem}
-\smallskip
+\bigskip
 
 \begin{solution}
 函数$f(z)$可以写成
@@ -701,7 +701,8 @@ $$
 其中$ -\frac{\pi}{2} < \theta < \frac{\pi}{2}$. 
 求得$I(2, \frac{\pi}{3})$的值.
 \end{problem}  
-\smallskip
+\bigskip
+% \vfill
 
 \begin{solution}
 对一般的$\alpha$, 依习题解答,\\
@@ -827,7 +828,7 @@ $$I(2, \frac{\pi}{3})=  \cos{ \frac{2\pi}{3}}  \Gamma(2) = -\frac{1}{2}.  \score
 % 求谐振子常微分方程$$\frac{d^2y}{d x^2 } + \omega^2 y = 0,$$
 % \end{problem}
 % 在$x=0$处为偶函数的级数解.
-% \smallskip
+% \bigskip
 
 % \begin{solution}
 %   由$p(x) = 1, q(x) = \omega^2$,可知$x=0$为常微分方程的常点. \score{2}
@@ -837,7 +838,7 @@ $$I(2, \frac{\pi}{3})=  \cos{ \frac{2\pi}{3}}  \Gamma(2) = -\frac{1}{2}.  \score
 % $$y^{\prime}(x)=\sum_{k=0}^{\infty} a_k \cdot k\left(x-x_0\right)^{k-1},$$
 % 二阶导数为
 % $$y^{\prime \prime}(x)=\sum_{k=0}^{\infty} a_k k(k-1)\left(x-x_0\right)^{k-2}$$% \score{4}
-% 带入原方程得到\smallskip
+% 带入原方程得到\bigskip
 % $$y^n+w^2 y=\sum_{k=0}^{\infty} a_k \cdot k(k-1)\left(x-x_0\right)^{k-2}+w^2 \sum_{k=0}^{\infty} a_k\left(x-x_0\right)^k=0. \score{4}
 % $$
 % 下面分析各项的系数有
@@ -953,13 +954,13 @@ $$u(r, \theta) = \frac{u_0}{3}  \frac{a}{r}+ \frac{2 u_0}{3}  \frac{a^3}{r^3} P_
   \label{eq:cauchy_formula_nth_derivative}
 \]
 
-\smallskip
+\bigskip
 函数$f(t)$的拉普拉斯变换$\bar{f}(p)$为
 \[
     \bar{f}(p) = \mathcal{L} \{ f(t) \} = \int_0 ^{\infty} e^{-pt} f(t) \dt . 
 \]
 
-\smallskip
+\bigskip
 
 双曲正余函数(hyperbolic sine/cosine function)表达为
 \begin{align*}
@@ -967,20 +968,20 @@ $$u(r, \theta) = \frac{u_0}{3}  \frac{a}{r}+ \frac{2 u_0}{3}  \frac{a^3}{r^3} P_
     \\
     \sinh z &= \frac{e^{z} - e^{ - z} }{2} . 
 \end{align*}
-% \smallskip
+% \bigskip
 
 伽玛函数(Gamma function)
 \[
   \Gamma(z) \equiv \int_{0}^{\infty} e^{-t} t^{z-1} d t,  \quad \operatorname{Re} z>0 . 
 \]
-\smallskip
+\bigskip
 
 贝塔函数(Beta function)
 \[
     B(p,  q) = \int_0^1 t^{p -1} (1-t)^{q-1} \dt,  \operatorname{Re} p> 0,  \operatorname{Re} q >0. 
     \label{eq:beta_def1}
 \]
-\smallskip
+\bigskip
 
 % \begin{tabularx}{\linewi\dth}{*{4}{>{$}X<{$}}}
 % \hline
@@ -996,7 +997,7 @@ $$u(r, \theta) = \frac{u_0}{3}  \frac{a}{r}+ \frac{2 u_0}{3}  \frac{a^3}{r^3} P_
 %     a_{11} u_{x x}+2 a_{12} u_{x y}+a_{22} u_{y y}+b_1 u_x+b_2 u_y+c u+f=0. 
 %     \label{eq:two_variable_diff_equation}
 % \]
-% \smallskip
+% \bigskip
 
 球坐标系下的拉普拉斯算符
 \[
@@ -1010,7 +1011,7 @@ $$u(r, \theta) = \frac{u_0}{3}  \frac{a}{r}+ \frac{2 u_0}{3}  \frac{a^3}{r^3} P_
   u(r,  \theta) = \sum_{l=0}^{\infty} \left( A_l r^l + \frac{B_l}{r^{l+1}} \right) P_{l} (\cos \theta)
 \]
 
-\smallskip
+\bigskip
 
 $l$ 阶勒让德多项式(Legendre polynomial)的罗德里格斯表达式(Rodrigues's formula) 
 $$P_l(x)=\frac{1}{2^l l !} \frac{d^l}{d x^l}\left(x^2-1\right)^l$$

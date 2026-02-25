@@ -497,7 +497,10 @@
 
 \AtBeginDocument{%
   \ifanswer\else
-    \excludecomment{solution}
+    % Use RenewEnviron to safely redefine the solution environment when
+    % answers are hidden. This avoids conflicts between `comment` package's
+    % \excludecomment and environments created via `NewEnviron`.
+    \RenewEnviron{solution}{}%
   \fi
 }
 
