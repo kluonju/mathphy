@@ -1,0 +1,5 @@
+book/
+target/
+*.pyc
+__pycache__/
+assets/figures/*.png

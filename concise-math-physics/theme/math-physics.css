@@ -1,0 +1,61 @@
+/* 简明数学物理方法 — 主题样式 */
+
+.content main {
+  line-height: 1.75;
+  font-size: 1.05em;
+}
+
+/* MathJax display overflow */
+.mjx-chtml {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+blockquote {
+  border-left: 4px solid #4a90d9;
+  background: #f6f8fa;
+  padding: 0.5em 1em;
+  margin: 1em 0;
+}
+
+blockquote strong {
+  color: #2c5282;
+}
+
+.example, .solution, .note-block {
+  border-radius: 6px;
+  padding: 0.75em 1em;
+  margin: 1em 0;
+}
+
+.example {
+  border-left: 4px solid #38a169;
+  background: #f0fff4;
+}
+
+.solution {
+  border-left: 4px solid #d69e2e;
+  background: #fffff0;
+}
+
+.note-block {
+  border-left: 4px solid #805ad5;
+  background: #faf5ff;
+}
+
+.chapter-intro {
+  font-style: italic;
+  color: #4a5568;
+  margin-bottom: 1.5em;
+}
+
+table {
+  margin: 1em auto;
+}
+
+/* Display math blocks */
+.content main p > mjx-container[display="true"],
+.content main div > mjx-container[display="true"] {
+  margin: 1em 0;
+}

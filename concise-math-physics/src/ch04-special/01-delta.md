@@ -1,0 +1,139 @@
+## \\(\delta\\)函数
+
+### \\(\delta\\)函数的概念
+
+物理学常常要研究一个物理量在空间或时间中分布的密度, 例如质量密度 (通常简称为密度)、电荷密度、每单位时间传递的动量 (即力) 等等. 但是物 理学又常常运用质点、点电荷、瞬时力等抽象模型, 它们不是连续分布于空间 或时间中, 而是集中在空间的某一点或时间的某一瞬时. 它们的密度又该如何 描述呢?
+我们知道, 若质量 \\(m\\) 均匀分布在长为 \\(l\\) 的线段 \\([-l / 2, l / 2]\\) 上, 则其线密 度 \\(\rho_l(x)\\) 可表为
+
+\\[
+\rho_l(x)=\left\{\begin{array}{ll}
+0 & (|x|>l / 2), \\\\
+m / l & (|x| \leqslant l / 2),
+\end{array} \text { 即 } \rho_l(x)=\frac{m}{l} \operatorname{rect}\left(\frac{x}{l}\right) .\right.
+\\]
+将 \\(\rho_l(x)\\) 对 \\(x\\) 积分, 则得到总质量
+
+\\[
+\int_{-\infty}^{\infty} \rho_l(x) d x=\int_{-\frac{l}{2}}^{\frac{l}{2}} \frac{m}{l} d x=m
+\\]
+
+如果让上述线段的长度 \\(l \rightarrow 0\\), 我们将得到位于坐标原点质量为 \\(m\\) 的质点, 而线密度函数就成为质点的线密度函数. 将它记为 \\(\rho(x)\\), 则
+
+\\[
+\lim _{l \rightarrow 0} \int_{-\infty}^{\infty} \rho_l(x) d x=\int_{-\infty}^{\infty} \rho(x) d x=m .
+\\]
+
+若不求积分而先取极限, 则有
+
+\\[
+\rho(x)=\lim _{l \rightarrow 0} \rho_l(x)=\lim _{l \rightarrow 0} \frac{m}{l} \operatorname{rect}\left(\frac{x}{l}\right)= \begin{cases}0 & (x \neq 0), \\ \infty & (x=0) .\end{cases}
+\\]
+
+由此可以看出质点线密度分布函数的直观图像, 它在 \\(x=0\\) 处为 \\(\infty\\), 在 \\(x \neq\\) 0 处为零. 它的积分为 \\(m\\).
+对于质点、点电荷、瞬时力这类集中于空间某一点或时间的某一瞬时的抽 象模型, 在物理学中引人 \\(\delta\\) 函数以描述其密度:
+
+\\[
+\begin{gathered}
+\delta(x)= \begin{cases}0 & (x \neq 0), \\\\
+\infty & (x=0) ;\end{cases} \\\\
+\int_a^b \delta(x) d x= \begin{cases}0 & (\text{其他情况}), \\\\
+1 & (a<0<b) .\end{cases}
+\end{gathered}
+\\]
+
+### \\(\delta\\)函数的性质
+\\(\delta\\)函数的很多性质可以用在实际的计算中,方便实用. 首先它是满足积分为单位1.
+
+\\[
+\int_{-\infty}^{\infty} \delta(x) d x=1
+\\]
+
+并且作为被积函数的乘积因子,它具有挑选性特点
+
+\\[
+\int_{-\infty}^{\infty} f(x) \delta(x-a) d x=f(a).
+\\]
+
+\\(\delta(x)\\) 是偶函数, 它的导数是奇函数,
+
+\\[
+\begin{gathered}
+\delta(-x)=\delta(x), \\\\
+\delta^{\prime}(-x)=-\delta^{\prime}(x) .
+\end{gathered}
+\\]
+
+对于变量为函数的情况,有
+
+\\[
+\delta[\varphi(x)]=\sum_k \frac{\delta\left(x-x_k\right)}{\left|\varphi^{\prime}\left(x_k\right)\right|}
+\\]
+
+其中\\(x_k(k=1,2,3, \cdots)\\)是
+\\(\varphi(x)=0\\) 的实根.
+特例包括
+
+\\[
+\begin{gathered}
+\delta(a x)=\frac{\delta(x)}{|a|}, \\\\
+\delta\left(x^2-a^2\right)=\frac{\delta(x+a)+\delta(x-a)}{2|a|}=\frac{\delta(x+a)+\delta(x-a)}{2|x|} .
+\end{gathered}
+\\]
+
+\\(\delta\\)函数是一种广义函数,常常可以看作是以下函数的极限.
+
+\\[
+\begin{aligned}
+& \delta(x)=\lim _{l \rightarrow 0} \frac{1}{l} \operatorname{rect}\left(\frac{x}{l}\right), \\\\
+& \delta(x)=\lim _{K \rightarrow \infty} \frac{1}{\pi} \frac{\sin K x}{x}, \\\\
+& \delta(x)=\lim _{\varepsilon \rightarrow 0} \frac{1}{\pi} \frac{\varepsilon}{\varepsilon^2+x^2} .
+\end{aligned}
+\\]
+
+### 其他
+
+\\(\delta\\) 函数的傅里叶变换: 用复数形式的傅里叶积分表示\\(\delta\\)函数,
+
+\\[
+\delta(x)=\int_{-\infty}^{\infty} C(\omega) e^{\mathrm{i}\omega x} d \omega,
+\\]
+
+其中变换
+
+\\[
+C(\omega)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \delta(x) e^{-\mathrm{i}\omega x} d x=\frac{1}{2 \pi} e^{-\mathrm{i}\omega \cdot 0}=\frac{1}{2 \pi} .
+\\]
+
+因此,有\\(\delta\\)函数的傅里叶积分为
+
+\\[
+\delta(x)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} e^{i \omega x} d \omega .
+\\]
+
+多维的 \\(\delta\\) 函数:
+
+\\[
+\begin{aligned}
+& \mathbf{r}=(x,y,z),   \delta (\mathbf{r})= \begin{cases}0,  & \mathbf{r} \neq 0) \\\\
+\infty, & (\mathbf{r}=0)\end{cases} \\\\
+& \iiint_V \delta(\mathbf{r})d^3 \mathbf{r}=\iiint_{-\infty}^{\infty} \delta(\mathbf{r}) dx dy dz=1
+\end{aligned}
+\\]
+
+在直角坐标系中, 这样的三维 \\(\delta\\) 函数往往用三个一维 \\(\delta\\) 函数的乘积表示:
+
+\\[
+\delta(\mathbf{r})=\delta(x) \delta(y) \delta(z),
+\\]
+
+在柱坐标系中,
+
+\\[
+\delta(\mathbf{r})=\frac{1}{\rho} \delta(\varphi)\delta(z),
+\\]
+
+在球坐标系中,
+
+\\[
+\delta(\mathbf{r})=\frac{1}{r^2\sin{\theta}} \delta(r) \delta(\theta) \delta(\varphi).
+\\]

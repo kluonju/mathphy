@@ -1,0 +1,176 @@
+## 坐标系
+
+本节完整翻译并重述自参考资料中关于“坐标系”的段落，目的是以中文系统地介绍用于向量分析的常见坐标表示、微元与几何关系，以及不同坐标系之间的相互转换与应用。我们着重介绍直角（笛卡尔）、圆柱和球坐标系。
+
+### 坐标系的定义与选取
+
+坐标系是一种以参考原点为基准，唯一标识空间中任意位置的方法。任一点的位置可由三条两两互相垂直的曲面（在本教材中通常取三平面）的交线来确定；在该点处，这三条曲面的法向量定义了坐标轴的方向。虽然物理问题的结果不依赖于所选坐标系，但通过利用问题的对称性，恰当选择坐标系可以显著简化计算。在本书中，我们仅采用直角（Cartesian）、圆柱（cylindrical）和球（spherical）三类常用坐标系。
+
+### 直角坐标系（Rectangular/Cartesian）
+
+直角坐标由三条两两垂直的平面的交线定义，通常记作 \\((x,y,z)\\)。对应的坐标轴在任一点处分别垂直于恒定 \\(x\\), \\(y\\), \\(z\\) 的平面（见图 1-1）。选定原点为 \\((0,0,0)\\) 后，空间中任一点可用沿 \\(x,y,z\\) 方向从原点到该点的距离来表示。
+
+按约定我们使用右手坐标系：把右手四指由 \\(x\\) 指向 \\(y\\) 弯曲，拇指所指方向为 \\(z\\)。这一约定用于消除方向上的模糊。直角坐标的单位向量通常记为 \\(\mathbf{i_x,\mathbf{i}_y,\mathbf{i}_z\\)（或简写 \\(\mathbf{i,\mathbf{j},\mathbf{k}\\)），它们在空间中处处方向相同，因此直角坐标在许多情形下是最简便的选择。
+
+微元：在点 \\((x,y,z)\\) 处沿三个坐标方向的微增量为 \\(\mathrm{dx,\mathrm{d}y,\mathrm{d}z\\)，从而微小体积为
+
+\\[
+\mathrm{d}V=\mathrm{d}x \mathrm{d}y \mathrm{d}z.
+\\]
+
+相应的面元按垂直的坐标方向下标记（例如垂直于 \\(x\\) 的面元记作 \\(\mathrm{dS_x\\)）。
+
+### 圆柱坐标系（Circular cylindrical）
+
+当问题关于一条直线（取为 \\(z\\) 轴）具有轴对称性时，圆柱坐标系 \\((r,\phi,z)\\) 很方便。一个点由以下三个表面交给出：半径为 \\(r\\) 的圆柱面、恒定 \\(z\\) 的平面，以及与 \\(x\\) 轴夹角为 \\(\phi\\) 的平面。直角坐标与圆柱坐标的正交投影关系为
+
+\\[
+x=r\cos\phi,   y=r\sin\phi,   z=z.
+\\]
+
+对应的自然基向量（未单位化）为 \\(\mathbf{e}_r,\mathbf{e}_\phi,\mathbf{e}_z\\)，其中 \\(\mathbf{e_r\\) 与 \\(\mathbf{e_\phi\\) 的方向随角 \\(\phi\\) 而改变，而 \\(\mathbf{e_z\\) 方向不变。尺度因子（scale factors）为 \\(h_r=1,\ h_\phi=r,\ h_z=1\\)，因此线元为
+
+\\[
+\mathrm{d}s^2=\mathrm{d}r^2+r^2\mathrm{d}\phi^2+\mathrm{d}z^2,
+\\]
+
+面元和体元中会出现因子 \\(r\\)，例如体元为
+
+\\[
+\mathrm{d}V=r \mathrm{d}r \mathrm{d}\phi \mathrm{d}z.
+\\]
+
+圆柱坐标下的单位向量 \\(\hat{\mathbf{e}}_r\\) 与 \\(\hat{\mathbf{e}_\phi\\) 可通过直角坐标的单位向量表示，且满足右手坐标系的方向约定（\\(\hat{\mathbf{e}_r\times\hat{\mathbf{e}}_\phi=\hat{\mathbf{e}}_z\\)）。
+
+### 球坐标系（Spherical）
+
+当问题围绕某点有球对称性时，球坐标系 \\((r,\theta,\phi)\\) 更为合适。这里 \\(r\\) 为径向距离，\\(\theta\\) 为极角（从 \\(z\\) 轴向外量起），\\(\phi\\) 为方位角（绕 \\(z\\) 轴）。直角坐标与球坐标的关系为
+
+\\[
+x=r\sin\theta\cos\phi,   y=r\sin\theta\sin\phi,   z=r\cos\theta.
+\\]
+
+在球坐标中尺度因子为 \\(h_r=1,\ h_\theta=r,\ h_\phi=r\sin\theta\\)，因此线元为
+
+\\[
+\mathrm{d}s^2=\mathrm{d}r^2+r^2\mathrm{d}\theta^2+r^2\sin^2\theta \mathrm{d}\phi^2,
+\\]
+
+体元为
+
+\\[
+\mathrm{d}V=r^2\sin\theta \mathrm{d}r \mathrm{d}\theta \mathrm{d}\phi.
+\\]
+
+对应的单位向量 \\(\hat{\mathbf{e}}_r,\hat{\mathbf{e}}_\theta,\hat{\mathbf{e}}_\phi\\) 在空间中随位置改变；三者构成右手系统。
+
+### 各坐标系的微元汇总
+
+常用的微元长度、面元与体元在三类坐标系中的形式可归纳如下（与教材表格对应，省略表格排版但给出常用结果）：
+- 笛卡尔：\\(\mathrm{d}l_x=\mathrm{d}x,\ \mathrm{d}S_x=\mathrm{d}y \mathrm{d}z,\ \mathrm{d}V=\mathrm{d}x \mathrm{d}y \mathrm{d}z\\)。
+- 圆柱：\\(\mathrm{d}l_r=\mathrm{d}r,\ \mathrm{d}l_\phi=r \mathrm{d}\phi,\ \mathrm{d}S_r=r \mathrm{d}\phi \mathrm{d}z,\ \mathrm{d}V=r \mathrm{d}r \mathrm{d}\phi \mathrm{d}z\\)。
+- 球坐标：\\(\mathrm{d}l_r=\mathrm{d}r,\ \mathrm{d}l_\theta=r \mathrm{d}\theta,\ \mathrm{d}l_\phi=r\sin\theta \mathrm{d}\phi,\ \mathrm{d}V=r^2\sin\theta \mathrm{d}r \mathrm{d}\theta \mathrm{d}\phi\\)。
+
+### 坐标和分量之间的转换
+
+若需把向量或位置从一种坐标表示转换到另一种，可使用几何关系表（如教材中的表 1-2）。例如圆柱与直角之间的转换为
+
+\\[
+r=\sqrt{x^2+y^2},   \phi=\arctan\frac{y}{x},   z=z,
+\\]
+
+球坐标与直角之间的转换为
+
+\\[
+r=\sqrt{x^2+y^2+z^2},   \theta=\arccos\frac{z}{r},   \phi=\arctan\frac{y}{x}.
+\\]
+
+基向量的变换遵循链式法则；若从坐标 \\(x^i\\) 变换到新坐标 \\(\bar x^a=\bar x^a(x^i)\\)，则坐标基底的变换满足
+
+\\[
+\frac{\partial}{\partial \bar x^a}=\frac{\partial x^i}{\partial \bar x^a}\frac{\partial}{\partial x^i}.
+\\]
+
+向量分量的逆变（上标）变换为
+
+\\[
+\bar v^a=\frac{\partial \bar x^a}{\partial x^i}v^i,
+\\]
+
+而协变（下标）分量变换相应为
+
+\\[
+\bar v_a=\frac{\partial x^i}{\partial \bar x^a}v_i.
+\\]
+
+度量张量分量亦按张量变换规律变换：
+
+\\[
+\bar g_{ab}=\frac{\partial x^i}{\partial \bar x^a}\frac{\partial x^j}{\partial \bar x^b}g_{ij}.
+\\]
+
+### 备注与应用
+
+在处理物理问题时，选择与问题对称性相匹配的坐标系通常能简化方程与积分。例如柱对称问题常用圆柱坐标，球对称问题常用球坐标。对于一般曲面或广义坐标系，度量张量提供了完整的几何信息，用以计算面积元、体积元以及在该坐标系下的梯度、散度、旋度和拉普拉斯算子的具体表达式。
+
+### 示意图（教学用）
+
+下面给出三个简单示意图以辅助直观理解（如果想要更精细的图我可以改进）：
+
+### 面积元与体积元
+
+在给定坐标系中，面积元或体积元可以由度量张量的行列式给出。对于 \\(n\\) 维情形，体积元为
+
+\\[
+\mathrm{d}V=\sqrt{|g|} \mathrm{d}x^{1}\cdots\mathrm{d}x^{n},
+\\]
+
+其中 \\(g=\det(g_{ij})\\)。在三维正交坐标系（尺度因子 \\(h_1,h_2,h_3\\)）中，体积元简化为
+
+\\[
+\mathrm{d}V=h_1h_2h_3 \mathrm{d}u^1\mathrm{d}u^2\mathrm{d}u^3.
+\\]
+
+例如：
+- 柱坐标：\\(\mathrm{d}V=r \mathrm{d}r\mathrm{d}\phi\mathrm{d}z\\)。
+- 球坐标：\\(\mathrm{d}V=r^2\sin\theta \mathrm{d}r\mathrm{d}\theta\mathrm{d}\phi\\)。
+
+### 常用微分算子在正交坐标系下的形式
+
+在尺度因子为 \\(h_1,h_2,h_3\\) 的正交坐标系 \\((u^1,u^2,u^3)\\) 中，常用算子的表达式为：
+
+- 梯度（标量场 \\(\Phi\\)）：
+
+\\[
+\nabla\Phi=\sum_{i=1}^3 \frac{1}{h_i}\frac{\partial\Phi}{\partial u^i}\hat{\mathbf{e}}_i.
+\\]
+
+- 散度（向量场 \\(\mathbf{A}=A_i \hat{\mathbf{e}}_i\\)）：
+
+\\[
+\nabla\cdot\mathbf{A}=\frac{1}{h_1h_2h_3}\sum_{i=1}^3 \frac{\partial}{\partial u^i}\bigl(h_1h_2h_3\frac{A_i}{h_i}\bigr).
+\\]
+
+- 拉普拉斯算子（标量）：
+
+\\[
+\nabla^2\Phi=\frac{1}{h_1h_2h_3}\sum_{i=1}^3 \frac{\partial}{\partial u^i}\Bigl(\frac{h_1h_2h_3}{h_i^2}\frac{\partial\Phi}{\partial u^i}\Bigr).
+\\]
+
+### 示例：球坐标中径向场的散度
+
+考虑向量场 \\(\mathbf{A}=A_r(r) \hat{\mathbf{e}}_r\\)（仅径向分量，与角无关），在球坐标中 \\(h_r=1,h_\theta=r,h_\phi=r\sin\theta\\)，由散度公式得：
+
+\\[
+\nabla\cdot\mathbf{A}=\frac{1}{r^2}\frac{\partial}{\partial r}(r^2 A_r(r)).
+\\]
+
+若 \\(A_r=\dfrac{C}{r^2}\\)（例如点源势场的径向通量），则
+
+\\[
+\nabla\cdot\mathbf{A}=\frac{1}{r^2}\frac{\partial}{\partial r}(r^2\cdot \frac{C}{r^2})=0 (r\neq0),
+\\]
+
+表明在原点外该场源项为零。
+
+### TikZ 示意图

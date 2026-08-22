@@ -1,0 +1,16 @@
+[book]
+title = "简明数学物理方法"
+authors = ["罗凯"]
+description = "学数学工具，探物理真谛"
+language = "zh-CN"
+src = "src"
+
+[output.html]
+default-theme = "rust"
+preferred-dark-theme = "navy"
+mathjax-support = true
+additional-css = ["theme/math-physics.css"]
+git-repository-url = ""
+
+[build]
+create-missing = true

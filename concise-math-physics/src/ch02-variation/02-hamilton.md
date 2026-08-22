@@ -1,0 +1,61 @@
+### 哈密顿方程
+
+经典物理里,拉式量\\(L(x_1, x_2, \cdots, x_n, \dot{x}_1, \dot{x}_2, \cdots, \dot{x}_n)|t)\\)是位置和速度的函数.**哈密顿原理**
+说的是系统的运动从\\(t_1\\)到\\(t_2\\)使得拉式量的时间积分的变分为零.即
+
+\\[
+\delta \int_{t_1}^{t_2} L\left(x_1, x_2, \ldots, x_n, \dot{x}_1, \dot{x}_2, \ldots, \dot{x}_n | t\right) d t=0 .
+\\]
+
+于是有拉格朗日运动方程
+
+\\[
+\frac{d}{d t} \frac{\partial L}{\partial \dot{x}_i}-\frac{\partial L}{\partial x_i}=0,   \forall i
+\\]
+
+拉格朗日运动方程同牛顿运动方程是等价的.拉格朗日运动方程有一些优点.首先,依赖坐标不必是标准的坐标或长度,
+它们可以根据物理问题具体选择,拉式运动方程对坐标系统是不变的.其次,拉式运动方程可以扩展到各个物理分支,如电磁场
+和量子力学以及更远的规范场论等.此外,对于拉式量的变换,守恒律和对称性可以很容易通过诺特定理对应起来.
+
+哈密顿注意到拉式运动方程可以简化为一系列偏微分方程,称为**哈密顿方程**.
+正则动量定义为
+
+\\[
+p_i=\frac{\partial L}{\partial \dot{q}_i}
+\\]
+
+\\[
+d L=\sum_i\left(\frac{\partial L}{\partial q_i} d q_i+\frac{\partial L}{\partial \dot{q}_i} d \dot{q}_i\right)+\frac{\partial L}{\partial t} d t=\sum_i\left(\dot{p}_i d q_i+p_i d \dot{q}_i\right)+\frac{\partial L}{\partial t} d t
+\\]
+
+定义体系哈密顿量为
+
+\\[
+H(q_i, p_i, t)=\sum_i p_i \dot{q}_i-L
+\\]
+
+我们有
+
+\\[
+d H=\sum_i\left(p_i d \dot{q}_i+\dot{q}_i d p_i\right)-\left(\sum_i\left(\dot{p}_i d q_i+p_i d \dot{q}_i\right)+\frac{\partial L}{\partial t} d t\right)=\sum_i\left(\dot{q}_i d p_i-\dot{p}_i d q_i\right)-\frac{\partial L}{\partial t} d t
+\\]
+
+另外根据定义有
+
+\\[
+d H=\sum_i\left(\frac{\partial H}{\partial p_i} d p_i+\frac{\partial H}{\partial q_i} d q_i\right)+\frac{\partial H}{\partial t} d t .
+\\]
+
+于是得到哈密顿方程
+
+\\[
+\begin{aligned}
+\frac{\partial H}{\partial p_i}&=\dot{q}_i
+\\\\
+\frac{\partial H}{\partial q_i}&=-\dot{p}_i
+\\\\
+\frac{\partial H}{\partial t}&=-\frac{\partial L}{\partial t}
+\end{aligned}
+\\]
+
+对于保守系统,\\(\frac{\partial H}{\partial t}=0\\), \\(H\\)为守恒量对应体系的能量.
