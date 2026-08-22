@@ -24,7 +24,9 @@ a\mathbf{A}=aA_x \mathbf{i}_x+aA_y \mathbf{i}_y+aA_z \mathbf{i}_z.
 
 ### 向量的加法与减法
 
-向量的加法与减法按分量逐个相加减完成。几何上，加法对应将两个向量贴尾相接或取平行四边形的对角线。
+向量的加法与减法按分量逐个相加减完成。几何上，加法对应平行四边形对角线；减法可用头尾相接：从 \\(\mathbf{A}\\) 的终点指向 \\(\mathbf{B}\\) 的终点得到 \\(\mathbf{B}-\mathbf{A}\\)。
+
+![向量的加法（平行四边形）与减法（头尾相接）](../figures/vec_sum_diff.png)
 
 ### 点积（数量积）
 
@@ -34,23 +36,25 @@ a\mathbf{A}=aA_x \mathbf{i}_x+aA_y \mathbf{i}_y+aA_z \mathbf{i}_z.
 \mathbf{A}\cdot\mathbf{B}=|\mathbf{A}| |\mathbf{B}|\cos\theta,
 \\]
 
-其中 \\(\theta\\) 为两向量之间的夹角。点积也可用分量表示为
+其中 \\(\theta\\) 为两向量之间的夹角。几何上，这等于 \\(|\mathbf{A}|\\) 乘以 \\(\mathbf{B}\\) 在 \\(\mathbf{A}\\) 方向上的投影。点积也可用分量表示为
 
 \\[
 \mathbf{A}\cdot\mathbf{B}=A_xB_x+A_yB_y+A_zB_z.
 \\]
 
+![点积：投影与夹角 \\(\\theta\\)](../figures/vec_dot_product.png)
+
 点积满足交换律 \\(\mathbf{A}\cdot\mathbf{B}=\mathbf{B}\cdot\mathbf{A}\\)，并且在笛卡尔坐标下同样适用于圆柱与球坐标（替换相应坐标符号）。
 
 ### 叉积（向量积）
 
-叉积 \\(\mathbf{A}\times\mathbf{B}\\) 是垂直于 \\(\mathbf{A\\) 与 \\(\mathbf{B\\) 的向量，方向由右手法则确定，其大小为
+叉积 \\(\mathbf{A}\times\mathbf{B}\\) 是垂直于 \\(\mathbf{A}\\) 与 \\(\mathbf{B}\\) 的向量，方向由右手法则确定，其大小为
 
 \\[
 |\mathbf{A}\times\mathbf{B}|=|\mathbf{A}| |\mathbf{B}|\sin\theta,
 \\]
 
-并具有反交换性 \\(\mathbf{A}\times\mathbf{B}=-\mathbf{B}\times\mathbf{A}\\)。在分量上，叉积可由行列式展开写为
+等于以 \\(\mathbf{A},\mathbf{B}\\) 为邻边的平行四边形面积，并具有反交换性 \\(\mathbf{A}\times\mathbf{B}=-\mathbf{B}\times\mathbf{A}\\)。在分量上，叉积可由行列式展开写为
 
 \\[
 \mathbf{A}\times\mathbf{B}=\begin{vmatrix}\mathbf{i}_x & \mathbf{i}_y & \mathbf{i}_z \\\\
@@ -58,10 +62,11 @@ A_x & A_y & A_z \\\\
 B_x & B_y & B_z \end{vmatrix}.
 \\]
 
+![叉积：右手法则与平行四边形面积](../figures/vec_cross_product.png)
+
 ### 标量三重积与体积
 
-标量三重积 \\((\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}\\) 等于由 \\(\mathbf{A,\mathbf{B},\mathbf{C}\\) 构成的平行六面体的体积（带方向），并满足置换不变性：
-
+标量三重积 \\((\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}\\) 等于由 \\(\mathbf{A},\mathbf{B},\mathbf{C}\\) 构成的平行六面体的体积（带方向），并满足置换不变性：
 \\[
 (\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}=(\mathbf{B}\times\mathbf{C})\cdot\mathbf{A}=(\mathbf{C}\times\mathbf{A})\cdot\mathbf{B}.
 \\]
@@ -144,7 +149,7 @@ B_x & B_y & B_z \end{vmatrix}.
 \mathbf{A}=-\mathbf{i}_x+\mathbf{i}_y+\mathbf{i}_z,   \mathbf{B}=\mathbf{i}_x-\mathbf{i}_y+\mathbf{i}_z.
 \\]
 
-要求与问题：求与这两向量都垂直且方向遵循右手准则的单位向量 \\(\mathbf{i}_n\\)，并求出 \\(\mathbf{A\\) 与 \\(\mathbf{B\\) 的夹角。
+要求与问题：求与这两向量都垂直且方向遵循右手准则的单位向量 \\(\mathbf{i}_n\\)，并求出 \\(\mathbf{A}\\) 与 \\(\mathbf{B}\\) 的夹角。
 
 解：先计算叉积 \\(\mathbf{A}\times\mathbf{B}\\)（它垂直于两向量）：
 

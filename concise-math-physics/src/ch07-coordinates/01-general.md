@@ -123,3 +123,5 @@ e_i \cdot e_j = \delta_{ij},
 \\[
 \nabla^2 u = \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial u}{\partial r} \right) + \frac{1}{r^2 \sin \theta} \frac{\partial}{\partial \theta} \left( \sin \theta \frac{\partial u}{\partial \theta} \right) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial^2 u}{\partial \phi^2}.
 \\]
+
+散度、旋度以及“为何不能对分量直接偏导”的说明，见[柱/球坐标中的 ∇](04-del-cylindrical-spherical.md)。

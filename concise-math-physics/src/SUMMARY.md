@@ -69,6 +69,7 @@
 - [分离变量法概要](./ch05-math-physics-eq/03-separation.md)
 - [非齐次边界条件](./ch05-math-physics-eq/04-inhomo-boundary.md)
 - [应用与数值实验](./ch05-math-physics-eq/05-applications.md)
+- [电磁学中的数学方法](./ch05-math-physics-eq/06-em-methods.md)
 
 ---
 
@@ -88,6 +89,7 @@
 - [概述](./ch07-coordinates/index.md)
 - [一般曲线坐标](./ch07-coordinates/01-general.md)
 - [柱坐标与球坐标](./ch07-coordinates/02-cylindrical-spherical.md)
+- [柱/球坐标中的 ∇](./ch07-coordinates/04-del-cylindrical-spherical.md)
 - [应用与数值实验](./ch07-coordinates/03-applications.md)
 
 ---
@@ -106,6 +108,8 @@
 - [向量代数](./ch09-tensor/01-vector-algebra.md)
 - [坐标系](./ch09-tensor/02-coordinates.md)
 - [梯度与 ∇ 算符](./ch09-tensor/03-grad-del.md)
+- [通量与散度](./ch09-tensor/04-flux-divergence.md)
+- [旋度与 Stokes 定理](./ch09-tensor/05-curl-stokes.md)
 
 ---
 
