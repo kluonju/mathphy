@@ -11,6 +11,7 @@
 - [三角函数恒等式](./ch00-prerequisites/02-trigonometry.md)
 - [微积分概要](./ch00-prerequisites/03-calculus.md)
 - [指标记号与爱因斯坦约定](./ch00-prerequisites/04-index-notation.md)
+- [指标记号习题](./ch00-prerequisites/07-index-exercises.md)
 - [向量分析基础](./ch00-prerequisites/05-vector-analysis.md)
 - [线性代数基础](./ch00-prerequisites/06-linear-algebra.md)
 
@@ -33,6 +34,7 @@
 - [概述](./ch02-variation/index.md)
 - [泛函与 Euler–Lagrange 方程](./ch02-variation/01-functional.md)
 - [哈密顿形式](./ch02-variation/02-hamilton.md)
+- [Lagrange 乘子法](./ch02-variation/02b-lagrange-multipliers.md)
 - [约束变分](./ch02-variation/03-constrained.md)
 - [应用与数值实验](./ch02-variation/04-applications.md)
 

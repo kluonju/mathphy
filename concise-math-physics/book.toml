@@ -9,6 +9,7 @@ src = "src"
 default-theme = "rust"
 preferred-dark-theme = "navy"
 mathjax-support = true
+smart-punctuation = false
 additional-css = ["theme/math-physics.css"]
 git-repository-url = ""
 

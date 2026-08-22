@@ -30,6 +30,7 @@ J[u] = \int_{x_1}^{x_2} \sqrt{ 1 + u'(x)^2} dx
 
   如图所示建立坐标,根据动能定理任意时刻的速度可以得到,进而得到总时间
 
+![最速降线示意（lecture）](../figures/lecture_fastest_track.png)
 
 \\[
 T[u] = \int_{(x_0,y_0)}^{(x_1, y_1)} \frac{ds}{\sqrt{2 g(y_0 - u)}} = \int_{x_0}^{x_1} \frac{\sqrt{1+u'^2}}{\sqrt{2 g (y_0 - u)}} dx.
@@ -49,6 +50,9 @@ A[\mathbf{r}] = \int \left[ \frac{1}{2} m \left( \frac{d\mathbf{r}}{dt} \right)^
 
 - **悬链线问题** (catenary problem)   自然界中有许多出现悬链线形状的地方,如雨后的蜘蛛网, 路边的铁链, 高压输电线等(如图), 有一质地均匀、柔软的绳索,两端固定,绳索仅受重力的作用而下垂.试问该绳索在平衡状态时是怎样的曲线?
 
+![路边铁链与蛛网中的悬链线（lecture）](../figures/lecture_roadside.png)
+
+![蛛网中的悬链线段（lecture）](../figures/lecture_cobweb.png)
 
   假设重力加速度恒为 \\(\mathrm{g}\\) ,则某物体重力势能可表述为 \\(U=m g h\\). 设绳子两端点距离为 \\(\mathrm{L\\).
 建立 \\(x-y\\) 坐标系, \\(y\\) 表示高度, \\(y(x)\\) 代表绳索形成的曲线,绳索关于 \\(y\\) 轴对称.绳子上每个点的重力势 能个表示为重力势能公式两边求导的结果： \\(d U=d(m g \cdot y(x))=g \cdot y(x) \cdot d m\\).

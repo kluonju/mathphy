@@ -20,6 +20,9 @@
 
 方程左右两边可以在图上画出(见图),图上可以大致预估
 解的范围.
+
+![方程 \\(1/(1+x^2)=x\\) 的交点（lecture TikZ）](../figures/tikz_cubic_equation.png)
+
 由代数基本定理,我们知道它必然有三个解,例如使用WolframAlpha可以得到实数解
 为
 

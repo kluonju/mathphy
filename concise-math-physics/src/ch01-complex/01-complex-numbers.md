@@ -35,6 +35,8 @@ z \equiv (x,y),
 则有\\(1 = (1,0), \mathrm{i} = (0, 1)\\).如果将\\(x,y\\)当做平面上点的坐标,复数\\(z\\)就和平面上的点一一对应起来,形成的图叫做**阿干特图**(Argand diagram).
 形成的平面叫做**复数平面**(complex plane),坐标轴成为**实轴**(real axis)和**虚轴**(imaginary axis).
 
+![复数的平面表示（lecture TikZ）](../figures/tikz_complex_plane.png)
+
 自然我们可以改用极坐标来表示,
 
 \\[
@@ -104,6 +106,8 @@ z = \rho e^{\mathrm{i} \varphi} .
 z_1 + z_2 = (x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2) .
 \\]
 
+![复平面上的加减法（lecture TikZ）](../figures/tikz_zaddition.png)
+
 **乘法**运算定义为
 
 \\[
@@ -163,6 +167,8 @@ z^{*} \equiv (x, -y) = x - \mathrm{i} y ,
 也记为\\(\bar{z}\\).
 实部虚部可以通过
 
+![共轭在复平面上的几何意义（lecture TikZ）](../figures/tikz_zminus.png)
+
 \\[
 \operatorname{Re} a=\frac{a+\bar{a}}{2},   \Im a=\frac{a-\bar{a}}{2 \mathrm{i}}
 \\]
@@ -207,6 +213,10 @@ c_0 z^n+c_1 z^{n-1}+\cdots+c_{n-1} z+c_n=0 .
 > **例** 求\\(\sqrt[3]{-\mathrm{i}}\\).
 
 > **解**
+
+三次单位根在复平面上均分单位圆（lecture TikZ）：
+
+![单位圆上的三次根（lecture TikZ）](../figures/tikz_rotate.png)
 
 > **例** 讨论\\(\Re \frac{1}{z} = 2\\)在复平面上的意义.
 

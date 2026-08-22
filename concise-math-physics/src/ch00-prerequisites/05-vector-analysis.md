@@ -5,17 +5,17 @@
 **标量**仅由大小决定，如温度、质量。**向量**（如速度、力）既有大小又有方向，本书用粗体 \\(\mathbf{A}\\) 表示。在直角坐标系中
 
 \\[
-\mathbf{A} = A_x \mathbf{e}_x + A_y \mathbf{e}_y + A_z \mathbf{e}_z, \qquad
-|\mathbf{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2} .
+\mathbf{A} = A\_x \mathbf{e}\_x + A\_y \mathbf{e}\_y + A\_z \mathbf{e}\_z, \qquad
+|\mathbf{A}| = \sqrt{A\_x^2 + A\_y^2 + A\_z^2} .
 \\]
 
-单位向量常记 \\(\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z\\)（或 \\(\mathbf{i},\mathbf{j},\mathbf{k}\\)）。采用**右手坐标系**：四指由 \\(x\\) 转向 \\(y\\)，拇指指向 \\(z\\)。
+单位向量常记 \\(\mathbf{e}\_x,\mathbf{e}\_y,\mathbf{e}\_z\\)（或 \\(\mathbf{i},\mathbf{j},\mathbf{k}\\)）。采用**右手坐标系**：四指由 \\(x\\) 转向 \\(y\\)，拇指指向 \\(z\\)。
 
 ### 向量的线性运算
 
 \\[
-a\mathbf{A} = aA_x \mathbf{e}_x + aA_y \mathbf{e}_y + aA_z \mathbf{e}_z, \qquad
-\mathbf{A} \pm \mathbf{B} = (A_x \pm B_x)\mathbf{e}_x + \cdots
+a\mathbf{A} = aA\_x \mathbf{e}\_x + aA\_y \mathbf{e}\_y + aA\_z \mathbf{e}\_z, \qquad
+\mathbf{A} \pm \mathbf{B} = (A\_x \pm B\_x)\mathbf{e}\_x + \cdots
 \\]
 
 几何上，\\(\mathbf{A} + \mathbf{B}\\) 对应平行四边形法则。
@@ -23,7 +23,7 @@ a\mathbf{A} = aA_x \mathbf{e}_x + aA_y \mathbf{e}_y + aA_z \mathbf{e}_z, \qquad
 ### 点积（数量积）
 
 \\[
-\mathbf{A} \cdot \mathbf{B} = |\mathbf{A}|\,|\mathbf{B}|\cos\theta = A_x B_x + A_y B_y + A_z B_z .
+\mathbf{A} \cdot \mathbf{B} = |\mathbf{A}|\,|\mathbf{B}|\cos\theta = A\_x B\_x + A\_y B\_y + A\_z B\_z .
 \\]
 
 点积满足交换律 \\(\mathbf{A} \cdot \mathbf{B} = \mathbf{B} \cdot \mathbf{A}\\)。若 \\(\mathbf{A} \cdot \mathbf{B} = 0\\)，则两向量正交。
@@ -38,14 +38,14 @@ a\mathbf{A} = aA_x \mathbf{e}_x + aA_y \mathbf{e}_y + aA_z \mathbf{e}_z, \qquad
 
 \\[
 \mathbf{A} \times \mathbf{B} = \begin{vmatrix}
-\mathbf{e}_x & \mathbf{e}_y & \mathbf{e}_z \\\\
-A_x & A_y & A_z \\\\
-B_x & B_y & B_z
+\mathbf{e}\_x & \mathbf{e}\_y & \mathbf{e}\_z \\\\
+A\_x & A\_y & A\_z \\\\
+B\_x & B\_y & B\_z
 \end{vmatrix}, \qquad
 \mathbf{A} \times \mathbf{B} = -\mathbf{B} \times \mathbf{A} .
 \\]
 
-指标记号：\\((\mathbf{A} \times \mathbf{B})_i = \varepsilon_{ijk} A_j B_k\\)（见上一节）。
+指标记号：\\((\mathbf{A} \times \mathbf{B})\_i = \varepsilon\_{ijk} A\_j B\_k\\)（见[指标记号与爱因斯坦求和约定](04-index-notation.md)）。
 
 ### 标量三重积
 
@@ -60,18 +60,18 @@ B_x & B_y & B_z
 **梯度**（作用在标量场 \\(\varphi\\) 上）：
 
 \\[
-\nabla \varphi = \mathbf{e}_x \frac{\partial \varphi}{\partial x} + \mathbf{e}_y \frac{\partial \varphi}{\partial y} + \mathbf{e}_z \frac{\partial \varphi}{\partial z}, \qquad
+\nabla \varphi = \mathbf{e}\_x \frac{\partial \varphi}{\partial x} + \mathbf{e}\_y \frac{\partial \varphi}{\partial y} + \mathbf{e}\_z \frac{\partial \varphi}{\partial z}, \qquad
 \nabla \varphi = \left( \frac{\partial \varphi}{\partial x}, \frac{\partial \varphi}{\partial y}, \frac{\partial \varphi}{\partial z} \right) .
 \\]
 
 **散度**与**旋度**（作用在向量场 \\(\mathbf{A}\\) 上）：
 
 \\[
-\nabla \cdot \mathbf{A} = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}, \qquad
+\nabla \cdot \mathbf{A} = \frac{\partial A\_x}{\partial x} + \frac{\partial A\_y}{\partial y} + \frac{\partial A\_z}{\partial z}, \qquad
 \nabla \times \mathbf{A} = \begin{vmatrix}
-\mathbf{e}_x & \mathbf{e}_y & \mathbf{e}_z \\\\
+\mathbf{e}\_x & \mathbf{e}\_y & \mathbf{e}\_z \\\\
 \partial/\partial x & \partial/\partial y & \partial/\partial z \\\\
-A_x & A_y & A_z
+A\_x & A\_y & A\_z
 \end{vmatrix} .
 \\]
 

@@ -6,4 +6,5 @@
 
 - 泛函、变分与 Euler–Lagrange 方程
 - 哈密顿形式
-- 约束变分（Lagrange 乘子）
+- [Lagrange 乘子法](02b-lagrange-multipliers.md)（有限维约束极值）
+- 约束变分（积分约束与等周问题）

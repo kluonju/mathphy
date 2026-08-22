@@ -219,6 +219,8 @@ I=  -\mathrm{i} \frac{2}{a} 2\pi\mathrm{i} \frac{1}{z_2 - z_1} = \frac{2 \pi }{\
 
 取如图所示的上半平面的半径为\\(R\\)的半圆路径\\(\ell\\).路径积分可以写成两部分的和
 
+![上半平面半圆围道（lecture TikZ）](../figures/tikz_semicircle.png)
+
 \\[
 \oint_l f(z) d z=\int_{-R}^R f(x) d x+\int_{C_R} f(z) d z .
 \\]

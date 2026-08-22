@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="360" viewBox="0 0 520 360" role="img" aria-label="Right-handed orthonormal basis and Levi-Civita">
+  <rect width="520" height="360" fill="#fafafa"/>
+  <text x="20" y="28" font-family="Georgia, serif" font-size="16" fill="#222">Right-handed triad and &#x03B5;<tspan baseline-shift="sub" font-size="12">ijk</tspan></text>
+  <!-- axes -->
+  <g transform="translate(160,220)" stroke-linecap="round">
+    <!-- x -->
+    <line x1="0" y1="0" x2="120" y2="40" stroke="#4C78A8" stroke-width="3"/>
+    <polygon points="120,40 105,28 108,45" fill="#4C78A8"/>
+    <text x="128" y="52" font-family="serif" font-size="16" fill="#4C78A8">e<tspan baseline-shift="sub" font-size="12">1</tspan></text>
+    <!-- y -->
+    <line x1="0" y1="0" x2="-20" y2="-110" stroke="#F58518" stroke-width="3"/>
+    <polygon points="-20,-110 -8,-96 -28,-96" fill="#F58518"/>
+    <text x="-48" y="-116" font-family="serif" font-size="16" fill="#F58518">e<tspan baseline-shift="sub" font-size="12">2</tspan></text>
+    <!-- z -->
+    <line x1="0" y1="0" x2="15" y2="-130" stroke="#E45756" stroke-width="3"/>
+    <polygon points="15,-130 4,-114 26,-116" fill="#E45756"/>
+    <text x="22" y="-136" font-family="serif" font-size="16" fill="#E45756">e<tspan baseline-shift="sub" font-size="12">3</tspan></text>
+    <circle cx="0" cy="0" r="4" fill="#333"/>
+  </g>
+  <text x="40" y="300" font-family="serif" font-size="14" fill="#333">&#x03B5;<tspan baseline-shift="sub" font-size="11">123</tspan> = +1 (even perm. of 123)</text>
+  <text x="40" y="322" font-family="serif" font-size="14" fill="#333">&#x03B5;<tspan baseline-shift="sub" font-size="11">132</tspan> = &#x2212;1 (odd perm.)</text>
+  <text x="40" y="344" font-family="serif" font-size="14" fill="#555">&#x03B5;<tspan baseline-shift="sub" font-size="11">ijk</tspan> = 0 if any index repeats</text>
+  <!-- cross product note -->
+  <rect x="300" y="80" width="190" height="120" rx="8" fill="#fff" stroke="#ccc"/>
+  <text x="318" y="110" font-family="serif" font-size="14" fill="#222">(a &#x00D7; b)<tspan baseline-shift="sub" font-size="11">i</tspan> = &#x03B5;<tspan baseline-shift="sub" font-size="11">ijk</tspan> a<tspan baseline-shift="sub" font-size="11">j</tspan> b<tspan baseline-shift="sub" font-size="11">k</tspan></text>
+  <text x="318" y="140" font-family="serif" font-size="13" fill="#444">a &#x00D7; a = 0 because</text>
+  <text x="318" y="162" font-family="serif" font-size="13" fill="#444">&#x03B5; is antisymmetric while</text>
+  <text x="318" y="184" font-family="serif" font-size="13" fill="#444">a<tspan baseline-shift="sub" font-size="11">j</tspan> a<tspan baseline-shift="sub" font-size="11">k</tspan> is symmetric</text>
+</svg>

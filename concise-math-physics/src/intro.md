@@ -33,11 +33,14 @@
 | \\(\mathcal{L}^{-1}\{\bar f\}\\) | 拉普拉斯反变换 |
 | \\(\mathcal{F}\{f\}\\) | 傅里叶变换 |
 | \\(\delta_{ij}\\) | Kronecker 符号 |
+| \\(\delta(x)\\) | Dirac \\(\delta\\) 函数（分布） |
+| \\(\varepsilon_{ijk}\\) | Levi-Civita（完全反对称）符号 |
+| \\(\partial_i\\) | \\(\partial/\partial x_i\\) |
 | \\(\mathrm{Res}(f,z_0)\\) | \\(f\\) 在 \\(z_0\\) 的留数 |
 
-偏导数记 \\(\partial f/\partial x\\)；函数对自变量的全导数记 \\(\mathrm{d}f/\mathrm{d}x\\)。
+偏导数记 \\(\partial f/\partial x\\)（指标形式常写 \\(\partial_i\\)）；函数对自变量的全导数记 \\(\mathrm{d}f/\mathrm{d}x\\)。
 
-第 0 章汇总了数集、三角恒等式、微积分、爱因斯坦求和约定与向量、线性代数等预备内容。
+第 0 章汇总了数集、三角恒等式、微积分、[指标记号与爱因斯坦约定](ch00-prerequisites/04-index-notation.md)与向量、线性代数等预备内容。
 
 ## 如何使用本书
 

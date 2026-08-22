@@ -2,6 +2,8 @@
 
 ### 柱坐标系 \\((\rho, \phi, z)\\)
 
+![柱坐标系：\\(\\rho\\)、\\(\\phi\\)、\\(z\\) 与局部正交基](../figures/coords_cylindrical.png)
+
 由于 \\(r = \rho \cos \phi e_x + \rho \sin \phi e_y + z e_z\\)，故有
 
 \\[
@@ -37,6 +39,8 @@ e_z = e_z.   (9.10c)
 \\]
 
 ### 球坐标系 \\((r, \theta, \phi)\\)
+
+![球坐标系：径矢 \\(r\\)、极角 \\(\\theta\\) 与方位角 \\(\\phi\\)](../figures/coords_spherical.png)
 
 由于 \\(r = r \sin \theta \cos \phi e_x + r \sin \theta \sin \phi e_y + r \cos \theta e_z\\)，故有
 
