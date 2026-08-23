@@ -154,7 +154,7 @@ Z=\int \mathrm{d}\Gamma\, e^{-\beta H}
 \psi''(x)+k^2(x)\psi=0
 \\]
 
-在短波极限下，WKB 相位 \\(\int k\,\mathrm{d}x\\) 的驻点/转折点分析，与上述驻相、Airy 匹配是同一套渐近工具在微分方程上的体现。
+在短波极限下，WKB 相位 \\(\int k\,\mathrm{d}x\\) 的驻点/转折点分析，与上述驻相、Airy 匹配是同一套渐近工具在微分方程上的体现。三维波动的几何光学极限给出程函方程 \\((\nabla\tau)^2=n^2\\)，见附录[程函方程与几何光学](../appendix/eikonal.md)。
 
 ---
 

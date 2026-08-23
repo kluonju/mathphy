@@ -387,3 +387,6 @@ e^{-x/\xi}, & x>0, \\\\
 \\]
 
 指数的正负随 \\(2\pi\\) 因子放在正变换还是逆变换而定；论证与一维完全平行。
+
+光学中 Fraunhofer 衍射振幅是孔径透过函数的傅里叶变换，见附录[Huygens–Fresnel–Kirchhoff 衍射](../appendix/diffraction-kirchhoff.md)。
+

@@ -22,9 +22,9 @@
 | 7 | 曲线坐标系 |
 | 8 | 数值方法（求根、积分、插值、ODE） |
 | 9 | 矢量与张量 |
-| 附录 | 级数展开与矢量恒等式 |
+| 附录 | 级数、矢量恒等式；PX284 抽录（势与规范、EM–哈密顿、程函、Kirchhoff 衍射） |
 
-部分应用素材亦参考 Warwick PX284（Electromagnetic Theory and Optics）中与向量分析、波动方程相关的章节，已改写为本书体例。
+部分应用素材亦参考 Warwick PX284（Electromagnetic Theory and Optics）中与向量分析、波动方程及附录 D/E/I/J 相关的数学骨架，已改写为本书体例。
 
 ## 符号约定
 

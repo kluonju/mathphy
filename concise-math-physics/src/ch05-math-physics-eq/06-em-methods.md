@@ -158,4 +158,4 @@ c=\frac{1}{\sqrt{\mu\_0\varepsilon\_0}} .
 | 波动方程 | 真空中 \\(\mathbf{E},\mathbf{B}\\) 的传播 |
 | 复平面波 \\(e^{\mathrm{i}(\mathbf{k}\cdot\mathbf{r}-\omega t)}\\) | 化 PDE 为代数约束 + 色散关系 |
 
-材料中的色散、边界上的反射折射、几何光学与波动光学等超出本书范围，可在 PX284 后续章节继续阅读。
+势与规范、Legendre 分离变量骨架见附录[势与规范](../appendix/em-potentials.md)；时变势与正则动量见[电磁场与哈密顿力学](../appendix/em-hamiltonian.md)；短波长极限与衍射见[程函方程](../appendix/eikonal.md)、[Kirchhoff 衍射](../appendix/diffraction-kirchhoff.md)。材料色散、双折射等更偏电磁学本体的附录未收入本书，可参阅 PX284。

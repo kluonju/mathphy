@@ -120,3 +120,7 @@
 
 - [级数展开](./appendix/series.md)
 - [矢量恒等式](./appendix/vector-identities.md)
+- [势与规范](./appendix/em-potentials.md)
+- [电磁场与哈密顿力学](./appendix/em-hamiltonian.md)
+- [程函方程与几何光学](./appendix/eikonal.md)
+- [Huygens–Fresnel–Kirchhoff 衍射](./appendix/diffraction-kirchhoff.md)
