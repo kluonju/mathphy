@@ -52,13 +52,13 @@
 在这弦上任取一弦段 \\((x, x+\Delta x)\\), 它的弧长为
 
 \\[
-\Delta s=\int_x^{x+\Delta x} \sqrt{1+\left(\frac{\partial u}{\partial x}\right)^2} d x,
+\Delta s=\int\_x^{x+\Delta x} \sqrt{1+\left(\frac{\partial u}{\partial x}\right)^2} d x,
 \\]
 
 由基本假设2知 \\(\frac{\partial u}{\partial x}\\) 很小,于是 \\(\left(\frac{\partial u{\partial x}\right)^2\\) 与 1 相比可以忽略不计, 从而
 
 \\[
-\Delta s \approx \int_x^{x+\Delta x} d x=\Delta x
+\Delta s \approx \int\_x^{x+\Delta x} d x=\Delta x
 \\]
 
 这样, 可以认为这段弦在振动过程中并未伸长, 因此由胡克定律知道, 弦上每一点所受张力在运动过程中保持不变,
@@ -68,30 +68,30 @@
  在 \\(x\\) 点处作用于弦段 \\((x, x+\Delta x)\\) 的张力在 \\(x\\), \\(u\\) 两个方向上的分力分别为
 
 \\[
--T(x) \cos \alpha_1,  -T(x) \sin \alpha_1,
+-T(x) \cos \alpha\_1,  -T(x) \sin \alpha\_1,
 \\]
 
-这里 \\(\alpha_1\\) 是张力 \\(\boldsymbol{T(x)\\) 的方向与水平线的夹角,
+这里 \\(\alpha\_1\\) 是张力 \\(\boldsymbol{T(x)\\) 的方向与水平线的夹角,
 负号表示力的方向取与坐标轴相反的方向. 在弦段的另一端 \\(x+\Delta x\\) 点处作用于弦段 \\((x, x+\Delta x)\\)
 的张力在 \\(x\\), \\(u\\)两个方向的分力分别为
 
 \\[
-T(x+\Delta x) \cos \alpha_2,   T(x+\Delta x) \sin \alpha_2,
+T(x+\Delta x) \cos \alpha\_2,   T(x+\Delta x) \sin \alpha\_2,
 \\]
 
-其中 \\(\alpha_2\\) 是张力 \\(\boldsymbol{T(x+\Delta x)\\) 与水平线的夹角.
+其中 \\(\alpha\_2\\) 是张力 \\(\boldsymbol{T(x+\Delta x)\\) 与水平线的夹角.
 由于弦只在 \\(x\\) 轴的垂直方向作横振动, 所以水平方向的合力为零, 即
 
 \\[
-T(x+\Delta x) \cos \alpha_2-T(x) \cos \alpha_1=0 .
+T(x+\Delta x) \cos \alpha\_2-T(x) \cos \alpha\_1=0 .
 \\]
 
 由于假设弦仅在平衡位置附近作微小振动, 所以
 
 \\[
 \begin{aligned}
-& \cos \alpha_1=\frac{1}{\sqrt{1+\left[\frac{\partial u(x, t)}{\partial x}\right]^2}} \approx 1, \\\\
-& \cos \alpha_2=\frac{1}{\sqrt{1+\left[\frac{\partial u(x+\Delta x, t)}{\partial x}\right]^2}} \approx 1,
+& \cos \alpha\_1=\frac{1}{\sqrt{1+\left[\frac{\partial u(x, t)}{\partial x}\right]^2}} \approx 1, \\\\
+& \cos \alpha\_2=\frac{1}{\sqrt{1+\left[\frac{\partial u(x+\Delta x, t)}{\partial x}\right]^2}} \approx 1,
 \end{aligned}
 \\]
 
@@ -103,53 +103,53 @@ T(x+\Delta x)-T(x)=0,
 
 \\[
 \begin{aligned}
-& \sin \alpha_1 \approx \tan \alpha_1=\frac{\partial u(x, t)}{\partial x}, \\\\
-& \sin \alpha_2 \approx \tan \alpha_2=\frac{\partial u(x+\Delta x, t)}{\partial x},
+& \sin \alpha\_1 \approx \tan \alpha\_1=\frac{\partial u(x, t)}{\partial x}, \\\\
+& \sin \alpha\_2 \approx \tan \alpha\_2=\frac{\partial u(x+\Delta x, t)}{\partial x},
 \end{aligned}
 \\]
 
 所以张力在 \\(x\\) 轴的垂直方向的合力为
 
 \\[
-T \sin \alpha_2-T \sin \alpha_1=T\left[\frac{\partial u(x+\Delta x, t)}{\partial x}-\frac{\partial u(x, t)}{\partial x}\right],
+T \sin \alpha\_2-T \sin \alpha\_1=T\left[\frac{\partial u(x+\Delta x, t)}{\partial x}-\frac{\partial u(x, t)}{\partial x}\right],
 \\]
 
 从而在时间段 \\((t, t+\Delta t)\\) 中该合力产生的冲量为
 
 \\[
-\int_t^{t+\Delta t} T\left[\frac{\partial u(x+\Delta x, t)}{\partial x}-\frac{\partial u(x, t)}{\partial x}\right] d t .
+\int\_t^{t+\Delta t} T\left[\frac{\partial u(x+\Delta x, t)}{\partial x}-\frac{\partial u(x, t)}{\partial x}\right] d t .
 \\]
 
 另一方面, 在时刻 \\(t\\) 弦段 \\((x, x+\Delta x)\\) 的动量为
 
 \\[
-\int_x^{x+\Delta} \rho \frac{\partial u(x, t)}{\partial t} d x,
+\int\_x^{x+\Delta} \rho \frac{\partial u(x, t)}{\partial t} d x,
 \\]
 
 在时刻 \\(t+\Delta t\\) 该弦段的动量为
 
 \\[
-\int_x^{x+\Delta} \rho \frac{\partial u(x, t+\Delta t)}{\partial t} d x,
+\int\_x^{x+\Delta} \rho \frac{\partial u(x, t+\Delta t)}{\partial t} d x,
 \\]
 
 所以从时刻 \\(t\\) 到时刻 \\(t+\Delta t\\), 弦段 \\((x, x+\Delta x)\\) 的动量增加量为
 
 \\[
-\int_x^{x+\Delta x} \rho\left[\frac{\partial u(x, t+\Delta t)}{\partial t}-\frac{\partial u(x, t)}{\partial t}\right] d x .
+\int\_x^{x+\Delta x} \rho\left[\frac{\partial u(x, t+\Delta t)}{\partial t}-\frac{\partial u(x, t)}{\partial t}\right] d x .
 \\]
 
 由于在 \\((t, t+\Delta t)\\) 时间段内的冲量应等于动量的增加, 故
 
 \\[
-\int_t^{t+\Delta t} T\left[\frac{\partial
-u(x+\Delta x, t)}{\partial x}-\frac{\partial u(x, t)}{\partial x}\right] d t =\int_{x}^{\Delta+x} \rho\left[\frac{\partial u(x, t+\Delta t)}{\partial t}-
+\int\_t^{t+\Delta t} T\left[\frac{\partial
+u(x+\Delta x, t)}{\partial x}-\frac{\partial u(x, t)}{\partial x}\right] d t =\int\_{x}^{\Delta+x} \rho\left[\frac{\partial u(x, t+\Delta t)}{\partial t}-
 \frac{\partial u(x, t)}{\partial t}\right] d x,
 \\]
 
 从而
 
 \\[
-\int_t^{t+\Delta t} \int_{x}^{x+ \Delta x}
+\int\_t^{t+\Delta t} \int\_{x}^{x+ \Delta x}
 \left[T \frac{\partial^2 u(x, t)}{\partial x^2}-\rho
 \frac{\partial^2 u(x, t)}{\partial t^2}\right] d x d t=0 .
 \\]
@@ -171,19 +171,19 @@ T \frac{\partial^2 u(x, t)}{\partial x^2}-\rho \frac{\partial^2 u(x, t)}{\partia
 当存在外力作用时, 若在点 \\(x\\) 处外力 (线) 密度为 \\(F(x, t)\\), 其方向垂直于 \\(x\\) 轴, 则小弦段 \\((x, x+\Delta x)\\) 上所受外力为
 
 \\[
-\int_x^{x+\Delta x} F(x, t) d x,
+\int\_x^{x+\Delta x} F(x, t) d x,
 \\]
 
 它在时间段 \\((t, t+\Delta t)\\) 中所产生的冲量为
 
 \\[
-\int_t^{t+\Delta t} \int_x^{x+\Delta } F(x, t) d x d t .
+\int\_t^{t+\Delta t} \int\_x^{x+\Delta } F(x, t) d x d t .
 \\]
 
 于是在方程  的左侧应添上这一项, 得到
 
 \\[
-\int_t^{t+\Delta t} \int_{x}^{x+ \Delta x}  \left[T \frac{\partial^2 u(x, t)}{\partial x^2}-\rho \frac{\partial^2 u(x, t)}{\partial t^2}+F(x, t)\right] d x d t=0 .
+\int\_t^{t+\Delta t} \int\_{x}^{x+ \Delta x}  \left[T \frac{\partial^2 u(x, t)}{\partial x^2}-\rho \frac{\partial^2 u(x, t)}{\partial t^2}+F(x, t)\right] d x d t=0 .
 \\]
 
 仍由 \\(\Delta x, \Delta t\\) 的任意性知
@@ -219,44 +219,44 @@ d Q=-k(x, y, z) \frac{\partial u}{\partial n} d S d t,
 是由于热量总是从温度高的一侧流向低的一侧, 因此, \\(d Q\\) 应和 \\(\frac{\partial u{\partial n}\\) 异号.
 
 在物体 \\(G\\) 内任取一闭曲面 \\(\Gamma\\), 它所包围的区域记为 \\(\Omega\\), 由式,
-从时刻 \\(t_1\\) 到 \\(t_2\\) 流进此闭曲面的全部热量为
+从时刻 \\(t\_1\\) 到 \\(t\_2\\) 流进此闭曲面的全部热量为
 
 \\[
-Q=\int_{t_1}^{t_2}\left\{\iint_{\Gamma} k(x, y, z) \frac{\partial u}{\partial n} d S\right\} d t,
+Q=\int\_{t\_1}^{t\_2}\left\{\iint\_{\Gamma} k(x, y, z) \frac{\partial u}{\partial n} d S\right\} d t,
 \\]
 
 这里 \\(\frac{\partial u}{\partial n}\\) 表示 \\(u\\) 沿 \\(\Gamma\\) 上单位外法线方向 \\(\boldsymbol{n\\) 的方向导数.
-流入的热量使物体内部温度发生变化, 在时间间隔 \\(\left(t_1, t_2\right)\\) 中物体温度从 \\(u(x, y, z,  t_1 )\\) 变化到 \\(u\left(x, y, z, t_2\right)\\), 它所应该吸收的热量是
+流入的热量使物体内部温度发生变化, 在时间间隔 \\(\left(t\_1, t\_2\right)\\) 中物体温度从 \\(u(x, y, z,  t\_1 )\\) 变化到 \\(u\left(x, y, z, t\_2\right)\\), 它所应该吸收的热量是
 
 \\[
-\iiint_{\Omega} c(x, y, z) \rho(x, y, z)\left[u\left(x, y, z, t_2\right)-u\left(x, y, z, t_1\right)\right] d x d y d z,
+\iiint\_{\Omega} c(x, y, z) \rho(x, y, z)\left[u\left(x, y, z, t\_2\right)-u\left(x, y, z, t\_1\right)\right] d x d y d z,
 \\]
 
 其中 \\(c\\) 为比热, \\(\rho\\) 为密度. 于是,
 
 \\[
-\int_{t_1}^{t_2} \iint_{\Gamma} k \frac{\partial u}{\partial n} d S d t=
-\iiint_{\Omega} c \rho\left[u\left(x, y, z, t_2\right)-u\left(x, y, z, t_1\right)\right] d x d y d z .
+\int\_{t\_1}^{t\_2} \iint\_{\Gamma} k \frac{\partial u}{\partial n} d S d t=
+\iiint\_{\Omega} c \rho\left[u\left(x, y, z, t\_2\right)-u\left(x, y, z, t\_1\right)\right] d x d y d z .
 \\]
 
 假设函数 \\(u\\) 关于变量 \\(x, y, z\\) 具有二阶连续偏导数, 关于 \\(t\\) 具有一阶连续偏导数, 利用格林公式, 可以把上 式化为
 
 \\[
 \begin{gathered}
-\int_{t_1}^{t_2} \iiint_{\Omega}\left\{\frac{\partial}{\partial x}\left(k \frac{\partial u}{\partial x}\right)+\frac{\partial}{\partial y}\left(k \frac{\partial u}{\partial y}\right)+\frac{\partial}{\partial z}\left(k \frac{\partial u}{\partial z}\right)\right\} d x d y d z d t \\ =\iiint_{\Omega} c \rho\left(\int_{t_1}^{t_2} \frac{\partial u}{\partial t} d t\right) d x d y d z,
+\int\_{t\_1}^{t\_2} \iiint\_{\Omega}\left\{\frac{\partial}{\partial x}\left(k \frac{\partial u}{\partial x}\right)+\frac{\partial}{\partial y}\left(k \frac{\partial u}{\partial y}\right)+\frac{\partial}{\partial z}\left(k \frac{\partial u}{\partial z}\right)\right\} d x d y d z d t \\ =\iiint\_{\Omega} c \rho\left(\int\_{t\_1}^{t\_2} \frac{\partial u}{\partial t} d t\right) d x d y d z,
 \end{gathered}
 \\]
 
 交换积分次序,就得到
 
 \\[
-\int_{t_1}^{t_2} \iiint_{\Omega}\left[c \rho \frac{\partial u}{\partial t}-\frac{\partial}{\partial x}
+\int\_{t\_1}^{t\_2} \iiint\_{\Omega}\left[c \rho \frac{\partial u}{\partial t}-\frac{\partial}{\partial x}
 \left(k \frac{\partial u}{\partial x}\right)-\frac{\partial}{\partial y}
 \left(k \frac{\partial u}{\partial y}\right)-\frac{\partial}{\partial z}
 \left(k \frac{\partial u}{\partial z}\right)\right] d x d y d z d t=0 .
 \\]
 
-由于 \\(t_1, t_2\\) 与区域 \\(\Omega\\) 都是任意的,我们得到
+由于 \\(t\_1, t\_2\\) 与区域 \\(\Omega\\) 都是任意的,我们得到
 
 \\[
 c \rho \frac{\partial u}{\partial t}=\frac{\partial}{\partial x}
@@ -284,7 +284,7 @@ c \rho \frac{\partial u}{\partial t}=\frac{\partial}{\partial x}
 若设在单位时间内单位体积中所产生的热量为 \\(F(x, y, z, t)\\), 则在考虑热平衡时, 式左边应再加上一项
 
 \\[
-\int_{t_1}^{t_2} \iiint_{\Omega} F(x, y, z, t) d x d y d z d t
+\int\_{t\_1}^{t\_2} \iiint\_{\Omega} F(x, y, z, t) d x d y d z d t
 \\]
 
 于是, 相应于方程的热传导方程应改为
@@ -346,22 +346,22 @@ f(x, y, z, t)=\frac{F(x, y, z, t)}{\rho c} .
 终于负电荷, 反映静电场基本性质的是高斯定理和电场强度的无旋性. 据此, 我们来导出描述静电场的数学物理方程.
 
 用国际单位制, 高斯定理可以表述为: 穿过闭合曲面 \\(\Sigma\\) 向外的电场强度通量等于闭合曲面 \\(\Sigma\\)
-所围空间 \\(T\\) 中电量的 \\(1 / \varepsilon_0\\) 倍 ( \\(\varepsilon_0\\) 为真空介电常数), 即
+所围空间 \\(T\\) 中电量的 \\(1 / \varepsilon\_0\\) 倍 ( \\(\varepsilon\_0\\) 为真空介电常数), 即
 
 \\[
-\oint_{\Sigma} \mathbf{E} \cdot d \mathbf{S}=\frac{1}{\varepsilon_0} \int_{\Omega} \rho d V .
+\oint\_{\Sigma} \mathbf{E} \cdot d \mathbf{S}=\frac{1}{\varepsilon\_0} \int\_{\Omega} \rho d V .
 \\]
 
 把左边的曲面积分改为体积积分,
 
 \\[
-\int_{\Omega} \nabla \cdot \mathbf{E} d V=\frac{1}{\varepsilon_0} \int_{\Omega} \rho d V .
+\int\_{\Omega} \nabla \cdot \mathbf{E} d V=\frac{1}{\varepsilon\_0} \int\_{\Omega} \rho d V .
 \\]
 
 上式对任意的空间 \\(\Omega\\) 都成立, 这只能是由于两边的被积函数相等,
 
 \\[
-\nabla \cdot \mathbf{E}=\frac{1}{\varepsilon_0} \rho .
+\nabla \cdot \mathbf{E}=\frac{1}{\varepsilon\_0} \rho .
 \\]
 
 此外, 静电场的电场强度 \\(\mathbf{E}\\) 是无旋的, 即
@@ -371,7 +371,7 @@ f(x, y, z, t)=\frac{F(x, y, z, t)}{\rho c} .
 \\]
 
 方程和是静电场的基本微分方程. 它们也可从微分形式的麦克斯韦方程组得到.
-事实上, 对真空中的静电场, \\(\mathbf{D}=\varepsilon_0 \mathbf{E}, \mathbf{B}=0\\), 代入麦克斯韦方程
+事实上, 对真空中的静电场, \\(\mathbf{D}=\varepsilon\_0 \mathbf{E}, \mathbf{B}=0\\), 代入麦克斯韦方程
 \\(\nabla \cdot \mathbf{D}=\rho\\) 和 \\(\nabla \times \mathbf{E=-\mathbf{B}\\) 即得.
 由式, 存在电势函数 \\(V(x, y, z)\\), 使
 
@@ -382,7 +382,7 @@ f(x, y, z, t)=\frac{F(x, y, z, t)}{\rho c} .
 将上式 代入得
 
 \\[
-\Delta V=-\frac{1}{\varepsilon_0} \rho .
+\Delta V=-\frac{1}{\varepsilon\_0} \rho .
 \\]
 
 这就是静电场的电势函数 \\(V\\) 应当满足的静电场方程, 它是**泊松方程**. \\(\mathbf{E\\) 是矢量, 而 \\(V\\) 是标量, 求解方程 比较方便.

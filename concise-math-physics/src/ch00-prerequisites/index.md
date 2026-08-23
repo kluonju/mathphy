@@ -7,9 +7,9 @@
 - 数集 \\(\mathbb{N},\mathbb{Z},\mathbb{R},\mathbb{C}\\) 与逻辑符号
 - 常用三角函数恒等式
 - 导数、积分与多元微积分概要
-- 指标记号动机；哑/自由指标与正误对照；Kronecker \\(\delta_{ij}\\) 与 Levi-Civita \\(\varepsilon_{ijk}\\)
+- 指标记号动机；哑/自由指标与正误对照；Kronecker \\(\delta\_{ij}\\) 与 Levi-Civita \\(\varepsilon\_{ijk}\\)
 - 矩阵正交/迹/行列式与分解；点/叉积、三重积与 \\(\varepsilon\\)–\\(\delta\\) 恒等式（含逐步例题）
-- \\(\partial_i\\) 与 Maxwell、\\(\nabla\times\nabla\\)、curl-curl 的指标推导
+- \\(\partial\_i\\) 与 Maxwell、\\(\nabla\times\nabla\\)、curl-curl 的指标推导
 - 张量秩与物理例子（应力、电导率、压电）；\\(O(n)\\)/\\(SO(n)\\) 与各向同性张量
 - [指标记号习题](07-index-exercises.md)（Pauli、行列式、液晶、矢量恒等式、流体、各向同性与曲率等）
 - 向量代数（点积、叉积）与 \\(\nabla\\) 算符简介；梯度/散度/旋度的几何图像与 Gauss–Stokes（含直导线磁场旋度为零的例子）；详细推导与图见第 [9 章](../ch09-tensor/index.md)

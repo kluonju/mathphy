@@ -6,15 +6,15 @@
 
 ### 为何需要非直角形式
 
-直角坐标中 \\(\nabla=\hat{\mathbf{e}}_x\partial_x+\hat{\mathbf{e}}_y\partial_y+\hat{\mathbf{e}}_z\partial_z\\)。若场本身在柱/球坐标下最简单，先换成直角再算往往更繁。例如直导线沿 \\(z\\) 轴的磁场
+直角坐标中 \\(\nabla=\hat{\mathbf{e}}\_x\partial\_x+\hat{\mathbf{e}}\_y\partial\_y+\hat{\mathbf{e}}\_z\partial\_z\\)。若场本身在柱/球坐标下最简单，先换成直角再算往往更繁。例如直导线沿 \\(z\\) 轴的磁场
 
 \\[
 \mathbf{B}=\frac{\mu\_0 I}{2\pi\rho}\,\hat{\mathbf{e}}\_\phi
 \\]
 
-在柱坐标下一目了然；要证 \\(\nabla\cdot\mathbf{B}=0\\)（\\(\rho\neq 0\\)），用下面的柱坐标散度公式比先写成 \\(B_x,B_y\\) 再求导更省事。
+在柱坐标下一目了然；要证 \\(\nabla\cdot\mathbf{B}=0\\)（\\(\rho\neq 0\\)），用下面的柱坐标散度公式比先写成 \\(B\_x,B\_y\\) 再求导更省事。
 
-正交坐标的特征：沿各坐标增加方向的单位基 \\(\hat{\mathbf{e}}\_i\\) 在每一点彼此正交。柱、球坐标均属此类。一般推导见[一般曲线坐标](01-general.md)（尺度因子 \\(h_i\\)）。
+正交坐标的特征：沿各坐标增加方向的单位基 \\(\hat{\mathbf{e}}\_i\\) 在每一点彼此正交。柱、球坐标均属此类。一般推导见[一般曲线坐标](01-general.md)（尺度因子 \\(h\_i\\)）。
 
 ### 梯度：从 \\(\mathrm{d}f=\nabla f\cdot\mathrm{d}\boldsymbol{\ell}\\) 出发
 
@@ -29,7 +29,7 @@
 + r\sin\theta\,\mathrm{d}\phi\,\hat{\mathbf{e}}\_\phi .
 \\]
 
-又 \\(\mathrm{d}f=\partial_r f\,\mathrm{d}r+\partial_\theta f\,\mathrm{d}\theta+\partial_\phi f\,\mathrm{d}\phi\\)，与 \\(\nabla f\cdot\mathrm{d}\boldsymbol{\ell}\\) 比较得
+又 \\(\mathrm{d}f=\partial\_r f\,\mathrm{d}r+\partial\_\theta f\,\mathrm{d}\theta+\partial\_\phi f\,\mathrm{d}\phi\\)，与 \\(\nabla f\cdot\mathrm{d}\boldsymbol{\ell}\\) 比较得
 
 \\[
 \nabla f
@@ -191,4 +191,4 @@ W\_\rho & \rho W\_\phi & W\_z
 | \\(\nabla\cdot\mathbf{W}\\) | \\(\rho^{-1}\partial\_\rho(\rho W\_\rho)+\rho^{-1}\partial\_\phi W\_\phi+\partial\_z W\_z\\) | \\(r^{-2}\partial\_r(r^2 W\_r)+\cdots\\)（见上文） |
 | \\(\nabla^2\psi\\) | \\(\rho^{-1}\partial\_\rho(\rho\partial\_\rho\psi)+\rho^{-2}\partial\_\phi^2\psi+\partial\_z^2\psi\\) | \\(r^{-2}\partial\_r(r^2\partial\_r\psi)+\cdots\\)（见上文） |
 
-一般正交系中 \\(\nabla f=\sum_i h_i^{-1}(\partial f/\partial q_i)\hat{\mathbf{e}}\_i\\)，散度/旋度/Laplace 的 \\(h_i\\) 公式见[一般曲线坐标](01-general.md)。电磁学应用见[电磁学中的数学方法](../ch05-math-physics-eq/06-em-methods.md)。
+一般正交系中 \\(\nabla f=\sum\_i h\_i^{-1}(\partial f/\partial q\_i)\hat{\mathbf{e}}\_i\\)，散度/旋度/Laplace 的 \\(h\_i\\) 公式见[一般曲线坐标](01-general.md)。电磁学应用见[电磁学中的数学方法](../ch05-math-physics-eq/06-em-methods.md)。

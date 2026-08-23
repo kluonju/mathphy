@@ -33,7 +33,7 @@ N f \equiv (f,f) = \int  f(x)^2 dx
 对于复变函数， 内积定义为
 
 \\[
-( f, g ) = \int  f^*(x) g(x) dx
+( f, g ) = \int  f^{\ast}(x) g(x) dx
 \\]
 
 其中\\(\bar f\\)为\\(f\\)的复共轭.  若\\(N f = \int | f|^2 dx = 1\\), 称函数\\(f(x)\\)是归一化的.
@@ -287,7 +287,7 @@ f(x) = \sum\_{n=-\infty}^{\infty} c\_n e^{\mathrm{i} \frac{n\pi}{\ell} x},
 c\_n = \frac{1}{2\ell} \int\_{-\ell}^{\ell} f(x) e^{-\mathrm{i} \frac{n\pi}{\ell} x} dx ,
 \\]
 
-尽管\\(f(x)\\)是实数,但其傅里叶系数却可能是复数,还可以看出\\(c\_{-n = c\_{n}^*\\).
+尽管\\(f(x)\\)是实数,但其傅里叶系数却可能是复数,还可以看出\\(c\_{-n = c\_{n}^{\ast}\\).
 复指数函数族也是正交的
 
 \\[
@@ -328,7 +328,7 @@ b\_n &=   \frac{1}{\ell} \int\_{0}^{2\ell} f(x) \sin {  \left( \frac{n\pi}{\ell}
 \\[
 \begin{aligned}
 f(x)
-&= \sum_{n=1}^{\infty} \frac{2 \ell }{n\pi} (-1)^{n+1} \sin\Bigl(\frac{n\pi}{\ell} x\Bigr) \\\\
+&= \sum\_{n=1}^{\infty} \frac{2 \ell }{n\pi} (-1)^{n+1} \sin\Bigl(\frac{n\pi}{\ell} x\Bigr) \\\\
 &= \frac{2\ell}{\pi}\Biggl[ \sin\frac{\pi x}{\ell} - \frac{1}{2}\sin\frac{2\pi x}{\ell} + \frac{1}{3}\sin\frac{3\pi x}{\ell} + \cdots + \frac{(-1)^{n+1}}{n}\sin\frac{n\pi x}{\ell} \Biggr].
 \end{aligned}
 \\]

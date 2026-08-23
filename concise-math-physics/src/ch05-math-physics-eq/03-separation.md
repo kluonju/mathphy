@@ -10,9 +10,9 @@
 定解问题为
 
 \\[
-\begin{cases}u_{t t}-a^{2} u_{x x}=0, & 0<x<l,   t>0
+\begin{cases}u\_{t t}-a^{2} u\_{x x}=0, & 0<x<l,   t>0
         \\ u(0, t)=0,   u(l, t)=0 &
-        \\ u(x, 0)=\varphi(x),   u_{t}(x, 0)=\psi(x) &
+        \\ u(x, 0)=\varphi(x),   u\_{t}(x, 0)=\psi(x) &
 \end{cases}
 \\]
 
@@ -114,20 +114,20 @@ X(0)=0,   X(l)=0
 
 
 \\[
-\lambda_{n}=\left(\frac{n \pi}{l}\right)^{2},   n=1,2, \cdots
+\lambda\_{n}=\left(\frac{n \pi}{l}\right)^{2},   n=1,2, \cdots
 \\]
 
 
 
 
 \\[
-X_{n}(x)=B_{n} \sin \frac{n \pi x}{l},   n=1,2, \cdots
+X\_{n}(x)=B\_{n} \sin \frac{n \pi x}{l},   n=1,2, \cdots
 \\]
 
 
 - **求解 \\(T(t)\\) 的常微分方程**
 
-将本征值 \\(\lambda_{n}=\left(\frac{n \pi}{l}\right)^{2}\\) 代入式, 得到
+将本征值 \\(\lambda\_{n}=\left(\frac{n \pi}{l}\right)^{2}\\) 代入式, 得到
 
 
 
@@ -139,10 +139,10 @@ T^{\prime \prime}(t)+\left(\frac{n \pi a}{l}\right)^{2} T(t)=0
 
 
 \\[
-T_{n}(t)=C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}
+T\_{n}(t)=C\_{n} \cos \frac{n \pi a t}{l}+D\_{n} \sin \frac{n \pi a t}{l}
 \\]
 
-式中 \\(C_{n}\\) 和 \\(D_{n\\) 为任意常数.
+式中 \\(C\_{n}\\) 和 \\(D\_{n\\) 为任意常数.
 
 
 - **作特解的线性叠加**
@@ -151,18 +151,18 @@ T_{n}(t)=C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}
 
 
 \\[
-u_{n}(x, t)=X_{n}(x) T_{n}(t)=\left(C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l},
+u\_{n}(x, t)=X\_{n}(x) T\_{n}(t)=\left(C\_{n} \cos \frac{n \pi a t}{l}+D\_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l},
 \\]
 
-这里已将任意常数 \\(B_{n}\\) 吸收到任意常数 \\(C_{n\\) 及 \\(D_{n\\) 中去了.
+这里已将任意常数 \\(B\_{n}\\) 吸收到任意常数 \\(C\_{n\\) 及 \\(D\_{n\\) 中去了.
 
 特解一般不满足初始条件, 实际上由式可得
 
 
 \\[
 \begin{aligned}
-u_{n}(x, 0) & =C_{n} \sin \frac{n \pi x}{l} \\\\
-\left.\frac{\partial u_{n}(x, t)}{\partial t}\right|_{t=0} & =D_{n} \frac{n \pi a}{l} \sin \frac{n \pi x}{l}
+u\_{n}(x, 0) & =C\_{n} \sin \frac{n \pi x}{l} \\\\
+\left.\frac{\partial u\_{n}(x, t)}{\partial t}\right|\_{t=0} & =D\_{n} \frac{n \pi a}{l} \sin \frac{n \pi x}{l}
 \end{aligned}
 \\]
 
@@ -173,12 +173,12 @@ u_{n}(x, 0) & =C_{n} \sin \frac{n \pi x}{l} \\\\
 
 
 \\[
-u(x, t)=\sum_{n=1}^{\infty} u_{n}(x, t)=
-        \sum_{n=1}^{\infty}\left(C_{n} \cos \frac{n \pi a t}{l}+
-        D_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l}
+u(x, t)=\sum\_{n=1}^{\infty} u\_{n}(x, t)=
+        \sum\_{n=1}^{\infty}\left(C\_{n} \cos \frac{n \pi a t}{l}+
+        D\_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l}
 \\]
 
-而待定系数 \\(C_{n}\\) 和 \\(D_{n\\) 可由初始条件来确定.
+而待定系数 \\(C\_{n}\\) 和 \\(D\_{n\\) 可由初始条件来确定.
 
 
 
@@ -189,18 +189,18 @@ u(x, t)=\sum_{n=1}^{\infty} u_{n}(x, t)=
 
 \\[
 \begin{gathered}
-        \varphi(x)=u(x, 0)=\sum_{n=1}^{\infty} C_{n} \sin \frac{n \pi x}{l} \\\\
-        \psi(x)=u_{t}(x, 0)=\sum_{n=1}^{\infty} D_{n} \frac{n \pi a}{l} \sin \frac{n \pi x}{l}
+        \varphi(x)=u(x, 0)=\sum\_{n=1}^{\infty} C\_{n} \sin \frac{n \pi x}{l} \\\\
+        \psi(x)=u\_{t}(x, 0)=\sum\_{n=1}^{\infty} D\_{n} \frac{n \pi a}{l} \sin \frac{n \pi x}{l}
         \end{gathered}
 \\]
 
-        最终系数可由前面傅里叶级数展开来确定系数\\(C_{n}\\) 及 \\(D_{n\\), 即得定解问题的解.
+        最终系数可由前面傅里叶级数展开来确定系数\\(C\_{n}\\) 及 \\(D\_{n\\), 即得定解问题的解.
 
 
 \\[
 \begin{aligned}
-        & C_{n}=\frac{2}{l} \int_{0}^{l} \varphi(x) \sin \frac{n \pi x}{l} d x,   n=1,2, \cdots \\\\
-        & D_{n}=\frac{2}{n \pi a} \int_{0}^{l} \psi(x) \sin \frac{n \pi x}{l} d x,   n=1,2, \cdots
+        & C\_{n}=\frac{2}{l} \int\_{0}^{l} \varphi(x) \sin \frac{n \pi x}{l} d x,   n=1,2, \cdots \\\\
+        & D\_{n}=\frac{2}{n \pi a} \int\_{0}^{l} \psi(x) \sin \frac{n \pi x}{l} d x,   n=1,2, \cdots
         \end{aligned}
 \\]
 
@@ -212,7 +212,7 @@ u(x, t)=\sum_{n=1}^{\infty} u_{n}(x, t)=
 
 
 \\[
-u_{n}(x, t)=\left(C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l} =E_{n} \cos \left(\omega_{n} t-\varphi_{n}\right) \sin \frac{n \pi x}{l}
+u\_{n}(x, t)=\left(C\_{n} \cos \frac{n \pi a t}{l}+D\_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l} =E\_{n} \cos \left(\omega\_{n} t-\varphi\_{n}\right) \sin \frac{n \pi x}{l}
 \\]
 
 
@@ -220,24 +220,24 @@ u_{n}(x, t)=\left(C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}\
 
 
 \\[
-E_{n}=\sqrt{C_{n}^{2}+D_{n}^{2}},
-              \omega_{n}=\frac{n \pi a}{l},
-              \varphi_{n}=\tan ^{-1} \frac{D_{n}}{C_{n}}
+E\_{n}=\sqrt{C\_{n}^{2}+D\_{n}^{2}},
+              \omega\_{n}=\frac{n \pi a}{l},
+              \varphi\_{n}=\tan ^{-1} \frac{D\_{n}}{C\_{n}}
 \\]
 
 
         如果弦按式的规律运动时,
         \\(x=0\\) 及 \\(x=l\\) 这两个端点保持不动.
         而弦上各点则在各自的平衡位置附近作简谐振动,
-        其振幅分别为 \\(E_{n}\left|\sin \frac{n \pi x}{l}\right|\\).
+        其振幅分别为 \\(E\_{n}\left|\sin \frac{n \pi x}{l}\right|\\).
         弦的这种形式的运动称为**驻波**.
         在点 \\(x=\frac{m l}{n}(m=0,1, \cdots, n)\\) 处, 振幅为零.
-        这些点在整个振动过程中始终保持不动, 称为驻波 \\(u_{n}(x, t)\\) 的**波节**.
+        这些点在整个振动过程中始终保持不动, 称为驻波 \\(u\_{n}(x, t)\\) 的**波节**.
         在点 \\(x=\frac{2 m+1}{2 n} l(m=0,1\\), \\(\cdots, n-1)\\) 处,
         \\(\sin \frac{n \pi x}{l}= \pm 1\\), 这些点的振幅最大,称为驻波的**波腹**.
-         驻波的**角频率** \\(\omega_{n}=\frac{n \pi}{l}\\),
-         其中 \\(n=1\\) 的项 \\(u_{1(x, t)\\) 称为**基波**,
-         而 \\(n>1\\) 的项 \\(u_{n(x, t)\\) 称为 **\\(n\\) 次谐波**,
+         驻波的**角频率** \\(\omega\_{n}=\frac{n \pi}{l}\\),
+         其中 \\(n=1\\) 的项 \\(u\_{1(x, t)\\) 称为**基波**,
+         而 \\(n>1\\) 的项 \\(u\_{n(x, t)\\) 称为 **\\(n\\) 次谐波**,
          这些驻波也称为两端固定弦的本征振动.
          因此, 有界弦的任意振动可看作一系列本征振动的叠加.
 
@@ -245,7 +245,7 @@ E_{n}=\sqrt{C_{n}^{2}+D_{n}^{2}},
 \setlength\intextsep{5pt}
 下一个例题是平面极坐标系的分离变数法.
 
-带电的云跟大地之间的静电场近似是匀强静电场, 其电场强度 \\(\mathbf{E}_{0}\\)
+带电的云跟大地之间的静电场近似是匀强静电场, 其电场强度 \\(\mathbf{E}\_{0}\\)
 是坚直的. 水平架设的输电线处在这个静电场之中(图).
 输电线是导体圆柱. 柱面由于静电感应出现感应电荷, 圆柱邻近的静电场也就不再是匀强的了.
 不过, 离圆柱 “无限远” 处的静电场仍保持为匀强的.
@@ -259,13 +259,13 @@ E_{n}=\sqrt{C_{n}^{2}+D_{n}^{2}},
 柱外的空间中没有电荷, 所以电势 \\(u\\) 满足二维的拉普拉斯方程
 
 \\[
-u_{x x}+u_{y y}=0   \text { (柱外). }
+u\_{x x}+u\_{y y}=0   \text { (柱外). }
 \\]
 
 导体中的电荷既然不再移动, 这说明导体中各处电势相同. 又因为电势只具有相对的意义, 不妨把电势的零点取在导体上, 从而写出边界条件
 
 \\[
-\left.u\right|_{x^{2}+y^{2}=a^{2}}=0 .
+\left.u\right|\_{x^{2}+y^{2}=a^{2}}=0 .
 \\]
 
 按照分离变数法, 以 \\(u(x, y)=X(x) Y(y)\\) 代入拉普拉斯方程固然不难把它分解为两个常微分方程,但代入上述边界条件却只能得到
@@ -286,21 +286,21 @@ X(x) Y\left(\sqrt{a^{2}-x^{2}}\right)=0
 式中 \\(\rho\\) 是极径, \\(\varphi\\) 是极角. “导体电势为零” 就表为齐次的边界条件
 
 \\[
-\left.u\right|_{\rho=a}=0 .
+\left.u\right|\_{\rho=a}=0 .
 \\]
 
-在 “无限远” 处的静电场仍然保持为匀强的 \\(\mathbf{E}_{0}\\). 由于选取了 \\(x\\) 轴平行于
-\\(\mathbf{E}_{0}\\), 所以在无限远处, \\(E_{y=0, E_{x}=E_{0}\\), 即 \\(-\partial u / \partial x=E_{0\\),
-亦即 \\(u=-E_{0} x=\\) \\(-E_{0 \rho \cos \varphi\\). 另外, 导体圆柱还可能带电,
-若单位长度导体带的电量为 \\(q_{0}\\), 它在圆柱外产生的电势为 \\(\left(q_{0 / 2 \pi \varepsilon_{0}\right) \ln (1 / \rho)\\),
+在 “无限远” 处的静电场仍然保持为匀强的 \\(\mathbf{E}\_{0}\\). 由于选取了 \\(x\\) 轴平行于
+\\(\mathbf{E}\_{0}\\), 所以在无限远处, \\(E\_{y=0, E\_{x}=E\_{0}\\), 即 \\(-\partial u / \partial x=E\_{0\\),
+亦即 \\(u=-E\_{0} x=\\) \\(-E\_{0 \rho \cos \varphi\\). 另外, 导体圆柱还可能带电,
+若单位长度导体带的电量为 \\(q\_{0}\\), 它在圆柱外产生的电势为 \\(\left(q\_{0 / 2 \pi \varepsilon\_{0}\right) \ln (1 / \rho)\\),
 因而还有一个非齐次的边界条件
 
 \\[
-\left.u\right|_{\rho \rightarrow \infty} \sim u_{0}+
-\frac{q_{0}}{2 \pi \varepsilon_{0}} \ln \frac{1}{\rho}-E_{0} \rho \cos \varphi
+\left.u\right|\_{\rho \rightarrow \infty} \sim u\_{0}+
+\frac{q\_{0}}{2 \pi \varepsilon\_{0}} \ln \frac{1}{\rho}-E\_{0} \rho \cos \varphi
 \\]
 
-其中 \\(u_{0}\\) 为常数, 其数值跟电势的零点选取有关. 这里要求其满足在圆柱导体侧面上电势为零.
+其中 \\(u\_{0}\\) 为常数, 其数值跟电势的零点选取有关. 这里要求其满足在圆柱导体侧面上电势为零.
 问题归结为求解平面极坐标系定解问题 , .
 
 按照前面的步骤, 以分离变数形式的试探解
@@ -389,8 +389,8 @@ R(\rho)= \begin{cases}C e^{m t}+D e^{-m t}=C \rho^{m}+D \frac{1}{\rho^{m}} & (m 
 
 \\[
 \begin{gathered}
-u_{0}(\rho, \varphi)=C_{0}+D_{0} \ln \rho \\\\
-u_{m}(\rho, \varphi)=\rho^{m}\left(A_{m} \cos m \varphi+B_{m} \sin m \varphi\right)+\rho^{-m}\left(C_{m} \cos m \varphi+D_{m} \sin m \varphi\right)
+u\_{0}(\rho, \varphi)=C\_{0}+D\_{0} \ln \rho \\\\
+u\_{m}(\rho, \varphi)=\rho^{m}\left(A\_{m} \cos m \varphi+B\_{m} \sin m \varphi\right)+\rho^{-m}\left(C\_{m} \cos m \varphi+D\_{m} \sin m \varphi\right)
 \end{gathered}
 \\]
 
@@ -398,8 +398,8 @@ u_{m}(\rho, \varphi)=\rho^{m}\left(A_{m} \cos m \varphi+B_{m} \sin m \varphi\rig
 
 \\[
 \begin{aligned}
-u(\rho, \varphi)= & C_{0}+D_{0} \ln \rho+\sum_{m=1}^{\infty} \rho^{m}\left(A_{m} \cos m \varphi+B_{m} \sin m \varphi\right) \\\\
-& +\sum_{m=1}^{\infty} \rho^{-m}\left(C_{m} \cos m \varphi+D_{m} \sin m \varphi\right)
+u(\rho, \varphi)= & C\_{0}+D\_{0} \ln \rho+\sum\_{m=1}^{\infty} \rho^{m}\left(A\_{m} \cos m \varphi+B\_{m} \sin m \varphi\right) \\\\
+& +\sum\_{m=1}^{\infty} \rho^{-m}\left(C\_{m} \cos m \varphi+D\_{m} \sin m \varphi\right)
 \end{aligned}
 \\]
 
@@ -407,29 +407,29 @@ u(\rho, \varphi)= & C_{0}+D_{0} \ln \rho+\sum_{m=1}^{\infty} \rho^{m}\left(A_{m}
 
 \\[
 \begin{gathered}
-C_{0}+D_{0} \ln a+\sum_{m=1}^{\infty} a^{m}\left(A_{m} \cos m \varphi+B_{m} \sin m \varphi\right) \\\\
-+\sum_{m=1}^{\infty} a^{-m}\left(C_{m} \cos m \varphi+D_{m} \sin m \varphi\right)=0
+C\_{0}+D\_{0} \ln a+\sum\_{m=1}^{\infty} a^{m}\left(A\_{m} \cos m \varphi+B\_{m} \sin m \varphi\right) \\\\
++\sum\_{m=1}^{\infty} a^{-m}\left(C\_{m} \cos m \varphi+D\_{m} \sin m \varphi\right)=0
 \end{gathered}
 \\]
 
 一个傅里叶级数等于零, 意味着所有傅里叶系数为零, 即
 
 \\[
-C_{0}+D_{0} \ln a=0,   a^{m} A_{m}+a^{-m} C_{m}=0,   a^{m} B_{m}+a^{-m} D_{m}=0
+C\_{0}+D\_{0} \ln a=0,   a^{m} A\_{m}+a^{-m} C\_{m}=0,   a^{m} B\_{m}+a^{-m} D\_{m}=0
 \\]
 
 由此,
 
 \\[
-C_{0}=-D_{0} \ln a,   C_{m}=-A_{m} a^{2 m},   D_{m}=-B_{m} a^{2 m}
+C\_{0}=-D\_{0} \ln a,   C\_{m}=-A\_{m} a^{2 m},   D\_{m}=-B\_{m} a^{2 m}
 \\]
 
 以此代入, 得
 
 \\[
 \begin{aligned}
-        u(\rho, \varphi)= & D_{0} \ln \frac{\rho}{a}+\sum_{m=1}^{\infty} \rho^{m}\left(A_{m} \cos m \varphi+B_{m} \sin m \varphi\right) \\\\
-        & +\sum_{m=1}^{\infty} \rho^{-m}\left(-a^{2 m} A_{m} \cos m \varphi-a^{2 m} B_{m} \sin m \varphi\right)
+        u(\rho, \varphi)= & D\_{0} \ln \frac{\rho}{a}+\sum\_{m=1}^{\infty} \rho^{m}\left(A\_{m} \cos m \varphi+B\_{m} \sin m \varphi\right) \\\\
+        & +\sum\_{m=1}^{\infty} \rho^{-m}\left(-a^{2 m} A\_{m} \cos m \varphi-a^{2 m} B\_{m} \sin m \varphi\right)
         \end{aligned}
 \\]
 
@@ -437,49 +437,49 @@ C_{0}=-D_{0} \ln a,   C_{m}=-A_{m} a^{2 m},   D_{m}=-B_{m} a^{2 m}
 
 \\[
 \begin{gathered}
-        D_{0} \ln \frac{\rho}{a}+\sum_{m=1}^{\infty}\left[A_{m}\left(\rho^{m}-\frac{a^{2 m}}{\rho^{m}}\right) \cos m \varphi+B_{m}\left(\rho^{m}-\frac{a^{2 m}}{\rho^{m}}\right) \sin m \varphi\right] \\\\
-        \sim u_{0}+\frac{q_{0}}{2 \pi \varepsilon_{0}} \ln \frac{1}{\rho}-E_{0} \rho \cos \varphi
+        D\_{0} \ln \frac{\rho}{a}+\sum\_{m=1}^{\infty}\left[A\_{m}\left(\rho^{m}-\frac{a^{2 m}}{\rho^{m}}\right) \cos m \varphi+B\_{m}\left(\rho^{m}-\frac{a^{2 m}}{\rho^{m}}\right) \sin m \varphi\right] \\\\
+        \sim u\_{0}+\frac{q\_{0}}{2 \pi \varepsilon\_{0}} \ln \frac{1}{\rho}-E\_{0} \rho \cos \varphi
 \end{gathered}
 \\]
 
 既然主要部分是 \\(\rho^{1}\\) 项, 可见上式中不应出现 \\(\rho^{m(m>1)\\) 的项 (否则 \\(\rho^{m\\) 项就成了主要部分).这是说,
 
 \\[
-A_{m}=0, B_{m}=0 .  (m>1)
+A\_{m}=0, B\_{m}=0 .  (m>1)
 \\]
 
 从比较系数, 还能知道
 
 \\[
-B_{1}=0, A_{1}=-E_{0}, D_{0}=-\frac{q_{0}}{2 \pi \varepsilon_{0}},
-u_{0}=-D_{0} \ln a=\frac{q_{0}}{2 \pi \varepsilon_{0}} \ln a
+B\_{1}=0, A\_{1}=-E\_{0}, D\_{0}=-\frac{q\_{0}}{2 \pi \varepsilon\_{0}},
+u\_{0}=-D\_{0} \ln a=\frac{q\_{0}}{2 \pi \varepsilon\_{0}} \ln a
 \\]
 
 最后得柱外的静电势为
 
 \\[
-u(\rho, \varphi)=\frac{q_{0}}{2 \pi \varepsilon_{0}} \ln \frac{a}{\rho}-E_{0} \rho \cos \varphi+E_{0} \frac{\dot{a}^{2}}{\rho} \cos \varphi
+u(\rho, \varphi)=\frac{q\_{0}}{2 \pi \varepsilon\_{0}} \ln \frac{a}{\rho}-E\_{0} \rho \cos \varphi+E\_{0} \frac{\dot{a}^{2}}{\rho} \cos \varphi
 \\]
 
 简单谈谈所得解答的物理含义.
 第一项是圆柱导体原来所带电荷在导体周围产生的电势.
 由于 \\(\rho>a\\), 就好像是位于轴线 \\(\rho=0\\) 上的带电导线产生的电势.
-常数 \\(u_{0}\\) 的数值保证在圆柱导体的侧面上电势为零. 中间项正是原来的匀强静电场中的电势分布.
-最后一项, 即 \\(E_{0}\left(a^{2} / \rho\right) \cos \varphi\\) 对于大的 \\(\rho\\) 可以忽略,
+常数 \\(u\_{0}\\) 的数值保证在圆柱导体的侧面上电势为零. 中间项正是原来的匀强静电场中的电势分布.
+最后一项, 即 \\(E\_{0}\left(a^{2} / \rho\right) \cos \varphi\\) 对于大的 \\(\rho\\) 可以忽略,
 所以它代表在圆柱邻近对匀强电场的修正, 这自然是柱面在匀强电场中产生的感应电荷形成的电势. 圆柱导体外的电场线分布见图 8-3a.
 
-设圆柱体原来并不带电, 从而 \\(D_{0}=0\\), 这时只含两项,
+设圆柱体原来并不带电, 从而 \\(D\_{0}=0\\), 这时只含两项,
 
 \\[
-u(\rho, \varphi)=-E_{0} \rho \cos \varphi+E_{0} \frac{a^{2}}{\rho} \cos \varphi
+u(\rho, \varphi)=-E\_{0} \rho \cos \varphi+E\_{0} \frac{a^{2}}{\rho} \cos \varphi
 \\]
 
 \\(A\\) 点和 \\(B\\) 点的电场强度是
 
 \\[
 \begin{aligned}
-E=-\left.\frac{\partial u}{\partial \rho}\right|_{\substack{\rho=a \\ \varphi=0, \pi}} =\left.\left(E_{0} \cos \varphi+E_{0} \frac{a_{2}}{\rho} \cos \varphi\right)\right|_{\substack{\rho=a \\ \varphi=0, \pi}}
-= \pm 2 E_{0}
+E=-\left.\frac{\partial u}{\partial \rho}\right|\_{\substack{\rho=a \\ \varphi=0, \pi}} =\left.\left(E\_{0} \cos \varphi+E\_{0} \frac{a\_{2}}{\rho} \cos \varphi\right)\right|\_{\substack{\rho=a \\ \varphi=0, \pi}}
+= \pm 2 E\_{0}
 \end{aligned}
 \\]
 
@@ -488,7 +488,7 @@ E=-\left.\frac{\partial u}{\partial \rho}\right|_{\substack{\rho=a \\ \varphi=0,
 在\\(y\\) 轴上的电势是
 
 \\[
-u_{\varphi= \pm \pi / 2}=\left.\left(-E_{0} \rho \cos \varphi+E_{0} \frac{a_{2}}{\rho} \cos \varphi\right)\right|_{\varphi= \pm \pi / 2}=0
+u\_{\varphi= \pm \pi / 2}=\left.\left(-E\_{0} \rho \cos \varphi+E\_{0} \frac{a\_{2}}{\rho} \cos \varphi\right)\right|\_{\varphi= \pm \pi / 2}=0
 \\]
 
 跟导体圆柱的电势相同.
@@ -509,9 +509,9 @@ u_{\varphi= \pm \pi / 2}=\left.\left(-E_{0} \rho \cos \varphi+E_{0} \frac{a_{2}}
 定解问题为
 
 \\[
-\begin{cases}u_{t t}-a^{2} u_{x x}=0, & 0<x<l,   t>0
+\begin{cases}u\_{t t}-a^{2} u\_{x x}=0, & 0<x<l,   t>0
         \\ u(0, t)=0,   u(l, t)=0 &
-        \\ u(x, 0)=\varphi(x),   u_{t}(x, 0)=\psi(x) &
+        \\ u(x, 0)=\varphi(x),   u\_{t}(x, 0)=\psi(x) &
 \end{cases}
 \\]
 
@@ -613,20 +613,20 @@ X(0)=0,   X(l)=0
 
 
 \\[
-\lambda_{n}=\left(\frac{n \pi}{l}\right)^{2},   n=1,2, \cdots
+\lambda\_{n}=\left(\frac{n \pi}{l}\right)^{2},   n=1,2, \cdots
 \\]
 
 
 
 
 \\[
-X_{n}(x)=B_{n} \sin \frac{n \pi x}{l},   n=1,2, \cdots
+X\_{n}(x)=B\_{n} \sin \frac{n \pi x}{l},   n=1,2, \cdots
 \\]
 
 
 - **求解 \\(T(t)\\) 的常微分方程**
 
-将本征值 \\(\lambda_{n}=\left(\frac{n \pi}{l}\right)^{2}\\) 代入式, 得到
+将本征值 \\(\lambda\_{n}=\left(\frac{n \pi}{l}\right)^{2}\\) 代入式, 得到
 
 
 
@@ -638,10 +638,10 @@ T^{\prime \prime}(t)+\left(\frac{n \pi a}{l}\right)^{2} T(t)=0
 
 
 \\[
-T_{n}(t)=C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}
+T\_{n}(t)=C\_{n} \cos \frac{n \pi a t}{l}+D\_{n} \sin \frac{n \pi a t}{l}
 \\]
 
-式中 \\(C_{n}\\) 和 \\(D_{n\\) 为任意常数.
+式中 \\(C\_{n}\\) 和 \\(D\_{n\\) 为任意常数.
 
 
 - **作特解的线性叠加**
@@ -650,18 +650,18 @@ T_{n}(t)=C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}
 
 
 \\[
-u_{n}(x, t)=X_{n}(x) T_{n}(t)=\left(C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l},
+u\_{n}(x, t)=X\_{n}(x) T\_{n}(t)=\left(C\_{n} \cos \frac{n \pi a t}{l}+D\_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l},
 \\]
 
-这里已将任意常数 \\(B_{n}\\) 吸收到任意常数 \\(C_{n\\) 及 \\(D_{n\\) 中去了.
+这里已将任意常数 \\(B\_{n}\\) 吸收到任意常数 \\(C\_{n\\) 及 \\(D\_{n\\) 中去了.
 
 特解一般不满足初始条件, 实际上由式可得
 
 
 \\[
 \begin{aligned}
-u_{n}(x, 0) & =C_{n} \sin \frac{n \pi x}{l} \\\\
-\left.\frac{\partial u_{n}(x, t)}{\partial t}\right|_{t=0} & =D_{n} \frac{n \pi a}{l} \sin \frac{n \pi x}{l}
+u\_{n}(x, 0) & =C\_{n} \sin \frac{n \pi x}{l} \\\\
+\left.\frac{\partial u\_{n}(x, t)}{\partial t}\right|\_{t=0} & =D\_{n} \frac{n \pi a}{l} \sin \frac{n \pi x}{l}
 \end{aligned}
 \\]
 
@@ -672,12 +672,12 @@ u_{n}(x, 0) & =C_{n} \sin \frac{n \pi x}{l} \\\\
 
 
 \\[
-u(x, t)=\sum_{n=1}^{\infty} u_{n}(x, t)=
-        \sum_{n=1}^{\infty}\left(C_{n} \cos \frac{n \pi a t}{l}+
-        D_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l}
+u(x, t)=\sum\_{n=1}^{\infty} u\_{n}(x, t)=
+        \sum\_{n=1}^{\infty}\left(C\_{n} \cos \frac{n \pi a t}{l}+
+        D\_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l}
 \\]
 
-而待定系数 \\(C_{n}\\) 和 \\(D_{n\\) 可由初始条件来确定.
+而待定系数 \\(C\_{n}\\) 和 \\(D\_{n\\) 可由初始条件来确定.
 
 
 
@@ -688,18 +688,18 @@ u(x, t)=\sum_{n=1}^{\infty} u_{n}(x, t)=
 
 \\[
 \begin{gathered}
-        \varphi(x)=u(x, 0)=\sum_{n=1}^{\infty} C_{n} \sin \frac{n \pi x}{l} \\\\
-        \psi(x)=u_{t}(x, 0)=\sum_{n=1}^{\infty} D_{n} \frac{n \pi a}{l} \sin \frac{n \pi x}{l}
+        \varphi(x)=u(x, 0)=\sum\_{n=1}^{\infty} C\_{n} \sin \frac{n \pi x}{l} \\\\
+        \psi(x)=u\_{t}(x, 0)=\sum\_{n=1}^{\infty} D\_{n} \frac{n \pi a}{l} \sin \frac{n \pi x}{l}
         \end{gathered}
 \\]
 
-        最终系数可由前面傅里叶级数展开来确定系数\\(C_{n}\\) 及 \\(D_{n\\), 即得定解问题的解.
+        最终系数可由前面傅里叶级数展开来确定系数\\(C\_{n}\\) 及 \\(D\_{n\\), 即得定解问题的解.
 
 
 \\[
 \begin{aligned}
-        & C_{n}=\frac{2}{l} \int_{0}^{l} \varphi(x) \sin \frac{n \pi x}{l} d x,   n=1,2, \cdots \\\\
-        & D_{n}=\frac{2}{n \pi a} \int_{0}^{l} \psi(x) \sin \frac{n \pi x}{l} d x,   n=1,2, \cdots
+        & C\_{n}=\frac{2}{l} \int\_{0}^{l} \varphi(x) \sin \frac{n \pi x}{l} d x,   n=1,2, \cdots \\\\
+        & D\_{n}=\frac{2}{n \pi a} \int\_{0}^{l} \psi(x) \sin \frac{n \pi x}{l} d x,   n=1,2, \cdots
         \end{aligned}
 \\]
 
@@ -711,7 +711,7 @@ u(x, t)=\sum_{n=1}^{\infty} u_{n}(x, t)=
 
 
 \\[
-u_{n}(x, t)=\left(C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l} =E_{n} \cos \left(\omega_{n} t-\varphi_{n}\right) \sin \frac{n \pi x}{l}
+u\_{n}(x, t)=\left(C\_{n} \cos \frac{n \pi a t}{l}+D\_{n} \sin \frac{n \pi a t}{l}\right) \sin \frac{n \pi x}{l} =E\_{n} \cos \left(\omega\_{n} t-\varphi\_{n}\right) \sin \frac{n \pi x}{l}
 \\]
 
 
@@ -719,24 +719,24 @@ u_{n}(x, t)=\left(C_{n} \cos \frac{n \pi a t}{l}+D_{n} \sin \frac{n \pi a t}{l}\
 
 
 \\[
-E_{n}=\sqrt{C_{n}^{2}+D_{n}^{2}},
-              \omega_{n}=\frac{n \pi a}{l},
-              \varphi_{n}=\tan ^{-1} \frac{D_{n}}{C_{n}}
+E\_{n}=\sqrt{C\_{n}^{2}+D\_{n}^{2}},
+              \omega\_{n}=\frac{n \pi a}{l},
+              \varphi\_{n}=\tan ^{-1} \frac{D\_{n}}{C\_{n}}
 \\]
 
 
         如果弦按式的规律运动时,
         \\(x=0\\) 及 \\(x=l\\) 这两个端点保持不动.
         而弦上各点则在各自的平衡位置附近作简谐振动,
-        其振幅分别为 \\(E_{n}\left|\sin \frac{n \pi x}{l}\right|\\).
+        其振幅分别为 \\(E\_{n}\left|\sin \frac{n \pi x}{l}\right|\\).
         弦的这种形式的运动称为驻波.
         在点 \\(x=\frac{m l}{n}(m=0,1, \cdots, n)\\) 处, 振幅为零.
-        这些点在整个振动过程中始终保持不动, 称为**驻波** \\(u_{n}(x, t)\\) 的**波节**.
+        这些点在整个振动过程中始终保持不动, 称为**驻波** \\(u\_{n}(x, t)\\) 的**波节**.
         在点 \\(x=\frac{2 m+1}{2 n} l(m=0,1\\), \\(\cdots, n-1)\\) 处,
         \\(\sin \frac{n \pi x}{l}= \pm 1\\), 这些点的振幅最大,称为驻波的**波腹**.
-         驻波的**角频率** \\(\omega_{n}=\frac{n \pi}{l}\\),
-         其中 \\(n=1\\) 的项 \\(u_{1(x, t)\\) 称为**基波**,
-         而 \\(n>1\\) 的项 \\(u_{n(x, t)\\) 称为 **\\(n\\) 次谐波**,
+         驻波的**角频率** \\(\omega\_{n}=\frac{n \pi}{l}\\),
+         其中 \\(n=1\\) 的项 \\(u\_{1(x, t)\\) 称为**基波**,
+         而 \\(n>1\\) 的项 \\(u\_{n(x, t)\\) 称为 **\\(n\\) 次谐波**,
          这些驻波也称为两端固定弦的本征振动.
          因此, 有界弦的任意振动可看作一系列本征振动的叠加.
 
@@ -748,96 +748,96 @@ E_{n}=\sqrt{C_{n}^{2}+D_{n}^{2}},
 
 ## (一) 傅里叶级数法
 
-\\(\S 8.1\\) 中求解两端固定的弦的齐次振动方程定解问题, 得到的解 (8.1.14)具有傅里叶正弦级数的形式, 而且其系数 \\(A_{n\\) 和 \\(B_{n\\) 决定于初始条件 \\(\varphi(x)\\) 和 \\(\psi(x)\\) 的傅里叶正弦级数 (8.1.15). 至于采取正弦级数而不是一般的傅里叶级数的形式,则完全是由于两端都是第一类齐次边界条件 \\(\left.u\right|_{x=0=0\\) 和 \\(\left.u\right|_{x=l=0\\)的原因.
+\\(\S 8.1\\) 中求解两端固定的弦的齐次振动方程定解问题, 得到的解 (8.1.14)具有傅里叶正弦级数的形式, 而且其系数 \\(A\_{n\\) 和 \\(B\_{n\\) 决定于初始条件 \\(\varphi(x)\\) 和 \\(\psi(x)\\) 的傅里叶正弦级数 (8.1.15). 至于采取正弦级数而不是一般的傅里叶级数的形式,则完全是由于两端都是第一类齐次边界条件 \\(\left.u\right|\_{x=0=0\\) 和 \\(\left.u\right|\_{x=l=0\\)的原因.
 
 分离变数法得出的这些结果给出提示: 不妨把所求的解本身展开为傅里叶级数, 即
 
 \\[
-u(x, t)=\sum_{n} T_{n}(t) X_{n}(x)
+u(x, t)=\sum\_{n} T\_{n}(t) X\_{n}(x)
 \\]
 
-傅里叶级数 (8.2.1) 的基本函数族 \\(X_{n}(x)\\) 为该定解问题齐次方程在所给齐次边界条件下的本征函数.
+傅里叶级数 (8.2.1) 的基本函数族 \\(X\_{n}(x)\\) 为该定解问题齐次方程在所给齐次边界条件下的本征函数.
 
-由于解是自变数 \\(x\\) 和 \\(t\\) 的函数, 因而 \\(u(x, t)\\) 的傅里叶系数不是常数, 而是时间 \\(t\\) 的函数, 把它记作 \\(T_{n(t)\\). 将待定解 (8.2.1) 代入泛定方程, 尝试分离出 \\(T_{n(t)\\) 的常微分方程, 然后求解.
+由于解是自变数 \\(x\\) 和 \\(t\\) 的函数, 因而 \\(u(x, t)\\) 的傅里叶系数不是常数, 而是时间 \\(t\\) 的函数, 把它记作 \\(T\_{n(t)\\). 将待定解 (8.2.1) 代入泛定方程, 尝试分离出 \\(T\_{n(t)\\) 的常微分方程, 然后求解.
 
 例 1 求解定解问题
 
 \\[
 \begin{gathered}
-u_{t t}-a^{2} u_{x x}=A \cos \frac{\pi x}{l} \sin \omega t ; \\\\
-\left.u_{x}\right|_{x=0}=0,\left.u_{x}\right|_{x=l}=0 ; \\\\
-\left.u\right|_{t=0}=\varphi(x),\left.u_{t}\right|_{t=0}=\psi(x),(0<x<l) .
+u\_{t t}-a^{2} u\_{x x}=A \cos \frac{\pi x}{l} \sin \omega t ; \\\\
+\left.u\_{x}\right|\_{x=0}=0,\left.u\_{x}\right|\_{x=l}=0 ; \\\\
+\left.u\right|\_{t=0}=\varphi(x),\left.u\_{t}\right|\_{t=0}=\psi(x),(0<x<l) .
 \end{gathered}
 \\]
 
-解 级数展开的基本函数应是相应的齐次泛定方程 \\(u_{t u}-a^{2} u_{x x}=0\\) 在所给齐次边界条件 \\(\left.u_{x\right|_{x=0}=0\\) 和 \\(\left.u_{x\right|_{x=l}=0\\) 下的本征函数. 我们已经熟悉这些本征函数, 它们是 \\(\cos \frac{n \pi x{l}(n=0,1,2, \cdots)\\). 这样, 试把所求的解展开为傅里叶余弦级数
+解 级数展开的基本函数应是相应的齐次泛定方程 \\(u\_{t u}-a^{2} u\_{x x}=0\\) 在所给齐次边界条件 \\(\left.u\_{x\right|\_{x=0}=0\\) 和 \\(\left.u\_{x\right|\_{x=l}=0\\) 下的本征函数. 我们已经熟悉这些本征函数, 它们是 \\(\cos \frac{n \pi x{l}(n=0,1,2, \cdots)\\). 这样, 试把所求的解展开为傅里叶余弦级数
 
 \\[
-u(x, t)=\sum_{n=0}^{\infty} T_{n}(t) \cos \frac{n \pi x}{l}
+u(x, t)=\sum\_{n=0}^{\infty} T\_{n}(t) \cos \frac{n \pi x}{l}
 \\]
 
-为了求解 \\(T_{n}(t)\\) ,尝试把这个级数代入非齐次泛定方程 (8.2.2),
+为了求解 \\(T\_{n}(t)\\) ,尝试把这个级数代入非齐次泛定方程 (8.2.2),
 
 \\[
-\sum_{n=0}^{\infty}\left[T_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T_{n}\right] \cos \frac{n \pi x}{l}=A \cos \frac{\pi x}{l} \sin \omega t
+\sum\_{n=0}^{\infty}\left[T\_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T\_{n}\right] \cos \frac{n \pi x}{l}=A \cos \frac{\pi x}{l} \sin \omega t
 \\]
 
-等式左边是傅里叶余弦级数, 这提示我们把等式右边也展开为傅里叶余弦级数. 其实, 右边已经是傅里叶余弦级数, 它只有一个单项即 \\(n=1\\) 的项. 于是, 比较两边的系数, 分离出 \\(T_{n(t)\\) 的常微分方程
+等式左边是傅里叶余弦级数, 这提示我们把等式右边也展开为傅里叶余弦级数. 其实, 右边已经是傅里叶余弦级数, 它只有一个单项即 \\(n=1\\) 的项. 于是, 比较两边的系数, 分离出 \\(T\_{n(t)\\) 的常微分方程
 
 \\[
-T_{1}^{\prime \prime}+\frac{\pi^{2} a^{2}}{l^{2}} T_{1}=A \sin \omega t,   T_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T_{n}=0,   n \neq 1
+T\_{1}^{\prime \prime}+\frac{\pi^{2} a^{2}}{l^{2}} T\_{1}=A \sin \omega t,   T\_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T\_{n}=0,   n \neq 1
 \\]
 
 又把 \\(u(x, t)\\) 的傅里叶余弦级数代入初始条件, 得
 
 \\[
 \begin{aligned}
-& \sum_{n=0}^{\infty} T_{n}(0) \cos \frac{n \pi}{l} x=\varphi(x)=\sum_{n=0}^{\infty} \varphi_{n} \cos \frac{n \pi}{l} x \\\\
-& \sum_{n=0}^{\infty} T_{n}^{\prime}(0) \cos \frac{n \pi}{l} x=\psi(x)=\sum_{n=0}^{\infty} \psi_{n} \cos \frac{n \pi}{l} x .
+& \sum\_{n=0}^{\infty} T\_{n}(0) \cos \frac{n \pi}{l} x=\varphi(x)=\sum\_{n=0}^{\infty} \varphi\_{n} \cos \frac{n \pi}{l} x \\\\
+& \sum\_{n=0}^{\infty} T\_{n}^{\prime}(0) \cos \frac{n \pi}{l} x=\psi(x)=\sum\_{n=0}^{\infty} \psi\_{n} \cos \frac{n \pi}{l} x .
 \end{aligned}
 \\]
 
-其中 \\(\varphi_{n} 、 \psi_{n}\\) 分别为 \\(\varphi(x)\\) 和 \\(\psi(x)\\) 的傅里叶余弦级数 [ 以 \\(\cos (n \pi x / l)\\) 为基本函数族] 的第 \\(n\\) 个傅里叶系数. 等式 (8.2.5)、(8.2.6) 两边都是傅里叶余弦级数. 由于基本函数族 \\(\cos (n \pi x / l)\\) 的正交性,等式两边对应同一基本函数的傅里叶系数必然相等; 于是得 \\(T_{n(t)\\) 的非零值初始条件
+其中 \\(\varphi\_{n} 、 \psi\_{n}\\) 分别为 \\(\varphi(x)\\) 和 \\(\psi(x)\\) 的傅里叶余弦级数 [ 以 \\(\cos (n \pi x / l)\\) 为基本函数族] 的第 \\(n\\) 个傅里叶系数. 等式 (8.2.5)、(8.2.6) 两边都是傅里叶余弦级数. 由于基本函数族 \\(\cos (n \pi x / l)\\) 的正交性,等式两边对应同一基本函数的傅里叶系数必然相等; 于是得 \\(T\_{n(t)\\) 的非零值初始条件
 
 \\[
 \begin{aligned}
 & \left\{\begin{array}{l}
-T_{0}(0)=\varphi_{0}=\frac{1}{l} \int_{0}^{l} \varphi(\xi) d \xi, \\\\
-T_{0}^{\prime}(0)=\psi_{0}=\frac{1}{l} \int_{0}^{l} \psi(\xi) d \xi ;
+T\_{0}(0)=\varphi\_{0}=\frac{1}{l} \int\_{0}^{l} \varphi(\xi) d \xi, \\\\
+T\_{0}^{\prime}(0)=\psi\_{0}=\frac{1}{l} \int\_{0}^{l} \psi(\xi) d \xi ;
 \end{array}\right. \\\\
 & \left\{\begin{array}{l}
-T_{n}(0)=\varphi_{n}=\frac{2}{l} \int_{0}^{l} \varphi(\xi) \cos \frac{n \pi \xi}{l} d \xi, \\\\
-T_{n}^{\prime}(0)=\psi_{n}=\frac{2}{l} \int_{0}^{l} \psi(\xi) \cos \frac{n \pi \xi}{l} d \xi,
+T\_{n}(0)=\varphi\_{n}=\frac{2}{l} \int\_{0}^{l} \varphi(\xi) \cos \frac{n \pi \xi}{l} d \xi, \\\\
+T\_{n}^{\prime}(0)=\psi\_{n}=\frac{2}{l} \int\_{0}^{l} \psi(\xi) \cos \frac{n \pi \xi}{l} d \xi,
 \end{array}\right.
 \end{aligned}
 \\]
 
-\\(T_{n}(t)\\) 的常微分方程在初始条件 (8.2.7) 下的解是
+\\(T\_{n}(t)\\) 的常微分方程在初始条件 (8.2.7) 下的解是
 
 \\[
 \begin{aligned}
-& T_{0}(t)=\varphi_{0}+\psi_{0} t \\\\
-& T_{1}(t)=\frac{A l}{\pi a} \frac{1}{\omega^{2}-\pi^{2} a^{2} / l^{2}}\left(\omega \sin \frac{\pi a t}{l}-\frac{\pi a}{l} \sin \omega t\right) \\\\
-&+\varphi_{1} \cos \frac{\pi a t}{l}+\frac{l}{\pi a} \psi_{1} \sin \frac{\pi a t}{l}, \\\\
-& T_{n}(t)=\varphi_{n} \cos ^{*} \frac{n \pi a t}{l}+\frac{l}{n \pi a} \psi_{n} \sin \frac{n \pi a t}{l}  (n \neq 0,1)
+& T\_{0}(t)=\varphi\_{0}+\psi\_{0} t \\\\
+& T\_{1}(t)=\frac{A l}{\pi a} \frac{1}{\omega^{2}-\pi^{2} a^{2} / l^{2}}\left(\omega \sin \frac{\pi a t}{l}-\frac{\pi a}{l} \sin \omega t\right) \\\\
+&+\varphi\_{1} \cos \frac{\pi a t}{l}+\frac{l}{\pi a} \psi\_{1} \sin \frac{\pi a t}{l}, \\\\
+& T\_{n}(t)=\varphi\_{n} \cos ^{*} \frac{n \pi a t}{l}+\frac{l}{n \pi a} \psi\_{n} \sin \frac{n \pi a t}{l}  (n \neq 0,1)
 \end{aligned}
 \\]
 
-(8.2.9) 的第一项为 \\(T_{1}(t)\\) 的非齐次常微分方程的特解, 满足零值初始条件. (8.2.9) 的后两项之和及 \\((8.2 .10)\\) 分别为 \\(T_{1(t)\\) 和 \\(T_{n(t)(n \neq 0,1)\\) 的齐次
+(8.2.9) 的第一项为 \\(T\_{1}(t)\\) 的非齐次常微分方程的特解, 满足零值初始条件. (8.2.9) 的后两项之和及 \\((8.2 .10)\\) 分别为 \\(T\_{1(t)\\) 和 \\(T\_{n(t)(n \neq 0,1)\\) 的齐次
 常微分方程的解, 满足非零值初始条件 (8.2.7).
 
 这样, 所求的解是
 
 \\[
 \begin{aligned}
-u(x, t)= & \frac{A l}{\pi a} \cdot \frac{1}{\omega^{2}-\pi^{2} a^{2} / l^{2}}\left(\omega \sin \frac{\pi a t}{l}-\frac{\pi a}{l} \sin \omega t\right) \cos \frac{\pi x}{l}+\varphi_{0}+ \\\\
-& \psi_{0} t+\sum_{n=1}^{\infty}\left(\varphi_{n} \cos \frac{n \pi a t}{l}+\frac{l}{n \pi a} \psi_{n} \sin \frac{n \pi a t}{l}\right) \cos \frac{n \pi x}{l}
+u(x, t)= & \frac{A l}{\pi a} \cdot \frac{1}{\omega^{2}-\pi^{2} a^{2} / l^{2}}\left(\omega \sin \frac{\pi a t}{l}-\frac{\pi a}{l} \sin \omega t\right) \cos \frac{\pi x}{l}+\varphi\_{0}+ \\\\
+& \psi\_{0} t+\sum\_{n=1}^{\infty}\left(\varphi\_{n} \cos \frac{n \pi a t}{l}+\frac{l}{n \pi a} \psi\_{n} \sin \frac{n \pi a t}{l}\right) \cos \frac{n \pi x}{l}
 \end{aligned}
 \\]
 
-尝试成功了, 这个方法叫做傅里叶级数法. 很明显, 这个方法的关键在于分离出 \\(T_{n}(t)\\) 的常微分方程, 其中不可混杂着另一自变数 \\(x\\), 这是怎样做到的呢? 原来, 这个级数展开的基本函数 \\(\cos (n \pi x / l)\\) 正是相应齐次方程、齐次边界条件下用分离变数法求得的本征函数, 这才得以分离出 \\(T_{n(t)\\) 的常微分方程. 因此, 傅里叶级数法一定要与分离变数法相结合才能应用.
+尝试成功了, 这个方法叫做傅里叶级数法. 很明显, 这个方法的关键在于分离出 \\(T\_{n}(t)\\) 的常微分方程, 其中不可混杂着另一自变数 \\(x\\), 这是怎样做到的呢? 原来, 这个级数展开的基本函数 \\(\cos (n \pi x / l)\\) 正是相应齐次方程、齐次边界条件下用分离变数法求得的本征函数, 这才得以分离出 \\(T\_{n(t)\\) 的常微分方程. 因此, 傅里叶级数法一定要与分离变数法相结合才能应用.
 
-齐次振动方程和齐次输运方程问题当然也可以用傅里叶级数法 (结合分离变数法) 求解, 这时得到的 \\(T_{n}(t)\\) 的常微分方程为齐次方程, 求解更容易. 建议读者用这样的方法重新求解上节的定解问题 (8.1.1) (8.1.3) 以及例 1 和例 2 , 这里就不赘述了.
+齐次振动方程和齐次输运方程问题当然也可以用傅里叶级数法 (结合分离变数法) 求解, 这时得到的 \\(T\_{n}(t)\\) 的常微分方程为齐次方程, 求解更容易. 建议读者用这样的方法重新求解上节的定解问题 (8.1.1) (8.1.3) 以及例 1 和例 2 , 这里就不赘述了.
 
 综上所述, 可以看出, 对于振动和输运问题, 不论齐次还是非齐次方程定解问题, 傅里叶级数法结合分离变数法均可应用. 如仅用分离变数法, 则只能用于齐次方程齐次边界条件定解问题.
 
@@ -847,9 +847,9 @@ u(x, t)= & \frac{A l}{\pi a} \cdot \frac{1}{\omega^{2}-\pi^{2} a^{2} / l^{2}}\le
 
 \\[
 \begin{aligned}
-& u_{t t}-a^{2} u_{x x}=f(x, t) \\\\
-& \left.u\right|_{x=0}=0,\left.u\right|_{x=l}=0 \\\\
-& \left.u\right|_{t=0}=\varphi(x),\left.u_{t}\right|_{t=0}=\psi(x)
+& u\_{t t}-a^{2} u\_{x x}=f(x, t) \\\\
+& \left.u\right|\_{x=0}=0,\left.u\right|\_{x=l}=0 \\\\
+& \left.u\right|\_{t=0}=\varphi(x),\left.u\_{t}\right|\_{t=0}=\psi(x)
 \end{aligned}
 \\]
 
@@ -863,9 +863,9 @@ u(x, t)=u^{\mathrm{I}}(x, t)+u^{\mathrm{I}}(x, t)
 
 \\[
 \begin{array}{l|l}
-u_{t t}^{\mathrm{I}}-a^{2} u_{x x}^{\mathrm{I}}=0, & u_{t t}^{\mathrm{II}}-a^{2} u_{x x}^{\mathrm{I}}=f(x, t), \\\\
-\left.u^{\mathrm{I}}\right|_{x=0}=0,\left.u^{\mathrm{I}}\right|_{x=l}=0, & \left.u^{\mathrm{I}}\right|_{x=0}=0,\left.u^{\mathrm{II}}\right|_{x=l}=0, \\\\
-\left.u^{\mathrm{I}}\right|_{t=0}=\varphi(x),\left.u_{t}^{\mathrm{I}}\right|_{t=0}=\psi(x) . & \left.u^{\mathrm{I}}\right|_{t=0}=0,\left.u_{t}^\mathbb{I}\right|_{t=0}=0
+u\_{t t}^{\mathrm{I}}-a^{2} u\_{x x}^{\mathrm{I}}=0, & u\_{t t}^{\mathrm{II}}-a^{2} u\_{x x}^{\mathrm{I}}=f(x, t), \\\\
+\left.u^{\mathrm{I}}\right|\_{x=0}=0,\left.u^{\mathrm{I}}\right|\_{x=l}=0, & \left.u^{\mathrm{I}}\right|\_{x=0}=0,\left.u^{\mathrm{II}}\right|\_{x=l}=0, \\\\
+\left.u^{\mathrm{I}}\right|\_{t=0}=\varphi(x),\left.u\_{t}^{\mathrm{I}}\right|\_{t=0}=\psi(x) . & \left.u^{\mathrm{I}}\right|\_{t=0}=0,\left.u\_{t}^\mathbb{I}\right|\_{t=0}=0
 \end{array}
 \\]
 
@@ -876,9 +876,9 @@ u_{t t}^{\mathrm{I}}-a^{2} u_{x x}^{\mathrm{I}}=0, & u_{t t}^{\mathrm{II}}-a^{2}
 
 \\[
 \begin{gathered}
-u_{u}-a^{2} u_{x x}=f(x, t) \\\\
-\left.u\right|_{x=0}=0,\left.u\right|_{x=l}=0 \\\\
-\left.u\right|_{t=0}=0,\left.  u_{t}\right|_{t=0}=0
+u\_{u}-a^{2} u\_{x x}=f(x, t) \\\\
+\left.u\right|\_{x=0}=0,\left.u\right|\_{x=l}=0 \\\\
+\left.u\right|\_{t=0}=0,\left.  u\_{t}\right|\_{t=0}=0
 \end{gathered}
 \\]
 
@@ -890,8 +890,8 @@ u_{u}-a^{2} u_{x x}=f(x, t) \\\\
 
 \\[
 \begin{aligned}
-F(x, t) & =\int_{0}^{t} F(x, \tau) \delta(t-\tau) d \tau=\rho f(x, t) \\\\
-& =\int_{0}^{t} \rho f(x, \tau) \delta(t-\tau) d \tau,
+F(x, t) & =\int\_{0}^{t} F(x, \tau) \delta(t-\tau) d \tau=\rho f(x, t) \\\\
+& =\int\_{0}^{t} \rho f(x, \tau) \delta(t-\tau) d \tau,
 \end{aligned}
 \\]
 
@@ -899,22 +899,22 @@ F(x, t) & =\int_{0}^{t} F(x, \tau) \delta(t-\tau) d \tau=\rho f(x, t) \\\\
 
 \\[
 \begin{gathered}
-u_{t u}^{(\tau)}-a^{2} u_{x x}^{(\tau)}=\frac{F(x, \tau)}{\rho} \delta(t-\tau) d \tau=f(x, \tau) \delta(t-\tau) d \tau \\\\
-\left.u^{(\tau)}\right|_{x=0}=0,\left.u^{(\tau)}\right|_{x=l}=0, \\\\
-\left.u^{(\tau)}\right|_{t=0}=0,\left.u_{t}^{(\tau)}\right|_{t=0}=0
+u\_{t u}^{(\tau)}-a^{2} u\_{x x}^{(\tau)}=\frac{F(x, \tau)}{\rho} \delta(t-\tau) d \tau=f(x, \tau) \delta(t-\tau) d \tau \\\\
+\left.u^{(\tau)}\right|\_{x=0}=0,\left.u^{(\tau)}\right|\_{x=l}=0, \\\\
+\left.u^{(\tau)}\right|\_{t=0}=0,\left.u\_{t}^{(\tau)}\right|\_{t=0}=0
 \end{gathered}
 \\]
 
-由于瞬时力 \\(F(x, \tau) \delta(t-\tau) d \tau\\) 作用在时间区间 \\((\tau, \tau+d \tau)\\) 上, 从时刻零直到时刻 \\(\tau-0\\), 它尚未起作用, 弦仍然是静止的, \\(\left.u^{(\tau)\right|_{t=\tau-0}=0,\left.u_{t}^{(\tau)}\right|_{t=\tau-0}=\\) 0 . 时刻 \\(\tau\\), 该瞬时力开始作用, 至时刻 \\(\tau+d \tau\\) 结束. 由于 \\(d \tau\\) 很短, 弦上各质点 “来不及” 位移, 故在时刻 \\(\tau+d \tau\\), 位移 \\(\left.u^{(\tau)\right|_{t=\tau+d \tau}=0\\). 再看时刻 \\(\tau+d \tau\\)的速度 \\(u_{t^{(\tau)}\\), 根据冲量定理, 从 \\(\tau-0\\) 时刻到 \\(\tau+d \tau\\) 时刻, 单位长度弦的动量变化等于瞬时力 \\(F(x, \tau) \delta(t-\tau) d \tau\\) 的冲量, 故有
+由于瞬时力 \\(F(x, \tau) \delta(t-\tau) d \tau\\) 作用在时间区间 \\((\tau, \tau+d \tau)\\) 上, 从时刻零直到时刻 \\(\tau-0\\), 它尚未起作用, 弦仍然是静止的, \\(\left.u^{(\tau)\right|\_{t=\tau-0}=0,\left.u\_{t}^{(\tau)}\right|\_{t=\tau-0}=\\) 0 . 时刻 \\(\tau\\), 该瞬时力开始作用, 至时刻 \\(\tau+d \tau\\) 结束. 由于 \\(d \tau\\) 很短, 弦上各质点 “来不及” 位移, 故在时刻 \\(\tau+d \tau\\), 位移 \\(\left.u^{(\tau)\right|\_{t=\tau+d \tau}=0\\). 再看时刻 \\(\tau+d \tau\\)的速度 \\(u\_{t^{(\tau)}\\), 根据冲量定理, 从 \\(\tau-0\\) 时刻到 \\(\tau+d \tau\\) 时刻, 单位长度弦的动量变化等于瞬时力 \\(F(x, \tau) \delta(t-\tau) d \tau\\) 的冲量, 故有
 
 \\[
-\left.\rho u_{t}^{(\tau)}\right|_{t=\tau+d \tau}-\left.\rho u_{t}^{(\tau)}\right|_{t=\tau-0}=F(x, \tau) d \tau=\rho f(x, \tau) d \tau
+\left.\rho u\_{t}^{(\tau)}\right|\_{t=\tau+d \tau}-\left.\rho u\_{t}^{(\tau)}\right|\_{t=\tau-0}=F(x, \tau) d \tau=\rho f(x, \tau) d \tau
 \\]
 
 从而得到
 
 \\[
-\left.u_{t}^{(\tau)}\right|_{t=\tau+d \tau}=f(x, \tau) d \tau
+\left.u\_{t}^{(\tau)}\right|\_{t=\tau+d \tau}=f(x, \tau) d \tau
 \\]
 
 如果改取 \\(\tau+d \tau\\) 时刻作为初始时刻, 考察瞬时力 \\(F(x, \tau) \delta(t-\tau) d \tau\\) 在 \\(\tau+\\)
@@ -922,9 +922,9 @@ u_{t u}^{(\tau)}-a^{2} u_{x x}^{(\tau)}=\frac{F(x, \tau)}{\rho} \delta(t-\tau) d
 
 \\[
 \begin{gathered}
-u_{t t}^{(\tau)}-a^{2} u_{x x}^{(\tau)}=0, \\\\
-\left.u^{(\tau)}\right|_{x=0}=0,\left.u^{(\tau)}\right|_{x=l}=0, \\\\
-\left.u^{(\tau)}\right|_{t=\tau+d \tau}=0,\left.u_{t}^{(\tau)}\right|_{t=\tau+d \tau}=f(x, \tau) d \tau .
+u\_{t t}^{(\tau)}-a^{2} u\_{x x}^{(\tau)}=0, \\\\
+\left.u^{(\tau)}\right|\_{x=0}=0,\left.u^{(\tau)}\right|\_{x=l}=0, \\\\
+\left.u^{(\tau)}\right|\_{t=\tau+d \tau}=0,\left.u\_{t}^{(\tau)}\right|\_{t=\tau+d \tau}=f(x, \tau) d \tau .
 \end{gathered}
 \\]
 
@@ -932,9 +932,9 @@ u_{t t}^{(\tau)}-a^{2} u_{x x}^{(\tau)}=0, \\\\
 
 \\[
 \begin{aligned}
-& v_{t t}-a^{2} v_{x x}=f(x, \tau) \delta(t-\tau), \\\\
-&\left.v\right|_{x=0}=0,\left.v\right|_{x=l}=0, \\\\
-&\left.v\right|_{t=0}=0,\left.  v_{t}\right|_{t=0}=0 .
+& v\_{t t}-a^{2} v\_{x x}=f(x, \tau) \delta(t-\tau), \\\\
+&\left.v\right|\_{x=0}=0,\left.v\right|\_{x=l}=0, \\\\
+&\left.v\right|\_{t=0}=0,\left.  v\_{t}\right|\_{t=0}=0 .
 \end{aligned}
 \\]
 
@@ -942,9 +942,9 @@ u_{t t}^{(\tau)}-a^{2} u_{x x}^{(\tau)}=0, \\\\
 
 \\[
 \begin{gathered}
-v_{t t}-a^{2} v_{x x}=0, \\\\
-\left.v\right|_{x=0}=0,\left.v\right|_{x=\mathrm{i}}=0, \\\\
-\left.v\right|_{t=\tau}=0,\left.  v_{t}\right|_{t=\tau}=f(x, \tau) .
+v\_{t t}-a^{2} v\_{x x}=0, \\\\
+\left.v\right|\_{x=0}=0,\left.v\right|\_{x=\mathrm{i}}=0, \\\\
+\left.v\right|\_{t=\tau}=0,\left.  v\_{t}\right|\_{t=\tau}=f(x, \tau) .
 \end{gathered}
 \\]
 
@@ -953,7 +953,7 @@ v_{t t}-a^{2} v_{x x}=0, \\\\
 定解问题 (8.2.12) (8.2.14) 是线性的, 适用叠加原理, 既然外加力是一系列瞬时力的叠加, 则定解问题 (8.2.12) (8.2.14) 的解也应是瞬时力所引起的振动的叠加. 计及所有瞬时力的影响, 就有
 
 \\[
-u(x, t)=\sum_{\tau=0}^{t} u^{(\tau)}(x, t)=\int_{0}^{t} v(x, t ; \tau) d \tau
+u(x, t)=\sum\_{\tau=0}^{t} u^{(\tau)}(x, t)=\int\_{0}^{t} v(x, t ; \tau) d \tau
 \\]
 
 \\(u(x, t)\\) 就是定解问题 (8.2.12) (8.2.14) 的解. 这就从物理上给出了求解非齐次振动方程定解问题 (8.2.12) (8.2.14) 的方法, 因为利用了冲量定理,故称为冲量定理法.
@@ -967,10 +967,10 @@ u(x, t)=\sum_{\tau=0}^{t} u^{(\tau)}(x, t)=\int_{0}^{t} v(x, t ; \tau) d \tau
 
 这里要验证, 由满足齐次振动方程定解问题 (8.2.24)、( 8.2 .22\\()\\) 、 (8. 2. 25) 的解 \\(v(x, t ; \tau)\\) 通过积分 (8.2.26) 得到的 \\(u(x, t)\\) 是非齐次振动方程定解问题 (8.2.12) (8.2.14) 的解.
 
-首先验证边界条件. 由于 \\(\left.v\right|_{x=0}=0 ;\left.v\right|_{x=l}=0\\), 因此,
+首先验证边界条件. 由于 \\(\left.v\right|\_{x=0}=0 ;\left.v\right|\_{x=l}=0\\), 因此,
 
 \\[
-\left.u\right|_{x=0}=\left.\int_{0}^{t} v\right|_{x=0} d \tau=0,\left.u\right|_{x=l}=\left.\int_{0}^{t} v\right|_{x=l} d \tau=0
+\left.u\right|\_{x=0}=\left.\int\_{0}^{t} v\right|\_{x=0} d \tau=0,\left.u\right|\_{x=l}=\left.\int\_{0}^{t} v\right|\_{x=l} d \tau=0
 \\]
 
 \\(u(x, t)\\) 满足齐次边界条件 (8.2.13).
@@ -978,14 +978,14 @@ u(x, t)=\sum_{\tau=0}^{t} u^{(\tau)}(x, t)=\int_{0}^{t} v(x, t ; \tau) d \tau
 其次验证初始条件. 由 (8.2.26) 知初始位移
 
 \\[
-\left.u\right|_{t=0}=\left.\int_{0}^{0} v\right|_{t=0} d \tau=0
+\left.u\right|\_{t=0}=\left.\int\_{0}^{0} v\right|\_{t=0} d \tau=0
 \\]
 
 为验证初始速度, 需利用积分号下求导的公式
 
 \\[
 \begin{aligned}
-\frac{d}{d t} \int_{\alpha(t)}^{\beta(t)} g(t ; \tau) d \tau= & \int_{\alpha(t)}^{\beta(t)} \frac{\partial g(t ; \tau)}{\partial t} d \tau+g[t ; \beta(t)] \frac{d \beta(t)}{d t} \\\\
+\frac{d}{d t} \int\_{\alpha(t)}^{\beta(t)} g(t ; \tau) d \tau= & \int\_{\alpha(t)}^{\beta(t)} \frac{\partial g(t ; \tau)}{\partial t} d \tau+g[t ; \beta(t)] \frac{d \beta(t)}{d t} \\\\
 & -g[t ; \alpha(t)] \frac{d \alpha(t)}{d t}
 \end{aligned}
 \\]
@@ -993,15 +993,15 @@ u(x, t)=\sum_{\tau=0}^{t} u^{(\tau)}(x, t)=\int_{0}^{t} v(x, t ; \tau) d \tau
 这个公式在微积分教本中可以找到. 把这个公式应用于 (8.2.26), 有
 
 \\[
-u_{t}(x, t)=\int_{0}^{t} v_{\iota}(x, t ; \tau) d \tau+v(x, t ; t)
+u\_{t}(x, t)=\int\_{0}^{t} v\_{\iota}(x, t ; \tau) d \tau+v(x, t ; t)
 \\]
 
 按 \\((8.2 .25), v(x, \tau ; \tau)=0  (0 \leqslant \tau \leqslant t)\\). 所以,
 
 \\[
 \begin{aligned}
-& u_{t}(x, t)=\int_{0}^{t} v_{t}(x, t ; \tau) d \tau, \\\\
-& \left.u_{t}\right|_{\mathrm{i}=0}=\left.\int_{0}^{0} v_{t}\right|_{\mathrm{i}=0} d \tau=0 .
+& u\_{t}(x, t)=\int\_{0}^{t} v\_{t}(x, t ; \tau) d \tau, \\\\
+& \left.u\_{t}\right|\_{\mathrm{i}=0}=\left.\int\_{0}^{0} v\_{t}\right|\_{\mathrm{i}=0} d \tau=0 .
 \end{aligned}
 \\]
 
@@ -1010,20 +1010,20 @@ u_{t}(x, t)=\int_{0}^{t} v_{\iota}(x, t ; \tau) d \tau+v(x, t ; t)
 最后验证非齐次方程. 对 (8.2.28) 应用求导公式(8.2.27),
 
 \\[
-u_{t t}=\int_{0}^{t} \dot{v}_{t u}(x, t ; \tau) d \tau+v_{t}(x, t ; t)
+u\_{t t}=\int\_{0}^{t} \dot{v}\_{t u}(x, t ; \tau) d \tau+v\_{t}(x, t ; t)
 \\]
 
-按 (8.2.25), \\(v_{t}(x, \tau ; \tau)=f(x, \tau)(0 \leqslant \tau \leqslant t)\\). 所以,
+按 (8.2.25), \\(v\_{t}(x, \tau ; \tau)=f(x, \tau)(0 \leqslant \tau \leqslant t)\\). 所以,
 
 \\[
-u_{t t}=\int_{0}^{t} v_{t t}(x, t ; \tau) d \tau+f(x, t)
+u\_{t t}=\int\_{0}^{t} v\_{t t}(x, t ; \tau) d \tau+f(x, t)
 \\]
 
 以(8.2.26) 和 (8.2.29) 代入非齐次方程 (8.2.12) 的左边, 则
 
 \\[
 \begin{aligned}
-u_{t u}-a^{2} u_{x x} & =\int_{0}^{t}\left(v_{t t}-a^{2} v_{x x}\right) d \tau+f(x, t)=\int_{0}^{t} 0 d \tau+f(x, t) \\\\
+u\_{t u}-a^{2} u\_{x x} & =\int\_{0}^{t}\left(v\_{t t}-a^{2} v\_{x x}\right) d \tau+f(x, t)=\int\_{0}^{t} 0 d \tau+f(x, t) \\\\
 & =f(x, t)
 \end{aligned}
 \\]
@@ -1035,9 +1035,9 @@ u_{t u}-a^{2} u_{x x} & =\int_{0}^{t}\left(v_{t t}-a^{2} v_{x x}\right) d \tau+f
 
 \\[
 \begin{aligned}
-& u_{u}-a^{2} u_{x x}=A \cos \frac{\pi x}{l} \sin \omega t ; \\\\
-& \left.u_{x}\right|_{x=0}=0,\left.  u_{x}\right|_{x=\mathrm{i}}=0 ; \\\\
-& \left.u\right|_{t=0}=0,\left.  u_{t}\right|_{t=0}=0
+& u\_{u}-a^{2} u\_{x x}=A \cos \frac{\pi x}{l} \sin \omega t ; \\\\
+& \left.u\_{x}\right|\_{x=0}=0,\left.  u\_{x}\right|\_{x=\mathrm{i}}=0 ; \\\\
+& \left.u\right|\_{t=0}=0,\left.  u\_{t}\right|\_{t=0}=0
 \end{aligned}
 \\]
 
@@ -1045,36 +1045,36 @@ u_{t u}-a^{2} u_{x x} & =\int_{0}^{t}\left(v_{t t}-a^{2} v_{x x}\right) d \tau+f
 
 \\[
 \begin{gathered}
-v_{t}-a^{2} v_{x x}=0 ; \\\\
-\left.v_{x}\right|_{x=0}=0,\left.  v_{x}\right|_{x=\mathrm{i}}=0 ; \\\\
-\left.v\right|_{\mathrm{i}=\tau+0}=0,\left.  v_{\iota}\right|_{\mathrm{i}=\tau+0}=A \cos \frac{\pi x}{l} \sin \omega \tau .
+v\_{t}-a^{2} v\_{x x}=0 ; \\\\
+\left.v\_{x}\right|\_{x=0}=0,\left.  v\_{x}\right|\_{x=\mathrm{i}}=0 ; \\\\
+\left.v\right|\_{\mathrm{i}=\tau+0}=0,\left.  v\_{\iota}\right|\_{\mathrm{i}=\tau+0}=A \cos \frac{\pi x}{l} \sin \omega \tau .
 \end{gathered}
 \\]
 
 参照边界条件, 试把解 \\(v\\) 展开为傅里叶余弦级数
 
 \\[
-v(x, t ; \tau)=\sum_{n=0}^{\infty} T_{n}(t, \tau) \cos \frac{n \pi x}{l}
+v(x, t ; \tau)=\sum\_{n=0}^{\infty} T\_{n}(t, \tau) \cos \frac{n \pi x}{l}
 \\]
 
 把这余弦级数代入泛定方程
 
 \\[
-\sum_{n=0}^{\infty}\left[T_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T_{n}\right] \cos \frac{n \pi x}{l}=0
+\sum\_{n=0}^{\infty}\left[T\_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T\_{n}\right] \cos \frac{n \pi x}{l}=0
 \\]
 
-由此分离出 \\(T_{n}\\) 的常微分方程
+由此分离出 \\(T\_{n}\\) 的常微分方程
 
 \\[
-T_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T_{n}=0
+T\_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T\_{n}=0
 \\]
 
 这个常微分方程的解是
 
 \\[
 \begin{aligned}
-& T_{0}(t ; \tau)=A_{0}(\tau) B_{0}(\tau)(t-\tau), \\\\
-& T_{n}(t ; \tau)=A_{n}(\tau) \cos \frac{n \pi a(t-\tau)}{l}+B_{n}(\tau) \sin \frac{n \pi a(t-\tau)}{l}  (n=1,2, \cdots) .
+& T\_{0}(t ; \tau)=A\_{0}(\tau) B\_{0}(\tau)(t-\tau), \\\\
+& T\_{n}(t ; \tau)=A\_{n}(\tau) \cos \frac{n \pi a(t-\tau)}{l}+B\_{n}(\tau) \sin \frac{n \pi a(t-\tau)}{l}  (n=1,2, \cdots) .
 \end{aligned}
 \\]
 
@@ -1082,25 +1082,25 @@ T_{n}^{\prime \prime}+\frac{n^{2} \pi^{2} a^{2}}{l^{2}} T_{n}=0
 
 \\[
 \begin{aligned}
-v(x, t ; \tau)= & A_{0}(\tau)+B_{0}(\tau)(t-\tau) \\\\
-& +\sum_{n=1}^{\infty}\left[A_{n}(\tau) \cos \frac{n \pi a(t-\tau)}{l}\right. \\\\
-& \left.+B_{n}(\tau) \sin \frac{n \pi a(t-\tau)}{l}\right] \cos \frac{n \pi x}{l}
+v(x, t ; \tau)= & A\_{0}(\tau)+B\_{0}(\tau)(t-\tau) \\\\
+& +\sum\_{n=1}^{\infty}\left[A\_{n}(\tau) \cos \frac{n \pi a(t-\tau)}{l}\right. \\\\
+& \left.+B\_{n}(\tau) \sin \frac{n \pi a(t-\tau)}{l}\right] \cos \frac{n \pi x}{l}
 \end{aligned}
 \\]
 
-至于系数 \\(A_{n}(\tau)\\) 和 \\(B_{n(\tau)\\) 则由初始条件确定. 为此, 把上式代入初始条件,
+至于系数 \\(A\_{n}(\tau)\\) 和 \\(B\_{n(\tau)\\) 则由初始条件确定. 为此, 把上式代入初始条件,
 
 \\[
 \begin{gathered}
-A_{0}(\tau)+\sum_{n=1}^{\infty} A_{n}(\tau) \cos \frac{n \pi x}{l}=0 \\\\
-B_{0}(\tau)+\sum_{n=1}^{\infty} B_{n}(\tau) \frac{n \pi a}{l} \cos \frac{n \pi x}{l}=A \cos \frac{\pi x}{l} \sin \omega \tau .
+A\_{0}(\tau)+\sum\_{n=1}^{\infty} A\_{n}(\tau) \cos \frac{n \pi x}{l}=0 \\\\
+B\_{0}(\tau)+\sum\_{n=1}^{\infty} B\_{n}(\tau) \frac{n \pi a}{l} \cos \frac{n \pi x}{l}=A \cos \frac{\pi x}{l} \sin \omega \tau .
 \end{gathered}
 \\]
 
 右边的 \\(A \cos \frac{\pi x}{l} \sin \omega \tau\\) 也是傅里叶余弦级数, 它只有一个单项即 \\(n=1\\) 的项. 比较两边系数, 得
 
 \\[
-A_{n}(\tau)=0, B_{1}(\tau)=A \frac{l}{\pi a} \sin \omega \tau, B_{n}(\tau)=0,  (n=2,3, \cdots)
+A\_{n}(\tau)=0, B\_{1}(\tau)=A \frac{l}{\pi a} \sin \omega \tau, B\_{n}(\tau)=0,  (n=2,3, \cdots)
 \\]
 
 到此, 已求出 \\(v(x, t ; \tau)\\),
@@ -1113,8 +1113,8 @@ v(x, t ; \tau)=A \frac{l}{\pi a} \sin \omega \tau \sin \frac{\pi a(t-\tau)}{l} \
 
 \\[
 \begin{aligned}
-u(x, t) & =\int_{0}^{t} v(x, t ; \tau) \\\\
-& =\frac{A l}{\pi a} \cos \frac{\pi x}{l} \int_{0}^{l} \sin \omega \tau \sin \frac{\pi a(t-\tau)}{l} d \tau \\\\
+u(x, t) & =\int\_{0}^{t} v(x, t ; \tau) \\\\
+& =\frac{A l}{\pi a} \cos \frac{\pi x}{l} \int\_{0}^{l} \sin \omega \tau \sin \frac{\pi a(t-\tau)}{l} d \tau \\\\
 & =\frac{A l}{\pi a} \frac{1}{\omega^{2}-\pi^{2} a^{2} / l^{2}}\left(\omega \sin \frac{\pi a}{l} t-\frac{\pi a}{l} \sin \omega t\right) \cos \frac{\pi x}{l} .
 \end{aligned}
 \\]
@@ -1123,9 +1123,9 @@ u(x, t) & =\int_{0}^{t} v(x, t ; \tau) \\\\
 
 \\[
 \begin{gathered}
-u_{t}-a^{2} u_{x x}=f(x, t), \\\\
-\left.u_{x}\right|_{x=0}=0,\left.u_{x}\right|_{x=l}=0, \\\\
-\left.u\right|_{t=0}=0 .
+u\_{t}-a^{2} u\_{x x}=f(x, t), \\\\
+\left.u\_{x}\right|\_{x=0}=0,\left.u\_{x}\right|\_{x=l}=0, \\\\
+\left.u\right|\_{t=0}=0 .
 \end{gathered}
 \\]
 
@@ -1135,32 +1135,32 @@ u_{t}-a^{2} u_{x x}=f(x, t), \\\\
 
 \\[
 \begin{gathered}
-v_{t}-a^{2} v_{x x}=f(x, \tau) \delta(t-\tau) \\\\
-\left.v_{x}\right|_{x=0}=0,\left.v_{x}\right|_{x=l}=0 \\\\
-\left.v\right|_{t=0}=0
+v\_{t}-a^{2} v\_{x x}=f(x, \tau) \delta(t-\tau) \\\\
+\left.v\_{x}\right|\_{x=0}=0,\left.v\_{x}\right|\_{x=l}=0 \\\\
+\left.v\right|\_{t=0}=0
 \end{gathered}
 \\]
 
-直到 \\(\tau-0\\) 时刻, 瞬时热源尚未起作用, 从初始条件 \\(\left.v\right|_{t=0=0\\) 得 \\(\left.v\right|_{t=\tau-0\\)
-\\(=0 . \tau\\) 时刻, 瞬时热源 \\(c \rho f(x, \tau) \delta(t-\tau) d \tau\\) 开始起作用, 至 \\(\tau+d \tau\\) 时刻, 作用结束, 瞬时热源放出的热量, 使 \\(\tau+d \tau\\) 时刻的温度增加到 \\(\left.v\right|_{t=\tau+d \tau\\), 于是
+直到 \\(\tau-0\\) 时刻, 瞬时热源尚未起作用, 从初始条件 \\(\left.v\right|\_{t=0=0\\) 得 \\(\left.v\right|\_{t=\tau-0\\)
+\\(=0 . \tau\\) 时刻, 瞬时热源 \\(c \rho f(x, \tau) \delta(t-\tau) d \tau\\) 开始起作用, 至 \\(\tau+d \tau\\) 时刻, 作用结束, 瞬时热源放出的热量, 使 \\(\tau+d \tau\\) 时刻的温度增加到 \\(\left.v\right|\_{t=\tau+d \tau\\), 于是
 
 \\[
-c \rho\left(\left.v\right|_{t=\tau+d \tau}-\left.v\right|_{t=\tau-0}\right) d \tau=c \rho f(x, \tau) d \tau
+c \rho\left(\left.v\right|\_{t=\tau+d \tau}-\left.v\right|\_{t=\tau-0}\right) d \tau=c \rho f(x, \tau) d \tau
 \\]
 
 从而
 
 \\[
-\left.v\right|_{t=\tau+d \tau}=f(x, \tau) .
+\left.v\right|\_{t=\tau+d \tau}=f(x, \tau) .
 \\]
 
 这是 \\(\tau+d \tau\\) 时刻的温度分布, 如果把 \\(\tau+d \tau\\) 时刻作为初始时刻, 研究瞬时热源在 \\(\tau+d \tau\\) 时刻以后产生的温度分布 \\(v(x, t ; \tau) d \tau\\) ,则 \\(v(x, t ; \tau)\\) 的定解问题为
 
 \\[
 \begin{gathered}
-v_{t}-a^{2} v_{x x}=0, \\\\
-\left.v_{x}\right|_{x=0}=0,\left.v_{x}\right|_{x=l}=0, \\\\
-\left.v\right|_{t=\tau}=f(x, \tau) .
+v\_{t}-a^{2} v\_{x x}=0, \\\\
+\left.v\_{x}\right|\_{x=0}=0,\left.v\_{x}\right|\_{x=l}=0, \\\\
+\left.v\right|\_{t=\tau}=f(x, \tau) .
 \end{gathered}
 \\]
 
@@ -1169,7 +1169,7 @@ v_{t}-a^{2} v_{x x}=0, \\\\
 定解问题 (8.2.30) (8.2.32) 是线性的, 叠加原理也适用. 考虑所有瞬时热源产生的影响, 把这些影响叠加起来, 就得到此定解问题的解 \\(u(x, t)\\),于是有
 
 \\[
-u(x, t)=\int_{0}^{t} v(x, t ; \tau) d \tau
+u(x, t)=\int\_{0}^{t} v(x, t ; \tau) d \tau
 \\]
 
 同样, 可从数学上验证这样得到的 \\(u(x, t)\\) 确实满足定解问题 (8.2.30) (8.2.32), 请读者去完成, 这里不赘述了.

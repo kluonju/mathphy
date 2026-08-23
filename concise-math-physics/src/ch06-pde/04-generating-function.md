@@ -1,97 +1,97 @@
 ## 生成函数
 
 许多数理物理中的函数集可用生成函数定义。这类函数包括但不限于
-我们在罗德里格斯公式讨论中涉及的正交多项式 \\(y_n\\)。目前，我们不
+我们在罗德里格斯公式讨论中涉及的正交多项式 \\(y\_n\\)。目前，我们不
 对函数的来源做假设。
 
-若 \\(f_n(x)\\) 是以整数 \\(n\\) 为指标的函数集，则这些 \\(f_n(x)\\) 可描述为
+若 \\(f\_n(x)\\) 是以整数 \\(n\\) 为指标的函数集，则这些 \\(f\_n(x)\\) 可描述为
 某辅助变量 \\(t\\) 的幂级数展开中某函数 \\(g(x, t)\\) 的系数，这个
 \\(g(x, t)\\) 就称为生成函数：
 
 \\[
-g(x, t)=\sum_n c_n f_n(x) t^n
+g(x, t)=\sum\_n c\_n f\_n(x) t^n
 \\]
 
 这里 \\(n\\) 的取值可为半无限（\\(n \geq 0\\)，即泰勒级数），也可为
-\\(-\infty\\) 到 \\(+\infty\\)（即劳伦级数）。额外的系数 \\(c_n\\) 用于调整
-归一化。对同一组 \\(f_n\\)，不同 \\(c_n\\) 会导致不同的生成函数 \\(g(x, t)\\)。
+\\(-\infty\\) 到 \\(+\infty\\)（即劳伦级数）。额外的系数 \\(c\_n\\) 用于调整
+归一化。对同一组 \\(f\_n\\)，不同 \\(c\_n\\) 会导致不同的生成函数 \\(g(x, t)\\)。
 
-应用留数定理，生成函数的展开与 \\(f_n\\) 的复变积分表示相关：
+应用留数定理，生成函数的展开与 \\(f\_n\\) 的复变积分表示相关：
 
 \\[
-c_n f_n(x)=\frac{1}{2 \pi i} \oint \frac{g(x, t)}{t^{n+1}} d t
+c\_n f\_n(x)=\frac{1}{2 \pi i} \oint \frac{g(x, t)}{t^{n+1}} d t
 \\]
 
 其中积分路径围绕 \\(t=0\\)，但不包围被积函数（关于 \\(t\\)）的其他奇点。
 
-生成函数既可用来定义 \\(f_n(x)\\)，也可作为已知 \\(f_n\\) 的封装（如
-\\(f_n\\) 是 Sturm-Liouville 常微分方程的多项式解）。我们稍后讨论如何
-为已知 \\(f_n\\) 构造生成函数，目前只关注生成函数的用法。
+生成函数既可用来定义 \\(f\_n(x)\\)，也可作为已知 \\(f\_n\\) 的封装（如
+\\(f\_n\\) 是 Sturm-Liouville 常微分方程的多项式解）。我们稍后讨论如何
+为已知 \\(f\_n\\) 构造生成函数，目前只关注生成函数的用法。
 
 显然，通过显式展开生成函数，可提取函数集的各成员。更重要的是，
-生成函数在推导 \\(f_n\\) 集合成员间关系时非常有用。例如，
+生成函数在推导 \\(f\_n\\) 集合成员间关系时非常有用。例如，
 
 \\[
-\frac{\partial g(x, t)}{\partial t}=\sum_n n c_n f_n(x) t^{n-1}=
-\sum_n(n+1) c_{n+1} f_{n+1}(x) t^n,
+\frac{\partial g(x, t)}{\partial t}=\sum\_n n c\_n f\_n(x) t^{n-1}=
+\sum\_n(n+1) c\_{n+1} f\_{n+1}(x) t^n,
 \\]
 
-若能将 \\(g\\) 与 \\(\partial g / \partial t\\) 联系，就能得到 \\(f_n\\) 与
-\\(f_{n+1}\\) 的关系。对 \\(g(x, t)\\) 关于 \\(x\\) 求导，还可推导 \\(f_n(x)\\)
+若能将 \\(g\\) 与 \\(\partial g / \partial t\\) 联系，就能得到 \\(f\_n\\) 与
+\\(f\_{n+1}\\) 的关系。对 \\(g(x, t)\\) 关于 \\(x\\) 求导，还可推导 \\(f\_n(x)\\)
 
 \\[
-e^{-t^2+2 t x}=\sum_{n=0}^{\infty} H_n(x) \frac{t^n}{n!}
+e^{-t^2+2 t x}=\sum\_{n=0}^{\infty} H\_n(x) \frac{t^n}{n!}
 \\]
 
 \\[
-e^{-t^2+2 t x}=\sum_{n=0}^{\infty} H_n(x) \frac{t^n}{n!}
+e^{-t^2+2 t x}=\sum\_{n=0}^{\infty} H\_n(x) \frac{t^n}{n!}
 \\]
 
-为推导 \\(H_n\\) 的递推公式，计算
+为推导 \\(H\_n\\) 的递推公式，计算
 
 \\[
-\frac{\partial}{\partial t} e^{-t^2+2 t x}=(2 x-2 t) e^{-t^2+2 t x}=\sum_{n=0}^{\infty} n H_n(x) \frac{t^{n-1}}{n!} .
+\frac{\partial}{\partial t} e^{-t^2+2 t x}=(2 x-2 t) e^{-t^2+2 t x}=\sum\_{n=0}^{\infty} n H\_n(x) \frac{t^{n-1}}{n!} .
 \\]
 
-将指数函数在等式中间项展开（暂省 \\(H_n\\) 的自变量），有
+将指数函数在等式中间项展开（暂省 \\(H\_n\\) 的自变量），有
 
 \\[
-\sum_{n=0}^{\infty} 2 x H_n \frac{t^n}{n!}-\sum_{n=0}^{\infty} 2 H_n
-\frac{t^{n+1}}{n!}=\sum_{n=0}^{\infty} n H_n \frac{t^{n-1}}{n!}
+\sum\_{n=0}^{\infty} 2 x H\_n \frac{t^n}{n!}-\sum\_{n=0}^{\infty} 2 H\_n
+\frac{t^{n+1}}{n!}=\sum\_{n=0}^{\infty} n H\_n \frac{t^{n-1}}{n!}
 \\]
 
 从每项中提取 \\(t^n\\) 的系数，得（对每个 \\(n\\)）
 
 \\[
-\frac{2 x H_n}{n!}-\frac{2 H_{n-1}}{(n-1)!}=\frac{(n+1) H_{n+1}}{(n+1)!},
+\frac{2 x H\_n}{n!}-\frac{2 H\_{n-1}}{(n-1)!}=\frac{(n+1) H\_{n+1}}{(n+1)!},
 \\]
 
 化简为
 
 \\[
-2 x H_n(x)-2 n H_{n-1}(x)=H_{n+1}(x) .
+2 x H\_n(x)-2 n H\_{n-1}(x)=H\_{n+1}(x) .
 \\]
 
 \\[
-2 x H_n(x)-2 n H_{n-1}(x)=H_{n+1}(x)
+2 x H\_n(x)-2 n H\_{n-1}(x)=H\_{n+1}(x)
 \\]
 
 \\[
 \frac{\partial}{\partial x} e^{-t^2+2 t x}=2 t e^{-t^2+2 t x}=
-\sum_{n=0}^{\infty} H_n^{\prime}(x) \frac{t^n}{n!} .
+\sum\_{n=0}^{\infty} H\_n^{\prime}(x) \frac{t^n}{n!} .
 \\]
 
 将等式代入该式中间项，得
 
 \\[
-\sum_{n=0}^{\infty} 2 H_n(x) \frac{t^{n+1}}{n!}=
-\sum_{n=0}^{\infty} H_n^{\prime}(x) \frac{t^n}{n!},
+\sum\_{n=0}^{\infty} 2 H\_n(x) \frac{t^{n+1}}{n!}=
+\sum\_{n=0}^{\infty} H\_n^{\prime}(x) \frac{t^n}{n!},
 \\]
 
 直接得到
 
 \\[
-2 n H_{n-1}(x)=H_n^{\prime}(x) .
+2 n H\_{n-1}(x)=H\_n^{\prime}(x) .
 \\]
 
 ### 寻找生成函数
@@ -102,16 +102,16 @@ e^{-t^2+2 t x}=\sum_{n=0}^{\infty} H_n(x) \frac{t^n}{n!}
 有关这方面的工作，可参见“补充阅读”中 McBride 和 Talman 的著作。
 
 \\[
-g(x, t)=\frac{1}{w(x)} \sum_{n=0}^{\infty} c_n t^n \frac{n!}{2 \pi i} \oint_C \frac{w(z)[p(z)]^n}{(z-x)^{n+1}} d z
+g(x, t)=\frac{1}{w(x)} \sum\_{n=0}^{\infty} c\_n t^n \frac{n!}{2 \pi i} \oint\_C \frac{w(z)[p(z)]^n}{(z-x)^{n+1}} d z
 \\]
 
 \\[
-g(x, t)=\frac{1}{w(x)} \sum_{n=0}^{\infty} c_n t^n \frac{n!}{2 \pi i} \oint_C \frac{w(z)[p(z)]^n}{(z-x)^{n+1}} d z
+g(x, t)=\frac{1}{w(x)} \sum\_{n=0}^{\infty} c\_n t^n \frac{n!}{2 \pi i} \oint\_C \frac{w(z)[p(z)]^n}{(z-x)^{n+1}} d z
 \\]
 
 记住 \\(C\\) 包含 \\(x\\)，且 \\(w p^n\\) 在围道所圈定的区域内必须解析。
 
-原则上，方程  可以被求值以得到 \\(g(x,t)\\)，例如可以选择适当的 \\(C\\) 使得求和可移入 \\(z\\) 积分内，然后（在指定 \\(c_n\\) 之后）先求和再评价围道积分。实际上，能否顺利完成此步骤取决于具体问题及 \\(c_n\\) 的选择。下面给出一个该过程的示例。
+原则上，方程  可以被求值以得到 \\(g(x,t)\\)，例如可以选择适当的 \\(C\\) 使得求和可移入 \\(z\\) 积分内，然后（在指定 \\(c\_n\\) 之后）先求和再评价围道积分。实际上，能否顺利完成此步骤取决于具体问题及 \\(c\_n\\) 的选择。下面给出一个该过程的示例。
 
 我们用上述形式化过程来得到勒让德多项式的生成函数。勒让德微分方程具有式 (12.1) 中讨论的形式，
 
@@ -125,17 +125,17 @@ g(x, t)=\frac{1}{w(x)} \sum_{n=0}^{\infty} c_n t^n \frac{n!}{2 \pi i} \oint_C \f
 p(x)=1-x^2,   q(x)=-2 x,
 \\]
 
-并且该方程按所写形式是自共轭的，所以 \\(w(x)=1\\)。根据基于 Schlaefli 积分的生成函数公式（方程 (12.25)），我们选择 \\(c_n=(-1)^n / 2^n n!\\)，从而得到
+并且该方程按所写形式是自共轭的，所以 \\(w(x)=1\\)。根据基于 Schlaefli 积分的生成函数公式（方程 (12.25)），我们选择 \\(c\_n=(-1)^n / 2^n n!\\)，从而得到
 
 \\[
-g(x, t)=\sum_{n=0}^{\infty}\left(\frac{(-1)^n t^n}{2^n n!}\right) \frac{n!}{2 \pi i} \oint_C \frac{\left(1-z^2\right)^n}{(z-x)^{n+1}} d z
+g(x, t)=\sum\_{n=0}^{\infty}\left(\frac{(-1)^n t^n}{2^n n!}\right) \frac{n!}{2 \pi i} \oint\_C \frac{\left(1-z^2\right)^n}{(z-x)^{n+1}} d z
 \\]
 
 将求和与积分互换（下文将对此进行说明），依赖于 \\(n\\) 的因子构成一个几何级数，可以合并求和：
 
 \\[
 \begin{aligned}
-\sum_{n=0}^{\infty}\left(\frac{\left(z^2-1\right) t}{2(z-x)}\right)^n \frac{1}{z-x} & =\frac{1}{z-x-\frac{1}{2}\left(z^2-1\right) t} \\\\
+\sum\_{n=0}^{\infty}\left(\frac{\left(z^2-1\right) t}{2(z-x)}\right)^n \frac{1}{z-x} & =\frac{1}{z-x-\frac{1}{2}\left(z^2-1\right) t} \\\\
 & =-\frac{2}{t}\left[z^2-\frac{2 z}{t}+\frac{2 x-t}{t}\right]^{-1}
 \end{aligned}
 \\]
@@ -144,15 +144,15 @@ g(x, t)=\sum_{n=0}^{\infty}\left(\frac{(-1)^n t^n}{2^n n!}\right) \frac{n!}{2 \p
 
 \\[
 \begin{aligned}
-g(x, t) & =-\frac{2}{t} \frac{1}{2 \pi i} \oint_C\left[z^2-\frac{2 z}{t}+\frac{2 x-t}{t}\right]^{-1} d z \\\\
-& =-\frac{2}{t} \frac{1}{2 \pi i} \oint_C \frac{d z}{\left(z-z_1\right)\left(z-z_2\right)}
+g(x, t) & =-\frac{2}{t} \frac{1}{2 \pi i} \oint\_C\left[z^2-\frac{2 z}{t}+\frac{2 x-t}{t}\right]^{-1} d z \\\\
+& =-\frac{2}{t} \frac{1}{2 \pi i} \oint\_C \frac{d z}{\left(z-z\_1\right)\left(z-z\_2\right)}
 \end{aligned}
 \\]
 
-其中 \\(z_1\\) 和 \\(z_2\\) 是第一行括号内二次形式的根：
+其中 \\(z\_1\\) 和 \\(z\_2\\) 是第一行括号内二次形式的根：
 
 \\[
-z_1=\frac{1}{t}-\frac{\sqrt{1-2 x t+t^2}}{t},   z_2=\frac{1}{t}+\frac{\sqrt{1-2 x t+t^2}}{t} .
+z\_1=\frac{1}{t}-\frac{\sqrt{1-2 x t+t^2}}{t},   z\_2=\frac{1}{t}+\frac{\sqrt{1-2 x t+t^2}}{t} .
 \\]
 
 为了使方程  有效，必须证明将求和与积分互换是合法的，这只有在对所有在围道 \\(C\\) 上使用的点（即围道上的任意点）求和对 \\(z\\) 是一致收敛时才成立。便于分析收敛性的一个情形是取小的 \\(t\\) 和 \\(x\\) 并选取 \\(|z|=1\\) 的围道。一旦得到最终公式，可通过解析延拓来扩大其有效域。
@@ -163,16 +163,16 @@ z_1=\frac{1}{t}-\frac{\sqrt{1-2 x t+t^2}}{t},   z_2=\frac{1}{t}+\frac{\sqrt{1-2 
 \left|\frac{\left(z^2-1\right) t}{2(z-x)}\right|<1,
 \\]
 
-从而保证几何级数的收敛。现在回到对方程  中的围道积分的评价。被积函数在 \\(z=z_1\\) 和 \\(z=z_2\\) 处有两个极点。对小的 \\(x\\) 与小的 \\(|t|\\)，\\(z_2\\) 约为 \\(2/t\\)，位于围道之外，而 \\(z_1\\) 则靠近 \\(z\\) 平面的原点。因此，只有位于 \\(z=z_1\\) 处的留数对围道积分有贡献，该积分的值为
+从而保证几何级数的收敛。现在回到对方程  中的围道积分的评价。被积函数在 \\(z=z\_1\\) 和 \\(z=z\_2\\) 处有两个极点。对小的 \\(x\\) 与小的 \\(|t|\\)，\\(z\_2\\) 约为 \\(2/t\\)，位于围道之外，而 \\(z\_1\\) 则靠近 \\(z\\) 平面的原点。因此，只有位于 \\(z=z\_1\\) 处的留数对围道积分有贡献，该积分的值为
 
 \\[
-g(x, t)=-\frac{2}{t} \frac{1}{z_1-z_2} .
+g(x, t)=-\frac{2}{t} \frac{1}{z\_1-z\_2} .
 \\]
 
 由于
 
 \\[
-z_1-z_2=-\frac{2}{t} \sqrt{1-2 x t+t^2}
+z\_1-z\_2=-\frac{2}{t} \sqrt{1-2 x t+t^2}
 \\]
 
 我们得到勒让德多项式的生成函数为
@@ -184,12 +184,12 @@ g(x, t)=\frac{1}{\sqrt{1-2 x t+t^2}}
 对于由 Sturm-Liouville 问题产生并可由 Rodrigues 公式描述的一类多项式，我们可以更具体地说明。利用 Schlaefli 积分（方程 (12.18)），我们可以构造
 
 \\[
-g(x, t)=\frac{1}{w(x)} \sum_{n=0}^{\infty} c_n t^n \frac{n!}{2 \pi i} \oint_C \frac{w(z)[p(z)]^n}{(z-x)^{n+1}} d z
+g(x, t)=\frac{1}{w(x)} \sum\_{n=0}^{\infty} c\_n t^n \frac{n!}{2 \pi i} \oint\_C \frac{w(z)[p(z)]^n}{(z-x)^{n+1}} d z
 \\]
 
 记住 \\(C\\) 包含 \\(x\\)，且 \\(w p^n\\) 在围道所圈定的区域内必须解析。
 
-原则上，方程 (12.25) 可以被求值以得到 \\(g(x,t)\\)，例如可以选择适当的 \\(C\\) 使得求和可移入 \\(z\\) 积分内，然后（在指定 \\(c_n\\) 之后）先求和再评价围道积分。实际上，能否顺利完成此步骤取决于具体问题及 \\(c_n\\) 的选择。下面给出一个该过程的示例。
+原则上，方程 (12.25) 可以被求值以得到 \\(g(x,t)\\)，例如可以选择适当的 \\(C\\) 使得求和可移入 \\(z\\) 积分内，然后（在指定 \\(c\_n\\) 之后）先求和再评价围道积分。实际上，能否顺利完成此步骤取决于具体问题及 \\(c\_n\\) 的选择。下面给出一个该过程的示例。
 
 我们用上述形式化过程来得到勒让德多项式的生成函数。勒让德微分方程具有式 (12.1) 中讨论的形式，
 
@@ -203,17 +203,17 @@ g(x, t)=\frac{1}{w(x)} \sum_{n=0}^{\infty} c_n t^n \frac{n!}{2 \pi i} \oint_C \f
 p(x)=1-x^2,   q(x)=-2 x,
 \\]
 
-并且该方程按所写形式是自共轭的，所以 \\(w(x)=1\\)。根据基于 Schlaefli 积分的生成函数公式（方程 ），我们选择 \\(c_n=(-1)^n / 2^n n!\\)，从而得到
+并且该方程按所写形式是自共轭的，所以 \\(w(x)=1\\)。根据基于 Schlaefli 积分的生成函数公式（方程 ），我们选择 \\(c\_n=(-1)^n / 2^n n!\\)，从而得到
 
 \\[
-g(x, t)=\sum_{n=0}^{\infty}\left(\frac{(-1)^n t^n}{2^n n!}\right) \frac{n!}{2 \pi i} \oint_C \frac{\left(1-z^2\right)^n}{(z-x)^{n+1}} d z
+g(x, t)=\sum\_{n=0}^{\infty}\left(\frac{(-1)^n t^n}{2^n n!}\right) \frac{n!}{2 \pi i} \oint\_C \frac{\left(1-z^2\right)^n}{(z-x)^{n+1}} d z
 \\]
 
 将求和与积分互换（下文将对此进行说明），依赖于 \\(n\\) 的因子构成一个几何级数，可以合并求和：
 
 \\[
 \begin{aligned}
-\sum_{n=0}^{\infty}\left(\frac{\left(z^2-1\right) t}{2(z-x)}\right)^n \frac{1}{z-x} & =\frac{1}{z-x-\frac{1}{2}\left(z^2-1\right) t} \\\\
+\sum\_{n=0}^{\infty}\left(\frac{\left(z^2-1\right) t}{2(z-x)}\right)^n \frac{1}{z-x} & =\frac{1}{z-x-\frac{1}{2}\left(z^2-1\right) t} \\\\
 & =-\frac{2}{t}\left[z^2-\frac{2 z}{t}+\frac{2 x-t}{t}\right]^{-1}
 \end{aligned}
 \\]
@@ -222,15 +222,15 @@ g(x, t)=\sum_{n=0}^{\infty}\left(\frac{(-1)^n t^n}{2^n n!}\right) \frac{n!}{2 \p
 
 \\[
 \begin{aligned}
-g(x, t) & =-\frac{2}{t} \frac{1}{2 \pi i} \oint_C\left[z^2-\frac{2 z}{t}+\frac{2 x-t}{t}\right]^{-1} d z \\\\
-& =-\frac{2}{t} \frac{1}{2 \pi i} \oint_C \frac{d z}{\left(z-z_1\right)\left(z-z_2\right)}
+g(x, t) & =-\frac{2}{t} \frac{1}{2 \pi i} \oint\_C\left[z^2-\frac{2 z}{t}+\frac{2 x-t}{t}\right]^{-1} d z \\\\
+& =-\frac{2}{t} \frac{1}{2 \pi i} \oint\_C \frac{d z}{\left(z-z\_1\right)\left(z-z\_2\right)}
 \end{aligned}
 \\]
 
-其中 \\(z_1\\) 和 \\(z_2\\) 是第一行括号内二次形式的根：
+其中 \\(z\_1\\) 和 \\(z\_2\\) 是第一行括号内二次形式的根：
 
 \\[
-z_1=\frac{1}{t}-\frac{\sqrt{1-2 x t+t^2}}{t},   z_2=\frac{1}{t}+\frac{\sqrt{1-2 x t+t^2}}{t} .
+z\_1=\frac{1}{t}-\frac{\sqrt{1-2 x t+t^2}}{t},   z\_2=\frac{1}{t}+\frac{\sqrt{1-2 x t+t^2}}{t} .
 \\]
 
 为了使方程  有效，必须证明将求和与积分互换是合法的，这只有在对所有在围道 \\(C\\) 上使用的点（即围道上的任意点）求和对 \\(z\\) 是一致收敛时才成立。便于分析收敛性的一个情形是取小的 \\(t\\) 和 \\(x\\) 并选取 \\(|z|=1\\) 的围道。一旦得到最终公式，可通过解析延拓来扩大其有效域。
@@ -241,16 +241,16 @@ z_1=\frac{1}{t}-\frac{\sqrt{1-2 x t+t^2}}{t},   z_2=\frac{1}{t}+\frac{\sqrt{1-2 
 \left|\frac{\left(z^2-1\right) t}{2(z-x)}\right|<1,
 \\]
 
-从而保证几何级数的收敛。现在回到对方程 (12.26) 中的围道积分的评价。被积函数在 \\(z=z_1\\) 和 \\(z=z_2\\) 处有两个极点。对小的 \\(x\\) 与小的 \\(|t|\\)，\\(z_2\\) 约为 \\(2/t\\)，位于围道之外，而 \\(z_1\\) 则靠近 \\(z\\) 平面的原点。因此，只有位于 \\(z=z_1\\) 处的留数对围道积分有贡献，该积分的值为
+从而保证几何级数的收敛。现在回到对方程 (12.26) 中的围道积分的评价。被积函数在 \\(z=z\_1\\) 和 \\(z=z\_2\\) 处有两个极点。对小的 \\(x\\) 与小的 \\(|t|\\)，\\(z\_2\\) 约为 \\(2/t\\)，位于围道之外，而 \\(z\_1\\) 则靠近 \\(z\\) 平面的原点。因此，只有位于 \\(z=z\_1\\) 处的留数对围道积分有贡献，该积分的值为
 
 \\[
-g(x, t)=-\frac{2}{t} \frac{1}{z_1-z_2} .
+g(x, t)=-\frac{2}{t} \frac{1}{z\_1-z\_2} .
 \\]
 
 由于
 
 \\[
-z_1-z_2=-\frac{2}{t} \sqrt{1-2 x t+t^2}
+z\_1-z\_2=-\frac{2}{t} \sqrt{1-2 x t+t^2}
 \\]
 
 我们得到勒让德多项式的生成函数为

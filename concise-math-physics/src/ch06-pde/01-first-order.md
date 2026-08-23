@@ -32,10 +32,10 @@ p(x,y) dx + q(x,y) dy = 0,
 p(x) d x+q(y) d y=0 .
 \\]
 
-从\\((x_0, y_0)\\)积分到\\((x, y)\\)得到
+从\\((x\_0, y\_0)\\)积分到\\((x, y)\\)得到
 
 \\[
-\int_{x_0}^{x} p(x) d x+\int_{y_0}^{y} q(y) d y= 0.
+\int\_{x\_0}^{x} p(x) d x+\int\_{y\_0}^{y} q(y) d y= 0.
 \\]
 
 两个不定积分的原函数分别是\\(P(x), Q(y)\\), 则上式的通解为
@@ -75,7 +75,7 @@ d \varphi=\frac{\partial \varphi}{\partial x} d x+\frac{\partial \varphi}{\parti
 最终解可以写为
 
 \\[
-\varphi(x, y)=\int_{x_0}^x p(x, y) d x+\int_{y_0}^y q(x_0, y) \equiv C
+\varphi(x, y)=\int\_{x\_0}^x p(x, y) d x+\int\_{y\_0}^y q(x\_0, y) \equiv C
 \\]
 
 注意可分离变量和全微分的区别: 所有可分离变量的方程都是全微分方程, 但并非所有全微分方程都是可分离变量的.
@@ -109,7 +109,7 @@ y'+\left(1+\frac{y}{x}\right)=0
 二者相同，于是可以知道符合全微分条件
 
 \\[
-\varphi=\int_{x_0}^x(x+y) d x+\int_{y_0}^y x_0 d y=\left(\frac{x^2}{2}+x y-\frac{x_0^2}{2}-x_0 y\right)+\left(x_o y-x_0 y_0\right)
+\varphi=\int\_{x\_0}^x(x+y) d x+\int\_{y\_0}^y x\_0 d y=\left(\frac{x^2}{2}+x y-\frac{x\_0^2}{2}-x\_0 y\right)+\left(x\_o y-x\_0 y\_0\right)
 \\]
 
 解为
@@ -250,20 +250,20 @@ y=x^2 v=x^2\left(\frac{c}{x}-1\right) = -x^2+c x
 即
 
 \\[
-y=\frac{1}{\alpha(x)}\left[\int^x \alpha(t) q(t) dt+C\right] \equiv y_1(x)+y_2(x)
+y=\frac{1}{\alpha(x)}\left[\int^x \alpha(t) q(t) dt+C\right] \equiv y\_1(x)+y\_2(x)
 \\]
 
 这里，我们将该解分成两个部分
 
 \\[
 \begin{aligned}
-& y_1(x)=\frac{1}{\alpha(x)} \int^x \alpha(t) q(t) d t \\\\
-& y_2(x)=\frac{C}{\alpha(x)}
+& y\_1(x)=\frac{1}{\alpha(x)} \int^x \alpha(t) q(t) d t \\\\
+& y\_2(x)=\frac{C}{\alpha(x)}
 \end{aligned}
 \\]
 
-可以看出, \\(y_2(x)=\frac{c}{\alpha(x)}\\)是齐次方程的通解,
-而 \\(y_1(x)=\frac{1}{\alpha(x)} \int^x \alpha(t) q(t) d t\\)是方程的特解.
+可以看出, \\(y\_2(x)=\frac{c}{\alpha(x)}\\)是齐次方程的通解,
+而 \\(y\_1(x)=\frac{1}{\alpha(x)} \int^x \alpha(t) q(t) d t\\)是方程的特解.
 一般地, 微分方程的解是**特解**加**通解**的形式.
 
 > **例** 对于一个电阻-电感（RL）电路，基尔霍夫定律给出
@@ -287,16 +287,16 @@ I(t)=e^{-R t / L}\left[\int^t e^{R t / L} \frac{V(t)}{L} d t+C\right]
 \\]
 
 其中常数 \\(C\\) 由初始条件确定。
-对于特殊情况 \\(V(t)=V_0\\)（常数），
+对于特殊情况 \\(V(t)=V\_0\\)（常数），
 
 \\[
-I(t)=e^{-R t / L}\left[\frac{V_0}{L} \cdot \frac{L}{R} e^{R t / L}+C\right]=\frac{V_0}{R}+C e^{-R t / L}
+I(t)=e^{-R t / L}\left[\frac{V\_0}{L} \cdot \frac{L}{R} e^{R t / L}+C\right]=\frac{V\_0}{R}+C e^{-R t / L}
 \\]
 
-若初始条件为 \\(I(0)=0\\)，则 \\(C=-V_0 / R\\)，因此
+若初始条件为 \\(I(0)=0\\)，则 \\(C=-V\_0 / R\\)，因此
 
 \\[
-I(t)=\frac{V_0}{R}\left[1-e^{-R t / L}\right]
+I(t)=\frac{V\_0}{R}\left[1-e^{-R t / L}\right]
 \\]
 
 ###  常系数的常微分方程 (ODE)
@@ -304,10 +304,10 @@ I(t)=\frac{V_0}{R}\left[1-e^{-R t / L}\right]
 常系数的常微分方程的标准形式为
 
 \\[
-\frac{d^n y}{d x^n}+a_{n-1}\frac{d^{n-1} }{d x^{n-1}} y  + \cdots +a_{1} \frac{d}{d x} y+a_0 y=F(x)
+\frac{d^n y}{d x^n}+a\_{n-1}\frac{d^{n-1} }{d x^{n-1}} y  + \cdots +a\_{1} \frac{d}{d x} y+a\_0 y=F(x)
 \\]
 
-其中\\(a_i\\)为常数.
+其中\\(a\_i\\)为常数.
 
 \\[
 \Rightarrow \text { 解的形式为 } y=e^{m x}
@@ -316,7 +316,7 @@ I(t)=\frac{V_0}{R}\left[1-e^{-R t / L}\right]
 其中\\(m\\)需满足代数方程
 
 \\[
-m^n+a_{n-1} m^{n-1}+\cdots a_1 m+a_0=0
+m^n+a\_{n-1} m^{n-1}+\cdots a\_1 m+a\_0=0
 \\]
 
 对于二阶常系数线性齐次方程,
@@ -335,13 +335,13 @@ m^2 + a m + b = 0
 则有通解
 
 \\[
-y = C_1 e^{m_1 x} +  C_2 e^{m_2 x}
+y = C\_1 e^{m\_1 x} +  C\_2 e^{m\_2 x}
 \\]
 
 若特征根为二重实根\\(m\\), 则解为
 
 \\[
-y = (C_1 + C_2  x) e^{m x}
+y = (C\_1 + C\_2  x) e^{m x}
 \\]
 
 > **例** 一个质量为 \\(M\\) 的物体连接在胡克定律弹簧（劲度系数为 \\(k\\)）上，做振动运动。设 \\(y\\) 为物体相对于平衡位置的位移，根据牛顿运动定律，有
@@ -350,14 +350,14 @@ y = (C_1 + C_2  x) e^{m x}
 M \frac{d^2 y}{d t^2}=-k y,
 \\]
 
-> **解** 这是一个形如 \\(y^{\prime \prime}+a_0 y=0\\) 的常微分方程，其中 \\(a_0=+k / M\\)。该方程的通解为 \\(C_1 e^{m_1 t+C_2 e^{m_2 t}\\)，其中 \\(m_1\\) 和 \\(m_2\\) 是代数方程 \\(m^2+a_0=0\\) 的解。
+> **解** 这是一个形如 \\(y^{\prime \prime}+a\_0 y=0\\) 的常微分方程，其中 \\(a\_0=+k / M\\)。该方程的通解为 \\(C\_1 e^{m\_1 t+C\_2 e^{m\_2 t}\\)，其中 \\(m\_1\\) 和 \\(m\_2\\) 是代数方程 \\(m^2+a\_0=0\\) 的解。
 
-\\(m_1\\) 和 \\(m_2\\) 的取值为 \\(\pm i \omega\\)，其中 \\(\omega=\sqrt{k / M\\)，因此方程的通解为
+\\(m\_1\\) 和 \\(m\_2\\) 的取值为 \\(\pm i \omega\\)，其中 \\(\omega=\sqrt{k / M\\)，因此方程的通解为
 
 
 
 \\[
-y(t)=C_1 e^{+i \omega t}+C_2 e^{-i \omega t} .
+y(t)=C\_1 e^{+i \omega t}+C\_2 e^{-i \omega t} .
 \\]
 
 由于该方程是齐次的，我们可以将上述两个解的任意线性组合作为通解。这样可以将解组合成实数形式，更适合当前问题。注意到
@@ -373,7 +373,7 @@ y(t)=C_1 e^{+i \omega t}+C_2 e^{-i \omega t} .
 
 
 \\[
-y(t)=C_1 \cos \omega t+C_2 \sin \omega t .
+y(t)=C\_1 \cos \omega t+C\_2 \sin \omega t .
 \\]
 
-对于具体的振动问题，解的系数 \\(C_1\\) 和 \\(C_2\\) 需要根据初始条件（如 \\(y(0)\\) 和 \\(y^{\prime(0)\\)）来确定。
+对于具体的振动问题，解的系数 \\(C\_1\\) 和 \\(C\_2\\) 需要根据初始条件（如 \\(y(0)\\) 和 \\(y^{\prime(0)\\)）来确定。

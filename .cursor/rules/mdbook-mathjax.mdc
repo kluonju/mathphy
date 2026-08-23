@@ -1,0 +1,49 @@
+---
+description: mdBook MathJax escaping for concise-math-physics Markdown
+globs: concise-math-physics/**/*.md
+alwaysApply: false
+---
+
+# mdBook 数学公式写法（必须遵守）
+
+本书用 mdBook + MathJax（`book.toml`：`mathjax-support = true`）。写或改 `concise-math-physics/**/*.md` 时严格按下列约定，否则行内公式会显示为碎斜体或裸 TeX。
+
+## 定界符
+
+- 行内：`\\( ... \\)`（源文件里是**两个**反斜杠再加括号）
+- 独立：单独一行的 `\\[` 与 `\\]`
+- 公式内的 TeX 命令用**单个**反斜杠：`\mathbf`、`\frac`、`\partial`
+
+## 下标：必须转义 `_`
+
+Markdown 会把 `_x` 吃成 `<em>`，MathJax 收不到下标。源文件中凡在数学定界符内的下划线都写成 `\_`。
+
+```markdown
+正确：\\(A\_x\\)、\\(\mathbf{i}\_x\\)、\\(\partial\_x\\)、\\(\lim\_{n\to\infty}\\)
+错误：\\(A_x\\)、\\(\mathbf{i}_x\\)
+```
+
+Markdown 渲染后会把 `\_` 还原成 `_`，再交给 MathJax，因此 `A\_x` 最终仍按 \(A_x\) 显示。
+
+## 星号上标：不要写 `^*`
+
+`*` 会被当成 Markdown 强调。用 `\ast`：
+
+```markdown
+正确：\\(x^{\ast}\\)
+错误：\\(x^*\\)
+```
+
+## 其它注意
+
+- 独立公式行首不要用 `+` / `-` / `*`（会被当成列表）
+- 图注（`![...](...)`）里不要写 `\\(...\\)`：alt 不经 MathJax，用纯文字（如 `θ`、`A·dS`）
+- 括号要配对：`\mathbf{i}_x` 写作 `\\(\mathbf{i}\_x\\)`，禁止 `\\(\mathbf{i_x,\\mathbf{j}\\)` 这类缺 `}`
+
+## 批量修复
+
+若发现旧稿未转义，可运行：
+
+```bash
+python3 concise-math-physics/scripts/fix_math_underscores.py
+```

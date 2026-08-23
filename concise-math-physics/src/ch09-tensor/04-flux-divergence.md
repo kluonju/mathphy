@@ -16,7 +16,7 @@
 
 面元 \\(\mathrm{d}\mathbf{S}=\hat{\mathbf{n}}\,\mathrm{d}S\\) 指向**外法向**。只有垂直于曲面的分量贡献通量；切向分量只沿面流动，不穿过。净通量 \\(\Phi>0\\) 表示内部有源，\\(\Phi<0\\) 表示有汇，\\(\Phi=0\\) 表示无净源。
 
-![通量贡献 \\(\mathbf{A}\cdot\mathrm{d}\mathbf{S}\\)](../figures/vec_flux_ds.png)
+![通量贡献 A·dS](../figures/vec_flux_ds.png)
 
 ### 散度：微元盒子
 
@@ -52,7 +52,7 @@
 
 ### 例题 1-6（散度定理）
 
-取 \\(\mathbf{A}=x\mathbf{i}_x+y\mathbf{i}_y+z\mathbf{i}_z\\)（即 \\(\mathbf{A}=\mathbf{r}\\)），验证边长为 \\(a,b,c\\) 且一角在原点的长方体上的散度定理。
+取 \\(\mathbf{A}=x\mathbf{i}\_x+y\mathbf{i}\_y+z\mathbf{i}\_z\\)（即 \\(\mathbf{A}=\mathbf{r}\\)），验证边长为 \\(a,b,c\\) 且一角在原点的长方体上的散度定理。
 
 **解.** \\(\nabla\cdot\mathbf{A}=3\\)，故
 
@@ -62,6 +62,6 @@
 
 六面通量：\\(x=a\\) 面贡献 \\(a\cdot(b c)\\)，\\(x=0\\) 面贡献 \\(0\\)；\\(y\\)、\\(z\\) 方向同理，总和亦为 \\(3 a b c\\)。两边一致。
 
-（球坐标中对径向场 \\(A_r=r\\) 有 \\(\nabla\cdot\mathbf{A}=3\\)，与上相合。）
+（球坐标中对径向场 \\(A\_r=r\\) 有 \\(\nabla\cdot\mathbf{A}=3\\)，与上相合。）
 
 下一节：[旋度与 Stokes 定理](05-curl-stokes.md)。预备性简述见第 0 章[向量分析基础](../ch00-prerequisites/05-vector-analysis.md)。

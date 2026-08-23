@@ -103,7 +103,7 @@ C(\omega)=\sqrt{[A(\omega)]^2+[B(\omega)]^2} \\\\
 \\[
 \begin{aligned}
 f(x) & =\frac{1}{\sqrt{2 \pi}} \int\_{-\infty}^{\infty} F(\omega)e^{\mathrm{i} \omega x} d \omega, \\\\
-F(\omega) & =\frac{1}{\sqrt{2 \pi}} \int\_{-\infty}^{\infty} f(x)\left[e^{\mathrm{i} \omega x}\right]^* d x .
+F(\omega) & =\frac{1}{\sqrt{2 \pi}} \int\_{-\infty}^{\infty} f(x)\left[e^{\mathrm{i} \omega x}\right]^{\ast} d x .
 \end{aligned}
 \\]
 

@@ -2,21 +2,21 @@
 
 通过以下的几个例子,我们可以了解变分法具体解决什么问题.
 
-如图所示,现在寻找在两点\\((x_1, y_1)\\)和\\((x_2,y_2)\\)间找一个最短的路径\\(y=u(x)\\).常识告诉我们,两点之间直线最短.
+如图所示,现在寻找在两点\\((x\_1, y\_1)\\)和\\((x\_2,y\_2)\\)间找一个最短的路径\\(y=u(x)\\).常识告诉我们,两点之间直线最短.
 数学上表示出来为直线方程,
 
 \\[
-y = k x + b = \frac{y_2 - y_1}{x_2 - x_1} ( x - x_1) + y_1
+y = k x + b = \frac{y\_2 - y\_1}{x\_2 - x\_1} ( x - x\_1) + y\_1
 \\]
 
 这样的常识其实在数学上等价为一个最小化问题.对于任意路径,我们利用微积分求得该路径的长度.
 \\(ds^2 = dx^2 + dy^2\\),
 
 \\[
-J[u] = \int_{x_1}^{x_2} \sqrt{ 1 + u'(x)^2} dx
+J[u] = \int\_{x\_1}^{x\_2} \sqrt{ 1 + u'(x)^2} dx
 \\]
 
-其中 \\(u'(x) = du(x)/dx\\),满足边界条件\\(u(x_1) = y_1, u(x_2) = y_2\\).因此,我们的问题即求如何找到函数\\(u(x)\\)使得
+其中 \\(u'(x) = du(x)/dx\\),满足边界条件\\(u(x\_1) = y\_1, u(x\_2) = y\_2\\).因此,我们的问题即求如何找到函数\\(u(x)\\)使得
 \\(J\\)最小化.具体的求解我们下面介绍.这里的方括号区别于函数的圆括号,用来表示这里的映射是函数\\(\to\\)数的.
 这种\\(J\\)和整个函数\\(u(x)\\)的依赖关系成为**泛函关系**.
 设对于 (某一函数集合内的) 任意一个函数 \\(u(x)\\),
@@ -33,7 +33,7 @@ J[u] = \int_{x_1}^{x_2} \sqrt{ 1 + u'(x)^2} dx
 ![最速降线示意（lecture）](../figures/lecture_fastest_track.png)
 
 \\[
-T[u] = \int_{(x_0,y_0)}^{(x_1, y_1)} \frac{ds}{\sqrt{2 g(y_0 - u)}} = \int_{x_0}^{x_1} \frac{\sqrt{1+u'^2}}{\sqrt{2 g (y_0 - u)}} dx.
+T[u] = \int\_{(x\_0,y\_0)}^{(x\_1, y\_1)} \frac{ds}{\sqrt{2 g(y\_0 - u)}} = \int\_{x\_0}^{x\_1} \frac{\sqrt{1+u'^2}}{\sqrt{2 g (y\_0 - u)}} dx.
 \\]
 
 
@@ -62,7 +62,7 @@ A[\mathbf{r}] = \int \left[ \frac{1}{2} m \left( \frac{d\mathbf{r}}{dt} \right)^
 作用于整条绳索上的重力势能表示为:
 
 \\[
-U[y(x)]=\int_{-L / 2}^{L / 2} \rho g \sqrt{1+y^{\prime}(x)^2} \cdot y(x) d x,
+U[y(x)]=\int\_{-L / 2}^{L / 2} \rho g \sqrt{1+y^{\prime}(x)^2} \cdot y(x) d x,
 \\]
 
 悬链线就是在此情形中重力势能最小的曲线.
@@ -72,7 +72,7 @@ U[y(x)]=\int_{-L / 2}^{L / 2} \rho g \sqrt{1+y^{\prime}(x)^2} \cdot y(x) d x,
 对于一般的情况,有函数到数的映射写成
 
 \\[
-J[u] = \int_{a}^{b}  dx L(u, u', u", \cdots| x),
+J[u] = \int\_{a}^{b}  dx L(u, u', u", \cdots| x),
 \\]
 
 其中\\(L(u, u', u",\cdots | x)\\)为\\(u\\)的半局域泛函, \\(u' \equiv du/dx, u" \equiv = du^2/dx^2\\).
@@ -82,22 +82,22 @@ J[u] = \int_{a}^{b}  dx L(u, u', u", \cdots| x),
 
 \\[
 \begin{aligned}
-  J[u + \delta u] &= \int_{a}^{b}  dx L(u + \delta u, u' + \delta u'| x)
+  J[u + \delta u] &= \int\_{a}^{b}  dx L(u + \delta u, u' + \delta u'| x)
      \\\\
-&= \int_{a}^{b} dx \left[ L(u, u'| x) + \frac{\partial L}{\partial u} \delta u + \frac{\partial L}{\partial u'} \delta u' \right]
+&= \int\_{a}^{b} dx \left[ L(u, u'| x) + \frac{\partial L}{\partial u} \delta u + \frac{\partial L}{\partial u'} \delta u' \right]
      \\\\
-&= \int_{a}^{b} dx \left[ L(u, u'| x) + \frac{\partial L}{\partial u} \delta u + \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'} \delta u \right)
+&= \int\_{a}^{b} dx \left[ L(u, u'| x) + \frac{\partial L}{\partial u} \delta u + \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'} \delta u \right)
 {}- \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'} \right) \delta u  \right]
      \\\\
-&= \int_{a}^{b} dx \left[ L(u, u'| x) + \left( \frac{\partial L}{\partial u} -  \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'} \right)   \right) \delta u \right]
-        + \left. \frac{\partial L}{\partial u'} \delta u \right|_{a}^{b}
+&= \int\_{a}^{b} dx \left[ L(u, u'| x) + \left( \frac{\partial L}{\partial u} -  \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'} \right)   \right) \delta u \right]
+        + \left. \frac{\partial L}{\partial u'} \delta u \right|\_{a}^{b}
 \end{aligned}
 \\]
 
 于是,结合边界条件我们有
 
 \\[
-\delta J[u] = \int_{a}^{b} dx \left[ \frac{\partial L}{\partial u} -  \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'} \right)   \right] \delta u
+\delta J[u] = \int\_{a}^{b} dx \left[ \frac{\partial L}{\partial u} -  \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'} \right)   \right] \delta u
 \\]
 
 被积函数对任意变化\\(\delta u\\)都需要满足\\(\delta J[u] = 0\\),于是我们得到
@@ -134,29 +134,29 @@ u" = 0
 m \frac{d^2\mathbf{r}}{dt^2} = - \frac{\mathrm{d} V(\mathbf{r})}{\mathrm{d} \mathbf{r}} \equiv \mathbf{F} .
 \\]
 
-对于如多目标变量的\\(J(u_1, u_2, \cdots, u_n, u_1', u_2', \cdots, u_n'|x)\\), 对于每一个\\(u_i\\), \\(i=1,2,\dots,n\\)都有独立的欧拉方程
+对于如多目标变量的\\(J(u\_1, u\_2, \cdots, u\_n, u\_1', u\_2', \cdots, u\_n'|x)\\), 对于每一个\\(u\_i\\), \\(i=1,2,\dots,n\\)都有独立的欧拉方程
 
 \\[
-\frac{\partial L}{\partial u_i} -  \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'_i} \right) = 0 .
+\frac{\partial L}{\partial u\_i} -  \frac{\partial }{\partial x}\left( \frac{\partial L}{\partial u'\_i} \right) = 0 .
 \\]
 
 对于多变量的情况,\\(u(x,y)\\), 如
 
 \\[
-J[u]=\iint_R F\left(x, y, u, u_x, u_y\right) d x d y .
+J[u]=\iint\_R F\left(x, y, u, u\_x, u\_y\right) d x d y .
 \\]
 
 对应的Euler方程为
 
 \\[
-F_u-\frac{\partial}{\partial x} F_{u_x}-\frac{\partial}{\partial y} F_{u_y}=0.
+F\_u-\frac{\partial}{\partial x} F\_{u\_x}-\frac{\partial}{\partial y} F\_{u\_y}=0.
 \\]
 
 例如,对于肥皂泡构成的膜,物理上表面张力要求该膜形成的膜面积最小, 对应的能量可以用\\(E(u)\\)来表示,
 用合适的单位,可以表示
 
 \\[
-E(u)=\iint_S\left[1+\left(\frac{\partial u}{\partial x}\right)^2+\left(\frac{\partial u}{\partial y}\right)^2\right]^{1 / 2} d x d y.
+E(u)=\iint\_S\left[1+\left(\frac{\partial u}{\partial x}\right)^2+\left(\frac{\partial u}{\partial y}\right)^2\right]^{1 / 2} d x d y.
 \\]
 
 Euler方程为最小面积方程

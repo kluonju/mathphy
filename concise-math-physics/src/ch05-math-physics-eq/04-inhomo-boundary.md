@@ -10,9 +10,9 @@
 
 \\[
 \begin{gathered}
-u_{t t}-a^{2} u_{x x}=0, \\\\
-\left.u\right|_{x=0}=\mu(t),\left.u\right|_{x=l}=\nu(t), \\\\
-\left.u\right|_{t=0}=\varphi(x),\left.u_{t}\right|_{t=0}=\psi(x) .
+u\_{t t}-a^{2} u\_{x x}=0, \\\\
+\left.u\right|\_{x=0}=\mu(t),\left.u\right|\_{x=l}=\nu(t), \\\\
+\left.u\right|\_{t=0}=\varphi(x),\left.u\_{t}\right|\_{t=0}=\psi(x) .
 \end{gathered}
 \\]
 
@@ -39,19 +39,19 @@ u(x, t)=v(x, t)+w(x, t) .
 
 \\[
 \begin{gathered}
-w_{t u}-a^{2} w_{\mathrm{i} \mathrm{i}}=-v_{\mathrm{i} t}+a^{2} v_{x x}=\frac{x}{l}\left[\mu^{\prime \prime}(t)-\nu^{\prime \prime}(t)\right]-\mu^{\prime \prime}(t), \\\\
-\left.w\right|_{x=0}=0,\left.w\right|_{x=l}=0, \\\\
-\left.w\right|_{t=0}=\varphi(x)-\left.v\right|_{\mathrm{i}=0}=\varphi(x)+\frac{1}{l}[\mu(0)-\nu(0)] x-\mu(0), \\\\
-\left.w_{\mathrm{i}}\right|_{\mathrm{i}=0}=\psi(x)-\left.v_{t}\right|_{t=0}=\psi(x)+\frac{1}{l}\left[\mu^{\prime}(0)-\nu^{\prime}(0)\right] x-\mu^{\prime}(0) .
+w\_{t u}-a^{2} w\_{\mathrm{i} \mathrm{i}}=-v\_{\mathrm{i} t}+a^{2} v\_{x x}=\frac{x}{l}\left[\mu^{\prime \prime}(t)-\nu^{\prime \prime}(t)\right]-\mu^{\prime \prime}(t), \\\\
+\left.w\right|\_{x=0}=0,\left.w\right|\_{x=l}=0, \\\\
+\left.w\right|\_{t=0}=\varphi(x)-\left.v\right|\_{\mathrm{i}=0}=\varphi(x)+\frac{1}{l}[\mu(0)-\nu(0)] x-\mu(0), \\\\
+\left.w\_{\mathrm{i}}\right|\_{\mathrm{i}=0}=\psi(x)-\left.v\_{t}\right|\_{t=0}=\psi(x)+\frac{1}{l}\left[\mu^{\prime}(0)-\nu^{\prime}(0)\right] x-\mu^{\prime}(0) .
 \end{gathered}
 \\]
 
 虽然 \\(w(x, t)\\) 的方程 (8.3.7)一般是非齐次的,但是,定解问题 (8.3.7) (8.3.9) 具有齐次边界条件, 可按 \\(\S 8.2\\) 求解.
 
-这里还要特别说一下 \\(x=0\\) 和 \\(x=l\\) 两端都是第二类非齐次边界条件 \\(\left.u_{x\right|_{x=0}\\) \\(=\mu(t),\left.u_{x\right|_{x=l}=\nu(t)\\) 的情况. 如果仍按 (8.3.4) 取 \\(x\\) 的线性函数作为 \\(v\\), 则代入非齐次边界条件得
+这里还要特别说一下 \\(x=0\\) 和 \\(x=l\\) 两端都是第二类非齐次边界条件 \\(\left.u\_{x\right|\_{x=0}\\) \\(=\mu(t),\left.u\_{x\right|\_{x=l}=\nu(t)\\) 的情况. 如果仍按 (8.3.4) 取 \\(x\\) 的线性函数作为 \\(v\\), 则代入非齐次边界条件得
 
 \\[
-\left.v_{x}\right|_{x=0}=A(t)=\mu(t),\left.  v_{x}\right|_{x=l}=A(t)=\nu(t) .
+\left.v\_{x}\right|\_{x=0}=A(t)=\mu(t),\left.  v\_{x}\right|\_{x=l}=A(t)=\nu(t) .
 \\]
 
 除非 \\(\mu(t)=\nu(t)\\), 否则这两式互相矛盾. 这时不妨改试
@@ -66,15 +66,15 @@ v(x, t)=A(t) x^{2}+B(t) x .
 
 \\[
 \begin{gathered}
-u_{t t}-a^{2} u_{x x}=0  (x<0<l), \\\\
-\left.u\right|_{x=0}=0,\left.  u\right|_{x=l}=A \sin \omega t, \\\\
-\left.u\right|_{t=0}=0,\left.  u_{t}\right|_{t=0}=0 .
+u\_{t t}-a^{2} u\_{x x}=0  (x<0<l), \\\\
+\left.u\right|\_{x=0}=0,\left.  u\right|\_{x=l}=A \sin \omega t, \\\\
+\left.u\right|\_{t=0}=0,\left.  u\_{t}\right|\_{t=0}=0 .
 \end{gathered}
 \\]
 
 \\(x=l\\) 端为非齐次边界条件.
 
-如果按上述一般处理方法, 应取 \\(v(x, t)=(A \sin \omega t / l) x\\), 但是, 相应的 \\(w(x, t)\\) 的定解问题中泛定方程为 \\(w_{u-a^{2} w_{x x}=-\left(v_{u t}-a^{2} v_{x x}\right)=\left(A \omega^{2} x / l\right) \sin \omega t\\),是非齐次方程, 求解麻烦. 能否有较为简便的方法呢?
+如果按上述一般处理方法, 应取 \\(v(x, t)=(A \sin \omega t / l) x\\), 但是, 相应的 \\(w(x, t)\\) 的定解问题中泛定方程为 \\(w\_{u-a^{2} w\_{x x}=-\left(v\_{u t}-a^{2} v\_{x x}\right)=\left(A \omega^{2} x / l\right) \sin \omega t\\),是非齐次方程, 求解麻烦. 能否有较为简便的方法呢?
 
 由于求解的是弦在 \\(x=l\\) 端受迫作谐振动 \\(A \sin \omega t\\) 情况下的振动, 它一定有一个特解 \\(v(x, t)\\), 满足齐次方程 (8.3.11)、非齐次边界条件 (8.3.12), 且跟 \\(x\\)
 \\(=l\\) 端同步振动, 即其时间部分的函数亦为 \\(\sin \omega t\\), 就是说, 特解具有分离变数的形式:
@@ -111,25 +111,25 @@ u(x, t)=v(x, t)+w(x, t),
 
 \\[
 \begin{gathered}
-w_{t t}-a^{2} w_{x x}=-\left(v_{x x}-a^{2} v_{x x}\right)=0 \\\\
-\left.w\right|_{x=0}=0,\left.  w\right|_{x=\mathrm{i}}=0 \\\\
-\left.w\right|_{\mathrm{i}=0}=0,\left.  w_{\mathrm{i}}\right|_{t=0}=-A \omega \frac{\sin (\omega x / a)}{\sin (\omega l / a)}
+w\_{t t}-a^{2} w\_{x x}=-\left(v\_{x x}-a^{2} v\_{x x}\right)=0 \\\\
+\left.w\right|\_{x=0}=0,\left.  w\right|\_{x=\mathrm{i}}=0 \\\\
+\left.w\right|\_{\mathrm{i}=0}=0,\left.  w\_{\mathrm{i}}\right|\_{t=0}=-A \omega \frac{\sin (\omega x / a)}{\sin (\omega l / a)}
 \end{gathered}
 \\]
 
 定解问题 (8.3.19) (8.3.21) 为齐次方程、齐次边界条件, 可用分离变数法求解, 其一般解由 (8.1.14) 给出, 因此,
 
 \\[
-w(x, t)=\sum_{n=1}^{\infty}\left(A_{n} \cos \frac{n \pi a}{l} t+B_{n} \sin \frac{n \pi a}{l} t\right) \sin \frac{n \pi}{l} x
+w(x, t)=\sum\_{n=1}^{\infty}\left(A\_{n} \cos \frac{n \pi a}{l} t+B\_{n} \sin \frac{n \pi a}{l} t\right) \sin \frac{n \pi}{l} x
 \\]
 
-其中系数 \\(A_{n}\\) 和 \\(B_{n\\) 可由 (8.1.16) 确定, 得
+其中系数 \\(A\_{n}\\) 和 \\(B\_{n\\) 可由 (8.1.16) 确定, 得
 
 \\[
 \begin{aligned}
-A_{n} & =0 \\\\
-B_{n} & =\frac{2}{n \pi a} \int_{0}^{l}(-A \omega) \frac{\sin (\omega \xi / a)}{\sin (\omega l / a)} \sin \frac{n \pi \xi}{l} d \xi \\\\
-& =\frac{-2 A \omega}{n \pi a \sin (\omega l / a)}\left[-\frac{\sin (\omega / a+n \pi / l) \xi}{2(\omega / a+n \pi / l)}+\frac{\sin (\omega / a-n \pi / l) \xi}{2(\omega / a-n \pi / l)}\right]_{0}^{l} \\\\
+A\_{n} & =0 \\\\
+B\_{n} & =\frac{2}{n \pi a} \int\_{0}^{l}(-A \omega) \frac{\sin (\omega \xi / a)}{\sin (\omega l / a)} \sin \frac{n \pi \xi}{l} d \xi \\\\
+& =\frac{-2 A \omega}{n \pi a \sin (\omega l / a)}\left[-\frac{\sin (\omega / a+n \pi / l) \xi}{2(\omega / a+n \pi / l)}+\frac{\sin (\omega / a-n \pi / l) \xi}{2(\omega / a-n \pi / l)}\right]\_{0}^{l} \\\\
 & =\frac{A \omega}{n \pi a \sin (\omega l / a)}\left[\frac{\sin (\omega l / a+n \pi)}{\omega / a+n \pi / l}-\frac{\sin (\omega l / a-n \pi)}{\omega / a-n \pi / l}\right] \\\\
 & =(-1)^{n} \frac{A \omega}{n \pi a}\left[\frac{1}{\omega / a+n \pi / l}-\frac{1}{\omega / a-n \pi / l}\right] \\\\
 & =(-1)^{n} \frac{2 A \omega}{a l} \cdot \frac{1}{\omega^{2} / a^{2}-n^{2} \pi^{2} / l^{2}} .
@@ -140,8 +140,8 @@ B_{n} & =\frac{2}{n \pi a} \int_{0}^{l}(-A \omega) \frac{\sin (\omega \xi / a)}{
 
 \\[
 \begin{aligned}
-w(x, t)= & \frac{2 A \omega}{a l} \sum_{n=1}^{\infty} \frac{1}{\omega^{2} / a^{2}-n^{2} \pi^{2} / l^{2}} \sin \frac{n \pi a t}{l} \sin \frac{n \pi x}{l}, \\\\
+w(x, t)= & \frac{2 A \omega}{a l} \sum\_{n=1}^{\infty} \frac{1}{\omega^{2} / a^{2}-n^{2} \pi^{2} / l^{2}} \sin \frac{n \pi a t}{l} \sin \frac{n \pi x}{l}, \\\\
 u(x, t)= & A \frac{\sin (\omega x / a)}{\sin (\omega l / a)} \sin \omega t \\\\
-& +\frac{2 A \omega}{a l} \sum_{n=1}^{\infty} \frac{1}{\omega^{2} / a^{2}-n^{2} \pi^{2} / l^{2}} \sin \frac{n \pi a t}{l} \sin \frac{n \pi x}{l} .
+& +\frac{2 A \omega}{a l} \sum\_{n=1}^{\infty} \frac{1}{\omega^{2} / a^{2}-n^{2} \pi^{2} / l^{2}} \sin \frac{n \pi a t}{l} \sin \frac{n \pi x}{l} .
 \end{aligned}
 \\]

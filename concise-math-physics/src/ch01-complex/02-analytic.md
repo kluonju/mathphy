@@ -3,14 +3,14 @@
 在解析函数论中, 函数的定义域或者值域不是一般的点集,而是满足一定条件的点集,称为**区域**,用 \\(B\\) 表示.
 为了说明区域的概念, 首先介绍邻域、内点、外点以及边界点的概念.
 
-- **邻域**   以复数 \\(z_0\\) 为圆心, 以任意小正实数 \\(\varepsilon\\) 为半径作一圆, 则圆内所有 点的集合称为 \\(z_0\\) 的邻域.
+- **邻域**   以复数 \\(z\_0\\) 为圆心, 以任意小正实数 \\(\varepsilon\\) 为半径作一圆, 则圆内所有 点的集合称为 \\(z\_0\\) 的邻域.
 
-- **内点**   若 \\(z_0\\) 及其邻域均属于点集 \\(Z\\), 则称 \\(z_0\\) 为该点集的内点.
+- **内点**   若 \\(z\_0\\) 及其邻域均属于点集 \\(Z\\), 则称 \\(z\_0\\) 为该点集的内点.
 
-- **外点**   若 \\(z_0\\) 及其邻域均不属于点集 \\(Z\\), 则称 \\(z_0\\) 为该点集的外点.
+- **外点**   若 \\(z\_0\\) 及其邻域均不属于点集 \\(Z\\), 则称 \\(z\_0\\) 为该点集的外点.
 
-- **边界点**    若在 \\(z_0\\) 的每个邻域内, 既有属于 \\(Z\\) 的点, 也有不属于 \\(Z\\) 的点,
-        则称 \\(z_0\\) 为该点集的边界点, 它既不是 \\(Z\\) 的内点, 也不是 \\(Z\\) 的外点. 边界点的 全体称为边界线.
+- **边界点**    若在 \\(z\_0\\) 的每个邻域内, 既有属于 \\(Z\\) 的点, 也有不属于 \\(Z\\) 的点,
+        则称 \\(z\_0\\) 为该点集的边界点, 它既不是 \\(Z\\) 的内点, 也不是 \\(Z\\) 的外点. 边界点的 全体称为边界线.
 
 现在介绍区域的概念.
 
@@ -28,10 +28,10 @@
 
 ![圆形域：内点、外点、边界点与邻域（lecture TikZ）](../figures/tikz_region.png)
 
-![环形区域 \\(a<|z-z_0|<b\\)（lecture TikZ）](../figures/tikz_annular.png)
+![环形区域 \\(a<|z-z\_0|<b\\)（lecture TikZ）](../figures/tikz_annular.png)
 
-圆形域可以用不等式 \\(\left|z-z_0\right|<r\\) 来表示, 式中 \\(z_0\\) 为圆心, \\(r\\) 为半径;
-环形域可以用 \\(a<\left|z-z_0\right|<b\\) 来表示, \\(z_0\\) 为环心, 式中 \\(a\\) 为内半径, \\(b\\) 为外半径.
+圆形域可以用不等式 \\(\left|z-z\_0\right|<r\\) 来表示, 式中 \\(z\_0\\) 为圆心, \\(r\\) 为半径;
+环形域可以用 \\(a<\left|z-z\_0\right|<b\\) 来表示, \\(z\_0\\) 为环心, 式中 \\(a\\) 为内半径, \\(b\\) 为外半径.
  若将其中的 "<" 换成 \\(\leqslant\\), 则这两个式子分别表示闭圆域和闭环域.
 
 ### 复变函数定义
@@ -67,7 +67,7 @@ f(z) = u(x,y) +\mathrm{i}   v(x,y) ,
 
 
 \\[
-a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n ,   n\in \mathbb{Z}^+ ,
+a\_0 + a\_1 z + a\_2 z^2 + \cdots + a\_n z^n ,   n\in \mathbb{Z}^+ ,
 \\]
 
 
@@ -75,7 +75,7 @@ a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n ,   n\in \mathbb{Z}^+ ,
 
 
 \\[
-\frac{a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n}{{b_0 + b_1 z + b_2 z^2 + \cdots + b_m z^m}} ,    n,m\in \mathbb{Z}^+ ,
+\frac{a\_0 + a\_1 z + a\_2 z^2 + \cdots + a\_n z^n}{{b\_0 + b\_1 z + b\_2 z^2 + \cdots + b\_m z^m}} ,    n,m\in \mathbb{Z}^+ ,
 \\]
 
 
@@ -215,7 +215,7 @@ z^5 = (\cos\theta + i\sin\theta)^5 = \cos(5\theta) + i\sin(5\theta)
 
 \\[
 \begin{aligned}
-(\cos\theta + i\sin\theta)^5  &= \sum_{k=0}^{5} \binom{5}{k} (\cos\theta)^{5-k} (i\sin\theta)^k \\\\
+(\cos\theta + i\sin\theta)^5  &= \sum\_{k=0}^{5} \binom{5}{k} (\cos\theta)^{5-k} (i\sin\theta)^k \\\\
         &= \binom{5}{0} \cos^5\theta + \binom{5}{1} \cos^4\theta(i\sin\theta) + \binom{5}{2} \cos^3\theta(i\sin\theta)^2
         \\\\
         & & +  \binom{5}{3} \cos^2\theta(i\sin\theta)^3 +  \binom{5}{4} \cos\theta(i\sin\theta)^4 + \binom{5}{5}(i\sin\theta)^5
@@ -357,25 +357,25 @@ e^{\mathrm{i} \theta} = \sqrt{ 1 - \sin ^2 \theta } + \mathrm{i} \sin \theta .
 
 首先,我们来讨论一下函数的极限和连续性问题.
 
-> **定义** 设\\(w=f(z)\\)在\\(z_0\\)的邻域有定义,对于任意
-\\(\epsilon > 0\\),存在\\(\delta > 0\\),使得\\(|z-z_0| < \delta\\)时,有
+> **定义** 设\\(w=f(z)\\)在\\(z\_0\\)的邻域有定义,对于任意
+\\(\epsilon > 0\\),存在\\(\delta > 0\\),使得\\(|z-z\_0| < \delta\\)时,有
 
 \\[
-|f(z) - w_0| < \epsilon ,
+|f(z) - w\_0| < \epsilon ,
 \\]
 
-称\\(z\to z_0\\)时\\(w_0\\)为\\(f(z)\\)的**极限**,记为
+称\\(z\to z\_0\\)时\\(w\_0\\)为\\(f(z)\\)的**极限**,记为
 
 \\[
-\lim_{z\to z_0} f(z) = w_0 .
+\lim\_{z\to z\_0} f(z) = w\_0 .
 \\]
 
-当\\(z\\)以任意方式趋近\\(z_0\\)时都有\\( \lim_{z\to z_0 f(z) = w_0\\),称\\(f(z)\\)在\\(z_0\\)点**连续**.
-如果\\(f(z)\\) 在\\(z_0=x_0 + \mathrm{i} y_0\\)点连续,可以等价为
+当\\(z\\)以任意方式趋近\\(z\_0\\)时都有\\( \lim\_{z\to z\_0 f(z) = w\_0\\),称\\(f(z)\\)在\\(z\_0\\)点**连续**.
+如果\\(f(z)\\) 在\\(z\_0=x\_0 + \mathrm{i} y\_0\\)点连续,可以等价为
 
 \\[
 \begin{aligned}
-\lim_{\substack{x\to x_0\\y\to y_0}} \left(u(x,y), v(x,y)\right) = \left(u(x_0, y_0), v(x_0, y_0)\right) .
+\lim\_{\substack{x\to x\_0\\y\to y\_0}} \left(u(x,y), v(x,y)\right) = \left(u(x\_0, y\_0), v(x\_0, y\_0)\right) .
 \end{aligned}
 \\]
 
@@ -384,7 +384,7 @@ e^{\mathrm{i} \theta} = \sqrt{ 1 - \sin ^2 \theta } + \mathrm{i} \sin \theta .
 \\[
 \begin{aligned}
 f'(z) = \frac{df}{dz} \\\\
-\equiv\lim_{\Delta z \to 0} \frac{\Delta w} {\Delta z} = \lim_{\Delta z\to 0} \frac{f(z+\Delta z) - f(z) } {(z+\Delta z ) - z}
+\equiv\lim\_{\Delta z \to 0} \frac{\Delta w} {\Delta z} = \lim\_{\Delta z\to 0} \frac{f(z+\Delta z) - f(z) } {(z+\Delta z ) - z}
 \end{aligned}
 \\]
 
@@ -393,13 +393,13 @@ f'(z) = \frac{df}{dz} \\\\
 
 ![导数极限与路径无关：水平与竖直趋近（lecture TikZ）](../figures/tikz_limits.png)
 
-按照图)两种方式逼近\\(z_0\\),可以得到
+按照图)两种方式逼近\\(z\_0\\),可以得到
 
 \\[
 \begin{aligned}
-\lim _{\Delta z \rightarrow 0} \frac{\Delta f}{\Delta z} &=\lim _{\Delta x \rightarrow 0}\left(\frac{\Delta u}{\Delta x}+i \frac{\Delta v}{\Delta x}\right)=\frac{\partial u}{\partial x}+i \frac{\partial v}{\partial x},
+\lim \_{\Delta z \rightarrow 0} \frac{\Delta f}{\Delta z} &=\lim \_{\Delta x \rightarrow 0}\left(\frac{\Delta u}{\Delta x}+i \frac{\Delta v}{\Delta x}\right)=\frac{\partial u}{\partial x}+i \frac{\partial v}{\partial x},
 \\\\
-\lim _{\Delta z \rightarrow 0} \frac{\Delta f}{\Delta z} &=\lim _{\Delta y \rightarrow 0}\left(-i \frac{\Delta u}{\Delta y}+\frac{\Delta v}{\Delta y}\right)=-i \frac{\partial u}{\partial y}+\frac{\partial v}{\partial y}
+\lim \_{\Delta z \rightarrow 0} \frac{\Delta f}{\Delta z} &=\lim \_{\Delta y \rightarrow 0}\left(-i \frac{\Delta u}{\Delta y}+\frac{\Delta v}{\Delta y}\right)=-i \frac{\partial u}{\partial y}+\frac{\partial v}{\partial y}
 \end{aligned}
 \\]
 
@@ -453,13 +453,13 @@ d z=d x+i d y,   d \bar{z}=d x-i d y
 
 ### 解析函数
 
-> **定义** 若函数 \\(f(z)\\) 在点 \\(z_0\\) 及其邻域上处处可导, 则称 \\(f(z)\\) 在 \\(z_0\\) 点解析.\\
+> **定义** 若函数 \\(f(z)\\) 在点 \\(z\_0\\) 及其邻域上处处可导, 则称 \\(f(z)\\) 在 \\(z\_0\\) 点解析.\\
  又若 \\(f(z)\\) 在区域 \\(B\\) 上每一点都解析, 则称 \\(f(z)\\) 是区域 \\(B\\) 上的解析函数.
 
 
  可见, 函数若在某一点解析, 则必在该点可导. 反之却不一定成立. 若在全复数域上解析,我们
  称其为**完全函数**(entire function).
- 若\\(f(z)\\)在某点\\(z_0\\)不可导,\\(z_0\\)称为\\(f(z)\\)的一个**奇点**(singular point).
+ 若\\(f(z)\\)在某点\\(z\_0\\)不可导,\\(z\_0\\)称为\\(f(z)\\)的一个**奇点**(singular point).
 
 
 
@@ -480,7 +480,7 @@ d z=d x+i d y,   d \bar{z}=d x-i d y
 
 上式可以利用柯西-黎曼条件进行验证,作为作业.\\(u,v\\)被成为调和函数或谐函数(harmonic functions)(注意不要同球谐函数spherical harmonics混淆).
 
-第二要义就是,满足\\(u(x,y) = C_1\\)和\\(v(x,y)= C_2\\)的曲线为正交曲线族.
+第二要义就是,满足\\(u(x,y) = C\_1\\)和\\(v(x,y)= C\_2\\)的曲线为正交曲线族.
 再次利用柯西-黎曼条件,可以验证梯度\\(\nabla u \\)和\\(\nabla v\\)正交,
 
 \\[
@@ -494,11 +494,11 @@ d z=d x+i d y,   d \bar{z}=d x-i d y
 u(x,y) = x^2 - y^2,   v(x,y) = 2xy .
 \\]
 
-可以画出\\(u(x,y) = C_1\\)和\\(v(x,y)= C_2\\)的曲线,如图所示.
+可以画出\\(u(x,y) = C\_1\\)和\\(v(x,y)= C\_2\\)的曲线,如图所示.
 
 ![\\(f(z)=z^2\\) 的实部/虚部等值线正交（lecture TikZ）](../figures/tikz_orthogo.png)
 
-其中蓝色曲线为\\(u(x,y) = C_1\\),红色曲线为\\(v(x,y)=C_2\\). 可以看到,两曲线在交点处是正交的.
+其中蓝色曲线为\\(u(x,y) = C\_1\\),红色曲线为\\(v(x,y)=C\_2\\). 可以看到,两曲线在交点处是正交的.
 
 第三要义就是,当解析函数的实部(或虚部)给定,可以根据柯西-黎曼条件求解相应的虚部(或实部),进而确定该解析函数.
 如已知实部,可以发现
@@ -553,14 +553,14 @@ f(z) = \sqrt{r} e^{\mathrm{i} \frac{1}{2}  \Arg z} =  \sqrt{r} e^{\mathrm{i} \le
 
 \\[
 \left\{\begin{aligned}
-f_1(z) & =\sqrt{r}  e^{\mathrm{i}(\arg z) / 2} \\\\
-f_2(z) & =-\sqrt{r}  e^{\mathrm{i}(\arg z) / 2} \\\\
+f\_1(z) & =\sqrt{r}  e^{\mathrm{i}(\arg z) / 2} \\\\
+f\_2(z) & =-\sqrt{r}  e^{\mathrm{i}(\arg z) / 2} \\\\
 \end{aligned}\right.
 \\]
 这两个函数成为\\(f(z)= z^{1/2}\\)的两个**单值分支**.可以发现,
 取任意包含\\(z=0\\)的闭合路径(或围道)\\(C\\),沿着该路径绕行一圈,辐角增加\\(2\pi\\),
-可以发现\\(f(z)\\)从其一单值分支\\(f_1(z)\\)进入到另一单值分支\\(f_2(z)\\).
-若绕行两周,则回归原分支\\(f_1(z)\\).根据定义,可知\\(z=0\\)为该函数的支点,且
+可以发现\\(f(z)\\)从其一单值分支\\(f\_1(z)\\)进入到另一单值分支\\(f\_2(z)\\).
+若绕行两周,则回归原分支\\(f\_1(z)\\).根据定义,可知\\(z=0\\)为该函数的支点,且
 为2阶支点.
 
 > **注** 注意这与梁昆淼的说法不同.
@@ -592,25 +592,25 @@ f(z) = \sqrt{z + \mathrm{i}} \sqrt{z-\mathrm{i}} .
 ![\\(\\sqrt{z^2+1}\\) 的支点与割线示意（lecture TikZ）](../figures/tikz_branchcut.png)
 
 \\[
-z - i = r_1 e^{\mathrm{i} \theta_1 }
-z + i = r_2 e^{\mathrm{i} \theta 2}
+z - i = r\_1 e^{\mathrm{i} \theta\_1 }
+z + i = r\_2 e^{\mathrm{i} \theta 2}
 \\]
 
 我们有
 
 \\[
-f(z) = \sqrt{r_1 r_2} e^{\mathrm{i} \frac{1}{2} (\theta_1 + \theta_2)}.
+f(z) = \sqrt{r\_1 r\_2} e^{\mathrm{i} \frac{1}{2} (\theta\_1 + \theta\_2)}.
 \\]
 
 如果我们做以下几种情况的闭合路径\\(C\\),我们会得到不同的情况.若\\(C\\)
 
 
-- [(i)] 不包含两个支点,那么\\(\theta_1 \to \theta_1, \theta_2 \to \theta_2\\), 于是\\(f(z)\to f(z)\\);
+- [(i)] 不包含两个支点,那么\\(\theta\_1 \to \theta\_1, \theta\_2 \to \theta\_2\\), 于是\\(f(z)\to f(z)\\);
 
-- [(ii)] 包含\\(\mathrm{i}\\)但不含\\(-\mathrm{i}\\),那么\\(\theta_1 \to \theta_1 + 2\pi, \theta_2 \to \theta_2\\), 于是\\(f(z)\to - f(z)\\);
+- [(ii)] 包含\\(\mathrm{i}\\)但不含\\(-\mathrm{i}\\),那么\\(\theta\_1 \to \theta\_1 + 2\pi, \theta\_2 \to \theta\_2\\), 于是\\(f(z)\to - f(z)\\);
 
-- [(iii)] 包含\\(-\mathrm{i}\\)但不含\\(\mathrm{i}\\),那么\\(\theta_1 \to \theta_1, \theta_2 \to \theta_2  + 2\pi\\), 于是\\(f(z)\to - f(z)\\);
+- [(iii)] 包含\\(-\mathrm{i}\\)但不含\\(\mathrm{i}\\),那么\\(\theta\_1 \to \theta\_1, \theta\_2 \to \theta\_2  + 2\pi\\), 于是\\(f(z)\to - f(z)\\);
 
-- [(iv)] 包含\\(\pm \mathrm{i}\\)两个支点,那么\\(\theta_1 \to \theta_1  + 2\pi, \theta_2 \to \theta_2  + 2\pi\\), 于是\\(f(z)\to  f(z)\\).
+- [(iv)] 包含\\(\pm \mathrm{i}\\)两个支点,那么\\(\theta\_1 \to \theta\_1  + 2\pi, \theta\_2 \to \theta\_2  + 2\pi\\), 于是\\(f(z)\to  f(z)\\).
 
 因此,为了阻止闭合路径绕支点完成完整的回路,我们必须选择合适的割线.图中连接\\(\pm \mathrm{i}\\)的标红线段是一种选择.

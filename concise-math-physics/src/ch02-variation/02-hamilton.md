@@ -1,16 +1,16 @@
 ### 哈密顿方程
 
-经典物理里,拉式量\\(L(x_1, x_2, \cdots, x_n, \dot{x}_1, \dot{x}_2, \cdots, \dot{x}_n)|t)\\)是位置和速度的函数.**哈密顿原理**
-说的是系统的运动从\\(t_1\\)到\\(t_2\\)使得拉式量的时间积分的变分为零.即
+经典物理里,拉式量\\(L(x\_1, x\_2, \cdots, x\_n, \dot{x}\_1, \dot{x}\_2, \cdots, \dot{x}\_n)|t)\\)是位置和速度的函数.**哈密顿原理**
+说的是系统的运动从\\(t\_1\\)到\\(t\_2\\)使得拉式量的时间积分的变分为零.即
 
 \\[
-\delta \int_{t_1}^{t_2} L\left(x_1, x_2, \ldots, x_n, \dot{x}_1, \dot{x}_2, \ldots, \dot{x}_n | t\right) d t=0 .
+\delta \int\_{t\_1}^{t\_2} L\left(x\_1, x\_2, \ldots, x\_n, \dot{x}\_1, \dot{x}\_2, \ldots, \dot{x}\_n | t\right) d t=0 .
 \\]
 
 于是有拉格朗日运动方程
 
 \\[
-\frac{d}{d t} \frac{\partial L}{\partial \dot{x}_i}-\frac{\partial L}{\partial x_i}=0,   \forall i
+\frac{d}{d t} \frac{\partial L}{\partial \dot{x}\_i}-\frac{\partial L}{\partial x\_i}=0,   \forall i
 \\]
 
 拉格朗日运动方程同牛顿运动方程是等价的.拉格朗日运动方程有一些优点.首先,依赖坐标不必是标准的坐标或长度,
@@ -21,38 +21,38 @@
 正则动量定义为
 
 \\[
-p_i=\frac{\partial L}{\partial \dot{q}_i}
+p\_i=\frac{\partial L}{\partial \dot{q}\_i}
 \\]
 
 \\[
-d L=\sum_i\left(\frac{\partial L}{\partial q_i} d q_i+\frac{\partial L}{\partial \dot{q}_i} d \dot{q}_i\right)+\frac{\partial L}{\partial t} d t=\sum_i\left(\dot{p}_i d q_i+p_i d \dot{q}_i\right)+\frac{\partial L}{\partial t} d t
+d L=\sum\_i\left(\frac{\partial L}{\partial q\_i} d q\_i+\frac{\partial L}{\partial \dot{q}\_i} d \dot{q}\_i\right)+\frac{\partial L}{\partial t} d t=\sum\_i\left(\dot{p}\_i d q\_i+p\_i d \dot{q}\_i\right)+\frac{\partial L}{\partial t} d t
 \\]
 
 定义体系哈密顿量为
 
 \\[
-H(q_i, p_i, t)=\sum_i p_i \dot{q}_i-L
+H(q\_i, p\_i, t)=\sum\_i p\_i \dot{q}\_i-L
 \\]
 
 我们有
 
 \\[
-d H=\sum_i\left(p_i d \dot{q}_i+\dot{q}_i d p_i\right)-\left(\sum_i\left(\dot{p}_i d q_i+p_i d \dot{q}_i\right)+\frac{\partial L}{\partial t} d t\right)=\sum_i\left(\dot{q}_i d p_i-\dot{p}_i d q_i\right)-\frac{\partial L}{\partial t} d t
+d H=\sum\_i\left(p\_i d \dot{q}\_i+\dot{q}\_i d p\_i\right)-\left(\sum\_i\left(\dot{p}\_i d q\_i+p\_i d \dot{q}\_i\right)+\frac{\partial L}{\partial t} d t\right)=\sum\_i\left(\dot{q}\_i d p\_i-\dot{p}\_i d q\_i\right)-\frac{\partial L}{\partial t} d t
 \\]
 
 另外根据定义有
 
 \\[
-d H=\sum_i\left(\frac{\partial H}{\partial p_i} d p_i+\frac{\partial H}{\partial q_i} d q_i\right)+\frac{\partial H}{\partial t} d t .
+d H=\sum\_i\left(\frac{\partial H}{\partial p\_i} d p\_i+\frac{\partial H}{\partial q\_i} d q\_i\right)+\frac{\partial H}{\partial t} d t .
 \\]
 
 于是得到哈密顿方程
 
 \\[
 \begin{aligned}
-\frac{\partial H}{\partial p_i}&=\dot{q}_i
+\frac{\partial H}{\partial p\_i}&=\dot{q}\_i
 \\\\
-\frac{\partial H}{\partial q_i}&=-\dot{p}_i
+\frac{\partial H}{\partial q\_i}&=-\dot{p}\_i
 \\\\
 \frac{\partial H}{\partial t}&=-\frac{\partial L}{\partial t}
 \end{aligned}

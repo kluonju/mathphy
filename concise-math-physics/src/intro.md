@@ -13,14 +13,14 @@
 | 章 | 主题 |
 |----|------|
 | 0 | 预备知识（数集、三角、微积分、指标记号、向量、线性代数） |
-| 1 | 复变函数与留数 |
+| 1 | 复变函数、留数与鞍点渐近 |
 | 2 | 变分法 |
 | 3 | 傅里叶与拉普拉斯变换 |
 | 4 | 特殊函数 |
 | 5 | 数学物理方程（含电磁学中的波动/Poisson 衔接） |
 | 6 | 常微分与 Sturm–Liouville 理论 |
 | 7 | 曲线坐标系 |
-| 8 | 数值方法 |
+| 8 | 数值方法（求根、积分、插值、ODE） |
 | 9 | 矢量与张量 |
 | 附录 | 级数展开与矢量恒等式 |
 
@@ -34,13 +34,13 @@
 | \\(\mathcal{L}\{f\}\\) | \\(f(t)\\) 的拉普拉斯变换 |
 | \\(\mathcal{L}^{-1}\{\bar f\}\\) | 拉普拉斯反变换 |
 | \\(\mathcal{F}\{f\}\\) | 傅里叶变换 |
-| \\(\delta_{ij}\\) | Kronecker 符号 |
+| \\(\delta\_{ij}\\) | Kronecker 符号 |
 | \\(\delta(x)\\) | Dirac \\(\delta\\) 函数（分布） |
-| \\(\varepsilon_{ijk}\\) | Levi-Civita（完全反对称）符号 |
-| \\(\partial_i\\) | \\(\partial/\partial x_i\\) |
-| \\(\mathrm{Res}(f,z_0)\\) | \\(f\\) 在 \\(z_0\\) 的留数 |
+| \\(\varepsilon\_{ijk}\\) | Levi-Civita（完全反对称）符号 |
+| \\(\partial\_i\\) | \\(\partial/\partial x\_i\\) |
+| \\(\mathrm{Res}(f,z\_0)\\) | \\(f\\) 在 \\(z\_0\\) 的留数 |
 
-偏导数记 \\(\partial f/\partial x\\)（指标形式常写 \\(\partial_i\\)）；函数对自变量的全导数记 \\(\mathrm{d}f/\mathrm{d}x\\)。
+偏导数记 \\(\partial f/\partial x\\)（指标形式常写 \\(\partial\_i\\)）；函数对自变量的全导数记 \\(\mathrm{d}f/\mathrm{d}x\\)。
 
 第 0 章汇总了数集、三角恒等式、微积分、[指标记号与爱因斯坦约定](ch00-prerequisites/04-index-notation.md)与向量、线性代数等预备内容。
 

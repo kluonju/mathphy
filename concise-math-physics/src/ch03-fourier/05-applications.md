@@ -8,28 +8,28 @@
 如计算级数和
 
 \\[
-\sum_{n=1} ^{\infty}  \frac{1}{n^2},
+\sum\_{n=1} ^{\infty}  \frac{1}{n^2},
 \\]
 
 由前面例题
 
 \\[
-\int_0^{\infty} t e^{-p t} d t=\frac{1}{p^2},   \Re p>0
+\int\_0^{\infty} t e^{-p t} d t=\frac{1}{p^2},   \Re p>0
 \\]
 
 将级数化为
 
 \\[
 \begin{aligned}
-\sum_{n= 1}^{\infty} \frac{1}{n^2} & =\sum_{n=1}^{\infty} \int_0^{\infty} t e^{-n t} d t \\\\
-& =\int_0^{\infty} t\left[\sum_{n=1}^{\infty} e^{-n t}\right] d t=\int_0^{\infty} \frac{t}{e^t-1} d t
+\sum\_{n= 1}^{\infty} \frac{1}{n^2} & =\sum\_{n=1}^{\infty} \int\_0^{\infty} t e^{-n t} d t \\\\
+& =\int\_0^{\infty} t\left[\sum\_{n=1}^{\infty} e^{-n t}\right] d t=\int\_0^{\infty} \frac{t}{e^t-1} d t
 \end{aligned}
 \\]
 
 查表可得
 
 \\[
-\sum_{n=1} ^{\infty}  \frac{1}{n^2} = \frac{\pi^2}{6}.
+\sum\_{n=1} ^{\infty}  \frac{1}{n^2} = \frac{\pi^2}{6}.
 \\]
 
 > **注** Use Parseval's identity (applied to the function \\(f(x)=x\\) ) to obtain
@@ -37,7 +37,7 @@
 
 
 \\[
-\sum_{n=-\infty}^{\infty}\left|c_n\right|^2=\frac{1}{2 \pi} \int_{-\pi}^\pi x^2 d x
+\sum\_{n=-\infty}^{\infty}\left|c\_n\right|^2=\frac{1}{2 \pi} \int\_{-\pi}^\pi x^2 d x
 \\]
 
 
@@ -47,7 +47,7 @@ where
 
 \\[
 \begin{aligned}
-c_n & =\frac{1}{2 \pi} \int_{-\pi}^\pi x e^{-i n x} d x \\\\
+c\_n & =\frac{1}{2 \pi} \int\_{-\pi}^\pi x e^{-i n x} d x \\\\
 & =\frac{n \pi \cos (n \pi)-\sin (n \pi)}{\pi n^2} i \\\\
 & =\frac{\cos (n \pi)}{n} i \\\\
 & =\frac{(-1)^n}{n} i
@@ -55,12 +55,12 @@ c_n & =\frac{1}{2 \pi} \int_{-\pi}^\pi x e^{-i n x} d x \\\\
 \\]
 
 
-for \\(n \neq 0\\), and \\(c_0=0\\). Thus,
+for \\(n \neq 0\\), and \\(c\_0=0\\). Thus,
 
 
 
 \\[
-\left|c_n\right|^2= \begin{cases}\frac{1}{n^2}, & \text{for} n \neq 0 \\ 0, & \text{for} n=0\end{cases}
+\left|c\_n\right|^2= \begin{cases}\frac{1}{n^2}, & \text{for} n \neq 0 \\ 0, & \text{for} n=0\end{cases}
 \\]
 
 
@@ -69,7 +69,7 @@ and
 
 
 \\[
-\sum_{n=-\infty}^{\infty}\left|c_n\right|^2=2 \sum_{n=1}^{\infty} \frac{1}{n^2}=\frac{1}{2 \pi} \int_{-\pi}^\pi x^2 d x
+\sum\_{n=-\infty}^{\infty}\left|c\_n\right|^2=2 \sum\_{n=1}^{\infty} \frac{1}{n^2}=\frac{1}{2 \pi} \int\_{-\pi}^\pi x^2 d x
 \\]
 
 
@@ -79,7 +79,7 @@ Therefore,
 
 
 \\[
-\sum_{n=1}^{\infty} \frac{1}{n^2}=\frac{1}{4 \pi} \int_{-\pi}^\pi x^2 d x=\frac{\pi^2}{6}
+\sum\_{n=1}^{\infty} \frac{1}{n^2}=\frac{1}{4 \pi} \int\_{-\pi}^\pi x^2 d x=\frac{\pi^2}{6}
 \\]
 
 
@@ -87,41 +87,41 @@ as required.
 
 #### 求解定积分
 
-如果 \\(\int_v^{\infty} \bar{f}(q) d q\\) 存在, 且当\\(t\to 0\\)时, \\(|f(t)/t|\\)有界,则
+如果 \\(\int\_v^{\infty} \bar{f}(q) d q\\) 存在, 且当\\(t\to 0\\)时, \\(|f(t)/t|\\)有界,则
 
 \\[
-\int_{p}^{\infty} \bar{f}(q) dq  \Leftrightarrow  \frac{f(t)}{t} .
+\int\_{p}^{\infty} \bar{f}(q) dq  \Leftrightarrow  \frac{f(t)}{t} .
 \\]
 
 比如
 
 \\[
-\frac{\sin \omega t}{t}  \Leftrightarrow  \int_p^{\infty} \frac{\omega}{q^2+\omega^2} d q=\frac{\pi}{2}-\arctan \frac{p}{\omega}.
+\frac{\sin \omega t}{t}  \Leftrightarrow  \int\_p^{\infty} \frac{\omega}{q^2+\omega^2} d q=\frac{\pi}{2}-\arctan \frac{p}{\omega}.
 \\]
 
 当\\(p\to 0\\)时, 有
 
 \\[
-\int_0^{\infty} \bar{f}(p) d p=\int_0^{\infty} \frac{f(t)}{t} d t
+\int\_0^{\infty} \bar{f}(p) d p=\int\_0^{\infty} \frac{f(t)}{t} d t
 \\]
 
 一个例子如
 
 \\[
-\int_0^{\infty} \frac{\sin t}{t} d t=\int_0^{\infty} \frac{1}{p^2+1} d p=\frac{\pi}{2}
+\int\_0^{\infty} \frac{\sin t}{t} d t=\int\_0^{\infty} \frac{1}{p^2+1} d p=\frac{\pi}{2}
 \\]
 
 不仅如此, 有些积分无法用留数定理计算,如
 
 \\[
-\int_0^{\infty} \frac{\cos a t-\cos b t}{t} d t   a>0, b>0
+\int\_0^{\infty} \frac{\cos a t-\cos b t}{t} d t   a>0, b>0
 \\]
 
 使用以上等式可得
 
 \\[
 \begin{gathered}
-\int_0^{\infty} \frac{\cos a t-\cos b t}{t} d t  \Leftrightarrow  \int_0^{\infty}\left(\frac{p}{p^2+a^2}-\frac{p}{p^2+b^2}\right) d p \\ =\left.\frac{1}{2} \ln \frac{p^2+a^2}{p^2+b^2}\right|^{\infty}=\ln b-\ln a .
+\int\_0^{\infty} \frac{\cos a t-\cos b t}{t} d t  \Leftrightarrow  \int\_0^{\infty}\left(\frac{p}{p^2+a^2}-\frac{p}{p^2+b^2}\right) d p \\ =\left.\frac{1}{2} \ln \frac{p^2+a^2}{p^2+b^2}\right|^{\infty}=\ln b-\ln a .
 \end{gathered}
 \\]
 
@@ -141,7 +141,7 @@ m \frac{d^2 X(t)}{d t^2}+k X(t)=0
 初始条件取
 
 \\[
-X(0)=X_0,   X^{\prime}(0)=0
+X(0)=X\_0,   X^{\prime}(0)=0
 \\]
 
 应用拉氏变换到该方程上得到
@@ -153,19 +153,19 @@ m \mathcal{L}\left\{\frac{d^2 X}{d t^2}\right\}+k \mathcal{L}\{X(t)\}=0
 用\\(x(p)\\)表示未知变换\\(\mathcal{L\{ X(t)\}\\),于是根据导数定理有
 
 \\[
-m p^2 x(p)-m p X_0+k x(p)=0,
+m p^2 x(p)-m p X\_0+k x(p)=0,
 \\]
 
 化简为
 
 \\[
-x(p)=X_0 \frac{p}{p^2+\omega_0^2},   \omega_0^2 \equiv \frac{k}{m} .
+x(p)=X\_0 \frac{p}{p^2+\omega\_0^2},   \omega\_0^2 \equiv \frac{k}{m} .
 \\]
 
 查表得
 
 \\[
-X(t)=X_0 \cos \omega_0 t.
+X(t)=X\_0 \cos \omega\_0 t.
 \\]
 
 ## 数值实验

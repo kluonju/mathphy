@@ -2,17 +2,17 @@
 
 ### 向量空间与线性无关
 
-设 \\(V\\) 为域 \\(\mathbb{R}\\)（或 \\(\mathbb{C}\\)）上的**向量空间**。向量 \\(\mathbf{v}_1,\ldots,\mathbf{v}_n \in V\\) **线性无关**，是指
+设 \\(V\\) 为域 \\(\mathbb{R}\\)（或 \\(\mathbb{C}\\)）上的**向量空间**。向量 \\(\mathbf{v}\_1,\ldots,\mathbf{v}\_n \in V\\) **线性无关**，是指
 
 \\[
-c_1 \mathbf{v}_1 + \cdots + c_n \mathbf{v}_n = \mathbf{0} \quad \Rightarrow \quad c_1 = \cdots = c_n = 0 .
+c\_1 \mathbf{v}\_1 + \cdots + c\_n \mathbf{v}\_n = \mathbf{0} \quad \Rightarrow \quad c\_1 = \cdots = c\_n = 0 .
 \\]
 
-若 \\(V\\) 中任意向量均可唯一表示为 \\(\mathbf{v}_1,\ldots,\mathbf{v}_n\\) 的线性组合，则称 \\(\{\mathbf{v}_i\}\\) 为 \\(V\\) 的一组**基**（basis），\\(n\\) 为维数。
+若 \\(V\\) 中任意向量均可唯一表示为 \\(\mathbf{v}\_1,\ldots,\mathbf{v}\_n\\) 的线性组合，则称 \\(\{\mathbf{v}\_i\}\\) 为 \\(V\\) 的一组**基**（basis），\\(n\\) 为维数。
 
 ### 矩阵与行列式
 
-\\(m \times n\\) 矩阵 \\(A = (a_{ij})\\) 与向量 \\(\mathbf{x} \in \mathbb{R}^n\\) 的乘积给出 \\(\mathbb{R}^m\\) 中的像。方阵的行列式 \\(\det A\\) 满足 \\(\det(AB) = \det A \cdot \det B\\)；\\(\det A \neq 0\\) 当且仅当 \\(A\\) 可逆。
+\\(m \times n\\) 矩阵 \\(A = (a\_{ij})\\) 与向量 \\(\mathbf{x} \in \mathbb{R}^n\\) 的乘积给出 \\(\mathbb{R}^m\\) 中的像。方阵的行列式 \\(\det A\\) 满足 \\(\det(AB) = \det A \cdot \det B\\)；\\(\det A \neq 0\\) 当且仅当 \\(A\\) 可逆。
 
 \\(2 \times 2\\) 与 \\(3 \times 3\\) 行列式：
 
@@ -21,17 +21,17 @@ c_1 \mathbf{v}_1 + \cdots + c_n \mathbf{v}_n = \mathbf{0} \quad \Rightarrow \qua
 \\]
 
 \\[
-\det \begin{pmatrix} a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3 \end{pmatrix}
-= a_1(b_2 c_3 - b_3 c_2) - a_2(b_1 c_3 - b_3 c_1) + a_3(b_1 c_2 - b_2 c_1) .
+\det \begin{pmatrix} a\_1 & a\_2 & a\_3 \\ b\_1 & b\_2 & b\_3 \\ c\_1 & c\_2 & c\_3 \end{pmatrix}
+= a\_1(b\_2 c\_3 - b\_3 c\_2) - a\_2(b\_1 c\_3 - b\_3 c\_1) + a\_3(b\_1 c\_2 - b\_2 c\_1) .
 \\]
 
 后者与向量叉积 \\(\mathbf{a} \times \mathbf{b}\\) 的分量展开一致。
 
 ### 内积与正交
 
-欧氏空间 \\(\mathbb{R}^n\\) 上的标准内积 \\(\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u} \cdot \mathbf{v} = \sum_i u_i v_i\\)。若 \\(\langle \mathbf{u}, \mathbf{v} \rangle = 0\\)，称 \\(\mathbf{u},\mathbf{v}\\) **正交**。
+欧氏空间 \\(\mathbb{R}^n\\) 上的标准内积 \\(\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{u} \cdot \mathbf{v} = \sum\_i u\_i v\_i\\)。若 \\(\langle \mathbf{u}, \mathbf{v} \rangle = 0\\)，称 \\(\mathbf{u},\mathbf{v}\\) **正交**。
 
-函数空间上可定义内积，例如 \\(\langle f, g \rangle = \int_a^b f(x) g(x)\,\mathrm{d}x\\)。正交函数族在傅里叶级数展开中起核心作用（见第 [3 章](../ch03-fourier/01-fourier-series.md)）。
+函数空间上可定义内积，例如 \\(\langle f, g \rangle = \int\_a^b f(x) g(x)\,\mathrm{d}x\\)。正交函数族在傅里叶级数展开中起核心作用（见第 [3 章](../ch03-fourier/01-fourier-series.md)）。
 
 ### 特征值与特征向量
 
@@ -49,11 +49,11 @@ A\mathbf{v} = \lambda \mathbf{v},
 
 ### Gram–Schmidt 正交化（简述）
 
-给定线性无关组 \\(\{f_1,\ldots,f_n\}\\)，可递推构造正交组 \\(\{g_1,\ldots,g_n\}\\)：
+给定线性无关组 \\(\{f\_1,\ldots,f\_n\}\\)，可递推构造正交组 \\(\{g\_1,\ldots,g\_n\}\\)：
 
 \\[
-g_1 = f_1, \qquad
-g_k = f_k - \sum_{j=1}^{k-1} \frac{\langle f_k, g_j \rangle}{\langle g_j, g_j \rangle}\, g_j .
+g\_1 = f\_1, \qquad
+g\_k = f\_k - \sum\_{j=1}^{k-1} \frac{\langle f\_k, g\_j \rangle}{\langle g\_j, g\_j \rangle}\, g\_j .
 \\]
 
 归一化后得到标准正交基，用于函数空间的级数展开。

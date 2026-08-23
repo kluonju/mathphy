@@ -60,11 +60,11 @@ A\_x & A\_y & A\_z
 
 同一边界可张许多不同曲面；Stokes 定理对其中每一个都成立。
 
-![内边环量抵消，仅边界 \\(L\\) 留下](../figures/vec_stokes_cancel.png)
+![内边环量抵消，仅边界 L 留下](../figures/vec_stokes_cancel.png)
 
 ### 例题 1-7（Stokes 定理）
 
-取 \\(\mathbf{A}=-y\mathbf{i}_x+x\mathbf{i}_y-z\mathbf{i}_z\\)（柱坐标下为 \\(r\mathbf{i}\_\phi-z\mathbf{i}_z\\)），边界 \\(L\\) 为 \\(xy\\) 平面上半径 \\(R\\) 的圆。验证：平面圆盘、半球面、以该圆为底的圆柱侧面（加顶）上，面积分均等于环量。
+取 \\(\mathbf{A}=-y\mathbf{i}\_x+x\mathbf{i}\_y-z\mathbf{i}\_z\\)（柱坐标下为 \\(r\mathbf{i}\_\phi-z\mathbf{i}\_z\\)），边界 \\(L\\) 为 \\(xy\\) 平面上半径 \\(R\\) 的圆。验证：平面圆盘、半球面、以该圆为底的圆柱侧面（加顶）上，面积分均等于环量。
 
 **解.** 在 \\(L\\) 上 \\(\mathrm{d}\boldsymbol{\ell}=R\,\mathrm{d}\phi\,\mathbf{i}\_\phi\\)，\\(\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=R^2\mathrm{d}\phi\\)，故
 
@@ -72,11 +72,11 @@ A\_x & A\_y & A\_z
 C=\oint\_L \mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=2\pi R^2.
 \\]
 
-又 \\(\nabla\times\mathbf{A}=2\mathbf{i}_z\\)。
+又 \\(\nabla\times\mathbf{A}=2\mathbf{i}\_z\\)。
 
 - 平面圆盘：\\(\int (\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}=2\cdot(\pi R^2)=2\pi R^2\\)。
-- 半球：用法向与 \\(\mathbf{i}_z\\) 的夹角积分，同样得 \\(2\pi R^2\\)。
-- 圆柱：侧面法向与 \\(\mathbf{i}_z\\) 正交，贡献为零；顶面与圆盘相同，仍得 \\(2\pi R^2\\)。
+- 半球：用法向与 \\(\mathbf{i}\_z\\) 的夹角积分，同样得 \\(2\pi R^2\\)。
+- 圆柱：侧面法向与 \\(\mathbf{i}\_z\\) 正交，贡献为零；顶面与圆盘相同，仍得 \\(2\pi R^2\\)。
 
 ### 两条恒等式（积分证明）
 

@@ -1,9 +1,9 @@
 \\[
 \begin{aligned}
 \mathbf{a} \cdot(\mathbf{b} \times \mathbf{c}) &= \mathbf{b} \cdot(\mathbf{c} \times \mathbf{a}) = \mathbf{c} \cdot(\mathbf{a} \times \mathbf{b}) = \operatorname{det}\left[\begin{array}{lll}
-a_1 & a_2 & a_3 \\\\
-b_1 & b_2 & b_3 \\\\
-c_1 & c_2 & c_3
+a\_1 & a\_2 & a\_3 \\\\
+b\_1 & b\_2 & b\_3 \\\\
+c\_1 & c\_2 & c\_3
 \end{array}\right] \\\\
 \mathbf{a} \times(\mathbf{b} \times \mathbf{c}) &= (\mathbf{a} \cdot \mathbf{c}) \mathbf{b} - (\mathbf{a} \cdot \mathbf{b}) \mathbf{c} \\\\
 (\mathbf{a} \times \mathbf{b}) \cdot(\mathbf{c} \times \mathbf{d}) &= (\mathbf{a} \cdot \mathbf{c})(\mathbf{b} \cdot \mathbf{d}) - (\mathbf{a} \cdot \mathbf{d})(\mathbf{b} \cdot \mathbf{c}) \\\\
@@ -22,14 +22,14 @@ c_1 & c_2 & c_3
 
 \\[
 \begin{aligned}
-\oint_{\partial S} \mathbf{A} \cdot d \mathbf{s} &= \iint_S(\nabla \times \mathbf{A}) \cdot d \mathbf{S}   \text{Stokes's theorem} \\\\
-\oint\!\!\!\!\!\iint_{\partial V} \mathbf{A} \cdot d \mathbf{S} &= \iiint_V \nabla \cdot \mathbf{A}   dV   \text{Gauss's theorem} \\\\
-\oint\!\!\!\!\!\iint_{\partial V} \psi \nabla \varphi \cdot d \mathbf{S} &= \iiint_V \left(\psi \nabla^2 \varphi + \nabla \varphi \cdot \nabla \psi\right)   dV   \text{Green's 1st identity} \\\\
-\oint\!\!\!\!\!\iint_{\partial V} (\psi \nabla \varphi - \varphi \nabla \psi) \cdot d \mathbf{S} &= \iiint_V \left(\psi \nabla^2 \varphi - \varphi \nabla^2 \psi\right)   dV   \text{Green's 2nd identity} \\\\
-\oint\!\!\!\!\!\iint_{\partial V} \varphi   d \mathbf{S} &= \iiint_V \nabla \varphi   dV \\\\
-\oint\!\!\!\!\!\iint_{\partial V} \mathbf{A} \times d \mathbf{S} &= -\iiint_V \nabla \times \mathbf{A}   dV \\\\
-\oint_{\partial S} \varphi   d \mathbf{s} &= -\iint_S \nabla \varphi \times d \mathbf{S} \\\\
-\iiint_V \mathbf{A} \cdot \nabla \varphi   dV &= \oint\!\!\!\!\!\iint_{\partial V} \varphi \mathbf{A} \cdot d \mathbf{S} - \iiint_V \varphi \nabla \cdot \mathbf{A}   dV
+\oint\_{\partial S} \mathbf{A} \cdot d \mathbf{s} &= \iint\_S(\nabla \times \mathbf{A}) \cdot d \mathbf{S}   \text{Stokes's theorem} \\\\
+\oint\!\!\!\!\!\iint\_{\partial V} \mathbf{A} \cdot d \mathbf{S} &= \iiint\_V \nabla \cdot \mathbf{A}   dV   \text{Gauss's theorem} \\\\
+\oint\!\!\!\!\!\iint\_{\partial V} \psi \nabla \varphi \cdot d \mathbf{S} &= \iiint\_V \left(\psi \nabla^2 \varphi + \nabla \varphi \cdot \nabla \psi\right)   dV   \text{Green's 1st identity} \\\\
+\oint\!\!\!\!\!\iint\_{\partial V} (\psi \nabla \varphi - \varphi \nabla \psi) \cdot d \mathbf{S} &= \iiint\_V \left(\psi \nabla^2 \varphi - \varphi \nabla^2 \psi\right)   dV   \text{Green's 2nd identity} \\\\
+\oint\!\!\!\!\!\iint\_{\partial V} \varphi   d \mathbf{S} &= \iiint\_V \nabla \varphi   dV \\\\
+\oint\!\!\!\!\!\iint\_{\partial V} \mathbf{A} \times d \mathbf{S} &= -\iiint\_V \nabla \times \mathbf{A}   dV \\\\
+\oint\_{\partial S} \varphi   d \mathbf{s} &= -\iint\_S \nabla \varphi \times d \mathbf{S} \\\\
+\iiint\_V \mathbf{A} \cdot \nabla \varphi   dV &= \oint\!\!\!\!\!\iint\_{\partial V} \varphi \mathbf{A} \cdot d \mathbf{S} - \iiint\_V \varphi \nabla \cdot \mathbf{A}   dV
 \end{aligned}
 \\]
 
@@ -54,7 +54,7 @@ If \\(\mathbf{x}\\) is a position vector, \\(r = \|\mathbf{x\|\\), and \\(\mathb
 (\mathbf{a} \cdot \nabla)[\mathbf{n} f(r)] &= \frac{f(r)}{r}[\mathbf{a} - \mathbf{n}(\mathbf{a} \cdot \mathbf{n})] + \mathbf{n}(\mathbf{a} \cdot \mathbf{n}) \frac{\partial f(r)}{\partial r} \\\\
 \nabla(\mathbf{x} \cdot \mathbf{a}) &= \mathbf{a} + \mathbf{x}(\boldsymbol{\nabla} \cdot \mathbf{a}) + (\mathbf{x} \times \boldsymbol{\nabla}) \times \mathbf{a} \\\\
 \nabla^2 \frac{1}{r} &= -4 \pi \delta^3(\mathbf{x}) \\\\
-\frac{\partial}{\partial x_i} \frac{\partial}{\partial x_j} \frac{1}{r} &= \frac{3 x_i x_j - r^2 \delta_{ij}}{r^5} - \frac{4 \pi}{3} \delta_{ij} \delta^3(\mathbf{x})
+\frac{\partial}{\partial x\_i} \frac{\partial}{\partial x\_j} \frac{1}{r} &= \frac{3 x\_i x\_j - r^2 \delta\_{ij}}{r^5} - \frac{4 \pi}{3} \delta\_{ij} \delta^3(\mathbf{x})
 \end{aligned}
 \\]
 
@@ -62,16 +62,16 @@ If \\(\mathbf{x}\\) is a position vector, \\(r = \|\mathbf{x\|\\), and \\(\mathb
 
 \\[
 \begin{aligned}
-\mathbf{e}_\rho &= \cos \phi \mathbf{e}_x + \sin \phi \mathbf{e}_y \\\\
-\mathbf{e}_\phi &= -\sin \phi \mathbf{e}_x + \cos \phi \mathbf{e}_y \\\\
-\mathbf{e}_x &= \cos \phi \mathbf{e}_\rho - \sin \phi \mathbf{e}_\phi \\\\
-\mathbf{e}_y &= \sin \phi \mathbf{e}_rho + \cos \phi \mathbf{e}_\phi \\\\
-\mathbf{e}_r &= \sin \theta \cos \phi \mathbf{e}_x + \sin \theta \sin \phi \mathbf{e}_y + \cos \theta \mathbf{e}_z \\\\
-\mathbf{e}_\theta &= \cos \theta \cos \phi \mathbf{e}_x + \cos \theta \sin \phi \mathbf{e}_y - \sin \theta \mathbf{e}_z \\\\
-\mathbf{e}_\phi &= -\sin \phi \mathbf{e}_x + \cos \phi \mathbf{e}_y \\\\
-\mathbf{e}_x &= \sin \theta \cos \phi \mathbf{e}_r + \cos \theta \cos \phi \mathbf{e}_\theta - \sin \phi \mathbf{e}_\phi \\\\
-\mathbf{e}_y &= \sin \theta \sin \phi \mathbf{e}_r + \cos \theta \sin \phi \mathbf{e}_\theta + \cos \phi \mathbf{e}_\phi \\\\
-\mathbf{e}_z &= \cos \theta \mathbf{e}_r - \sin \theta \mathbf{e}_\theta
+\mathbf{e}\_\rho &= \cos \phi \mathbf{e}\_x + \sin \phi \mathbf{e}\_y \\\\
+\mathbf{e}\_\phi &= -\sin \phi \mathbf{e}\_x + \cos \phi \mathbf{e}\_y \\\\
+\mathbf{e}\_x &= \cos \phi \mathbf{e}\_\rho - \sin \phi \mathbf{e}\_\phi \\\\
+\mathbf{e}\_y &= \sin \phi \mathbf{e}\_rho + \cos \phi \mathbf{e}\_\phi \\\\
+\mathbf{e}\_r &= \sin \theta \cos \phi \mathbf{e}\_x + \sin \theta \sin \phi \mathbf{e}\_y + \cos \theta \mathbf{e}\_z \\\\
+\mathbf{e}\_\theta &= \cos \theta \cos \phi \mathbf{e}\_x + \cos \theta \sin \phi \mathbf{e}\_y - \sin \theta \mathbf{e}\_z \\\\
+\mathbf{e}\_\phi &= -\sin \phi \mathbf{e}\_x + \cos \phi \mathbf{e}\_y \\\\
+\mathbf{e}\_x &= \sin \theta \cos \phi \mathbf{e}\_r + \cos \theta \cos \phi \mathbf{e}\_\theta - \sin \phi \mathbf{e}\_\phi \\\\
+\mathbf{e}\_y &= \sin \theta \sin \phi \mathbf{e}\_r + \cos \theta \sin \phi \mathbf{e}\_\theta + \cos \phi \mathbf{e}\_\phi \\\\
+\mathbf{e}\_z &= \cos \theta \mathbf{e}\_r - \sin \theta \mathbf{e}\_\theta
 \end{aligned}
 \\]
 
@@ -79,12 +79,12 @@ If \\(\mathbf{x}\\) is a position vector, \\(r = \|\mathbf{x\|\\), and \\(\mathb
 
 \\[
 \begin{aligned}
-d \mathbf{s} &= dx   \mathbf{e}_x + dy   \mathbf{e}_y + dz   \mathbf{e}_z \\\\
-                 &= d\rho   \mathbf{e}_\rho + \rho   d\phi   \mathbf{e}_\phi + dz   \mathbf{e}_z \\\\
-                 &= dr   \mathbf{e}_r + r   d\theta   \mathbf{e}_\theta + r \sin \theta   d\phi   \mathbf{e}_\phi \\\\
-d \mathcal{A} &= dy   dz   \mathbf{e}_x + dz   dx   \mathbf{e}_y + dx   dy   \mathbf{e}_z \\\\
-                  &= \rho   d\phi   dz   \mathbf{e}_\rho + dz   d\rho   \mathbf{e}_\phi + \rho   d\rho   d\phi   \mathbf{e}_z \\\\
-                  &= r^2 \sin \theta   d\theta   d\phi   \mathbf{e}_r + r \sin \theta   d\phi   dr   \mathbf{e}_\theta + r   dr   d\theta   \mathbf{e}_\phi \\\\
+d \mathbf{s} &= dx   \mathbf{e}\_x + dy   \mathbf{e}\_y + dz   \mathbf{e}\_z \\\\
+                 &= d\rho   \mathbf{e}\_\rho + \rho   d\phi   \mathbf{e}\_\phi + dz   \mathbf{e}\_z \\\\
+                 &= dr   \mathbf{e}\_r + r   d\theta   \mathbf{e}\_\theta + r \sin \theta   d\phi   \mathbf{e}\_\phi \\\\
+d \mathcal{A} &= dy   dz   \mathbf{e}\_x + dz   dx   \mathbf{e}\_y + dx   dy   \mathbf{e}\_z \\\\
+                  &= \rho   d\phi   dz   \mathbf{e}\_\rho + dz   d\rho   \mathbf{e}\_\phi + \rho   d\rho   d\phi   \mathbf{e}\_z \\\\
+                  &= r^2 \sin \theta   d\theta   d\phi   \mathbf{e}\_r + r \sin \theta   d\phi   dr   \mathbf{e}\_\theta + r   dr   d\theta   \mathbf{e}\_\phi \\\\
 dV &= dx   dy   dz = \rho   d\rho   d\phi   dz = r^2 \sin \theta   dr   d\theta   d\phi
 \end{aligned}
 \\]
@@ -93,11 +93,11 @@ dV &= dx   dy   dz = \rho   d\rho   d\phi   dz = r^2 \sin \theta   dr   d\theta 
 
 \\[
 \begin{aligned}
-\nabla \psi &= \frac{\partial \psi}{\partial x} \mathbf{e}_x + \frac{\partial \psi}{\partial y} \mathbf{e}_y + \frac{\partial \psi}{\partial z} \mathbf{e}_z \\\\
-\nabla \cdot \mathbf{A} &= \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z} \\\\
-\nabla \times \mathbf{A} &= \left( \frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z} \right) \mathbf{e}_x + \left( \frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x} \right) \mathbf{e}_y + \left( \frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y} \right) \mathbf{e}_z \\\\
+\nabla \psi &= \frac{\partial \psi}{\partial x} \mathbf{e}\_x + \frac{\partial \psi}{\partial y} \mathbf{e}\_y + \frac{\partial \psi}{\partial z} \mathbf{e}\_z \\\\
+\nabla \cdot \mathbf{A} &= \frac{\partial A\_x}{\partial x} + \frac{\partial A\_y}{\partial y} + \frac{\partial A\_z}{\partial z} \\\\
+\nabla \times \mathbf{A} &= \left( \frac{\partial A\_z}{\partial y} - \frac{\partial A\_y}{\partial z} \right) \mathbf{e}\_x + \left( \frac{\partial A\_x}{\partial z} - \frac{\partial A\_z}{\partial x} \right) \mathbf{e}\_y + \left( \frac{\partial A\_y}{\partial x} - \frac{\partial A\_x}{\partial y} \right) \mathbf{e}\_z \\\\
 \nabla^2 \psi &= \frac{\partial^2 \psi}{\partial x^2} + \frac{\partial^2 \psi}{\partial y^2} + \frac{\partial^2 \psi}{\partial z^2} \\\\
-\nabla^2 \mathbf{A} &= \nabla^2 A_x \mathbf{e}_x + \nabla^2 A_y \mathbf{e}_y + \nabla^2 A_z \mathbf{e}_z
+\nabla^2 \mathbf{A} &= \nabla^2 A\_x \mathbf{e}\_x + \nabla^2 A\_y \mathbf{e}\_y + \nabla^2 A\_z \mathbf{e}\_z
 \end{aligned}
 \\]
 
@@ -105,11 +105,11 @@ dV &= dx   dy   dz = \rho   d\rho   d\phi   dz = r^2 \sin \theta   dr   d\theta 
 
 \\[
 \begin{aligned}
-\nabla \psi &= \frac{\partial \psi}{\partial \rho} \mathbf{e}_\rho + \frac{1}{\rho} \frac{\partial \psi}{\partial \phi} \mathbf{e}_\phi + \frac{\partial \psi}{\partial z} \mathbf{e}_z \\\\
-\nabla \cdot \mathbf{A} &= \frac{1}{\rho} \frac{\partial}{\partial \rho} \left( \rho A_\rho \right) + \frac{1}{\rho} \frac{\partial A_\phi}{\partial \phi} + \frac{\partial A_z}{\partial z} \\\\
-\nabla \times \mathbf{A} &= \left( \frac{1}{\rho} \frac{\partial A_z}{\partial \phi} - \frac{\partial A_\phi}{\partial z} \right) \mathbf{e}_\rho + \left( \frac{\partial A_\rho}{\partial z} - \frac{\partial A_z}{\partial \rho} \right) \mathbf{e}_\phi + \frac{1}{\rho} \left( \frac{\partial}{\partial \rho} \left( \rho A_\phi \right) - \frac{\partial A_\rho}{\partial \phi} \right) \mathbf{e}_z \\\\
+\nabla \psi &= \frac{\partial \psi}{\partial \rho} \mathbf{e}\_\rho + \frac{1}{\rho} \frac{\partial \psi}{\partial \phi} \mathbf{e}\_\phi + \frac{\partial \psi}{\partial z} \mathbf{e}\_z \\\\
+\nabla \cdot \mathbf{A} &= \frac{1}{\rho} \frac{\partial}{\partial \rho} \left( \rho A\_\rho \right) + \frac{1}{\rho} \frac{\partial A\_\phi}{\partial \phi} + \frac{\partial A\_z}{\partial z} \\\\
+\nabla \times \mathbf{A} &= \left( \frac{1}{\rho} \frac{\partial A\_z}{\partial \phi} - \frac{\partial A\_\phi}{\partial z} \right) \mathbf{e}\_\rho + \left( \frac{\partial A\_\rho}{\partial z} - \frac{\partial A\_z}{\partial \rho} \right) \mathbf{e}\_\phi + \frac{1}{\rho} \left( \frac{\partial}{\partial \rho} \left( \rho A\_\phi \right) - \frac{\partial A\_\rho}{\partial \phi} \right) \mathbf{e}\_z \\\\
 \nabla^2 \psi &= \frac{1}{\rho} \frac{\partial}{\partial \rho} \left( \rho \frac{\partial \psi}{\partial \rho} \right) + \frac{1}{\rho^2} \frac{\partial^2 \psi}{\partial \phi^2} + \frac{\partial^2 \psi}{\partial z^2} \\\\
-\nabla^2 \mathbf{A} &= \left( \nabla^2 A_\rho - \frac{1}{\rho^2} A_\rho - \frac{2}{\rho^2} \frac{\partial A_\phi}{\partial \phi} \right) \mathbf{e}_\rho + \left( \nabla^2 A_\phi - \frac{1}{\rho^2} A_\phi - \frac{2}{\rho^2} \frac{\partial A_\rho}{\partial \phi} \right) \mathbf{e}_\phi + \nabla^2 A_z \mathbf{e}_z
+\nabla^2 \mathbf{A} &= \left( \nabla^2 A\_\rho - \frac{1}{\rho^2} A\_\rho - \frac{2}{\rho^2} \frac{\partial A\_\phi}{\partial \phi} \right) \mathbf{e}\_\rho + \left( \nabla^2 A\_\phi - \frac{1}{\rho^2} A\_\phi - \frac{2}{\rho^2} \frac{\partial A\_\rho}{\partial \phi} \right) \mathbf{e}\_\phi + \nabla^2 A\_z \mathbf{e}\_z
 \end{aligned}
 \\]
 
@@ -117,13 +117,13 @@ dV &= dx   dy   dz = \rho   d\rho   d\phi   dz = r^2 \sin \theta   dr   d\theta 
 
 \\[
 \begin{aligned}
-\nabla \psi &= \frac{\partial \psi}{\partial r} \mathbf{e}_r + \frac{1}{r} \frac{\partial \psi}{\partial \theta} \mathbf{e}_\theta + \frac{1}{r \sin \theta} \frac{\partial \psi}{\partial \phi} \mathbf{e}_\phi \\\\
-\nabla \cdot \mathbf{A} &= \frac{1}{r^2} \frac{\partial}{\partial r}\left(r^2 A_r\right) + \frac{1}{r \sin \theta} \frac{\partial}{\partial \theta}\left(\sin \theta A_\theta\right) + \frac{1}{r \sin \theta} \frac{\partial A_\phi}{\partial \phi} \\\\
-\nabla \times \mathbf{A} &= \frac{1}{r \sin \theta} \left( \frac{\partial}{\partial \theta} \left(\sin \theta A_\phi\right) - \frac{\partial A_\theta}{\partial \phi} \right) \mathbf{e}_r + \frac{1}{r} \left( \frac{1}{\sin \theta} \frac{\partial A_r}{\partial \phi} - \frac{\partial}{\partial r}\left(r A_\phi\right) \right) \mathbf{e}_\theta  \\\\
-&& + \frac{1}{r} \left( \frac{\partial}{\partial r}\left(r A_\theta\right) - \frac{\partial A_r}{\partial \theta} \right) \mathbf{e}_\phi \\\\
+\nabla \psi &= \frac{\partial \psi}{\partial r} \mathbf{e}\_r + \frac{1}{r} \frac{\partial \psi}{\partial \theta} \mathbf{e}\_\theta + \frac{1}{r \sin \theta} \frac{\partial \psi}{\partial \phi} \mathbf{e}\_\phi \\\\
+\nabla \cdot \mathbf{A} &= \frac{1}{r^2} \frac{\partial}{\partial r}\left(r^2 A\_r\right) + \frac{1}{r \sin \theta} \frac{\partial}{\partial \theta}\left(\sin \theta A\_\theta\right) + \frac{1}{r \sin \theta} \frac{\partial A\_\phi}{\partial \phi} \\\\
+\nabla \times \mathbf{A} &= \frac{1}{r \sin \theta} \left( \frac{\partial}{\partial \theta} \left(\sin \theta A\_\phi\right) - \frac{\partial A\_\theta}{\partial \phi} \right) \mathbf{e}\_r + \frac{1}{r} \left( \frac{1}{\sin \theta} \frac{\partial A\_r}{\partial \phi} - \frac{\partial}{\partial r}\left(r A\_\phi\right) \right) \mathbf{e}\_\theta  \\\\
+&& + \frac{1}{r} \left( \frac{\partial}{\partial r}\left(r A\_\theta\right) - \frac{\partial A\_r}{\partial \theta} \right) \mathbf{e}\_\phi \\\\
 \nabla^2 \psi &= \frac{1}{r^2} \frac{\partial}{\partial r}\left(r^2 \frac{\partial \psi}{\partial r}\right) + \frac{1}{r^2 \sin \theta} \frac{\partial}{\partial \theta}\left(\sin \theta \frac{\partial \psi}{\partial \theta}\right) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial^2 \psi}{\partial \phi^2} \\\\
-\nabla^2 \mathbf{A} &= \left[\nabla^2 A_r - \frac{2}{r^2} A_r - \frac{2}{r^2 \sin \theta} \frac{\partial}{\partial \theta}\left(\sin \theta A_\theta\right) - \frac{2}{r^2 \sin \theta} \frac{\partial A_\phi}{\partial \phi}\right] \mathbf{e}_r  \\\\
-&& + \left[\nabla^2 A_\theta - \frac{1}{r^2 \sin^2 \theta} A_\theta + \frac{2}{r^2} \frac{\partial A_r}{\partial \theta} - \frac{2 \cos \theta}{r^2 \sin^2 \theta} \frac{\partial A_\phi}{\partial \phi}\right] \mathbf{e}_\theta  \\\\
-&& + \left[\nabla^2 A_\phi - \frac{1}{r^2 \sin^2 \theta} A_\phi + \frac{2}{r^2 \sin^2 \theta} \frac{\partial A_r}{\partial \phi} + \frac{2 \cos \theta}{r^2 \sin^2 \theta} \frac{\partial A_\theta}{\partial \phi}\right] \mathbf{e}_\phi
+\nabla^2 \mathbf{A} &= \left[\nabla^2 A\_r - \frac{2}{r^2} A\_r - \frac{2}{r^2 \sin \theta} \frac{\partial}{\partial \theta}\left(\sin \theta A\_\theta\right) - \frac{2}{r^2 \sin \theta} \frac{\partial A\_\phi}{\partial \phi}\right] \mathbf{e}\_r  \\\\
+&& + \left[\nabla^2 A\_\theta - \frac{1}{r^2 \sin^2 \theta} A\_\theta + \frac{2}{r^2} \frac{\partial A\_r}{\partial \theta} - \frac{2 \cos \theta}{r^2 \sin^2 \theta} \frac{\partial A\_\phi}{\partial \phi}\right] \mathbf{e}\_\theta  \\\\
+&& + \left[\nabla^2 A\_\phi - \frac{1}{r^2 \sin^2 \theta} A\_\phi + \frac{2}{r^2 \sin^2 \theta} \frac{\partial A\_r}{\partial \phi} + \frac{2 \cos \theta}{r^2 \sin^2 \theta} \frac{\partial A\_\theta}{\partial \phi}\right] \mathbf{e}\_\phi
 \end{aligned}
 \\]

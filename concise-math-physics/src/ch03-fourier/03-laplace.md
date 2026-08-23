@@ -25,14 +25,14 @@ g(t) =e^{-\sigma t} f(t)
 则\\(g(t)\\)绝对可积.于是对\\(g(t)\\)进行傅里叶变换:
 
 \\[
-g(\omega) = \frac{1}{2\pi}  \int_{-\infty}^{\infty} g(t) e^{-\mathrm{i} \omega t} dt = \frac{1}{2\pi}  \int_{0}^{\infty} f(t) e^{-(\sigma + \mathrm{i} \omega) t} dt
+g(\omega) = \frac{1}{2\pi}  \int\_{-\infty}^{\infty} g(t) e^{-\mathrm{i} \omega t} dt = \frac{1}{2\pi}  \int\_{0}^{\infty} f(t) e^{-(\sigma + \mathrm{i} \omega) t} dt
 \\]
 
 将\\(\sigma + \mathrm{i} \omega\\)记作\\(p\\),令\\(\bar{f(p)=2\pi g(\omega)\\),则有
 函数\\(f(t)\\)的拉普拉斯变换\\(\bar{f(p)\\)为
 
 \\[
-\bar{f}(p) = \mathcal{L} \{ f(t) \} = \int_0 ^{\infty} e^{-pt} f(t) dt .
+\bar{f}(p) = \mathcal{L} \{ f(t) \} = \int\_0 ^{\infty} e^{-pt} f(t) dt .
 \\]
 
 该积分称为**拉普拉斯积分**,\\(\mathcal{L}\\)称为**拉普拉斯变换算符**.\\(e^{-pt\\)称为拉普拉斯变换的**核**.注意
@@ -41,19 +41,19 @@ g(\omega) = \frac{1}{2\pi}  \int_{-\infty}^{\infty} g(t) e^{-\mathrm{i} \omega t
 \\(g(\omega)\\) 的傅里叶逆变换是
 
 \\[
-g(t)=\int_{-\infty}^{\infty} g(\omega) e^{\mathrm{i} \omega t} d \omega=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \bar{f}(\sigma+\mathrm{i} \omega) e^{\mathrm{i} \omega t} d \omega,
+g(t)=\int\_{-\infty}^{\infty} g(\omega) e^{\mathrm{i} \omega t} d \omega=\frac{1}{2 \pi} \int\_{-\infty}^{\infty} \bar{f}(\sigma+\mathrm{i} \omega) e^{\mathrm{i} \omega t} d \omega,
 \\]
 
 即
 
 \\[
-f(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \bar{f}(\sigma+\mathrm{i} \omega) e^{(\sigma+\mathrm{i} \omega)t} d \omega
+f(t)=\frac{1}{2 \pi} \int\_{-\infty}^{\infty} \bar{f}(\sigma+\mathrm{i} \omega) e^{(\sigma+\mathrm{i} \omega)t} d \omega
 \\]
 
 由 \\(\sigma+\mathrm{i} \omega=p\\), 有 \\(d \omega=\frac{1{\mathrm{i}} d p\\). 所以
 
 \\[
-f(t)=\frac{1}{2 \pi \mathrm{i}} \int_{\sigma-\mathrm{i} \infty}^{\sigma+\mathrm{i} \infty} \bar{f}(p) e^{ p t} d p .
+f(t)=\frac{1}{2 \pi \mathrm{i}} \int\_{\sigma-\mathrm{i} \infty}^{\sigma+\mathrm{i} \infty} \bar{f}(p) e^{ p t} d p .
 \\]
 
 \\(\bar{f}(p)\\) 又称为**像函数**, 而 \\(f(t)\\) 称为**原函数**, 它们之间的关系常用简单的符号写为
@@ -86,9 +86,9 @@ f(t)=\frac{1}{2 \pi \mathrm{i}} \int_{\sigma-\mathrm{i} \infty}^{\sigma+\mathrm{
 |f(t)|<M e^{\sigma t} \text {. }
 \\]
 
-\\(\sigma\\) 的下界称为收敛横标, 用 \\(\sigma_0\\) 表示. 在实际应用中, 大多数函数都满足 这个充分条件.
-但一个反例是\\(e^{t^2}\\). 对于满足拉普拉斯变换存在条件的函数,通过证明可以知道\\(\lim_{p\to \infty \bar{f}(p) = 0\\).
-也就意味着,若\\(\bar{f}(p)\\)在\\(p\to \infty\\)的渐近行为是\\(p\\)的正幂次,那么逆变换不存在. 且可以证明\\(\bar{f(p)\\)在\\(\Re \sigma > \sigma_0\\)的半平面是解析的(具体证明
+\\(\sigma\\) 的下界称为收敛横标, 用 \\(\sigma\_0\\) 表示. 在实际应用中, 大多数函数都满足 这个充分条件.
+但一个反例是\\(e^{t^2}\\). 对于满足拉普拉斯变换存在条件的函数,通过证明可以知道\\(\lim\_{p\to \infty \bar{f}(p) = 0\\).
+也就意味着,若\\(\bar{f}(p)\\)在\\(p\to \infty\\)的渐近行为是\\(p\\)的正幂次,那么逆变换不存在. 且可以证明\\(\bar{f(p)\\)在\\(\Re \sigma > \sigma\_0\\)的半平面是解析的(具体证明
 见梁昆淼书).
 不难看出拉普拉斯变换为**线性变换**, 即满足
 
@@ -101,7 +101,7 @@ f(t)=\frac{1}{2 \pi \mathrm{i}} \int_{\sigma-\mathrm{i} \infty}^{\sigma+\mathrm{
 对于\\(\delta\\)函数,易知
 
 \\[
-\mathcal{L}\left\{\delta\left(t-t_0\right)\right\}=\int_0^{\infty} e^{-p t} \delta\left(t-t_0\right) d t=e^{-p t_0},    t_0>0 .
+\mathcal{L}\left\{\delta\left(t-t\_0\right)\right\}=\int\_0^{\infty} e^{-p t} \delta\left(t-t\_0\right) d t=e^{-p t\_0},    t\_0>0 .
 \\]
 
 > **例** 求以下函数的拉普拉斯变换
@@ -126,7 +126,7 @@ f(t)=\frac{1}{2 \pi \mathrm{i}} \int_{\sigma-\mathrm{i} \infty}^{\sigma+\mathrm{
 
 
 \\[
-\int_{0}^{\infty} 1 \cdot e^{-p t} dt = \frac{1}{p}
+\int\_{0}^{\infty} 1 \cdot e^{-p t} dt = \frac{1}{p}
 \\]
 
 
@@ -134,7 +134,7 @@ f(t)=\frac{1}{2 \pi \mathrm{i}} \int_{\sigma-\mathrm{i} \infty}^{\sigma+\mathrm{
 
 
 \\[
-\int_{0}^{\infty} t \cdot e^{-p t} dt = \frac{1}{p^2}
+\int\_{0}^{\infty} t \cdot e^{-p t} dt = \frac{1}{p^2}
 \\]
 
             因此类似有\\(\mathcal{L}[t^n] = \frac{n!}{p^{n+1}}\\).
@@ -142,7 +142,7 @@ f(t)=\frac{1}{2 \pi \mathrm{i}} \int_{\sigma-\mathrm{i} \infty}^{\sigma+\mathrm{
 -
 
 \\[
-\int_{0}^{\infty} e^{s t} e^{-p t} dt = \frac{1}{p-s} ,
+\int\_{0}^{\infty} e^{s t} e^{-p t} dt = \frac{1}{p-s} ,
 \\]
 
         要求\\(\Re (p-s) > 0\\).
@@ -150,7 +150,7 @@ f(t)=\frac{1}{2 \pi \mathrm{i}} \int_{\sigma-\mathrm{i} \infty}^{\sigma+\mathrm{
 -
 
 \\[
-\int_{0}^{\infty} t e^{s t} e^{-p t} dt = \frac{1}{(p-s)^2} ,
+\int\_{0}^{\infty} t e^{s t} e^{-p t} dt = \frac{1}{(p-s)^2} ,
 \\]
 
         要求\\(\Re (p-s) > 0\\).
@@ -205,7 +205,7 @@ f^{(n)}(t)  \Leftrightarrow  p^n \bar{f}(p)-p^{n-1} f(0)-p^{n-2} f^{\prime}(0)-\
 
 
 \\[
-\int_0^t \psi(\tau) d \tau  \Leftrightarrow   \frac{1}{p} \mathcal{L}[\psi(t)]
+\int\_0^t \psi(\tau) d \tau  \Leftrightarrow   \frac{1}{p} \mathcal{L}[\psi(t)]
 \\]
 
 
@@ -231,22 +231,22 @@ e^{-\lambda t} f(t)  \Leftrightarrow   \bar{f}(p+\lambda)
 
 
 \\[
-f\left(t-t_0\right)  \Leftrightarrow   e^{-p t_0} \bar{f}(p).
+f\left(t-t\_0\right)  \Leftrightarrow   e^{-p t\_0} \bar{f}(p).
 \\]
 
 
-- 卷积定理 若  \\(f_1(t)  \Leftrightarrow   \bar{f}_1(p), f_2(t)  \Leftrightarrow   \bar{f}_2(p)\\) , 则
+- 卷积定理 若  \\(f\_1(t)  \Leftrightarrow   \bar{f}\_1(p), f\_2(t)  \Leftrightarrow   \bar{f}\_2(p)\\) , 则
 
 
 \\[
-f_1(t) * f_2(t)  \Leftrightarrow   \bar{f}_1(p) \bar{f}_2(p),
+f\_1(t) * f\_2(t)  \Leftrightarrow   \bar{f}\_1(p) \bar{f}\_2(p),
 \\]
 
 其中
 
 
 \\[
-f_1(t) * f_2(t) \equiv \int_0^t f_1(\tau) f_2(t-\tau) d \tau
+f\_1(t) * f\_2(t) \equiv \int\_0^t f\_1(\tau) f\_2(t-\tau) d \tau
 \\]
 
-称为 \\(f_1(t)\\) 与 \\(f_2(t)\\) 的**卷积**.
+称为 \\(f\_1(t)\\) 与 \\(f\_2(t)\\) 的**卷积**.

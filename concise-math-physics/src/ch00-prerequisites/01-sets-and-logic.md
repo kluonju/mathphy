@@ -33,7 +33,7 @@
 
 几类特殊的映射：
 
-- **单射**（injective）：\\(f(x_1) = f(x_2) \Rightarrow x_1 = x_2\\)。
+- **单射**（injective）：\\(f(x\_1) = f(x\_2) \Rightarrow x\_1 = x\_2\\)。
 - **满射**（surjective）：\\(\forall y \in B\\)，\\(\exists x \in A\\) 使得 \\(f(x) = y\\)。
 - **双射**（bijective）：又称为 **\\(1\\)–\\(1\\) 映射**，\\(f\\) 既是单射又是满射。
 

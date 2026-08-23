@@ -26,6 +26,7 @@
 - [级数与奇点](./ch01-complex/04-series.md)
 - [留数定理与应用](./ch01-complex/05-residue.md)
 - [应用与数值实验](./ch01-complex/06-applications.md)
+- [鞍点近似与渐近方法](./ch01-complex/07-saddle-point.md)
 
 ---
 
@@ -99,6 +100,8 @@
 - [概述](./ch08-numerical/index.md)
 - [零点求解](./ch08-numerical/01-finding-zeros.md)
 - [数值积分](./ch08-numerical/02-integration.md)
+- [插值](./ch08-numerical/03-interpolation.md)
+- [常微分方程数值解](./ch08-numerical/04-ode.md)
 
 ---
 

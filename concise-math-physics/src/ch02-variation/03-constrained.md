@@ -5,7 +5,7 @@
 以上例为例，我们需要极小化的泛函变成
 
 \\[
-J[u] = \int_{x_1}^{x_2} \sqrt{ 1 + u'(x)^2} dx   + \lambda \left( \int_{x_1}^{x_2} u(x) dx - A \right).
+J[u] = \int\_{x\_1}^{x\_2} \sqrt{ 1 + u'(x)^2} dx   + \lambda \left( \int\_{x\_1}^{x\_2} u(x) dx - A \right).
 \\]
 
 这样拉式量内包含了这一约束.对于该例子应用欧拉-拉格朗日方程,我们有
@@ -45,7 +45,7 @@ u(x) = \int \frac{t}{\sqrt{1 - t^2}} \frac{dt}{\lambda} = - \frac{\sqrt{1 - t^2}
 (\lambda x +c)^2 + (\lambda u -d)^2 = 1
 \\]
 
-其中\\(c,d,\lambda\\)由\\(u(x_1)=y_1, u(x_2) = y_2\\) 和\\(\int u(x) dx = A\\)决定.
+其中\\(c,d,\lambda\\)由\\(u(x\_1)=y\_1, u(x\_2) = y\_2\\) 和\\(\int u(x) dx = A\\)决定.
 在这样的约束条件下,最短路径是一段圆弧！
 此外, 可以对\\(p(x)\\)直接求导得到
 

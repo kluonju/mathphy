@@ -4,73 +4,73 @@
 
 ![柱坐标系：\\(\\rho\\)、\\(\\phi\\)、\\(z\\) 与局部正交基](../figures/coords_cylindrical.png)
 
-由于 \\(r = \rho \cos \phi e_x + \rho \sin \phi e_y + z e_z\\)，故有
+由于 \\(r = \rho \cos \phi e\_x + \rho \sin \phi e\_y + z e\_z\\)，故有
 
 \\[
-\frac{\partial r}{\partial \rho} = \cos \phi e_x + \sin \phi e_y,   (9.8a)
+\frac{\partial r}{\partial \rho} = \cos \phi e\_x + \sin \phi e\_y,   (9.8a)
 \\]
 
 \\[
-\frac{\partial r}{\partial \phi} = -\rho \sin \phi e_x + \rho \cos \phi e_y,   (9.8b)
+\frac{\partial r}{\partial \phi} = -\rho \sin \phi e\_x + \rho \cos \phi e\_y,   (9.8b)
 \\]
 
 \\[
-\frac{\partial r}{\partial z} = e_z.   (9.8c)
+\frac{\partial r}{\partial z} = e\_z.   (9.8c)
 \\]
 
 由此可以立得正交性，且有
 
 \\[
-h_\rho = 1,   h_\phi = \rho,   h_z = 1.   (9.9)
+h\_\rho = 1,   h\_\phi = \rho,   h\_z = 1.   (9.9)
 \\]
 
-这些度规系数的几何意义是明显的，比如沿着 \\(\phi\\) 坐标线由 \\(\phi\\) 到 \\(\phi + d\phi\\) 的距离（弧长）不是 \\(d\phi\\)，而是 \\(h_\phi d\phi = \rho d\phi\\)，这正是我们所熟知的。易得柱坐标系的正交归一化矢量为
+这些度规系数的几何意义是明显的，比如沿着 \\(\phi\\) 坐标线由 \\(\phi\\) 到 \\(\phi + d\phi\\) 的距离（弧长）不是 \\(d\phi\\)，而是 \\(h\_\phi d\phi = \rho d\phi\\)，这正是我们所熟知的。易得柱坐标系的正交归一化矢量为
 
 \\[
-e_\rho = \cos \phi e_x + \sin \phi e_y,   (9.10a)
-\\]
-
-\\[
-e_\phi = -\sin \phi e_x + \cos \phi e_y,   (9.10b)
+e\_\rho = \cos \phi e\_x + \sin \phi e\_y,   (9.10a)
 \\]
 
 \\[
-e_z = e_z.   (9.10c)
+e\_\phi = -\sin \phi e\_x + \cos \phi e\_y,   (9.10b)
+\\]
+
+\\[
+e\_z = e\_z.   (9.10c)
 \\]
 
 ### 球坐标系 \\((r, \theta, \phi)\\)
 
 ![球坐标系：径矢 \\(r\\)、极角 \\(\\theta\\) 与方位角 \\(\\phi\\)](../figures/coords_spherical.png)
 
-由于 \\(r = r \sin \theta \cos \phi e_x + r \sin \theta \sin \phi e_y + r \cos \theta e_z\\)，故有
+由于 \\(r = r \sin \theta \cos \phi e\_x + r \sin \theta \sin \phi e\_y + r \cos \theta e\_z\\)，故有
 
 \\[
-\frac{\partial r}{\partial r} = \sin \theta \cos \phi e_x + \sin \theta \sin \phi e_y + \cos \theta e_z,   (9.11a)
+\frac{\partial r}{\partial r} = \sin \theta \cos \phi e\_x + \sin \theta \sin \phi e\_y + \cos \theta e\_z,   (9.11a)
 \\]
 
 \\[
-\frac{\partial r}{\partial \theta} = r (\cos \theta \cos \phi e_x + \cos \theta \sin \phi e_y - \sin \theta e_z),   (9.11b)
+\frac{\partial r}{\partial \theta} = r (\cos \theta \cos \phi e\_x + \cos \theta \sin \phi e\_y - \sin \theta e\_z),   (9.11b)
 \\]
 
 \\[
-\frac{\partial r}{\partial \phi} = r \sin \theta (-\sin \phi e_x + \cos \phi e_y).   (9.11c)
+\frac{\partial r}{\partial \phi} = r \sin \theta (-\sin \phi e\_x + \cos \phi e\_y).   (9.11c)
 \\]
 
 由此可以立得正交性，且有
 
 \\[
-h_r = 1,   h_\theta = r,   h_\phi = r \sin \theta.   (9.12)
+h\_r = 1,   h\_\theta = r,   h\_\phi = r \sin \theta.   (9.12)
 \\]
 
 这些度规系数的几何意义也是明显的。易得球坐标系的正交归一化矢量为
 
 \\[
-e_r = \sin \theta \cos \phi e_x + \sin \theta \sin \phi e_y + \cos \theta e_z,   (9.13a)
+e\_r = \sin \theta \cos \phi e\_x + \sin \theta \sin \phi e\_y + \cos \theta e\_z,   (9.13a)
 \\]
 
 \\[
-e_\theta
-= \cos \theta \cos \phi e_x + \cos \theta \sin \phi e_y - \sin \theta e_z,   (9.13b)
+e\_\theta
+= \cos \theta \cos \phi e\_x + \cos \theta \sin \phi e\_y - \sin \theta e\_z,   (9.13b)
 \\]
 
 ## 球坐标系下的分离变量法
@@ -117,48 +117,48 @@ u(r,\theta,\varphi)=R(r)\Theta(\theta)\Phi(\varphi).
 \frac{1}{\Phi}\frac{d^2\Phi}{d\varphi^2}=-m^2,   \Phi(\varphi)=e^{i m \varphi},  m\in\mathbb{Z}.
 \\]
 
-将 \\(m^2\\) 代入极角方程并设 \\(x=\cos\theta\\)，得连带勒让得方程（associated Legendre equation）对 \\(P_\ell^m(x)\\)：
+将 \\(m^2\\) 代入极角方程并设 \\(x=\cos\theta\\)，得连带勒让得方程（associated Legendre equation）对 \\(P\_\ell^m(x)\\)：
 
 \\[
-(1-x^2)\frac{d^2 P_\ell^m}{dx^2}-2x\frac{d P_\ell^m}{dx}+\left[\ell(\ell+1)-\frac{m^2}{1-x^2}\right]P_\ell^m=0.
+(1-x^2)\frac{d^2 P\_\ell^m}{dx^2}-2x\frac{d P\_\ell^m}{dx}+\left[\ell(\ell+1)-\frac{m^2}{1-x^2}\right]P\_\ell^m=0.
 \\]
 
-标准连带勒让得函数 \\(P_\ell^m(x)\\) 在 \\(-1\le x\le1\\) 上定义。
+标准连带勒让得函数 \\(P\_\ell^m(x)\\) 在 \\(-1\le x\le1\\) 上定义。
 
 ### 轴对称球函数 (m=0)
 
 轴对称（无方位角依赖）情形 \\(m=0\\) 时，连带勒让得方程退化为普通勒让得方程：
 
 \\[
-(1-x^2)P_\ell"(x)-2xP_\ell'(x)+\ell(\ell+1)P_\ell(x)=0,
+(1-x^2)P\_\ell"(x)-2xP\_\ell'(x)+\ell(\ell+1)P\_\ell(x)=0,
 \\]
 
-其解为勒让得多项式 \\(P_\ell(x)\\)（阶数 \\(\ell\\)）。这些多项式为多项式解（degree \\(\ell\\)），且满足正交性。
+其解为勒让得多项式 \\(P\_\ell(x)\\)（阶数 \\(\ell\\)）。这些多项式为多项式解（degree \\(\ell\\)），且满足正交性。
 
 ### 罗德里格斯公式与归一化
 
 勒让得多项式的罗德里格斯（Rodrigues）公式为
 
 \\[
-P_\ell(x)=\frac{1}{2^\ell\ell!}\frac{d^\ell}{dx^\ell}\big[(x^2-1)^\ell\big].
+P\_\ell(x)=\frac{1}{2^\ell\ell!}\frac{d^\ell}{dx^\ell}\big[(x^2-1)^\ell\big].
 \\]
 
 连带勒让得函数可由下面的定义（用于 \\(m\ge0\\)）得到：
 
 \\[
-P_\ell^m(x)=(-1)^m(1-x^2)^{m/2}\frac{d^m}{dx^m}P_\ell(x).
+P\_\ell^m(x)=(-1)^m(1-x^2)^{m/2}\frac{d^m}{dx^m}P\_\ell(x).
 \\]
 
 为与球谐函数配合，常用规范化为
 
 \\[
-ilde P_\ell^m(x)=\sqrt{\frac{(2\ell+1)}{2}\frac{(\ell-m)!}{(\ell+m)!}} P_\ell^m(x),
+ilde P\_\ell^m(x)=\sqrt{\frac{(2\ell+1)}{2}\frac{(\ell-m)!}{(\ell+m)!}} P\_\ell^m(x),
 \\]
 
 使得
 
 \\[
-\int_{-1}^{1} \tilde P_\ell^m(x)\tilde P_{\ell'}^m(x) dx=\delta_{\ell\ell'}.
+\int\_{-1}^{1} \tilde P\_\ell^m(x)\tilde P\_{\ell'}^m(x) dx=\delta\_{\ell\ell'}.
 \\]
 
 ### 施列夫利/生成函数
@@ -166,7 +166,7 @@ ilde P_\ell^m(x)=\sqrt{\frac{(2\ell+1)}{2}\frac{(\ell-m)!}{(\ell+m)!}} P_\ell^m(
 勒让得多项式的经典生成函数（Schläfli / generating function）为
 
 \\[
-\frac{1}{\sqrt{1-2xt+t^2}}=\sum_{\ell=0}^{\infty} P_\ell(x) t^\ell,   |t|<1.
+\frac{1}{\sqrt{1-2xt+t^2}}=\sum\_{\ell=0}^{\infty} P\_\ell(x) t^\ell,   |t|<1.
 \\]
 
 对连带勒让得函数可利用对 \\(x\\) 的微分得到相应的生成关系。
@@ -176,25 +176,25 @@ ilde P_\ell^m(x)=\sqrt{\frac{(2\ell+1)}{2}\frac{(\ell-m)!}{(\ell+m)!}} P_\ell^m(
 勒让得多项式在 \\([-1,1]\\) 上满足正交关系：
 
 \\[
-\int_{-1}^{1} P_\ell(x)P_{\ell'}(x) dx=\frac{2}{2\ell+1} \delta_{\ell\ell'}.
+\int\_{-1}^{1} P\_\ell(x)P\_{\ell'}(x) dx=\frac{2}{2\ell+1} \delta\_{\ell\ell'}.
 \\]
 
 因此，对任意良好函数 \\(f(x)\\)（在 \\([-1,1]\\) 上平方可积），可展开为勒让得级数：
 
 \\[
-f(x)=\sum_{\ell=0}^\infty a_\ell P_\ell(x),   a_\ell=\frac{2\ell+1}{2}\int_{-1}^1 f(x)P_\ell(x) dx.
+f(x)=\sum\_{\ell=0}^\infty a\_\ell P\_\ell(x),   a\_\ell=\frac{2\ell+1}{2}\int\_{-1}^1 f(x)P\_\ell(x) dx.
 \\]
 
-在球面上（角度坐标）可用球谐函数 \\(Y_\ell^m(\theta,\varphi)\\) 做广义傅里叶展开：
+在球面上（角度坐标）可用球谐函数 \\(Y\_\ell^m(\theta,\varphi)\\) 做广义傅里叶展开：
 
 \\[
-F(\theta,\varphi)=\sum_{\ell=0}^\infty\sum_{m=-\ell}^{\ell} c_{\ell m} Y_\ell^m(\theta,\varphi),
+F(\theta,\varphi)=\sum\_{\ell=0}^\infty\sum\_{m=-\ell}^{\ell} c\_{\ell m} Y\_\ell^m(\theta,\varphi),
 \\]
 
 其中系数为
 
 \\[
-c_{\ell m}=\int_{S^2} F(\theta,\varphi)\overline{Y_\ell^m(\theta,\varphi)} d\Omega.
+c\_{\ell m}=\int\_{S^2} F(\theta,\varphi)\overline{Y\_\ell^m(\theta,\varphi)} d\Omega.
 \\]
 
 ### 勒让得多项式的递推公式
@@ -202,18 +202,18 @@ c_{\ell m}=\int_{S^2} F(\theta,\varphi)\overline{Y_\ell^m(\theta,\varphi)} d\Ome
 常用递推关系包括：
 
 \\[
-(\ell+1)P_{\ell+1}(x)=(2\ell+1)xP_\ell(x)-\ell P_{\ell-1}(x),
+(\ell+1)P\_{\ell+1}(x)=(2\ell+1)xP\_\ell(x)-\ell P\_{\ell-1}(x),
 \\]
 
 以及导数相关的关系：
 
 \\[
-\frac{d}{dx}P_\ell(x)=\frac{\ell x P_\ell(x)-\ell P_{\ell-1}(x)}{x^2-1}.
+\frac{d}{dx}P\_\ell(x)=\frac{\ell x P\_\ell(x)-\ell P\_{\ell-1}(x)}{x^2-1}.
 \\]
 
 ### 连带勒让得多项式的详细推导与性质
 
-下面给出连带勒让得多项式 \\(P_\ell^m(x)\\) 的详细推导与相互关系，按步骤展开以便教学与参考。
+下面给出连带勒让得多项式 \\(P\_\ell^m(x)\\) 的详细推导与相互关系，按步骤展开以便教学与参考。
 
 #### 从角方程到连带方程
 
@@ -226,33 +226,33 @@ c_{\ell m}=\int_{S^2} F(\theta,\varphi)\overline{Y_\ell^m(\theta,\varphi)} d\Ome
 用变换 \\(x=\cos\theta\\)，有 \\(d/d\theta = -\sin\theta d/dx\\)，代入并整理得到连带勒让得方程：
 
 \\[
-(1-x^2)\frac{d^2 P_\ell^m}{dx^2}-2x\frac{d P_\ell^m}{dx}+\Big[\ell(\ell+1)-\frac{m^2}{1-x^2}\Big]P_\ell^m=0.
+(1-x^2)\frac{d^2 P\_\ell^m}{dx^2}-2x\frac{d P\_\ell^m}{dx}+\Big[\ell(\ell+1)-\frac{m^2}{1-x^2}\Big]P\_\ell^m=0.
 \\]
 
 这是标准的连带方程，要求在 \\(x\in(-1,1)\\) 上的解有良好行为（在端点有限或可积）。
 
 #### 由 Rodrigues 推导连带函数
 
-从 Rodrigues 公式得到基函数 \\(P_\ell(x)\\)：
+从 Rodrigues 公式得到基函数 \\(P\_\ell(x)\\)：
 
 \\[
-P_\ell(x)=\frac{1}{2^\ell\ell!}\frac{d^\ell}{dx^\ell}(x^2-1)^\ell.
+P\_\ell(x)=\frac{1}{2^\ell\ell!}\frac{d^\ell}{dx^\ell}(x^2-1)^\ell.
 \\]
 
-对 \\(m\ge0\\)，定义连带勒让得函数为对 \\(P_\ell\\) 的 \\(m\\) 次导数乘以 \\((1-x^2)^{m/2\\)：
+对 \\(m\ge0\\)，定义连带勒让得函数为对 \\(P\_\ell\\) 的 \\(m\\) 次导数乘以 \\((1-x^2)^{m/2\\)：
 
 \\[
-P_\ell^m(x)=(-1)^m(1-x^2)^{m/2}\frac{d^m}{dx^m}P_\ell(x).
+P\_\ell^m(x)=(-1)^m(1-x^2)^{m/2}\frac{d^m}{dx^m}P\_\ell(x).
 \\]
 
-将 Rodrigues 公式代入并交换导数顺序，可以验证 \\(P_\ell^m(x)\\) 满足连带勒让得方程（这是直接代回方程并用 Leibniz 法则可验证的计算练习）。
+将 Rodrigues 公式代入并交换导数顺序，可以验证 \\(P\_\ell^m(x)\\) 满足连带勒让得方程（这是直接代回方程并用 Leibniz 法则可验证的计算练习）。
 
 #### 负阶与对称性
 
 连带勒让得函数在负 \\(m\\) 时通过以下关系定义：
 
 \\[
-P_\ell^{-m}(x)=(-1)^m\frac{(\ell-m)!}{(\ell+m)!}P_\ell^{m}(x),   m\ge0.
+P\_\ell^{-m}(x)=(-1)^m\frac{(\ell-m)!}{(\ell+m)!}P\_\ell^{m}(x),   m\ge0.
 \\]
 
 该关系常用于将所有 \\(m\\) 的取值归一化并在球谐的定义中消去负阶的不便。
@@ -262,23 +262,23 @@ P_\ell^{-m}(x)=(-1)^m\frac{(\ell-m)!}{(\ell+m)!}P_\ell^{m}(x),   m\ge0.
 已知生成函数
 
 \\[
-\frac{1}{\sqrt{1-2xt+t^2}}=\sum_{\ell=0}^\infty P_\ell(x)t^\ell.
+\frac{1}{\sqrt{1-2xt+t^2}}=\sum\_{\ell=0}^\infty P\_\ell(x)t^\ell.
 \\]
 
-对 \\(x\\) 作 \\(m\\) 次导数并乘以合适的因子，可得到关于 \\(P_\ell^m(x)\\) 的生成关系（经过整理给出连带项的级数展开），这是推导连带关系与快速生成表格的一种方法。
+对 \\(x\\) 作 \\(m\\) 次导数并乘以合适的因子，可得到关于 \\(P\_\ell^m(x)\\) 的生成关系（经过整理给出连带项的级数展开），这是推导连带关系与快速生成表格的一种方法。
 
 #### 递推关系（含 m 依赖）
 
 连带勒让得函数满足带 \\(m\\) 的递推：
 
 \\[
-(\ell-m+1)P_{\ell+1}^m(x)=(2\ell+1)xP_\ell^m(x)-(\ell+m)P_{\ell-1}^m(x).
+(\ell-m+1)P\_{\ell+1}^m(x)=(2\ell+1)xP\_\ell^m(x)-(\ell+m)P\_{\ell-1}^m(x).
 \\]
 
 此外，关于 \\(x\\) 的导数与 \\(m\\) 的升降关系为：
 
 \\[
-(1-x^2)^{1/2}\frac{d}{dx}P_\ell^m(x)=\frac{1}{2}\Big[(\ell+m)(\ell-m+1)P_{\ell}^{m-1}(x)-P_{\ell}^{m+1}(x)\Big],
+(1-x^2)^{1/2}\frac{d}{dx}P\_\ell^m(x)=\frac{1}{2}\Big[(\ell+m)(\ell-m+1)P\_{\ell}^{m-1}(x)-P\_{\ell}^{m+1}(x)\Big],
 \\]
 
 以及常用的升降算子形式（可作为推导工具）在教材中给出。
@@ -288,16 +288,16 @@ P_\ell^{-m}(x)=(-1)^m\frac{(\ell-m)!}{(\ell+m)!}P_\ell^{m}(x),   m\ge0.
 连带勒让得函数在固定 \\(m\\) 下满足正交关系：
 
 \\[
-\int_{-1}^1 P_\ell^m(x)P_{\ell'}^m(x) dx=\frac{2}{2\ell+1}\frac{(\ell+m)!}{(\ell-m)!}\delta_{\ell\ell'}.
+\int\_{-1}^1 P\_\ell^m(x)P\_{\ell'}^m(x) dx=\frac{2}{2\ell+1}\frac{(\ell+m)!}{(\ell-m)!}\delta\_{\ell\ell'}.
 \\]
 
-因此归一化常数 \\(N_{\ell m}\\) 在球谐定义中选取为上文给出的值，使得球谐函数在球面上正交归一。
+因此归一化常数 \\(N\_{\ell m}\\) 在球谐定义中选取为上文给出的值，使得球谐函数在球面上正交归一。
 
 #### 示范性推导：从 Rodrigues 到连带方程（概览）
 
 给出简要步骤：
 
-- 写出 \\(P_\ell\\) 的 Rodrigues 形式并对其作 \\(m\\) 次导数得到 \\(P_\ell^{(m)(x)\\)。
+- 写出 \\(P\_\ell\\) 的 Rodrigues 形式并对其作 \\(m\\) 次导数得到 \\(P\_\ell^{(m)(x)\\)。
 
 - 代入连带方程，并采用分部积分与导数恒等式（Leibniz）整理项，利用 \\((x^2-1)\\) 的阶数限制来消去多余高阶导数项。
 
@@ -306,11 +306,11 @@ P_\ell^{-m}(x)=(-1)^m\frac{(\ell-m)!}{(\ell+m)!}P_\ell^{m}(x),   m\ge0.
 #### 附：常用恒等式速查
 
 
-- \\(P_\ell^m(1)=\delta_{m0}\\)（适当解的极限，注意阶数限制）
+- \\(P\_\ell^m(1)=\delta\_{m0}\\)（适当解的极限，注意阶数限制）
 
-- \\(\displaystyle(2\ell+1)xP_\ell^m=(\ell-m+1)P_{\ell+1}^m+(\ell+m)P_{\ell-1}^m\\)（递推形式）
+- \\(\displaystyle(2\ell+1)xP\_\ell^m=(\ell-m+1)P\_{\ell+1}^m+(\ell+m)P\_{\ell-1}^m\\)（递推形式）
 
-- \\(\displaystyle\frac{d}{dx}P_\ell^m=\frac{1}{1-x^2}\big[\ell x P_\ell^m-(\ell+m)P_{\ell-1}^m\big]\\)（另一常见形式）
+- \\(\displaystyle\frac{d}{dx}P\_\ell^m=\frac{1}{1-x^2}\big[\ell x P\_\ell^m-(\ell+m)P\_{\ell-1}^m\big]\\)（另一常见形式）
 
 以上推导与恒等式为连带勒让得函数的核心理论与计算工具；如需我可把每一条恒等式分步写出完整代数推导并加上行间注释以便课堂讲解或作业参考。
 
@@ -319,19 +319,19 @@ P_\ell^{-m}(x)=(-1)^m\frac{(\ell-m)!}{(\ell+m)!}P_\ell^{m}(x),   m\ge0.
 球谐函数定义为
 
 \\[
-Y_\ell^m(\theta,\varphi)=N_{\ell m} P_\ell^{m}(\cos\theta) e^{i m \varphi},
+Y\_\ell^m(\theta,\varphi)=N\_{\ell m} P\_\ell^{m}(\cos\theta) e^{i m \varphi},
 \\]
 
-其中常数 \\(N_{\ell m}\\) 可取为
+其中常数 \\(N\_{\ell m}\\) 可取为
 
 \\[
-N_{\ell m}=(-1)^m\sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}},
+N\_{\ell m}=(-1)^m\sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}},
 \\]
 
 使得在球面上满足归一化和正交性：
 
 \\[
-\int_{S^2} Y_\ell^m(\theta,\varphi)\overline{Y_{\ell'}^{m'}(\theta,\varphi)} d\Omega=\delta_{\ell\ell'}\delta_{mm'}.
+\int\_{S^2} Y\_\ell^m(\theta,\varphi)\overline{Y\_{\ell'}^{m'}(\theta,\varphi)} d\Omega=\delta\_{\ell\ell'}\delta\_{mm'}.
 \\]
 
 ### 备注

@@ -13,13 +13,13 @@ Sturm--Liouville 理论研究一类二阶线性微分算子及相应的本征值
 > **定义** 设线性微分算子 \\(L\\) 在区间 \\([a,b]\\) 的某个定义域上作用，并在加权内积
 
 \\[
-\langle f,g\rangle_w=\int_a^b f(x)\overline{g(x)} w(x) dx
+\langle f,g\rangle\_w=\int\_a^b f(x)\overline{g(x)} w(x) dx
 \\]
 
 下给出。伴算符 \\(L^+\\) 定义为满足
 
 \\[
-\langle Lf,g\rangle_w = \langle f, L^+ g\rangle_w
+\langle Lf,g\rangle\_w = \langle f, L^+ g\rangle\_w
 \\]
 
 对域内任意 \\(f,g\\) 成立（在分部积分时边界项被域上的边界条件处理掉）。
@@ -41,25 +41,25 @@ Sturm--Liouville 理论研究一类二阶线性微分算子及相应的本征值
 给定一般二阶算子
 
 \\[
-L[y]=a_2(x)y"+a_1(x)y'+a_0(x)y,
+L[y]=a\_2(x)y"+a\_1(x)y'+a\_0(x)y,
 \\]
 
 可寻找正的权函数 \\(w(x)\\)，使得 \\(w(x)L\\) 具有自伴表达式，即
 
 \\[
-w a_2 y" + w a_1 y' + w a_0 y = -\frac{d}{dx}(P(x) y') + Q(x) y.
+w a\_2 y" + w a\_1 y' + w a\_0 y = -\frac{d}{dx}(P(x) y') + Q(x) y.
 \\]
 
 计算可得权函数必须满足一阶方程
 
 \\[
-\frac{w'}{w} = -\frac{a_1 + a_2'}{a_2}.
+\frac{w'}{w} = -\frac{a\_1 + a\_2'}{a\_2}.
 \\]
 
 因此可取
 
 \\[
-w(x)=\frac{1}{a_2(x)}\exp\left(-\int^x \frac{a_1(t)}{a_2(t)} dt\right).
+w(x)=\frac{1}{a\_2(x)}\exp\left(-\int^x \frac{a\_1(t)}{a\_2(t)} dt\right).
 \\]
 
 该方法常称为“积分因子法”。
@@ -70,7 +70,7 @@ w(x)=\frac{1}{a_2(x)}\exp\left(-\int^x \frac{a_1(t)}{a_2(t)} dt\right).
 常见的分离型边界条件为
 
 \\[
-\alpha_1 y(a)+\alpha_2 p(a) y'(a)=0,   \beta_1 y(b)+\beta_2 p(b) y'(b)=0,
+\alpha\_1 y(a)+\alpha\_2 p(a) y'(a)=0,   \beta\_1 y(b)+\beta\_2 p(b) y'(b)=0,
 \\]
 
 包括 Dirichlet、Neumann 与 Robin 条件。周期条件也常用于封闭区间。

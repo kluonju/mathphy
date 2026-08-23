@@ -17,14 +17,14 @@
 y"+p(x) y '+q(x) y=0
 \\]
 
-若 \\(p(x)\\) 和 \\(q(x)\\) 在 \\(x_0\\) 处有限，则称 \\(x_0\\) 为该方程的常点（ordinary point）。如果 \\(p(x)\\) 或 \\(q(x)\\) 在 \\(x \rightarrow x_0\\) 时发散，则 \\(x_0\\) 称为奇点（singular point）。奇点进一步分为正则奇点（regular）和非常奇点（irregular，也称为本性奇点 essential singularity）：
+若 \\(p(x)\\) 和 \\(q(x)\\) 在 \\(x\_0\\) 处有限，则称 \\(x\_0\\) 为该方程的常点（ordinary point）。如果 \\(p(x)\\) 或 \\(q(x)\\) 在 \\(x \rightarrow x\_0\\) 时发散，则 \\(x\_0\\) 称为奇点（singular point）。奇点进一步分为正则奇点（regular）和非常奇点（irregular，也称为本性奇点 essential singularity）：
 
 
-- 若 \\(x_0\\) 为奇点，但 \\(\left(x-x_0\right) p(x)\\) 和 \\(\left(x-x_0\right)^2 q(x)\\) 在 \\(x_0\\) 处仍有限，则 \\(x_0\\) 为正则奇点。
+- 若 \\(x\_0\\) 为奇点，但 \\(\left(x-x\_0\right) p(x)\\) 和 \\(\left(x-x\_0\right)^2 q(x)\\) 在 \\(x\_0\\) 处仍有限，则 \\(x\_0\\) 为正则奇点。
 
-- 若 \\(p(x)\\) 发散速度快于 \\(1 /\left(x-x_0\right)\\)，使得 \\(\left(x-x_0\right) p(x)\\) 在 \\(x \rightarrow x_0\\) 时趋于无穷，或 \\(q(x)\\) 发散快于 \\(1 /\left(x-x_0\right)^2\\)，使得 \\(\left(x-x_0\right)^2 q(x)\\) 在 \\(x \rightarrow x_0\\) 时趋于无穷，则 \\(x_0\\) 为非常奇点。
+- 若 \\(p(x)\\) 发散速度快于 \\(1 /\left(x-x\_0\right)\\)，使得 \\(\left(x-x\_0\right) p(x)\\) 在 \\(x \rightarrow x\_0\\) 时趋于无穷，或 \\(q(x)\\) 发散快于 \\(1 /\left(x-x\_0\right)^2\\)，使得 \\(\left(x-x\_0\right)^2 q(x)\\) 在 \\(x \rightarrow x\_0\\) 时趋于无穷，则 \\(x\_0\\) 为非常奇点。
 
-这些定义适用于所有有限的 \\(x_0\\)。
+这些定义适用于所有有限的 \\(x\_0\\)。
 
 > **注** 注意这里的\\(\infty\\)为常奇点的情况具体
 解释我们并没有给出, 它的解决需要用\\(z=1/x\\)的代换研究\\(z=0\\)时的情形, 具体讨论这里略去.
@@ -33,10 +33,10 @@ y"+p(x) y '+q(x) y=0
 
 \\[
 \left\{\begin{array}{l}
-\left(x-x_0\right) p\left(x_0\right) \text{有限}
+\left(x-x\_0\right) p\left(x\_0\right) \text{有限}
 \\\\
-\left(x-x_0\right)^2 q(x) \text{有限}
-\\ p\left(x_0\right), q(x) \rightarrow \infty .\end{array}
+\left(x-x\_0\right)^2 q(x) \text{有限}
+\\ p\left(x\_0\right), q(x) \rightarrow \infty .\end{array}
 \right.
 \\]
 其他情况为非常奇点.
@@ -106,10 +106,10 @@ x^2 y" + xy' + (x^2 - n^2) y = 0
 此类方程只需要积分两次就可以得到通解
 
 \\[
-y = \int F(x) dx + C_1 x + C_2
+y = \int F(x) dx + C\_1 x + C\_2
 \\]
 
-其中\\(F(x) = \int f(x) dx\\), \\(C_1, C_2\\)是积分常数.
+其中\\(F(x) = \int f(x) dx\\), \\(C\_1, C\_2\\)是积分常数.
 ####  \\(y" = f(x, y')\\) 型
 
 利用换元\\(u = y'\\), 则有\\(u' = y"\\), 原方程化为一阶方程
@@ -118,10 +118,10 @@ y = \int F(x) dx + C_1 x + C_2
 u' = f(x,u)
 \\]
 
-该解为\\(u = \varphi(x, C_1)\\), 原方程解为
+该解为\\(u = \varphi(x, C\_1)\\), 原方程解为
 
 \\[
-y = \int \varphi(x, C_1) dx  + C_2.
+y = \int \varphi(x, C\_1) dx  + C\_2.
 \\]
 
 ### 常点邻域上的级数解
@@ -138,31 +138,31 @@ y = \int \varphi(x, C_1) dx  + C_2.
 
 \\[
 \begin{aligned}
-y(x) & =x^s\left(a_0+a_1 x+a_2 x^2+a_3 x^3+\cdots\right) \\\\
-& =\sum_{j=0}^{\infty} a_j x^{s+j},   a_0 \neq 0
+y(x) & =x^s\left(a\_0+a\_1 x+a\_2 x^2+a\_3 x^3+\cdots\right) \\\\
+& =\sum\_{j=0}^{\infty} a\_j x^{s+j},   a\_0 \neq 0
 \end{aligned}
 \\]
 
-其中指数 \\(s\\) 以及所有系数 \\(a_j\\) 都尚未确定。注意 \\(s\\) 不必为整数。对 \\(y(x)\\) 两次求导，得到
+其中指数 \\(s\\) 以及所有系数 \\(a\_j\\) 都尚未确定。注意 \\(s\\) 不必为整数。对 \\(y(x)\\) 两次求导，得到
 
 \\[
 \begin{aligned}
-\frac{d y}{d x} & =\sum_{j=0}^{\infty} a_j(s+j) x^{s+j-1}, \\\\
-\frac{d^2 y}{d x^2} & =\sum_{j=0}^{\infty} a_j(s+j)(s+j-1) x^{s+j-2} .
+\frac{d y}{d x} & =\sum\_{j=0}^{\infty} a\_j(s+j) x^{s+j-1}, \\\\
+\frac{d^2 y}{d x^2} & =\sum\_{j=0}^{\infty} a\_j(s+j)(s+j-1) x^{s+j-2} .
 \end{aligned}
 \\]
 
 将上述表达式代入方程，有
 
 \\[
-\sum_{j=0}^{\infty} a_j(s+j)(s+j-1) x^{s+j-2}+\omega^2 \sum_{j=0}^{\infty} a_j x^{s+j}=0 .
+\sum\_{j=0}^{\infty} a\_j(s+j)(s+j-1) x^{s+j-2}+\omega^2 \sum\_{j=0}^{\infty} a\_j x^{s+j}=0 .
 \\]
 
 由于幂级数的性质, 各个系数必须为零.
 对于最低幂次项有
 
 \\[
-a_0(s)(s-1)=0
+a\_0(s)(s-1)=0
 \\]
 
 这个方程来自于最低次幂\\(x\\)的系数，被称为判别方程（indicial equation）。
@@ -173,27 +173,27 @@ a_0(s)(s-1)=0
 也只在一项中出现（即第一组求和中\\(j=1\\)时）。令\\(x^{s-1\\)的系数为零，有
 
 \\[
-a_1(s+1)s=0 .
+a\_1(s+1)s=0 .
 \\]
 
-这表明如果\\(s=1\\)，则必须有\\(a_1=0\\)。而如果\\(s=0\\)，该方程对系数没有任何限制。
+这表明如果\\(s=1\\)，则必须有\\(a\_1=0\\)。而如果\\(s=0\\)，该方程对系数没有任何限制。
 
 \\[
 \begin{aligned}
-& x^{s-1}: a_1(s+1)(s)=0 \\\\
-& x^s: a_2(s+2)(s+1)+a_0 w^2=0
+& x^{s-1}: a\_1(s+1)(s)=0 \\\\
+& x^s: a\_2(s+2)(s+1)+a\_0 w^2=0
 \end{aligned}
 \\]
 
-若 \\(s=0\\), \\(y \sim  a_0+a_1 x+\cdots\\)
-若 \\(s=1, y \sim a_0 x+a_1 x^2+\cdots\\)
-当 \\(s=1\\)时, \\(a_1=0\\).
-当 \\(s=0\\) 时, \\(a_1\\) 任意, 因此我们取\\(a_1=0\\).
+若 \\(s=0\\), \\(y \sim  a\_0+a\_1 x+\cdots\\)
+若 \\(s=1, y \sim a\_0 x+a\_1 x^2+\cdots\\)
+当 \\(s=1\\)时, \\(a\_1=0\\).
+当 \\(s=0\\) 时, \\(a\_1\\) 任意, 因此我们取\\(a\_1=0\\).
 
 \\[
 \begin{gathered}
-\Rightarrow a_{j+2}(s+j+2)(s+j+1)+w^2 a_j=0 \\\\
-\Rightarrow a_{j+2}=\frac{-w^2}{(s+j+2)(s+j+1)} a_j
+\Rightarrow a\_{j+2}(s+j+2)(s+j+1)+w^2 a\_j=0 \\\\
+\Rightarrow a\_{j+2}=\frac{-w^2}{(s+j+2)(s+j+1)} a\_j
 \end{gathered}
 \\]
 
@@ -202,22 +202,22 @@ a_1(s+1)s=0 .
 
 \\[
 \begin{aligned}
-a_{j+2}=\frac{-\omega^2}{(j+2)(j+1)} a_j \\\\
-& a_2=-\frac{w^2}{2 !} a_0 \\\\
-& a_4=-\frac{a_2}{3^3 4}=+\frac{w^4}{4 !} a_0 \\\\
-& a_6=-\frac{a_0^{3.4}}{5.6}=-\frac{w 6}{6 !} a_0 \\\\
+a\_{j+2}=\frac{-\omega^2}{(j+2)(j+1)} a\_j \\\\
+& a\_2=-\frac{w^2}{2 !} a\_0 \\\\
+& a\_4=-\frac{a\_2}{3^3 4}=+\frac{w^4}{4 !} a\_0 \\\\
+& a\_6=-\frac{a\_0^{3.4}}{5.6}=-\frac{w 6}{6 !} a\_0 \\\\
 &
 \end{aligned}
 \\]
 
 \\[
-a_{2 n}=(-1)^n \frac{w^{2 n}}{2 n !} a_0
+a\_{2 n}=(-1)^n \frac{w^{2 n}}{2 n !} a\_0
 \\]
 
 \\[
 \begin{aligned}
-y & \left.=a_0\left[1-\frac{(\omega x)^2}{2 !}+\frac{(\omega x}{4}\right)^4-\frac{\omega x x^6}{6 !}+\omega\right] \\\\
-& =a_0 \cos \omega x .
+y & \left.=a\_0\left[1-\frac{(\omega x)^2}{2 !}+\frac{(\omega x}{4}\right)^4-\frac{\omega x x^6}{6 !}+\omega\right] \\\\
+& =a\_0 \cos \omega x .
 \end{aligned}
 \\]
 
@@ -225,26 +225,26 @@ y & \left.=a_0\left[1-\frac{(\omega x)^2}{2 !}+\frac{(\omega x}{4}\right)^4-\fra
 
 \\[
 \begin{aligned}
-& a_{j+2}=-a_j \frac{\omega^2}{(j+3) (j+2)} \\\\
-& \Rightarrow a_2=-a_0 \frac{\omega^2}{2 \cdot 3}=\frac{\omega^2}{3 !} a_0 \\\\
-& a_4=-a_2 \frac{\omega^2}{5 \cdot 4}=\frac{\omega^4}{5 !} a_0 \\\\
-& a_6=-a_4 \frac{\omega^2}{6\cdot 7}=\frac{w^6}{7 !} a_0 \\\\
+& a\_{j+2}=-a\_j \frac{\omega^2}{(j+3) (j+2)} \\\\
+& \Rightarrow a\_2=-a\_0 \frac{\omega^2}{2 \cdot 3}=\frac{\omega^2}{3 !} a\_0 \\\\
+& a\_4=-a\_2 \frac{\omega^2}{5 \cdot 4}=\frac{\omega^4}{5 !} a\_0 \\\\
+& a\_6=-a\_4 \frac{\omega^2}{6\cdot 7}=\frac{w^6}{7 !} a\_0 \\\\
 \end{aligned}
 \\]
 
 \\[
 \begin{aligned}
-& \Rightarrow   a_0 x\left[1-\frac{(\omega x)^2}{3 !}+\frac{(\omega x)^{4}}{5 !}-\frac{(\omega x)^6}{7 !} \cdots\right] \\\\
-& =\frac{a_0}{\omega}\left[(\omega x)-\frac{(\omega x)^3}{3 !}+\frac{(\omega x)^5}{5 !} \cdots\right] \\\\
-& =\frac{a_0}{\omega} \sin \omega x
+& \Rightarrow   a\_0 x\left[1-\frac{(\omega x)^2}{3 !}+\frac{(\omega x)^{4}}{5 !}-\frac{(\omega x)^6}{7 !} \cdots\right] \\\\
+& =\frac{a\_0}{\omega}\left[(\omega x)-\frac{(\omega x)^3}{3 !}+\frac{(\omega x)^5}{5 !} \cdots\right] \\\\
+& =\frac{a\_0}{\omega} \sin \omega x
 \end{aligned}
 \\]
 
-此方法称为Frobenius方法,上面关于\\(x_0\\)上展开的,一般的
-我们可以在 \\(x_0\\)处展开
+此方法称为Frobenius方法,上面关于\\(x\_0\\)上展开的,一般的
+我们可以在 \\(x\_0\\)处展开
 
 \\[
-y(x)=\sum_{j=0}^{\infty} a_j\left(x-x_0\right)^{s+j}, a_0 \neq 0 .
+y(x)=\sum\_{j=0}^{\infty} a\_j\left(x-x\_0\right)^{s+j}, a\_0 \neq 0 .
 \\]
 
 ### 正则奇点邻域上的级数求解
@@ -260,25 +260,25 @@ x^2 y^{\prime \prime}+x y^{\prime}+\left(x^2-n^2\right) y=0 .
 同样，假设解的形式为
 
 \\[
-y(x)=\sum_{j=0}^{\infty} a_j x^{s+j},
+y(x)=\sum\_{j=0}^{\infty} a\_j x^{s+j},
 \\]
 
 对其求导并代入方程（7.40），得到
 
 \\[
 \begin{aligned}
-& \sum_{j=0}^{\infty} a_j(s+j)(s+j-1) x^{s+j}+\sum_{j=0}^{\infty} a_j(s+j) x^{s+j} \\\\
-&  +\sum_{j=0}^{\infty} a_j x^{s+j+2}-\sum_{j=0}^{\infty} a_j^2 x^{s+j}=0
+& \sum\_{j=0}^{\infty} a\_j(s+j)(s+j-1) x^{s+j}+\sum\_{j=0}^{\infty} a\_j(s+j) x^{s+j} \\\\
+&  +\sum\_{j=0}^{\infty} a\_j x^{s+j+2}-\sum\_{j=0}^{\infty} a\_j^2 x^{s+j}=0
 \end{aligned}
 \\]
 
 令 \\(j=0\\)，得到 \\(x^s\\) 的系数，即左边最低次幂的系数：
 
 \\[
-a_0\left[s(s-1)+s-n^2\right]=0
+a\_0\left[s(s-1)+s-n^2\right]=0
 \\]
 
-且 \\(a_0 \neq 0\\)（定义如此）。因此，式（7.42）给出判别方程
+且 \\(a\_0 \neq 0\\)（定义如此）。因此，式（7.42）给出判别方程
 
 \\[
 s^2-n^2=0
@@ -288,67 +288,67 @@ s^2-n^2=0
 还需要考察 \\(x^{s+1}\\) 的系数，得到
 
 \\[
-a_1\left[(s+1) s+s+1-n^2\right]=0,
+a\_1\left[(s+1) s+s+1-n^2\right]=0,
 \\]
 
 即
 
 \\[
-a_1(s+1-n)(s+1+n)=0 .
+a\_1(s+1-n)(s+1+n)=0 .
 \\]
 
-对于 \\(s= \pm n\\)，\\(s+1-n\\) 和 \\(s+1+n\\) 都不为零，因此必须有 \\(a_1=0\\)。
-继续考察 \\(x^{s+j}\\) 的系数（取 \\(s=n\\)），它出现在第一、二、四项中 \\(a_j\\) 的系数，在第三项中则是 \\(a_{j-2\\)。令 \\(x^{s+j\\) 的总系数为零，得到
+对于 \\(s= \pm n\\)，\\(s+1-n\\) 和 \\(s+1+n\\) 都不为零，因此必须有 \\(a\_1=0\\)。
+继续考察 \\(x^{s+j}\\) 的系数（取 \\(s=n\\)），它出现在第一、二、四项中 \\(a\_j\\) 的系数，在第三项中则是 \\(a\_{j-2\\)。令 \\(x^{s+j\\) 的总系数为零，得到
 
 \\[
-a_j\left[(n+j)(n+j-1)+(n+j)-n^2\right]+a_{j-2}=0 .
+a\_j\left[(n+j)(n+j-1)+(n+j)-n^2\right]+a\_{j-2}=0 .
 \\]
 
 将 \\(j\\) 替换为 \\(j+2\\)，对 \\(j \geq 0\\) 可写为
 
 \\[
-a_{j+2}=-a_j \frac{1}{(j+2)(2 n+j+2)},
+a\_{j+2}=-a\_j \frac{1}{(j+2)(2 n+j+2)},
 \\]
 
 这就是所需的递推关系。不断应用该递推关系可得
 
 \\[
 \begin{aligned}
-& a_2=-a_0 \frac{1}{2(2 n+2)}=-\frac{a_0 n!}{2^2 1!(n+1)!} \\\\
-& a_4=-a_2 \frac{1}{4(2 n+4)}=\frac{a_0 n!}{2^4 2!(n+2)!} \\\\
-& a_6=-a_4 \frac{1}{6(2 n+6)}=-\frac{a_0 n!}{2^6 3!(n+3)!},   \text { 以此类推 }
+& a\_2=-a\_0 \frac{1}{2(2 n+2)}=-\frac{a\_0 n!}{2^2 1!(n+1)!} \\\\
+& a\_4=-a\_2 \frac{1}{4(2 n+4)}=\frac{a\_0 n!}{2^4 2!(n+2)!} \\\\
+& a\_6=-a\_4 \frac{1}{6(2 n+6)}=-\frac{a\_0 n!}{2^6 3!(n+3)!},   \text { 以此类推 }
 \end{aligned}
 \\]
 
 一般地，
 
 \\[
-a_{2 p}=(-1)^p \frac{a_0 n!}{2^{2 p} p!(n+p)!} .
+a\_{2 p}=(-1)^p \frac{a\_0 n!}{2^{2 p} p!(n+p)!} .
 \\]
 
 将这些系数代入假设的级数解，有
 
 \\[
-y(x)=a_0 x^n\left[1-\frac{n!x^2}{2^2 1!(n+1)!}+\frac{n!x^4}{2^4 2!(n+2)!}-\cdots\right] .
+y(x)=a\_0 x^n\left[1-\frac{n!x^2}{2^2 1!(n+1)!}+\frac{n!x^4}{2^4 2!(n+2)!}-\cdots\right] .
 \\]
 
 用求和式表示为
 
 \\[
 \begin{aligned}
-y(x) & =a_0 \sum_{j=0}^{\infty}(-1)^j \frac{n!x^{n+2 j}}{2^{2 j} j!(n+j)!} \\\\
-& =a_0 2^n n!\sum_{j=0}^{\infty}(-1)^j \frac{1}{j!(n+j)!}\left(\frac{x}{2}\right)^{n+2 j} .
+y(x) & =a\_0 \sum\_{j=0}^{\infty}(-1)^j \frac{n!x^{n+2 j}}{2^{2 j} j!(n+j)!} \\\\
+& =a\_0 2^n n!\sum\_{j=0}^{\infty}(-1)^j \frac{1}{j!(n+j)!}\left(\frac{x}{2}\right)^{n+2 j} .
 \end{aligned}
 \\]
 
-在第14章中，最终的求和式（取 \\(a_0=1 / 2^n n!\\)）被定义为贝塞尔函数 \\(J_n(x)\\)：
+在第14章中，最终的求和式（取 \\(a\_0=1 / 2^n n!\\)）被定义为贝塞尔函数 \\(J\_n(x)\\)：
 
 \\[
-J_n(x)=\sum_{j=0}^{\infty}(-1)^j \frac{1}{j!(n+j)!}\left(\frac{x}{2}\right)^{n+2 j} .
+J\_n(x)=\sum\_{j=0}^{\infty}(-1)^j \frac{1}{j!(n+j)!}\left(\frac{x}{2}\right)^{n+2 j} .
 \\]
 
-注意，这个解 \\(J_n(x)\\) 具有偶或奇对称性，正如从贝塞尔方程的形式可以预期的那样。
-当 \\(s=-n\\) 且 \\(n\\) 不是整数时，可以得到第二个不同的级数解，记为 \\(J_{-n(x)\\)。但当 \\(-n\\) 是负整数时，会出现问题。此时系数的递推关系仍由式（7.45）给出，只是 \\(2n\\) 替换为 \\(-2n\\)。当 \\(j+2=2n\\) 或 \\(j=2(n-1)\\) 时，\\(a_{j+2\\) 的分母为零，Frobenius 方法无法得到与假设 \\(x^{-n\\) 开头的级数解相容的解。
+注意，这个解 \\(J\_n(x)\\) 具有偶或奇对称性，正如从贝塞尔方程的形式可以预期的那样。
+当 \\(s=-n\\) 且 \\(n\\) 不是整数时，可以得到第二个不同的级数解，记为 \\(J\_{-n(x)\\)。但当 \\(-n\\) 是负整数时，会出现问题。此时系数的递推关系仍由式（7.45）给出，只是 \\(2n\\) 替换为 \\(-2n\\)。当 \\(j+2=2n\\) 或 \\(j=2(n-1)\\) 时，\\(a\_{j+2\\) 的分母为零，Frobenius 方法无法得到与假设 \\(x^{-n\\) 开头的级数解相容的解。
 
 通过代入无穷级数，我们为线性振子方程得到了两个解，为贝塞尔方程得到了一个（若 \\(n\\) 不是整数则有两个）解。对于“是否总能这样做？该方法是否总是有效？”的问题，答案是“不，总不能这样做。级数解法并不总是有效。”
 
@@ -361,28 +361,28 @@ Frobenius 方法并不总是能给出两个解，当特征根的差为整数时,
 
 \\[
 \Delta(x)=\left|\begin{array}{ll}
-y_1(x) & y_2(x) \\\\
-y_1'(x) & y_2'(x)
-\end{array}\right|= y_1(x) y_2'(x) - y_2(x) y_1'(x)
+y\_1(x) & y\_2(x) \\\\
+y\_1'(x) & y\_2'(x)
+\end{array}\right|= y\_1(x) y\_2'(x) - y\_2(x) y\_1'(x)
 \\]
 
-由于\\(y_1, y_2\\)满足微分方程,
+由于\\(y\_1, y\_2\\)满足微分方程,
 
 \\[
 \begin{aligned}
-& \left(y_1 y_2"-y_1"
-y_2\right)+p\left(y_1 y_2'-y_1' y_2\right) = 0\\\\
+& \left(y\_1 y\_2"-y\_1"
+y\_2\right)+p\left(y\_1 y\_2'-y\_1' y\_2\right) = 0\\\\
 & \frac{d \Delta}{d x} - p \Delta(x)=0
 \end{aligned}
 \\]
 
 \\[
-\Delta(x)=\Delta_0 e^{-\int p(x) d x}
+\Delta(x)=\Delta\_0 e^{-\int p(x) d x}
 \\]
 
 \\[
 \begin{aligned}
-& \frac{d}{d x}\left(\frac{y_{2}}{y_1}\right)=\frac{y_{1} y_{2}'-y_{1}' y_{2}}{y_{1}^2}=\frac{\Delta(x)}{y_{1}^2} \\\\
-& y_{2}=y_{1} \int \frac{\Delta(x)}{\left(y_{1}(x)\right)^2} d x
+& \frac{d}{d x}\left(\frac{y\_{2}}{y\_1}\right)=\frac{y\_{1} y\_{2}'-y\_{1}' y\_{2}}{y\_{1}^2}=\frac{\Delta(x)}{y\_{1}^2} \\\\
+& y\_{2}=y\_{1} \int \frac{\Delta(x)}{\left(y\_{1}(x)\right)^2} d x
 \end{aligned}
 \\]

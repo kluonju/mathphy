@@ -87,23 +87,23 @@ z = \rho e^{\mathrm{i} \varphi} .
 
 > **注** 有些文献中, 主值的大小写与这里的规定刚好相反, 注意区分.
 
-> **例** 试将复数\\(z_1 = -1 + \sqrt{3} \mathrm{i}\\) 和复数\\(z_2 = 1 + \cos \theta + \mathrm{i} \sin\theta (-\pi < \theta \leq \pi)\\) 化为三角式和指数表示式.
+> **例** 试将复数\\(z\_1 = -1 + \sqrt{3} \mathrm{i}\\) 和复数\\(z\_2 = 1 + \cos \theta + \mathrm{i} \sin\theta (-\pi < \theta \leq \pi)\\) 化为三角式和指数表示式.
 
-> **解** 由于\\(r = |z_1| = \sqrt{(-1)^2 + (\sqrt{3})^2} = 2\\),
-\\(\arg z_1 = \arctan (\frac{\sqrt{3}}{-1}) = \frac{2\pi}{3}\\),
-有三角式\\(z_1  = 2(\cos \frac{2\pi}{3} + \mathrm{i} \sin \frac{2\pi}{3})\\)和指数式
-\\(z_1 = 2 e^{\mathrm{i} \frac{2\pi }{3}}\\).
+> **解** 由于\\(r = |z\_1| = \sqrt{(-1)^2 + (\sqrt{3})^2} = 2\\),
+\\(\arg z\_1 = \arctan (\frac{\sqrt{3}}{-1}) = \frac{2\pi}{3}\\),
+有三角式\\(z\_1  = 2(\cos \frac{2\pi}{3} + \mathrm{i} \sin \frac{2\pi}{3})\\)和指数式
+\\(z\_1 = 2 e^{\mathrm{i} \frac{2\pi }{3}}\\).
 
-类似地, \\(r = |z_2| = 2 \cos \frac{\theta}{2}\\), \\(\arg z_2 = \arctan \frac{\sin \theta{1 + \cos \theta} = \frac{\theta}{2}\\).
-有三角式\\(z_2 = 2 \cos\frac{\theta}{2} ( \cos\frac{\theta}{2} + \mathrm{i} \sin \frac{\theta}{2})\\)
-和指数式 \\(z_2 = 2\cos\frac{\theta}{2} e^{\mathrm{i} \frac{\theta}{2}}\\).
+类似地, \\(r = |z\_2| = 2 \cos \frac{\theta}{2}\\), \\(\arg z\_2 = \arctan \frac{\sin \theta{1 + \cos \theta} = \frac{\theta}{2}\\).
+有三角式\\(z\_2 = 2 \cos\frac{\theta}{2} ( \cos\frac{\theta}{2} + \mathrm{i} \sin \frac{\theta}{2})\\)
+和指数式 \\(z\_2 = 2\cos\frac{\theta}{2} e^{\mathrm{i} \frac{\theta}{2}}\\).
 
 ### 复数的运算
 
 我们可以利用有序实数对的方式对复数进行基本运算: 加减乘除运算.**加法**运算可以定义为
 
 \\[
-z_1 + z_2 = (x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2) .
+z\_1 + z\_2 = (x\_1, y\_1) + (x\_2, y\_2) = (x\_1 + x\_2, y\_1 + y\_2) .
 \\]
 
 ![复平面上的加减法（lecture TikZ）](../figures/tikz_zaddition.png)
@@ -111,7 +111,7 @@ z_1 + z_2 = (x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2) .
 **乘法**运算定义为
 
 \\[
-z_1 \cdot z_2 = (x_1, y_1) \cdot (x_2, y_2) = (x_1 x_2 - y_1 y_2, x_1 y_2 + x_2 y_1) .
+z\_1 \cdot z\_2 = (x\_1, y\_1) \cdot (x\_2, y\_2) = (x\_1 x\_2 - y\_1 y\_2, x\_1 y\_2 + x\_2 y\_1) .
 \\]
 
 显然加法和乘法满足**交换律**和**结合律**,以后乘法运算符号\\(\cdot\\)均省略.
@@ -141,7 +141,7 @@ z_1 \cdot z_2 = (x_1, y_1) \cdot (x_2, y_2) = (x_1 x_2 - y_1 y_2, x_1 y_2 + x_2 
 **减法**运算为
 
 \\[
-z_1 - z_2 \equiv z_1 + (-z_2) = (x_1 - x_2, y_1 - y_2) ,
+z\_1 - z\_2 \equiv z\_1 + (-z\_2) = (x\_1 - x\_2, y\_1 - y\_2) ,
 \\]
 
 通过元素\\((1,0)\\),我们定义\\(z^{-1\\)使得
@@ -149,13 +149,13 @@ z_1 - z_2 \equiv z_1 + (-z_2) = (x_1 - x_2, y_1 - y_2) ,
 或\\(z^{-1} = (\frac{x}{x^2 + y^2}, -\frac{y}{x^2 + y^2})\\).**除法**运算定义为
 
 \\[
-z_1 / z_2 \equiv z_1 \cdot z_2^{-1} = \frac{x_1 x_2 - y_1 y_2} {x_2^2  +  y_2^2 }  + \mathrm{i} \frac{y_1 x_2 - x_1 y_2} {x_2^2  +  y_2^2 } .
+z\_1 / z\_2 \equiv z\_1 \cdot z\_2^{-1} = \frac{x\_1 x\_2 - y\_1 y\_2} {x\_2^2  +  y\_2^2 }  + \mathrm{i} \frac{y\_1 x\_2 - x\_1 y\_2} {x\_2^2  +  y\_2^2 } .
 \\]
 
 注意往往乘除写成极坐标表达更简洁:
 
 \\[
-z_1 z_2 = \rho_1 e^{\mathrm{i} \varphi_1 } \rho_2 e^{\mathrm{i} \varphi_2 } = \rho_1 \rho_2 e^{\mathrm{i} (\varphi_1 + \varphi_2)}
+z\_1 z\_2 = \rho\_1 e^{\mathrm{i} \varphi\_1 } \rho\_2 e^{\mathrm{i} \varphi\_2 } = \rho\_1 \rho\_2 e^{\mathrm{i} (\varphi\_1 + \varphi\_2)}
 \\]
 
 此外,复数还有一种运算较为特殊,称为**共轭**(complex conjugation)运算.共轭运算表示为
@@ -187,13 +187,13 @@ z^{*} \equiv (x, -y) = x - \mathrm{i} y ,
 作为应用, 考虑方程
 
 \\[
-c_0 z^n+c_1 z^{n-1}+\cdots+c_{n-1} z+c_n=0 .
+c\_0 z^n+c\_1 z^{n-1}+\cdots+c\_{n-1} z+c\_n=0 .
 \\]
 
 如果 \\(\zeta\\) 是这个方程的一个根, 则 \\(\bar{\zeta\\) 是方程
 
 \\[
-\bar{c}_0 z^n+\bar{c}_1 z^{n-1}+\cdots+\bar{c}_{n-1} z+\bar{c}_n=0 .
+\bar{c}\_0 z^n+\bar{c}\_1 z^{n-1}+\cdots+\bar{c}\_{n-1} z+\bar{c}\_n=0 .
 \\]
 
 的根. 特别地, 如果系数为实数, 则 \\(\zeta\\) 和 \\(\bar{\zeta\\) 是同一方程的根,
@@ -201,7 +201,7 @@ c_0 z^n+c_1 z^{n-1}+\cdots+c_{n-1} z+c_n=0 .
 
 为了得到\\(z\\)的模,我们可以利用共轭运算,\\(|z| = \sqrt{zz^{*}\\). 注意区分\\(|z|^2\\)和\\(z^2\\)的不同.
 
-部分复数运算可以映射到复平面上.如共轭运算可以理解为对\\(z\\)以实轴为对称轴的镜面对称.对任意的\\(z_1,z_2\\),它们的加减
+部分复数运算可以映射到复平面上.如共轭运算可以理解为对\\(z\\)以实轴为对称轴的镜面对称.对任意的\\(z\_1,z\_2\\),它们的加减
 同向量的加减完全等价,由三角形的三边关系可得
 
 \\[
@@ -242,5 +242,5 @@ c_0 z^n+c_1 z^{n-1}+\cdots+c_{n-1} z+c_n=0 .
 
 
 
-> **注** 挑战自我: 试证明点 \\(a_1, a_2, a_3\\) 当且仅当
-\\(a_1^2+a_2^2+a_3^2=a_1 a_2+a_2 a_3+a_3 a_1\\) 时为等边三角形的三个顶点.
+> **注** 挑战自我: 试证明点 \\(a\_1, a\_2, a\_3\\) 当且仅当
+\\(a\_1^2+a\_2^2+a\_3^2=a\_1 a\_2+a\_2 a\_3+a\_3 a\_1\\) 时为等边三角形的三个顶点.

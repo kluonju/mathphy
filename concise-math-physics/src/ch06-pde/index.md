@@ -17,7 +17,7 @@
 线性算子的通用形式可表示为
 
 \\[
-L=\sum_{\nu=0}^n p_\nu(x) \frac{d^\nu}{d x^\nu}, \quad p_\nu(x) \text{ 任意 }
+L=\sum\_{\nu=0}^n p\_\nu(x) \frac{d^\nu}{d x^\nu}, \quad p\_\nu(x) \text{ 任意 }
 \\]
 
 类似的 \\(\frac{d^2}{dx^2}\\) 也是线性算子。

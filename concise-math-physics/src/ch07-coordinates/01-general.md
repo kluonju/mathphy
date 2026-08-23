@@ -12,36 +12,36 @@
 
 ![直角、柱、球三种正交坐标系示意](../figures/coords_three_systems.png)
 
-现考虑一般曲线坐标系，其坐标记作 \\((q_1, q_2, q_3)\\)，它们与直角坐标之间的变换关系为：
+现考虑一般曲线坐标系，其坐标记作 \\((q\_1, q\_2, q\_3)\\)，它们与直角坐标之间的变换关系为：
 
 \\[
-x = x(q_1, q_2, q_3),   y = y(q_1, q_2, q_3),   z = z(q_1, q_2, q_3).
+x = x(q\_1, q\_2, q\_3),   y = y(q\_1, q\_2, q\_3),   z = z(q\_1, q\_2, q\_3).
 \\]
 
-反之，\\((q_1, q_2, q_3)\\) 也可以表示为 \\((x, y, z)\\) 的函数。一般来说，我们要求 Jacobi 行列式：
+反之，\\((q\_1, q\_2, q\_3)\\) 也可以表示为 \\((x, y, z)\\) 的函数。一般来说，我们要求 Jacobi 行列式：
 
 \\[
-J = \frac{\partial (x, y, z)}{\partial (q_1, q_2, q_3)} \neq 0.
+J = \frac{\partial (x, y, z)}{\partial (q\_1, q\_2, q\_3)} \neq 0.
 \\]
 
 ### 正交曲线坐标系中的梯度算符
 
-由于 \\(\nabla u\\) 是矢量，它一定可以展开为 \\(\nabla u = \sum_{i=1^3 f_i e_i\\)，注意其中 \\(f_i\\) 是 \\(r\\) 的函数，\\(e_i\\) 的方向也是随着 \\(r\\) 变化的，这与直角坐标系的单位矢量不同。由正交归一关系式，易得 \\(f_i = e_i \cdot \nabla u\\)，另一方面，有
+由于 \\(\nabla u\\) 是矢量，它一定可以展开为 \\(\nabla u = \sum\_{i=1^3 f\_i e\_i\\)，注意其中 \\(f\_i\\) 是 \\(r\\) 的函数，\\(e\_i\\) 的方向也是随着 \\(r\\) 变化的，这与直角坐标系的单位矢量不同。由正交归一关系式，易得 \\(f\_i = e\_i \cdot \nabla u\\)，另一方面，有
 
 \\[
-e_i \cdot \nabla u = \frac{\partial u}{\partial s_i} = \lim_{\Delta s_i \to 0} \frac{\Delta u}{\Delta s_i} = \lim_{\Delta q_i \to 0} \frac{1}{h_i} \frac{\Delta u}{\Delta q_i} = \frac{1}{h_i} \frac{\partial u}{\partial q_i},
+e\_i \cdot \nabla u = \frac{\partial u}{\partial s\_i} = \lim\_{\Delta s\_i \to 0} \frac{\Delta u}{\Delta s\_i} = \lim\_{\Delta q\_i \to 0} \frac{1}{h\_i} \frac{\Delta u}{\Delta q\_i} = \frac{1}{h\_i} \frac{\partial u}{\partial q\_i},
 \\]
 
-于是得到 \\(f_i = h_i^{-1} \frac{\partial u}{\partial q_i}\\)，从而有
+于是得到 \\(f\_i = h\_i^{-1} \frac{\partial u}{\partial q\_i}\\)，从而有
 
 \\[
-\nabla u = \sum_{i=1}^3 \frac{1}{h_i} \frac{\partial u}{\partial q_i} e_i = \frac{1}{h_1} \frac{\partial u}{\partial q_1} e_1 + \frac{1}{h_2} \frac{\partial u}{\partial q_2} e_2 + \frac{1}{h_3} \frac{\partial u}{\partial q_3} e_3.
+\nabla u = \sum\_{i=1}^3 \frac{1}{h\_i} \frac{\partial u}{\partial q\_i} e\_i = \frac{1}{h\_1} \frac{\partial u}{\partial q\_1} e\_1 + \frac{1}{h\_2} \frac{\partial u}{\partial q\_2} e\_2 + \frac{1}{h\_3} \frac{\partial u}{\partial q\_3} e\_3.
 \\]
 
 将上式与直角坐标系的相应表达式
 
 \\[
-\nabla u = \frac{\partial u}{\partial x} e_x + \frac{\partial u}{\partial y} e_y + \frac{\partial u}{\partial z} e_z
+\nabla u = \frac{\partial u}{\partial x} e\_x + \frac{\partial u}{\partial y} e\_y + \frac{\partial u}{\partial z} e\_z
 \\]
 
 作比较，容易看出，不同之处在于曲线坐标系的结果中出现了度规系数。
@@ -49,13 +49,13 @@ e_i \cdot \nabla u = \frac{\partial u}{\partial s_i} = \lim_{\Delta s_i \to 0} \
 由一般结果和度规系数式，易得柱坐标系中的梯度算符为
 
 \\[
-\nabla u = \frac{\partial u}{\partial \rho} e_\rho + \frac{1}{\rho} \frac{\partial u}{\partial \phi} e_\phi + \frac{\partial u}{\partial z} e_z.
+\nabla u = \frac{\partial u}{\partial \rho} e\_\rho + \frac{1}{\rho} \frac{\partial u}{\partial \phi} e\_\phi + \frac{\partial u}{\partial z} e\_z.
 \\]
 
 又由度规系数式，易得球坐标系中的梯度算符为
 
 \\[
-\nabla u = \frac{\partial u}{\partial r} e_r + \frac{1}{r} \frac{\partial u}{\partial \theta} e_\theta + \frac{1}{r \sin \theta} \frac{\partial u}{\partial \phi} e_\phi.
+\nabla u = \frac{\partial u}{\partial r} e\_r + \frac{1}{r} \frac{\partial u}{\partial \theta} e\_\theta + \frac{1}{r \sin \theta} \frac{\partial u}{\partial \phi} e\_\phi.
 \\]
 
 ### 正交曲线坐标系的定义
@@ -69,28 +69,28 @@ e_i \cdot \nabla u = \frac{\partial u}{\partial s_i} = \lim_{\Delta s_i \to 0} \
 如果写出详细的分量形式，则上式包含了18项。现在，我们可以给出正交曲线坐标系的定义：如果
 
 \\[
-\frac{\partial \vec{r}}{\partial q_i} \cdot \frac{\partial \vec{r}}{\partial q_j} = 0,   \text{for}   i \neq j,
+\frac{\partial \vec{r}}{\partial q\_i} \cdot \frac{\partial \vec{r}}{\partial q\_j} = 0,   \text{for}   i \neq j,
 \\]
 
-则曲线坐标系 \\((q_1, q_2, q_3)\\) 称为正交的。这时有
+则曲线坐标系 \\((q\_1, q\_2, q\_3)\\) 称为正交的。这时有
 
 \\[
-(ds)^2 = \sum_{i=1}^3 \left( \frac{\partial \vec{r}}{\partial q_i} \right)^2 (dq_i)^2,
+(ds)^2 = \sum\_{i=1}^3 \left( \frac{\partial \vec{r}}{\partial q\_i} \right)^2 (dq\_i)^2,
 \\]
 
-其中 \\(h_i := \left| \frac{\partial \vec{r}}{\partial q_i} \right|\\) 称为度规系数，这与直角坐标系中的形式 (9.2) 相似，只是 \\(dq_i\\) 前面多了度规系数 \\(h_i\\)。所以，正交的关键就是 \\((ds)^2\\) 的表达式中不包含 \\(dq_i dq_j\\) 这样的交叉项。
+其中 \\(h\_i := \left| \frac{\partial \vec{r}}{\partial q\_i} \right|\\) 称为度规系数，这与直角坐标系中的形式 (9.2) 相似，只是 \\(dq\_i\\) 前面多了度规系数 \\(h\_i\\)。所以，正交的关键就是 \\((ds)^2\\) 的表达式中不包含 \\(dq\_i dq\_j\\) 这样的交叉项。
 
 ### 单位矢量的定义
 
-现在在正交曲线坐标系 \\((q_1, q_2, q_3)\\) 中的单位矢量 \\((e_1, e_2, e_3)\\)，\\(e_i\\) 的方向就是 \\(q_i\\) 坐标线的切线方向。沿着坐标线 \\(q_i\\)，有 \\(d\vec{r = (h_i dq_i) e_i\\)，相应地 \\(ds = h_i dq_i\\)，故 \\(e_i = \frac{1{h_i} \frac{\partial \vec{r}}{\partial q_i}\\)，\\(i = 1, 2, 3\\)。
+现在在正交曲线坐标系 \\((q\_1, q\_2, q\_3)\\) 中的单位矢量 \\((e\_1, e\_2, e\_3)\\)，\\(e\_i\\) 的方向就是 \\(q\_i\\) 坐标线的切线方向。沿着坐标线 \\(q\_i\\)，有 \\(d\vec{r = (h\_i dq\_i) e\_i\\)，相应地 \\(ds = h\_i dq\_i\\)，故 \\(e\_i = \frac{1{h\_i} \frac{\partial \vec{r}}{\partial q\_i}\\)，\\(i = 1, 2, 3\\)。
 
 由式 (9.4) 和度规系数的定义，易得
 
 \\[
-e_i \cdot e_j = \delta_{ij},
+e\_i \cdot e\_j = \delta\_{ij},
 \\]
 
-其中 \\(\delta_{ij}\\) 是Kronecker delta，当 \\(i = j\\) 时为1，否则为0。
+其中 \\(\delta\_{ij}\\) 是Kronecker delta，当 \\(i = j\\) 时为1，否则为0。
 
 ### 正交曲线坐标系中的 Laplace 算符
 
