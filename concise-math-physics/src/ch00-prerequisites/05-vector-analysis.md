@@ -27,17 +27,55 @@ a\mathbf{A} = aA\_x \mathbf{e}\_x + aA\_y \mathbf{e}\_y + aA\_z \mathbf{e}\_z, \
 ### 点积（数量积）
 
 \\[
-\mathbf{A} \cdot \mathbf{B} = |\mathbf{A}|\,|\mathbf{B}|\cos\theta = A\_x B\_x + A\_y B\_y + A\_z B\_z .
+\mathbf{A} \cdot \mathbf{B} = |\mathbf{A}|\\,|\mathbf{B}|\cos\theta = A\_x B\_x + A\_y B\_y + A\_z B\_z .
 \\]
 
-点积满足交换律 \\(\mathbf{A} \cdot \mathbf{B} = \mathbf{B} \cdot \mathbf{A}\\)。若 \\(\mathbf{A} \cdot \mathbf{B} = 0\\)，则两向量正交。
+点积满足交换律 \\(\mathbf{A} \cdot \mathbf{B} = \mathbf{B} \cdot \mathbf{A}\\)。若 \\(\mathbf{A} \cdot \mathbf{B} = 0\\)，则两向量正交。由点积可反解夹角
+
+\\[
+\cos\theta = \frac{\mathbf{A}\cdot\mathbf{B}}{|\mathbf{A}|\\,|\mathbf{B}|} .
+\\]
 
 ![点积与投影](../figures/vec_dot_product.png)
+
+**例（水分子键角）.** 取氧原子为原点，分子置于 \\(xz\\) 平面。近似实验构型（键长约 \\(0.96\\) 埃）下两氢原子直角坐标为
+
+\\[
+\mathrm{H}\_1:\ (0.757,\ 0,\ 0.586),\qquad
+\mathrm{H}\_2:\ (-0.757,\ 0,\ 0.586)
+\\]
+
+（单位：埃）。键矢量
+
+\\[
+\mathbf{u}=\overrightarrow{\mathrm{OH}\_1}=(0.757,\ 0,\ 0.586),\qquad
+\mathbf{v}=\overrightarrow{\mathrm{OH}\_2}=(-0.757,\ 0,\ 0.586) .
+\\]
+
+![水分子：直角坐标下的键矢量与键角](../figures/vec_water_bond_angle.png)
+
+于是
+
+\\[
+\mathbf{u}\cdot\mathbf{v}=-0.757^2+0.586^2,\qquad
+|\mathbf{u}|=|\mathbf{v}|=\sqrt{0.757^2+0.586^2},
+\\]
+
+\\[
+\cos\alpha=\frac{\mathbf{u}\cdot\mathbf{v}}{|\mathbf{u}|\\,|\mathbf{v}|}
+=\frac{0.586^2-0.757^2}{0.757^2+0.586^2}\approx -0.251 .
+\\]
+
+故键角 \\(\alpha=\arccos(-0.251)\approx 104.5^{\circ}\\)，与水分子实测 H–O–H 角一致。一般地，若 \\(\mathbf{u}=(a,0,b)\\)、\\(\mathbf{v}=(-a,0,b)\\)，则
+
+\\[
+\cos\alpha=\frac{b^2-a^2}{a^2+b^2} .
+\\]
 
 ### 叉积（向量积）
 
 \\[
-|\mathbf{A} \times \mathbf{B}| = |\mathbf{A}|\,|\mathbf{B}|\sin\theta,
+|\mathbf{A} \times \mathbf{B}| = |\mathbf{A}|\\,|\mathbf{B}|\sin\theta,
 \\]
 
 方向垂直于 \\(\mathbf{A},\mathbf{B}\\) 所在平面，由右手法则确定。分量形式：

@@ -6,7 +6,9 @@ alwaysApply: false
 
 # mdBook 数学公式写法（必须遵守）
 
-本书用 mdBook + MathJax（`book.toml`：`mathjax-support = true`）。写或改 `concise-math-physics/**/*.md` 时严格按下列约定，否则行内公式会显示为碎斜体或裸 TeX。
+写或改 `concise-math-physics/**/*.md` 时严格按下列约定。完整说明见 `concise-math-physics/MATHJAX.md` 与 `concise-math-physics/README.md`「公式写法」一节。
+
+本书用 mdBook + MathJax（`book.toml`：`mathjax-support = true`）。
 
 ## 定界符
 
@@ -16,14 +18,21 @@ alwaysApply: false
 
 ## 下标：必须转义 `_`
 
-Markdown 会把 `_x` 吃成 `<em>`，MathJax 收不到下标。源文件中凡在数学定界符内的下划线都写成 `\_`。
+Markdown 会把 `_x` 吃成 `<em>`。源文件中凡在数学定界符内的下划线都写成 `\_`。
 
 ```markdown
 正确：\\(A\_x\\)、\\(\mathbf{i}\_x\\)、\\(\partial\_x\\)、\\(\lim\_{n\to\infty}\\)
 错误：\\(A_x\\)、\\(\mathbf{i}_x\\)
 ```
 
-Markdown 渲染后会把 `\_` 还原成 `_`，再交给 MathJax，因此 `A\_x` 最终仍按 \(A_x\) 显示。
+## 细空格：必须写 `\\,`
+
+Markdown 会把 `\,` 当成转义逗号，变成普通 `,`，公式显示为 `f(x),mathrm{d}x`。
+
+```markdown
+正确：\\(\int f(x)\\,\mathrm{d}x\\)
+错误：\\(\int f(x)\,\mathrm{d}x\\)
+```
 
 ## 星号上标：不要写 `^*`
 
@@ -36,14 +45,16 @@ Markdown 渲染后会把 `\_` 还原成 `_`，再交给 MathJax，因此 `A\_x` 
 
 ## 其它注意
 
-- 独立公式行首不要用 `+` / `-` / `*`（会被当成列表）
+- 独立公式行首不要用 `+` / `-` / `*`（会被当成列表）；用 `aligned` 或把符号放在行中
 - 图注（`![...](...)`）里不要写 `\\(...\\)`：alt 不经 MathJax，用纯文字（如 `θ`、`A·dS`）
-- 括号要配对：`\mathbf{i}_x` 写作 `\\(\mathbf{i}\_x\\)`，禁止 `\\(\mathbf{i_x,\\mathbf{j}\\)` 这类缺 `}`
+- 括号要配对：`\mathbf{i}_x` 写作 `\\(\mathbf{i}\_x\\)`
 
 ## 批量修复
 
-若发现旧稿未转义，可运行：
+下标类问题可运行：
 
 ```bash
 python3 concise-math-physics/scripts/fix_math_underscores.py
 ```
+
+（该脚本不自动修复错误的 `\,` 或行首 `+`。）

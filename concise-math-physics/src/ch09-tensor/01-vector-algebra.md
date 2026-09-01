@@ -143,6 +143,26 @@ B\_x & B\_y & B\_z \end{vmatrix}.
 \theta=\cos^{-1}\left(\dfrac{\sqrt{3}}{2}\right)=30^{\circ}.
 \\]
 
+**例 1-2b（水分子键角）.** 点积求角在分子几何中很常用。取氧原子为原点，水分子在 \\(xz\\) 平面内，两氢原子直角坐标（单位：埃）
+
+\\[
+\mathrm{H}\_1=(0.757,\ 0,\ 0.586),\qquad
+\mathrm{H}\_2=(-0.757,\ 0,\ 0.586) .
+\\]
+
+键矢量 \\(\mathbf{u}=\overrightarrow{\mathrm{OH}\_1}\\)、\\(\mathbf{v}=\overrightarrow{\mathrm{OH}\_2}\\)。则
+
+\\[
+\cos\alpha=\frac{\mathbf{u}\cdot\mathbf{v}}{|\mathbf{u}|\\,|\mathbf{v}|}
+=\frac{0.586^2-0.757^2}{0.757^2+0.586^2}\approx -0.251,
+\qquad
+\alpha=\arccos(-0.251)\approx 104.5^{\circ}.
+\\]
+
+![水分子键角（直角坐标）](../figures/vec_water_bond_angle.png)
+
+若写成 \\(\mathbf{u}=(a,0,b)\\)、\\(\mathbf{v}=(-a,0,b)\\)，则 \\(\cos\alpha=(b^2-a^2)/(a^2+b^2)\\)。这与第 0 章[向量分析基础](../ch00-prerequisites/05-vector-analysis.md)中的同例一致。
+
 **例 1-3（叉积与单位法向量）** 例题给出
 
 \\[

@@ -5,6 +5,21 @@
 **作者**：罗凯  
 **副标题**：学数学工具，探物理真谛
 
+## 公式写法（必读）
+
+正文是 Markdown + MathJax。**所有公式必须按 [MATHJAX.md](MATHJAX.md) 书写**，否则无法正确显示。要点：
+
+| 项 | 源文件正确写法 |
+|----|----------------|
+| 行内 / 独立定界符 | `\\( ... \\)`、`\\[ ... \\]` |
+| TeX 命令 | 单个反斜杠：`\frac`、`\mathbf` |
+| 下标 | `A\_x`、`\int\_a^b`（不要写裸 `_`） |
+| 细空格 | `\\,`（不要写 `\,`，会被 Markdown 变成逗号） |
+| 独立公式行首 | 不要用 `+` / `-` / `*` 起行（会变成列表） |
+| 星号上标 | `x^{\ast}`（不要 `x^*`） |
+
+Agent / Cursor 规则同步见仓库 [`.cursor/rules/mdbook-mathjax.mdc`](../.cursor/rules/mdbook-mathjax.mdc)。
+
 ## 构建
 
 ### 依赖
@@ -25,10 +40,11 @@ mdbook build          # 输出到 book/
 mdbook serve          # http://localhost:3000
 ```
 
-若公式显示异常，从讲义重新同步并修复 LaTeX 环境：
+若公式显示异常，先对照 [MATHJAX.md](MATHJAX.md)；下标类问题可批量修复：
 
 ```bash
-bash scripts/expand_all.sh   # 含 scripts/fix_math.py
+python3 scripts/fix_math_underscores.py
+bash scripts/expand_all.sh   # 从讲义重新同步时也会跑 fix_math.py
 ```
 
 ## 数值示例
@@ -57,6 +73,7 @@ julia scripts/ch05_wave_equation.jl
 ```
 concise-math-physics/
 ├── book.toml
+├── MATHJAX.md        # 公式书写约定（必读）
 ├── src/              # Markdown 章节
 ├── scripts/          # Python / Julia 数值实验
 ├── assets/figures/   # 脚本生成的图
