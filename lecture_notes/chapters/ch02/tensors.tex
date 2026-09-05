@@ -1,0 +1,221 @@
+\section{Tensors and applications}
+
+Vectors describe quantities with one direction slot, while tensors describe multilinear relations between vectors and covectors. In index notation, a scalar has no index, a vector has one index, and a rank-two tensor has two indices:
+\begin{equation}
+\text{scalar: }\phi,
+\qquad
+\text{vector: }v_i,
+\qquad
+\text{rank-two tensor: }T_{ij}.
+\end{equation}
+The number of indices is called the rank. In an $n$-dimensional space, a rank-$r$ tensor has $n^r$ components before symmetries are taken into account.
+For example, a rank-zero tensor is a scalar, a rank-one tensor is a vector, and a rank-two tensor is represented by a matrix. Symmetries reduce the number of independent components: a symmetric rank-two tensor has $n(n+1)/2$ independent components, while an antisymmetric one has $n(n-1)/2$.
+
+\subsection{A tensor as a multilinear map}
+A matrix is the most familiar rank-two tensor. It maps a vector to another vector:
+\begin{equation}
+u_i=T_{ij}v_j.
+\end{equation}
+The repeated index $j$ is summed, while $i$ labels the component of the output. A rank-three tensor can act on two vectors:
+\begin{equation}
+w_i=C_{ijk}u_jv_k.
+\end{equation}
+This operation is linear in $u_j$ when $v_k$ is fixed, and linear in $v_k$ when $u_j$ is fixed; this is the meaning of \emph{multilinear}.
+
+Tensors can have useful symmetries. A rank-two tensor is symmetric when
+\begin{equation}
+T_{ij}=T_{ji},
+\end{equation}
+and antisymmetric when
+\begin{equation}
+T_{ij}=-T_{ji}.
+\end{equation}
+Every rank-two tensor can be separated into symmetric and antisymmetric parts:
+\begin{equation}
+T_{ij}=\underbrace{\frac12(T_{ij}+T_{ji})}_{\text{symmetric part}}
++\underbrace{\frac12(T_{ij}-T_{ji})}_{\text{antisymmetric part}}.
+\end{equation}
+
+\subsection{Change of coordinates}
+Under an orthogonal change of Cartesian coordinates, a vector transforms as
+\begin{equation}
+v'_i=R_{ij}v_j,
+\qquad
+R_{ik}R_{jk}=\delta_{ij}.
+\end{equation}
+A rank-two tensor transforms with one rotation matrix for each index:
+\begin{equation}
+T'_{ij}=R_{ik}R_{jl}T_{kl}.
+\end{equation}
+This rule is the key distinction between an arbitrary array of numbers and a tensor: all observers related by a coordinate change describe the same geometric object.
+
+For a tensor acting on a vector, the transformation law preserves the relation $u_i=T_{ij}v_j$:
+\begin{equation}
+u'_i=T'_{ij}v'_j
+=R_{ik}R_{jl}T_{kl}R_{jm}v_m
+=R_{ik}T_{km}v_m
+=R_{ik}u_k,
+\end{equation}
+where orthogonality was used in the middle step.
+
+\subsection{Application: stress and strain}
+In continuum mechanics, the stress tensor describes the force transmitted across a small oriented surface. If $n_j$ is the unit normal to the surface and $t_i$ is the force per unit area (traction), then
+\begin{equation}
+t_i=\sigma_{ij}n_j.
+\end{equation}
+The tensor $\sigma_{ij}$ contains more information than a single force vector because the traction depends on the orientation of the surface. For a fluid at rest, the stress is isotropic:
+\begin{equation}
+\sigma_{ij}=-p\,\delta_{ij},
+\end{equation}
+so that $t_i=-pn_i$; the pressure acts normally and equally in every direction.
+
+For a small deformation, the symmetric strain tensor is
+\begin{equation}
+\epsilon_{ij}=\frac12\left(\partial_i u_j+\partial_j u_i\right),
+\end{equation}
+where $u_i$ is the displacement field. The antisymmetric part represents an infinitesimal local rotation rather than a shape change. In an isotropic linear elastic material, stress and strain are related by
+\begin{equation}
+\sigma_{ij}=\lambda\,\epsilon_{kk}\delta_{ij}+2\mu\,\epsilon_{ij},
+\end{equation}
+where $\lambda$ and $\mu$ are material constants. The trace $\epsilon_{kk}$ measures volumetric change, while the traceless part describes shear distortion.
+
+\subsection{Application: conductivity and piezoelectricity}
+The conductivity tensor relates an applied electric field to the resulting current density:
+\begin{equation}
+J_i=\sigma_{ij}E_j.
+\end{equation}
+In an isotropic material, $\sigma_{ij}=\sigma\delta_{ij}$ and therefore $\mathbf{J}=\sigma\mathbf{E}$. In an anisotropic crystal, the current need not be parallel to the electric field; the tensor records how the material responds differently along different directions.
+
+Piezoelectric materials couple mechanical and electrical variables. A simple component form for the stress induced by an electric field is
+\begin{equation}
+\sigma_{ij}=\gamma_{ijk}E_k,
+\end{equation}
+where $\gamma_{ijk}$ is a rank-three piezoelectric tensor. The third index identifies the applied-field direction, while the first two identify the stress components. This is a useful example of why rank-three tensors arise naturally in physics: one input direction produces an output with two directional slots.
+
+\subsection{Isotropic tensors and tensor character}
+An isotropic tensor has the same geometric meaning in every orthogonal coordinate system. The Kronecker delta is the basic isotropic rank-two tensor:
+\begin{equation}
+R_{ik}R_{jl}\delta_{kl}=\delta_{ij}.
+\end{equation}
+In three dimensions, the Levi-Civita symbol is the basic isotropic rank-three antisymmetric object for orientation-preserving rotations. Products of deltas provide common isotropic rank-four structures, such as
+\begin{equation}
+\delta_{ij}\delta_{kl},
+\qquad
+\delta_{ik}\delta_{jl},
+\qquad
+\delta_{il}\delta_{jk}.
+\end{equation}
+
+An array of numbers with indices is not automatically a tensor. It must transform with one factor of $R$ for each tensor index. For example, a rotation matrix $R_{ij}$ describes a coordinate transformation and is not itself a tensor under the same transformation rule. Likewise, spinors used for half-integer spin are geometric objects with a different transformation law, not ordinary tensors. In Cartesian coordinates, raising and lowering indices does not change components because the metric is $\delta_{ij}$; in curvilinear coordinates, a metric $g_{ij}$ is needed.
+
+\subsection{Application: geometry and Einstein's field equation}
+In curved coordinates, the metric $g_{\mu\nu}$ determines lengths and inner products:
+\begin{equation}
+\mathrm{d}s^2=g_{\mu\nu}\,\mathrm{d}x^\mu\mathrm{d}x^\nu.
+\end{equation}
+Indices are raised with the inverse metric $g^{\mu\nu}$, defined by
+\begin{equation}
+g^{\mu\rho}g_{\rho\nu}=\delta^\mu_{\nu}.
+\end{equation}
+The Christoffel symbols describe how coordinate basis vectors change from point to point:
+\begin{equation}
+\Gamma^{\rho}_{\mu\nu}
+=\frac12g^{\rho\sigma}
+\left(\partial_\mu g_{\sigma\nu}
++\partial_\nu g_{\sigma\mu}
+-\partial_\sigma g_{\mu\nu}\right).
+\end{equation}
+They are needed to define a covariant derivative,
+\begin{equation}
+\nabla_\mu V^\nu=\partial_\mu V^\nu+\Gamma^\nu_{\mu\rho}V^\rho,
+\qquad
+\nabla_\mu V_\nu=\partial_\mu V_\nu-\Gamma^\rho_{\mu\nu}V_\rho.
+\end{equation}
+The curvature is obtained from derivatives and products of the Christoffel symbols:
+\begin{equation}
+R^\rho{}_{\sigma\mu\nu}
+=\partial_\mu\Gamma^\rho_{\nu\sigma}
+-\partial_\nu\Gamma^\rho_{\mu\sigma}
++\Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}
+-\Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}.
+\end{equation}
+Contracting indices gives the Ricci tensor and scalar curvature,
+\begin{equation}
+R_{\mu\nu}=R^\rho{}_{\mu\rho\nu},
+\qquad
+R=g^{\mu\nu}R_{\mu\nu}.
+\end{equation}
+The Einstein tensor is
+\begin{equation}
+G_{\mu\nu}=R_{\mu\nu}-\frac12Rg_{\mu\nu},
+\end{equation}
+and Einstein's field equation is
+\begin{equation}
+G_{\mu\nu}+\Lambda g_{\mu\nu}
+=\frac{8\pi G}{c^4}T_{\mu\nu}.
+\end{equation}
+Here $T_{\mu\nu}$ describes matter and energy, $G_{\mu\nu}$ describes spacetime curvature, and $\Lambda$ is the cosmological constant.
+
+\begin{example}[Christoffel symbols do not by themselves imply curvature]
+Consider the flat Euclidean plane in polar coordinates $(r,\vartheta)$:
+\begin{equation}
+\mathrm{d}s^2=\mathrm{d}r^2+r^2\mathrm{d}\vartheta^2,
+\qquad
+g_{rr}=1,\quad g_{\vartheta\vartheta}=r^2.
+\end{equation}
+The nonzero Christoffel symbols are
+\begin{equation}
+\Gamma^r_{\vartheta\vartheta}=-r,
+\qquad
+\Gamma^\vartheta_{r\vartheta}
+=\Gamma^\vartheta_{\vartheta r}=\frac1r.
+\end{equation}
+For example, the radial geodesic equation is
+\begin{equation}
+\frac{\mathrm{d}^2r}{\mathrm{d}s^2}
+-r\left(\frac{\mathrm{d}\vartheta}{\mathrm{d}s}\right)^2=0.
+\end{equation}
+Although these connection coefficients are nonzero, substituting them into the curvature formula gives
+\begin{equation}
+R^\rho{}_{\sigma\mu\nu}=0,
+\qquad
+R_{\mu\nu}=0,
+\qquad
+R=0.
+\end{equation}
+The plane is flat; the nonzero Christoffel symbols arise from using a curvilinear coordinate basis. In general relativity, the Einstein equation concerns the curvature tensor and $G_{\mu\nu}$, not the Christoffel symbols alone.
+\end{example}
+
+\subsection{Application: inertia tensor}
+The inertia tensor connects angular velocity to angular momentum:
+\begin{equation}
+L_i=I_{ij}\omega_j.
+\end{equation}
+For point masses $m_a$ at positions $\mathbf{r}^{(a)}$, its components are
+\begin{equation}
+I_{ij}=\sum_a m_a\left(|\mathbf{r}^{(a)}|^2\delta_{ij}-r^{(a)}_ir^{(a)}_j\right).
+\end{equation}
+Because $I_{ij}=I_{ji}$, it can be diagonalized by choosing principal axes. In those axes,
+\begin{equation}
+\mathbf{L}=\begin{pmatrix}I_1\omega_1\\I_2\omega_2\\I_3\omega_3\end{pmatrix},
+\end{equation}
+which shows that angular momentum need not be parallel to angular velocity unless the body rotates about a principal axis or has sufficient symmetry.
+
+\subsection{A first look at tensor networks}
+A tensor network is a diagram and an associated contraction rule. Each node represents a tensor, and each line represents an index. Joining two lines means summing over the shared index. For example, matrix multiplication is the smallest tensor network:
+\begin{equation}
+C_{ij}=A_{ik}B_{kj}.
+\end{equation}
+The index $k$ is an internal bond, while $i$ and $j$ remain open as the input and output indices.
+
+The same idea represents a vector as a one-legged tensor and a matrix as a two-legged tensor. A rank-three tensor can be contracted with a vector by
+\begin{equation}
+w_{ik}=T_{ijk}v_j.
+\end{equation}
+The order of contractions can often be changed without changing the final mathematical object, but it can greatly change the amount of intermediate storage. This is why tensor networks are useful in many-body physics: they encode high-dimensional arrays through local tensors and exploit the structure of their index contractions.
+
+For a simple example, a chain of matrices represents a product
+\begin{equation}
+M_{ij}=A^{(1)}_{ik_1}A^{(2)}_{k_1k_2}\cdots A^{(N)}_{k_{N-1}j}.
+\end{equation}
+The indices $k_1,\ldots,k_{N-1}$ are internal bonds. In a tensor-network calculation, one chooses a contraction order that avoids forming unnecessarily large intermediate tensors.

@@ -1,6 +1,7 @@
-\section{Basics}
+\section{Vectors basics}
 
-Vectors are denoted by boldface letters such as $\mathbf{A}$. In Cartesian coordinates any vector can be written as
+Vectors are denoted by boldface letters such as $\mathbf{A}$. In Cartesian coordinates any vector in
+3-dimensional space can be written as
 \begin{equation}
     \mathbf{A} = A_x \mathbf{e}_x + A_y \mathbf{e}_y + A_z \mathbf{e}_z,
 \end{equation}
@@ -8,6 +9,76 @@ and its magnitude is
 \begin{equation}
     |\mathbf{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}.
 \end{equation}
+
+% The same ideas extend naturally from three dimensions to $\mathbb{R}^n$. An $n$-dimensional vector is an ordered list of components,
+% \begin{equation}
+%     \mathbf{v}=(v_1,v_2,\ldots,v_n)
+%     =\sum_{i=1}^{n}v_i\mathbf{e}_i,
+% \end{equation}
+% where $\{\mathbf{e}_1,\ldots,\mathbf{e}_n\}$ is an orthonormal Cartesian basis. Two vectors are equal if and only if all corresponding components are equal.
+
+% Vector addition and scalar multiplication are defined componentwise:
+% \begin{equation}
+%     \mathbf{u}+\mathbf{v}=(u_1+v_1,\ldots,u_n+v_n),
+%     \qquad
+%     a\mathbf{v}=(av_1,\ldots,av_n).
+% \end{equation}
+% The Euclidean inner product and norm are
+% \begin{equation}
+%     \mathbf{u}\cdot\mathbf{v}=\sum_{i=1}^{n}u_iv_i,
+%     \qquad
+%     \|\mathbf{v}\|=\sqrt{\mathbf{v}\cdot\mathbf{v}}
+%     =\sqrt{\sum_{i=1}^{n}v_i^2}.
+% \end{equation}
+% The distance between two points represented by $\mathbf{u}$ and $\mathbf{v}$ is therefore
+% \begin{equation}
+%     d(\mathbf{u},\mathbf{v})=\|\mathbf{u}-\mathbf{v}\|
+%     =\sqrt{\sum_{i=1}^{n}(u_i-v_i)^2}.
+% \end{equation}
+
+% The inner product determines the angle between two nonzero vectors:
+% \begin{equation}
+%     \cos\theta=\frac{\mathbf{u}\cdot\mathbf{v}}
+%     {\|\mathbf{u}\|\,\|\mathbf{v}\|}.
+% \end{equation}
+% Thus $\mathbf{u}$ and $\mathbf{v}$ are orthogonal when $\mathbf{u}\cdot\mathbf{v}=0$. The Cauchy--Schwarz inequality,
+% \begin{equation}
+%     |\mathbf{u}\cdot\mathbf{v}|
+%     \leq \|\mathbf{u}\|\,\|\mathbf{v}\|,
+% \end{equation}
+% ensures that this definition gives a real angle.
+
+% The orthogonal projection of $\mathbf{v}$ onto a nonzero vector $\mathbf{u}$ is
+% \begin{equation}
+%     \operatorname{proj}_{\mathbf{u}}\mathbf{v}
+%     =\frac{\mathbf{u}\cdot\mathbf{v}}{\mathbf{u}\cdot\mathbf{u}}\,\mathbf{u}.
+% \end{equation}
+% Consequently, every vector can be decomposed into components parallel and perpendicular to $\mathbf{u}$:
+% \begin{equation}
+%     \mathbf{v}=\operatorname{proj}_{\mathbf{u}}\mathbf{v}
+%     +\left(\mathbf{v}-\operatorname{proj}_{\mathbf{u}}\mathbf{v}\right).
+% \end{equation}
+
+% For example, in $\mathbb{R}^4$ let
+% \begin{equation}
+%     \mathbf{u}=(1,2,0,-1),
+%     \qquad
+%     \mathbf{v}=(2,0,1,3).
+% \end{equation}
+% Then
+% \begin{equation}
+%     \mathbf{u}\cdot\mathbf{v}=1(2)+2(0)+0(1)+(-1)(3)=-1,
+%     \qquad
+%     \|\mathbf{u}\|^2=1^2+2^2+0^2+(-1)^2=6,
+% \end{equation}
+% so
+% \begin{equation}
+%     \operatorname{proj}_{\mathbf{u}}\mathbf{v}=-\frac{1}{6}\mathbf{u}
+%     =\left(-\frac16,-\frac13,0,\frac16\right).
+% \end{equation}
+
+% The dot product and norm are defined in any dimension, whereas the familiar three-dimensional cross product $\mathbf{u}\times\mathbf{v}$ is a special operation in $\mathbb{R}^3$ (with a related two-dimensional scalar analogue). In general dimensions, antisymmetric products are represented using tensors such as the Levi-Civita symbol, as discussed in the index-notation section.
+
 
 \subsection{Scalars and scaling}
 A scalar is a quantity described only by magnitude (e.g. temperature, mass, charge). Multiplying a vector by a scalar scales its magnitude; a negative scalar reverses its direction:
@@ -213,12 +284,41 @@ Hence
 \end{example}
 
 \subsection{Scalar triple product}
-The scalar triple product $(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}$ equals the signed volume of the parallelepiped spanned by $\mathbf{A},\mathbf{B},\mathbf{C}$ and satisfies cyclic permutation symmetry.
+The scalar triple product may be written equivalently as $(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}$ or $\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})$. Its magnitude equals the volume of the parallelepiped spanned by $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$; its sign records the orientation of the three vectors.
 
 \begin{equation}
-(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}
-=(\mathbf{B}\times\mathbf{C})\cdot\mathbf{A}
-=(\mathbf{C}\times\mathbf{A})\cdot\mathbf{B}.
+\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})
+= A_x(B_yC_z-B_zC_y)+A_y(B_zC_x-B_xC_z)+A_z(B_xC_y-B_yC_x).
+\end{equation}
+Equivalently, it is the determinant
+\begin{equation}
+\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})
+=\begin{vmatrix}
+A_x & A_y & A_z \\
+B_x & B_y & B_z \\
+C_x & C_y & C_z
+\end{vmatrix}.
+\end{equation}
+Interchanging the dot and cross products does not change the result:
+\begin{equation}
+\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})
+=(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}.
+\end{equation}
+It is invariant under cyclic permutations and changes sign when any two vectors are exchanged. With
+\begin{equation}
+[\mathbf{A},\mathbf{B},\mathbf{C}]
+=\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C}),
+\end{equation}
+these properties are summarized by
+\begin{equation}
+\begin{aligned}
+[\mathbf{A},\mathbf{B},\mathbf{C}]
+&=[\mathbf{B},\mathbf{C},\mathbf{A}]
+=[\mathbf{C},\mathbf{A},\mathbf{B}] \\
+&=-[\mathbf{A},\mathbf{C},\mathbf{B}]
+=-[\mathbf{B},\mathbf{A},\mathbf{C}]
+=-[\mathbf{C},\mathbf{B},\mathbf{A}].
+\end{aligned}
 \end{equation}
 
 \begin{figure}[H]
@@ -227,6 +327,13 @@ The scalar triple product $(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}$ equals t
     \caption{Scalar triple product as the signed volume of a parallelepiped.}
     \label{fig:scalar_triple_product}
 \end{figure}
+
+    Another useful identity involving both scalar and vector products is Lagrange's identity:
+    \begin{equation}
+    (\mathbf{A}\times\mathbf{B})\cdot(\mathbf{C}\times\mathbf{D})
+    =(\mathbf{A}\cdot\mathbf{C})(\mathbf{B}\cdot\mathbf{D})
+    -(\mathbf{A}\cdot\mathbf{D})(\mathbf{B}\cdot\mathbf{C}).
+    \end{equation}
 
 \begin{example}[Scalar triple product and volume]
 Let
@@ -258,6 +365,83 @@ Then
 Hence the signed volume is $2$, and the geometric volume is $|2|=2$.
 \end{example}
 
-\begin{definition}
-A definition is a precise statement of meaning.
-\end{definition}
+\subsection{Vector triple product}
+The vector triple product of three vectors is a vector such as
+$\mathbf{A}\times(\mathbf{B}\times\mathbf{C})$. It is perpendicular to
+$\mathbf{A}$ and lies in the plane spanned by $\mathbf{B}$ and $\mathbf{C}$.
+Unlike the scalar triple product, the cross product is not associative:
+\begin{equation}
+\mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+\ne(\mathbf{A}\times\mathbf{B})\times\mathbf{C}.
+\end{equation}
+The two useful reduction identities are
+\begin{equation}
+\mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+=(\mathbf{A}\cdot\mathbf{C})\mathbf{B}
+-(\mathbf{A}\cdot\mathbf{B})\mathbf{C},
+\end{equation}
+and
+\begin{equation}
+(\mathbf{A}\times\mathbf{B})\times\mathbf{C}
+=(\mathbf{A}\cdot\mathbf{C})\mathbf{B}
+-(\mathbf{B}\cdot\mathbf{C})\mathbf{A}.
+\end{equation}
+They convert nested cross products into combinations of the original vectors.
+For any three vectors, the cyclic sum also vanishes:
+\begin{equation}
+\mathbf{A}\times(\mathbf{B}\times\mathbf{C})
++\mathbf{B}\times(\mathbf{C}\times\mathbf{A})
++\mathbf{C}\times(\mathbf{A}\times\mathbf{B})=\mathbf{0}.
+\end{equation}
+
+\begin{example}[Projection perpendicular to a direction]
+Let $\hat{\mathbf{n}}$ be a unit vector. Applying the first triple-product identity gives
+\begin{equation}
+\hat{\mathbf{n}}\times(\mathbf{v}\times\hat{\mathbf{n}})
+=(\hat{\mathbf{n}}\cdot\hat{\mathbf{n}})\mathbf{v}
+-(\hat{\mathbf{n}}\cdot\mathbf{v})\hat{\mathbf{n}}
+=\mathbf{v}-(\mathbf{v}\cdot\hat{\mathbf{n}})\hat{\mathbf{n}}.
+\end{equation}
+Thus $\hat{\mathbf{n}}\times(\mathbf{v}\times\hat{\mathbf{n}})$ is precisely the component of $\mathbf{v}$ perpendicular to $\hat{\mathbf{n}}$.
+
+For example, with $\mathbf{v}=2\mathbf{e}_x-\mathbf{e}_y+3\mathbf{e}_z$ and $\hat{\mathbf{n}}=\mathbf{e}_z$,
+\begin{equation}
+\hat{\mathbf{n}}\times(\mathbf{v}\times\hat{\mathbf{n}})
+=\mathbf{v}-(\mathbf{v}\cdot\mathbf{e}_z)\mathbf{e}_z
+=2\mathbf{e}_x-\mathbf{e}_y.
+\end{equation}
+This form is used to separate transverse and longitudinal components, for example when resolving motion or fields relative to a preferred direction.
+\end{example}
+
+% \begin{definition}
+% A definition is a precise statement of meaning.
+% \end{definition}
+
+
+\subsection{From vectors to matrices}
+Several vectors can be collected as the columns of a matrix. For example,
+\begin{equation}
+    M=\begin{pmatrix}\,|&|&|\\
+    \mathbf{a}_1&\mathbf{a}_2&\mathbf{a}_3\\
+    \,|&|&|
+    \end{pmatrix}
+    =\begin{pmatrix}
+    a_{11}&a_{12}&a_{13}\\
+    a_{21}&a_{22}&a_{23}\\
+    a_{31}&a_{32}&a_{33}
+    \end{pmatrix}.
+\end{equation}
+The matrix acts on a vector by taking a linear combination of its columns:
+\begin{equation}
+    M\mathbf{x}
+    =x_1\mathbf{a}_1+x_2\mathbf{a}_2+x_3\mathbf{a}_3.
+\end{equation}
+Thus a matrix represents a linear transformation: it can rotate, stretch, reflect, or shear vectors. In components,
+\begin{equation}
+    (M\mathbf{x})_i=M_{ij}x_j,
+\end{equation}
+where the repeated index $j$ is summed. Applying two matrices in succession gives matrix multiplication,
+\begin{equation}
+    M(N\mathbf{x})=(MN)\mathbf{x}.
+\end{equation}
+The columns of the identity matrix are the basis vectors, so $I\mathbf{x}=\mathbf{x}$.

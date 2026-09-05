@@ -1,0 +1,183 @@
+\section{Gradient, divergence, curl, and integral theorems}
+
+This section develops the differential operator $\nabla$ (del) and its geometric meaning. In Cartesian coordinates,
+\begin{equation}
+\mathrm{d}f=\frac{\partial f}{\partial x}\,\mathrm{d}x
++\frac{\partial f}{\partial y}\,\mathrm{d}y
++\frac{\partial f}{\partial z}\,\mathrm{d}z.
+\end{equation}
+
+\subsection{Gradient}
+For a scalar field $f(x,y,z)$, the gradient is
+\begin{equation}
+\nabla f=\frac{\partial f}{\partial x}\mathbf{e}_x
++\frac{\partial f}{\partial y}\mathbf{e}_y
++\frac{\partial f}{\partial z}\mathbf{e}_z.
+\end{equation}
+If
+\begin{equation}
+\mathrm{d}\boldsymbol{\ell}=\mathrm{d}x\,\mathbf{e}_x
++\mathrm{d}y\,\mathbf{e}_y
++\mathrm{d}z\,\mathbf{e}_z,
+\end{equation}
+then
+\begin{equation}
+\mathrm{d}f=\nabla f\cdot\mathrm{d}\boldsymbol{\ell}.
+\end{equation}
+The symbol $\nabla$ has no standalone meaning; combined with a scalar field, a dot product, or a cross product, it produces the gradient, divergence, or curl respectively.
+
+Since
+\begin{equation}
+\mathrm{d}f=|\nabla f|\,|\mathrm{d}\boldsymbol{\ell}|\cos\theta,
+\end{equation}
+$\nabla f$ points in the direction of steepest increase of $f$. It is perpendicular to an equipotential surface, because motion along such a surface gives $\mathrm{d}f=0$.
+
+In cylindrical coordinates $(r,\phi,z)$ and spherical coordinates $(r,\theta,\phi)$, the gradient becomes
+\begin{equation}
+\nabla f=\mathbf{e}_r\frac{\partial f}{\partial r}
++\mathbf{e}_\phi\frac{1}{r}\frac{\partial f}{\partial\phi}
++\mathbf{e}_z\frac{\partial f}{\partial z},
+\end{equation}
+and
+\begin{equation}
+\nabla f=\mathbf{e}_r\frac{\partial f}{\partial r}
++\mathbf{e}_\theta\frac{1}{r}\frac{\partial f}{\partial\theta}
++\mathbf{e}_\phi\frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}.
+\end{equation}
+
+\begin{example}[Gradients in different coordinates]
+Let $a$ and $b$ be constants.
+
+\textbf{(a) Cartesian coordinates.} For $f=ax^2y+by^2z$,
+\begin{equation}
+\nabla f=2axy\,\mathbf{e}_x+(ax^2+2byz)\,\mathbf{e}_y+by^2\,\mathbf{e}_z.
+\end{equation}
+
+\textbf{(b) Cylindrical coordinates.} For
+$f=ar^2\sin\phi+ brz\cos 2\phi$,
+\begin{equation}
+\begin{aligned}
+\nabla f
+&=(2ar\sin\phi+bz\cos2\phi)\,\mathbf{e}_r\\
+&\quad +(ar\cos\phi-2bz\sin2\phi)\,\mathbf{e}_\phi
++br\cos2\phi\,\mathbf{e}_z.
+\end{aligned}
+\end{equation}
+
+\textbf{(c) Spherical coordinates.} For
+$f=a+br\sin\theta\cos\phi$,
+\begin{equation}
+\nabla f=b\sin\theta\cos\phi\,\mathbf{e}_r
++b\cos\theta\cos\phi\,\mathbf{e}_\theta
+-b\sin\phi\,\mathbf{e}_\phi.
+\end{equation}
+\end{example}
+
+\subsection{Line integrals and path independence}
+The work done by a force field along a path $L$ is the line integral
+\begin{equation}
+W=\int_L\mathbf{F}\cdot\mathrm{d}\boldsymbol{\ell}.
+\end{equation}
+For a gradient field, the chain rule gives
+\begin{equation}
+\int_A^B\nabla f\cdot\mathrm{d}\boldsymbol{\ell}=f(B)-f(A).
+\end{equation}
+Thus the line integral of a gradient depends only on its endpoints and vanishes around every closed path.
+
+\begin{example}[Path independence]
+Let $f=x^2y$, so that
+\begin{equation}
+\nabla f=2xy\,\mathbf{e}_x+x^2\,\mathbf{e}_y.
+\end{equation}
+For any path from the origin to $P=(x_0,y_0)$,
+\begin{equation}
+\int_O^P\nabla f\cdot\mathrm{d}\boldsymbol{\ell}
+=f(P)-f(O)=x_0^2y_0.
+\end{equation}
+For the path that first follows the $x$ axis and then moves vertically, the first segment contributes zero and the second contributes
+\begin{equation}
+\int_0^{y_0}x_0^2\,\mathrm{d}y=x_0^2y_0.
+\end{equation}
+Any other path gives the same result because the field is a gradient.
+\end{example}
+
+\subsection{Flux and divergence}
+The flux of a vector field $\mathbf{A}$ through a closed surface $S$ is
+\begin{equation}
+\Phi=\oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S},
+\qquad
+\mathrm{d}\mathbf{S}=\hat{\mathbf{n}}\,\mathrm{d}S,
+\end{equation}
+where $\hat{\mathbf{n}}$ is the outward unit normal. Positive net flux indicates a source inside the volume; negative net flux indicates a sink.
+
+For a small rectangular volume, the net flux divided by the volume tends to
+\begin{equation}
+\nabla\cdot\mathbf{A}
+=\frac{\partial A_x}{\partial x}
++\frac{\partial A_y}{\partial y}
++\frac{\partial A_z}{\partial z}.
+\end{equation}
+Thus divergence is the local rate of net outward flux per unit volume. The divergence theorem relates the local and global descriptions:
+\begin{equation}
+\oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+=\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.
+\end{equation}
+
+\begin{example}[Divergence theorem]
+For $\mathbf{A}=x\mathbf{e}_x+y\mathbf{e}_y+z\mathbf{e}_z$,
+\begin{equation}
+\nabla\cdot\mathbf{A}=3.
+\end{equation}
+For a rectangular box with side lengths $a,b,c$ and one corner at the origin,
+\begin{equation}
+\int_V\nabla\cdot\mathbf{A}\,\mathrm{d}V=3abc.
+\end{equation}
+The face $x=a$ contributes $abc$ to the outward flux, the face $x=0$ contributes zero, and the $y$ and $z$ pairs contribute $abc$ each. Therefore the total surface flux is also $3abc$.
+\end{example}
+
+\subsection{Curl and Stokes' theorem}
+The circulation of a vector field around a closed path $L$ is
+\begin{equation}
+C=\oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}.
+\end{equation}
+The curl measures circulation per unit area. For a small loop in the $xy$ plane,
+\begin{equation}
+C\approx\left(\frac{\partial A_y}{\partial x}
+-\frac{\partial A_x}{\partial y}\right)\Delta x\,\Delta y
+=(\nabla\times\mathbf{A})_z\,\Delta S.
+\end{equation}
+More generally,
+\begin{equation}
+(\nabla\times\mathbf{A})\cdot\hat{\mathbf{n}}
+=\lim_{\Delta S\to0}\frac{1}{\Delta S}
+\oint_{\partial(\Delta S)}\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}.
+\end{equation}
+The orientation of the loop and its normal are related by the right-hand rule.
+
+Stokes' theorem follows by dividing a surface into small loops. Integrals on internal edges cancel because neighboring loops traverse each shared edge in opposite directions:
+\begin{equation}
+\oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+=\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}.
+\end{equation}
+
+\begin{example}[Stokes' theorem]
+Let
+\begin{equation}
+\mathbf{A}=-y\,\mathbf{e}_x+x\,\mathbf{e}_y-z\,\mathbf{e}_z,
+\end{equation}
+and let $L$ be the circle of radius $R$ in the $xy$ plane. Along the circle,
+\begin{equation}
+\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=R^2\,\mathrm{d}\phi,
+\qquad
+\oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=2\pi R^2.
+\end{equation}
+Since $\nabla\times\mathbf{A}=2\mathbf{e}_z$, the disk integral is
+\begin{equation}
+\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}
+=2\pi R^2,
+\end{equation}
+in agreement with the line integral. Any other oriented surface spanning the same boundary gives the same result.
+\end{example}
+
+The identities $\nabla\times(\nabla f)=\mathbf{0}$ and
+$\nabla\cdot(\nabla\times\mathbf{A})=0$ are the local differential counterparts of these integral statements.

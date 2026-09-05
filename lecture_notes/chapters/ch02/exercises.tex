@@ -1,0 +1,164 @@
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+The following exercises collect proofs of the main identities introduced in this section.
+
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\begin{enumerate}
+    \item\label{ex:index-delta} Prove the contraction rules
+    \begin{equation*}
+        \delta_{ij}a_j=a_i,
+        \qquad
+        \delta_{ij}\delta_{jk}=\delta_{ik},
+        \qquad
+        \delta_{ii}=n.
+    \end{equation*}
+
+    \item\label{ex:index-epsilon} Verify directly from the definition of $\varepsilon_{ijk}$ that interchanging any two indices changes its sign. Use this result to prove
+    \begin{equation*}
+        \mathbf{u}\times\mathbf{u}=\mathbf{0}.
+    \end{equation*}
+
+    \item\label{ex:index-scalar-triple} Starting from
+    \begin{equation*}
+        (\mathbf{u}\times\mathbf{v})_i=\varepsilon_{ijk}u_jv_k,
+    \end{equation*}
+    derive the scalar triple-product formula
+    \begin{equation*}
+        \mathbf{u}\cdot(\mathbf{v}\times\mathbf{w})
+        =\varepsilon_{ijk}u_iv_jw_k.
+    \end{equation*}
+    Use dummy-index relabeling to prove its cyclic invariance and its sign change under exchange of two vectors.
+
+    \item\label{ex:index-triple} Prove the epsilon-delta contraction identity
+    \begin{equation*}
+        \varepsilon_{ijk}\varepsilon_{klm}
+        =\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl},
+    \end{equation*}
+    and use it to derive
+    \begin{equation*}
+        \mathbf{u}\times(\mathbf{v}\times\mathbf{w})
+        =(\mathbf{u}\cdot\mathbf{w})\mathbf{v}
+        -(\mathbf{u}\cdot\mathbf{v})\mathbf{w}.
+    \end{equation*}
+
+    \item\label{ex:index-orthogonal} Starting from $R_{ki}R_{kj}=\delta_{ij}$, prove that an orthogonal transformation preserves the inner product:
+    \begin{equation*}
+        (R\mathbf{u})\cdot(R\mathbf{v})=\mathbf{u}\cdot\mathbf{v}.
+    \end{equation*}
+    Deduce that it preserves vector lengths and angles.
+
+    \item\label{ex:index-curl-gradient} Use the product rule and the symmetry $\partial_j\partial_k\varphi=\partial_k\partial_j\varphi$ to prove
+    \begin{equation*}
+        \nabla\times\nabla\varphi=\mathbf{0}.
+    \end{equation*}
+
+    \item\label{ex:index-curl-curl} Prove the vector-calculus identity
+    \begin{equation*}
+        \nabla\times(\nabla\times\mathbf{E})
+        =\nabla(\nabla\cdot\mathbf{E})-\nabla^2\mathbf{E}
+    \end{equation*}
+    using the epsilon-delta contraction identity.
+
+    \item\label{ex:tensor-symmetry} Prove that the symmetric and antisymmetric parts of a rank-two tensor add to the original tensor. Show that the symmetric part has $n(n+1)/2$ independent components and the antisymmetric part has $n(n-1)/2$.
+
+    \item\label{ex:tensor-transformation} Let $T_{ij}$ transform as $T'_{ij}=R_{ik}R_{jl}T_{kl}$ and $v_i$ as $v'_i=R_{ij}v_j$. Verify explicitly that $u_i=T_{ij}v_j$ transforms as a vector. Identify the contraction that uses $R_{jl}R_{jm}=\delta_{lm}$.
+
+    \item\label{ex:tensor-network} For a chain of three matrices,
+    \begin{equation*}
+        M_{ij}=A_{ik}B_{kl}C_{lj},
+    \end{equation*}
+    draw the corresponding tensor-network graph, identify its open and internal indices, and compare the two contraction orders $(AB)C$ and $A(BC)$. Explain why the intermediate matrix dimensions determine the computational cost.
+
+    \item\label{ex:tensor-conductivity} For an isotropic conductivity tensor $\sigma_{ij}=\sigma\delta_{ij}$, show from $J_i=\sigma_{ij}E_j$ that $\mathbf{J}=\sigma\mathbf{E}$. Explain why an anisotropic tensor can produce a current that is not parallel to the applied field.
+
+    \item\label{ex:tensor-isotropic} Verify directly that $R_{ik}R_{jl}\delta_{kl}=\delta_{ij}$ for an orthogonal matrix. Then determine which of the three rank-four combinations
+    \begin{equation*}
+        \delta_{ij}\delta_{kl},
+        \qquad
+        \delta_{ik}\delta_{jl},
+        \qquad
+        \delta_{il}\delta_{jk}
+    \end{equation*}
+    are distinct when their index slots are kept ordered.
+
+    \item\label{ex:christoffel-polar} For the polar metric $\mathrm{d}s^2=\mathrm{d}r^2+r^2\mathrm{d}\vartheta^2$, derive the nonzero Christoffel symbols and verify that the scalar curvature is zero. Explain why this example shows that Christoffel symbols are not tensors.
+
+    \item\label{ex:pauli-index} Let the Pauli matrices be
+    \begin{equation*}
+        \sigma^x=\begin{pmatrix}0&1\\1&0\end{pmatrix},
+        \qquad
+        \sigma^y=\begin{pmatrix}0&-\mathrm{i}\\\mathrm{i}&0\end{pmatrix},
+        \qquad
+        \sigma^z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+    \end{equation*}
+    Using index notation rather than direct matrix multiplication, calculate selected entries of $\sigma^x\sigma^y$ and $\sigma^y\sigma^x$, their traces, and the determinants of $\sigma^x$, $\sigma^y$, and $\sigma^x\sigma^y$.
+
+    \item\label{ex:epsilon-determinant} For a $2\times2$ matrix, use
+    \begin{equation*}
+        \det M=\varepsilon_{ij}M_{1i}M_{2j}
+    \end{equation*}
+    to prove that $\det(MN)=\det M\det N$. Repeat the argument in three dimensions using $\varepsilon_{ijk}$, and state the definition of the five-dimensional Levi-Civita symbol.
+
+    \item\label{ex:vector-calculus-identities} Use index notation and the Levi-Civita contraction identity to prove
+    \begin{align*}
+        \nabla\cdot(\nabla\times\mathbf{u})&=0,\\
+        \mathbf{u}\times(\nabla\times\mathbf{u})
+        &=\nabla\left(\frac12|\mathbf{u}|^2\right)-(\mathbf{u}\cdot\nabla)\mathbf{u},\\
+        \nabla\cdot(\mathbf{u}\times\mathbf{v})
+        &=\mathbf{v}\cdot(\nabla\times\mathbf{u})-\mathbf{u}\cdot(\nabla\times\mathbf{v}),\\
+        \nabla\times(\mathbf{u}\times\mathbf{v})
+        &=\mathbf{u}(\nabla\cdot\mathbf{v})-\mathbf{v}(\nabla\cdot\mathbf{u})
+        +(\mathbf{v}\cdot\nabla)\mathbf{u}-(\mathbf{u}\cdot\nabla)\mathbf{v}.
+    \end{align*}
+
+    \item\label{ex:navier-stokes-index} Write the incompressible Navier--Stokes equation and the continuity equation in index notation:
+    \begin{equation*}
+        \rho\left(\frac{\partial\mathbf{u}}{\partial t}
+        +(\mathbf{u}\cdot\nabla)\mathbf{u}\right)
+        =-\nabla p+\mu\nabla^2\mathbf{u},
+        \qquad
+        \frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\mathbf{u})=0.
+    \end{equation*}
+    Then express the vorticity $\boldsymbol{\omega}=\nabla\times\mathbf{u}$ in components.
+
+    \item\label{ex:riemann-components} A Riemann curvature tensor satisfies
+    \begin{equation*}
+        R_{ijkl}=-R_{jikl},
+        \qquad
+        R_{ijkl}=-R_{ijlk},
+        \qquad
+        R_{ijkl}=R_{klij}.
+    \end{equation*}
+    Count its independent components in two and three dimensions, explaining how the antisymmetric index pairs and their pair-exchange symmetry reduce the count.
+
+    \item\label{ex:cross-product-matrix} Define a three-dimensional matrix by $A_{jk}=\varepsilon_{jkl}a_l$. Show that $(A\mathbf{b})_j$ is related to $(\mathbf{a}\times\mathbf{b})_j$, recover $a_m$ from $A_{jk}$ using $\varepsilon_{mjk}$, and prove $\operatorname{tr}(BC)=\operatorname{tr}(CB)$ in index notation.
+
+    \item\label{ex:gradient-coordinates} Calculate the gradient of each scalar field:
+    \begin{enumerate}
+        \item $f=ax^2y+by^2z$ in Cartesian coordinates;
+        \item $f=ar^2\sin\phi+brz\cos2\phi$ in cylindrical coordinates;
+        \item $f=a+br\sin\theta\cos\phi$ in spherical coordinates.
+    \end{enumerate}
+
+    \item\label{ex:gradient-line-integral} Let $f=x^2y$. Verify directly along two different piecewise-linear paths from the origin to $(x_0,y_0)$ that
+    \begin{equation*}
+        \int\nabla f\cdot\mathrm{d}\boldsymbol{\ell}=x_0^2y_0.
+    \end{equation*}
+    Explain why the result is independent of the path.
+
+    \item\label{ex:divergence-theorem} Use the divergence theorem to verify the flux of
+    $\mathbf{A}=x\mathbf{e}_x+y\mathbf{e}_y+z\mathbf{e}_z$ through a rectangular box with side lengths $a$, $b$, and $c$, one corner at the origin. Compute both the volume integral and the six face contributions.
+
+    \item\label{ex:stokes-theorem} Let
+    \begin{equation*}
+        \mathbf{A}=-y\mathbf{e}_x+x\mathbf{e}_y-z\mathbf{e}_z
+    \end{equation*}
+    and let $L$ be the circle of radius $R$ in the $xy$ plane. Verify Stokes' theorem by calculating both
+    \begin{equation*}
+        \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+        \qquad\text{and}\qquad
+        \int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}.
+    \end{equation*}
+\end{enumerate}

@@ -1,0 +1,211 @@
+\section{Index notation}
+The same ideas extend naturally from three dimensions to $\mathbb{R}^n$. Index notation provides a compact language for vectors, matrices, and tensors. An $n$-dimensional vector is an ordered list of components,
+\begin{equation}
+    \mathbf{v}=(v_1,v_2,\ldots,v_n)
+    =\sum_{i=1}^{n}v_i\mathbf{e}_i,
+\end{equation}
+where $\{\mathbf{e}_1,\ldots,\mathbf{e}_n\}$ is an orthonormal Cartesian basis. Two vectors are equal if and only if all corresponding components are equal.
+
+In $\mathbb{R}^n$, the coordinates of a point are $(x_1,x_2,\ldots,x_n)$, and a Cartesian basis is written as $\mathbf{e}_1,\mathbf{e}_2,\ldots,\mathbf{e}_n$. In index notation, the same vector is written
+\begin{equation}
+\mathbf{v}=\sum_{i=1}^{n}v_i\mathbf{e}_i.
+\end{equation}
+The entry in row $i$ and column $j$ of a matrix $M$ is denoted by $M_{ij}$.
+
+\subsection{Einstein summation convention}
+The Einstein summation convention suppresses an explicit summation sign: an index repeated exactly twice in a term is summed over its full range. Thus
+\begin{equation}
+\mathbf{u}\cdot\mathbf{v}=\sum_{i=1}^{n}u_iv_i=u_iv_i,
+\end{equation}
+and matrix multiplication becomes
+\begin{equation}
+[AB]_{ij}=\sum_{k=1}^{n}A_{ik}B_{kj}=A_{ik}B_{kj}.
+\end{equation}
+An index that is summed over is a \emph{dummy index}; an index that occurs once in each term is a \emph{free index}. Dummy indices may be renamed, while free indices must remain unchanged. For example,
+\begin{equation}
+A_{ik}B_{kl}C_{lj}=A_{im}B_{ml}C_{lj},
+\end{equation}
+but $A_{ik}B_{kk}C_{kj}$ is invalid because $k$ occurs three times. As a practical rule, each index should occur once or twice in any term, never more.
+
+\subsection{Kronecker delta and Levi-Civita symbol}
+The Kronecker delta is the component form of the identity matrix:
+\begin{equation}
+\delta_{ij}=\begin{cases}
+1, & i=j,\\
+0, & i\ne j.
+\end{cases}
+\end{equation}
+Its useful contraction identities are
+\begin{equation}
+\delta_{ij}a_j=a_i,
+\qquad
+\delta_{ij}\delta_{jk}=\delta_{ik},
+\qquad
+\delta_{ii}=n.
+\end{equation}
+Proofs of these contractions are collected in Exercise~\ref{ex:index-delta}.
+
+In three dimensions, the completely antisymmetric Levi-Civita symbol is
+\begin{equation}
+\varepsilon_{ijk}=\begin{cases}
++1, & (i,j,k)\text{ is an even permutation of }(1,2,3),\\
+-1, & (i,j,k)\text{ is an odd permutation of }(1,2,3),\\
+0, & \text{otherwise}.
+\end{cases}
+\end{equation}
+For example, $\varepsilon_{123}=\varepsilon_{231}=\varepsilon_{312}=1$, while $\varepsilon_{132}=-1$. Interchanging any two indices changes its sign:
+\begin{equation}
+\varepsilon_{ijk}=-\varepsilon_{jik}.
+\end{equation}
+The antisymmetry argument and its consequence $\mathbf{u}\times\mathbf{u}=\mathbf{0}$ are developed in Exercise~\ref{ex:index-epsilon}.
+
+\subsection{Vectors and matrices in index form}
+The linear system $A\mathbf{x}=\mathbf{b}$ is written as
+\begin{equation}
+A_{ij}x_j=b_i.
+\end{equation}
+Similarly, the eigenvalue equation is
+\begin{equation}
+A_{ij}v_j^{(\alpha)}=\lambda^{(\alpha)}v_i^{(\alpha)},
+\qquad \alpha=1,\ldots,n,
+\end{equation}
+where $\alpha$ labels an eigenpair and is not summed. An orthogonal matrix satisfies
+\begin{equation}
+R_{ki}R_{kj}=\delta_{ij},
+\end{equation}
+and its trace is $\operatorname{tr}A=A_{ii}$. The cyclic property of the trace follows directly from commutativity of scalar components:
+\begin{equation}
+\operatorname{tr}(AB)=A_{ij}B_{ji}=B_{ji}A_{ij}=\operatorname{tr}(BA).
+\end{equation}
+
+\begin{example}[Two-dimensional rotation]
+For
+\begin{equation}
+R=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix},
+\end{equation}
+the $11$ component of $R^{\mathsf T}R$ is
+\begin{equation}
+R_{k1}R_{k1}=\cos^2\theta+\sin^2\theta=1,
+\end{equation}
+whereas the $12$ component is
+\begin{equation}
+R_{k1}R_{k2}=\cos\theta(-\sin\theta)+\sin\theta\cos\theta=0.
+\end{equation}
+Thus $R_{ki}R_{kj}=\delta_{ij}$.
+\end{example}
+The general preservation of inner products by orthogonal transformations is proved in Exercise~\ref{ex:index-orthogonal}.
+
+\subsection{Dot and cross products}
+For vectors with components $u_i$ and $v_i$,
+\begin{equation}
+\mathbf{u}\cdot\mathbf{v}=u_iv_i=\delta_{ij}u_iv_j,
+\end{equation}
+while the cross product is expressed compactly by
+\begin{equation}
+(\mathbf{u}\times\mathbf{v})_i=\varepsilon_{ijk}u_jv_k.
+\end{equation}
+Antisymmetry immediately gives $\mathbf{u}\times\mathbf{u}=\mathbf{0}$, since $u_ju_k$ is symmetric in $j,k$ whereas $\varepsilon_{ijk}$ is antisymmetric.
+See Exercise~\ref{ex:index-epsilon} for the index-level proof.
+
+\subsection{Triple products and epsilon-delta identities}
+The scalar triple product has the index form
+\begin{equation}
+\mathbf{u}\cdot(\mathbf{v}\times\mathbf{w})=\varepsilon_{ijk}u_iv_jw_k.
+\end{equation}
+The vector triple product follows from the contraction identity
+\begin{equation}
+\varepsilon_{ijk}\varepsilon_{klm}=\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}:
+\end{equation}
+\begin{equation}
+\mathbf{u}\times(\mathbf{v}\times\mathbf{w})
+=(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{u}\cdot\mathbf{v})\mathbf{w}.
+\end{equation}
+Further useful contractions are
+\begin{equation}
+\varepsilon_{ijk}\varepsilon_{ljk}=2\delta_{il},
+\qquad
+\varepsilon_{ijk}\varepsilon_{ijk}=6,
+\qquad
+\varepsilon_{ijk}\delta_{jk}=0.
+\end{equation}
+The contraction identity and the vector triple-product derivation are left to Exercise~\ref{ex:index-triple}.
+
+\subsection{Derivatives in index notation}
+Write the partial derivative with respect to $x_i$ as
+\begin{equation}
+\frac{\partial}{\partial x_i}\longrightarrow\partial_i.
+\end{equation}
+For example, the vacuum Maxwell equations become
+\begin{equation}
+\begin{aligned}
+\nabla\cdot\mathbf{E}=0
+&\longrightarrow \partial_iE_i=0,
+&\qquad
+\nabla\cdot\mathbf{B}=0
+&\longrightarrow \partial_iB_i=0,\\
+\nabla\times\mathbf{E}+\partial_t\mathbf{B}=\mathbf{0}
+&\longrightarrow \varepsilon_{ijk}\partial_jE_k+\partial_tB_i=0,
+&\qquad
+\nabla\times\mathbf{B}-\mu_0\varepsilon_0\partial_t\mathbf{E}=\mathbf{0}
+&\longrightarrow \varepsilon_{ijk}\partial_jB_k-\mu_0\varepsilon_0\partial_tE_i=0.
+\end{aligned}
+\end{equation}
+
+As an example, consider the curl of a gradient. In index notation,
+\begin{equation}
+\begin{aligned}
+(\nabla\times\nabla\varphi)_i
+&=\varepsilon_{ijk}\partial_j\partial_k\varphi\\
+&=\varepsilon_{ijk}\partial_k\partial_j\varphi
+&&\text{(mixed partials commute)}\\
+&=-\varepsilon_{ikj}\partial_k\partial_j\varphi
+&&\text{($\varepsilon_{ijk}$ is antisymmetric)}\\
+&=-(\nabla\times\nabla\varphi)_i.
+\end{aligned}
+\end{equation}
+Therefore,
+\begin{equation}
+\nabla\times\nabla\varphi=\mathbf{0}.
+\end{equation}
+See Exercise~\ref{ex:index-curl-gradient} for this proof in exercise form.
+
+The curl-curl identity follows by applying the epsilon-delta contraction identity:
+\begin{equation}
+\begin{aligned}
+\bigl[\nabla\times(\nabla\times\mathbf{E})\bigr]_i
+&=\varepsilon_{ijk}\partial_j
+    \left(\varepsilon_{klm}\partial_lE_m\right)\\
+&=(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})
+    \partial_j\partial_lE_m\\
+&=\partial_i\partial_jE_j-\partial_j\partial_jE_i.
+\end{aligned}
+\end{equation}
+Returning to vector notation gives
+\begin{equation}
+\nabla\times(\nabla\times\mathbf{E})
+=\nabla(\nabla\cdot\mathbf{E})-\nabla^2\mathbf{E}.
+\end{equation}
+See Exercise~\ref{ex:index-curl-curl} for a proof using index notation.
+
+\subsection{Tensors and coordinate transformations}
+A rank-two tensor maps one vector to another linearly. For example, stress and conductivity take the forms
+\begin{equation}
+f_i=\sigma_{ij}\,\mathrm{d}A_j,
+\qquad
+J_i=\sigma_{ij}E_j.
+\end{equation}
+Under an orthogonal coordinate transformation $x'_i=R_{ij}x_j$, vector components transform as $v'_i=R_{ij}v_j$, while a rank-two tensor transforms as
+\begin{equation}
+T'_{ij}=R_{ik}R_{jl}T_{kl}.
+\end{equation}
+More generally, a rank-$n$ tensor transforms according to
+\begin{equation}
+T'_{i_1\cdots i_n}
+=R_{i_1j_1}\cdots R_{i_nj_n}T_{j_1\cdots j_n}.
+\end{equation}
+
+An isotropic tensor has the same components in every orthogonal coordinate system. The Kronecker delta is isotropic, since
+\begin{equation}
+R_{ik}R_{jl}\delta_{kl}=\delta_{ij}.
+\end{equation}
+
