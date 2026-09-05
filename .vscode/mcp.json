@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "inkscape": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "lecture_notes/mcp/inkscape-server/server.mjs"
+      ],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}

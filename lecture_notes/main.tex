@@ -1,0 +1,44 @@
+\documentclass[11pt,a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% \usepackage{CJKutf8}
+\usepackage{ctex}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{lipsum}
+\setstretch{1.05}
+
+% Keep Chinese text support, but use English names for floats.
+\ctexset{figurename=Figure, tablename=Table}
+
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+
+\title{Mathematical Methods for Physics}
+\author{Kai Luo}
+\date{updated on \today}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\include{frontmatter/foreword}
+\tableofcontents
+
+\mainmatter
+
+% Compile only selected chapters at a time.
+% Uncomment the next line and list the chapter files you want to build.
+% \includeonly{chapters/ch01/ch01,chapters/ch02/ch02}
+
+\include{chapters/ch01/ch01}
+\include{chapters/ch02/ch02}
+\include{chapters/ch03/ch03}
+
+\backmatter
+
+\end{document}
