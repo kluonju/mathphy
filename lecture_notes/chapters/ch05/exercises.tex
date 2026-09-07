@@ -1,0 +1,84 @@
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+The following exercises collect the main proofs and applications of the Fourier-series and Fourier-transform identities introduced in this chapter.
+
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\begin{enumerate}
+    \item\label{ex:fourier-orthogonality} Verify the orthogonality relations
+    \begin{equation*}
+        \int_{-\pi}^{\pi}\sin(mx)\sin(nx)\,dx=\pi\delta_{mn},\qquad
+        \int_{-\pi}^{\pi}\cos(mx)\cos(nx)\,dx=\pi\delta_{mn},\qquad
+        \int_{-\pi}^{\pi}\sin(mx)\cos(nx)\,dx=0.
+    \end{equation*}
+    Use them to derive the coefficients $a_n$ and $b_n$ for the Fourier series of a $2\pi$-periodic function.
+
+    \item\label{ex:fourier-even-odd} Show that if $f$ is even, then $b_n=0$ for all $n$, while if $f$ is odd, then $a_n=0$ for all $n$. Explain how the parity of $f$ determines the Fourier basis that appears in the expansion.
+
+    \item\label{ex:fourier-parseval} Prove Parseval's identity in the complex form
+    \begin{equation*}
+        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,dx
+        =\sum_{n=-\infty}^{\infty}|c_n|^2,
+    \end{equation*}
+    and then derive the real-form identity
+    \begin{equation*}
+        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,dx
+        =\frac{a_0^2}{4}+\frac12\sum_{n=1}^{\infty}(a_n^2+b_n^2).
+    \end{equation*}
+
+    \item\label{ex:fourier-sawtooth} Derive the periodic sawtooth expansion
+    \begin{equation*}
+        f(x)=\frac{2\ell}{\pi}\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}\sin\left(\frac{n\pi x}{\ell}\right)
+    \end{equation*}
+    for $f(x)=x$ on $(-\ell,\ell)$, and show that setting $x=\ell/2$ yields the Leibniz formula for $\pi/4$.
+
+    \item\label{ex:fourier-heat} Starting from the heat equation on $[0,\ell]$ with zero Dirichlet boundary conditions,
+    \begin{equation*}
+        T_t=T_{xx},\qquad T(0,t)=T(\ell,t)=0,
+    \end{equation*}
+    use separation of variables to derive the modes $T_n(x,t)=A_n\sin(n\pi x/\ell)e^{-n^2\pi^2 t/\ell^2}$. Explain why the long-time limit is $T\to0$.
+
+    \item\label{ex:fourier-transform-limit} Starting from the Fourier-series formula on $[-\ell,\ell]$, show that as $\ell\to\infty$ the discrete set of wavenumbers becomes dense and the series turns into the Fourier integral. State the limiting form of the coefficient formula and identify the frequency spacing $\Delta\omega$.
+
+    \item\label{ex:fourier-gaussian} For $f(x)=e^{-\alpha x^2}$ with $\alpha>0$, compute its Fourier transform and show that the transform is again a Gaussian. Interpret the effect of increasing $\alpha$ on the width in position space and frequency space.
+
+    \item\label{ex:fourier-derivative} Prove the derivative rule
+    \begin{equation*}
+        \mathcal{F}\{f'(x)\}=\mathrm{i}\omega\,\mathcal{F}\{f\}(\omega),
+    \end{equation*}
+    under suitable decay assumptions, and use it to show that the Fourier transform converts differentiation into multiplication by $\mathrm{i}\omega$.
+
+    \item\label{ex:fourier-convolution} Show that the Fourier transform diagonalizes convolution:
+    \begin{equation*}
+        \mathcal{F}\{f*g\}(\omega)=\sqrt{2\pi}\,\hat f(\omega)\hat g(\omega).
+    \end{equation*}
+    Explain why this makes the Fourier transform especially useful in solving linear differential equations and filtering problems.
+
+    \item\label{ex:delta-sifting} Prove the sifting property
+    \begin{equation*}
+        \int_{-\infty}^{\infty}f(x)\delta(x-a)\,dx=f(a),
+    \end{equation*}
+    and show that $\delta(ax)=\delta(x)/|a|$ for $a\neq0$. Interpret this result physically as the limit of a sharply localized pulse of unit area.
+
+    \item\label{ex:laplace-derivative} Let $x(p)=\mathcal{L}\{X(t)\}$. Show that
+    \begin{equation*}
+        \mathcal{L}\{X'(t)\}=p x(p)-X(0),
+    \end{equation*}
+    and use this to solve the initial-value problem
+    \begin{equation*}
+        X''+\omega_0^2X=0,
+        \qquad X(0)=X_0,	ext{ }X'(0)=0.
+    \end{equation*}
+
+    \item\label{ex:laplace-convolution} Prove the convolution theorem for the Laplace transform:
+    \begin{equation*}
+        \mathcal{L}\{(f*g)(t)\}=\mathcal{L}\{f\}(p)\mathcal{L}\{g\}(p).
+    \end{equation*}
+    Give one example where this identity simplifies the evaluation of an inverse Laplace transform.
+
+    \item\label{ex:basel-series} Use Parseval's identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$ to derive the Basel sum
+    \begin{equation*}
+        \sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+    \end{equation*}
+    Explain the role of the Fourier coefficients in the computation.
+\end{enumerate}

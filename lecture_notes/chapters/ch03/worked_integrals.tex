@@ -1,0 +1,59 @@
+\section{Further contour-integral demonstrations}
+
+The preceding methods also handle integrals whose integrands have branch points. For $0<\alpha<1$, take
+\begin{equation}
+f(z)=\frac{z^{\alpha-1}}{1+z}
+\end{equation}
+with a keyhole contour cut along the positive real axis. The two sides of the cut differ by the factor $e^{2\pi\mathrm{i}\alpha}$; the small and large circles vanish in the limits. The only finite pole is at $z=-1$, where the selected branch gives
+\begin{equation}
+\operatorname{Res}(f;-1)=-e^{\mathrm{i}\pi\alpha}.
+\end{equation}
+The residue theorem therefore produces Euler's integral
+\begin{equation}
+\int_0^\infty\frac{x^{\alpha-1}}{1+x}\,dx=\frac{\pi}{\sin(\pi\alpha)}.
+\end{equation}
+For the needed arc estimates, on the large circle $|z|=R$,
+\begin{equation}
+\left|\int_{C_R}\frac{z^{\alpha-1}}{1+z}\,dz\right|
+\leq2\pi\max_{C_R}\frac{R^\alpha}{|1+z|}\longrightarrow0,
+\end{equation}
+because $0<\alpha<1$; on the small circle the corresponding bound is $O(\varepsilon^\alpha)$. The two sides of the cut give $(1-e^{2\pi\mathrm{i}\alpha})I$, while the pole at $-1=e^{\mathrm{i}\pi}$ has residue $-e^{\mathrm{i}\pi\alpha}$, giving the result.
+
+\begin{example}[Fresnel integrals]
+Rotate the positive real contour through $\pi/4$ for the entire function $e^{\mathrm{i}z^2}$. The connecting arc vanishes as its radius tends to infinity, while the rotated ray gives a Gaussian integral. Hence
+\begin{equation}
+\int_0^\infty e^{\mathrm{i}x^2}\,dx=(1+\mathrm{i})\sqrt{\frac{\pi}{8}},
+\end{equation}
+and so
+\begin{equation}
+\int_0^\infty\sin(x^2)\,dx=\int_0^\infty\cos(x^2)\,dx=\sqrt{\frac{\pi}{8}}.
+\end{equation}
+\end{example}
+
+The Fresnel arc estimate follows by integration by parts:
+\begin{equation}
+\int_{C_R}e^{\mathrm{i}z^2}\,dz=
+\left.\frac{e^{\mathrm{i}z^2}}{2\mathrm{i}z}\right|_{C_R}
++\int_{C_R}\frac{e^{\mathrm{i}z^2}}{2\mathrm{i}z^2}\,dz.
+\end{equation}
+On the first-quadrant arc both terms tend to zero as $R\to\infty$, which justifies the contour rotation rather than treating it as a formal substitution.
+
+\begin{example}[A parameter integral]
+Set
+\begin{equation}
+G(t)=\int_0^1\frac{x^t-1}{\log x}\,dx.
+\end{equation}
+Then $G(0)=0$ and differentiation under the integral gives $G'(t)=\int_0^1x^t\,dx=1/(t+1)$. Therefore
+\begin{equation}
+\int_0^1\frac{x^2-1}{\log x}\,dx=G(2)=\int_0^2\frac{dt}{t+1}=\log3.
+\end{equation}
+\end{example}
+
+The same parameter philosophy can prove the Gaussian integral. Defining
+\begin{equation}
+I(t)=\int_0^\infty\frac{e^{-x^2}}{1+(x/t)^2}\,dx
+\end{equation}
+and differentiating a suitable scaled form of $I(t)$ relates its $t\to0$ limit to $I(\infty)^2$. It yields
+\begin{equation}
+\int_0^\infty e^{-x^2}\,dx=\frac{\sqrt{\pi}}{2}.
+\end{equation}

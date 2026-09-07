@@ -1,0 +1,92 @@
+\section{Complex numbers and the complex plane}
+
+We use $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, and $\mathbb{C}$ for the natural, integer, real, and complex number systems. A map $f:A\to B$ assigns each $x\in A$ a unique value $f(x)\in B$. It is injective if equal outputs require equal inputs, surjective if every point of $B$ occurs as an output, and bijective if both conditions hold. These ideas identify the complex plane with ordered pairs of real numbers.
+
+A complex number is an ordered pair of real numbers written as
+\begin{equation}
+z=x+\mathrm{i}y,\qquad x,y\in\mathbb{R},\qquad \mathrm{i}^2=-1.
+\end{equation}
+The numbers $x=\operatorname{Re}z$ and $y=\operatorname{Im}z$ are respectively its real and imaginary parts. Identifying $z$ with the point $(x,y)$ gives the Argand diagram and turns algebraic operations into plane geometry.
+
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{complex_plane.tex}
+    \caption{Polar representation of a complex number in the Argand plane.}
+    \label{fig:ch06-complex-plane}
+\end{figure}
+
+In polar form,
+\begin{equation}
+\rho=|z|=\sqrt{x^2+y^2},\qquad
+z=\rho(\cos\varphi+\mathrm{i}\sin\varphi)=\rho e^{\mathrm{i}\varphi}.
+\end{equation}
+The argument is multivalued: $\operatorname{Arg}z=\arg z+2\pi n$, where $-\pi<\arg z\leq\pi$ is the principal argument. Consequently multiplication and division have the simple forms
+\begin{equation}
+z_1z_2=\rho_1\rho_2e^{\mathrm{i}(\varphi_1+\varphi_2)},
+\qquad
+\frac{z_1}{z_2}=\frac{\rho_1}{\rho_2}e^{\mathrm{i}(\varphi_1-\varphi_2)}.
+\end{equation}
+
+Addition and multiplication follow from the ordered-pair rules
+\begin{equation}
+(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2),
+\end{equation}
+\begin{equation}
+(x_1,y_1)(x_2,y_2)=(x_1x_2-y_1y_2,x_1y_2+x_2y_1).
+\end{equation}
+The additive and multiplicative identities are $0=(0,0)$ and $1=(1,0)$. For $z\ne0$,
+\begin{equation}
+z^{-1}=\frac{\bar z}{|z|^2}=\frac{x-\mathrm{i}y}{x^2+y^2},
+\qquad
+\frac{z_1}{z_2}=\frac{x_1x_2+y_1y_2}{x_2^2+y_2^2}
++\mathrm{i}\frac{y_1x_2-x_1y_2}{x_2^2+y_2^2}.
+\end{equation}
+
+Complex conjugation is $\bar z=x-\mathrm{i}y$. It reflects a point in the real axis and gives
+\begin{equation}
+|z|^2=z\bar z,\qquad
+\operatorname{Re}z=\frac{z+\bar z}{2},\qquad
+\operatorname{Im}z=\frac{z-\bar z}{2\mathrm{i}}.
+\end{equation}
+The triangle inequality reads $\bigl||z|-|w|\bigr|\leq|z\pm w|\leq|z|+|w|$.
+If a polynomial has real coefficients, every nonreal root occurs with its conjugate. De Moivre's formula,
+\begin{equation}
+(\cos\theta+\mathrm{i}\sin\theta)^n=\cos(n\theta)+\mathrm{i}\sin(n\theta),
+\end{equation}
+both describes roots and generates multiple-angle identities.
+
+\begin{example}
+To solve $z^3=-\mathrm{i}$, write $-\mathrm{i}=e^{\mathrm{i}(3\pi/2+2\pi k)}$. The three distinct roots are
+\begin{equation}
+z=\mathrm{i},\qquad z=-\frac{\sqrt{3}}{2}-\frac{\mathrm{i}}{2},\qquad
+z=\frac{\sqrt{3}}{2}-\frac{\mathrm{i}}{2}.
+\end{equation}
+They have modulus one and are equally spaced by $2\pi/3$ on the unit circle.
+\end{example}
+
+\begin{example}
+The locus $\operatorname{Re}(1/z)=2$ obeys $x/(x^2+y^2)=2$, or
+\begin{equation}
+\left(x-\frac14\right)^2+y^2=\left(\frac14\right)^2.
+\end{equation}
+It is therefore a circle through the origin with center $(1/4,0)$.
+\end{example}
+
+\begin{example}[Polar conversion]
+For $z_1=-1+\sqrt3\,\mathrm{i}$, $|z_1|=2$ and $\arg z_1=2\pi/3$, hence
+\begin{equation}
+z_1=2\left(\cos\frac{2\pi}{3}+\mathrm{i}\sin\frac{2\pi}{3}\right)=2e^{2\pi\mathrm{i}/3}.
+\end{equation}
+For $z_2=1+\cos\theta+\mathrm{i}\sin\theta$, the half-angle identities give
+\begin{equation}
+z_2=2\cos\frac\theta2\left(\cos\frac\theta2+\mathrm{i}\sin\frac\theta2\right)
+=2\cos\frac\theta2e^{\mathrm{i}\theta/2}.
+\end{equation}
+\end{example}
+
+Taking the imaginary part of $(\cos\theta+\mathrm{i}\sin\theta)^5$ gives the complete De Moivre calculation
+\begin{align}
+\sin5\theta
+&=5\cos^4\theta\sin\theta-10\cos^2\theta\sin^3\theta+\sin^5\theta\nonumber\\
+&=5\sin\theta-20\sin^3\theta+16\sin^5\theta.
+\end{align}

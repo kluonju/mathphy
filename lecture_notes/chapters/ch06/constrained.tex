@@ -1,0 +1,42 @@
+\section{Constrained variational problems}
+
+An integral constraint restricts an entire function rather than a finite list of coordinates. It can prescribe a total mass, average value, enclosed area, or total length while leaving the detailed shape free. For example, require
+\begin{equation}
+\int_a^b u(x)\,\mathrm{d}x=A
+\end{equation}
+while extremizing
+\begin{equation}
+J[u]=\int_a^b L(x,u,u')\,\mathrm{d}x.
+\end{equation}
+Introduce a constant multiplier $\lambda$ and define
+\begin{equation}
+\widetilde J[u]=\int_a^b\bigl(L(x,u,u')+\lambda u\bigr)\,\mathrm{d}x-\lambda A.
+\end{equation}
+Varying with respect to $\lambda$ restores the constraint, while varying with respect to $u$ determines the shape. The constant term does not affect the variation with respect to $u$, and the constrained problem becomes an ordinary Euler--Lagrange problem:
+\begin{equation}
+\frac{\partial L}{\partial u}+\lambda
+-\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\partial L}{\partial u'}\right)=0.
+\end{equation}
+
+\begin{example}[Shortest curve with prescribed area]
+For the shortest curve between fixed endpoints subject to $\int u\,\mathrm{d}x=A$, take
+\begin{equation}
+L=\sqrt{1+u'^2}.
+\end{equation}
+The Euler--Lagrange equation is
+\begin{equation}
+\lambda-\frac{\mathrm{d}}{\mathrm{d}x}
+\left(\frac{u'}{\sqrt{1+u'^2}}\right)=0.
+\end{equation}
+Integrating once gives
+\begin{equation}
+\frac{u'}{\sqrt{1+u'^2}}=\lambda x+c.
+\end{equation}
+After a second integration, the extremal satisfies an equation of the form
+\begin{equation}
+(\lambda x+c)^2+(\lambda u-d)^2=1,
+\end{equation}
+so the constrained shortest curve is an arc of a circle. The constants are fixed by the endpoint and area conditions. Equivalently, differentiating the first integral shows that the curvature is constant. The area requirement therefore changes the straight-line solution of the unconstrained problem into a constant-curvature curve.
+\end{example}
+
+The multiplier method for integral constraints is the function-space analogue of finite-dimensional Lagrange multipliers. The constraint is enforced by varying with respect to $\lambda$, while the Euler--Lagrange equation follows from varying with respect to $u$. This division of roles is also the origin of the constant chemical potential in the normalized density problem discussed earlier.

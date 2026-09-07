@@ -1,0 +1,147 @@
+\section{Examples of partial differential equations}
+
+A partial differential equation relates an unknown function of several independent variables to its partial derivatives. The independent variables often include position $\mathbf{x}$ and time $t$, but they may instead be spatial coordinates, momenta, or parameters. Some PDEs describe a single scalar field $u$, whereas others are systems for vector- or tensor-valued fields. Equations without a time variable are called stationary; equations containing time derivatives describe evolution.
+
+The same equation can occur in very different settings. Conversely, changing physical assumptions may lead to a different PDE for the same broad phenomenon. The examples below provide a working catalogue before the detailed derivations in the rest of this chapter.
+
+\subsection{Transport and conservation}
+
+The first-order transport equation
+\begin{equation}
+u_t+c u_x=0
+\end{equation}
+describes a profile transported at constant speed $c$. Its solutions have the form $u(x,t)=g(x-ct)$, so the profile moves without changing shape. It can model the concentration of a tracer carried by a uniform one-dimensional flow.
+
+More generally, a conserved density $\rho(\mathbf{x},t)$ with flux $\mathbf{J}$ satisfies the continuity equation
+\begin{equation}
+\rho_t+\nabla\cdot\mathbf{J}=s,
+\end{equation}
+where $s$ is a source or sink. For a fluid with velocity $\mathbf{v}$, $\mathbf{J}=\rho\mathbf{v}$, and conservation of mass gives
+\begin{equation}
+\rho_t+\nabla\cdot(\rho\mathbf{v})=0.
+\end{equation}
+The divergence term measures net outward flux from a small volume. This balance-law viewpoint also underlies heat conduction and charge conservation.
+
+\subsection{Waves and elasticity}
+
+The scalar wave equation in $d$ spatial dimensions is
+\begin{equation}
+u_{tt}-c^2\nabla^2u=0.
+\end{equation}
+It models small disturbances that propagate at speed $c$, including sound in a uniform medium and appropriate components of elastic motion. The one-dimensional version is the vibrating-string equation derived below.
+
+For a homogeneous isotropic elastic solid, the displacement $\mathbf{u}(\mathbf{x},t)$ is vector valued. A standard linearized model is
+\begin{equation}
+\rho\mathbf{u}_{tt}
+=(\lambda+\mu)\nabla(\nabla\cdot\mathbf{u})+\mu\nabla^2\mathbf{u},
+\end{equation}
+where $\lambda$ and $\mu$ are Lam\'e parameters. The two terms describe different deformation modes: compressional motion is associated with changes of volume, while shear motion is associated with changes of shape.
+
+Flexural motion requires higher spatial derivatives. An ideal slender beam may satisfy
+\begin{equation}
+u_{tt}+K u_{xxxx}=0,
+\end{equation}
+and an ideal thin plate may satisfy
+\begin{equation}
+u_{tt}+K\nabla^4u=0,
+\qquad \nabla^4=(\nabla^2)^2.
+\end{equation}
+Unlike a taut string, a beam or plate resists bending, which is why the bending equations contain fourth-order derivatives.
+
+\subsection{Diffusion, dispersion, and quantum evolution}
+
+The heat equation
+\begin{equation}
+u_t=\kappa\nabla^2u
+\end{equation}
+describes the smoothing of a temperature or concentration field. The same equation appears in diffusion models, although the variable $u$ then represents concentration or probability density rather than temperature. A convection--diffusion equation adds directed transport:
+\begin{equation}
+u_t+\mathbf{v}\cdot\nabla u=\kappa\nabla^2u.
+\end{equation}
+
+The time-dependent Schr\"odinger equation has a superficially similar spatial operator but a fundamentally different interpretation:
+\begin{equation}
+i\hbar\psi_t=
+\left(-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x})\right)\psi.
+\end{equation}
+Here $\psi$ is a complex wavefunction, $m$ is mass, and $V$ is a potential energy. Diffusion decreases gradients and is irreversible in its usual physical direction of time; Schr\"odinger evolution preserves quantum probability and is reversible for a time-independent Hamiltonian.
+
+For a time-independent potential, solutions with a definite energy have the form $\psi(\mathbf{x},t)=\phi(\mathbf{x})e^{-iEt/\hbar}$. Substitution gives the stationary Schr\"odinger eigenvalue problem
+\begin{equation}
+\left(-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x})\right)\phi=E\phi.
+\end{equation}
+Boundary conditions and the requirement that $\phi$ be normalizable select the permitted energy levels $E$. Thus a time-dependent PDE becomes a stationary spectral problem for the spatial wavefunction $\phi$.
+
+Relativistic quantum mechanics uses the Dirac equation for a four-component complex spinor $\Psi$:
+\begin{equation}
+\left(i\hbar\gamma^\mu\partial_\mu-mc\right)\Psi=0.
+\end{equation}
+The matrices $\gamma^\mu$ encode the coupling between spin and spacetime. This is a first-order linear system in space and time; applying a conjugate Dirac operator shows its connection with the second-order relativistic wave equation.
+
+Dispersive waves can be represented, in one simple linear model, by
+\begin{equation}
+u_t+\gamma u_{xxx}=0.
+\end{equation}
+Different wavelengths travel at different speeds, so an initially localized pulse can change shape even in a linear medium. This distinguishes dispersion from the nondispersive transport equation.
+
+\subsection{Electromagnetic fields}
+
+In vacuum, Maxwell's equations form a coupled system for electric and magnetic fields:
+\begin{align}
+\nabla\cdot\mathbf{E}&=\frac{\rho_e}{\varepsilon_0},
+&\nabla\cdot\mathbf{B}&=0,\\
+\nabla\times\mathbf{E}&=-\mathbf{B}_t,
+&\nabla\times\mathbf{B}&=\mu_0\mathbf{J}+\mu_0\varepsilon_0\mathbf{E}_t.
+\end{align}
+The divergence equations constrain the allowed fields, while the curl equations describe their time evolution. In a charge-free, current-free region, taking a curl and using the vector identity from Chapter 2 shows that both fields satisfy wave equations with speed
+\begin{equation}
+c=\frac{1}{\sqrt{\mu_0\varepsilon_0}}.
+\end{equation}
+
+Yang--Mills theory generalizes Maxwell theory to a gauge potential $A_\mu$ whose components take values in a noncommutative Lie algebra. With covariant derivative $D_\mu=\partial_\mu+gA_\mu$, the curvature is
+\begin{equation}
+F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu
++g[A_\mu,A_\nu],
+\end{equation}
+and the source-free Yang--Mills equation is
+\begin{equation}
+D_\mu F^{\mu\nu}=0.
+\end{equation}
+This nonlinear system reduces formally to the vacuum Maxwell equations when the field components commute. It supplies the classical field equations for non-Abelian gauge theories.
+
+\subsection{Fluid flow and nonlinear equations}
+
+For an incompressible viscous fluid of constant density $\rho$, velocity $\mathbf{v}$, pressure $p$, and dynamic viscosity $\mu$, the Navier--Stokes equations are
+\begin{equation}
+\rho\left(\mathbf{v}_t+(\mathbf{v}\cdot\nabla)\mathbf{v}\right)
+=-\nabla p+\mu\nabla^2\mathbf{v},
+\qquad \nabla\cdot\mathbf{v}=0.
+\end{equation}
+The nonlinear convection term $(\mathbf{v}\cdot\nabla)\mathbf{v}$ is the acceleration experienced while moving with the fluid. The pressure enforces incompressibility rather than following an independent scalar evolution equation. Neglecting viscosity produces the Euler equations for an ideal fluid.
+
+A simpler nonlinear conservation law is the inviscid Burgers equation
+\begin{equation}
+u_t+u u_x=0.
+\end{equation}
+Its characteristic speed is the solution value $u$ itself. Faster portions of a profile can catch slower portions, making a smooth classical solution fail and motivating weak solutions and shock conditions.
+
+\subsection{Spacetime geometry}
+
+General relativity describes gravity through a Lorentzian spacetime metric $g_{\mu\nu}$. Einstein's field equation is the nonlinear tensor system
+\begin{equation}
+G_{\mu\nu}+\Lambda g_{\mu\nu}
+=\frac{8\pi G}{c^4}T_{\mu\nu},
+\end{equation}
+where $G_{\mu\nu}=R_{\mu\nu}-\tfrac12 Rg_{\mu\nu}$ is the Einstein tensor, $T_{\mu\nu}$ is the stress--energy tensor, $G$ is Newton's gravitational constant, and $\Lambda$ is the cosmological constant. The Ricci tensor $R_{\mu\nu}$ contains second derivatives of $g_{\mu\nu}$ as well as terms quadratic in its first derivatives.
+
+Because the metric also determines the coordinate geometry, the equations possess coordinate freedom rather than being an ordinary system of independent scalar PDEs. After a coordinate or gauge condition is imposed, their evolution form is hyperbolic in suitable circumstances. Vacuum gravitational waves arise from the source-free equation $G_{\mu\nu}=0$ and are small propagating perturbations of the metric.
+
+\subsection{A diffusion equation outside physics}
+
+The Black--Scholes equation illustrates that PDEs also arise in mathematical finance. Under its idealized assumptions, the value $V(S,t)$ of a European derivative satisfies
+\begin{equation}
+V_t+\frac12\sigma^2S^2V_{SS}+rS V_S-rV=0,
+\end{equation}
+where $S$ is the underlying asset price, $r$ is a risk-free interest rate, and $\sigma$ is volatility. Mathematically, this is a parabolic equation with variable coefficients. Its terminal payoff plays a role analogous to initial data, although the equation is commonly solved backward from the expiration time.
+
+These examples illustrate why classification, initial data, boundary data, and coordinate choice are indispensable. The following sections develop the wave, heat, Laplace, and Poisson equations in detail.

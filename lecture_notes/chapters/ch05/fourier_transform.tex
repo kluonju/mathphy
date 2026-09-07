@@ -1,0 +1,64 @@
+\section{Fourier transform}
+
+\subsection{From a series to an integral}
+
+For a nonperiodic function on the real line, regard its Fourier series as the limit $\ell\to\infty$. With $\omega_n=n\pi/\ell$ and $\Delta\omega=\pi/\ell$, the discrete frequencies become continuous. The original source keeps the limiting idea explicit:
+\begin{equation}
+f(x)=\lim_{\ell\to\infty}\sum_{n=-\infty}^{\infty} c_n e^{\mathrm{i}\omega_n x},
+\qquad
+c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}f(x)e^{-\mathrm{i}\omega_n x}\,dx.
+\end{equation}
+As $\ell\to\infty$, the sum turns into an integral, and the coefficient becomes frequency density. This is the essence of the Fourier integral. Using the symmetric convention,
+\begin{align}
+F(\omega)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-\mathrm{i}\omega x}\,dx,\\
+f(x)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}F(\omega)e^{\mathrm{i}\omega x}\,d\omega.
+\end{align}
+The Fourier integral theorem holds when $f$ satisfies the Dirichlet conditions on every finite interval and is absolutely integrable on the real line. At a discontinuity it returns the mean of the two limiting values.
+
+Equivalently,
+\begin{equation}
+f(x)=\int_0^\infty A(\omega)\cos(\omega x)\,d\omega+
+\int_0^\infty B(\omega)\sin(\omega x)\,d\omega,
+\end{equation}
+where $A(\omega)=\pi^{-1}\int f(x)\cos(\omega x)\,dx$ and $B(\omega)=\pi^{-1}\int f(x)\sin(\omega x)\,dx$. The representation $C(\omega)\cos[\omega x-\varphi(\omega)]$ defines the amplitude spectrum $C=(A^2+B^2)^{1/2}$ and phase spectrum $\varphi=\arctan(B/A)$.
+
+\begin{example}
+For $f(x)=e^{-\alpha|x|}$ with $\alpha>0$, we split the integral at $x=0$ and obtain
+\begin{align}
+F(\omega) &=\sqrt{\frac{1}{2\pi}}\left[\int_{-\infty}^{0}e^{\alpha x}e^{-\mathrm{i}\omega x}\,dx+
+\int_0^{\infty}e^{-\alpha x}e^{-\mathrm{i}\omega x}\,dx\right]\nonumber\\
+&=\sqrt{\frac{1}{2\pi}}\left(\frac{1}{\alpha+\mathrm{i}\omega}+\frac{1}{\alpha-\mathrm{i}\omega}\right)
+onumber\\
+&=\sqrt{\frac{1}{2\pi}}\frac{2\alpha}{\alpha^2+\omega^2}.
+\end{align}
+The transform is real and even because the original function is even. For the delta distribution, $\mathcal{F}[\delta(x)]=1/\sqrt{2\pi}$. For $f(x)=e^{-\alpha x^2}$,
+\begin{equation}
+F(\omega)=\frac{1}{\sqrt{2\alpha}}e^{-\omega^2/(4\alpha)}.
+\end{equation}
+Thus a Gaussian transforms into a Gaussian, and greater localization in $x$ corresponds to greater spread in frequency.
+\end{example}
+
+\subsection{Basic properties}
+
+If $\mathcal{F}[f]=F$, then
+\begin{align}
+\mathcal{F}[f']&=\mathrm{i}\omega F(\omega), &
+\mathcal{F}\left[\int^x f(s)\,ds\right]&=\frac{F(\omega)}{\mathrm{i}\omega},\\
+\mathcal{F}[f(ax)]&=\frac{1}{|a|}F\left(\frac{\omega}{a}\right), &
+\mathcal{F}[f(x-x_0)]&=e^{-\mathrm{i}\omega x_0}F(\omega),\\
+\mathcal{F}[e^{\mathrm{i}\omega_0x}f(x)]&=F(\omega-\omega_0).
+\end{align}
+The derivative theorem is especially important: differentiation in physical space corresponds to multiplication by $\mathrm{i}\omega$ in frequency space. The same idea converts many linear ODEs and PDEs into algebraic problems in Fourier space. For convolution $(f_1*f_2)(x)=\int_{-\infty}^{\infty}f_1(s)f_2(x-s)\,ds$, the symmetric normalization gives $\mathcal{F}[f_1*f_2]=\sqrt{2\pi}F_1F_2$.
+
+\subsection{Higher-dimensional transforms}
+
+For $f(\mathbf{r})$ on $\mathbb{R}^d$,
+\begin{align}
+F(\mathbf{k})&=\frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d}f(\mathbf{r})e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,d^d\mathbf{r},\\
+f(\mathbf{r})&=\frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d}F(\mathbf{k})e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,d^d\mathbf{k}.
+\end{align}
+For a rectangular aperture $f(x,y)=A$ on $|x|\leq X$, $|y|\leq Y$ and zero otherwise, its two-dimensional transform is proportional to
+\begin{equation}
+AXY\frac{\sin(k_1X)}{k_1X}\frac{\sin(k_2Y)}{k_2Y}.
+\end{equation}
+This sinc pattern is the Fraunhofer diffraction pattern of a rectangular opening.

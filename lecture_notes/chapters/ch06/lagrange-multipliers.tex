@@ -1,0 +1,44 @@
+\section{Lagrange multipliers}
+
+Lagrange multipliers find extrema of a function subject to equality constraints. The constraints restrict the search from the ambient space to a curve, surface, or higher-dimensional constraint set. Let $f(\mathbf{x})$ be the objective and let
+\begin{equation}
+c_a(\mathbf{x})=0,
+\qquad a=1,\ldots,k,
+\end{equation}
+be independent constraints. Introduce the augmented function
+\begin{equation}
+\mathcal F(\mathbf{x},\lambda_a)=f(\mathbf{x})-\lambda_a c_a(\mathbf{x}),
+\end{equation}
+where repeated $a$ is summed. Treating both $\mathbf{x}$ and the multipliers as independent variables gives the stationary equations
+\begin{equation}
+\frac{\partial f}{\partial x_i}
+-\lambda_a\frac{\partial c_a}{\partial x_i}=0,
+\qquad
+c_a(\mathbf{x})=0.
+\end{equation}
+
+The multiplier values are not chosen in advance; they are determined along with the extremizing point. Geometrically, allowed displacements satisfy
+\begin{equation}
+\mathrm{d}c_a=\nabla c_a\cdot\mathrm{d}\mathbf{x}=0.
+\end{equation}
+At a constrained extremum, $\nabla f$ is orthogonal to every allowed displacement and therefore lies in the span of the constraint normals:
+\begin{equation}
+\nabla f=\lambda_a\nabla c_a.
+\end{equation}
+
+\begin{example}[Closest point on a plane]
+Find the point on $x+y+z=1$ closest to the origin. Minimize
+\begin{equation}
+f=x^2+y^2+z^2
+\end{equation}
+subject to $c=x+y+z-1=0$. The multiplier equations are
+\begin{equation}
+2x-\lambda=0,
+\qquad 2y-\lambda=0,
+\qquad 2z-\lambda=0,
+\qquad x+y+z=1.
+\end{equation}
+Thus $x=y=z$, and the closest point is $(1/3,1/3,1/3)$.
+\end{example}
+
+This geometric statement explains why the method works: moving along the constraint surface has no first-order effect on $f$, even though $\nabla f$ need not vanish in the full ambient space. The same method applies to several constraints, including extrema on a sphere, distance to a surface, and optimization with normalization conditions. The Hessian of the objective, $H_{ij}=\partial_i\partial_jf$, determines the local type of an unconstrained nondegenerate critical point; constrained classification requires the Hessian restricted to allowed directions.

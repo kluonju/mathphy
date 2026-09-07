@@ -1,0 +1,55 @@
+\section{Trigonometry}
+
+All angles are measured in radians unless stated otherwise. Euler's formula provides the useful bridge between trigonometric and exponential functions:
+\begin{equation}
+e^{\mathrm{i}\theta}=\cos\theta+\mathrm{i}\sin\theta,
+\end{equation}
+so that
+\begin{equation}
+\cos\theta=\frac{e^{\mathrm{i}\theta}+e^{-\mathrm{i}\theta}}{2},
+\qquad
+\sin\theta=\frac{e^{\mathrm{i}\theta}-e^{-\mathrm{i}\theta}}{2\mathrm{i}}.
+\end{equation}
+
+The basic identities are
+\begin{equation}
+\sin^2\theta+\cos^2\theta=1,
+\qquad
+1+\tan^2\theta=\sec^2\theta,
+\qquad
+1+\cot^2\theta=\csc^2\theta.
+\end{equation}
+The addition and double-angle formulae are
+\begin{align}
+\sin(\alpha\pm\beta)&=\sin\alpha\cos\beta\pm\cos\alpha\sin\beta,\\
+\cos(\alpha\pm\beta)&=\cos\alpha\cos\beta\mp\sin\alpha\sin\beta,\\
+\tan(\alpha\pm\beta)&=\frac{\tan\alpha\pm\tan\beta}{1\mp\tan\alpha\tan\beta},\\
+\sin 2\alpha&=2\sin\alpha\cos\alpha,\\
+\cos 2\alpha&=\cos^2\alpha-\sin^2\alpha=2\cos^2\alpha-1=1-2\sin^2\alpha,\\
+\tan 2\alpha&=\frac{2\tan\alpha}{1-\tan^2\alpha}.
+\end{align}
+The half-angle formulae read
+\begin{equation}
+\sin^2\frac{\alpha}{2}=\frac{1-\cos\alpha}{2},
+\qquad
+\cos^2\frac{\alpha}{2}=\frac{1+\cos\alpha}{2},
+\qquad
+\tan\frac{\alpha}{2}=\frac{\sin\alpha}{1+\cos\alpha}=\frac{1-\cos\alpha}{\sin\alpha}.
+\end{equation}
+
+Product-to-sum and sum-to-product formulae are especially useful in Fourier calculations:
+\begin{align}
+\sin\alpha\cos\beta&=\frac12\left[\sin(\alpha+\beta)+\sin(\alpha-\beta)\right],\\
+\cos\alpha\sin\beta&=\frac12\left[\sin(\alpha+\beta)-\sin(\alpha-\beta)\right],\\
+\cos\alpha\cos\beta&=\frac12\left[\cos(\alpha+\beta)+\cos(\alpha-\beta)\right],\\
+\sin\alpha\sin\beta&=-\frac12\left[\cos(\alpha+\beta)-\cos(\alpha-\beta)\right],\\
+\sin\alpha+\sin\beta&=2\sin\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2},\\
+\cos\alpha+\cos\beta&=2\cos\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}.
+\end{align}
+Finally,
+\begin{equation}
+\arcsin x+\arccos x=\frac{\pi}{2},
+\qquad
+\arctan x+\operatorname{arccot}x=\frac{\pi}{2}\quad(x\in\mathbb{R}).
+\end{equation}
+For contour integrals involving rational functions of sine and cosine, setting $z=e^{\mathrm{i}\theta}$ gives $\cos\theta=(z+z^{-1})/2$ and $\sin\theta=(z-z^{-1})/(2\mathrm{i})$.

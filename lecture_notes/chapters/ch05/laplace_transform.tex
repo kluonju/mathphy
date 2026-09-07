@@ -1,0 +1,73 @@
+\section{Laplace transform and inversion}
+
+\subsection{Definition and existence}
+
+The Fourier transform is powerful for spectral analysis, but functions such as $e^{\alpha t}$ with $\alpha>0$ are not absolutely integrable and therefore have no ordinary Fourier transform. Initial-value problems also concern $t\geq0$. Multiplying a causal function by $e^{-\sigma t}$ supplies a convergence factor and leads to the Laplace transform
+\begin{equation}
+\bar f(p)=\mathcal{L}\{f(t)\}=\int_0^\infty e^{-pt}f(t)\,dt,
+\qquad p=\sigma+\mathrm{i}\omega.
+\end{equation}
+The function $f$ is the original and $\bar f$ its transform. A sufficient existence condition is that $f$ and its derivative be piecewise continuous on every finite subinterval of $[0,\infty)$ and that $|f(t)|\leq Me^{\sigma_0t}$ for some constants $M$ and $\sigma_0$. The number $\sigma_0$ is called an abscissa of convergence. In the half-plane $\operatorname{Re}p>\sigma_0$, $\bar f$ is analytic and tends to zero as $|p|\to\infty$.
+
+The inverse transform is the Bromwich integral
+\begin{equation}
+f(t)=\mathcal{L}^{-1}[\bar f(p)]
+=\frac{1}{2\pi\mathrm{i}}\int_{\sigma-\mathrm{i}\infty}^{\sigma+\mathrm{i}\infty}
+\bar f(p)e^{pt}\,dp.
+\label{eq:ch05-bromwich}
+\end{equation}
+It follows directly by applying Fourier inversion to $e^{-\sigma t}f(t)$. The Laplace transform is linear, and $\mathcal{L}\{\delta(t-t_0)\}=e^{-pt_0}$ for $t_0>0$. The practical significance is that differentiation in the time domain becomes multiplication by $p$ in the transform domain, so a differential equation with initial data is converted into an algebraic equation for $\bar f(p)$.
+
+\begin{example}
+Direct integration gives
+\begin{align}
+\mathcal{L}\{1\}&=\int_0^\infty e^{-pt}\,dt=\frac{1}{p}, &
+\mathcal{L}\{t^n\}&=\int_0^\infty t^n e^{-pt}\,dt=\frac{n!}{p^{n+1}},\\
+\mathcal{L}\{e^{st}\}&=\int_0^\infty e^{(s-p)t}\,dt=\frac{1}{p-s}, &
+\mathcal{L}\{t^ne^{st}\}&=\frac{n!}{(p-s)^{n+1}},\\
+\mathcal{L}\{\cosh kt\}&=\frac12\left(\frac{1}{p-k}+\frac{1}{p+k}\right)=\frac{p}{p^2-k^2}, &
+\mathcal{L}\{\sinh kt\}&=\frac12\left(\frac{1}{p-k}-\frac{1}{p+k}\right)=\frac{k}{p^2-k^2}.
+\end{align}
+Each formula holds in the half-plane where the defining integral converges. The point is that the Laplace transform turns elementary exponential and polynomial factors into rational functions, which is precisely why it is so useful in solving linear ODEs.
+\end{example}
+
+\subsection{Operational rules}
+
+Writing $f(t)\longleftrightarrow\bar f(p)$, the principal rules are
+\begin{align}
+f'(t)&\longleftrightarrow p\bar f(p)-f(0),\\
+f^{(n)}(t)&\longleftrightarrow p^n\bar f-p^{n-1}f(0)-\cdots-f^{(n-1)}(0),\\
+\int_0^tf(\tau)\,d\tau&\longleftrightarrow\frac{\bar f(p)}{p},\\
+f(at)&\longleftrightarrow\frac{1}{a}\bar f(p/a),\\
+e^{-\lambda t}f(t)&\longleftrightarrow\bar f(p+\lambda),\\
+f(t-t_0)\Theta(t-t_0)&\longleftrightarrow e^{-pt_0}\bar f(p).
+\end{align}
+For the causal convolution
+\begin{equation}
+(f_1*f_2)(t)=\int_0^tf_1(\tau)f_2(t-\tau)\,d\tau,
+\end{equation}
+the convolution theorem states $f_1*f_2\longleftrightarrow\bar f_1\bar f_2$.
+
+\subsection{Inverse transforms}
+
+When $\bar f(p)e^{pt}$ has isolated poles and decays on a suitable left semicircle, the Bromwich contour may be closed to the left for $t>0$. The residue theorem then gives
+\begin{equation}
+f(t)=\sum_j\operatorname*{Res}_{p=p_j}\left[\bar f(p)e^{pt}\right].
+\end{equation}
+Branch points require a branch cut instead of this simple pole sum. For example, a keyhole contour about the negative real axis applied to $\bar f(p)=p^{-1/2}$ gives
+\begin{equation}
+\mathcal{L}^{-1}\left\{\frac{1}{\sqrt p}\right\}=\frac{1}{\sqrt{\pi t}}.
+\end{equation}
+Differentiation in transform space also supplies the rule
+\begin{equation}
+\frac{d^n\bar f}{dp^n}\longleftrightarrow(-t)^nf(t),
+\end{equation}
+which, together with partial fractions and the delay and convolution rules, often avoids direct contour integration.
+
+\begin{example}
+To invert $e^{-\alpha p}/[p(p+b)]$, use $e^{-\alpha p}/p\longleftrightarrow\Theta(t-\alpha)$ and $(p+b)^{-1}\longleftrightarrow e^{-bt}$. Convolution gives
+\begin{equation}
+\mathcal{L}^{-1}\left\{\frac{e^{-\alpha p}}{p(p+b)}\right\}
+=\frac{1-e^{-b(t-\alpha)}}{b}\Theta(t-\alpha).
+\end{equation}
+\end{example}

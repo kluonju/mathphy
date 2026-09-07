@@ -1,0 +1,24 @@
+\section{The delta function}
+
+The delta function describes quantities concentrated at a point, such as a point mass, a point charge, or an impulsive force. A mass $m$ uniformly distributed on $[-\ell/2,\ell/2]$ has density $\rho_\ell(x)=m\,\operatorname{rect}(x/\ell)/\ell$. As $\ell\to0$, it remains of total mass $m$ while becoming concentrated at the origin. This limiting object is represented by $m\delta(x)$. Intuitively, $\delta(x)$ is zero except at the origin, where it becomes singular in such a way that its integral is one. It is a generalized function rather than an ordinary function, but it is extremely useful in physics and engineering because it cleanly models concentrated sources. In the same way a narrow pulse approaches a point impulse, the delta function is the idealized limit of a very sharp, very tall distribution of unit area.
+
+The delta distribution is characterized by
+\begin{equation}
+\int_{-\infty}^{\infty}\delta(x)\,dx=1,
+\qquad
+\int_{-\infty}^{\infty}f(x)\delta(x-a)\,dx=f(a).
+\end{equation}
+The second identity is the sifting property: the delta function picks out the value of the function at the singular point. It is even, its derivative is odd, and for simple real zeros $x_k$ of $\phi$,
+\begin{equation}
+\delta[\phi(x)]=\sum_k\frac{\delta(x-x_k)}{|\phi'(x_k)|}.
+\end{equation}
+In particular, $\delta(ax)=\delta(x)/|a|$ and
+\begin{equation}
+\delta(x^2-a^2)=\frac{\delta(x-a)+\delta(x+a)}{2|a|}.
+\end{equation}
+Useful limiting representations are
+\begin{equation}
+\delta(x)=\lim_{K\to\infty}\frac{\sin Kx}{\pi x}
+=\lim_{\varepsilon\to0}\frac{1}{\pi}\frac{\varepsilon}{\varepsilon^2+x^2}.
+\end{equation}
+The Fourier integral form is $\delta(x)=(2\pi)^{-1}\int_{-\infty}^{\infty}e^{\mathrm{i}\omega x}\,d\omega$, which is the statement that the frequency spectrum of an ideal point source is flat. In Cartesian three-dimensional coordinates, $\delta(\mathbf{r})=\delta(x)\delta(y)\delta(z)$; its coordinate expression must include the appropriate Jacobian in cylindrical or spherical coordinates.

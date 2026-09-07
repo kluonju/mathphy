@@ -1,0 +1,29 @@
+\section{Sets, logic, and mappings}
+
+The number systems used throughout these notes are
+\begin{equation}
+\mathbb{N}\subset\mathbb{Z}\subset\mathbb{R}\subset\mathbb{C},
+\end{equation}
+where $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$, and $\mathbb{C}$ denote the natural numbers, integers, real numbers, and complex numbers, respectively.
+
+Logical notation makes mathematical statements compact and unambiguous. The symbols $\forall$ and $\exists$ mean ``for every'' and ``there exists.'' Thus $\forall x\in\mathbb{R}$ describes a statement valid for every real number $x$, while $\exists n\in\mathbb{N}$ asserts that at least one natural number $n$ exists with the stated property. The implication
+\begin{equation}
+I\Rightarrow II
+\end{equation}
+means that $I$ is sufficient for $II$, or equivalently that $II$ is necessary for $I$. The equivalence $I\Leftrightarrow II$ means that the two assertions are necessary and sufficient for one another. We use $I\equiv II$ when $II$ defines $I$, and $\square$ marks the end of a proof.
+
+\begin{definition}[Mapping]
+Let $A$ and $B$ be nonempty sets. A mapping from $A$ to $B$ is a rule $f$ that assigns to every $x\in A$ a unique element $y\in B$. We write
+\begin{equation}
+f:A\to B,\qquad y=f(x).
+\end{equation}
+The set $A$ is the domain and $B$ is the codomain.
+\end{definition}
+
+The mapping is injective when $f(x_1)=f(x_2)$ implies $x_1=x_2$; it is surjective when every $y\in B$ is equal to $f(x)$ for at least one $x\in A$. A bijection is both injective and surjective.
+
+For $A\subseteq\mathbb{R}$ or $A\subseteq\mathbb{C}$, a mapping $f:A\to\mathbb{R}$ or $f:A\to\mathbb{C}$ is called a function. Its image is
+\begin{equation}
+f(A)=\{f(x)\mid x\in A\}.
+\end{equation}
+These distinctions between domain, codomain, and image will matter for inverse functions, eigenvalue problems, and complex functions.

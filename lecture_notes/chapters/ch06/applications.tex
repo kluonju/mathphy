@@ -1,0 +1,53 @@
+\section{Analytical applications}
+
+This section collects analytical variational models. Each example begins with a physical or geometric quantity that is additive over small pieces of a curve or surface; integrating those pieces produces the functional to be made stationary. Numerical discretization and numerical optimization are intentionally outside the scope of this chapter.
+
+\subsection{Brachistochrone}
+A frictionless particle starts from rest and moves under gravity along a curve $y=u(x)$. The fastest path is not generally the shortest path: a steep initial descent gains speed early, trading distance against travel time. Conservation of energy gives the speed at height $u$ as
+\begin{equation}
+v=\sqrt{2g(y_0-u)}.
+\end{equation}
+Since $\mathrm{d}s=\sqrt{1+u'^2}\,\mathrm{d}x$ and $\mathrm{d}t=\mathrm{d}s/v$, the travel time is the functional
+\begin{equation}
+T[u]=\int_{x_0}^{x_1}
+\frac{\sqrt{1+u'^2}}{\sqrt{2g(y_0-u)}}\,\mathrm{d}x.
+\end{equation}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.46\textwidth]{figures/fastest_track.png}
+	\caption{Coordinate setup for the brachistochrone problem.}
+	\label{fig:ch03-brachistochrone}
+\end{figure}
+The physical track is obtained by applying the Euler--Lagrange equation to this integrand. Its solution is a cycloid, not a straight line. The example makes clear that the quantity to optimize must come from the governing physics: minimizing length would answer a different question.
+
+\subsection{Catenary}
+For a uniform flexible chain with linear density $\rho$, the gravitational potential energy is
+\begin{equation}
+U[u]=\rho g\int_{-L/2}^{L/2}u(x)\sqrt{1+u'(x)^2}\,\mathrm{d}x.
+\end{equation}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.42\textwidth]{figures/roadside.png}
+	\includegraphics[width=0.42\textwidth]{figures/cobweb.png}
+	\caption{Physical examples of catenary-like curves.}
+	\label{fig:ch03-catenary-examples}
+\end{figure}
+For a small segment, $\mathrm{d}m=\rho\,\mathrm{d}s=\rho\sqrt{1+u'^2}\,\mathrm{d}x$, so its potential-energy contribution is $g u\,\mathrm{d}m$. Summing all segments gives the displayed functional. The equilibrium shape minimizes it subject to the endpoint conditions and, when the total chain length is prescribed, an additional length constraint. Solving its Euler--Lagrange equation gives the catenary form
+\begin{equation}
+u(x)=a\cosh\left(\frac{x-x_c}{a}\right)+u_c,
+\end{equation}
+with constants determined by the support geometry and chain length. A catenary is therefore a balance of gravity and tension, rather than a parabola; its near-vertex parabolic approximation can nevertheless be useful over a short span.
+
+\subsection{Soap film and minimal surfaces}
+For a graph $z=u(x,y)$, the area of a soap film is
+\begin{equation}
+E[u]=\iint_S\sqrt{1+u_x^2+u_y^2}\,\mathrm{d}x\,\mathrm{d}y.
+\end{equation}
+A small projected element $\mathrm{d}x\,\mathrm{d}y$ is stretched by the factor $\sqrt{1+u_x^2+u_y^2}$ when lifted to the graph. Since surface tension is proportional to area, an ideal soap film with a fixed boundary makes this area stationary. The field Euler--Lagrange equation is the minimal-surface equation
+\begin{equation}
+\frac{\partial}{\partial x}
+\left(\frac{u_x}{\sqrt{1+u_x^2+u_y^2}}\right)
++\frac{\partial}{\partial y}
+\left(\frac{u_y}{\sqrt{1+u_x^2+u_y^2}}\right)=0.
+\end{equation}
+This equation expresses the vanishing of the mean curvature of the equilibrium surface. Unlike the curve problems, the unknown is now a function of two independent variables, so the variational condition is a partial differential equation.

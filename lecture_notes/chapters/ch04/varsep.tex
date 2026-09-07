@@ -1,0 +1,73 @@
+\section{Separation of variables for a fixed string}
+
+Separation of variables seeks product solutions whose dependence on each independent variable can be isolated. It is most effective for linear homogeneous problems in geometries where the boundary conditions respect the chosen coordinates. We illustrate the method with the fixed-string problem \eqref{eq:ch04-string-ibvp} and the homogeneous wave equation.
+
+Assume first that one mode has the form
+\begin{equation}
+u(x,t)=X(x)T(t).
+\end{equation}
+Substitution into $u_{tt}-a^2u_{xx}=0$ and division by $a^2XT$ gives
+\begin{equation}
+\frac{X''}{X}=\frac{T''}{a^2T}=-\lambda.
+\end{equation}
+The two sides depend on different independent variables, so equality throughout the domain is possible only when both equal the same constant. The separated equations are
+\begin{equation}
+X''+\lambda X=0,
+\qquad
+T''+a^2\lambda T=0.
+\end{equation}
+The fixed endpoints impose $X(0)=X(l)=0$. Nonzero solutions exist only for the eigenvalues and eigenfunctions
+\begin{equation}
+\lambda_n=\left(\frac{n\pi}{l}\right)^2,
+\qquad
+X_n(x)=\sin\left(\frac{n\pi x}{l}\right),
+\qquad n=1,2,\ldots.
+\end{equation}
+This eigenvalue restriction is worth checking directly. If $\lambda<0$, the spatial solutions are combinations of growing and decaying exponentials, and the two zero endpoint conditions force both coefficients to vanish. If $\lambda=0$, the solution is linear and is again identically zero under the two endpoint conditions. Only $\lambda>0$ permits nontrivial oscillatory solutions. The boundaries therefore select a discrete set of allowed wavelengths rather than allowing an arbitrary spatial oscillation.
+
+Each allowed spatial pattern has time dependence
+\begin{equation}
+T_n(t)=A_n\cos\left(\frac{n\pi at}{l}\right)
++B_n\sin\left(\frac{n\pi at}{l}\right).
+\end{equation}
+Linearity permits these normal modes to be added:
+\begin{equation}
+u(x,t)=\sum_{n=1}^{\infty}
+\left[A_n\cos\left(\frac{n\pi at}{l}\right)
++B_n\sin\left(\frac{n\pi at}{l}\right)\right]
+\sin\left(\frac{n\pi x}{l}\right).
+\label{eq:ch04-string-series}
+\end{equation}
+The coefficients are determined by the initial shape and velocity through Fourier sine series,
+\begin{equation}
+A_n=\frac{2}{l}\int_0^l\varphi(x)\sin\left(\frac{n\pi x}{l}\right)\,\mathrm dx,
+\qquad
+B_n=\frac{2}{n\pi a}\int_0^l\psi(x)\sin\left(\frac{n\pi x}{l}\right)\,\mathrm dx.
+\end{equation}
+The $n$th term is a standing wave. It has nodes at $x=ml/n$ and angular frequency $\omega_n=n\pi a/l$. The mode $n=1$ is the fundamental; higher $n$ give harmonics. Thus an arbitrary small vibration is resolved into the string's natural modes.
+
+\subsection{Why the Fourier coefficients appear}
+
+At $t=0$, the modal sum \eqref{eq:ch04-string-series} becomes a Fourier sine series for $\varphi(x)$, while its time derivative becomes a sine series for $\psi(x)$. Orthogonality of the functions $\sin(n\pi x/l)$ isolates the coefficients one at a time and produces the displayed integrals for $A_n$ and $B_n$. The sine basis is not an arbitrary preference: it is dictated by the homogeneous Dirichlet conditions at both endpoints. Free-end conditions would instead select a cosine basis.
+
+\subsection{Forced motion and superposition}
+
+The same modal perspective extends to a forced string. For homogeneous boundary conditions, expand both displacement and forcing in the eigenfunctions appropriate to the boundary:
+\begin{equation}
+u(x,t)=\sum_n T_n(t)X_n(x),
+\qquad
+f(x,t)=\sum_n f_n(t)X_n(x).
+\end{equation}
+Orthogonality reduces the PDE to independent forced oscillator equations,
+\begin{equation}
+T_n''+\omega_n^2T_n=f_n(t).
+\end{equation}
+This is the Fourier-series method: spatial dependence is represented by normal modes, leaving an ordinary differential equation for the time dependence of each mode.
+
+There is an equivalent physical description, often called Duhamel's principle. Regard a continuous force as a succession of short impulses applied at times $\tau$. The impulse at $\tau$ supplies an initial velocity increment proportional to $f(x,\tau)\,\mathrm d\tau$; its later motion is governed by the homogeneous wave equation. Superposition gives the total response as an integral over all earlier impulses. Mode by mode this reads
+\begin{equation}
+T_n(t)=T_n^{\mathrm{free}}(t)
++\int_0^t\frac{\sin\bigl(\omega_n(t-\tau)\bigr)}{\omega_n}
+f_n(\tau)\,\mathrm d\tau.
+\end{equation}
+The formula makes causality explicit: only forcing at $\tau\leq t$ can affect the motion at time $t$.

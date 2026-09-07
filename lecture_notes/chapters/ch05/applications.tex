@@ -1,0 +1,73 @@
+\section{Applications of integral transforms}
+
+\subsection{Summing series}
+
+Since $n^{-2}=\int_0^\infty te^{-nt}\,dt$, summing the geometric series inside the integral gives
+\begin{equation}
+\sum_{n=1}^{\infty}\frac{1}{n^2}
+=\int_0^\infty t\sum_{n=1}^{\infty}e^{-nt}\,dt
+=\int_0^\infty\frac{t}{e^t-1}\,dt
+=\frac{\pi^2}{6}.
+\end{equation}
+The same result follows from the Parseval identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$: its nonzero complex Fourier coefficients have magnitude $1/|n|$.
+
+\subsection{Evaluating definite integrals}
+
+When the required convergence conditions hold,
+\begin{equation}
+\int_p^\infty\bar f(q)\,dq\longleftrightarrow\frac{f(t)}{t}.
+\end{equation}
+For example,
+\begin{equation}
+\int_0^\infty\frac{\sin t}{t}\,dt
+=\int_0^\infty\frac{1}{p^2+1}\,dp
+=\frac{\pi}{2}.
+\end{equation}
+Applying the same idea to two cosine transforms yields, for $a,b>0$,
+\begin{equation}
+\int_0^\infty\frac{\cos(at)-\cos(bt)}{t}\,dt=\ln\frac{b}{a}.
+\end{equation}
+This kind of integral identity is useful because many impossible-looking integrals become transparent once one recognizes the correct transform pair.
+
+\begin{note}
+Use Parseval's identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$:
+\begin{equation}
+\sum_{n=-\infty}^{\infty}|c_n|^2
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,dx.
+\end{equation}
+For $n\neq0$,
+\begin{equation}
+ c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}xe^{-inx}\,dx=\frac{(-1)^n}{n}\,\mathrm{i},
+\end{equation}
+so $|c_n|^2=1/n^2$. Therefore,
+\begin{equation}
+2\sum_{n=1}^{\infty}\frac{1}{n^2}
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,dx
+=\frac{\pi^2}{3},
+\end{equation}
+which gives
+\begin{equation}
+\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+\end{equation}
+\end{note}
+
+\subsection{Solving an initial-value problem}
+
+Consider a mass $m$ attached to a spring of stiffness $k$:
+\begin{equation}
+mX''(t)+kX(t)=0,
+\qquad X(0)=X_0,\quad X'(0)=0.
+\end{equation}
+Let $x(p)=\mathcal{L}\{X(t)\}$. The derivative rule gives
+\begin{equation}
+mp^2x(p)-mpX_0+kx(p)=0,
+\end{equation}
+and hence, with $\omega_0^2=k/m$,
+\begin{equation}
+x(p)=X_0\frac{p}{p^2+\omega_0^2}.
+\end{equation}
+Taking the inverse transform gives the familiar oscillation
+\begin{equation}
+X(t)=X_0\cos(\omega_0t).
+\end{equation}
+The example shows the practical advantage of the Laplace transform: initial values enter algebraically, and the differential equation becomes an equation for the transform.

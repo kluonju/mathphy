@@ -1,0 +1,65 @@
+\section{Residues}
+
+If $f$ is analytic except for isolated singularities $z_j$ inside a positively oriented closed contour $C$, the residue theorem states
+\begin{equation}
+\oint_Cf(z)\,dz=2\pi\mathrm{i}\sum_j\operatorname{Res}(f;z_j).
+\label{eq:ch06-residue-theorem}
+\end{equation}
+Only the $(z-z_j)^{-1}$ term in each Laurent expansion contributes to the integral. This simple fact is what makes contour integration so effective.
+
+Indeed, inserting $f(z)=\sum_{k=-m}^\infty a_k(z-z_0)^k$ into a small circular integral and integrating term by term leaves only $a_{-1}\oint dz/(z-z_0)=2\pi\mathrm{i}a_{-1}$. Summing one such contribution per enclosed singularity proves the residue theorem.
+
+For a pole of order $m$ at $z_0$,
+\begin{equation}
+\operatorname{Res}(f;z_0)=\frac{1}{(m-1)!}\lim_{z\to z_0}
+\frac{d^{m-1}}{dz^{m-1}}\left[(z-z_0)^mf(z)\right].
+\end{equation}
+For a simple pole of $P(z)/Q(z)$, where $Q(z_0)=0$ and $Q'(z_0)\ne0$,
+\begin{equation}
+\operatorname{Res}\left(\frac{P}{Q};z_0\right)=\frac{P(z_0)}{Q'(z_0)}.
+\end{equation}
+
+This is equivalent to extracting the Laurent coefficient. For example,
+\begin{equation}
+\operatorname{Res}\left(\frac{\log z}{z^2+4};2\mathrm{i}\right)
+=\frac{\log2+\mathrm{i}\pi/2}{4\mathrm{i}}
+=\frac{\pi}{8}-\frac{\mathrm{i}\log2}{4}
+\end{equation}
+on the branch whose argument at $2\mathrm{i}$ is $\pi/2$. For a higher-order pole, the derivative formula is usually shorter than constructing the full Laurent series.
+
+\begin{example}
+Since $\sin z\sim z$ near the origin, $\operatorname{Res}(1/\sin z;0)=1$. Also, the residue of $1/(z^n-1)$ at $z=1$ is $1/n$.
+\end{example}
+
+Residues also give partial fractions directly. For example,
+\begin{equation}
+\frac{1}{(z-1)(z-2)(z-3)}=\frac{1/2}{z-1}-\frac{1}{z-2}+\frac{1/2}{z-3},
+\end{equation}
+because the coefficients are precisely the residues at the respective simple poles.
+
+\begin{example}
+The function $1/[z(z-2)^3]$ has the local expansions
+\begin{align}
+\frac{1}{z(z-2)^3}&=-\frac{1}{8z}-\frac{3}{16}-\frac{3z}{16}+\cdots &&(z\approx0),\\
+\frac{1}{z(z-2)^3}&=\frac{1}{2(z-2)^3}-\frac{1}{4(z-2)^2}+\frac{1}{8(z-2)}-\frac{1}{16}+\cdots &&(z\approx2).
+\end{align}
+Thus $z=0$ is a simple pole with residue $-1/8$, and $z=2$ is a third-order pole with residue $1/8$.
+\end{example}
+
+For comparison, $\sin z/z$ has a removable singularity at zero, $1/(z^2-1)$ has poles at $\pm1$, and $e^{1/z}$ has an essential singularity at zero. These are the three standard isolated-singularity types encoded by the principal part.
+
+\subsection{Higher-order poles and partial fractions}
+
+For $f(z)=\cot(\pi z)/[z(z+2)]$, the local expansion $\cot(\pi z)=(\pi z)^{-1}+O(z)$ gives
+\begin{equation}
+\operatorname{Res}(f;0)=-\frac{1}{4\pi}.
+\end{equation}
+For a repeated pole, differentiation extracts the residue. This also determines partial fractions: the coefficients of
+\begin{equation}
+\frac{1}{(z-1)(z-2)(z-3)}=\frac{A}{z-1}+\frac{B}{z-2}+\frac{C}{z-3}
+\end{equation}
+are $A=1/2$, $B=-1$, and $C=1/2$. For
+\begin{equation}
+\frac{1}{(z-1)^2(z-2)(z-3)},
+\end{equation}
+the coefficients are obtained from the corresponding simple-pole residues and the derivative formula at the double pole.

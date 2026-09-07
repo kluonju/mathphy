@@ -1,0 +1,46 @@
+\section{Basic linear algebra}
+
+Let $V$ be a vector space over $\mathbb{R}$ or $\mathbb{C}$. Vectors $\mathbf{v}_1,\ldots,\mathbf{v}_n$ are linearly independent when
+\begin{equation}
+c_1\mathbf{v}_1+\cdots+c_n\mathbf{v}_n=\mathbf{0}
+\quad\Rightarrow\quad c_1=\cdots=c_n=0.
+\end{equation}
+If every vector in $V$ has a unique representation as a linear combination of these vectors, they form a basis of $V$ and $n$ is its dimension.
+
+An $m\times n$ matrix $A=(a_{ij})$ maps vectors in $\mathbb{R}^n$ to vectors in $\mathbb{R}^m$. For square matrices,
+\begin{equation}
+\det(AB)=\det A\det B,
+\end{equation}
+and $A$ is invertible exactly when $\det A\ne0$. In low dimensions,
+\begin{equation}
+\det\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc,
+\end{equation}
+and
+\begin{equation}
+\det\begin{pmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{pmatrix}
+=a_1(b_2c_3-b_3c_2)-a_2(b_1c_3-b_3c_1)+a_3(b_1c_2-b_2c_1).
+\end{equation}
+
+The standard inner product on $\mathbb{R}^n$ is
+\begin{equation}
+\langle\mathbf{u},\mathbf{v}\rangle=\mathbf{u}\cdot\mathbf{v}=\sum_i u_iv_i.
+\end{equation}
+Vectors are orthogonal when their inner product vanishes. More generally, a function-space inner product may be defined by
+\begin{equation}
+\langle f,g\rangle=\int_a^b f(x)g(x)\,\mathrm{d}x,
+\end{equation}
+which is the foundation of Fourier orthogonality.
+
+An eigenvalue $\lambda$ and eigenvector $\mathbf{v}\ne\mathbf{0}$ of a square matrix $A$ obey
+\begin{equation}
+A\mathbf{v}=\lambda\mathbf{v}.
+\end{equation}
+They are found from the characteristic equation $\det(A-\lambda I)=0$. A real symmetric matrix has real eigenvalues, and eigenvectors belonging to distinct eigenvalues are orthogonal. The linear system $A\mathbf{x}=\mathbf{b}$ has the unique solution $\mathbf{x}=A^{-1}\mathbf{b}$ when $\det A\ne0$.
+
+Given linearly independent vectors $f_1,\ldots,f_n$, Gram--Schmidt orthogonalization constructs
+\begin{equation}
+g_1=f_1,
+\qquad
+g_k=f_k-\sum_{j=1}^{k-1}\frac{\langle f_k,g_j\rangle}{\langle g_j,g_j\rangle}g_j.
+\end{equation}
+Normalizing the $g_k$ produces an orthonormal basis, a construction that reappears in expansions by orthogonal functions.

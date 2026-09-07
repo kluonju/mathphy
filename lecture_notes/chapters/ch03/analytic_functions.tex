@@ -1,0 +1,47 @@
+\section{Differentiation and analytic functions}
+
+The complex derivative is defined by the path-independent limit
+\begin{equation}
+f'(z)=\lim_{\Delta z\to0}\frac{f(z+\Delta z)-f(z)}{\Delta z}.
+\end{equation}
+Because $\Delta z$ can approach zero in every direction, complex differentiability is much more restrictive than real differentiability. Taking the approach first along the real direction and then along the imaginary direction yields the Cauchy--Riemann equations
+\begin{equation}
+u_x=v_y,\qquad u_y=-v_x.
+\label{eq:ch06-cr}
+\end{equation}
+If $u$ and $v$ have continuous first partial derivatives, these equations are also sufficient for differentiability.
+
+Indeed, continuity of the partial derivatives gives the first-order increment
+\begin{equation}
+\Delta f=(u_x+\mathrm{i}v_x)\Delta x+(u_y+\mathrm{i}v_y)\Delta y+o(|\Delta z|).
+\end{equation}
+Using the Cauchy--Riemann equations turns the leading term into
+$(u_x+\mathrm{i}v_x)(\Delta x+\mathrm{i}\Delta y)$. Thus the quotient by $\Delta z$ has a path-independent limit. In polar coordinates the same conditions are
+\begin{equation}
+u_r=\frac1r v_\theta,\qquad \frac1r u_\theta=-v_r.
+\end{equation}
+Equivalently, with $\partial_z=\tfrac12(\partial_x-\mathrm{i}\partial_y)$ and
+$\partial_{\bar z}=\tfrac12(\partial_x+\mathrm{i}\partial_y)$, analyticity is characterized by $\partial f/\partial\bar z=0$.
+
+In detail, the Cauchy--Riemann equations imply $u_y=-v_x$ and $v_y=u_x$, so
+\begin{align}
+\Delta f
+&=(u_x+\mathrm{i}v_x)\Delta x+(-v_x+\mathrm{i}u_x)\Delta y+o(|\Delta z|)\nonumber\\
+&=(u_x+\mathrm{i}v_x)(\Delta x+\mathrm{i}\Delta y)+o(|\Delta z|).
+\end{align}
+After division by $\Delta z$, the remainder tends to zero independently of the path. Thus $f'(z)=u_x+\mathrm{i}v_x$. This supplies the sufficiency proof rather than merely the criterion.
+
+A function is analytic at $z_0$ if it is differentiable throughout a neighborhood of $z_0$; it is entire if it is analytic on all of $\mathbb{C}$. For example, $z^2$ is entire, whereas $|z|^2=x^2+y^2$ is differentiable only at the origin and is not analytic there.
+
+Applying \eqref{eq:ch06-cr} twice shows that the real and imaginary parts of an analytic function are harmonic:
+\begin{equation}
+u_{xx}+u_{yy}=0,\qquad v_{xx}+v_{yy}=0.
+\end{equation}
+Moreover, $\nabla u\cdot\nabla v=0$, so the level curves $u=C_1$ and $v=C_2$ meet at right angles. This is the geometric reason analytic functions are closely related to two-dimensional potential flow and electrostatics.
+
+\begin{example}
+If $u=x^2-y^2$ is the real part of an analytic function, then \eqref{eq:ch06-cr} gives $v_x=2y$ and $v_y=2x$. Thus $v=2xy+C$, and
+\begin{equation}
+f(z)=z^2+\mathrm{i}C.
+\end{equation}
+\end{example}

@@ -1,0 +1,209 @@
+\section{Functionals and the Euler--Lagrange equation}
+
+\subsection{What is a functional?}
+A function maps numbers to numbers, while a functional maps an entire function to a number. In ordinary optimization, the unknown might be a point $(x,y)$; in a variational problem, the unknown is a whole curve, trajectory, or field. The square brackets in $J[u]$ emphasize this dependence on the complete function rather than on one numerical argument.
+
+For a path $y=u(x)$ between fixed endpoints, its length is the functional
+\begin{equation}
+J[u]=\int_{x_1}^{x_2}\sqrt{1+u'(x)^2}\,\mathrm{d}x,
+\qquad
+u(x_1)=y_1,\quad u(x_2)=y_2.
+\end{equation}
+The shortest-path problem asks which admissible function $u$ minimizes $J[u]$. Here ``admissible'' means that the path has the required smoothness and satisfies the prescribed endpoint conditions. These restrictions are part of the problem: a curve with the right shape but the wrong endpoints is not a competing path. Other examples include the brachistochrone time, mechanical action, and the gravitational potential energy of a hanging chain.
+
+More generally,
+\begin{equation}
+J[u]=\int_a^b L\bigl(x,u,u'\bigr)\,\mathrm{d}x,
+\end{equation}
+where $L$ is called the Lagrangian density of the functional. The word ``density'' is useful because $L\,\mathrm{d}x$ is the contribution from a small interval, while the integral combines the contributions from the entire path.
+
+An admissible variation is a family $u_\epsilon(x)=u(x)+\epsilon\eta(x)$ with
+\begin{equation}
+\eta(a)=\eta(b)=0.
+\end{equation}
+The function $\eta$ specifies a direction in the space of allowed functions and $\epsilon$ specifies how far one moves in that direction. Fixed endpoints force $\eta$ to vanish at $a$ and $b$; otherwise the varied curve would leave the admissible class. For a functional whose integrand depends on higher derivatives,
+\begin{equation}
+J[u]=\int_a^b L\bigl(x,u,u',u'',\ldots\bigr)\,\mathrm{d}x,
+\end{equation}
+the same variation defines the functional derivative through
+\begin{equation}
+\delta J=\int_a^b\frac{\delta J}{\delta u(x)}\,\eta(x)\,\mathrm{d}x
+\end{equation}
+after all integrations by parts have been performed. For the first-derivative case treated below,
+\begin{equation}
+\frac{\delta J}{\delta u}
+=\frac{\partial L}{\partial u}
+-\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\partial L}{\partial u'}\right).
+\end{equation}
+
+\subsection{A general method for functional derivatives}
+The functional derivative is defined by the response of a functional to an arbitrary small perturbation. It plays the same role as an ordinary derivative, except that the independent variable is now a function. Let
+\begin{equation}
+u_\epsilon(x)=u(x)+\epsilon\eta(x),
+\end{equation}
+where $\eta$ is a test function and $\epsilon$ is a small parameter. The first variation is the directional derivative
+\begin{equation}
+\delta J[u;\eta]
+=\left.\frac{\mathrm{d}}{\mathrm{d}\epsilon}J[u+\epsilon\eta]\right|_{\epsilon=0}.
+\end{equation}
+After expanding and integrating by parts until no derivatives act on $\eta$, write the result as
+\begin{equation}
+\delta J[u;\eta]
+=\int_a^b\frac{\delta J}{\delta u(x)}\eta(x)\,\mathrm{d}x
++\text{boundary terms}.
+\end{equation}
+The coefficient of the arbitrary interior variation $\eta$ is the functional derivative. Integrating by parts is the essential bookkeeping step: derivatives are moved from the unknown perturbation $\eta$ onto known coefficients, so that the effect of every independent interior change can be read directly. A stationary function satisfies
+\begin{equation}
+\frac{\delta J}{\delta u(x)}=0,
+\end{equation}
+provided the admissible variations are arbitrary in the interior. Stationary means that the first-order change vanishes. It is a necessary condition for a minimum or maximum, but by itself does not distinguish a minimum from a maximum or saddle point; that requires additional information, such as a second variation or physical stability argument.
+
+For a local functional with derivatives through order $m$,
+\begin{equation}
+J[u]=\int_a^bL(x,u,u',u'',\ldots,u^{(m)})\,\mathrm{d}x,
+\end{equation}
+repeated integration by parts gives the higher-order Euler--Lagrange operator
+\begin{equation}
+\frac{\delta J}{\delta u}
+=\sum_{k=0}^{m}(-1)^k\frac{\mathrm{d}^k}{\mathrm{d}x^k}
+\left(\frac{\partial L}{\partial u^{(k)}}\right).
+\end{equation}
+For $m=1$ this reduces to the usual equation derived below.
+
+If the endpoint values are not fixed, the boundary terms must also vanish. These conditions produce the natural boundary conditions. Thus boundary data are not merely technical details: fixing a value removes the corresponding endpoint variation, whereas leaving a value free makes the variational principle supply an additional equation. For a first-derivative functional, the boundary contribution is
+\begin{equation}
+\left[\frac{\partial L}{\partial u'}\eta\right]_a^b,
+\end{equation}
+so a free endpoint requires $\partial L/\partial u'=0$ there.
+
+For a field $u(\mathbf{x})$ on a region $\Omega$, the definition becomes
+\begin{equation}
+\delta J=\int_\Omega\frac{\delta J}{\delta u(\mathbf{x})}
+\eta(\mathbf{x})\,\mathrm{d}^d x
++\text{boundary terms}.
+\end{equation}
+The one-dimensional derivative $\mathrm{d}/\mathrm{d}x$ is replaced by spatial derivatives $\partial_i$. This is the form used in continuum mechanics, electrostatics, wave theory, and field theory. If
+\begin{equation}
+J[u]=\int_\Omega F(\mathbf{x},u,\partial_i u)\,\mathrm{d}^d x,
+\end{equation}
+then
+\begin{equation}
+\frac{\delta J}{\delta u}
+=\frac{\partial F}{\partial u}
+-\partial_i\left(\frac{\partial F}{\partial(\partial_i u)}\right).
+\end{equation}
+
+Not every functional is local. A local integrand at $x$ depends only on $u$ and its derivatives at $x$; a nonlocal functional couples values at different points. For a quadratic nonlocal functional,
+\begin{equation}
+J[u]=\frac12\int\!\int u(x)K(x,x')u(x')\,\mathrm{d}x\,\mathrm{d}x',
+\end{equation}
+the derivative is
+\begin{equation}
+\frac{\delta J}{\delta u(x)}
+=\frac12\int\left[K(x,x')+K(x',x)\right]u(x')\,\mathrm{d}x'.
+\end{equation}
+When $K$ is symmetric, this simplifies to $\delta J/\delta u(x)=\int K(x,x')u(x')\,\mathrm{d}x'$. This is the same structure that appears in the Hartree term later in this section.
+
+\subsection{Derivation of the Euler--Lagrange equation}
+At an extremum, the first variation vanishes:
+\begin{equation}
+\delta J=\left.\frac{\mathrm{d}}{\mathrm{d}\epsilon}J[u+\epsilon\eta]\right|_{\epsilon=0}=0.
+\end{equation}
+Expanding to first order gives
+\begin{equation}
+\delta J=\int_a^b\left(
+\frac{\partial L}{\partial u}\eta
++\frac{\partial L}{\partial u'}\eta'
+\right)\mathrm{d}x.
+\end{equation}
+Integrating the second term by parts,
+\begin{equation}
+\int_a^b\frac{\partial L}{\partial u'}\eta'\,\mathrm{d}x
+=\left[\frac{\partial L}{\partial u'}\eta\right]_a^b
+-\int_a^b\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\partial L}{\partial u'}\right)\eta\,\mathrm{d}x.
+\end{equation}
+The boundary term vanishes because the endpoints are fixed. The remaining integral must be zero for every sufficiently smooth perturbation that is supported in the interior. The fundamental lemma of the calculus of variations then says that its coefficient must vanish point by point, giving
+\begin{equation}
+\boxed{\frac{\partial L}{\partial u}
+-\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\partial L}{\partial u'}\right)=0.}
+\end{equation}
+
+For the shortest path, $L=\sqrt{1+u'^2}$ has no explicit dependence on $u$. Consequently the slope-dependent quantity $u'/\sqrt{1+u'^2}$ is constant. The Euler--Lagrange equation gives
+\begin{equation}
+\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{u'}{\sqrt{1+u'^2}}\right)=0,
+\end{equation}
+which implies $u''=0$. The extremal is therefore a straight line, recovering the familiar geometric statement as a consequence of stationarity of the length functional.
+
+\subsection{Several dependent variables and fields}
+For $u_1(x),\ldots,u_n(x)$, the components may be coupled through the same Lagrangian, but their variations can be chosen independently. Each component therefore satisfies an Euler--Lagrange equation:
+\begin{equation}
+\frac{\partial L}{\partial u_i}
+-\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\partial L}{\partial u_i'}\right)=0.
+\end{equation}
+For a scalar field $u(x,y)$ with
+\begin{equation}
+J[u]=\iint_R F(x,y,u,u_x,u_y)\,\mathrm{d}x\,\mathrm{d}y,
+\end{equation}
+the field Euler--Lagrange equation is
+\begin{equation}
+F_u-\frac{\partial F_{u_x}}{\partial x}
+-\frac{\partial F_{u_y}}{\partial y}=0.
+\end{equation}
+
+\subsection{Functional derivatives in density-functional theory}
+Density-functional theory (DFT) uses the particle density $n(\mathbf r)$ as the basic field. Its variational viewpoint is especially clear: rather than searching over many-particle states directly, one asks which admissible density makes an energy functional stationary. The density is constrained by particle-number normalization:
+\begin{equation}
+\int n(\mathbf r)\,\mathrm{d}^3r=N.
+\end{equation}
+For an energy functional $E[n]$, the constrained stationary condition is obtained by introducing the chemical-potential multiplier $\mu$:
+\begin{equation}
+\widetilde E[n]=E[n]-\mu\left(\int n(\mathbf r)\,\mathrm{d}^3r-N\right).
+\end{equation}
+The Euler equation is therefore
+\begin{equation}
+\frac{\delta E[n]}{\delta n(\mathbf r)}=\mu.
+\end{equation}
+The constant $\mu$ enforces normalization and is interpreted physically as the chemical potential at a ground-state solution. In particular, it is spatially constant at equilibrium even when the external potential and density vary from place to place.
+
+\begin{example}[Local density functional]
+Consider the simple functional
+\begin{equation}
+E[n]=\int\left(Cn(\mathbf r)^{5/3}
++v(\mathbf r)n(\mathbf r)\right)\,\mathrm{d}^3r,
+\end{equation}
+where $C$ is a constant and $v(\mathbf r)$ is an external potential. Since the integrand contains no derivatives of $n$,
+\begin{equation}
+\frac{\delta E}{\delta n(\mathbf r)}
+=\frac{5}{3}C n(\mathbf r)^{2/3}+v(\mathbf r).
+\end{equation}
+The normalized stationary density satisfies
+\begin{equation}
+\frac{5}{3}C n(\mathbf r)^{2/3}+v(\mathbf r)=\mu.
+\end{equation}
+This illustrates the direct analogue between the Euler--Lagrange equation for a function $u(x)$ and the Euler equation for a density field. Because no derivatives of $n$ occur, the condition is algebraic at each point, coupled globally only through the normalization constant $\mu$.
+\end{example}
+
+\begin{example}[Thomas--Fermi-type energy]
+A simple interacting-electron model adds the Hartree contribution
+\begin{equation}
+E_H[n]=\frac12\int\!\int
+\frac{n(\mathbf r)n(\mathbf r')}{|\mathbf r-\mathbf r'|}
+\,\mathrm{d}^3r\,\mathrm{d}^3r'.
+\end{equation}
+Its functional derivative is the Hartree potential
+\begin{equation}
+\frac{\delta E_H}{\delta n(\mathbf r)}
+=\int\frac{n(\mathbf r')}{|\mathbf r-\mathbf r'|}\,\mathrm{d}^3r'.
+\end{equation}
+For
+\begin{equation}
+E[n]=C\int n^{5/3}\,\mathrm{d}^3r
++\int v_{\mathrm{ext}}n\,\mathrm{d}^3r+E_H[n],
+\end{equation}
+the density equation becomes
+\begin{equation}
+\frac53 Cn(\mathbf r)^{2/3}+v_{\mathrm{ext}}(\mathbf r)
++v_H(\mathbf r)=\mu.
+\end{equation}
+No numerical solution is required to see the variational structure: each term contributes its own functional derivative. The local kinetic-like term and external-potential term respond at the same point, whereas the Hartree contribution records the electrostatic influence of density throughout space.
+\end{example}

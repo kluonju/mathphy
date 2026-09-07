@@ -1,0 +1,160 @@
+\section{Classification of second-order PDEs}
+
+The three equations derived above have markedly different solution behavior. The distinction is encoded in the highest-derivative part of the equation. For a linear second-order PDE in two variables,
+\begin{equation}
+A u_{xx}+2B u_{xy}+C u_{yy}+D u_x+E u_y+Fu=G,
+\label{eq:ch04-general-second-order}
+\end{equation}
+the coefficient functions are real functions of $x$ and $y$. More generally, for independent variables $x_1,\ldots,x_n$, a second-order linear equation has the form
+\begin{equation}
+\sum_{i,j=1}^n a_{ij}(\mathbf x)u_{x_ix_j}
++\sum_{i=1}^n b_i(\mathbf x)u_{x_i}+c(\mathbf x)u+f(\mathbf x)=0.
+\end{equation}
+Because the equation and any accompanying data are linear, solutions can be superposed whenever the corresponding equations and data are superposed. The two-variable case is where the classification and its reduction can be displayed most directly.
+
+\subsection{Change of variables and characteristics}
+
+Make a nonsingular change of independent variables,
+\begin{equation}
+\xi=\xi(x,y),\qquad \eta=\eta(x,y),\qquad
+\frac{\partial(\xi,\eta)}{\partial(x,y)}\not=0.
+\end{equation}
+The chain rule first gives
+\begin{equation}
+u_x=u_\xi\xi_x+u_\eta\eta_x,
+\qquad
+u_y=u_\xi\xi_y+u_\eta\eta_y.
+\end{equation}
+Differentiating again gives every second derivative explicitly:
+\begin{align}
+u_{xx}={}&u_{\xi\xi}\xi_x^2+2u_{\xi\eta}\xi_x\eta_x
++u_{\eta\eta}\eta_x^2+u_\xi\xi_{xx}+u_\eta\eta_{xx},\\
+u_{xy}={}&u_{\xi\xi}\xi_x\xi_y
++u_{\xi\eta}(\xi_x\eta_y+\xi_y\eta_x)
++u_{\eta\eta}\eta_x\eta_y+u_\xi\xi_{xy}+u_\eta\eta_{xy},\\
+u_{yy}={}&u_{\xi\xi}\xi_y^2+2u_{\xi\eta}\xi_y\eta_y
++u_{\eta\eta}\eta_y^2+u_\xi\xi_{yy}+u_\eta\eta_{yy}.
+\end{align}
+Substitution into \eqref{eq:ch04-general-second-order} preserves linearity and gives
+\begin{equation}
+A_{11}u_{\xi\xi}+2A_{12}u_{\xi\eta}+A_{22}u_{\eta\eta}
++B_1u_\xi+B_2u_\eta+\widetilde C u+\widetilde F=0,
+\label{eq:ch04-transformed-pde}
+\end{equation}
+where the principal coefficients are
+\begin{align}
+A_{11}&=A\xi_x^2+2B\xi_x\xi_y+C\xi_y^2,\\
+A_{12}&=A\xi_x\eta_x+B(\xi_x\eta_y+\xi_y\eta_x)+C\xi_y\eta_y,\\
+A_{22}&=A\eta_x^2+2B\eta_x\eta_y+C\eta_y^2.
+\end{align}
+The lower-order coefficients, which are not relevant for classification but are needed for the complete transformed equation, are
+\begin{align}
+B_1&=A\xi_{xx}+2B\xi_{xy}+C\xi_{yy}+D\xi_x+E\xi_y,\\
+B_2&=A\eta_{xx}+2B\eta_{xy}+C\eta_{yy}+D\eta_x+E\eta_y,\\
+\widetilde C&=F,\qquad \widetilde F=-G.
+\end{align}
+the discriminant is
+\begin{equation}
+\Delta=B^2-AC.
+\end{equation}
+At points where the principal coefficients do not vanish simultaneously, the equation is classified as
+\begin{equation}
+\begin{array}{c|c|c}
+\Delta>0 & \text{hyperbolic} & \text{wave-like propagation}\\
+\Delta=0 & \text{parabolic} & \text{diffusion-like evolution}\\
+\Delta<0 & \text{elliptic} & \text{equilibrium or potential fields}.
+\end{array}
+\end{equation}
+
+To eliminate the $u_{\xi\xi}$ term, choose $\xi$ to satisfy $A_{11}=0$. Written for a generic function $z(x,y)$, this condition is
+\begin{equation}
+Az_x^2+2Bz_xz_y+Cz_y^2=0.
+\end{equation}
+The level curves $z(x,y)=\text{constant}$ obey $\mathrm dy/\mathrm dx=-z_x/z_y$. Therefore their slopes satisfy the characteristic equation
+\begin{equation}
+A\left(\frac{\mathrm dy}{\mathrm dx}\right)^2
+-2B\frac{\mathrm dy}{\mathrm dx}+C=0.
+\end{equation}
+Its two formal roots are
+\begin{equation}
+\frac{\mathrm dy}{\mathrm dx}
+=\frac{B\pm\sqrt{B^2-AC}}{A}.
+\end{equation}
+Thus hyperbolic equations have two distinct real characteristic families, parabolic equations have one repeated family, and elliptic equations have no real characteristic curves. The type may change from one region to another when the coefficients vary.
+
+The classification is invariant under a nonsingular change of variables, since direct calculation gives
+\begin{equation}
+A_{12}^2-A_{11}A_{22}
+=(B^2-AC)(\xi_x\eta_y-\xi_y\eta_x)^2.
+\end{equation}
+The nonzero squared Jacobian cannot change the sign of the discriminant.
+
+\subsection{Canonical forms}
+
+For a hyperbolic equation, take the two independent real characteristic families as $\xi$ and $\eta$. Then $A_{11}=A_{22}=0$, and \eqref{eq:ch04-transformed-pde} has the semi-canonical form
+\begin{equation}
+u_{\xi\eta}=-\frac{1}{2A_{12}}
+\left(B_1u_\xi+B_2u_\eta+\widetilde C u+\widetilde F\right).
+\end{equation}
+For the additional change
+\begin{equation}
+\xi=\alpha+\beta,\qquad \eta=\alpha-\beta,
+\qquad
+\alpha=\frac{\xi+\eta}{2},\quad
+\beta=\frac{\xi-\eta}{2},
+\end{equation}
+one has
+\begin{equation}
+u_{\xi\eta}=\frac14\left(u_{\alpha\alpha}-u_{\beta\beta}\right),
+\quad
+u_\xi=\frac12(u_\alpha+u_\beta),
+\quad
+u_\eta=\frac12(u_\alpha-u_\beta).
+\end{equation}
+Consequently the transformed equation becomes
+\begin{equation}
+u_{\alpha\alpha}-u_{\beta\beta}
+=-\frac{1}{A_{12}}\left[(B_1+B_2)u_\alpha
++(B_1-B_2)u_\beta+2\widetilde C u+2\widetilde F\right].
+\end{equation}
+The one-dimensional wave equation is already in this difference-of-squares form.
+
+For a parabolic equation, $B^2-AC=0$, and the characteristic equation has the single root $\mathrm dy/\mathrm dx=B/A$. Use its characteristic family as $\xi$, then select a second coordinate $\eta$ which is not characteristic. Since $\xi_x/\xi_y=-B/A$, direct substitution gives
+\begin{align}
+A_{11}&=\xi_y^2\left[A\left(\frac{\xi_x}{\xi_y}\right)^2
++2B\frac{\xi_x}{\xi_y}+C\right]=0,\\
+A_{12}&=-\frac{\xi_y\eta_y}{A}(B^2-AC)=0,\\
+A_{22}&=\eta_y^2\left[\sqrt A\left(\frac{\eta_x}{\eta_y}\right)
+\pm\sqrt C\right]^2.
+\end{align}
+Choosing $\eta$ not to satisfy the characteristic equation ensures $A_{22}\not=0$. The canonical principal part is therefore a single second derivative,
+\begin{equation}
+u_{\eta\eta}=-\frac{1}{A_{22}}
+\left(B_1u_\xi+B_2u_\eta+\widetilde C u+\widetilde F\right).
+\end{equation}
+The heat equation is the standard physical example: it has one first-order time derivative and one second-order spatial derivative.
+
+For an elliptic equation, the characteristic coordinates are complex conjugates, $\eta=\xi^*$. Writing
+\begin{equation}
+\xi=\alpha+i\beta,\qquad \eta=\alpha-i\beta,
+\qquad
+\alpha=\frac{\xi+\eta}{2},\quad
+\beta=\frac{\xi-\eta}{2i},
+\end{equation}
+gives the intermediate identities
+\begin{equation}
+u_{\xi\eta}=\frac14\left(u_{\alpha\alpha}+u_{\beta\beta}\right),
+\quad
+u_\xi=\frac12(u_\alpha-iu_\beta),
+\quad
+u_\eta=\frac12(u_\alpha+iu_\beta).
+\end{equation}
+The semi-canonical mixed-derivative equation therefore becomes
+\begin{equation}
+u_{\alpha\alpha}+u_{\beta\beta}
+=-\frac{1}{A_{12}}\left[(B_1+B_2)u_\alpha
++i(B_2-B_1)u_\beta+2\widetilde C u+2\widetilde F\right].
+\end{equation}
+The canonical principal part is therefore elliptic rather than wave-like. Steady temperature fields, electrostatic potentials, steady concentration profiles, and irrotational steady flows all lead to this class.
+
+The canonical examples are immediate. The one-dimensional wave equation $u_{tt}-a^2u_{xx}=0$ is hyperbolic, the heat equation $u_t-\kappa u_{xx}=0$ is parabolic, and Laplace's equation $u_{xx}+u_{yy}=0$ is elliptic. Classification guides which data are physically appropriate: initial data naturally accompany time-evolution equations, whereas boundary data dominate elliptic problems.

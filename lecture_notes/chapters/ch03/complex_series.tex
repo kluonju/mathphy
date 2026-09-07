@@ -1,0 +1,80 @@
+\section{Complex series and singularities}
+
+Complex series retain the familiar convergence tests. Absolute convergence implies convergence; comparison, ratio, root, and alternating-series tests apply to the moduli of complex terms. For a function series, uniform convergence permits termwise limits, differentiation, and contour integration.
+
+For a numerical series $\sum w_k$, the Cauchy criterion is that for every $\varepsilon>0$ there is an $N$ such that
+\begin{equation}
+\left|\sum_{k=n+1}^{n+p}w_k\right|<\varepsilon
+\end{equation}
+whenever $n>N$ and $p>0$. If $\sum|w_k|$ converges, the original series converges absolutely. The ratio test uses $q=\lim|w_{k+1}/w_k|$: it gives absolute convergence for $q<1$ and divergence for $q>1$. The root test is analogous. The alternating-series criterion applies when positive terms decrease to zero.
+
+The geometric series, for $|x|<1$, is $\sum_{k=0}^\infty x^k=(1-x)^{-1}$. Differentiating or integrating it gives the standard expansions
+\begin{equation}
+\log(1+x)=\sum_{k=1}^\infty\frac{(-1)^{k+1}x^k}{k},
+\quad
+\sin x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!},
+\quad
+\cos x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!}.
+\end{equation}
+Complex exponentials also sum
+\begin{equation}
+1+a\cos\theta+a^2\cos2\theta+\cdots
+=\frac{1-a\cos\theta}{1-2a\cos\theta+a^2},\qquad |a|<1.
+\end{equation}
+The calculation is
+\begin{align}
+\sum_{n=0}^\infty a^n\cos(n\theta)
+&=\frac12\left(\sum_{n=0}^\infty(ae^{\mathrm{i}\theta})^n+\sum_{n=0}^\infty(ae^{-\mathrm{i}\theta})^n\right)\nonumber\\
+&=\frac12\left(\frac{1}{1-ae^{\mathrm{i}\theta}}+\frac{1}{1-ae^{-\mathrm{i}\theta}}\right),
+\end{align}
+which simplifies to the stated real expression. Similarly, differentiating $xS(x)=x-x^2/2+x^3/3-\cdots$ gives $(xS)'=(1+x)^{-1}$ and thus $S(x)=\log(1+x)/x$.
+For the comparison test, $\sum k^{-p}$ diverges when $p\leq1$ because its positive terms dominate the harmonic series. In contrast, the ratio test gives
+\begin{equation}
+\lim_{k\to\infty}\left|\frac{(k+1)/2^{k+1}}{k/2^k}\right|=\frac12,
+\end{equation}
+so $\sum_{k=1}^\infty k/2^k$ converges. The alternating harmonic series converges conditionally, rather than absolutely.
+
+A power series centered at $z_0$ has the form
+\begin{equation}
+\sum_{k=0}^{\infty}a_k(z-z_0)^k.
+\end{equation}
+It converges absolutely inside a disk $|z-z_0|<R$ and diverges outside it. When the ratio limit exists,
+\begin{equation}
+R=\lim_{k\to\infty}\left|\frac{a_k}{a_{k+1}}\right|.
+\end{equation}
+The boundary circle requires a separate test. For instance, $1-z^2+z^4-\cdots$ converges for $|z|<1$ and represents $(1+z^2)^{-1}$ there.
+
+For the series $\sum_{k=0}^\infty k^{-1}(z-z_0)^k$, $R=1$. On its boundary, the point $z-z_0=1$ gives the divergent harmonic series, while $z-z_0=-1$ gives the convergent alternating harmonic series. Boundary behavior is therefore not fixed by the radius alone.
+
+Every analytic function has a unique Taylor expansion
+\begin{equation}
+f(z)=\sum_{k=0}^{\infty}\frac{f^{(k)}(z_0)}{k!}(z-z_0)^k.
+\end{equation}
+Around an isolated singularity the more general Laurent series is required:
+\begin{equation}
+f(z)=\sum_{k=-\infty}^{\infty}a_k(z-z_0)^k.
+\end{equation}
+The nonnegative powers form the analytic part and the negative powers the principal part. A singularity is removable when the principal part vanishes, a pole when it has finitely many terms, and essential when it has infinitely many terms. The coefficient $a_{-1}$ is the residue.
+
+For example, about $z=1$ a specified branch of the logarithm has
+\begin{equation}
+\log z=2\pi n\mathrm{i}+(z-1)-\frac{(z-1)^2}{2}+\frac{(z-1)^3}{3}-\cdots,
+\qquad |z-1|<1.
+\end{equation}
+Taylor's formula follows from Cauchy's formula by expanding
+\begin{equation}
+\frac{1}{\zeta-z}=\sum_{k=0}^\infty\frac{(z-z_0)^k}{(\zeta-z_0)^{k+1}}.
+\end{equation}
+The same contour coefficient formula supplies Laurent coefficients in an annular domain; unlike Taylor coefficients, they are not generally $f^{(k)}(z_0)/k!$.
+
+Substitution into Cauchy's formula gives the full coefficient calculation
+\begin{align}
+f(z)&=\frac{1}{2\pi\mathrm{i}}\sum_{k=0}^\infty\oint_C
+\frac{f(\zeta)(z-z_0)^k}{(\zeta-z_0)^{k+1}}\,d\zeta\nonumber\\
+&=\sum_{k=0}^\infty\frac{f^{(k)}(z_0)}{k!}(z-z_0)^k.
+\end{align}
+If two analytic functions agree on a subregion, their difference has all Taylor coefficients zero there and is identically zero throughout the connected domain. This is the identity theorem.
+
+\begin{example}
+The Laurent series $e^{1/z}=1+z^{-1}+z^{-2}/2!+\cdots$ has infinitely many negative powers, so $z=0$ is an essential singularity.
+\end{example}

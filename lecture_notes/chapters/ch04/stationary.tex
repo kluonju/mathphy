@@ -1,0 +1,94 @@
+\section{Initial, boundary, and stationary conditions}
+
+A PDE alone expresses a local physical law, not a complete physical situation. A solution is a sufficiently smooth function which possesses all derivatives required by the equation and makes it an identity in its domain. Finding the equation is therefore only the first part of a physical problem: one must still identify which solution represents the actual system. There are usually infinitely many solutions of the PDE alone, so a unique physical solution normally requires data describing the state initially and the way the system interacts with its boundary. A PDE together with these supplementary data is called an initial-boundary-value problem.
+
+For a string fixed at both ends, the wave equation \eqref{eq:ch04-wave} is supplemented by
+\begin{equation}
+u(0,t)=u(l,t)=0,
+\qquad
+u(x,0)=\varphi(x),\quad u_t(x,0)=\psi(x).
+\label{eq:ch04-string-ibvp}
+\end{equation}
+The initial displacement $\varphi$ and initial velocity $\psi$ select one motion from the many functions that solve the wave equation. The endpoint conditions express the physical fact that the supports do not move. Including a force density $f(x,t)$, the full fixed-string problem may be displayed as
+\begin{equation}
+\left\{
+\begin{aligned}
+u_{tt}-a^2u_{xx}&=f(x,t), &&0<x<l,\quad t>0,\\
+u(x,0)&=\varphi(x),\qquad u_t(x,0)=\psi(x), &&0\leq x\leq l,\\
+u(0,t)&=0,\qquad u(l,t)=0, &&t\geq0.
+\end{aligned}
+\right.
+\label{eq:ch04-full-string-ibvp}
+\end{equation}
+Thus the desired solution satisfies the PDE in the open space-time strip $0<x<l$, $t>0$, the initial data on the segment $t=0$, and the endpoint data on the two vertical boundary lines. The equation describes the general law for any small string vibration; the initial and boundary data specify the particular vibration being observed.
+
+Three common boundary conditions have distinct physical interpretations. In a general spatial domain $\Omega$, they may be written as
+\begin{align}
+u|_{\partial\Omega}&=g &&\text{Dirichlet condition: the field value is prescribed},\\
+\frac{\partial u}{\partial n}\bigg|_{\partial\Omega}&=h &&\text{Neumann condition: normal flux or slope is prescribed},\\
+\alpha u+\beta\frac{\partial u}{\partial n}&=r &&\text{Robin condition: value and flux are coupled}.
+\end{align}
+The first type is also called a Dirichlet condition. It fixes the field itself, as in a string attached to an immovable support or a body held at a prescribed temperature. For a string, a Neumann condition $u_x(0,t)=0$ describes a free end, because the transverse component of the tension vanishes there. More generally,
+\begin{equation}
+u_x(0,t)=\mu(t)
+\end{equation}
+prescribes a time-dependent transverse force at the endpoint. This is the second, or Neumann, boundary condition. A Robin condition is the third boundary condition and can model an elastic support: if its spring constant is $k$, the endpoint displacement measures the spring extension, while force balance at $x=l$ gives
+\begin{equation}
+T u_x(l,t)+k u(l,t)=0,
+\end{equation}
+or $u_x+\sigma u=0$ with $\sigma=k/T$. The more general form $u_x+\sigma u=v(t)$ includes an applied endpoint force as well as the elastic restoring force.
+
+\subsection{Terminology for PDE problems}
+
+The order of a PDE is the order of its highest derivative; the vibrating-string equation is second order. It is linear when $u$ and all of its derivatives occur linearly with coefficients independent of $u$. Otherwise it is nonlinear. A nonlinear equation may still be quasilinear if its highest derivatives occur linearly; for example,
+\begin{equation}
+u_t+u u_x=0
+\end{equation}
+is first-order quasilinear. By contrast,
+\begin{equation}
+u_x^2+u_y^2=u
+\end{equation}
+is fully nonlinear because the highest derivatives do not occur linearly.
+
+An equation containing a nonzero prescribed source, such as $f(x,t)$ in \eqref{eq:ch04-full-string-ibvp}, is inhomogeneous; its source-free version is homogeneous. Likewise, $u(0,t)=u(l,t)=0$ are homogeneous boundary conditions, whereas nonzero prescribed endpoint displacements are inhomogeneous boundary conditions. Initial conditions are homogeneous only when both $\varphi$ and $\psi$ vanish. Homogeneous linear problems are especially important because of the superposition principle: if $u_1$ and $u_2$ solve the same homogeneous linear equation and homogeneous boundary conditions, then $c_1u_1+c_2u_2$ does too. Separation of variables builds useful solutions from this fact.
+
+For equilibrium problems there is no initial-time evolution. One instead prescribes data on the spatial boundary and solves an elliptic boundary-value problem such as \eqref{eq:ch04-laplace-poisson}. In physical language, a stationary solution is one for which sources, fluxes, and constraints balance so that the observable field no longer changes with time. Initial conditions therefore belong naturally to evolution equations, while boundary conditions remain essential for both evolution and stationary problems.
+
+\subsection{A procedure for solving stationary equations}
+
+The central distinction is simple but important: an evolution problem asks how a state changes from specified initial data, whereas a stationary problem asks for a time-independent field compatible with sources and boundary data. A reliable solution procedure is as follows.
+\begin{enumerate}
+\item Identify the field and impose stationarity. Set every time derivative to zero in the governing evolution equation.
+\item Specify the spatial domain and translate the physical information on its boundary into Dirichlet, Neumann, or Robin conditions.
+\item Determine whether the interior contains a source. The result is typically Laplace's equation in source-free regions and Poisson's equation where a source is present.
+\item Use the geometry to choose coordinates and an appropriate solution form. Cartesian coordinates suit slabs and rectangles; polar or spherical coordinates suit circular or spherical boundaries.
+\item Determine all integration constants or expansion coefficients from the boundary conditions. A solution of the differential equation that fails the boundary conditions is not a solution of the physical problem.
+\item Substitute the result back into both the PDE and the boundary conditions. Finally, check that its sign, symmetry, units, and limiting behavior agree with the physical setting.
+\end{enumerate}
+
+\begin{example}[Steady heat conduction through a slab]
+Consider a homogeneous slab $0\leq x\leq L$ with constant conductivity $k$, no internal heat source, and boundary temperatures
+\begin{equation}
+u(0)=T_0,\qquad u(L)=T_L.
+\end{equation}
+The time-dependent heat equation is $u_t=\kappa u_{xx}$. Applying step 1, stationarity gives $u_t=0$ and hence
+\begin{equation}
+u''(x)=0.
+\end{equation}
+This is Laplace's equation in one dimension. Integrating twice gives the general stationary solution
+\begin{equation}
+u(x)=A x+B.
+\end{equation}
+The boundary condition at $x=0$ gives $B=T_0$, and the one at $x=L$ gives $A=(T_L-T_0)/L$. Therefore
+\begin{equation}
+\boxed{u(x)=T_0+\frac{T_L-T_0}{L}x.}
+\end{equation}
+The temperature is linear because there is no source in the interior. The constant heat flux
+\begin{equation}
+q_x=-k\frac{\mathrm du}{\mathrm dx}
+=-k\frac{T_L-T_0}{L}
+\end{equation}
+also verifies the stationary balance: equal amounts of heat enter and leave every interior slice.
+\end{example}
+
+With an internal source, only the equation-solving step changes. For example, a uniform source $F$ yields $u''=-F/k$, so the stationary profile is quadratic rather than linear, as shown by the heated-slab example in the preceding section. In multidimensional problems the same workflow remains valid, although separation of variables, symmetry, or other analytical methods may be needed to solve the boundary-value problem.

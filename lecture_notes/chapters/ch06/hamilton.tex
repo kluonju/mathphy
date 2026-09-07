@@ -1,0 +1,36 @@
+\section{Hamilton's principle and Hamiltonian mechanics}
+
+Newton's laws are often written in Cartesian coordinates, but a physical system may be described more naturally by angles, distances along constraints, or collective coordinates. Such variables are called generalized coordinates $q_i(t)$; they need not have dimensions of length. For generalized coordinates and velocities $\dot q_i(t)$, the action is
+\begin{equation}
+S[q]=\int_{t_1}^{t_2}L(q_i,\dot q_i,t)\,\mathrm{d}t.
+\end{equation}
+Hamilton's principle states that, among nearby paths with the same configurations at $t_1$ and $t_2$, the physical path satisfies
+\begin{equation}
+\delta S=0.
+\end{equation}
+The variation is with respect to the whole history $q_i(t)$, not an instantaneous displacement. Applying the Euler--Lagrange equation to the action gives
+\begin{equation}
+\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot q_i}
+-\frac{\partial L}{\partial q_i}=0.
+\end{equation}
+For $L=\frac12m\dot{\mathbf r}^{\,2}-V(\mathbf r)$, kinetic energy minus potential energy, this becomes
+\begin{equation}
+m\ddot{\mathbf r}=-\nabla V=\mathbf F.
+\end{equation}
+
+The Lagrangian formulation is coordinate-flexible and makes symmetries particularly visible. A Legendre transformation replaces the velocity variables by canonical momenta, defining
+\begin{equation}
+p_i=\frac{\partial L}{\partial\dot q_i},
+\qquad
+H(q_i,p_i,t)=p_i\dot q_i-L.
+\end{equation}
+The first relation may agree with mechanical momentum in simple Cartesian systems, but canonical momentum is defined by the Lagrangian and can differ when velocity-dependent interactions or curvilinear coordinates are present. Provided the relations $p_i=\partial L/\partial\dot q_i$ can be inverted for the velocities, the Hamiltonian is a function of $(q_i,p_i,t)$ on phase space. Taking the differential and comparing coefficients of $
+\mathrm{d}q_i$, $\mathrm{d}p_i$, and $\mathrm{d}t$ gives Hamilton's equations:
+\begin{equation}
+\dot q_i=\frac{\partial H}{\partial p_i},
+\qquad
+\dot p_i=-\frac{\partial H}{\partial q_i},
+\qquad
+\frac{\partial H}{\partial t}=-\frac{\partial L}{\partial t}.
+\end{equation}
+The two first-order Hamilton equations are equivalent to the second-order Euler--Lagrange equations, but they treat coordinates and momenta symmetrically. If $L$ has no explicit time dependence, then $H$ is conserved. For ordinary mechanical systems, $H$ is the total energy when the Legendre transform is nonsingular; in more general systems it remains the generator of time evolution but need not equal a simple kinetic-plus-potential energy.

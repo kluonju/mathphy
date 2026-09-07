@@ -1,0 +1,101 @@
+\section{Contour integration and Cauchy's theory}
+
+Let $\ell$ be an oriented curve from $z_0$ to $z_n$, partitioned at points $z_k$. The contour integral is the limit
+\begin{equation}
+\int_\ell f(z)\,dz=\lim_{n\to\infty}\sum_{k=1}^n f(\zeta_k)(z_k-z_{k-1}).
+\end{equation}
+For $f=u+\mathrm{i}v$ and $dz=dx+\mathrm{i}dy$, this is two real line integrals:
+\begin{equation}
+\int_\ell f(z)\,dz=\int_\ell(u\,dx-v\,dy)+\mathrm{i}\int_\ell(v\,dx+u\,dy).
+\end{equation}
+Thus the familiar machinery of real line integrals remains available.
+
+\begin{figure}[htb]
+    \centering
+    \scalebox{0.72}{\subimport{tikz/}{integral.tex}}
+    \caption{A contour divided into short increments for the definition of a complex line integral.}
+    \label{fig:ch06-contour-integral}
+\end{figure}
+
+\begin{example}[Path independence for a polynomial]
+Evaluate $\int z^2\,dz$ from $0$ to $2+\mathrm{i}$. Along the straight path $z=(2+\mathrm{i})t$,
+\begin{equation}
+\int_0^1(2+\mathrm{i})^3t^2\,dt=\frac{(2+\mathrm{i})^3}{3}
+=\frac23+\frac{11}{3}\mathrm{i}.
+\end{equation}
+Along the broken path $0\to2\to2+\mathrm{i}$, the two contributions are
+\begin{equation}
+\int_0^2x^2\,dx=\frac83,
+\qquad
+\int_0^1(2+\mathrm{i}y)^2\mathrm{i}\,dy=-2+\frac{11}{3}\mathrm{i},
+\end{equation}
+which give the same result. This agrees with the antiderivative $z^3/3$.
+\end{example}
+
+\begin{theorem}[Cauchy's integral theorem]
+If $f$ is analytic on and inside a closed contour $C$ in a simply connected domain, then
+\begin{equation}
+\oint_C f(z)\,dz=0.
+\end{equation}
+Consequently, an integral is unchanged by a continuous deformation of its path that crosses no singularity.
+\end{theorem}
+
+For a region with holes, orient the outer boundary counterclockwise and the inner boundaries clockwise. Cutting the region along two nearby copies of a segment gives
+\begin{equation}
+\left(\oint_{\ell_{\mathrm{out}}}+\int_{AB}+\oint_{\ell_{\mathrm{in}}}+\int_{B'A'}\right)f(z)\,dz=0.
+\end{equation}
+As the two cut segments coalesce, their opposite orientations cancel. Hence, when all contours are written counterclockwise,
+\begin{equation}
+\oint_{\ell_{\mathrm{out}}}f(z)\,dz=\sum_j\oint_{\ell_j}f(z)\,dz.
+\end{equation}
+This is the deformation rule used to replace a large contour by small circles around its singularities.
+
+The exceptional integral is the kernel surrounding its singular point:
+\begin{equation}
+\frac{1}{2\pi\mathrm{i}}\oint_C\frac{dz}{z-a}=
+\begin{cases}1,&a\text{ lies inside }C,\\0,&a\text{ lies outside }C.\end{cases}
+\end{equation}
+Cauchy's integral formula follows:
+\begin{equation}
+f(z)=\frac{1}{2\pi\mathrm{i}}\oint_C\frac{f(\zeta)}{\zeta-z}\,d\zeta,
+\qquad
+f^{(n)}(z)=\frac{n!}{2\pi\mathrm{i}}\oint_C\frac{f(\zeta)}{(\zeta-z)^{n+1}}\,d\zeta.
+\end{equation}
+It says that the values of an analytic function inside a contour are completely determined by its boundary values. Its consequences include the maximum modulus principle, Liouville's theorem, and the fundamental theorem of algebra.
+
+To see the mechanism, remove a small circle $|\zeta-z|=r$ from inside $C$. The integrand $f(\zeta)/(\zeta-z)$ is analytic in the remaining region, so Cauchy's theorem replaces the integral on $C$ by the small circle. Writing $\zeta-z=re^{\mathrm{i}\theta}$ gives
+\begin{equation}
+\oint_{|\zeta-z|=r}\frac{f(\zeta)}{\zeta-z}\,d\zeta
+=\mathrm{i}\int_0^{2\pi}f(z+re^{\mathrm{i}\theta})\,d\theta
+\longrightarrow2\pi\mathrm{i}f(z).
+\end{equation}
+
+\begin{example}
+For every integer $n$,
+\begin{equation}
+\oint_C(z-a)^n\,dz=\begin{cases}2\pi\mathrm{i},&n=-1\text{ and }a\text{ is inside }C,\\0,&\text{otherwise}.
+\end{cases}
+\end{equation}
+For $n\ne-1$ an ordinary single-valued antiderivative exists. For $n=-1$, the antiderivative is $\log(z-a)$, which changes by $2\pi\mathrm{i}$ around $a$.
+\end{example}
+
+\begin{example}
+On $|z|=2$, the poles of $1/(z^2-1)$ are both enclosed. Since
+\begin{equation}
+\frac{1}{z^2-1}=\frac12\left(\frac{1}{z-1}-\frac{1}{z+1}\right),
+\end{equation}
+their contributions $\pi\mathrm{i}$ and $-\pi\mathrm{i}$ cancel, so the contour integral is zero. More generally, on the unit circle,
+\begin{equation}
+\oint\frac{e^z}{z^n}\,dz=\begin{cases}
+2\pi\mathrm{i}/(n-1)!,&n\geq1,\\0,&n\leq0.
+\end{cases}
+\end{equation}
+\end{example}
+
+The maximum modulus principle says that a nonconstant analytic function attains its maximum modulus on the boundary of a closed region. Liouville's theorem says that a bounded entire function is constant: Cauchy's estimate gives $|f'(z)|\leq M/R$ on every circle of radius $R$, and $R\to\infty$ gives $f'(z)=0$. If a nonconstant polynomial had no zero, $1/P$ would be bounded and entire, contradicting Liouville's theorem. Repeated factorization gives the fundamental theorem of algebra.
+
+More explicitly, if $|f(\zeta)|\leq M$ on a contour of length $s$ and $|\zeta-z|\geq\delta$, Cauchy's formula applied to $f^n$ gives
+\begin{equation}
+|f(z)|\leq M\left(\frac{s}{2\pi\delta}\right)^{1/n}.
+\end{equation}
+Letting $n\to\infty$ gives the maximum-modulus estimate. For a bounded entire function $|f|\leq N$, Cauchy's derivative formula on $|\zeta-z|=R$ gives $|f'(z)|\leq N/R$, proving Liouville's theorem as $R\to\infty$.

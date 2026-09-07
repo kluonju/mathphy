@@ -6,7 +6,11 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{graphicx}
 \usepackage{float}
-\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes,arrows.meta}
+\usepackage{import}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=OliveGreen,urlcolor=RoyalBlue]{hyperref}
 \usepackage[margin=1in]{geometry}
 \usepackage{setspace}
 \usepackage{lipsum}
@@ -17,6 +21,12 @@
 
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{example}{Example}[chapter]
+\newtheorem{note}{Note}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+
+% Each chapter sets this once; module imports then stay local to that chapter.
+\newcommand{\currentchapterpath}{}
+\newcommand{\chapterinput}[1]{\subimport{\currentchapterpath}{#1.tex}}
 
 \title{Mathematical Methods for Physics}
 \author{Kai Luo}
@@ -38,6 +48,9 @@
 \include{chapters/ch01/ch01}
 \include{chapters/ch02/ch02}
 \include{chapters/ch03/ch03}
+\include{chapters/ch04/ch04}
+\include{chapters/ch05/ch05}
+\include{chapters/ch06/ch06}
 
 \backmatter
 

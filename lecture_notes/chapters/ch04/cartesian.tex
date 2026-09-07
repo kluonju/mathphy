@@ -1,0 +1,57 @@
+\section{Coordinate choice and a polar-coordinate application}
+
+The success of separation of variables depends on matching coordinates to the boundary geometry. Cartesian coordinates are natural for rectangular domains and fixed strings, while circular boundaries suggest polar coordinates. The following electrostatic example also shows an important practical point: a coordinate system that makes the PDE familiar may still be a poor choice if it makes the boundary conditions impossible to separate.
+
+Consider a horizontal transmission line in the approximately uniform electric field between a charged cloud and the ground. The conducting wire is idealized as an infinitely long conducting cylinder of radius $a$. Induced charge appears on its surface and distorts the otherwise uniform field near the wire, while far away the original background field remains essentially unchanged.
+
+Take the cylinder axis as the $z$ axis. The geometry and the far field are independent of $z$, so the three-dimensional electrostatic problem reduces to the transverse $xy$ plane. Away from the conductor there is no charge, so the potential $V$ satisfies $V_{xx}+V_{yy}=0$. The circular boundary $x^2+y^2=a^2$, however, demonstrates the weakness of a Cartesian product trial solution: $V=X(x)Y(y)$ would lead on the boundary to
+\begin{equation}
+X(x)Y\left(\sqrt{a^2-x^2}\right)=0,
+\end{equation}
+which cannot be separated into a condition on $X$ alone and one on $Y$ alone. Polar coordinates make the same boundary simply $r=a$.
+
+Away from the cylinder there is no charge, so the potential $V(r,\phi)$ satisfies the two-dimensional Laplace equation
+\begin{equation}
+V_{rr}+\frac{1}{r}V_r+\frac{1}{r^2}V_{\phi\phi}=0,
+\qquad r>a.
+\label{eq:ch04-polar-laplace}
+\end{equation}
+Choosing the conductor as the zero of potential imposes $V(a,\phi)=0$. This is legitimate because an electrostatic conductor is an equipotential and only potential differences are physically meaningful. Take the $x$ axis parallel to the background field $\mathbf E_0$. At large distance, $E_x=E_0$ and $E_y=0$, so $-\partial V/\partial x=E_0$ and the uniform-field potential is $-E_0x=-E_0r\cos\phi$. A cylinder carrying charge $q_0$ per unit length adds the logarithmic far-field contribution $-(q_0/2\pi\varepsilon_0)\ln r$. Thus the far-field condition is
+\begin{equation}
+V(r,\phi)\sim V_\infty-
+\frac{q_0}{2\pi\varepsilon_0}\ln r-E_0r\cos\phi
+\qquad (r\to\infty),
+\end{equation}
+where the additive constant $V_\infty$ reflects the arbitrary choice of potential zero.
+
+Use the separated form $V=R(r)\Phi(\phi)$. Dividing the substituted equation by $R\Phi$ and multiplying by $r^2$ gives
+\begin{equation}
+\frac{r}{R}\frac{\mathrm d}{\mathrm dr}\left(r\frac{\mathrm dR}{\mathrm dr}\right)
+=-\frac{\Phi''}{\Phi}=m^2.
+\end{equation}
+The left side depends only on $r$, whereas the right side depends only on $\phi$; therefore both must equal one separation constant, written $m^2$. The angular coordinate labels the same physical point after an increment of $2\pi$, so the natural condition is $\Phi(\phi+2\pi)=\Phi(\phi)$. This periodicity excludes nonperiodic solutions and selects the angular eigenfunctions $\cos(m\phi)$ and $\sin(m\phi)$ for nonnegative integers $m$. The radial equation $r^2R''+rR'-m^2R=0$ is an Euler equation. The substitution $r=e^s$ turns it into a constant-coefficient equation, giving factors $r^m$ and $r^{-m}$ for $m\geq1$, while the $m=0$ solutions are $1$ and $\ln r$. Thus the general exterior harmonic function is
+\begin{equation}
+\begin{aligned}
+V={}&C_0+D_0\ln r\\
+&+\sum_{m=1}^{\infty}\left[
+\left(A_mr^m+C_mr^{-m}\right)\cos(m\phi)
++\left(B_mr^m+D_mr^{-m}\right)\sin(m\phi)\right].
+\end{aligned}
+\end{equation}
+Imposing $V(a,\phi)=0$ and using uniqueness of Fourier coefficients gives
+\begin{equation}
+C_0=-D_0\ln a,\qquad C_m=-a^{2m}A_m,
+\qquad D_m=-a^{2m}B_m.
+\end{equation}
+Thus every growing radial term is paired with a decaying term so that the value cancels at $r=a$. The far-field condition then determines which of these modes remain. Since its largest power is $r^1$, all growing terms $r^m$ with $m>1$ must be absent: otherwise they would dominate the specified far field.
+
+Only the $m=1$ cosine mode is required by the uniform far field. Applying both boundary conditions gives the neutral-cylinder potential
+\begin{equation}
+\boxed{V(r,\phi)=-E_0\left(r-\frac{a^2}{r}\right)\cos\phi.}
+\end{equation}
+For a cylinder carrying charge $q_0$ per unit length, the complete result is
+\begin{equation}
+V(r,\phi)=\frac{q_0}{2\pi\varepsilon_0}\ln\frac{a}{r}
+-E_0\left(r-\frac{a^2}{r}\right)\cos\phi.
+\end{equation}
+The logarithmic term is the potential of the charge on the long cylinder. In the exterior region, it has the same form as the potential of a line charge placed on the cylinder axis. The first cosine term is the undisturbed uniform field, while the decaying term is the correction produced by induced surface charge. At the two points $r=a$, $\phi=0,\pi$ of a neutral cylinder, the normal field has magnitude $2E_0$, showing explicitly how the field is enhanced at the points aligned with the external field. Those are consequently locations where electrical breakdown is more likely. On the $y$ axis, where $\phi=\pm\pi/2$, the induced correction and the uniform-field potential both vanish, so the potential equals that of the conductor. This example shows why coordinate choice is not cosmetic: circular geometry turns a difficult Cartesian boundary condition into a simple condition at constant $r$.

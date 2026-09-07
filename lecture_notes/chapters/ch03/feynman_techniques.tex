@@ -1,0 +1,31 @@
+\section{Feynman techniques for integrals}
+
+Several useful integration methods are associated with Richard Feynman's habit of embedding a difficult integral in a family of simpler ones. Complex substitution is the shortest example. With $a>0$,
+\begin{align}
+\int_0^\infty e^{-ax}\cos(bx)\,dx
+&=\frac12\int_0^\infty\left(e^{-(a-\mathrm{i}b)x}+e^{-(a+\mathrm{i}b)x}\right)\,dx\\
+&=\frac{a}{a^2+b^2}.
+\end{align}
+
+Differentiating this identity with respect to $a$ gives a new integral without beginning again:
+\begin{equation}
+\int_0^\infty xe^{-ax}\cos(bx)\,dx
+=-\frac{d}{da}\frac{a}{a^2+b^2}
+=\frac{a^2-b^2}{(a^2+b^2)^2}.
+\end{equation}
+For parameter-dependent endpoints, the general rule is
+\begin{align}
+\frac{d}{d\alpha}\int_{x_1(\alpha)}^{x_2(\alpha)}f(x,\alpha)\,dx
+={}&\int_{x_1}^{x_2}\frac{\partial f}{\partial\alpha}\,dx
++f(x_2,\alpha)x_2'(\alpha)-f(x_1,\alpha)x_1'(\alpha).
+\end{align}
+
+Adding a damping factor is another useful construction. Define
+\begin{equation}
+S(a)=\int_0^\infty e^{-ax}\frac{\sin x}{x}\,dx.
+\end{equation}
+Then $S'(a)=-\int_0^\infty e^{-ax}\sin x\,dx=-1/(1+a^2)$. The condition $S(a)\to0$ as $a\to\infty$ determines
+\begin{equation}
+S(a)=\frac{\pi}{2}-\arctan a,
+\qquad \int_0^\infty\frac{\sin x}{x}\,dx=S(0)=\frac{\pi}{2}.
+\end{equation}

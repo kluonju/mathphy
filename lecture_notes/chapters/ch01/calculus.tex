@@ -1,0 +1,58 @@
+\section{Calculus}
+
+\subsection{Limits, continuity, and derivatives}
+
+The statement $\lim_{x\to x_0}f(x)=L$ means that $f(x)$ approaches $L$ as $x$ approaches $x_0$. A function is continuous at $x_0$ if this limit exists and equals $f(x_0)$. Its derivative is defined by
+\begin{equation}
+f'(x)=\lim_{\Delta x\to0}\frac{f(x+\Delta x)-f(x)}{\Delta x}.
+\end{equation}
+The standard rules are
+\begin{align}
+(cf)'&=cf', & (f\pm g)'&=f'\pm g', & (fg)'&=f'g+fg',\\
+\left(\frac{f}{g}\right)'&=\frac{f'g-fg'}{g^2}, & (f\circ g)'(x)&=f'(g(x))g'(x).
+\end{align}
+Frequently used elementary derivatives are
+\begin{equation}
+(x^n)'=nx^{n-1},\quad (e^x)'=e^x,\quad (a^x)'=a^x\ln a,\quad (\ln x)'=\frac1x,
+\end{equation}
+\begin{equation}
+(\sin x)'=\cos x,\quad (\cos x)'=-\sin x,\quad (\tan x)'=\sec^2x,\quad (\arctan x)'=\frac{1}{1+x^2}.
+\end{equation}
+
+\subsection{Integrals and the Leibniz rule}
+
+An antiderivative $F$ of $f$ satisfies $F'=f$, so
+\begin{equation}
+\int f(x)\,\mathrm{d}x=F(x)+C,
+\qquad
+\int_a^b f(x)\,\mathrm{d}x=F(b)-F(a).
+\end{equation}
+The two central integration methods are
+\begin{equation}
+\int u\,\mathrm{d}v=uv-\int v\,\mathrm{d}u,
+\qquad
+\int f(g(x))g'(x)\,\mathrm{d}x=\int f(u)\,\mathrm{d}u\quad(u=g(x)).
+\end{equation}
+For variable bounds and a parameter-dependent integrand, the Leibniz rule is
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d}x}\int_{a(x)}^{b(x)}f(x,t)\,\mathrm{d}t
+&=f(x,b(x))b'(x)-f(x,a(x))a'(x)\nonumber\\
+&\quad+\int_{a(x)}^{b(x)}\frac{\partial f}{\partial x}(x,t)\,\mathrm{d}t.
+\end{align}
+In particular, $\mathrm{d}/\mathrm{d}x\int_a^x f(t)\,\mathrm{d}t=f(x)$.
+
+\subsection{Multivariable calculus and Taylor series}
+
+For $f(x_1,\ldots,x_n)$, write $\partial f/\partial x_i$ for a partial derivative and
+\begin{equation}
+\nabla f=\left(\frac{\partial f}{\partial x_1},\ldots,\frac{\partial f}{\partial x_n}\right)
+\end{equation}
+for the gradient. If each $x_i$ depends on $t$, the chain rule becomes
+\begin{equation}
+\frac{\mathrm{d}f}{\mathrm{d}t}=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\frac{\mathrm{d}x_i}{\mathrm{d}t}.
+\end{equation}
+When $f$ is sufficiently smooth near $x_0$, its Taylor series is
+\begin{equation}
+f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n.
+\end{equation}
+Taylor expansions underpin local approximations, perturbation methods, and the series solutions used in later chapters.

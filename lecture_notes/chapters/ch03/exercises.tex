@@ -1,0 +1,44 @@
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+The following exercises collect longer derivations and applications from this chapter.
+
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\begin{enumerate}
+    \item Prove the triangle inequality $\bigl||z|-|w|\bigr|\leq|z\pm w|\leq|z|+|w|$ geometrically and algebraically.
+
+    \item Use De Moivre's formula to derive $\sin(5\theta)=5\sin\theta-20\sin^3\theta+16\sin^5\theta$.
+
+    \item Starting from the definition of the complex derivative, derive the Cauchy--Riemann equations. Then prove that continuously differentiable $u$ and $v$ satisfying those equations define an analytic function.
+
+    \item Derive the polar-coordinate Cauchy--Riemann equations
+    \begin{equation*}
+    u_r=\frac{1}{r}v_\theta,\qquad \frac{1}{r}u_\theta=-v_r.
+    \end{equation*}
+
+    \item Show from the Cauchy--Riemann equations that the real and imaginary parts of an analytic function are harmonic and that their level curves are orthogonal.
+
+    \item Find the branch points of $\sqrt{z^2+1}$ and explain why a circuit enclosing exactly one of them changes the sign of the function.
+
+    \item Evaluate $\int_\ell z^2\,dz$ from $0$ to $2+\mathrm{i}$ along both the straight segment and the two-segment path through $2$. Explain why the results agree.
+
+    \item Prove Cauchy's integral formula by removing a small circle about the point $z$ and taking its radius to zero.
+
+    \item Expand $\log z$ about $z=1$ and state its disk of convergence for a chosen branch. Expand $e^{1/z}$ about $z=0$ and classify the singularity.
+
+    \item Find the Laurent expansions and residues of $1/[z(z-2)^3]$ at $z=0$ and $z=2$.
+
+    \item Use residues to evaluate $\int_0^{2\pi}(1+a\cos\theta)^{-1}\,d\theta$ for $|a|<1$.
+
+    \item Use an upper-half-plane contour to derive $\int_{-\infty}^{\infty}(1+x^2)^{-1}\,dx=\pi$, then use Jordan's lemma to evaluate $\int_0^\infty\cos(mx)/(x^2+a^2)\,dx$.
+
+    \item With $G(t)=\int_0^1(x^t-1)/\log x\,dx$, differentiate under the integral sign and evaluate $\int_0^1(x^2-1)/\log x\,dx$.
+
+    \item Derive the maximum modulus principle from Cauchy's integral formula, then use it to give a detailed proof of Liouville's theorem and the fundamental theorem of algebra.
+
+    \item Prove the ratio, root, and alternating-series tests for complex series by applying the real tests to $|w_n|$. Determine the convergence behavior on the boundary of $\sum_{n=0}^\infty z^n$.
+
+    \item Complete the keyhole-contour proof of $\int_0^\infty x^{\alpha-1}/(1+x)\,dx=\pi/\sin(\pi\alpha)$ by estimating the two circular arcs.
+
+    \item Give the contour rotation and arc estimate required for the Fresnel integrals. Then use a Feynman parameter to establish the Gaussian integral.
+\end{enumerate}

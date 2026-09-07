@@ -1,0 +1,85 @@
+\section{Complex functions, domains, and branches}
+
+A complex function maps a domain $D\subset\mathbb{C}$ to complex values, and can be written
+\begin{equation}
+f(z)=u(x,y)+\mathrm{i}v(x,y),\qquad z=x+\mathrm{i}y,
+\end{equation}
+where $u$ and $v$ are real-valued functions. A domain is an open connected set. Its basic examples are the disk $|z-z_0|<R$ and the annulus $r<|z-z_0|<R$.
+
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{region.tex}
+    \caption{A neighborhood, an interior point, an exterior point, and a boundary point.}
+    \label{fig:ch06-domain}
+\end{figure}
+
+The exponential definitions of trigonometric and hyperbolic functions extend them naturally to complex arguments:
+\begin{equation}
+\cos z=\frac{e^{\mathrm{i}z}+e^{-\mathrm{i}z}}{2},\qquad
+\sin z=\frac{e^{\mathrm{i}z}-e^{-\mathrm{i}z}}{2\mathrm{i}},
+\end{equation}
+and hence
+\begin{equation}
+\sin(x+\mathrm{i}y)=\sin x\cosh y+\mathrm{i}\cos x\sinh y,
+\quad
+\cos(x+\mathrm{i}y)=\cos x\cosh y-\mathrm{i}\sin x\sinh y.
+\end{equation}
+Unlike its real counterpart, $|\sin z|$ is not bounded by one.
+
+\begin{example}
+Using the exponential definition and then taking the modulus gives
+\begin{equation}
+|\sin(x+\mathrm{i}y)|
+=\frac12\sqrt{e^{2y}+e^{-2y}+2(\sin^2x-\cos^2x)}.
+\end{equation}
+This explicitly shows why a sine of a complex argument can have arbitrarily large modulus.
+\end{example}
+
+For completeness, the calculation begins with
+\begin{align}
+\sin(x+\mathrm{i}y)
+&=\frac{e^{\mathrm{i}x-y}-e^{-\mathrm{i}x+y}}{2\mathrm{i}}\nonumber\\
+&=\sin x\cosh y+\mathrm{i}\cos x\sinh y.
+\end{align}
+Squaring the real and imaginary parts gives the displayed modulus formula directly.
+
+The hyperbolic functions are the corresponding exponential combinations. In particular,
+\begin{equation}
+\cosh(\mathrm{i}z)=\cos z,\qquad \sinh(\mathrm{i}z)=\mathrm{i}\sin z,
+\end{equation}
+and inverse trigonometric functions may be expressed through logarithms:
+\begin{align}
+\sin^{-1}z&=-\mathrm{i}\log\left(\mathrm{i}z+\sqrt{1-z^2}\right),&
+\tan^{-1}z&=\frac{\mathrm{i}}{2}\left[\log(1-\mathrm{i}z)-\log(1+\mathrm{i}z)\right],\\
+\sinh^{-1}z&=\log\left(z+\sqrt{1+z^2}\right),&
+\tanh^{-1}z&=\frac12\left[\log(1+z)-\log(1-z)\right].
+\end{align}
+
+\begin{example}
+For $z=x+\mathrm{i}y$, multiplying numerator and denominator by a conjugate in the exponential definition yields
+\begin{equation}
+\tanh\frac{z}{2}=\frac{\sinh x+\mathrm{i}\sin y}{\cosh x+\cos y}.
+\end{equation}
+\end{example}
+
+The logarithm and noninteger powers are multivalued because their arguments are multivalued:
+\begin{equation}
+\log z=\log|z|+\mathrm{i}\operatorname{Arg}z,
+\qquad z^s=e^{s\log z}.
+\end{equation}
+A branch point is a point around which continuation changes the value of a function. For $z^{1/2}$, a circuit about the origin exchanges the two values. A branch cut prevents such a circuit and defines a single-valued branch.
+
+\begin{figure}[htb]
+    \centering
+    \scalebox{0.62}{\subimport{tikz/}{branchcut.tex}}
+    \caption{A branch cut joining the branch points of $\sqrt{z^2+1}$.}
+    \label{fig:ch06-branch-cut}
+\end{figure}
+
+For $\sqrt{z^2+1}=\sqrt{z-\mathrm{i}}\sqrt{z+\mathrm{i}}$, the branch points are $\pm\mathrm{i}$. Joining them by a cut is one convenient choice; the particular cut is conventional, but a branch must be specified before contour arguments are made.
+
+Write $z-\mathrm{i}=r_1e^{\mathrm{i}\theta_1}$ and $z+\mathrm{i}=r_2e^{\mathrm{i}\theta_2}$. Then
+\begin{equation}
+\sqrt{z^2+1}=\sqrt{r_1r_2}\,e^{\mathrm{i}(\theta_1+\theta_2)/2}.
+\end{equation}
+A loop surrounding neither branch point changes neither argument; a loop around exactly one increases exactly one $\theta_j$ by $2\pi$ and reverses the sign; a loop around both increases their sum by $4\pi$ and restores the original value. This is the explicit monodromy reason a cut joining $-\mathrm{i}$ to $\mathrm{i}$ produces a single-valued branch.
