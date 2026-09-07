@@ -1,0 +1,128 @@
+\section{第二章：矢量分析}
+
+\begin{frame}{第二章：学习目标}
+  \begin{itemize}
+    \item 用分量、模与方向描述物理矢量。
+    \item 掌握点积、叉积及其几何意义。
+    \item 用 $\nabla$ 组织梯度、散度和旋度。
+  \end{itemize}
+  \begin{block}{核心思想}
+    矢量把大小与方向同时编码；微分算子刻画场在空间中的局部变化。
+  \end{block}
+\end{frame}
+
+\begin{frame}{矢量的分量表示}
+  在三维直角坐标中，任意矢量可写为
+  \[
+    \mathbf{A}=A_x\mathbf{e}_x+A_y\mathbf{e}_y+A_z\mathbf{e}_z,
+    \qquad
+    |\mathbf{A}|=\sqrt{A_x^2+A_y^2+A_z^2}.
+  \]
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{标量}
+      只有大小，例如质量、温度、电荷。
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{矢量}
+      有大小和方向，例如位移、速度、力与电场。
+    \end{block}
+  \end{columns}
+  \[
+    \alpha\mathbf{A}=(\alpha A_x)\mathbf{e}_x+(\alpha A_y)\mathbf{e}_y+(\alpha A_z)\mathbf{e}_z.
+  \]
+  负的比例因子会反转矢量方向。
+\end{frame}
+
+\begin{frame}{加减法与点积}
+  \begin{block}{分量运算}
+    \[
+      \mathbf{A}\pm\mathbf{B}=(A_x\pm B_x,\ A_y\pm B_y,\ A_z\pm B_z).
+    \]
+    加法对应平行四边形法则；$\mathbf{B}-\mathbf{A}$ 是从 $\mathbf{A}$ 的端点指向 $\mathbf{B}$ 的端点的矢量。
+  \end{block}
+  \begin{block}{点积}
+    \[
+      \mathbf{A}\cdot\mathbf{B}=|\mathbf{A}|\,|\mathbf{B}|\cos\theta
+      =A_xB_x+A_yB_y+A_zB_z.
+    \]
+  \end{block}
+  \begin{itemize}
+    \item 点积为零 $\Longleftrightarrow$ 两个非零矢量正交。
+    \item 在力学中，$W=\mathbf{F}\cdot\Delta\mathbf{r}$ 表示力做的功：只有沿位移方向的分量贡献功。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{叉积与三重积}
+  \[
+    |\mathbf{A}\times\mathbf{B}|=|\mathbf{A}|\,|\mathbf{B}|\sin\theta.
+  \]
+  $\mathbf{A}\times\mathbf{B}$ 垂直于 $\mathbf{A}$ 和 $\mathbf{B}$，方向由右手定则确定；其模等于两矢量张成平行四边形的面积。
+  \begin{block}{行列式写法}
+    \[
+      \mathbf{A}\times\mathbf{B}=
+      \begin{vmatrix}
+        \mathbf{e}_x&\mathbf{e}_y&\mathbf{e}_z\\
+        A_x&A_y&A_z\\
+        B_x&B_y&B_z
+      \end{vmatrix}.
+    \]
+  \end{block}
+  \[
+    \mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})
+  \]
+  称为标量三重积，其绝对值是平行六面体体积，正负号记录三矢量的取向。
+\end{frame}
+
+\begin{frame}{从标量场到矢量场}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{梯度}
+      对标量场 $\phi(x,y,z)$，
+      \[
+        \nabla\phi=\left(\frac{\partial\phi}{\partial x},
+        \frac{\partial\phi}{\partial y},
+        \frac{\partial\phi}{\partial z}\right).
+      \]
+      指向增长最快方向。
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{散度与旋度}
+      对矢量场 $\mathbf{F}$，
+      \[
+        \nabla\cdot\mathbf{F},\qquad \nabla\times\mathbf{F}.
+      \]
+      前者测量局部源汇，后者测量局部旋转。
+    \end{block}
+  \end{columns}
+  \begin{alertblock}{重要恒等式}
+    \[
+      \nabla\times(\nabla\phi)=\mathbf{0},
+      \qquad
+      \nabla\cdot(\nabla\times\mathbf{F})=0.
+    \]
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{例：高斯定律与散度}
+  电场 $\mathbf{E}$ 穿过闭曲面 $S$ 的通量为
+  \[
+    \Phi_E=\oiint_S\mathbf{E}\cdot\mathrm{d}\mathbf{S}.
+  \]
+  高斯定律给出
+  \[
+    \oiint_S\mathbf{E}\cdot\mathrm{d}\mathbf{S}=\frac{Q_{\mathrm{enc}}}{\varepsilon_0}.
+  \]
+  利用散度定理，
+  \[
+    \oiint_S\mathbf{E}\cdot\mathrm{d}\mathbf{S}
+    =\iiint_V(\nabla\cdot\mathbf{E})\,\mathrm{d}V,
+  \]
+  因而得到微分形式
+  \[
+    \nabla\cdot\mathbf{E}=\frac{\rho}{\varepsilon_0}.
+  \]
+  \begin{block}{读法}
+    电荷密度 $\rho$ 是电场发散的局部来源：正电荷是源，负电荷是汇。
+  \end{block}
+\end{frame}

@@ -1,0 +1,355 @@
+\section{集合、逻辑与映射}
+
+\begin{frame}{本章目标}
+  \begin{itemize}
+    \item 统一后续课程使用的基本记号与语言。
+    \item 回顾三角函数、微积分与线性代数中的核心工具。
+    \item 认识这些工具如何服务于复变函数、傅里叶分析和微分方程。
+  \end{itemize}
+  \begin{block}{关键词}
+    集合与逻辑、函数、三角恒等式、导数与积分、矩阵与特征值。
+  \end{block}
+\end{frame}
+
+\begin{frame}{常用数集与逻辑符号}
+  \small
+  \begin{columns}[T]
+    \column{0.43\textwidth}
+    \textbf{数集}
+    \begin{itemize}
+      \item $\mathbb{N}$：自然数集
+      \item $\mathbb{Z}$：整数集
+      \item $\mathbb{R}$：实数集
+      \item $\mathbb{C}$：复数集
+    \end{itemize}
+    \[
+      \mathbb{N}\subset\mathbb{Z}\subset\mathbb{R}\subset\mathbb{C}.
+    \]
+    \column{0.57\textwidth}
+    \textbf{逻辑语言}
+    \begin{itemize}
+      \item $\forall$：对任意一个；$\exists$：存在。
+      \item $I\Rightarrow II$：$I$ 是 $II$ 的充分条件。
+      \item $I\Leftrightarrow II$：$I$ 与 $II$ 互为充分必要条件。
+      \item $I\equiv II$：用 $II$ 定义 $I$。
+      \item $\square$：证明结束。
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{映射与函数}
+  \begin{definition}[映射]
+    对非空集合 $A,B$，若按规则 $f$，每个 $x\in A$ 唯一对应一个 $y\in B$，则称 $f$ 为从 $A$ 到 $B$ 的映射：
+    \[
+      f:A\to B,\qquad y=f(x).
+    \]
+  \end{definition}
+  \begin{itemize}
+    \item $A$ 称为\blue{定义域}，$B$ 称为\blue{陪域}，像集为
+    \[
+      f(A)=\{f(x)\mid x\in A\}.
+    \]
+    \item \red{单射}：$f(x_1)=f(x_2)\Rightarrow x_1=x_2$。
+    \item \red{满射}：每个 $y\in B$ 至少是一个 $x\in A$ 的像。
+    \item \red{双射}：既是单射又是满射，因此可以建立一一对应。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{例：如何判断映射的类型？}
+  考虑映射
+  \[
+    f:\mathbb{R}\to[0,\infty),\qquad f(x)=x^2.
+  \]
+  \begin{enumerate}
+    \item 对任意 $x\in\mathbb{R}$，都有唯一的 $x^2\in[0,\infty)$，因此 $f$ 是映射。
+    \item 它不是单射：例如 $f(1)=f(-1)=1$，但 $1\ne-1$。
+    \item 它是满射：给定任意 $y\geq0$，取 $x=\sqrt{y}$ 或 $x=-\sqrt{y}$，便有 $f(x)=y$。
+  \end{enumerate}
+  \begin{alertblock}{关键点}
+    判断单射和满射时，必须先看清\red{定义域}与\blue{陪域}；同一个公式在不同集合之间可能具有不同性质。
+  \end{alertblock}
+\end{frame}
+
+\section{三角函数}
+
+\begin{frame}{欧拉公式：三角与指数的桥梁}
+  \begin{block}{欧拉公式}
+    \[
+      e^{\mathrm{i}\theta}=\cos\theta+\mathrm{i}\sin\theta.
+    \]
+  \end{block}
+  因而
+  \[
+    \cos\theta=\frac{e^{\mathrm{i}\theta}+e^{-\mathrm{i}\theta}}{2},
+    \qquad
+    \sin\theta=\frac{e^{\mathrm{i}\theta}-e^{-\mathrm{i}\theta}}{2\mathrm{i}}.
+  \]
+  \begin{itemize}
+    \item 用指数形式处理振动、波动和相位，运算通常更简洁。
+    \item 在复积分中令 $z=e^{\mathrm{i}\theta}$，可将三角有理式转化为复变量的有理式。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{常用三角恒等式}
+  \scriptsize
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \textbf{基本与倍角公式}
+    \begin{align*}
+      \sin^2\theta+\cos^2\theta&=1,\\
+      \sin2\alpha&=2\sin\alpha\cos\alpha,\\
+      \cos2\alpha&=\cos^2\alpha-\sin^2\alpha,\\
+      \tan2\alpha&=\frac{2\tan\alpha}{1-\tan^2\alpha}.
+    \end{align*}
+    \column{0.52\textwidth}
+    \textbf{和差与积化和差}
+    \begin{align*}
+      \sin(\alpha\pm\beta)&=\sin\alpha\cos\beta
+      \pm\cos\alpha\sin\beta,\\
+      \cos(\alpha\pm\beta)&=\cos\alpha\cos\beta
+      \mp\sin\alpha\sin\beta,\\
+      \sin\alpha\cos\beta&=\tfrac12[\sin(\alpha+\beta)+\sin(\alpha-\beta)],\\
+      \cos\alpha\cos\beta&=\tfrac12[\cos(\alpha+\beta)+\cos(\alpha-\beta)].
+    \end{align*}
+  \end{columns}
+  \vspace{0.4em}
+  这些恒等式是推导傅里叶系数与验证正交性的基本工具。
+\end{frame}
+
+\begin{frame}{从积化和差到傅里叶正交性}
+  \small
+  在区间 $[-\pi,\pi]$ 上，利用
+  \[
+    \cos mx\cos nx=
+    \frac12\left[\cos((m-n)x)+\cos((m+n)x)\right]
+  \]
+  可以计算不同余弦波的内积。
+  \begin{align*}
+    \int_{-\pi}^{\pi}\cos mx\cos nx\,\mathrm{d}x
+    &=\frac12\int_{-\pi}^{\pi}\cos((m-n)x)\,\mathrm{d}x\\
+    &\quad+\frac12\int_{-\pi}^{\pi}\cos((m+n)x)\,\mathrm{d}x.
+  \end{align*}
+  若 $m\ne n$ 且 $m,n\geq1$，两个积分都为 $0$，于是
+  \[
+    \int_{-\pi}^{\pi}\cos mx\cos nx\,\mathrm{d}x=0.
+  \]
+  \begin{block}{物理含义}
+    不同频率的纯振动模式彼此正交，因此可以分别测量并组合，形成傅里叶展开。
+  \end{block}
+\end{frame}
+
+\section{微积分}
+
+\begin{frame}{极限、连续与导数}
+  \begin{itemize}
+    \item $\lim_{x\to x_0}f(x)=L$ 表示 $x$ 趋近 $x_0$ 时，$f(x)$ 趋近 $L$。
+    \item 若极限等于 $f(x_0)$，则 $f$ 在 $x_0$ 处连续。
+  \end{itemize}
+  \begin{block}{导数定义}
+    \[
+      f'(x)=\lim_{\Delta x\to0}
+      \frac{f(x+\Delta x)-f(x)}{\Delta x}.
+    \]
+  \end{block}
+  \begin{align*}
+    (fg)'&=f'g+fg', &
+    \left(\frac{f}{g}\right)'&=\frac{f'g-fg'}{g^2},\\
+    (f\circ g)'(x)&=f'(g(x))g'(x).
+  \end{align*}
+  \[
+    (e^x)'=e^x,\quad (\sin x)'=\cos x,\quad
+    (\cos x)'=-\sin x,\quad (\arctan x)'=\frac{1}{1+x^2}.
+  \]
+\end{frame}
+
+\begin{frame}{导数描述瞬时变化率}
+  设一维运动的位置为
+  \[
+    x(t)=3t^2-2t \quad (\mathrm{m}).
+  \]
+  导数给出瞬时速度，二阶导数给出加速度：
+  \[
+    v(t)=\frac{\mathrm{d}x}{\mathrm{d}t}=6t-2,
+    \qquad
+    a(t)=\frac{\mathrm{d}^2x}{\mathrm{d}t^2}=6.
+  \]
+  \begin{itemize}
+    \item $t=1\,\mathrm{s}$ 时，$v(1)=4\,\mathrm{m/s}$：物体向正方向运动。
+    \item $a=6\,\mathrm{m/s^2}$ 为常数：速度每秒增加 $6\,\mathrm{m/s}$。
+    \item 解 $v(t)=0$ 可找到速度改变方向的候选时刻。
+  \end{itemize}
+  \begin{alertblock}{读公式的方法}
+    自变量表示什么，导数的单位就是什么量除以什么量；单位常常能帮助检查推导是否合理。
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{积分与微积分基本定理}
+  若 $F'(x)=f(x)$，则
+  \[
+    \int f(x)\,\mathrm{d}x=F(x)+C,
+    \qquad
+    \int_a^b f(x)\,\mathrm{d}x=F(b)-F(a).
+  \]
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{分部积分}
+      \[
+        \int u\,\mathrm{d}v=uv-\int v\,\mathrm{d}u.
+      \]
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{换元积分}
+      \[
+        \int f(g(x))g'(x)\,\mathrm{d}x
+        =\int f(u)\,\mathrm{d}u.
+      \]
+    \end{block}
+  \end{columns}
+  \begin{alertblock}{变上限积分}
+    \[
+      \frac{\mathrm{d}}{\mathrm{d}x}\int_a^x f(t)\,\mathrm{d}t=f(x).
+    \]
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{例：由速度恢复位移}
+  若速度为 $v(t)=2t+1$，并且 $x(0)=3$，则从 $0$ 到 $T$ 的位移为
+  \[
+    \Delta x=\int_0^T v(t)\,\mathrm{d}t
+    =\int_0^T(2t+1)\,\mathrm{d}t
+    =T^2+T.
+  \]
+  因此位置函数为
+  \[
+    x(T)=x(0)+\Delta x=T^2+T+3.
+  \]
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{微分}
+      已知位置，求局部变化率：
+      \[
+        x(t)\longmapsto v(t).
+      \]
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{积分}
+      已知变化率和初值，累积恢复状态：
+      \[
+        v(t),\ x(0)\longmapsto x(t).
+      \]
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Leibniz 法则、多元函数与 Taylor 展开}
+  \begin{block}{Leibniz 法则}
+    \begin{align*}
+      \frac{\mathrm{d}}{\mathrm{d}x}\int_{a(x)}^{b(x)}f(x,t)\,\mathrm{d}t
+      &=f(x,b(x))b'(x)-f(x,a(x))a'(x)\\
+      &\quad+\int_{a(x)}^{b(x)}\frac{\partial f}{\partial x}(x,t)\,\mathrm{d}t.
+    \end{align*}
+  \end{block}
+  \begin{itemize}
+    \item 梯度：$\nabla f=(\partial f/\partial x_1,\ldots,\partial f/\partial x_n)$。
+    \item 多元链式法则：
+    \[
+      \frac{\mathrm{d}f}{\mathrm{d}t}=
+      \sum_{i=1}^n\frac{\partial f}{\partial x_i}\frac{\mathrm{d}x_i}{\mathrm{d}t}.
+    \]
+    \item Taylor 展开给出局部近似：
+    \[
+      f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n.
+    \]
+  \end{itemize}
+\end{frame}
+
+\section{线性代数基础}
+
+\begin{frame}{向量空间、基与矩阵}
+  \begin{itemize}
+    \item 向量组 $\mathbf{v}_1,\ldots,\mathbf{v}_n$ \red{线性无关}，当且仅当
+    \[
+      c_1\mathbf{v}_1+\cdots+c_n\mathbf{v}_n=\mathbf{0}
+      \Rightarrow c_1=\cdots=c_n=0.
+    \]
+    \item 一组能唯一表示空间中任意向量的线性无关向量称为\blue{基}；基的个数是空间的维数。
+    \item $m\times n$ 矩阵 $A=(a_{ij})$ 是从 $\mathbb{R}^n$ 到 $\mathbb{R}^m$ 的线性映射。
+  \end{itemize}
+  \begin{block}{行列式与可逆性}
+    \[
+      \det(AB)=\det A\det B,
+      \qquad
+      \det A\ne0\Longleftrightarrow A^{-1}\text{ 存在}.
+    \]
+  \end{block}
+\end{frame}
+
+\begin{frame}{内积、正交与特征值}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{内积与正交}
+      \[
+        \langle\mathbf{u},\mathbf{v}\rangle
+        =\mathbf{u}\cdot\mathbf{v}=\sum_i u_iv_i.
+      \]
+      若 $\langle\mathbf{u},\mathbf{v}\rangle=0$，则两向量正交。
+      \[
+        \langle f,g\rangle=\int_a^b f(x)g(x)\,\mathrm{d}x
+      \]
+      是函数空间内积的典型例子。
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{特征值问题}
+      \[
+        A\mathbf{v}=\lambda\mathbf{v},
+        \qquad \mathbf{v}\ne\mathbf{0}.
+      \]
+      特征值由
+      \[
+        \det(A-\lambda I)=0
+      \]
+      确定。实对称矩阵的特征值为实数；不同特征值的特征向量相互正交。
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：一个 $2\times2$ 特征值问题}
+  \small
+  令
+  \[
+    A=\begin{pmatrix}2&1\\1&2\end{pmatrix}.
+  \]
+  特征方程为
+  \[
+    \det(A-\lambda I)
+    =\begin{vmatrix}2-\lambda&1\\1&2-\lambda\end{vmatrix}
+    =(2-\lambda)^2-1=0,
+  \]
+  所以 $\lambda_1=3$，$\lambda_2=1$。分别代入 $(A-\lambda I)\mathbf{v}=0$，得到
+  \[
+    \mathbf{v}_1=\begin{pmatrix}1\\1\end{pmatrix},
+    \qquad
+    \mathbf{v}_2=\begin{pmatrix}1\\-1\end{pmatrix}.
+  \]
+  \begin{block}{解释}
+    矩阵一般会改变向量的方向；特征向量是少数方向，在变换后方向保持不变，只被放大、缩小或反向。
+  \end{block}
+\end{frame}
+
+\begin{frame}{Gram--Schmidt 正交化与本章小结}
+  对线性无关组 $f_1,\ldots,f_n$，递推定义
+  \[
+    g_1=f_1,\qquad
+    g_k=f_k-\sum_{j=1}^{k-1}
+    \frac{\langle f_k,g_j\rangle}{\langle g_j,g_j\rangle}g_j.
+  \]
+  归一化后的 $g_k$ 构成一组标准正交基。
+  \begin{block}{后续章节中的作用}
+    \begin{itemize}
+      \item 复分析：复数、欧拉公式与映射。
+      \item 向量分析：梯度、偏导数与链式法则。
+      \item 傅里叶分析：三角恒等式、函数内积与正交基。
+      \item 微分方程：矩阵、特征值和特征函数。
+    \end{itemize}
+  \end{block}
+\end{frame}

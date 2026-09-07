@@ -1,0 +1,105 @@
+\section{第五章：Fourier 级数与 Fourier 变换}
+
+\begin{frame}{第五章：为什么要做频谱分解？}
+  \begin{itemize}
+    \item 复杂信号往往由许多简单振动叠加而成。
+    \item 频率分量可分别分析、过滤和传播。
+    \item 微分方程在频域中常化为代数方程或常微分方程。
+  \end{itemize}
+  \begin{block}{核心问题}
+    如何用一组正交的正弦、余弦或复指数函数表示给定函数？
+  \end{block}
+\end{frame}
+
+\begin{frame}{函数空间中的内积与正交}
+  在 $[a,b]$ 上定义内积
+  \[
+    (f,g)=\int_a^b f^*(x)g(x)\,\mathrm{d}x.
+  \]
+  若 $(f,g)=0$，称 $f$ 与 $g$ 正交；范数为 $\|f\|^2=(f,f)$。
+  在 $[-\pi,\pi]$ 上，
+  \[
+    \int_{-\pi}^{\pi}\sin nx\sin mx\,\mathrm{d}x=\pi\delta_{mn},
+    \qquad
+    \int_{-\pi}^{\pi}\sin nx\cos mx\,\mathrm{d}x=0.
+  \]
+  \begin{block}{类比}
+    Fourier 系数就像普通向量在正交坐标轴上的分量；正交性使每个频率分量能被单独投影出来。
+  \end{block}
+\end{frame}
+
+\begin{frame}{Fourier 级数与系数}
+  对周期为 $2\ell$ 的函数，写作
+  \[
+    f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}
+    \left[a_n\cos\left(\frac{n\pi x}{\ell}\right)+
+    b_n\sin\left(\frac{n\pi x}{\ell}\right)\right].
+  \]
+  正交投影给出
+  \[
+    a_n=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)
+    \cos\left(\frac{n\pi x}{\ell}\right)\mathrm{d}x,
+    \quad
+    b_n=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)
+    \sin\left(\frac{n\pi x}{\ell}\right)\mathrm{d}x.
+  \]
+  \begin{itemize}
+    \item 偶函数只含余弦项；奇函数只含正弦项。
+    \item 在跳跃点，级数收敛到左右极限的平均值。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{例：热方程为何自然产生 Fourier 级数？}
+  对长度为 $\ell$ 的杆，零端点温度满足
+  \[
+    T_t=T_{xx},\qquad T(0,t)=T(\ell,t)=0.
+  \]
+  分离变量产生一组空间本征函数
+  \[
+    \sin\left(\frac{n\pi x}{\ell}\right),
+  \]
+  以及对应的时间衰减
+  \[
+    e^{-n^2\pi^2t/\ell^2}.
+  \]
+  所以
+  \[
+    T(x,t)=\sum_{n=1}^{\infty}A_n
+    \sin\left(\frac{n\pi x}{\ell}\right)e^{-n^2\pi^2t/\ell^2}.
+  \]
+  \begin{alertblock}{物理读法}
+    高频模态衰减得更快，因此扩散会优先抹平尖锐、细小的温度起伏。
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{从 Fourier 级数到 Fourier 变换}
+  当周期 $2\ell\to\infty$ 时，离散频率间隔趋于零，求和变为积分。采用一组常用约定：
+  \[
+    \hat f(k)=\int_{-\infty}^{\infty}f(x)e^{-\mathrm{i}kx}\,\mathrm{d}x,
+    \qquad
+    f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(k)e^{\mathrm{i}kx}\,\mathrm{d}k.
+  \]
+  \begin{itemize}
+    \item $x$ 空间描述信号的位置或时间行为。
+    \item $k$ 空间描述波数或频率成分。
+    \item 微分变换为乘法：$\widehat{f'}(k)=\mathrm{i}k\hat f(k)$。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Delta 函数与 Laplace 变换}
+  Dirac delta 满足筛选性质
+  \[
+    \int_{-\infty}^{\infty}\delta(x-x_0)f(x)\,\mathrm{d}x=f(x_0).
+  \]
+  它描述理想化的点源、瞬时冲量和 Green 函数。
+  \begin{block}{Laplace 变换}
+    \[
+      F(s)=\mathcal{L}\{f(t)\}(s)=\int_0^{\infty}e^{-st}f(t)\,\mathrm{d}t.
+    \]
+    对初值问题，
+    \[
+      \mathcal{L}\{f'(t)\}=sF(s)-f(0).
+    \]
+  \end{block}
+  Laplace 变换把时间微分方程转化为代数方程，同时自然保留初始条件。
+\end{frame}

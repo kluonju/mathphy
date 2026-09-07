@@ -1,0 +1,106 @@
+\section{第四章：数学物理方程}
+
+\begin{frame}{第四章：从物理到偏微分方程}
+  \begin{itemize}
+    \item 选择待求量：位移、温度或势函数。
+    \item 取一个微小区域，列写受力、通量或守恒关系。
+    \item 令区域尺度趋于零，得到局部微分方程。
+    \item 配合初始条件和边界条件，确定物理解。
+  \end{itemize}
+  \begin{block}{建模原则}
+    方程不仅编码规律，也编码假设；改变介质、尺度或近似，模型可能必须改变。
+  \end{block}
+\end{frame}
+
+\begin{frame}{波动方程：张力与惯性的平衡}
+  设 $u(x,t)$ 是绷紧细弦的横向位移，线密度为 $\rho$、张力为 $T$。小振幅近似下，微段的横向合力为
+  \[
+    T\bigl[u_x(x+\Delta x,t)-u_x(x,t)\bigr].
+  \]
+  由牛顿第二定律并令 $\Delta x\to0$，得到
+  \[
+    \rho u_{tt}=Tu_{xx},
+    \qquad
+    u_{tt}-a^2u_{xx}=0,
+    \qquad a^2=\frac{T}{\rho}.
+  \]
+  \begin{itemize}
+    \item $u_{tt}$ 表示惯性，$u_{xx}$ 表示弦的弯曲程度。
+    \item 双曲型方程描述有限速度传播，必须给定初始位移和初始速度。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{热方程：通量与能量守恒}
+  Fourier 定律指出热流方向与温度梯度相反：
+  \[
+    \mathbf{q}=-k\nabla u.
+  \]
+  对任意体积使用能量守恒和散度定理，得到
+  \[
+    \rho c\,u_t=\nabla\cdot(k\nabla u).
+  \]
+  对均匀各向同性介质，
+  \[
+    u_t=\kappa\nabla^2u,
+    \qquad \kappa=\frac{k}{\rho c}.
+  \]
+  \begin{block}{物理图像}
+    温度高峰会向周围扩散并逐渐平滑；这与波动方程的“传播波形”有本质区别。
+  \end{block}
+\end{frame}
+
+\begin{frame}{Laplace 与 Poisson 方程}
+  当系统达到静态平衡，时间导数消失，常见的椭圆型方程为
+  \[
+    \nabla^2u=0\quad\text{(Laplace 方程)},
+    \qquad
+    \nabla^2u=f\quad\text{(Poisson 方程)}.
+  \]
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{无源区域}
+      电势、稳态温度等满足 Laplace 方程。内部值由边界值强烈约束。
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{有源区域}
+      $f$ 表示电荷、热源或外力等分布式来源。
+    \end{block}
+  \end{columns}
+  \[
+    \nabla^2u=u_{xx}+u_{yy}+u_{zz}.
+  \]
+\end{frame}
+
+\begin{frame}{分类决定应问什么问题}
+  对二阶线性 PDE，典型分类与物理行为如下：
+  \begin{center}
+    \begin{tabular}{lll}
+      类型 & 代表方程 & 主要物理特征\\ \hline
+      双曲型 & $u_{tt}-a^2u_{xx}=0$ & 波以有限速度传播\\
+      抛物型 & $u_t-\kappa u_{xx}=0$ & 扩散、平滑与耗散\\
+      椭圆型 & $\nabla^2u=0$ & 静态平衡与边界控制
+    \end{tabular}
+  \end{center}
+  \begin{alertblock}{解题前先问}
+    未知量是什么？区域在哪里？给定的是初始条件、边界条件，还是两者都有？这些信息决定问题是否适定。
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{分离变量：把 PDE 化为 ODE}
+  对边界条件 $u(0,t)=u(\ell,t)=0$ 的热方程，尝试
+  \[
+    u(x,t)=X(x)T(t).
+  \]
+  代入 $u_t=\kappa u_{xx}$ 并分离变量：
+  \[
+    \frac{T'}{\kappa T}=\frac{X''}{X}=-\left(\frac{n\pi}{\ell}\right)^2.
+  \]
+  因此
+  \[
+    u_n(x,t)=A_n\sin\left(\frac{n\pi x}{\ell}\right)
+    e^{-\kappa n^2\pi^2t/\ell^2}.
+  \]
+  \begin{block}{关键步骤}
+    边界条件选择允许的空间模态；线性性允许把所有模态叠加，初始条件决定各模态系数。
+  \end{block}
+\end{frame}

@@ -1,0 +1,103 @@
+\section{第三章：复变函数}
+
+\begin{frame}{第三章：复分析的角色}
+  \begin{itemize}
+    \item 复数把二维几何与代数运算统一起来。
+    \item 解析函数拥有极强的局部到整体性质。
+    \item 围道积分与留数定理可高效求实积分。
+  \end{itemize}
+  \begin{block}{路线}
+    复数 $\to$ 解析函数 $\to$ Cauchy 理论 $\to$ Laurent 级数 $\to$ 留数与应用。
+  \end{block}
+\end{frame}
+
+\begin{frame}{复数与极坐标形式}
+  \[
+    z=x+\mathrm{i}y,\qquad \mathrm{i}^2=-1,
+    \qquad |z|=\sqrt{x^2+y^2}.
+  \]
+  令 $z=\rho(\cos\varphi+\mathrm{i}\sin\varphi)$，欧拉公式给出
+  \[
+    z=\rho e^{\mathrm{i}\varphi}.
+  \]
+  因此乘除法变为
+  \[
+    z_1z_2=\rho_1\rho_2e^{\mathrm{i}(\varphi_1+\varphi_2)},
+    \qquad
+    \frac{z_1}{z_2}=\frac{\rho_1}{\rho_2}e^{\mathrm{i}(\varphi_1-\varphi_2)}.
+  \]
+  \begin{itemize}
+    \item 模相乘、辐角相加。
+    \item 共轭 $\bar z=x-\mathrm{i}y$ 满足 $z\bar z=|z|^2$。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{复可导与 Cauchy--Riemann 条件}
+  设 $f(z)=u(x,y)+\mathrm{i}v(x,y)$。若极限
+  \[
+    f'(z)=\lim_{\Delta z\to0}\frac{f(z+\Delta z)-f(z)}{\Delta z}
+  \]
+  与趋近方向无关，则 $f$ 在该点复可导。
+  \begin{block}{Cauchy--Riemann 方程}
+    \[
+      u_x=v_y,\qquad u_y=-v_x.
+    \]
+  \end{block}
+  在偏导连续时，这组方程既是解析性的必要条件，也是充分条件。
+  \begin{alertblock}{后果}
+    解析函数的实部与虚部都是调和函数：$\nabla^2u=\nabla^2v=0$。
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{围道积分与 Cauchy 积分公式}
+  沿参数曲线 $z=z(t)$，$a\leq t\leq b$，定义
+  \[
+    \int_C f(z)\,\mathrm{d}z=\int_a^b f(z(t))z'(t)\,\mathrm{d}t.
+  \]
+  若 $f$ 在单连通区域内解析，则
+  \[
+    \oint_C f(z)\,\mathrm{d}z=0.
+  \]
+  更强的 Cauchy 积分公式为
+  \[
+    f(z_0)=\frac{1}{2\pi\mathrm{i}}\oint_C\frac{f(z)}{z-z_0}\,\mathrm{d}z.
+  \]
+  \begin{block}{教学提示}
+    函数在围道内部一点的值，由围道上的函数值完全决定。这是复分析“局部信息极其丰富”的根源。
+  \end{block}
+\end{frame}
+
+\begin{frame}{Laurent 级数与奇点分类}
+  在环域内，函数可以展开为
+  \[
+    f(z)=\sum_{n=-\infty}^{\infty}a_n(z-z_0)^n.
+  \]
+  负幂部分称为主部，并据此分类：
+  \begin{itemize}
+    \item 没有主部：可去奇点。
+    \item 主部有限：$m$ 阶极点。
+    \item 主部无限：本性奇点。
+  \end{itemize}
+  系数 $a_{-1}$ 是留数：
+  \[
+    \operatorname{Res}(f;z_0)=a_{-1}.
+  \]
+\end{frame}
+
+\begin{frame}{留数定理：把围道积分化为代数计算}
+  若 $f$ 在围道 $C$ 内只有孤立奇点 $z_k$，则
+  \[
+    \oint_C f(z)\,\mathrm{d}z
+    =2\pi\mathrm{i}\sum_k\operatorname{Res}(f;z_k).
+  \]
+  对简单极点，
+  \[
+    \operatorname{Res}(f;z_0)=\lim_{z\to z_0}(z-z_0)f(z).
+  \]
+  \begin{block}{例：实轴积分}
+    对 $f(z)=1/(1+z^2)$，上半平面只有极点 $z=\mathrm{i}$，其留数为 $1/(2\mathrm{i})$，故
+    \[
+      \int_{-\infty}^{\infty}\frac{\mathrm{d}x}{1+x^2}=\pi.
+    \]
+  \end{block}
+\end{frame}

@@ -12,5 +12,4 @@
 *.log
 *.nav
 *.snm
-lecture_notes/mcp
-lecture_notes/scripts/__pycache__/generate_vector_figures.cpython-313.pyc
+lecture_new/mcp

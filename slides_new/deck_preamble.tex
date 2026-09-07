@@ -1,0 +1,45 @@
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{esint}
+\usepackage{tikz}
+\usepackage{zhnumber}
+\usetikzlibrary{arrows.meta}
+\usetheme{metropolis}
+\usecolortheme{HistNanjing}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\normalsize}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+
+\newcommand{\chaptertitleframe}{%
+  \begin{frame}[plain]
+    \vfill
+    \centering
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+    \vspace{0.5em}
+    {\usebeamerfont{subtitle}\insertsubtitle\par}
+    \vspace{1.5em}
+    {\usebeamerfont{author}\insertauthor\par}
+    \vspace{0.4em}
+    {\usebeamerfont{institute}\insertinstitute\par}
+    \vspace{0.8em}
+    {\usebeamerfont{date}\insertdate\par}
+    \vfill
+  \end{frame}%
+}
+
+\newcommand{\chapteroutline}{%
+  \begin{frame}{本章目录}
+    \tableofcontents
+  \end{frame}%
+}
+
+\AtBeginSection[]{%
+  \begin{frame}{本章目录}
+    \tableofcontents[currentsection]
+  \end{frame}%
+}
