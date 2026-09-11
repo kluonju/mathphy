@@ -1,12 +1,18 @@
 % !TEX program = xelatex
 \documentclass[11pt,a4paper]{article}
-\usepackage{ctex}
+% Use xeCJK instead of ctex: ctex hard-requires `everysel.sty` which is not
+% packaged in this Rocky 9 / TeX Live 2020 EPEL install. xeCJK covers the same
+% Chinese typography needs without that dependency.
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
 %\usepackage{geometry}
 \usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \pagestyle{empty}
 \usepackage{graphicx}
-\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
-\usepackage[usenames,dvipsnames]{color}
+\usepackage{fancyhdr, lastpage}
+\usepackage[dvipsnames]{color}
 \definecolor{darkblue}{rgb}{0,0,.6}
 \definecolor{darkred}{rgb}{.7,0,0}
 \definecolor{darkgreen}{rgb}{0,.6,0}
@@ -293,7 +299,7 @@ Cambridge University Press, 2006, ISBN:978-0-521-68337-9
 \begin{center} \begin{minipage}{3.8in}
 \begin{flushleft}
 第5周, 中秋节周五放假, 第6周, 国庆节放假,具体时间待学校通知\\
-期末考试 (待教务处通知)   \dotfill 一般结课后1~2周左右 \\
+期末考试 (待教务处通知)   \dotfill 一般结课后1--2周左右 \\
 %Project Deadline \dotfill ~Month Day \\
 % Final Exam       \dotfill ~Dey 18, 1393  \\
 \end{flushleft}

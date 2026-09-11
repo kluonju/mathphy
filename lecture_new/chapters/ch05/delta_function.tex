@@ -1,24 +1,258 @@
 \section{The delta function}
 
+\subsection{Origin and basic concept}
+
 The delta function describes quantities concentrated at a point, such as a point mass, a point charge, or an impulsive force. A mass $m$ uniformly distributed on $[-\ell/2,\ell/2]$ has density $\rho_\ell(x)=m\,\operatorname{rect}(x/\ell)/\ell$. As $\ell\to0$, it remains of total mass $m$ while becoming concentrated at the origin. This limiting object is represented by $m\delta(x)$. Intuitively, $\delta(x)$ is zero except at the origin, where it becomes singular in such a way that its integral is one. It is a generalized function rather than an ordinary function, but it is extremely useful in physics and engineering because it cleanly models concentrated sources. In the same way a narrow pulse approaches a point impulse, the delta function is the idealized limit of a very sharp, very tall distribution of unit area.
+
+The cleanest construction starts from a normalized Gaussian. With $f_\sigma(x)=(2\pi\sigma^2)^{-1/2}e^{-x^2/(2\sigma^2)}$ one has $\int f_\sigma = 1$ for every $\sigma>0$. The Fourier transform $\widetilde f_\sigma(k)=e^{-\sigma^2k^2/2}$ stays finite as $\sigma\to 0$ and tends to $1$, while $f_\sigma$ vanishes pointwise at every $x\neq 0$. The limiting object is the Dirac delta distribution $\delta(x)$; mathematicians (Schwartz, 1950) prefer the word \emph{distribution} and call it a Dirac mass (despite its dimensions being $\mathrm{m}^{-1}$).
 
 The delta distribution is characterized by
 \begin{equation}
 \int_{-\infty}^{\infty}\delta(x)\,dx=1,
 \qquad
-\int_{-\infty}^{\infty}f(x)\delta(x-a)\,dx=f(a).
+\int_{-\infty}^{\infty}f(x)\,\delta(x-a)\,dx=f(a).
 \end{equation}
-The second identity is the sifting property: the delta function picks out the value of the function at the singular point. It is even, its derivative is odd, and for simple real zeros $x_k$ of $\phi$,
+The second identity is the sifting property: the delta function picks out the value of the function at the singular point. It is the defining property; one does not assign numerical values to $\delta(x)$ itself, only to its integrals against smooth test functions.
+
+\subsection{Limiting representations}
+
+Useful sequences of ordinary functions that converge to $\delta$ in the distributional sense are
 \begin{equation}
-\delta[\phi(x)]=\sum_k\frac{\delta(x-x_k)}{|\phi'(x_k)|}.
+\delta(x)=\lim_{K\to\infty}\frac{\sin Kx}{\pi x}
+=\lim_{\varepsilon\to0}\frac{1}{\pi}\frac{\varepsilon}{\varepsilon^2+x^2}
+=\lim_{\sigma\to0}\frac{1}{\sqrt{2\pi}\sigma}e^{-x^2/(2\sigma^2)}.
 \end{equation}
-In particular, $\delta(ax)=\delta(x)/|a|$ and
+Each has unit area for every value of the parameter, and each concentrates its mass near the origin as the parameter varies. The Fourier integral form is
+\begin{equation}
+\delta(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{\mathrm{i}\omega x}\,d\omega,
+\end{equation}
+which is the statement that the frequency spectrum of an ideal point source is flat. With the symmetric convention $\widetilde f(k)=(2\pi)^{-1/2}\int f(x)e^{-\mathrm{i}kx}\,dx$ one has $\mathcal{F}[\delta(x)]=1/\sqrt{2\pi}$, and with the engineering convention $F(\omega)=\int f(x)e^{-\mathrm{i}\omega x}\,dx$ one has $\mathcal{F}[\delta]=1$.
+
+\subsection{Basic properties}
+
+\begin{itemize}
+  \item \textbf{Evenness.} $\delta(-x)=\delta(x)$, proved by the change $y=-x$ in the sifting integral.
+  \item \textbf{Scaling.} For $a\neq 0$, $\delta(ax)=\delta(x)/|a|$.
+  \item \textbf{Shift.} $\delta(x-x_0)$ is the singular point displaced to $x_0$.
+  \item \textbf{Derivative.} $\delta'(x)$ is odd and satisfies $f(x)\delta'(x-a)=-f'(a)$, obtained by integrating by parts.
+  \item \textbf{Composition.} For simple real zeros $x_k$ of $\phi$,
+  \begin{equation}
+  \delta[\phi(x)]=\sum_k\frac{\delta(x-x_k)}{|\phi'(x_k)|}.
+  \end{equation}
+  In particular, $\delta(x^2-a^2)=\dfrac{\delta(x-a)+\delta(x+a)}{2|a|}$.
+  \item \textbf{Finite interval.} $\displaystyle\int_a^b f(x)\delta(x-x_0)\,dx=
+  \begin{cases}f(x_0),&x_0\in(a,b),\\ 0,&\text{otherwise.}\end{cases}$
+\end{itemize}
+
+\subsection{Finite intervals and discrete point sources}
+
+The sifting property adapts immediately to integration over a finite interval. A discrete set of point charges along the $x$-axis is written as a sum of deltas,
+\begin{equation}
+\rho(x)=\sum_i q_i\,\delta(x-x_i),
+\end{equation}
+with total charge $Q=\sum_i q_i$ and charge in any subinterval $(a,b)$ obtained by counting the $x_i$ in $(a,b)$.
+
+\begin{example}
+Three point charges are placed along the $x$-axis: $-e$ at $x=-4$, $2e$ at $x=0$, and $-e$ at $x=\pi$. Then
+\begin{equation}
+\rho(x)=-e\,\delta(x+4)+2e\,\delta(x)-e\,\delta(x-\pi).
+\end{equation}
+The total charge is $Q=0$, while the charge in the interval $(-3,3)$ is $Q=2e$.
+\end{example}
+
+\subsection{Convolutions}
+
+For two functions $f,g$ on $\mathbb{R}$ the convolution is defined by
+\begin{equation}
+(f*g)(x)=\int_{-\infty}^{\infty}f(x-y)\,g(y)\,dy.
+\end{equation}
+It is symmetric, $f*g=g*f$, as the change of variable $y\mapsto x-y$ shows at once:
+\begin{align}
+f*g(x)&=\int_{-\infty}^{\infty}f(x-y)g(y)\,dy
+=\int_{\infty}^{-\infty}f(t)g(x-t)(-dt)\\
+&=\int_{-\infty}^{\infty}g(x-t)f(t)\,dt=g*f(x).
+\end{align}
+
+The convolution theorem connects convolution in physical space to multiplication in frequency space. Writing the inverse Fourier transform of $f$ as $f(x)=(2\pi)^{-1}\int e^{\mathrm{i}kx}\widetilde f(k)\,dk$ and exchanging orders of integration,
+\begin{align}
+f*g(x)&=\int f(x-y)g(y)\,dy\\
+&=\frac{1}{2\pi}\int e^{\mathrm{i}k(x-y)}\widetilde f(k)\,dk\,g(y)\,dy\\
+&=\frac{1}{2\pi}\int e^{\mathrm{i}kx}\widetilde f(k)\!\left[\int e^{-\mathrm{i}ky}g(y)\,dy\right]dk\\
+&=\frac{1}{2\pi}\int e^{\mathrm{i}kx}\widetilde f(k)\widetilde g(k)\,dk,
+\end{align}
+which is the inverse Fourier transform of the product $\widetilde f(k)\widetilde g(k)$. Equivalently,
+\begin{equation}
+\mathcal{F}[f*g]=\widetilde f(k)\,\widetilde g(k),
+\qquad
+\mathcal{F}[fg]=\frac{1}{2\pi}\,\widetilde f*\widetilde g(k).
+\end{equation}
+A product in real space is therefore a convolution in $k$-space, and vice versa. The result extends verbatim to $\mathbb{R}^n$ with $(2\pi)^{-n}$ replacing $(2\pi)^{-1}$.
+
+\begin{example}[Convolution of two step functions]
+Let $f$ be the indicator of $(-a,a)$ and $g$ the indicator of $(-b,b)$. Their convolution is the overlap of two shifted intervals,
+\begin{equation}
+(f*g)(x)=\int_{-b}^{b}f(x-y)\,dy=\int_{x-b}^{x+b}f(t)\,dt,
+\end{equation}
+which depends on how $[x-b,x+b]$ overlaps $[-a,a]$. Explicitly,
+\begin{equation}
+(f*g)(x)=
+\begin{cases}
+0,&|x|>a+b,\\
+a+b+x,&-(a+b)<x<-|a-b|,\\
+\min\{2a,2b\},&-|a-b|<x<|a-b|,\\
+a+b-x,&|a-b|<x<a+b.
+\end{cases}
+\end{equation}
+The result is a triangular pulse whose support is the sum of the two supports and whose peak height is the length of the smaller interval.
+\end{example}
+
+\begin{example}[Convolution of two Gaussians]
+For two Gaussians centred at $0$ and $x_0$ with widths $\sigma_1,\sigma_2$,
+\begin{equation}
+f(x)=\frac{1}{\sqrt{2\pi}\sigma_1}e^{-x^2/(2\sigma_1^2)},\qquad
+g(x)=\frac{1}{\sqrt{2\pi}\sigma_2}e^{-(x-x_0)^2/(2\sigma_2^2)},
+\end{equation}
+the convolution theorem gives $\widetilde f(k)=e^{-\sigma_1^2k^2/2}$ and $\widetilde g(k)=e^{-\mathrm{i}kx_0-\sigma_2^2k^2/2}$, so
+\begin{equation}
+\widetilde f(k)\widetilde g(k)=e^{-\mathrm{i}kx_0-(\sigma_1^2+\sigma_2^2)k^2/2}.
+\end{equation}
+Inverse-transforming,
+\begin{equation}
+(f*g)(x)=\frac{1}{\sqrt{2\pi(\sigma_1^2+\sigma_2^2)}}\exp\!\left[-\frac{(x-x_0)^2}{2(\sigma_1^2+\sigma_2^2)}\right].
+\end{equation}
+The convolution of two Gaussians is again a Gaussian, centred on $x_0$, with the variances adding in quadrature. This is the deep reason why Gaussian noise remains Gaussian under linear filtering.
+\end{example}
+
+\subsection{Copies, sampling and the role of the delta}
+
+Convolution with a single shifted delta simply shifts the function:
+\begin{equation}
+f*\delta(\cdot-x_0)=\int f(x-y)\delta(y-x_0)\,dy=f(x-x_0).
+\end{equation}
+Convolution with a sum of deltas creates copies of $f$ at each prescribed location,
+\begin{equation}
+f*\sum_{i=1}^n\delta(\cdot-x_i)=\sum_{i=1}^n f(x-x_i),
+\end{equation}
+which is the distributional form of the replication principle. Equivalently, in the Fourier domain $\mathcal{F}[\delta(x-x_i)]=e^{-\mathrm{i}kx_i}$, so multiplication by these phase factors corresponds to shifts; the convolution theorem then reduces the sum-of-copies identity to $\mathcal{F}[\sum_i f(x-x_i)]=\widetilde f(k)\sum_i e^{-\mathrm{i}kx_i}$.
+
+\subsection{Delta function with a function argument}
+
+When the argument of the delta is itself a smooth function, $\delta(f(x))$ with $f$ having simple isolated zeros $x_r$, the change of variable $y=f(x)$ on a small neighbourhood $U_r$ of each zero gives
+\begin{equation}
+\int_{U_r}g(x)\,\delta(f(x))\,dx
+=\int_V g(\varphi(y))\,\delta(y)\,\frac{1}{|f'(\varphi(y))|}\,dy
+=\frac{g(x_r)}{|f'(x_r)|},
+\end{equation}
+where $\varphi=f^{-1}$ on $U_r$ and $V=\varphi^{-1}(U_r)$ is a small interval around the origin in the $y$-variable. Because $\delta(f(x))=0$ outside $\bigcup_r U_r$, we may sum over roots to obtain the general composition rule
+\begin{equation}
+\boxed{\;\delta\bigl(f(x)\bigr)=\sum_{\text{simple roots }x_r}\frac{\delta(x-x_r)}{|f'(x_r)|}\;}
+\end{equation}
+as an identity of generalised functions: both sides give the same answer when integrated against any smooth test function $g$.
+
+A useful corollary for simple real zeros is the substitution rule for linear arguments,
+\begin{equation}
+\delta(ax)=\frac{\delta(x)}{|a|},\qquad a\neq 0,
+\end{equation}
+and for quadratics with two real roots,
 \begin{equation}
 \delta(x^2-a^2)=\frac{\delta(x-a)+\delta(x+a)}{2|a|}.
 \end{equation}
-Useful limiting representations are
+
+\begin{example}[A definite integral with $\delta(x^4-1)$]
+Evaluate $I=\displaystyle\int_{-\infty}^{\infty}\tan\!\bigl(\tfrac{\pi x}{4}\bigr)\,\delta(x^4-1)\,dx$.
+The roots of $x^4-1$ are $\pm 1,\pm\mathrm{i}$; only $x_r=-1$ lies on the integration axis. With $|f'(x_r)|=|4x^3|_{-1}=4$,
 \begin{equation}
-\delta(x)=\lim_{K\to\infty}\frac{\sin Kx}{\pi x}
-=\lim_{\varepsilon\to0}\frac{1}{\pi}\frac{\varepsilon}{\varepsilon^2+x^2}.
+I=\frac{\tan(-\pi/4)}{4}=-\frac{1}{4}.
 \end{equation}
-The Fourier integral form is $\delta(x)=(2\pi)^{-1}\int_{-\infty}^{\infty}e^{\mathrm{i}\omega x}\,d\omega$, which is the statement that the frequency spectrum of an ideal point source is flat. In Cartesian three-dimensional coordinates, $\delta(\mathbf{r})=\delta(x)\delta(y)\delta(z)$; its coordinate expression must include the appropriate Jacobian in cylindrical or spherical coordinates.
+\end{example}
+
+\begin{example}[Lorentz-invariant measure]
+Show that the integration measure $p^{-2}\,d^3 p$ is covariant under Lorentz transformations. Use $\delta(E^2-p^2c^2-m^2c^4)=\delta((E-pc)(E+pc))/(2(E+pc))$. With $E>0$ this picks out the mass shell and the measure becomes $\dfrac{d^3 p}{2E}$, which is invariant.
+\end{example}
+
+\subsection{Multiple dimensions}
+
+In $\mathbb{R}^n$ the multi-dimensional delta is the product of one-dimensional ones,
+\begin{equation}
+\delta(\mathbf{x}-\mathbf{y})=\prod_{i=1}^n\delta(x_i-y_i),
+\qquad
+\int_{\mathbb{R}^n}f(\mathbf{x})\,\delta(\mathbf{x}-\mathbf{y})\,d^n x=f(\mathbf{y}),
+\end{equation}
+with Fourier representation
+\begin{equation}
+\delta(\mathbf{x}-\mathbf{y})=\frac{1}{(2\pi)^n}\int_{\mathbb{R}^n}e^{\mathrm{i}\mathbf{k}\cdot(\mathbf{x}-\mathbf{y})}\,d^n\mathbf{k}.
+\end{equation}
+In Cartesian three-dimensional coordinates $\delta(\mathbf{r})=\delta(x)\delta(y)\delta(z)$; in cylindrical $(r,\theta,z)$ and spherical $(r,\theta,\phi)$ coordinates the delta picks up the Jacobian,
+\begin{equation}
+\delta(\mathbf{r}-\mathbf{r}')=\frac{\delta(r-r')\delta(\theta-\theta')\delta(z-z')}{r}
+=\frac{\delta(r-r')\delta(\theta-\theta')\delta(\phi-\phi')}{r^2\sin\theta},
+\end{equation}
+so that integrals against $\delta$ recover the correct volume element.
+
+\subsection{Dirac comb and the Poisson summation formula}
+
+The Dirac comb is an infinite periodic array of deltas,
+\begin{equation}
+\mathop{\mathrm{III}}\nolimits_P(x)=\sum_{n=-\infty}^{\infty}\delta(x-nP).
+\end{equation}
+It is itself periodic with period $P$, so it has the Fourier series
+\begin{equation}
+\mathop{\mathrm{III}}\nolimits_P(x)=\frac{1}{P}\sum_{n=-\infty}^{\infty}e^{\,\mathrm{i}\,2\pi nx/P}.
+\end{equation}
+Its Fourier transform is another Dirac comb,
+\begin{equation}
+\mathcal{F}\!\left[\mathop{\mathrm{III}}\nolimits_P\right](k)=\frac{2\pi}{P}\,\mathop{\mathrm{III}}\nolimits_{2\pi/P}(k),
+\end{equation}
+the statement that a periodic array of point sources produces a periodic array in $k$-space. Equating the two expressions yields the Poisson summation formula
+\begin{equation}
+\sum_{n=-\infty}^{\infty}f(nP)=\frac{1}{P}\sum_{n=-\infty}^{\infty}\widetilde f\!\left(\frac{2\pi n}{P}\right),
+\end{equation}
+which is the cornerstone of discrete sampling theory and of solid-state diffraction patterns.
+
+\begin{example}
+A handclap of the form $\delta(t)$ at the stepped pyramid of Chich\'en Itza produces echoes $\sum_{n=0}^N\delta(t-t_n)$ reflected from the steps. Because the steps are not equally spaced in time (the spacing grows with $n$), the perceived tone is a chirp whose pitch decreases as the echo interval widens.
+\end{example}
+
+\subsection{Green functions and solution of linear ODEs}
+
+The Green function for a linear differential operator $L$ is by definition the response to a delta-function forcing, $L\,G(x,y)=\delta(x-y)$. It contains the full information about how the system propagates an impulse, and the solution of $L u=f$ for arbitrary forcing is the convolution $u=G*f$.
+
+For the first-order equation $u'(x)+\gamma u(x)=f(x)$ with $\gamma>0$, taking the Fourier transform turns it into the algebraic equation $(\mathrm{i}k+\gamma)\widetilde u(k)=\widetilde f(k)$, so $\widetilde G(k)=1/(\mathrm{i}k+\gamma)$ and
+\begin{equation}
+G(x)=
+\begin{cases}
+e^{-\gamma x}, & x>0,\\
+0, & x<0,
+\end{cases}
+\qquad
+u(x)=\int_{-\infty}^{x}e^{-\gamma(x-y)}f(y)\,dy.
+\end{equation}
+$G$ is the response to an impulse at $x=0$; one verifies directly that $G'+\gamma G=\delta(x)$.
+
+For the driven damped harmonic oscillator $u''+2\gamma u'+\omega_0^2 u=f(t)$ the analogous calculation gives, for the underdamped case $\omega_0>\gamma$,
+\begin{equation}
+G(t)=\frac{e^{-\gamma t}\sin\!\bigl(\sqrt{\omega_0^2-\gamma^2}\,t\bigr)}{\sqrt{\omega_0^2-\gamma^2}}\,\Theta(t),
+\end{equation}
+where $\Theta$ is the Heaviside step function. The response to any forcing $f$ is then $u=G*f$. The crucial point is that the delta function has converted the differential equation into a single algebraic equation in $k$-space.
+
+\subsection{Worked example: a $\delta$-function potential}
+
+The one-dimensional Schr\"odinger equation with an attractive delta potential $-(\hbar^2/2m)\Psi''-\lambda\delta(x)\Psi=E\Psi$ is solved most cleanly using the Fourier representation of $\delta$. Writing $E=-\hbar^2Q^2/(2m)$ for a bound state, taking the Fourier transform yields
+\begin{equation}
+(Q^2+k^2)\widetilde\Psi(k)=\frac{\lambda}{\sqrt{2\pi}}\,\Psi(0),
+\end{equation}
+so $\widetilde\Psi(k)=\dfrac{\lambda\,\Psi(0)}{\sqrt{2\pi}\,(Q^2+k^2)}$, and inverse-transforming with $\mathcal{F}^{-1}[1/(Q^2+k^2)]=\sqrt{\pi/(2Q^2)}\,e^{-Q|x|}$ gives
+\begin{equation}
+\Psi(x)=\frac{\lambda\,\Psi(0)}{2Q}\,e^{-Q|x|}.
+\end{equation}
+Setting $x=0$ fixes $\lambda=2Q$, a single bound state of any strength. The delta potential supports exactly one bound state, with the binding momentum $Q=\lambda/2$ determined by the strength of the well.
+
+\subsection{Worked example: Fourier transform of a cosine}
+
+Compute $\mathcal{F}[\cos(qx)]$ using the sifting property. With the engineering convention $F(k)=\int e^{-\mathrm{i}kx}f(x)\,dx$ and writing $\cos(qx)=\tfrac12(e^{\mathrm{i}qx}+e^{-\mathrm{i}qx})$,
+\begin{align}
+F(k)&=\tfrac12\int e^{-\mathrm{i}kx}e^{\mathrm{i}qx}\,dx+\tfrac12\int e^{-\mathrm{i}kx}e^{-\mathrm{i}qx}\,dx\\
+&=\tfrac12\!\int\!e^{-\mathrm{i}(k-q)x}\,dx+\tfrac12\!\int\!e^{-\mathrm{i}(k+q)x}\,dx\\
+&=\pi\,\delta(k-q)+\pi\,\delta(k+q).
+\end{align}
+A monochromatic cosine is the superposition of two point sources at frequencies $\pm q$, a fact that motivates the spectral interpretation of Fourier analysis.

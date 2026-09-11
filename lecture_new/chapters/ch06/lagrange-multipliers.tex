@@ -1,6 +1,13 @@
 \section{Lagrange multipliers}
 
-Lagrange multipliers find extrema of a function subject to equality constraints. The constraints restrict the search from the ambient space to a curve, surface, or higher-dimensional constraint set. Let $f(\mathbf{x})$ be the objective and let
+Lagrange multipliers find extrema of a function subject to equality constraints. The constraints restrict the search from the ambient space to a curve, surface, or higher-dimensional constraint set. Throughout the chapter the variables $a,b,\ldots$ label constraints and $i,j,\ldots$ label coordinates; the Einstein convention on these letters is used freely so that, for example,
+\begin{equation}
+\lambda_a c_a=\sum_{a=1}^{k}\lambda_a c_a.
+\end{equation}
+
+\subsection{Method}
+
+Let $f(\mathbf{x})$ be the objective and let
 \begin{equation}
 c_a(\mathbf{x})=0,
 \qquad a=1,\ldots,k,
@@ -17,14 +24,24 @@ where repeated $a$ is summed. Treating both $\mathbf{x}$ and the multipliers as 
 c_a(\mathbf{x})=0.
 \end{equation}
 
-The multiplier values are not chosen in advance; they are determined along with the extremizing point. Geometrically, allowed displacements satisfy
+The multiplier values are not chosen in advance; they are determined along with the extremizing point. The same equations are obtained if one thinks of $\mathcal F$ as a function on the larger space $\mathbb R^n\times\mathbb R^k$, in which case the conditions $\partial\mathcal F/\partial \lambda_a=0$ simply reproduce the constraints $c_a=0$. Thus the multiplier trick subsumes the constraint into the search for ordinary critical points, at the cost of enlarging the space by $k$ dimensions.
+
+\subsection{Geometric view}
+
+The method has a transparent geometric interpretation. The gradient $\nabla f$ measures both the rate at which $f$ changes and the direction in which it is increasing; this direction is normal to the level sets of $f$. For a small displacement $\mathrm d\mathbf x$ the linear change in $f$ is
 \begin{equation}
-\mathrm{d}c_a=\nabla c_a\cdot\mathrm{d}\mathbf{x}=0.
+\mathrm df=\nabla f\cdot\mathrm d\mathbf x,
 \end{equation}
-At a constrained extremum, $\nabla f$ is orthogonal to every allowed displacement and therefore lies in the span of the constraint normals:
+and the linear change in each constraint is
+\begin{equation}
+\mathrm dc_a=\nabla c_a\cdot\mathrm d\mathbf x.
+\end{equation}
+At a constrained critical point the only displacements that are admissible are those that preserve the constraint to first order, namely those for which $\nabla c_a\cdot\mathrm d\mathbf x=0$ for every $a$. The required stationarity $\mathrm df=0$ on this restricted set forces $\nabla f$ to be orthogonal to every admissible direction; equivalently $\nabla f$ must lie in the span of the constraint normals:
 \begin{equation}
 \nabla f=\lambda_a\nabla c_a.
 \end{equation}
+
+This is the content of the method: moving along the constraint surface has no first-order effect on $f$, even though $\nabla f$ need not vanish in the ambient space. Geometrically, $\nabla f$ is the unique vector in the span of $\{\nabla c_a\}$ that produces the correct level of $f$ along every allowed direction. The multipliers $\lambda_a$ are the coordinates of $\nabla f$ in that basis.
 
 \begin{example}[Closest point on a plane]
 Find the point on $x+y+z=1$ closest to the origin. Minimize
@@ -41,4 +58,83 @@ subject to $c=x+y+z-1=0$. The multiplier equations are
 Thus $x=y=z$, and the closest point is $(1/3,1/3,1/3)$.
 \end{example}
 
-This geometric statement explains why the method works: moving along the constraint surface has no first-order effect on $f$, even though $\nabla f$ need not vanish in the full ambient space. The same method applies to several constraints, including extrema on a sphere, distance to a surface, and optimization with normalization conditions. The Hessian of the objective, $H_{ij}=\partial_i\partial_jf$, determines the local type of an unconstrained nondegenerate critical point; constrained classification requires the Hessian restricted to allowed directions.
+\begin{example}[Hyperbola constraint]
+Find the critical points of $f=x+y$ subject to the hyperbola $xy=1$. The multiplier equations are
+\begin{equation}
+1-\lambda y=0,
+\qquad 1-\lambda x=0,
+\end{equation}
+together with $xy=1$. The first pair gives $x=y$; together with $xy=1$ this yields the two points $(1,1)$ and $(-1,-1)$. The geometric statement is direct: at these points the level lines of $x+y$ are tangent to the hyperbola $xy=1$.
+\end{example}
+
+\subsection{Multiple constraints and higher-dimensional cases}
+
+The same construction extends naturally to several constraints and to higher-dimensional search spaces. With $k$ independent constraints in $\mathbb R^n$, the $k$ multipliers label the basis in which $\nabla f$ is expressed; the system of stationary equations and the dimension count always balance, giving $n+k$ equations in $n+k$ unknowns.
+
+\begin{example}[Height function on a sphere]
+Find the critical points of the height $f=z$ on the unit sphere $x^2+y^2+z^2=1$. With $c=x^2+y^2+z^2-1=0$ the multiplier equations read
+\begin{equation}
+0-\lambda\cdot 2x=0,
+\qquad 0-\lambda\cdot 2y=0,
+\qquad 1-\lambda\cdot 2z=0,
+\end{equation}
+together with the constraint. The first two equations give $x=y=0$; if $\lambda=0$ the third would force $1=0$, so $\lambda\neq 0$ and $z=\pm 1$. The constrained extrema are the north and south poles $(0,0,\pm 1)$, the obvious answer confirmed by the calculation.
+\end{example}
+
+\begin{example}[Torus with four critical heights]
+Take the same height function $f=z$ but now constrain to the torus
+\begin{equation}
+c=\bigl(x^2+y^2+z^2+R^2-\rho^2\bigr)^2-4R^2(y^2+z^2)=0,
+\qquad 0<\rho<R.
+\end{equation}
+The multiplier equations give $x=y=0$ for the same reason as in the sphere case, and the constraint then reduces to $(z^2+R^2-\rho^2)^2=4R^2z^2$, i.e. $z^2+R^2-\rho^2=\pm 2Rz$. The four solutions are
+\begin{equation}
+(0,0,-R-\rho),\ (0,0,-R+\rho),\ (0,0,R-\rho),\ (0,0,R+\rho),
+\end{equation}
+the inside, outer-inner, inner-outer, and outside circles of the torus. They are, in order, a minimum, two saddles, and a maximum.
+\end{example}
+
+\begin{example}[Maximum-area polygon on a circle]
+Let $N$ vertices $(x_i,y_i)$, $i=1,\ldots,N$, lie on the unit circle, so that $c_i=x_i^2+y_i^2-1=0$. The signed area enclosed by the polygon is
+\begin{equation}
+A=\frac12\sum_{i=1}^N\bigl(x_iy_{i+1}-x_{i+1}y_i\bigr),
+\end{equation}
+with $(x_{N+1},y_{N+1})\equiv(x_1,y_1)$. Varying the augmented function $\mathcal F=A-\sum_j\lambda_j c_j$ with respect to $x_i,y_i$ gives
+\begin{equation}
+y_{i+1}-y_{i-1}=2\lambda_i x_i,
+\qquad x_{i-1}-x_{i+1}=2\lambda_i y_i.
+\end{equation}
+Eliminating $\lambda_i$ leads to
+\begin{equation}
+x_ix_{i+1}+y_iy_{i+1}=x_{i-1}x_i+y_{i-1}y_i,
+\end{equation}
+which is the statement that every consecutive dot product is the same. The dot product $x_ix_{i+1}+y_iy_{i+1}$ equals $\cos\theta_i$ where $\theta_i$ is the angle between successive vertices as seen from the origin, so all $\theta_i$ are equal. The area is therefore maximized by the regular $N$-gon inscribed in the circle.
+\end{example}
+
+\subsection{Classification of critical points}
+
+Constrained extrema, like their unconstrained counterparts, must be classified as minima, maxima, or saddles. The local type is read off from the Hessian restricted to the tangent space of the constraint. For one constraint $c=0$ in $\mathbb R^n$, the tangent space at a critical point $\mathbf x^\star$ is
+\begin{equation}
+T=\bigl\{\mathbf v\in\mathbb R^n\ :\ \nabla c(\mathbf x^\star)\cdot\mathbf v=0\bigr\},
+\end{equation}
+an $(n-1)$-dimensional affine subspace. The restricted Hessian
+\begin{equation}
+H^{T}_{ij}=\partial_i\partial_j f-\lambda\,\partial_i\partial_j c,
+\end{equation}
+is then examined on $T$: its signature (the numbers of positive, negative, and zero eigenvalues) determines the constrained Morse index, the dimension of its negative part on $T$.
+
+\begin{example}[Sphere: classifying the poles]
+Return to $f=z$ on the unit sphere $x^2+y^2+z^2=1$ at the north pole $(0,0,1)$. The unconstrained Hessian of $f$ vanishes, but the multiplier is $\lambda=1/2$, so $H^{T}_{ij}=-\lambda\,\partial_i\partial_j c=-\mathrm{diag}(1,1)$ on the tangent plane $T=\{(x,y,0)\}$. Two negative eigenvalues identify the north pole as a constrained maximum, consistent with the geometric intuition that the height is largest there.
+\end{example}
+
+The Morse index has a topological meaning: as one tunes a parameter, critical points appear and disappear in pairs, and the alternating count
+\begin{equation}
+\chi=\#\text{minima}-\#\text{saddles}+\#\text{maxima}
+\end{equation}
+is invariant under smooth deformations. This alternating count is the Euler characteristic, and it is the prototype of the topological invariants one builds from the variational data of a function.
+
+A critical point is called \emph{non-degenerate} (or Morse) if the restricted Hessian is non-singular on $T$. The Morse lemma then asserts that, in suitable local coordinates, $f$ reduces to one of the canonical forms
+\begin{equation}
+\pm x_1^2\pm x_2^2\cdots\pm x_{n-1}^2,
+\end{equation}
+with $n-1$ signs and no mixed terms; the number of minus signs is the Morse index. The four critical points of the torus height function above are all non-degenerate, with indices $0,1,1,2$ in the order listed.
