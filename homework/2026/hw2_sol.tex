@@ -1,0 +1,606 @@
+% filepath: /home/kluo/Documents/Repos/mathphy/homework/2026/hw2_sol.tex
+% Solutions to Homework 2 — Math Physics Methods (数学物理方法)
+
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools, graphicx, multicol, array}
+\usepackage{ctex}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+% Chinese punctuation handling (same as hw2.tex)
+\let\oldjuhao=。
+\catcode`\。=\active
+\newcommand{。}{\ifmmode\text{\oldjuhao}\else\oldjuhao\fi}
+
+\let\olddouhao=，
+\catcode`\，=\active
+\newcommand{，}{\ifmmode\text{\olddouhao}\else\olddouhao\fi}
+
+% Common math symbols
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% Theorem environments
+\theoremstyle{remark}
+\newtheorem{problem}{}
+\theoremstyle{definition}
+\newtheorem{solution}{解}
+
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+\setlength{\headheight}{15.11996pt}
+\setlength{\topmargin}{-3.11996pt}
+
+\newcommand{\duedate}{\zhdate{2026/10/29}}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyhead[L]{数学物理方法}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{课后习题\zhnumber{2} \quad 参考解答}
+
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{截止日期\duedate}
+\fancyfoot[R]{任课教师:罗凯}
+
+\begin{document}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+
+%==========================================================================
+\begin{problem}
+证明
+\[
+|\sinh y| \leq |\sin(x+\imath y)| \leq |\cosh y|.
+\]
+提示: $\cosh^2 x = 1+\sinh^2 x$.
+\end{problem}
+
+\begin{solution}
+利用复数三角公式（或 Euler 公式）展开：
+\begin{align*}
+\sin(x+\imath y)
+&=\sin x\cosh y+\imath\cos x\sinh y.
+\end{align*}
+因此其实部为 $\sin x\cosh y$，虚部为 $\cos x\sinh y$，模的平方为
+\begin{align*}
+|\sin(x+\imath y)|^2
+&=\bigl(\sin x\cosh y\bigr)^2+\bigl(\cos x\sinh y\bigr)^2
+=\sin^2 x\cosh^2 y+\cos^2 x\sinh^2 y.
+\end{align*}
+
+\textbf{下界.} 由提示恒等式 $\cosh^2 y=1+\sinh^2 y$，代入上式：
+\begin{align*}
+|\sin(x+\imath y)|^2
+&=\sin^2 x\bigl(1+\sinh^2 y\bigr)+\cos^2 x\sinh^2 y \\
+&=\sin^2 x+\sinh^2 y\bigl(\sin^2 x+\cos^2 x\bigr)
+=\sin^2 x+\sinh^2 y.
+\end{align*}
+因为 $\sin^2 x\geq 0$，所以
+\[
+|\sin(x+\imath y)|^2=\sin^2 x+\sinh^2 y\geq\sinh^2 y,
+\]
+两边开方（取非负）得 $|\sin(x+\imath y)|\geq|\sinh y|$.
+
+\textbf{上界.} 再用 $\sinh^2 y=\cosh^2 y-1$：
+\begin{align*}
+|\sin(x+\imath y)|^2
+&=\sin^2 x\cosh^2 y+\cos^2 x\bigl(\cosh^2 y-1\bigr) \\
+&=\cosh^2 y\bigl(\sin^2 x+\cos^2 x\bigr)-\cos^2 x
+=\cosh^2 y-\cos^2 x.
+\end{align*}
+因为 $\cos^2 x\geq 0$，所以
+\[
+|\sin(x+\imath y)|^2=\cosh^2 y-\cos^2 x\leq\cosh^2 y,
+\]
+开方得 $|\sin(x+\imath y)|\leq|\cosh y|$.
+
+综合即得
+\[
+|\sinh y|\leq|\sin(x+\imath y)|\leq|\cosh y|. \qquad\square
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+求解方程
+\[
+2\cosh^2 z-3\cosh z+1=0.
+\]
+\end{problem}
+
+\begin{solution}
+令 $w=\cosh z$，原方程化为关于 $w$ 的二次方程：
+\[
+2w^2-3w+1=0.
+\]
+因式分解：
+\[
+(2w-1)(w-1)=0,
+\]
+故
+\[
+w=1\quad\text{或}\quad w=\dfrac{1}{2},
+\]
+即需分别求解 $\cosh z=1$ 与 $\cosh z=\dfrac12$.
+
+课堂常用关系：$\cosh z=\cos(\imath z)$.
+
+\textit{情形 1：$\cosh z=1$.}
+\[
+\cos(\imath z)=1.
+\]
+余弦取值为 $1$ 当且仅当辐角为 $2k\pi$（$k\in\mathbb{Z}$），故
+\[
+\imath z=2k\pi\quad\Longrightarrow\quad z=2k\pi\imath,\qquad k\in\mathbb{Z}.
+\]
+
+\textit{情形 2：$\cosh z=\dfrac12$.}
+\[
+\cos(\imath z)=\dfrac12.
+\]
+在实数情形 $\cos\theta=\dfrac12$ 的通解为 $\theta=\pm\dfrac{\pi}{3}+2k\pi$，因此
+\[
+\imath z=\pm\dfrac{\pi}{3}+2k\pi,\qquad k\in\mathbb{Z}.
+\]
+两边同乘 $-\imath$（或除以 $\imath$）得
+\[
+z=\mp\dfrac{\pi}{3}\imath+2k\pi\imath
+=\Bigl(2k\mp\dfrac{1}{3}\Bigr)\pi\imath.
+\]
+改写符号后可统一记为
+\[
+z=\Bigl(2k\pm\dfrac{1}{3}\Bigr)\pi\imath,\qquad k\in\mathbb{Z}.
+\]
+
+
+\textbf{全部解：}
+\[
+\boxed{z=2k\pi\imath
+\quad\text{或}\quad
+z=\Bigl(2k\pm\tfrac13\Bigr)\pi\imath,\qquad k\in\mathbb{Z}.}
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+验证解析函数的实部和虚部满足二维拉普拉斯方程. 若将解析函数 $f(z)$ 写成极坐标的形式
+$f(z)=R(r,\theta)\,e^{\imath\Theta(r,\theta)}$，验证
+\begin{itemize}
+\item $\dfrac{\partial R}{\partial r}=\dfrac{R}{r}\dfrac{\partial\Theta}{\partial\theta}$，
+\item $\dfrac{1}{r}\dfrac{\partial R}{\partial\theta}=-R\dfrac{\partial\Theta}{\partial r}$.
+\end{itemize}
+\end{problem}
+
+\begin{solution}
+设 $f(z)=u(x,y)+\imath v(x,y)$ 在区域 $B$ 内解析. 由解析性，Cauchy--Riemann 方程成立：
+\[
+\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},\qquad
+\frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x},
+\]
+且 $u,v$ 的二阶偏导数连续（因而混合偏导可交换）.
+
+\medskip
+\textbf{第一部分：实部、虚部满足 Laplace 方程.}\\
+对 $u_x=v_y$ 两边关于 $x$ 求导，对 $u_y=-v_x$ 两边关于 $y$ 求导：
+\[
+\frac{\partial^{2}u}{\partial x^{2}}
+=\frac{\partial^{2}v}{\partial x\partial y},\qquad
+\frac{\partial^{2}u}{\partial y^{2}}
+=-\frac{\partial^{2}v}{\partial y\partial x}.
+\]
+由混合偏导数相等 $\dfrac{\partial^{2}v}{\partial x\partial y}=\dfrac{\partial^{2}v}{\partial y\partial x}$，两式相加得
+\[
+\frac{\partial^{2}u}{\partial x^{2}}+\frac{\partial^{2}u}{\partial y^{2}}=0,
+\]
+即 $\Delta u=0$.
+
+同理，对 $u_x=v_y$ 关于 $y$ 求导、对 $u_y=-v_x$ 关于 $x$ 求导，可得
+\[
+\frac{\partial^{2}v}{\partial x^{2}}+\frac{\partial^{2}v}{\partial y^{2}}=0,
+\]
+即 $\Delta v=0$. 因此解析函数的实部、虚部都是调和函数，满足二维 Laplace 方程.
+
+\medskip
+\textbf{第二部分：极坐标形式下的 $R,\Theta$ 关系.}
+
+\textit{方法一（对 $\ln f$ 用极坐标 CR）。}\\
+在 $f(z)\neq 0$ 的点附近，可取对数
+\[
+\ln f(z)=\ln R(r,\theta)+\imath\Theta(r,\theta).
+\]
+因为 $f$ 解析且非零，复合函数 $\ln f$ 在该邻域内局部解析.
+于是其实部 $\ln R$ 与虚部 $\Theta$ 满足极坐标系下的 Cauchy--Riemann 方程：
+\[
+\frac{\partial\ln R}{\partial r}
+=\frac{1}{r}\frac{\partial\Theta}{\partial\theta},\qquad
+\frac{1}{r}\frac{\partial\ln R}{\partial\theta}
+=-\frac{\partial\Theta}{\partial r}.
+\]
+注意到 $\dfrac{\partial\ln R}{\partial r}=\dfrac{1}{R}\dfrac{\partial R}{\partial r}$、
+$\dfrac{\partial\ln R}{\partial\theta}=\dfrac{1}{R}\dfrac{\partial R}{\partial\theta}$，代入第一式：
+\[
+\frac{1}{R}\frac{\partial R}{\partial r}
+=\frac{1}{r}\frac{\partial\Theta}{\partial\theta}
+\quad\Longrightarrow\quad
+\frac{\partial R}{\partial r}
+=\frac{R}{r}\frac{\partial\Theta}{\partial\theta}.
+\]
+代入第二式：
+\[
+\frac{1}{r}\cdot\frac{1}{R}\frac{\partial R}{\partial\theta}
+=-\frac{\partial\Theta}{\partial r}
+\quad\Longrightarrow\quad
+\frac{1}{r}\frac{\partial R}{\partial\theta}
+=-R\frac{\partial\Theta}{\partial r}.
+\]
+
+\textit{方法二（直接对 $u,v$ 用极坐标 CR）。}\\
+写出
+\[
+u=R\cos\Theta,\qquad v=R\sin\Theta.
+\]
+极坐标 CR 为
+\[
+\frac{\partial u}{\partial r}=\frac{1}{r}\frac{\partial v}{\partial\theta},\qquad
+\frac{1}{r}\frac{\partial u}{\partial\theta}=-\frac{\partial v}{\partial r}.
+\]
+计算各偏导：
+\begin{align*}
+u_r &= R_r\cos\Theta-R\sin\Theta\,\Theta_r,\\
+v_\theta &= R_\theta\sin\Theta+R\cos\Theta\,\Theta_\theta,\\
+u_\theta &= R_\theta\cos\Theta-R\sin\Theta\,\Theta_\theta,\\
+v_r &= R_r\sin\Theta+R\cos\Theta\,\Theta_r.
+\end{align*}
+将第一组代入 $u_r=\dfrac{1}{r}v_\theta$：
+\[
+R_r\cos\Theta-R\sin\Theta\,\Theta_r
+=\frac{1}{r}R_\theta\sin\Theta+\frac{R}{r}\cos\Theta\,\Theta_\theta.
+\]
+两边同乘 $\cos\Theta$，并再利用第二组 CR 关系（或两边再同乘 $\sin\Theta$ 后适当加减），可分离出
+\[
+R_r=\frac{R}{r}\Theta_\theta,\qquad
+\frac{1}{r}R_\theta=-R\,\Theta_r.
+\]
+（具体地：上式两边乘 $\cos\Theta$，把由第二条 CR 得到的
+$-R_r\sin\Theta-R\cos\Theta\,\Theta_r=-\dfrac{1}{r}R_\theta\cos\Theta+\dfrac{R}{r}\sin\Theta\,\Theta_\theta$
+两边乘 $\sin\Theta$，两式相加即可消去含 $\Theta_r$ 的项，得到 $R_r=\dfrac{R}{r}\Theta_\theta$；类似可得另一式.）
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+若将复变函数 $f(z)=u+\imath v$ 看成是 $x,y$ 的二元函数，再看成是
+$z=x+\imath y,\ z^*=x-\imath y$ 的二元函数，试证明 Cauchy--Riemann 方程等价于
+\[
+\frac{\partial f}{\partial z^{*}}=0.
+\]
+提示: 利用 $x=(z+z^*)/2,\ y=(z-z^*)/(2\imath)$.
+\end{problem}
+
+\begin{solution}
+按提示，把 $x,y$ 写成 $z,z^{*}$ 的函数：
+\[
+x=\frac{z+z^{*}}{2},\qquad
+y=\frac{z-z^{*}}{2\imath}.
+\]
+于是
+\[
+\frac{\partial x}{\partial z^{*}}=\frac{1}{2},\qquad
+\frac{\partial y}{\partial z^{*}}=-\frac{1}{2\imath}=\frac{\imath}{2}.
+\]
+
+将 $f$ 先视为 $(x,y)$ 的函数，再由链式法则对 $z^{*}$ 求偏导：
+\begin{align*}
+\frac{\partial f}{\partial z^{*}}
+&=\frac{\partial f}{\partial x}\frac{\partial x}{\partial z^{*}}
+ +\frac{\partial f}{\partial y}\frac{\partial y}{\partial z^{*}}
+=\frac{1}{2}\frac{\partial f}{\partial x}
+ +\frac{\imath}{2}\frac{\partial f}{\partial y}.
+\end{align*}
+代入 $f=u+\imath v$，并写出
+\[
+\frac{\partial f}{\partial x}=u_x+\imath v_x,\qquad
+\frac{\partial f}{\partial y}=u_y+\imath v_y,
+\]
+得
+\begin{align*}
+\frac{\partial f}{\partial z^{*}}
+&=\frac{1}{2}\bigl(u_x+\imath v_x\bigr)
+ +\frac{\imath}{2}\bigl(u_y+\imath v_y\bigr) \\
+&=\frac{1}{2}u_x+\frac{\imath}{2}v_x
+ +\frac{\imath}{2}u_y+\frac{\imath^{2}}{2}v_y \\
+&=\frac{1}{2}u_x+\frac{\imath}{2}v_x
+ +\frac{\imath}{2}u_y-\frac{1}{2}v_y \\
+&=\frac{1}{2}\bigl(u_x-v_y\bigr)
+ +\frac{\imath}{2}\bigl(v_x+u_y\bigr).
+\end{align*}
+
+复数等于零当且仅当其实部、虚部同时为零，因此
+\[
+\frac{\partial f}{\partial z^{*}}=0
+\quad\Longleftrightarrow\quad
+\begin{cases}
+u_x-v_y=0,\\
+v_x+u_y=0,
+\end{cases}
+\quad\Longleftrightarrow\quad
+\begin{cases}
+\dfrac{\partial u}{\partial x}=\dfrac{\partial v}{\partial y},\\[4pt]
+\dfrac{\partial u}{\partial y}=-\dfrac{\partial v}{\partial x},
+\end{cases}
+\]
+这正是 Cauchy--Riemann 方程. \hfill $\square$
+
+（注：课堂 Wirtinger 算子
+$\dfrac{\partial}{\partial\bar z}=\dfrac12\Bigl(\dfrac{\partial}{\partial x}+\imath\dfrac{\partial}{\partial y}\Bigr)$
+与上式一致，其中 $\bar z=z^{*}$；故“解析 $\Leftrightarrow\partial f/\partial\bar z=0\Leftrightarrow$ CR”是同一结论.）
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+证明:若函数 $f(z)$ 在区域 $B$ 内解析，其模为一常数，则函数 $f(z)$ 本身也必为一常数.
+\end{problem}
+
+\begin{solution}
+\textbf{方法一（模数原理）。}\\
+课堂\textbf{模数原理}：设 $f$ 在有界闭区域 $\overline{D}$ 上解析，则 $|f(z)|$ 只能在边界 $\partial D$ 上取到最大值；
+换言之，若存在内点 $z_0\in D$ 使得
+\[
+|f(z_0)|=\max_{z\in\overline{D}}|f(z)|,
+\]
+则 $f$ 在 $D$ 上必为常数.
+
+现设 $f$ 在区域 $B$ 内解析，且 $|f(z)|\equiv c$（$c$ 为常数）.
+任取一点 $z_0\in B$. 因为 $B$ 是开集，存在 $r>0$ 使闭圆盘
+\[
+\overline{D}=\bigl\{z:\ |z-z_0|\leq r\bigr\}\subset B.
+\]
+于是 $f$ 在 $\overline{D}$ 上解析，且对一切 $z\in\overline{D}$ 都有 $|f(z)|=c$.
+特别地，内点 $z_0$ 处
+\[
+|f(z_0)|=c=\max_{z\in\overline{D}}|f(z)|,
+\]
+即 $|f|$ 在内部达到最大值. 由模数原理，$f$ 在 $D$ 上为常数.
+
+由于 $z_0\in B$ 任意，而区域 $B$ 连通，各小圆盘上的常数值必彼此相等，故 $f$ 在整个 $B$ 上为同一个常数. \hfill $\square$
+
+\medskip
+\textbf{方法二（CR $+$ 求导）。}\\
+设 $f=u+\imath v$，且 $|f|\equiv c$，即
+\[
+u(x,y)^{2}+v(x,y)^{2}=c^{2}.
+\]
+若 $c=0$，则 $u=v=0$，故 $f\equiv 0$，已是常数. 以下设 $c\neq 0$.
+
+将上式分别对 $x$、$y$ 求偏导：
+\begin{align*}
+2u\,u_x+2v\,v_x&=0\quad\Longrightarrow\quad u\,u_x+v\,v_x=0,\\
+2u\,u_y+2v\,v_y&=0\quad\Longrightarrow\quad u\,u_y+v\,v_y=0.
+\end{align*}
+利用 CR 方程 $v_x=-u_y$、$v_y=u_x$，代入得
+\begin{align*}
+u\,u_x+v(-u_y)&=0\quad\Longrightarrow\quad u\,u_x-v\,u_y=0,\\
+u\,u_y+v\,u_x&=0.
+\end{align*}
+写成矩阵形式：
+\[
+\begin{pmatrix}u&-v\\ v&u\end{pmatrix}
+\begin{pmatrix}u_x\\ u_y\end{pmatrix}
+=\begin{pmatrix}0\\0\end{pmatrix}.
+\]
+系数矩阵的行列式为 $u^{2}+v^{2}=c^{2}\neq 0$，故矩阵可逆，只有零解
+\[
+u_x=0,\qquad u_y=0.
+\]
+再由 CR：$v_x=-u_y=0$，$v_y=u_x=0$.
+因此 $f'(z)=u_x+\imath v_x=0$. 在连通区域 $B$ 内导函数恒为零的解析函数必为常数.
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+若 $f(z)$ 和 $g(z)$ 在 $z=a$ 点解析，且 $f(a)=g(a)=0$，而 $g'(a)\neq 0$，试证:
+\[
+\lim_{z\to a}\frac{f(z)}{g(z)}=\frac{f'(a)}{g'(a)}.
+\]
+\end{problem}
+
+\begin{solution}
+因 $f,g$ 在点 $z=a$ 解析，故二者在该点可微，按导数定义有
+\begin{align*}
+f'(a)&=\lim_{z\to a}\frac{f(z)-f(a)}{z-a},\\
+g'(a)&=\lim_{z\to a}\frac{g(z)-g(a)}{z-a},
+\end{align*}
+且上述极限都存在（为有限复数）.
+
+由题设 $f(a)=0$、$g(a)=0$，因此当 $z\neq a$ 时，
+\[
+\frac{f(z)}{g(z)}
+=\frac{f(z)-0}{g(z)-0}
+=\frac{f(z)-f(a)}{g(z)-g(a)}.
+\]
+分子、分母同时除以 $z-a$（$z\neq a$ 时合法）：
+\[
+\frac{f(z)}{g(z)}
+=\frac{\dfrac{f(z)-f(a)}{z-a}}{\dfrac{g(z)-g(a)}{z-a}}.
+\]
+
+现在取极限 $z\to a$. 分子的极限正是 $f'(a)$，分母的极限正是 $g'(a)$.
+又题设 $g'(a)\neq 0$，故存在 $a$ 的某个去心邻域，使得其中
+\[
+\left|\frac{g(z)-g(a)}{z-a}-g'(a)\right|<\frac{|g'(a)|}{2},
+\]
+从而 $\dfrac{g(z)-g(a)}{z-a}\neq 0$，也就有 $g(z)\neq 0$. 因此在该邻域内商 $\dfrac{f(z)}{g(z)}$ 有定义，
+并且可用“商的极限 $=$ 极限的商”：
+\[
+\lim_{z\to a}\frac{f(z)}{g(z)}
+=\frac{\displaystyle\lim_{z\to a}\dfrac{f(z)-f(a)}{z-a}}
+     {\displaystyle\lim_{z\to a}\dfrac{g(z)-g(a)}{z-a}}
+=\frac{f'(a)}{g'(a)}.
+\]
+\hfill $\square$
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+找出下列函数的支点，并讨论 $z$ 绕各支点一周回到原处函数值的变化.
+\begin{enumerate}
+    \item $\sqrt[3]{1-z^3}$,
+    \item $\sqrt{\dfrac{z-a}{z-b}}$,
+    \item $\ln(z^2+1)$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+讨论多值函数时，基本步骤是：
+\begin{enumerate}
+\item 找出使表达式在零点/极点处辐角不确定的点（候选支点）；
+\item 让 $z$ 沿简单闭曲线绕该点正向一周，跟踪中间量辐角的改变量；
+\item 由此读出函数值如何变化（乘以单位根，或加上 $2\pi\imath$ 的整数倍）.
+\end{enumerate}
+
+\medskip
+\textbf{(1)} $f(z)=\bigl(1-z^{3}\bigr)^{1/3}$.
+
+令 $1-z^{3}=0$，即 $z^{3}=1$，解得三个立方单位根：
+\[
+z_{0}=1,\qquad
+z_{1}=\omega:=e^{2\pi\imath/3},\qquad
+z_{2}=\omega^{2}=e^{-2\pi\imath/3}.
+\]
+在这些点处 $1-z^{3}=0$，立方根的辐角不确定，故它们都是支点.
+
+设 $1-z^{3}=\rho\,e^{\imath\varphi}$（$\rho\geq 0$），则
+\[
+f(z)=\rho^{1/3}\,e^{\imath\varphi/3}.
+\]
+若 $z$ 沿一条简单闭曲线仅绕某一个支点 $z_{k}$ 正向一周（不包围另外两个），则因子 $(z-z_{k})$ 的辐角增加 $2\pi$，从而 $\varphi=\arg(1-z^{3})$ 增加 $2\pi$. 于是
+\[
+f\;\longmapsto\;\rho^{1/3}\,e^{\imath(\varphi+2\pi)/3}
+=\rho^{1/3}\,e^{\imath\varphi/3}\,e^{2\pi\imath/3}
+=\omega\,f.
+\]
+即函数值变为原来的 $\omega$ 倍，不能回到原值.
+
+若同时绕三个支点一周，则 $\varphi$ 共改变 $2\pi\times 3=6\pi$，立方根因子为
+\[
+e^{\imath\cdot 6\pi/3}=e^{2\pi\imath}=1,
+\]
+函数值不变.
+
+关于无穷远点：当 $|z|$ 充分大时，$f(z)\sim\bigl(-z^{3}\bigr)^{1/3}=(-1)^{1/3}z$.
+绕无穷远一周时，$z$ 的辐角改变 $2\pi$，同时 $-z^{3}$ 的辐角改变 $6\pi$，立方根因子仍为 $1$，故 $\infty$ 不是支点.
+
+\medskip
+\textbf{(2)} $f(z)=\sqrt{\dfrac{z-a}{z-b}}$（设 $a\neq b$）.
+
+在 $z=a$ 处分子为零，在 $z=b$ 处分母为零，平方根在这两点辐角不定，故支点为 $a$ 与 $b$.
+
+记
+\[
+z-a=r_{1}e^{\imath\theta_{1}},\qquad
+z-b=r_{2}e^{\imath\theta_{2}},
+\]
+则
+\[
+f(z)=\sqrt{\frac{r_{1}}{r_{2}}}\,
+\exp\Bigl(\frac{\imath}{2}(\theta_{1}-\theta_{2})\Bigr).
+\]
+
+- 仅绕 $a$ 一周（不绕 $b$）：$\theta_{1}\to\theta_{1}+2\pi$，$\theta_{2}$ 不变，故指数部分多出因子 $e^{\imath\pi}=-1$，即 $f\to -f$.
+- 仅绕 $b$ 一周（不绕 $a$）：$\theta_{2}\to\theta_{2}+2\pi$，指数部分多出 $e^{-\imath\pi}=-1$，同样 $f\to -f$.
+- 同时绕 $a$ 与 $b$ 一周：$\theta_{1},\theta_{2}$ 各增加 $2\pi$，差 $\theta_{1}-\theta_{2}$ 不变，故 $f$ 回到原值.
+
+当 $|z|\to\infty$ 时 $f(z)\sim 1$，绕无穷远一周函数值不变，故 $\infty$ 不是支点.
+
+\medskip
+\textbf{(3)} $f(z)=\ln(z^{2}+1)$.
+
+先因式分解：
+\[
+z^{2}+1=(z-\imath)(z+\imath),
+\]
+故（多值对数）
+\[
+\ln(z^{2}+1)=\ln(z-\imath)+\ln(z+\imath).
+\]
+对数在零点处有支点，因此支点为 $z=\imath$ 与 $z=-\imath$.
+
+- 仅绕 $\imath$ 一周：$\arg(z-\imath)$ 增加 $2\pi$，而 $\arg(z+\imath)$ 不变，故
+  \[
+  f\;\longmapsto\; f+2\pi\imath.
+  \]
+- 仅绕 $-\imath$ 一周：同理 $f\to f+2\pi\imath$.
+- 同时绕两个支点一周：两个对数各增加 $2\pi\imath$，故 $f\to f+4\pi\imath$.
+
+（对数以 $2\pi\imath$ 为周期，因此绕行后一般落到另一分支上，不能视为同一单值分支上的原函数值.）
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+验证
+\[
+\oint_C\frac{\mathrm{d}z}{z^{2}+z}=0,
+\]
+路径 $C$ 由 $|z|=R>1$ 确定的圆.\\
+提示: 直接应用柯西定理是错误的，需要分解因式裂项.
+\end{problem}
+
+\begin{solution}
+将被积函数因式分解：
+\[
+\frac{1}{z^{2}+z}=\frac{1}{z(z+1)}.
+\]
+它在 $z=0$ 与 $z=-1$ 各有一个一阶极点. 路径 $C$ 是圆周 $|z|=R$，且 $R>1$，因此
+\[
+|0|=0<R,\qquad |-1|=1<R,
+\]
+两点都落在 $C$ 所围的开圆盘内部. 被积函数在该圆盘内并不处处解析，
+\textbf{不能}直接引用 Cauchy 积分定理断定积分为零（这正是提示所强调的）.
+
+按提示作部分分式（裂项）. 设
+\[
+\frac{1}{z(z+1)}=\frac{A}{z}+\frac{B}{z+1}.
+\]
+通分比较系数：$A(z+1)+Bz=1$. 令 $z=0$ 得 $A=1$；令 $z=-1$ 得 $B=-1$. 故
+\[
+\frac{1}{z(z+1)}=\frac{1}{z}-\frac{1}{z+1}.
+\]
+于是
+\begin{align*}
+\oint_C\frac{\mathrm{d}z}{z^{2}+z}
+&=\oint_C\frac{\mathrm{d}z}{z}-\oint_C\frac{\mathrm{d}z}{z+1}.
+\end{align*}
+
+对第一项，由课堂基本结果（或 Cauchy 积分公式用于常值函数 $1$）：
+\[
+\oint_C\frac{\mathrm{d}z}{z}=2\pi\imath,
+\]
+因为 $0$ 在 $C$ 内部.
+
+对第二项，作平移 $w=z+1$，则当 $z$ 沿 $C$ 正向一周时，$w$ 沿圆心为 $1$、半径为 $R$ 的圆周正向一周，且 $-1$ 对应 $w=0$ 仍在内部，故
+\[
+\oint_C\frac{\mathrm{d}z}{z+1}=\oint\frac{\mathrm{d}w}{w}=2\pi\imath.
+\]
+
+两式相减：
+\[
+\oint_C\frac{\mathrm{d}z}{z^{2}+z}
+=2\pi\imath-2\pi\imath=0.
+\]
+\hfill $\square$
+
+（直观理解：两个简单极点各自贡献 $2\pi\imath$ 与 $-2\pi\imath$，恰好抵消.）
+\end{solution}
+
+\end{document}

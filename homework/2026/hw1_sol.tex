@@ -1,0 +1,600 @@
+% filepath: /home/kluo/Documents/Repos/mathphy/homework/2026/hw1_sol.tex
+% Solutions to Homework 1 — Math Physics Methods (数学物理方法)
+
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools, graphicx, multicol, array}
+\usepackage{ctex}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+% Chinese punctuation handling (same as hw1.tex)
+\let\oldjuhao=。
+\catcode`\。=\active
+\newcommand{。}{\ifmmode\text{\oldjuhao}\else\oldjuhao\fi}
+
+\let\olddouhao=，
+\catcode`\，=\active
+\newcommand{，}{\ifmmode\text{\olddouhao}\else\olddouhao\fi}
+
+% Common math symbols
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% Theorem environments
+\theoremstyle{remark}
+\newtheorem{problem}{}
+\theoremstyle{definition}
+\newtheorem{solution}{解}
+
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+% Silence fancyhdr headheight warning (same as hw1.tex)
+\setlength{\headheight}{15.11996pt}
+\setlength{\topmargin}{-3.11996pt}
+
+\newcommand{\duedate}{{\zhdate{2026/9/18}}}
+\pagestyle{fancy}
+
+\fancyhead{} % clear all header fields
+\fancyhead[L]{数学物理方法}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{课后习题\zhnumber{1} \quad 参考解答}
+
+\fancyfoot{} % clear all footer fields
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{截止日期\duedate}
+\fancyfoot[R]{任课教师:罗凯}
+
+\begin{document}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+
+%==========================================================================
+\begin{problem}
+写出下列复数的实部、虚部、模和辐角。
+\begin{enumerate}
+    \item $1 + \imath \sqrt{3}$,
+    \item $\dfrac{1-\imath}{1+\imath}$,
+    \item $e^{z}$（其中 $z = x + \imath y$）,
+    \item $e^{1+\imath}$,
+    \item $e^{\imath \varphi(x)}$，其中 $\varphi(x)$ 是实数 $x$ 的实函数。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+对每个复数 $z$，设其实部为 $\mathrm{Re}\,z$、虚部为 $\mathrm{Im}\,z$、模为 $|z|$、辐角为 $\mathrm{Arg}\,z$（取主值）。
+
+\textbf{(1)} $z_1 = 1 + \imath\sqrt{3}$.\\
+$\mathrm{Re}\,z_1 = 1$，\quad $\mathrm{Im}\,z_1 = \sqrt{3}$，\quad
+$|z_1| = \sqrt{1^2 + (\sqrt{3})^2} = 2$，\quad
+$\mathrm{Arg}\,z_1 = \arctan\!\big(\sqrt{3}/1\big) = \dfrac{\pi}{3}$.
+
+\textbf{(2)} $z_2 = \dfrac{1-\imath}{1+\imath}$. 分子分母同乘 $(1-\imath)$：
+\[
+z_2 = \frac{(1-\imath)^2}{1^2 + 1^2} = \frac{1 - 2\imath + \imath^2}{2} = \frac{-2\imath}{2} = -\imath .
+\]
+故 $\mathrm{Re}\,z_2 = 0$，\quad $\mathrm{Im}\,z_2 = -1$，\quad $|z_2| = 1$，\quad
+$\mathrm{Arg}\,z_2 = -\dfrac{\pi}{2}$（亦可写为 $\dfrac{3\pi}{2}$）.
+
+\textbf{(3)} $z_3 = e^{z} = e^{x + \imath y} = e^x(\cos y + \imath \sin y)$.\\
+$\mathrm{Re}\,z_3 = e^x \cos y$，\quad $\mathrm{Im}\,z_3 = e^x \sin y$，\quad
+$|z_3| = e^x$，\quad $\mathrm{Arg}\,z_3 = y + 2k\pi$，$k \in \mathbb{Z}$.
+
+\textbf{(4)} $z_4 = e^{1+\imath} = e \cdot e^{\imath} = e(\cos 1 + \imath \sin 1)$.\\
+$\mathrm{Re}\,z_4 = e\cos 1$，\quad $\mathrm{Im}\,z_4 = e\sin 1$，\quad $|z_4| = e$，\quad $\mathrm{Arg}\,z_4 = 1$（弧度）.
+
+\textbf{(5)} $z_5 = e^{\imath \varphi(x)} = \cos\varphi(x) + \imath \sin\varphi(x)$.\\
+$\mathrm{Re}\,z_5 = \cos\varphi(x)$，\quad $\mathrm{Im}\,z_5 = \sin\varphi(x)$，\quad $|z_5| = 1$，\quad $\mathrm{Arg}\,z_5 = \varphi(x) + 2k\pi$，$k \in \mathbb{Z}$.
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+证明以下规律：
+\begin{enumerate}
+    \item 复数的加法和乘法满足结合律，即
+    \begin{itemize}
+        \item $(z_1 + z_2) + z_3 = z_1 + (z_2 + z_3)$，
+        \item $(z_1 \cdot z_2) \cdot z_3 = z_1 \cdot (z_2 \cdot z_3)$；
+    \end{itemize}
+    \item 复数乘积的共轭等于复数共轭的乘积，即 $(z_1 \cdot z_2)^* = z_1^*\, z_2^*$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+设 $z_k = x_k + \imath y_k$（$k=1,2,3$），则 $z_k^* = x_k - \imath y_k$.
+
+\textbf{加法结合律：}
+\begin{align*}
+(z_1 + z_2) + z_3
+&= \bigl[(x_1 + x_2) + \imath(y_1 + y_2)\bigr] + (x_3 + \imath y_3) \\
+&= (x_1 + x_2 + x_3) + \imath(y_1 + y_2 + y_3), \\[4pt]
+z_1 + (z_2 + z_3)
+&= (x_1 + \imath y_1) + \bigl[(x_2 + x_3) + \imath(y_2 + y_3)\bigr] \\
+&= (x_1 + x_2 + x_3) + \imath(y_1 + y_2 + y_3).
+\end{align*}
+两边相等，故 $(z_1 + z_2) + z_3 = z_1 + (z_2 + z_3)$.
+
+\textbf{乘法结合律：}
+先计算 $z_1 z_2$ 与 $z_2 z_3$：
+\begin{align*}
+z_1 z_2 &= (x_1 x_2 - y_1 y_2) + \imath(x_1 y_2 + x_2 y_1), \\
+z_2 z_3 &= (x_2 x_3 - y_2 y_3) + \imath(x_2 y_3 + x_3 y_2).
+\end{align*}
+再分别与剩余的因子相乘：
+\begin{align*}
+(z_1 z_2) z_3 &=
+\bigl[(x_1 x_2 - y_1 y_2) + \imath(x_1 y_2 + x_2 y_1)\bigr](x_3 + \imath y_3) \\
+&= (x_1 x_2 - y_1 y_2)x_3 - (x_1 y_2 + x_2 y_1) y_3
+   + \imath\bigl[(x_1 y_2 + x_2 y_1)x_3 + (x_1 x_2 - y_1 y_2) y_3\bigr] \\
+&= (x_1 x_2 x_3 - y_1 y_2 x_3 - x_1 y_2 y_3 - x_2 y_1 y_3) \\
+&\quad + \imath(x_1 y_2 x_3 + x_2 y_1 x_3 + x_1 x_2 y_3 - y_1 y_2 y_3).
+\end{align*}
+\begin{align*}
+z_1 (z_2 z_3) &=
+(x_1 + \imath y_1)\bigl[(x_2 x_3 - y_2 y_3) + \imath(x_2 y_3 + x_3 y_2)\bigr] \\
+&= x_1(x_2 x_3 - y_2 y_3) - y_1(x_2 y_3 + x_3 y_2)
+   + \imath\bigl[y_1(x_2 x_3 - y_2 y_3) + x_1(x_2 y_3 + x_3 y_2)\bigr] \\
+&= (x_1 x_2 x_3 - x_1 y_2 y_3 - x_2 y_1 y_3 - x_3 y_1 y_2) \\
+&\quad + \imath(x_1 x_2 y_3 + x_1 x_3 y_2 + x_2 x_3 y_1 - y_1 y_2 y_3).
+\end{align*}
+实部与虚部分别相等，故 $(z_1 z_2) z_3 = z_1 (z_2 z_3)$.
+
+\textbf{共轭与乘法的交换性：}
+\begin{align*}
+(z_1 z_2)^*
+   &= \bigl[(x_1 x_2 - y_1 y_2) + \imath(x_1 y_2 + x_2 y_1)\bigr]^* \\
+   &= (x_1 x_2 - y_1 y_2) - \imath(x_1 y_2 + x_2 y_1), \\[4pt]
+z_1^* z_2^*
+   &= (x_1 - \imath y_1)(x_2 - \imath y_2) \\
+   &= (x_1 x_2 - y_1 y_2) - \imath(x_1 y_2 + x_2 y_1).
+\end{align*}
+两边相等，故 $(z_1 z_2)^* = z_1^* z_2^*$. \hfill $\square$
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+找出复平面上满足方程
+\[
+|z - \imath a| = \lambda\,|z + \imath a|,\qquad \lambda > 0
+\]
+的所有点 $z = x + \imath y$。请分 $\lambda$ 的三种情况
+(1) $\lambda < 1$，\quad (2) $\lambda > 1$，\quad (3) $\lambda = 1$
+分别绘制图形。
+\end{problem}
+
+\begin{solution}
+令 $z = x + \imath y$，则
+\[
+|z - \imath a|^2 = x^2 + (y - a)^2,\qquad |z + \imath a|^2 = x^2 + (y + a)^2.
+\]
+原方程取平方得
+\[
+x^2 + (y - a)^2 = \lambda^2\bigl[x^2 + (y + a)^2\bigr].
+\]
+展开整理：
+\begin{align*}
+(1 - \lambda^2)(x^2 + y^2) - 2a(1 + \lambda^2)y + (1 - \lambda^2)a^2 &= 0.
+\end{align*}
+
+\textbf{情形 1：$\lambda < 1$.} \quad 此时 $1 - \lambda^2 > 0$，上式两边除以 $(1 - \lambda^2)$：
+\[
+x^2 + y^2 - \frac{2a(1 + \lambda^2)}{1 - \lambda^2}\,y + a^2 = 0,
+\]
+配方得
+\[
+x^2 + \Bigl(y - \frac{a(1 + \lambda^2)}{1 - \lambda^2}\Bigr)^2
+   = \Bigl(\frac{2a\lambda}{1 - \lambda^2}\Bigr)^2.
+\]
+这是\textbf{圆心} $O_1 = \bigl(0,\, \frac{a(1+\lambda^2)}{1-\lambda^2}\bigr)$、
+\textbf{半径} $r_1 = \dfrac{2a\lambda}{1-\lambda^2}$ 的圆，
+位于实轴上方（因 $\lambda<1$ 使圆心 $y$ 坐标为正）。
+
+\textbf{情形 2：$\lambda > 1$.} \quad 此时 $1 - \lambda^2 < 0$，除以 $1 - \lambda^2$ 后得
+\[
+x^2 + y^2 + \frac{2a(1 + \lambda^2)}{\lambda^2 - 1}\,y - a^2 = 0,
+\]
+配方得
+\[
+x^2 + \Bigl(y + \frac{a(1 + \lambda^2)}{\lambda^2 - 1}\Bigr)^2
+   = \Bigl(\frac{2a\lambda}{\lambda^2 - 1}\Bigr)^2.
+\]
+圆心 $O_2 = \bigl(0,\, -\frac{a(1+\lambda^2)}{\lambda^2-1}\bigr)$，半径 $r_2 = \dfrac{2a\lambda}{\lambda^2-1}$，位于实轴下方。
+
+\textbf{情形 3：$\lambda = 1$.} \quad 原方程化为 $|z - \imath a| = |z + \imath a|$，
+表示与两点 $\imath a$ 和 $-\imath a$ 等距的点的轨迹，是\textbf{实轴}（即直线 $y = 0$）。
+
+\textbf{几何说明。}
+方程刻画的是阿波罗尼乌斯圆 (Apollonius circle)：平面上到两定点 $A=(0,a)$ 与
+$B=(0,-a)$ 距离之比为 $\lambda$ 的点的轨迹。
+当 $\lambda < 1$ 时圆在 $A$ 侧（更靠近 $A$）；当 $\lambda > 1$ 时圆在 $B$ 侧；当 $\lambda = 1$ 时退化为 $AB$ 的中垂线。
+当 $\lambda \to 0$ 时圆心趋于 $A$，半径趋于 $0$；
+当 $\lambda \to \infty$ 时圆心趋于 $B$，半径趋于 $0$。
+\end{solution}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+\begin{scope}
+% Case 1: lambda = 1/2, a = 1 -> center (0, 5/3), radius 2/3
+\fill (0,5/3) circle (1.5pt) node[above right] {$O_1$};
+\draw (0,5/3) circle (2/3);
+\fill (0,1) circle (1.5pt) node[left] {$\imath a$};
+\fill (0,-1) circle (1.5pt) node[left] {$-\imath a$};
+\draw[->] (-1.4,0) -- (1.4,0) node[right] {$\mathrm{Re}$};
+\draw[->] (0,-1.6) -- (0,2.4) node[above] {$\mathrm{Im}$};
+\node at (0.9, 2.0) {\small $\lambda<1$};
+\end{scope}
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[scale=1.1]
+\begin{scope}
+% Case 2: lambda = 2, a = 1 -> center (0, -5/3), radius 4/3
+\fill (0,-5/3) circle (1.5pt) node[below right] {$O_2$};
+\draw (0,-5/3) circle (4/3);
+\fill (0,1) circle (1.5pt) node[left] {$\imath a$};
+\fill (0,-1) circle (1.5pt) node[left] {$-\imath a$};
+\draw[->] (-1.4,0) -- (1.4,0) node[right] {$\mathrm{Re}$};
+\draw[->] (0,-2.4) -- (0,1.6) node[above] {$\mathrm{Im}$};
+\node at (-1.2, 1.4) {\small $\lambda>1$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+%==========================================================================
+\begin{problem}
+若 $|z| = 1$，$a, b$ 为任意复数，试证明
+\[
+\left| \frac{a z + b}{\bar{b} z + \bar{a}} \right| = 1.
+\]
+\end{problem}
+
+\begin{solution}
+只需证明 $|a z + b|^2 = |\bar{b} z + \bar{a}|^2$.
+
+\begin{align*}
+|a z + b|^2
+&= (a z + b)\,\overline{(a z + b)}
+ = (a z + b)(\bar{a}\,\bar{z} + \bar{b}) \\
+&= a\bar{a}\,z\bar{z} + a\bar{b}\,z + b\bar{a}\,\bar{z} + b\bar{b} \\
+&= |a|^2 + |b|^2 + a\bar{b}\,z + b\bar{a}\,\bar{z} \quad (\text{因为 } |z|=1 \Rightarrow z\bar z = 1).
+\end{align*}
+
+\begin{align*}
+|\bar{b} z + \bar{a}|^2
+&= (\bar{b} z + \bar{a})\,\overline{(\bar{b} z + \bar{a})}
+ = (\bar{b} z + \bar{a})(b\bar{z} + a) \\
+&= \bar{b} b\,z\bar{z} + \bar{b} a\,z + \bar{a} b\,\bar{z} + \bar{a} a \\
+&= |a|^2 + |b|^2 + \bar{b} a\,z + \bar{a} b\,\bar{z}.
+\end{align*}
+
+由于复数乘法可交换，$\bar{b} a = a\bar{b}$，$\bar{a} b = b\bar{a}$，故
+\[
+a\bar{b}\,z + b\bar{a}\,\bar{z} = \bar{b} a\,z + \bar{a} b\,\bar{z}.
+\]
+从而
+\[
+|a z + b|^2 = |\bar{b} z + \bar{a}|^2
+\;\Longrightarrow\;
+|a z + b| = |\bar{b} z + \bar{a}|.
+\]
+当 $\bar{b} z + \bar{a} \neq 0$ 时，两边同除之即得
+$\left|\dfrac{a z + b}{\bar{b} z + \bar{a}}\right| = 1$. \hfill $\square$
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+试用 $\cos\varphi,\ \sin\varphi$ 表示 $\cos 4\varphi$.
+\end{problem}
+
+\begin{solution}
+\textbf{方法一（直接用二倍角公式）。}
+\begin{align*}
+\cos 4\varphi
+&= \cos^2 2\varphi - \sin^2 2\varphi \\
+&= (2\cos^2\varphi - 1)^2 - (2\sin\varphi\cos\varphi)^2 \\
+&= 4\cos^4\varphi - 4\cos^2\varphi + 1 - 4\sin^2\varphi\cos^2\varphi \\
+&= 4\cos^4\varphi - 4\cos^2\varphi + 1 - 4\cos^2\varphi(1 - \cos^2\varphi) \\
+&= 8\cos^4\varphi - 8\cos^2\varphi + 1.
+\end{align*}
+
+\textbf{方法二（用 $e^{\imath\varphi}$）。}
+\begin{align*}
+\cos 4\varphi &= \mathrm{Re}\!\bigl(e^{\imath 4\varphi}\bigr)
+              = \mathrm{Re}\!\bigl((\cos\varphi + \imath\sin\varphi)^4\bigr) \\
+             &= \cos^4\varphi - 6\cos^2\varphi\sin^2\varphi + \sin^4\varphi \\
+             &= (\cos^2\varphi + \sin^2\varphi)^2 - 8\cos^2\varphi\sin^2\varphi \\
+             &= 1 - 2\sin^2 2\varphi \\
+             &= 1 - 8\sin^2\varphi\cos^2\varphi.
+\end{align*}
+
+\textbf{两种表达式的等价性。}
+\[
+1 - 8\sin^2\varphi\cos^2\varphi
+= 1 - 2(2\sin\varphi\cos\varphi)^2
+= 1 - 2\sin^2 2\varphi
+= \cos 4\varphi,
+\]
+又
+\[
+8\cos^4\varphi - 8\cos^2\varphi + 1
+= 1 - 8\cos^2\varphi(1 - \cos^2\varphi)
+= 1 - 8\sin^2\varphi\cos^2\varphi.
+\]
+
+\[
+\boxed{\cos 4\varphi = 8\cos^4\varphi - 8\cos^2\varphi + 1
+       = 1 - 8\sin^2\varphi\cos^2\varphi
+       = 1 - 2\sin^2 2\varphi.}
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+求下列方程的根，并在复平面上画出它们的位置。
+\begin{enumerate}
+    \item $z^4 + 1 = 0$；
+    \item $z^2 + 2z\cos\lambda + 1 = 0$，\quad $0 < \lambda < \pi$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+
+\textbf{(1) $z^4 + 1 = 0$.}
+即 $z^4 = -1 = e^{\imath(\pi + 2k\pi)}$，$k = 0, 1, 2, 3$，故
+\[
+z_k = e^{\imath(\pi + 2k\pi)/4} = e^{\imath\pi(2k+1)/4},\qquad k=0,1,2,3.
+\]
+显式列出：
+\begin{align*}
+z_0 &= e^{\imath\pi/4} = \tfrac{\sqrt 2}{2}(1 + \imath), &
+z_1 &= e^{\imath 3\pi/4} = \tfrac{\sqrt 2}{2}(-1 + \imath), \\
+z_2 &= e^{\imath 5\pi/4} = \tfrac{\sqrt 2}{2}(-1 - \imath), &
+z_3 &= e^{\imath 7\pi/4} = \tfrac{\sqrt 2}{2}(1 - \imath).
+\end{align*}
+四点均位于单位圆上，彼此相隔 $\pi/2$（在第一、二、三、四象限各一个）。
+
+\textbf{(2) $z^2 + 2z\cos\lambda + 1 = 0$，$0 < \lambda < \pi$.}
+由求根公式：
+\begin{align*}
+z &= \frac{-2\cos\lambda \pm \sqrt{4\cos^2\lambda - 4}}{2}
+   = -\cos\lambda \pm \sqrt{\cos^2\lambda - 1} \\
+  &= -\cos\lambda \pm \sqrt{-\sin^2\lambda}
+   = -\cos\lambda \pm \imath\sin\lambda.
+\end{align*}
+故
+\[
+z_1 = -\cos\lambda + \imath\sin\lambda,\qquad
+z_2 = -\cos\lambda - \imath\sin\lambda.
+\]
+模与辐角：
+$|z_1| = |z_2| = \sqrt{\cos^2\lambda + \sin^2\lambda} = 1$，两根都在单位圆上。
+记 $\theta = \pi - \lambda$（因 $0<\lambda<\pi$ 故 $0<\theta<\pi$），则
+\[
+z_1 = e^{\imath(\pi-\lambda)},\qquad z_2 = e^{-\imath(\pi-\lambda)} = e^{\imath(\lambda - \pi)},
+\]
+即两根关于实轴对称，位于单位圆上辐角分别为 $\pm(\pi-\lambda)$ 的两点。
+
+\begin{center}
+\begin{tikzpicture}[scale=1.4]
+% Axes
+\draw[->] (-1.5,0) -- (1.5,0) node[right] {$\mathrm{Re}$};
+\draw[->] (0,-1.5) -- (0,1.5) node[above] {$\mathrm{Im}$};
+% Unit circle
+\draw (0,0) circle (1);
+% Roots of z^4+1=0
+\fill (45:1)   circle (1.2pt) node[above right] {$z_0$};
+\fill (135:1)  circle (1.2pt) node[above left]  {$z_1$};
+\fill (225:1)  circle (1.2pt) node[below left]  {$z_2$};
+\fill (315:1)  circle (1.2pt) node[below right] {$z_3$};
+\end{tikzpicture}
+\hspace{1.2cm}
+\begin{tikzpicture}[scale=1.4]
+% Axes
+\draw[->] (-1.5,0) -- (1.5,0) node[right] {$\mathrm{Re}$};
+\draw[->] (0,-1.5) -- (0,1.5) node[above] {$\mathrm{Im}$};
+% Unit circle
+\draw (0,0) circle (1);
+% Roots for lambda=pi/3, so theta = 2pi/3 = 120 deg
+\fill (120:1) circle (1.2pt) node[above left]  {$z_1$};
+\fill (-120:1) circle (1.2pt) node[below left] {$z_2$};
+\fill (-1,0) circle (0.8pt); \fill (1,0) circle (0.8pt);
+\draw[dashed] (0,0) -- (120:1);
+\draw[dashed] (0,0) -- (-120:1);
+\node at (0.6,-1.4) {\small $\lambda=\pi/3$};
+\end{tikzpicture}
+\end{center}
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+验证
+\[
+\tan^{-1}(z) = \frac{\imath}{2}\bigl[\ln(1 - \imath z) - \ln(1 + \imath z)\bigr].
+\]
+\end{problem}
+
+\begin{solution}
+设 $w = \tan^{-1}(z)$，则 $z = \tan w = \dfrac{\sin w}{\cos w}$.
+利用欧拉公式
+\[
+\sin w = \frac{e^{\imath w} - e^{-\imath w}}{2\imath},\qquad
+\cos w = \frac{e^{\imath w} + e^{-\imath w}}{2},
+\]
+得
+\[
+z = \frac{e^{\imath w} - e^{-\imath w}}{\imath\bigl(e^{\imath w} + e^{-\imath w}\bigr)}.
+\]
+令 $u = e^{\imath w}$，则 $e^{-\imath w} = u^{-1}$，于是
+\[
+z = \frac{u - u^{-1}}{\imath(u + u^{-1})}
+   = \frac{u^2 - 1}{\imath(u^2 + 1)}.
+\]
+整理求解 $u^2$：
+\[
+\imath z(u^2 + 1) = u^2 - 1
+\;\Longrightarrow\;
+u^2(\imath z - 1) = -1 - \imath z
+\;\Longrightarrow\;
+u^2 = \frac{1 + \imath z}{1 - \imath z}.
+\]
+因此（取主值）
+\[
+e^{\imath w} = u = \sqrt{\frac{1 + \imath z}{1 - \imath z}}
+\;\Longrightarrow\;
+\imath w = \frac{1}{2}\ln\frac{1 + \imath z}{1 - \imath z}.
+\]
+故
+\[
+w = \frac{1}{2\imath}\ln\frac{1 + \imath z}{1 - \imath z}
+   = \frac{\imath}{2}\cdot \frac{1}{\imath^2}\ln\frac{1 + \imath z}{1 - \imath z}
+   = -\frac{\imath}{2}\ln\frac{1 + \imath z}{1 - \imath z}.
+\]
+由对数差的性质 $\ln(A/B) = \ln A - \ln B$：
+\[
+w = -\frac{\imath}{2}\bigl[\ln(1 + \imath z) - \ln(1 - \imath z)\bigr]
+   = \frac{\imath}{2}\bigl[\ln(1 - \imath z) - \ln(1 + \imath z)\bigr].
+\]
+即
+\[
+\boxed{\tan^{-1}(z) = \frac{\imath}{2}\bigl[\ln(1 - \imath z) - \ln(1 + \imath z)\bigr].}\qquad\square
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+试证明极坐标下的柯西-黎曼方程
+\[
+\begin{cases}
+\dfrac{\partial u}{\partial \rho} = \dfrac{1}{\rho}\dfrac{\partial v}{\partial \varphi},\\[6pt]
+\dfrac{1}{\rho}\dfrac{\partial u}{\partial \varphi} = -\dfrac{\partial v}{\partial \rho}.
+\end{cases}
+\]
+\end{problem}
+
+\begin{solution}
+设 $z = \rho e^{\imath\varphi}$，则 $x = \rho\cos\varphi$，$y = \rho\sin\varphi$，故
+\[
+\frac{\partial x}{\partial \rho} = \cos\varphi,\quad
+\frac{\partial x}{\partial \varphi} = -\rho\sin\varphi,\quad
+\frac{\partial y}{\partial \rho} = \sin\varphi,\quad
+\frac{\partial y}{\partial \varphi} = \rho\cos\varphi.
+\]
+由链式法则
+\begin{align*}
+\frac{\partial u}{\partial \rho}
+   &= \frac{\partial u}{\partial x}\cos\varphi + \frac{\partial u}{\partial y}\sin\varphi, \\
+\frac{\partial u}{\partial \varphi}
+   &= -\rho\sin\varphi\,\frac{\partial u}{\partial x} + \rho\cos\varphi\,\frac{\partial u}{\partial y}, \\
+\frac{\partial v}{\partial \rho}
+   &= \frac{\partial v}{\partial x}\cos\varphi + \frac{\partial v}{\partial y}\sin\varphi, \\
+\frac{\partial v}{\partial \varphi}
+   &= -\rho\sin\varphi\,\frac{\partial v}{\partial x} + \rho\cos\varphi\,\frac{\partial v}{\partial y}.
+\end{align*}
+由直角坐标下的 Cauchy--Riemann 方程
+$\dfrac{\partial u}{\partial x} = \dfrac{\partial v}{\partial y}$，
+$\dfrac{\partial u}{\partial y} = -\dfrac{\partial v}{\partial x}$，
+代入得
+\[
+\frac{1}{\rho}\frac{\partial v}{\partial \varphi}
+   = -\sin\varphi\,\frac{\partial v}{\partial x} + \cos\varphi\,\frac{\partial v}{\partial y}
+   = \sin\varphi\,\frac{\partial u}{\partial y} + \cos\varphi\,\frac{\partial u}{\partial x}
+   = \frac{\partial u}{\partial \rho}.
+\]
+同理
+\[
+-\frac{\partial v}{\partial \rho}
+   = -\cos\varphi\,\frac{\partial v}{\partial x} - \sin\varphi\,\frac{\partial v}{\partial y}
+   = \cos\varphi\,\frac{\partial u}{\partial y} - \sin\varphi\,\frac{\partial u}{\partial x}.
+\]
+而
+\[
+\frac{1}{\rho}\frac{\partial u}{\partial \varphi}
+   = -\sin\varphi\,\frac{\partial u}{\partial x} + \cos\varphi\,\frac{\partial u}{\partial y}.
+\]
+两式相等，故
+\[
+\frac{1}{\rho}\frac{\partial u}{\partial \varphi} = -\frac{\partial v}{\partial \rho}. \qquad\square
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+已知解析函数 $f(z)$ 的实部 $u(x, y)$ 或虚部 $v(x, y)$，求该解析函数。
+\begin{enumerate}
+    \item $u = e^x \sin y$；
+    \item $u = x^2 - y^2 + xy$，\quad $f(0) = 0$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+
+\textbf{(1) $u = e^x \sin y$.}
+\[
+u_x = e^x \sin y,\qquad u_y = e^x \cos y.
+\]
+由 CR 方程 $v_y = u_x = e^x \sin y$，$v_x = -u_y = -e^x \cos y$.
+
+对 $v_y$ 关于 $y$ 积分：
+\[
+v(x,y) = \int e^x \sin y\,\mathrm{d}y = -e^x \cos y + g(x).
+\]
+再由 $v_x = -u_y$：
+\[
+v_x = -e^x \cos y + g'(x) = -e^x \cos y \;\Longrightarrow\; g'(x) = 0 \;\Longrightarrow\; g(x) = C.
+\]
+所以
+\[
+v(x,y) = -e^x \cos y + C.
+\]
+合并：
+\[
+f(z) = u + \imath v
+   = e^x \sin y + \imath\bigl(-e^x \cos y + C\bigr)
+   = -\imath e^x(\cos y + \imath\sin y) + \imath C
+   = -\imath e^{x + \imath y} + \imath C
+   = -\imath e^z + \imath C.
+\]
+吸收常数后，$\boxed{f(z) = -\imath e^z}$（相差一个纯虚常数）。
+
+\textbf{(2) $u = x^2 - y^2 + xy$，$f(0) = 0$.}
+\[
+u_x = 2x + y,\qquad u_y = -2y + x.
+\]
+由 CR 方程 $v_y = u_x = 2x + y$，$v_x = -u_y = 2y - x$.
+
+对 $v_y$ 关于 $y$ 积分：
+\[
+v(x,y) = \int (2x + y)\,\mathrm{d}y = 2xy + \tfrac{1}{2}y^2 + g(x).
+\]
+再由 $v_x = -u_y$：
+\[
+v_x = 2y + g'(x) = 2y - x \;\Longrightarrow\; g'(x) = -x \;\Longrightarrow\; g(x) = -\tfrac{1}{2}x^2 + C.
+\]
+故
+\[
+v(x,y) = 2xy + \tfrac{1}{2}y^2 - \tfrac{1}{2}x^2 + C.
+\]
+合并：
+\begin{align*}
+f(z) &= u + \imath v \\
+     &= (x^2 - y^2 + xy) + \imath\!\left(2xy + \tfrac{1}{2}y^2 - \tfrac{1}{2}x^2 + C\right) \\
+     &= (x^2 - y^2) + \tfrac{\imath}{2}\bigl[(2\imath xy - \imath^2 x^2) + (2\imath xy + y^2)\bigr] \cdot 1 \; + \;\text{整理}\\
+     &= \bigl[1 - \tfrac{\imath}{2}\bigr](x^2 - y^2 + 2\imath xy) + \imath C \\
+     &= \Bigl(1 - \frac{\imath}{2}\Bigr)z^2 + \imath C.
+\end{align*}
+利用 $f(0) = 0$ 得 $\imath C = 0$，即 $C = 0$，从而
+\[
+\boxed{f(z) = \left(1 - \frac{\imath}{2}\right)z^2 = \frac{(2 - \imath)\,z^2}{2}.}
+\]
+\end{solution}
+
+\end{document}
