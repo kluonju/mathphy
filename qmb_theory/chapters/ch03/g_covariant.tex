@@ -1,0 +1,26 @@
+\section{\texorpdfstring{$G(\mathbf{k},\omega)$}{G(k,omega)} 的谱结构与协变分析}
+
+Gross 第 24 章对单粒子传播子作动量--频率分析：极点、分支割线与重整化常数如何从自能读出。
+
+\subsection{解析结构}
+
+推迟函数在上半平面解析。对均匀体系，
+\begin{equation}
+  G^R(\mathbf{k},\omega)
+  =\frac{1}{\omega-\varepsilon_{\mathbf{k}}^0-\Sigma^R(\mathbf{k},\omega)}.
+\end{equation}
+若 $\Sigma=\Sigma'-\mathrm{i}\Sigma''$ 且 $\Sigma''$ 小，则近似极点
+\begin{equation}
+  E_{\mathbf{k}}
+  =\varepsilon_{\mathbf{k}}^0+\Sigma'(\mathbf{k},E_{\mathbf{k}}),
+  \qquad
+  Z_{\mathbf{k}}
+  =\Bigl(
+  1-\partial_\omega\Sigma'(\mathbf{k},\omega)\big|_{E_{\mathbf{k}}}
+  \Bigr)^{-1},
+\end{equation}
+谱函数 $A=Z\,\delta(\omega-E)+$ 非相干背景（分支割线）。费米液体要求 $\Sigma''(\omega)\propto\omega^2$ 在费米面附近，从而准粒子寿命 $\tau\sim1/\omega^2$。
+
+\subsection{协变/图的组织}
+
+按外动量 $\mathbf{k}$ 与频率 $\omega$ 的“尺度”分类自能图：Hartree 只移动化学势；Fock 给出动量依赖；动力学屏蔽（GW）同时产生 $\omega$ 依赖与寿命。骨架展开 \eqref{eq:skeleton} 保证同一物理过程不被重复计数。实验上 ARPES 测 $A(\mathbf{k},\omega)$，隧道/光电子谱测积分态密度。

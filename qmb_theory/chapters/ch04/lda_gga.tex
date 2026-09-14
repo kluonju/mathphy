@@ -1,0 +1,39 @@
+\section{局域密度近似和广义梯度近似}
+
+\subsection{局域密度近似（LDA）}
+
+LDA 假设 $E_{\mathrm{xc}}$ 可写为均匀电子气交换关联能密度的积分：
+\begin{equation}
+  E_{\mathrm{xc}}^{\mathrm{LDA}}[n]
+  =\int n(\mathbf{r})\,
+  \varepsilon_{\mathrm{xc}}^{\mathrm{unif}}\bigl(n(\mathbf{r})\bigr)\,
+  \mathrm{d}\mathbf{r}.
+\end{equation}
+$\varepsilon_{\mathrm{xc}}^{\mathrm{unif}}(n)$ 可由解析（交换）与高精度量子蒙特卡罗（关联）得到。LDA 形式简单，对密度缓慢变化的体系往往出奇地好用，但对原子、分子的结合能、键长等可能有系统偏差。
+
+\subsection{广义梯度近似（GGA）}
+
+GGA 进一步纳入密度梯度：
+\begin{equation}
+  E_{\mathrm{xc}}^{\mathrm{GGA}}[n]
+  =\int
+  f\bigl(n(\mathbf{r}),\nabla n(\mathbf{r})\bigr)\,
+  \mathrm{d}\mathbf{r}.
+\end{equation}
+常见形式包括 PBE、BLYP 等。GGA 通常改善原子化能、几何结构等，是材料计算的默认起点之一。
+
+\subsection{更高阶与杂化泛函}
+
+\begin{itemize}
+  \item meta-GGA：引入动能密度等更高阶半局域信息；
+  \item 杂化泛函：混入一部分精确 HF 交换，常改善带隙与反应能垒；
+  \item 范围分离、van der Waals 修正等：针对长程关联与弱相互作用。
+\end{itemize}
+
+\subsection{适用性边界}
+
+对弱到中等关联的 $sp$ 电子材料，半局域 DFT 常常成功。对 $d/f$ 电子强关联、电荷迁移绝缘体、临界涨落显著的体系，可能需要 $+U$、动力学平均场、或多体微扰（GW、耦合格点等）作为补充。认识近似的边界，与掌握公式同等重要。
+
+\begin{example}[选择泛函的经验原则]
+结构与总能差：GGA 常优于 LDA；绝缘带隙：半局域泛函常低估，可尝试杂化或 GW；分层材料与吸附：注意 van der Waals 修正。具体问题应对照实验与更高阶方法做检验。
+\end{example}

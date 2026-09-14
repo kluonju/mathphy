@@ -1,0 +1,120 @@
+\section{Impulse theorem method}
+
+The impulse theorem converts a $\delta(t-\tau)$ forcing into a jump of the initial data at $t=\tau+0$ for the corresponding homogeneous equation. One then solves that Cauchy (or Fourier) problem by known methods.
+
+\subsection{Infinite string with zero initial data}
+
+Consider
+\begin{equation}
+u_{tt}-a^2 u_{xx}=f(x,t),
+\qquad
+u\big|_{t=0}=u_t\big|_{t=0}=0.
+\end{equation}
+The Green's function satisfies the homogeneous wave equation for $t>\tau$, together with
+\begin{equation}
+G\big|_{t=\tau+0}=0,
+\qquad
+G_t\big|_{t=\tau+0}=\delta(x-\xi).
+\end{equation}
+d'Alembert's formula with the time shift $t\mapsto t-\tau$ gives
+\begin{equation}
+G(x,t;\xi,\tau)
+=
+\begin{cases}
+0, & \xi\notin\bigl(x-a(t-\tau),\,x+a(t-\tau)\bigr),\\[0.3em]
+\dfrac{1}{2a}, & \xi\in\bigl(x-a(t-\tau),\,x+a(t-\tau)\bigr).
+\end{cases}
+\end{equation}
+Hence
+\begin{equation}
+u(x,t)
+=\int_0^{t}\int_{x-a(t-\tau)}^{x+a(t-\tau)}
+\frac{1}{2a}\,f(\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
+\end{equation}
+
+\subsection{Finite interval with Neumann ends}
+
+As a second illustration take a forced string on $[0,l]$ with free ends and vanishing initial data,
+\begin{equation}
+\begin{gathered}
+u_{tt}-a^2 u_{xx}=A\cos\frac{\pi x}{l}\sin\omega t,\\
+u_x\big|_{x=0}=u_x\big|_{x=l}=0,
+\qquad
+u\big|_{t=0}=u_t\big|_{t=0}=0.
+\end{gathered}
+\end{equation}
+The impulse problem is the homogeneous wave equation with $G|_{t=\tau+0}=0$, $G_t|_{t=\tau+0}=\delta(x-\xi)$, and Neumann boundary conditions. Separation of variables yields
+\begin{equation}
+\begin{aligned}
+G(x,t;\xi,\tau)
+&=\frac{t-\tau}{l}
++\frac{2}{\pi a}\sum_{n=1}^{\infty}\frac{1}{n}
+\sin\frac{n\pi a(t-\tau)}{l}
+\cos\frac{n\pi\xi}{l}\cos\frac{n\pi x}{l}.
+\end{aligned}
+\end{equation}
+Inserting into $u=\int_0^t\int_0^l f\,G\,\mathrm{d}\xi\,\mathrm{d}\tau$ and using orthogonality retains only the $n=1$ mode:
+\begin{equation}
+u(x,t)
+=\frac{Al}{\pi a}\frac{1}{\omega^2-\pi^2 a^2/l^2}
+\Bigl(\omega\sin\frac{\pi a t}{l}-\frac{\pi a}{l}\sin\omega t\Bigr)
+\cos\frac{\pi x}{l}.
+\end{equation}
+When $\omega=\pi a/l$ the denominator vanishes and a resonant solution with secular growth must be constructed separately.
+
+\subsection{Infinite line heat equation}
+
+For
+\begin{equation}
+u_t-a^2 u_{xx}=f,
+\qquad
+u\big|_{t=0}=0,
+\end{equation}
+the impulse problem is $G_t-a^2 G_{xx}=0$ with $G|_{t=\tau+0}=\delta(x-\xi)$. The heat kernel is
+\begin{equation}
+\label{eq:heat-kernel}
+G(x,t;\xi,\tau)
+=\frac{1}{2a\sqrt{\pi(t-\tau)}}
+\exp\Bigl(-\frac{(x-\xi)^2}{4a^2(t-\tau)}\Bigr),
+\end{equation}
+and therefore
+\begin{equation}
+u(x,t)
+=\int_0^{t}\int_{-\infty}^{\infty}
+f(\xi,\tau)\,G(x,t;\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
+\end{equation}
+
+\begin{note}[Infinite propagation speed]
+As a function of $x-\xi$, the kernel \eqref{eq:heat-kernel} is a Gaussian that widens and flattens as $t-\tau$ increases, with its peak at the source. For any $t>\tau$ one has $G\neq0$ everywhere: a signal propagates with infinite speed. This is an artifact of Fourier's law, but the description remains accurate when $t-\tau$ is not extremely small.
+\end{note}
+
+\subsection{Semi-infinite heat problems by odd/even extension}
+
+\paragraph{Dirichlet end $u|_{x=0}=0$.}
+Extend $f$ oddly to $x<0$. Then \eqref{eq:heat-kernel} produces
+\begin{equation}
+\begin{aligned}
+G(x,t;\xi,\tau)
+&=\frac{1}{2a\sqrt{\pi(t-\tau)}}
+\Biggl[
+\exp\Bigl(-\frac{(x-\xi)^2}{4a^2(t-\tau)}\Bigr)\\
+&\qquad\qquad
+-\exp\Bigl(-\frac{(x+\xi)^2}{4a^2(t-\tau)}\Bigr)
+\Biggr],
+\end{aligned}
+\end{equation}
+and $u=\int_0^t\int_0^{\infty}f(\xi,\tau)G\,\mathrm{d}\xi\,\mathrm{d}\tau$.
+
+\paragraph{Neumann end $u_x|_{x=0}=0$.}
+The even extension yields
+\begin{equation}
+\begin{aligned}
+G(x,t;\xi,\tau)
+&=\frac{1}{2a\sqrt{\pi(t-\tau)}}
+\Biggl[
+\exp\Bigl(-\frac{(x-\xi)^2}{4a^2(t-\tau)}\Bigr)\\
+&\qquad\qquad
++\exp\Bigl(-\frac{(x+\xi)^2}{4a^2(t-\tau)}\Bigr)
+\Biggr].
+\end{aligned}
+\end{equation}

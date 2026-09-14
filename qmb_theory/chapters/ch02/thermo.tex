@@ -1,0 +1,88 @@
+\section{热力学、维里定理与耦合常数积分}
+
+GV §1.8 从 $\varepsilon(r_s)$ 导出压力、压缩率与自旋磁化率，并用维里定理与 Hellmann--Feynman 定理分解动能/势能。这是检验 HF、RPA、QMC 的标准约束。
+
+\subsection{压力、化学势与压缩率}
+
+令 $E=N\varepsilon(r_s)$。在 $d$ 维，
+\begin{equation}
+\begin{aligned}
+  \frac{P}{n}
+  &=-\frac{r_s}{d}\varepsilon'(r_s),\\
+  \mu
+  &=\varepsilon(r_s)-\frac{r_s}{d}\varepsilon'(r_s),\\
+  \frac{1}{nK}
+  &=\frac{r_s}{d}
+  \Bigl[
+  \bigl(1-\tfrac{1}{d}\bigr)\varepsilon'(r_s)
+  +\frac{r_s}{d}\varepsilon''(r_s)
+  \Bigr].
+\end{aligned}
+\label{eq:PK}
+\end{equation}
+$K$ 为\textbf{固有}压缩率（proper compressibility）：只对电子气做体积变化、背景视为刚性补偿。实验金属的总压缩率还含离子晶格刚度；固有 $K$ 可在低密变为负值（三维约 $r_s>5.25$），并不表示晶体崩溃。
+
+自旋磁化率 $\chi_S$ 由对极化 $p=(n_\uparrow-n_\downarrow)/n$ 的二阶导数得到。仅含交换时 $K/K_0=\chi_S/\chi_P$；关联使二者分道：压缩率进一步增强，自旋磁化率被压低（GV 图 1.21）。
+
+\subsection{维里定理}
+
+库仑势齐次度为 $-1$，维里定理给出
+\begin{equation}
+  2t+u
+  =d\,\frac{P}{n}
+  =-r_s\varepsilon'(r_s),
+\label{eq:virial}
+\end{equation}
+$t$、$u$ 为每粒子动能与势能。结合 $\varepsilon=t+u$，对任意 $d$ 有
+\begin{equation}
+  t=-\varepsilon-r_s\varepsilon',
+  \qquad
+  u=2\varepsilon+r_s\varepsilon'.
+\end{equation}
+更干净的写法是用交换关联能 $\varepsilon_{\mathrm{xc}}=\varepsilon-\varepsilon_0$：
+\begin{equation}
+  u=2\varepsilon_{\mathrm{xc}}+r_s\varepsilon_{\mathrm{xc}}',
+  \qquad
+  t=\varepsilon_0-\varepsilon_{\mathrm{xc}}-r_s\varepsilon_{\mathrm{xc}}'.
+\end{equation}
+相互作用使 $t\ge\varepsilon_0$（动能因关联而升高）。
+
+\subsection{基态能定理（耦合常数积分）}
+
+令电荷标度为 $\sqrt{\lambda}e$（$0\le\lambda\le1$），$H(\lambda)=T+\lambda U$。Hellmann--Feynman 定理
+\begin{equation}
+  \frac{\mathrm{d}E(\lambda)}{\mathrm{d}\lambda}
+  =\bigl\langle\Psi(\lambda)|U|\Psi(\lambda)\bigr\rangle
+\end{equation}
+给出
+\begin{equation}
+  E-E_0
+  =\int_0^1\frac{\mathrm{d}\lambda}{\lambda}\,
+  U(\lambda)
+  =N\int_0^1\mathrm{d}\lambda\,
+  u(\lambda),
+\label{eq:adiab}
+\end{equation}
+或用结构因子
+\begin{equation}
+  \varepsilon-\varepsilon_0
+  =\frac{1}{2n}
+  \int_0^1\mathrm{d}\lambda
+  \int\frac{\mathrm{d}^d q}{(2\pi)^d}
+  v_{\mathbf{q}}
+  \bigl[S_\lambda(\mathbf{q})-1\bigr].
+\label{eq:E_from_S}
+\end{equation}
+这是 RPA 关联能与 DFT 绝热连接公式的共同源头。
+
+\begin{example}[HF 压缩率]
+仅取 $\varepsilon=A_d/r_s^2-B_d/r_s$ 代入 \eqref{eq:PK}，三维顺磁气
+\begin{equation}
+  \frac{K}{K_0}
+  =\frac{\chi_S}{\chi_P}
+  =\frac{1}{1-r_s/r_s^\star},
+  \qquad
+  r_s^\star\approx6.03.
+\end{equation}
+$r_s\to r_s^\star$ 时二者发散，提示 HF 顺磁态的不稳定性（真实转变被关联推迟到低得多的密度）。
+\end{example}

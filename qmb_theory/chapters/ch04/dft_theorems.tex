@@ -1,0 +1,64 @@
+\section{密度泛函理论基本定理}
+
+GV 第 7 章把 DFT 建立在电子液的 $E_{\mathrm{xc}}[n]$ 与耦合常数积分之上。此处给出 HK 定理、绝热连接与交换关联孔。
+
+\subsection{Hohenberg--Kohn 定理}
+
+\begin{theorem}[HK-1]
+在非简并基态下，外势 $v_{\mathrm{ext}}(\mathbf{r})$（至多相差一个常数）由基态粒子密度 $n(\mathbf{r})$ 唯一决定。因而所有基态可观测量都是 $n$ 的泛函。
+\end{theorem}
+
+\begin{theorem}[HK-2]
+存在能量泛函 $E[n]$，对给定粒子数，其最小值在真实基态密度处取得，且最小值为基态能。
+\end{theorem}
+
+\textbf{HK-1 证明提纲}（反证）：若两个相差非常数的势 $v$、$v'$ 给出同一密度 $n$，则对应基态 $|\Psi\rangle$、$|\Psi'\rangle$ 不同。由变分
+\begin{equation}
+  E<E'+\int(v-v')n,
+  \qquad
+  E'<E+\int(v'-v)n,
+\end{equation}
+相加得 $E+E'<E+E'$，矛盾。故势由密度唯一确定，波函数从而一切可观测量都是 $n$ 的泛函。
+
+于是
+\begin{equation}
+  E[n]
+  =T[n]+E_{\mathrm{H}}[n]+E_{\mathrm{xc}}[n]
+  +\int v_{\mathrm{ext}}(\mathbf{r})n(\mathbf{r})\,\mathrm{d}\mathbf{r}.
+\end{equation}
+
+\subsection{绝热连接}
+
+将相互作用标为 $\lambda v$（$0\le\lambda\le1$），同时调节外势使密度 $n(\mathbf{r})$ 保持不变。Hellmann--Feynman 给出
+\begin{equation}
+  E_{\mathrm{xc}}[n]
+  =\frac12
+  \int_0^1\mathrm{d}\lambda
+  \int\mathrm{d}\mathbf{r}\,\mathrm{d}\mathbf{r}'\,
+  \frac{e^2 n(\mathbf{r})n(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}
+  \bigl[g_\lambda(\mathbf{r},\mathbf{r}')-1\bigr].
+\label{eq:adiab_xc}
+\end{equation}
+定义耦合常数平均孔
+\begin{equation}
+  \bar n_{\mathrm{xc}}(\mathbf{r},\mathbf{r}')
+  =n(\mathbf{r}')
+  \int_0^1\mathrm{d}\lambda\,
+  \bigl[g_\lambda(\mathbf{r},\mathbf{r}')-1\bigr],
+\end{equation}
+则
+\begin{equation}
+  E_{\mathrm{xc}}[n]
+  =\frac12\int\mathrm{d}\mathbf{r}\,\mathrm{d}\mathbf{r}'\,
+  \frac{e^2 n(\mathbf{r})\bar n_{\mathrm{xc}}(\mathbf{r},\mathbf{r}')}
+  {|\mathbf{r}-\mathbf{r}'|}.
+\end{equation}
+$E_{\mathrm{xc}}$ 是交换关联孔的静电能。求和规则
+\begin{equation}
+  \int\mathrm{d}\mathbf{r}'\,\bar n_{\mathrm{xc}}(\mathbf{r},\mathbf{r}')=-1
+\end{equation}
+表示孔积分为 $-1$（自作用扣除）。LDA 相当于用均匀气的 $\bar n_{\mathrm{xc}}$ 就地移植。
+
+\subsection{意义与局限}
+
+HK 保证密度是合法变量，但不给出 $E_{\mathrm{xc}}$ 的显式。激发态需 TDDFT 等扩展。实际精度完全取决于对孔的近似。

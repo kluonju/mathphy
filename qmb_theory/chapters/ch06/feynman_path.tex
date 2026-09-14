@@ -1,0 +1,33 @@
+\section{Feynman 路径积分}
+
+考虑单粒子从 $(x_i,t_i)$ 到 $(x_f,t_f)$ 的传播幅
+\begin{equation}
+  U(x_f t_f;x_i t_i)
+  =\bigl\langle x_f\big|
+  e^{-\mathrm{i}\hat H(t_f-t_i)/\hbar}
+  \big|x_i\bigr\rangle.
+\end{equation}
+将时间切成 $M$ 片 $\epsilon=(t_f-t_i)/M$，在每片之间插入坐标完备性，并对短时传播子取
+\begin{equation}
+  \bigl\langle x\big|e^{-\mathrm{i}\epsilon\hat H/\hbar}\big|x'\bigr\rangle
+  \approx
+  \sqrt{\frac{m}{2\pi\mathrm{i}\epsilon\hbar}}
+  \exp\Bigl\{
+  \frac{\mathrm{i}\epsilon}{\hbar}
+  \Bigl[
+  \tfrac{m}{2}\Bigl(\frac{x-x'}{\epsilon}\Bigr)^2
+  -V(x')
+  \Bigr]
+  \Bigr\}
+\end{equation}
+（对 $H=p^2/2m+V$）。连续极限 $\epsilon\to0$ 给出
+\begin{equation}
+  U
+  =\int_{x(t_i)=x_i}^{x(t_f)=x_f}
+  \mathcal{D}[x(t)]\,
+  \exp\Bigl(
+  \frac{\mathrm{i}}{\hbar}
+  \int_{t_i}^{t_f}\mathrm{d}t\,L(x,\dot x)
+  \Bigr),
+\end{equation}
+其中 $L=\frac12 m\dot x^2-V$ 为拉格朗日量。路径积分把量子振幅写成对经典轨迹的加权叠加，权重为 $e^{\mathrm{i}S/\hbar}$。

@@ -1,0 +1,71 @@
+\section{对关联、结构因子与交换孔}
+
+GV 把短距关联写成对关联函数 $g(\mathbf{r})$ 与静态结构因子 $S(\mathbf{q})$。它们既决定势能，也是 RPA/局域场理论的输入。
+
+\subsection{定义}
+
+密度--密度关联
+\begin{equation}
+  \bigl\langle
+  \hat n(\mathbf{r})\hat n(\mathbf{r}')
+  \bigr\rangle
+  =n\delta(\mathbf{r}-\mathbf{r}')
+  +n^2 g(|\mathbf{r}-\mathbf{r}'|).
+\end{equation}
+均匀体系中 $g(r)\to1$（$r\to\infty$）。静态结构因子
+\begin{equation}
+  S(\mathbf{q})
+  =\frac{1}{N}
+  \bigl\langle
+  \hat n_{\mathbf{q}}\hat n_{-\mathbf{q}}
+  \bigr\rangle
+  =1+n\int\mathrm{d}^d r\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}
+  \bigl[g(r)-1\bigr].
+\label{eq:Sq_gr}
+\end{equation}
+势能每粒子
+\begin{equation}
+  u
+  =\frac{n}{2}
+  \int\mathrm{d}^d r\,v(r)\bigl[g(r)-1\bigr]
+  =\frac{1}{2L^d}
+  \sum_{\mathbf{q}\neq0}
+  v_{\mathbf{q}}\bigl[S(\mathbf{q})-1\bigr].
+\label{eq:u_from_S}
+\end{equation}
+
+\subsection{自由费米气的交换孔}
+
+对单一 Slater 行列式，Wick 定理给出
+\begin{equation}
+  g(\mathbf{r},\mathbf{r}')
+  =1-\frac{|\rho(\mathbf{r},\mathbf{r}')|^2}{n(\mathbf{r})n(\mathbf{r}')},
+\label{eq:g_slater}
+\end{equation}
+其中 $\rho(\mathbf{r},\mathbf{r}')=\sum_{\alpha}^{\mathrm{occ}}\phi_\alpha(\mathbf{r})\phi_\alpha^*(\mathbf{r}')$ 为单粒子密度矩阵。均匀顺磁三维气
+\begin{equation}
+  g_{\uparrow\uparrow}(r)
+  =1-\Bigl(\frac{3j_1(k_F r)}{k_F r}\Bigr)^2,
+  \qquad
+  g_{\uparrow\downarrow}(r)=1,
+\end{equation}
+$j_1$ 为球 Bessel 函数。同自旋 $g_{\uparrow\uparrow}(0)=0$（Pauli 孔）；异自旋在 HF 中完全不关联。自旋平均
+\begin{equation}
+  g(r)
+  =\frac12\bigl(g_{\uparrow\uparrow}+g_{\uparrow\downarrow}\bigr)
+  \xrightarrow{r\to0}\tfrac12.
+\end{equation}
+
+\subsection{尖点条件}
+
+库仑奇异使 $g(r)$ 在 $r\to0$ 有线性尖点（Kato）：
+\begin{equation}
+  \left.\frac{\mathrm{d}g_{\sigma\sigma'}}{\mathrm{d}r}\right|_{r=0}
+  =\frac{m e^2}{\hbar^2}g_{\sigma\sigma'}(0)
+  \quad(d=3).
+\end{equation}
+HF 的 $g_{\uparrow\downarrow}=1$ 不满足关联尖点；RPA 在金属密度下甚至使 $g(0)<0$，这是 RPA 的著名缺陷，需局域场修正。
+
+\begin{note}
+交换孔降低同自旋电子相互靠近的概率，是 $\varepsilon_x<0$ 的实空间图像。关联孔进一步压低 $g_{\uparrow\downarrow}(0)$，贡献 $\varepsilon_{\mathrm{c}}$。
+\end{note}

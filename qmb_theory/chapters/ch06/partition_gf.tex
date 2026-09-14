@@ -1,0 +1,36 @@
+\section{配分函数与格林函数}
+
+在泛函积分中，单粒子格林函数是场的两点关联。对费米子，
+\begin{equation}
+  \mathcal{G}(\alpha\tau;\alpha'\tau')
+  =-\bigl\langle\psi_\alpha(\tau)\psi_{\alpha'}^*(\tau')\bigr\rangle
+  =-\frac{1}{Z}
+  \int\mathcal{D}[\psi^*,\psi]\,
+  \psi_\alpha(\tau)\psi_{\alpha'}^*(\tau')\,
+  e^{-S/\hbar}.
+\end{equation}
+对自由二次作用量 $S_0=\psi^*(-\hbar\partial_\tau-\varepsilon+\mu)\psi$，高斯积分给出
+\begin{equation}
+  \mathcal{G}_0(\mathrm{i}\omega_n)
+  =\frac{1}{\mathrm{i}\omega_n-(\varepsilon-\mu)/\hbar},
+\end{equation}
+与 Matsubara 运动方程结果一致。
+
+相互作用 $S_{\mathrm{int}}$ 的微扰展开重新产生 Feynman 图；连锁集群定理对应
+\begin{equation}
+  \ln Z=\text{连通真空图}.
+\end{equation}
+有效作用量方法则对源做 Legendre 变换，把连通生成泛函变为 1PI 有效作用量（下一章）。
+
+\begin{example}[Hubbard--Stratonovich 示意]
+对相互作用 $\frac{U}{2}n^2$，可引入辅助场 $\varphi$，
+\begin{equation}
+  e^{-\frac{U}{2}\int n^2}
+  \propto
+  \int\mathcal{D}\varphi\,
+  \exp\Bigl(
+  -\int\bigl[\tfrac{\varphi^2}{2U}+\varphi n\bigr]
+  \Bigr),
+\end{equation}
+把问题化为“电子在涨落标势中运动”。鞍点即 Hartree；涨落给出 RPA 型屏蔽。等离激元亦可由此作为辅助场的集体模式出现。
+\end{example}

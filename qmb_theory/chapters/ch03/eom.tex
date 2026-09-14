@@ -1,0 +1,52 @@
+\section{运动方程与自能}
+
+Mahan 强调：格林函数满足由哈密顿量直接推出的运动方程；相互作用把方程变成关联函数的层级，自能正是把该层级封闭的装置。
+
+\subsection{自由粒子}
+
+海森堡方程 $\partial_\tau c_{\mathbf{k}}=[K,c_{\mathbf{k}}]=-\xi_{\mathbf{k}}c_{\mathbf{k}}$，故
+\begin{equation}
+  \bigl(-\partial_\tau-\xi_{\mathbf{k}}\bigr)
+  \mathcal{G}_0(\mathbf{k},\tau)
+  =\delta(\tau),
+\end{equation}
+Fourier 即 $\mathcal{G}_0=1/(\mathrm{i}\omega_n-\xi_{\mathbf{k}})$。
+
+\subsection{相互作用：层级}
+
+对库仑项 \eqref{eq:Vcoulomb}，
+\begin{equation}
+  [V,c_{\mathbf{k}\sigma}]
+  =\frac{1}{L^d}\sum_{\mathbf{q}\neq0}v_{\mathbf{q}}
+  \hat n_{-\mathbf{q}}c_{\mathbf{k}+\mathbf{q},\sigma}
+  +\cdots,
+\end{equation}
+于是 $\partial_\tau\mathcal{G}$ 的右边出现三点函数 $\langle T_\tau n\,c\,c^\dagger\rangle$。再写三点函数的运动方程又出现四点函数——Martin--Schwinger 层级。
+
+\subsection{用自能封闭}
+
+定义 $\Sigma$ 使
+\begin{equation}
+  \bigl(-\partial_\tau-\xi_{\mathbf{k}}\bigr)\mathcal{G}(\mathbf{k},\tau)
+  =\delta(\tau)
+  +\int_0^\beta\mathrm{d}\tau'\,
+  \Sigma(\mathbf{k},\tau-\tau')\mathcal{G}(\mathbf{k},\tau'),
+\end{equation}
+即
+\begin{equation}
+  \mathcal{G}(\mathrm{i}\omega_n)
+  =\bigl[\mathrm{i}\omega_n-\xi_{\mathbf{k}}-\Sigma(\mathrm{i}\omega_n)\bigr]^{-1}.
+\label{eq:G_EOM}
+\end{equation}
+这与图的 Dyson 方程同一内容：$\Sigma$ 是单粒子不可约插入。HF 对应 $\Sigma$ 与时间无关（静态交换），RPA/GW 对应 $\Sigma=G W$ 型动力学屏蔽。
+
+\begin{example}[Hartree--Fock 自能]
+因式分解三点函数后，
+\begin{equation}
+  \Sigma^{\mathrm{HF}}_{\mathbf{k}\sigma}
+  =n\sum_{\mathbf{q}}v_{\mathbf{q}}
+  -\frac{1}{L^d}\sum_{\mathbf{p}}
+  v_{\mathbf{k}-\mathbf{p}}n_{\mathbf{p}\sigma},
+\end{equation}
+第一项 Hartree（jellium 中与背景相消），第二项即 \eqref{eq:Sigmax}。
+\end{example}

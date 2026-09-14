@@ -1,0 +1,98 @@
+\section{Time-dependent Green's functions}
+
+\subsection{Wave equation}
+
+Consider the forced vibration problem
+\begin{equation}
+\label{eq:wave-forced}
+u_{tt}-a^2\Delta u=f(\mathbf{r},t),
+\end{equation}
+\begin{equation}
+\Bigl[\alpha\frac{\partial u}{\partial n}+\beta u\Bigr]_{\Sigma}=\theta(M,t),
+\end{equation}
+\begin{equation}
+u\big|_{t=0}=\varphi(\mathbf{r}),
+\qquad
+u_t\big|_{t=0}=\psi(\mathbf{r}).
+\end{equation}
+A continuous force density is a superposition of impulses,
+\begin{equation}
+f(\mathbf{r},t)
+=\iiint_{T}\int_{-\infty}^{\infty}
+f(\mathbf{r}_0,\tau)\,
+\delta(\mathbf{r}-\mathbf{r}_0)\,\delta(t-\tau)\,
+\mathrm{d}\mathbf{r}_0\,\mathrm{d}\tau.
+\end{equation}
+The \textbf{Green's function} $G(\mathbf{r},t;\mathbf{r}_0,t_0)$ is the response to a unit impulse at $(\mathbf{r}_0,t_0)$ with $t_0>0$:
+\begin{equation}
+\label{eq:wave-G}
+G_{tt}-a^2\Delta G=\delta(\mathbf{r}-\mathbf{r}_0)\delta(t-t_0),
+\end{equation}
+\begin{equation}
+\Bigl[\alpha\frac{\partial G}{\partial n}+\beta G\Bigr]_{\Sigma}=0,
+\end{equation}
+\begin{equation}
+G\big|_{t=0}=0,
+\qquad
+G_t\big|_{t=0}=0.
+\end{equation}
+
+\subsubsection{Reciprocity with time reversal}
+
+The wave Green's function satisfies
+\begin{equation}
+\label{eq:wave-recip}
+G(\mathbf{r},t;\mathbf{r}_0,t_0)=G(\mathbf{r}_0,-t_0;\mathbf{r},-t).
+\end{equation}
+The idea of the proof is to introduce the time-reversed field $G(\mathbf{r},-t;\mathbf{r}_1,-t_1)$, multiply and subtract against \eqref{eq:wave-G}, integrate over $T\times(-\infty,t']$, convert the Laplacian terms by Green's second identity, and use the homogeneous boundary conditions together with causality.
+
+\subsubsection{Integral representation}
+
+Writing the original problem in the source variables $(\mathbf{r}_0,t_0)$ and combining it with the reciprocal form of $G$ (causal: $G=0$ for $t<t_0$), one multiplies, subtracts, and integrates over $T\times[0,t+\varepsilon]$. Using the identity
+\begin{equation}
+G u_{t_0t_0}-u G_{t_0t_0}
+=\partial_{t_0}\bigl(G u_{t_0}-u G_{t_0}\bigr)
+\end{equation}
+and Green's identity in space, one obtains
+\begin{equation}
+\label{eq:wave-rep}
+\begin{aligned}
+u(\mathbf{r},t)
+&=\iiint_{T}\int_0^{t}G(\mathbf{r},t;\mathbf{r}_0,t_0)f(\mathbf{r}_0,t_0)\,\mathrm{d}V_0\,\mathrm{d}t_0\\
+&\quad+a^2\iint_{\Sigma}\int_0^{t}
+\Bigl(G\frac{\partial u}{\partial n_0}-u\frac{\partial G}{\partial n_0}\Bigr)
+\,\mathrm{d}S_0\,\mathrm{d}t_0\\
+&\quad+\iiint_{T}\bigl[G u_{t_0}-u G_{t_0}\bigr]_{t_0=0}\,\mathrm{d}V_0.
+\end{aligned}
+\end{equation}
+The three terms are, respectively, the accumulated effect of the forcing, the contribution of the boundary data, and the imprint of the initial conditions.
+
+\subsection{Heat (transport) equation}
+
+For the inhomogeneous heat problem
+\begin{equation}
+u_t-a^2\Delta u=f(\mathbf{r},t),
+\end{equation}
+\begin{equation}
+\Bigl[\alpha\frac{\partial u}{\partial n}+\beta u\Bigr]_{\Sigma}=\theta(M,t),
+\end{equation}
+\begin{equation}
+u\big|_{t=0}=\varphi(\mathbf{r}),
+\end{equation}
+an analogous calculation yields
+\begin{equation}
+\label{eq:heat-rep}
+\begin{aligned}
+u(\mathbf{r},t)
+&=\iiint_{T}\int_0^{t}Gf\,\mathrm{d}V_0\,\mathrm{d}t_0\\
+&\quad+a^2\iint_{\Sigma}\int_0^{t}
+\Bigl(G\frac{\partial u}{\partial n_0}-u\frac{\partial G}{\partial n_0}\Bigr)
+\,\mathrm{d}S_0\,\mathrm{d}t_0\\
+&\quad+\iiint_{T}\bigl[uG\bigr]_{t_0=0}\,\mathrm{d}V_0.
+\end{aligned}
+\end{equation}
+Only a single initial datum appears, because the heat equation is first order in time.
+
+\begin{note}
+As in the elliptic case, one chooses $G$ to satisfy the homogeneous boundary condition of the same type as the given data, so that the unknown combination of $u$ and $\partial u/\partial n$ on $\Sigma$ drops out of \eqref{eq:wave-rep} or \eqref{eq:heat-rep}.
+\end{note}

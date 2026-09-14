@@ -1,0 +1,88 @@
+\section{微扰论和线性响应}
+
+本节按 Giuliani--Vignale 的路线，从含时微扰推导 Kubo 公式。这是密度响应、介电函数与 Lindhard 函数的共同基础。
+
+\subsection{含时微扰}
+
+无扰哈密顿量为 $H_0$，外场通过算符 $\hat A$ 耦合：
+\begin{equation}
+  H(t)=H_0+H'(t),
+  \qquad
+  H'(t)=-\hat A\,F(t).
+\end{equation}
+更一般地，可写
+\begin{equation}
+  H'(t)
+  =-\int\mathrm{d}\mathbf{r}\,
+  \hat A(\mathbf{r})\,F(\mathbf{r},t).
+\end{equation}
+对密度响应，取 $\hat A(\mathbf{r})=\hat n(\mathbf{r})$，$F=-e\phi_{\mathrm{ext}}$（或直接把扰动势并入约定）。
+
+薛定谔绘景中态满足 $i\hbar\partial_t|\psi\rangle=H(t)|\psi\rangle$。令
+\begin{equation}
+  |\psi(t)\rangle
+  =e^{-\mathrm{i}H_0 t/\hbar}|\tilde\psi(t)\rangle,
+\end{equation}
+则相互作用绘景中
+\begin{equation}
+  i\hbar\partial_t|\tilde\psi\rangle
+  =H'_I(t)|\tilde\psi\rangle,
+  \qquad
+  H'_I(t)=e^{\mathrm{i}H_0 t/\hbar}H'(t)e^{-\mathrm{i}H_0 t/\hbar}.
+\end{equation}
+
+\subsection{一阶演化与 Kubo 公式}
+
+设 $t\to-\infty$ 时体系处于 $H_0$ 的热平衡（或基态），密度矩阵为 $\rho_0$。一阶
+\begin{equation}
+  |\tilde\psi(t)\rangle
+  \approx|\tilde\psi(-\infty)\rangle
+  -\frac{\mathrm{i}}{\hbar}
+  \int_{-\infty}^{t}\mathrm{d}t'\,
+  H'_I(t')|\tilde\psi(-\infty)\rangle.
+\end{equation}
+可观测量 $\hat B$ 的期望值相对无扰值的一阶改变为
+\begin{equation}
+  \delta\langle\hat B(t)\rangle
+  =-\frac{\mathrm{i}}{\hbar}
+  \int_{-\infty}^{t}\mathrm{d}t'\,
+  \bigl\langle
+  \bigl[\hat B_I(t),\hat A_I(t')\bigr]
+  \bigr\rangle_0
+  F(t'),
+\end{equation}
+其中 $\langle\cdot\rangle_0=\mathrm{Tr}(\rho_0\,\cdot)$。定义 \textbf{retard 响应函数}
+\begin{equation}
+  \chi_{BA}(t-t')
+  =-\frac{\mathrm{i}}{\hbar}
+  \theta(t-t')
+  \bigl\langle
+  \bigl[\hat B_I(t),\hat A_I(t')\bigr]
+  \bigr\rangle_0,
+\label{eq:kubo}
+\end{equation}
+则
+\begin{equation}
+  \delta\langle B(t)\rangle
+  =\int_{-\infty}^{\infty}\mathrm{d}t'\,
+  \chi_{BA}(t-t')F(t').
+\end{equation}
+式 \eqref{eq:kubo} 即 Kubo 公式：线性响应完全由平衡态推迟对易子决定。
+
+\subsection{频率空间}
+
+Fourier 变换
+\begin{equation}
+  \chi_{BA}(\omega)
+  =\int_0^{\infty}\mathrm{d}t\,
+  e^{\mathrm{i}\omega t}
+  \Bigl(
+  -\frac{\mathrm{i}}{\hbar}
+  \bigr)
+  \bigl\langle[\hat B(t),\hat A(0)]\bigr\rangle_0,
+\end{equation}
+其中已令 $\omega\to\omega+\mathrm{i}0^+$ 以保证收敛。空间非均匀时推广为 $\chi_{BA}(\mathbf{r},\mathbf{r}';\omega)$，平移不变体系下为 $\chi_{BA}(\mathbf{q},\omega)$。
+
+\begin{note}
+Kubo 公式对任意多体 $H_0$ 成立，不要求无相互作用。近似出现在如何计算平衡对易子关联——例如用自由粒子（Lindhard）或 RPA 屏蔽等。
+\end{note}

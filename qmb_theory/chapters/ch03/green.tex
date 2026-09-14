@@ -1,0 +1,105 @@
+\section{格林函数}
+
+本节给出多体格林函数的定义、Lehmann 谱表示及其推导，以及自由传播子的显式形式。记号尽量与电子液文献一致。
+
+\subsection{零温 retarded / advanced 格林函数}
+
+对费米算符，零温 retarded、advanced 格林函数定义为
+\begin{equation}
+\begin{aligned}
+  G^R_{\alpha\beta}(t,t')
+  &=-\mathrm{i}\theta(t-t')
+  \bigl\langle\bigl\{c_\alpha(t),c_\beta^\dagger(t')\bigr\}\bigr\rangle,\\
+  G^A_{\alpha\beta}(t,t')
+  &=\mathrm{i}\theta(t'-t)
+  \bigl\langle\bigl\{c_\alpha(t),c_\beta^\dagger(t')\bigr\}\bigr\rangle.
+\end{aligned}
+\end{equation}
+平衡且时间平移不变时，$G=G(t-t')$。Fourier 变换
+\begin{equation}
+  G^{R}(\omega)
+  =\int_{-\infty}^{\infty}\mathrm{d}t\,e^{\mathrm{i}\omega t}G^{R}(t)
+\end{equation}
+在上半平面解析。
+
+平面波、自旋对角时写 $G_\sigma(\mathbf{k},t)$。密度均匀体系中
+\begin{equation}
+  G_\sigma(\mathbf{k},\omega)
+  =\bigl[
+  \omega-\varepsilon_{\mathbf{k}}/\hbar
+  -\Sigma_\sigma(\mathbf{k},\omega)/\hbar
+  \bigr]^{-1}
+\end{equation}
+（Dyson 形式；$\Sigma$ 为自能）。
+
+\subsection{Lehmann 表示：推导}
+
+设 $H$ 的本征态为 $|N,n\rangle$，能量 $E_{N,n}$，化学势 $\mu$。零温、粒子数 $N$ 的基态记为 $|N\rangle$。在频率空间，
+\begin{equation}
+\begin{aligned}
+  G^R(\mathbf{k},\omega)
+  &=\sum_n
+  \frac{
+  \bigl|\langle N+1,n|c_{\mathbf{k}\sigma}^\dagger|N\rangle\bigr|^2
+  }{\omega-(E_{N+1,n}-E_N)/\hbar+\mathrm{i}0^+}\\
+  &\quad
+  +\sum_n
+  \frac{
+  \bigl|\langle N-1,n|c_{\mathbf{k}\sigma}|N\rangle\bigr|^2
+  }{\omega-(E_N-E_{N-1,n})/\hbar+\mathrm{i}0^+}.
+\end{aligned}
+\label{eq:lehmannG}
+\end{equation}
+\textbf{推导}：把 $\theta(t)$ 写成积分表示，插入 $e^{-\mathrm{i}Ht/\hbar}$ 的完备本征分解，并对时间做 Fourier 变换；粒子项来自 $c^\dagger|N\rangle$ 投影到 $N+1$ 粒子激发，空穴项来自 $c|N\rangle$ 投影到 $N-1$。有限温度时用 Boltzmann 权重替换对基态的期望即可。
+
+由 \eqref{eq:lehmannG} 立刻得到谱函数
+\begin{equation}
+  A(\mathbf{k},\omega)
+  =-\frac{1}{\pi}\mathrm{Im}\,G^R(\mathbf{k},\omega)
+  \ge0,
+\end{equation}
+并满足求和规则
+\begin{equation}
+  \int_{-\infty}^{\infty}\mathrm{d}\omega\,A(\mathbf{k},\omega)=1.
+\end{equation}
+占据数为
+\begin{equation}
+  n_{\mathbf{k}\sigma}
+  =\langle c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma}\rangle
+  =\int_{-\infty}^{\mu/\hbar}
+  \mathrm{d}\omega\,A(\mathbf{k},\omega)
+\end{equation}
+（零温；有限 $T$ 则乘费米函数后对全频积分）。
+
+\subsection{自由传播子}
+
+无相互作用时 $\Sigma=0$，
+\begin{equation}
+  G_0^R(\mathbf{k},\omega)
+  =\frac{1}{\omega-\varepsilon_{\mathbf{k}}/\hbar+\mathrm{i}0^+\,\mathrm{sgn}(\varepsilon_{\mathbf{k}}-\mu)},
+\end{equation}
+更常见的等价写法是按粒子/空穴分别取 $\mathrm{i}0^+$ 符号，使
+\begin{equation}
+  A_0(\mathbf{k},\omega)=\delta(\omega-\varepsilon_{\mathbf{k}}/\hbar).
+\end{equation}
+时域上（$T=0$，相对化学势量能量）
+\begin{equation}
+  G_0(\mathbf{k},t)
+  =-\mathrm{i}e^{-\mathrm{i}\varepsilon_{\mathbf{k}}t/\hbar}
+  \bigl[
+  \theta(t)\theta(\varepsilon_{\mathbf{k}}-\mu)
+  -\theta(-t)\theta(\mu-\varepsilon_{\mathbf{k}})
+  \bigr].
+\end{equation}
+
+\subsection{虚时 Matsubara 格林函数}
+
+有限温度的系统处理见下一节：周期性、谱表示 $\mathcal{G}(\mathrm{i}\omega_n)=\int A/(\mathrm{i}\omega_n-\omega)$、以及频率求和。自由结果为
+\begin{equation}
+  \mathcal{G}_0(\mathbf{k},\mathrm{i}\omega_n)
+  =\frac{1}{\mathrm{i}\omega_n-(\varepsilon_{\mathbf{k}}-\mu)/\hbar}.
+\end{equation}
+
+\begin{definition}[单粒子传播的直观含义]
+$G^R$ 描述在 $t'$ 加入一个粒子（或空穴）后，体系在稍后时刻 $t$ 仍能探测到该激发的幅度。其极点结构决定准粒子色散与寿命。
+\end{definition}

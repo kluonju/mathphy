@@ -1,0 +1,82 @@
+\section{RPA：屏蔽、等离激元与关联能}
+
+GV §5.3 把 RPA 表述为含时 Hartree；Gross 第 11 章则先用经典位移给出等离子体频率，再用量子涨落解释 EELS 中的等离激元量子。
+
+\subsection{经典等离子体频率}
+
+将电荷密度 $n$ 的一块流体位移 $x$，极化 $P=nex$，电场 $E=-4\pi P$（三维）。牛顿方程
+\begin{equation}
+  m\ddot x=-4\pi n e^2 x
+  \quad\Rightarrow\quad
+  \omega_p=\sqrt{\frac{4\pi n e^2}{m}}.
+\end{equation}
+金属中 $\hbar\omega_p$ 约 $3$--$30\,\mathrm{eV}$。电子能量损失谱（EELS）在 $\Delta E=n\hbar\omega_p$ 出现峰，即激发 $n$ 个等离激元量子。
+
+\subsection{作为含时 Hartree 理论}
+
+电子感受总势 $v_{\mathrm{tot}}=v_{\mathrm{ext}}+v_{\mathbf{q}}\delta n$，而以 $\chi_0$ 响应 $v_{\mathrm{tot}}$，即
+\begin{equation}
+  \chi_{\mathrm{RPA}}
+  =\frac{\chi_0}{1-v_{\mathbf{q}}\chi_0},
+  \qquad
+  \varepsilon_{\mathrm{RPA}}=1-v_{\mathbf{q}}\chi_0.
+\label{eq:RPA}
+\end{equation}
+这忽略交换--关联孔对扰动的反馈（由局域场 $G$ 补上）。
+
+\subsection{静态屏蔽}
+
+长波
+\begin{equation}
+  \varepsilon(q,0)
+  \approx1+\frac{q_{\mathrm{TF}}^2}{q^2},
+  \qquad
+  q_{\mathrm{TF}}^2=v_{q\to0}\text{ 正则化后的 }4\pi e^2 n^2 K_0
+  =\frac{4k_F}{\pi a_B}\quad(d=3).
+\end{equation}
+完整静态屏蔽用 $F(q/k_F)$，保留 $2k_F$ 结构。实空间诱导密度呈 Friedel 振荡 $\propto\cos(2k_F r)/r^3$（三维）。
+
+二维 $v_q=2\pi e^2/q$，长波 $\varepsilon(q)\sim 1+q_{\mathrm{TF}}/q$，屏蔽是代数而非指数。
+
+\subsection{等离激元}
+
+$\varepsilon(q,\omega)=0$ 给出集体模式。三维长波
+\begin{equation}
+  \omega_p=\sqrt{\frac{4\pi n e^2}{m}},
+  \qquad
+  \omega^2(q)
+  =\omega_p^2+\frac35 q^2 v_F^2+\cdots
+  \quad\text{（RPA）}.
+\label{eq:plasmon3D}
+\end{equation}
+流体力学压力修正给出系数 $1/3$ 而非 $3/5$：电子气在等离频率下来不及局域热平衡，RPA 的 $3/5$ 才正确。进入粒子--空穴连续区后发生朗道阻尼。RPA 中等离激元在小 $q$ 吃掉几乎全部 f-sum；双对激发引起的 $q^2$ 阻尼超出 RPA。
+
+二维
+\begin{equation}
+  \omega(q)
+  =\sqrt{\frac{2\pi n e^2}{m}\,q}
+  \;\propto\;q^{1/2}
+  \quad(q\to0),
+\end{equation}
+无有限 $\omega_p(q=0)$。
+
+\subsection{RPA 关联能}
+
+由耦合常数积分 \eqref{eq:E_from_S} 与 $\chi_\lambda=\chi_0/(1-\lambda v_q\chi_0)$，
+\begin{equation}
+  \frac{E_{\mathrm{RPA}}-E^{(1)}}{N}
+  =\frac{1}{2n}
+  \int\frac{\mathrm{d}^d q}{(2\pi)^d}
+  \int_0^{\infty}\frac{\hbar\,\mathrm{d}\omega}{\pi}
+  \Bigl\{
+  \ln\bigl[1-v_{\mathbf{q}}\chi_0(q,\mathrm{i}\omega)\bigr]
+  +v_{\mathbf{q}}\chi_0(q,\mathrm{i}\omega)
+  \Bigr\},
+\label{eq:ERPA}
+\end{equation}
+$E^{(1)}$ 已含动能与交换。高密三维给出
+\begin{equation}
+  \varepsilon_{\mathrm{c}}^{\mathrm{RPA}}
+  =(0.062\ln r_s-0.142+\cdots)\,\mathrm{Ry}
+\end{equation}
+（Gell-Mann--Brueckner 系数；常数项需超越环图）。RPA 在金属密度下使 $g(0)<0$，低密能量标度违反维里/稳定性约束，必须引入 $G(\mathbf{q},\omega)$。

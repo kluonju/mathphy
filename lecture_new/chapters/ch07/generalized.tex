@@ -1,0 +1,159 @@
+\section{Generalized Green's formulas and applications}
+\label{sec:generalized-green}
+
+This optional section extends the method from the Laplacian to a general second-order linear operator in two independent variables. The pattern for more variables is the same.
+
+\subsection{Adjoint operators}
+
+Consider
+\begin{equation}
+L=a_{11}\partial_{xx}+2a_{12}\partial_{xy}+a_{22}\partial_{yy}
++b_1\partial_x+b_2\partial_y+c.
+\end{equation}
+The \textbf{adjoint} operator $M$ is defined by the requirement that $v\,Lu-u\,Mv$ be a pure divergence $\partial_x X+\partial_y Y$. Explicitly,
+\begin{equation}
+\begin{aligned}
+Mv
+&=\partial_{xx}(a_{11}v)+2\partial_{xy}(a_{12}v)+\partial_{yy}(a_{22}v)\\
+&\quad-\partial_x(b_1 v)-\partial_y(b_2 v)+cv.
+\end{aligned}
+\end{equation}
+If $L=M$, the operator is \textbf{self-adjoint}. Integrating over a plane region $T$ with boundary $\Sigma$ gives the \textbf{generalized Green formula}
+\begin{equation}
+\label{eq:gen-green}
+\iint_{T}\bigl(v\,Lu-u\,Mv\bigr)\,\mathrm{d}S
+=\int_{\Sigma}\bigl[X\cos(n,x)+Y\cos(n,y)\bigr]\,\mathrm{d}s.
+\end{equation}
+
+\subsection{Elliptic equations}
+
+For
+\begin{equation}
+Lu\equiv u_{xx}+u_{yy}+b_1 u_x+b_2 u_y+cu=f,
+\qquad
+Ru\big|_{\Sigma}=\varphi(M),
+\end{equation}
+the adjoint is
+\begin{equation}
+Mv\equiv v_{xx}+v_{yy}-(b_1 v)_x-(b_2 v)_y+cv.
+\end{equation}
+Take $MG=\delta(\mathbf{r}-\mathbf{r}_0)$, excise a small disk about $\mathbf{r}_0$, apply \eqref{eq:gen-green}, and pass to the limit. The unit-source flux condition
+\begin{equation}
+\lim_{\varepsilon\to0}\int_{\Sigma_\varepsilon}\Bigl(-u\frac{\partial G}{\partial n}\Bigr)\,\mathrm{d}s=u(\mathbf{r}_0)
+\end{equation}
+leads to
+\begin{equation}
+\label{eq:elliptic-rep}
+\begin{aligned}
+u(\mathbf{r}_0)
+&=\iint_{T}Gf\,\mathrm{d}S\\
+&\quad-\int_{\Sigma}\Bigl[
+G\frac{\partial u}{\partial n}-u\frac{\partial G}{\partial n}
++b_1\cos(n,x)\,uG+b_2\cos(n,y)\,uG
+\Bigr]\,\mathrm{d}s.
+\end{aligned}
+\end{equation}
+\begin{itemize}
+\item \textbf{First BVP.} Impose $G|_{\Sigma}=0$; then
+\begin{equation}
+u(\mathbf{r}_0)=\iint_{T}Gf\,\mathrm{d}S+\int_{\Sigma}u\frac{\partial G}{\partial n}\,\mathrm{d}s.
+\end{equation}
+\item \textbf{Second BVP.} Impose
+\begin{equation}
+\Bigl[\frac{\partial G}{\partial n}-b_1\cos(n,x)G-b_2\cos(n,y)G\Bigr]_{\Sigma}=0;
+\end{equation}
+then
+\begin{equation}
+u(\mathbf{r}_0)=\iint_{T}Gf\,\mathrm{d}S-\int_{\Sigma}G\frac{\partial u}{\partial n}\,\mathrm{d}s.
+\end{equation}
+\end{itemize}
+The third boundary-value problem is treated similarly.
+
+\begin{example}[Kirchhoff formula for monochromatic waves]
+Starting from $U_{tt}-a^2\Delta_3 U=-f(\mathbf{r})e^{\mathrm{i}\omega t}$ and writing $U=ue^{\mathrm{i}\omega t}$, one obtains the Helmholtz equation
+\begin{equation}
+Lu\equiv\Delta_3 u+\frac{\omega^2}{a^2}u=f(\mathbf{r}),
+\end{equation}
+which is self-adjoint. A free-space Green's function is
+\begin{equation}
+G(\mathbf{r},\mathbf{r}_0)=\frac{1}{4\pi}\frac{e^{\mathrm{i}(\omega/a)|\mathbf{r}-\mathbf{r}_0|}}{|\mathbf{r}-\mathbf{r}_0|}.
+\end{equation}
+With $k=\omega/a$ and $R=|\mathbf{r}-\mathbf{r}_0|$, the integral formula becomes \textbf{Kirchhoff's formula}
+\begin{equation}
+\begin{aligned}
+u(\mathbf{r})
+&=\frac{1}{4\pi}\iint_{\Sigma}\Biggl[
+\frac{e^{\mathrm{i}kR}}{R}\frac{\partial u}{\partial n}
+-u\frac{\partial}{\partial n}\Bigl(\frac{e^{\mathrm{i}kR}}{R}\Bigr)
+\Biggr]\,\mathrm{d}S\\
+&\quad-\frac{1}{4\pi}\iiint_{T}\frac{e^{\mathrm{i}kR}}{R}f\,\mathrm{d}V,
+\end{aligned}
+\end{equation}
+the monochromatic foundation of diffraction theory.
+\end{example}
+
+\subsection{Parabolic equations}
+
+With $y=a^2 t$, the heat operator may be written
+\begin{equation}
+Lu\equiv u_{xx}-u_y=f,
+\qquad
+M=\partial_{xx}+\partial_y,
+\end{equation}
+and
+\begin{equation}
+\iint_{T}\bigl(v\,Lu-u\,Mv\bigr)\,\mathrm{d}S
+=\int_{\Sigma}\bigl[(vu_x-uv_x)\cos(n,x)-uv\cos(n,y)\bigr]\,\mathrm{d}s.
+\end{equation}
+On a rectangle $x\in[x_1,x_2]$, $y\in[0,a^2 t_0]$, the adjoint Green function satisfies
+\begin{equation}
+MG\equiv G_{xx}+\frac{1}{a^2}G_t
+=\frac{1}{a^2}\delta(x-x_0)\delta(t-t_0),
+\end{equation}
+and the solution formula is
+\begin{equation}
+\begin{aligned}
+u(x_0,t_0)
+&=\int_{x_1}^{x_2}\int_0^{a^2 t_0}Gf\,\mathrm{d}x\,\mathrm{d}y\\
+&\quad-\int_0^{a^2 t_0}\Bigl(G\frac{\partial u}{\partial x}-u\frac{\partial G}{\partial x}\Bigr)\Big|_{x=x_1}^{x=x_2}\mathrm{d}y\\
+&\quad-\int_{x_1}^{x_2}(uG)\big|_{y=0}\,\mathrm{d}x.
+\end{aligned}
+\end{equation}
+Dirichlet conditions in $x$ are enforced by $G|_{x_i}=0$; Neumann conditions by $G_x|_{x_i}=0$.
+
+\subsection{Hyperbolic equations and the Riemann function}
+
+For
+\begin{equation}
+Lu=u_{xx}-u_{yy}+b_1 u_x+b_2 u_y+cu=f,
+\end{equation}
+the adjoint is
+\begin{equation}
+Mv=v_{xx}-v_{yy}-(b_1 v)_x-(b_2 v)_y+cv.
+\end{equation}
+Let Cauchy data $u$ and $\partial u/\partial n$ be prescribed on a curve $l$. From an observation point $M_0(x_0,y_0)$ draw the two characteristics $x\pm y=\mathrm{const}$ that meet $l$ at $M_1$ and $M_2$, and integrate over the characteristic triangle $M_0M_1M_2$.
+
+The \textbf{Riemann function} $v(x,y;x_0,y_0)$ is defined by $Mv=0$, $v(x_0,y_0)=1$, and the characteristic transport conditions
+\begin{equation}
+\begin{aligned}
+&\text{on }M_2M_0:\quad
+\frac{\partial v}{\partial s}+\frac{b_2+b_1}{2\sqrt{2}}v=0,\\
+&\text{on }M_0M_1:\quad
+\frac{\partial v}{\partial s}-\frac{b_2-b_1}{2\sqrt{2}}v=0.
+\end{aligned}
+\end{equation}
+With this choice the integrals along the characteristics reduce to endpoint contributions, and one obtains
+\begin{equation}
+\label{eq:riemann}
+\begin{aligned}
+u(x_0,y_0)
+&=\frac12\bigl[u(M_1)v(M_1)+u(M_2)v(M_2)\bigr]\\
+&\quad+\frac12\int_{M_1M_2}\bigl[X\cos(n,x)+Y\cos(n,y)\bigr]\,\mathrm{d}s\\
+&\quad-\frac12\iint_{M_0M_1M_2}v(x,y;x_0,y_0)\,f(x,y)\,\mathrm{d}S.
+\end{aligned}
+\end{equation}
+The Riemann function is symmetric: $v(x,y;x_0,y_0)=v(x_0,y_0;x,y)$.
+
+\begin{definition}[Physical meaning of the Riemann function]
+If the Cauchy data on $l$ vanish and $f=-2\delta(x-\xi)\delta(t-\tau)$, then \eqref{eq:riemann} reduces to $u(x_0,t_0)=v(\xi,\tau;x_0,t_0)$. Thus the Riemann function is precisely the influence function of a unit impulse---the Green's function of the hyperbolic operator in characteristic form.
+\end{definition}

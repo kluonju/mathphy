@@ -1,0 +1,89 @@
+\section{均匀电子液（jellium）哈密顿量}
+
+本节按 Giuliani--Vignale（以下简称 GV）《Quantum Theory of the Electron Liquid》第 1 章，给出 $d=2,3$ 维均匀电子液的设定、标度与二次量子化哈密顿量。
+
+\subsection{模型设定与库仑正则化}
+
+体积 $L^d$ 内 $N$ 个电子，正电荷背景密度 $+en$ 以保证电中性（jellium）。$d$ 维库仑作用的 Fourier 分量为
+\begin{equation}
+  v_{\mathbf{q}}
+  =
+  \begin{cases}
+    4\pi e^2/q^2, & d=3,\\
+    2\pi e^2/q, & d=2.
+  \end{cases}
+\label{eq:vq_d}
+\end{equation}
+$q\to0$ 发散由电子--电子、电子--背景、背景--背景三项相消。正则化后
+\begin{equation}
+  H=\sum_{\mathbf{k}\sigma}
+  \frac{\hbar^2k^2}{2m}\,
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma}
+  +\frac{1}{2L^d}\sum_{\mathbf{q}\neq0}
+  v_{\mathbf{q}}
+  \bigl(\hat n_{\mathbf{q}}\hat n_{-\mathbf{q}}-\hat N\bigr).
+\label{eq:jelliumH}
+\end{equation}
+一维需额外短距截断，因 $v_q\propto -\ln(qa)$ 不再齐次，标度分析与 $d=2,3$ 不同。
+
+\subsection{密度参数 \texorpdfstring{$r_s$}{rs} 与能量单位}
+
+Wigner--Seitz 半径由每个电子占据的 $d$ 维球体积定义：
+\begin{equation}
+  n=\frac{N}{L^d}
+  =
+  \begin{cases}
+    \bigl[\tfrac43\pi (r_s a_B)^3\bigr]^{-1}, & d=3,\\
+    \bigl[\pi (r_s a_B)^2\bigr]^{-1}, & d=2,
+  \end{cases}
+  \qquad
+  a_B=\frac{\hbar^2}{me^2}.
+\end{equation}
+费米波矢
+\begin{equation}
+  k_F
+  =
+  \begin{cases}
+    (3\pi^2 n)^{1/3}, & d=3\text{（顺磁）},\\
+    (2\pi n)^{1/2}, & d=2\text{（顺磁）}.
+  \end{cases}
+\end{equation}
+以 Bohr 半径为长度、Rydberg $\mathrm{Ry}=e^2/(2a_B)$ 为能量，无量纲化后 $H$ 只依赖 $r_s$：动能 $\propto r_s^{-2}$，库仑 $\propto r_s^{-1}$。故 $r_s\ll1$ 为高密弱耦合，$r_s\gg1$ 为低密强耦合。
+
+半导体二维气中用有效质量 $m_b$ 与背景介电常数 $\varepsilon_b$ 定义
+\begin{equation}
+  a_B^*=\frac{\hbar^2\varepsilon_b}{m_b e^2},
+  \qquad
+  \mathrm{Ry}^*=\frac{e^2}{2\varepsilon_b a_B^*}.
+\end{equation}
+数量级换算（GV 表 1.2）：三维 $n\sim10^{22}\,\mathrm{cm}^{-3}$ 对应 $r_s\sim5.45\,m_b/(\bar n^{1/3}\varepsilon_b)$；二维 $n\sim10^{11}\,\mathrm{cm}^{-2}$ 对应 $r_s\sim337\,m_b/(\bar n^{1/2}\varepsilon_b)$。
+
+\subsection{无相互作用气与交换能（一阶）}
+
+顺磁无相互作用每粒子动能
+\begin{equation}
+  \varepsilon_0(r_s)
+  =\frac{A_d}{r_s^2}\,\mathrm{Ry},
+  \qquad
+  A_3=\frac35\Bigl(\frac{9\pi}{4}\Bigr)^{2/3}\approx2.21,
+  \qquad
+  A_2=1.
+\end{equation}
+平面波 Slater 行列式的一阶库仑能即交换能
+\begin{equation}
+  \varepsilon_x(r_s)
+  =-\frac{B_d}{r_s}\,\mathrm{Ry},
+  \qquad
+  B_3=\frac{3}{2\pi}\Bigl(\frac{9\pi}{4}\Bigr)^{1/3}\approx0.916,
+  \qquad
+  B_2=\frac{8\sqrt{2}}{3\pi}\approx1.20.
+\label{eq:ex_Bd}
+\end{equation}
+从而
+\begin{equation}
+  \varepsilon
+  =\frac{A_d}{r_s^2}-\frac{B_d}{r_s}+\varepsilon_{\mathrm{c}}(r_s)
+  \quad(\mathrm{Ry}).
+\label{eq:eps_rs}
+\end{equation}
+$\varepsilon_{\mathrm{c}}$ 为关联能，需 RPA、耦合常数积分或 QMC。高密极限 $\varepsilon_{\mathrm{c}}$ 在三维以 $a\ln r_s+b+\cdots$ 展开（Gell-Mann--Brueckner）。

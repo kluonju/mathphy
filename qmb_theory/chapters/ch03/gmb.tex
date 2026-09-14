@@ -1,0 +1,50 @@
+\section{Gell-Mann--Brueckner 高密关联能}
+
+Gross 第 22 章用零温真空图计算稠密电子气的关联能：二阶直接项因库仑长程而红外发散，必须对环图（ring）无穷求和。结果即 GMB 公式。取 $\hbar=1$。
+
+\subsection{为何二阶发散}
+
+jellium 中 $q=0$ 的 tadpole（Hartree）被背景抵消，一阶只剩交换 \eqref{eq:ex_Bd}。二阶直接环
+\begin{equation}
+  \Delta E^{(2)}_{\mathrm{ring}}
+  \propto
+  \sum_{\mathbf{q}}
+  v_{\mathbf{q}}^2
+  \sum_{\mathbf{k}\mathbf{p}}
+  \frac{
+  n_{\mathbf{k}}(1-n_{\mathbf{k}+\mathbf{q}})
+  n_{\mathbf{p}}(1-n_{\mathbf{p}-\mathbf{q}})
+  }{\xi_{\mathbf{k}}+\xi_{\mathbf{p}}-\xi_{\mathbf{k}+\mathbf{q}}-\xi_{\mathbf{p}-\mathbf{q}}}.
+\end{equation}
+$v_{\mathbf{q}}\sim 4\pi e^2/q^2$，小 $q$ 相空间 $\sim q^2$，分母 $\sim q$，整体 $\sim\int\mathrm{d}q/q$ \textbf{对数发散}。物理上是未屏蔽的长波电荷涨落。
+
+\subsection{环图求和}
+
+第 $n$ 阶环含 $n$ 条库仑线与 $n$ 个极化气泡。对 $n\ge2$ 求和等价于
+\begin{equation}
+  \Delta E_{\mathrm{ring}}
+  =\frac{L^3}{2}
+  \int\frac{\mathrm{d}^3q}{(2\pi)^3}
+  \int_{-\infty}^{\infty}\frac{\mathrm{d}\omega}{2\pi}
+  \Bigl\{
+  \ln\bigl[1-v_{\mathbf{q}}\Pi_0(\mathbf{q},i\omega)\bigr]
+  +v_{\mathbf{q}}\Pi_0(\mathbf{q},i\omega)
+  \Bigr\},
+\label{eq:GMB_ring}
+\end{equation}
+与有限温 RPA 公式 \eqref{eq:ERPA} 在 $T=0$ 一致（$\Pi_0$ 为自由极化，即 Lindhard 在虚频）。对数被 $1-v\Pi_0\sim q^2+q_{\mathrm{TF}}^2$ 截断，红外有限。
+
+\subsection{高密展开}
+
+$r_s\to0$ 时，
+\begin{equation}
+  \varepsilon_{\mathrm{c}}^{\mathrm{GMB}}
+  =0.0622\ln r_s-0.096+\cdots
+  \quad\text{Ry/electron}.
+\label{eq:GMB}
+\end{equation}
+$\ln r_s$ 来自环图；$r_s^0$ 常数需计入二阶交换等非环图（GMB 对 $v_q$ 的处理与精确二阶交换有已知差别，Gross 文中亦指出）。此式是高密电子气的基准，也是 LDA 关联能在 $r_s\to0$ 的限制条件。
+
+\begin{note}
+环图 $=$ RPA $=$ 含时 Hartree。GMB 的贡献是：在图语言里\textbf{看清发散来自哪一族图}，并把该族精确求和。低密则环图不足，$g(0)$ 变负，需回到局域场或 QMC。
+\end{note}

@@ -1,0 +1,87 @@
+\section{有限温度 Feynman 规则}
+
+Mahan 第 5 章把 Wick 定理落实为可逐图计算的规则。以下针对瞬时二体相互作用与 Matsubara 形式（$\hbar=k_B=1$）。
+
+\subsection{相互作用绘景}
+
+\begin{equation}
+  \mathcal{G}(\tau,\tau')
+  =-\frac{
+  \bigl\langle
+  T_\tau\,
+  c(\tau)c^\dagger(\tau')
+  S(\beta)
+  \bigr\rangle_0
+  }{
+  \langle S(\beta)\rangle_0
+  },
+  \qquad
+  S(\beta)
+  =T_\tau\exp\Bigl(
+  -\int_0^\beta\mathrm{d}\tau\,H_{\mathrm{int}}(\tau)
+  \Bigr).
+\end{equation}
+分母消去不连通真空图（连锁集群）。$n$ 阶项含 $2n$ 个 $c$ 与 $2n$ 个 $c^\dagger$（每个 $H_{\mathrm{int}}$ 四个算符），由 Wick 完全收缩。
+
+\subsection{图规则（动量--频率空间）}
+
+对平移不变费米系统：
+\begin{enumerate}
+  \item 每条有向实线：$\mathcal{G}_0(\mathbf{k},\mathrm{i}\omega_n)=1/(\mathrm{i}\omega_n-\xi_{\mathbf{k}})$；
+  \item 每条相互作用虚线：$v_{\mathbf{q}}$（或 $-U$ 等），在顶点守恒 $\mathbf{k}$、$\omega_n$、自旋；
+  \item 对每个内部 $\mathbf{k},n$：$\dfrac{1}{\beta L^d}\sum_{\mathbf{k}n}$；
+  \item 每个闭合费米圈：额外因子 $(-1)$，自旋求和常给 $2$；
+  \item 对称因子：若图有 $n$ 个等价顶点，常含 $1/n!$ 与顶点数的抵消，最终只留图的对称群阶的倒数；
+  \item 外腿不求和；自能图去掉两条外 $G_0$。
+\end{enumerate}
+
+\subsection{最低阶自能}
+
+Hartree：
+\begin{equation}
+  \Sigma^{\mathrm{H}}
+  =\frac{1}{\beta L^d}\sum_{\mathbf{q},m}
+  v_{\mathbf{q}=0}\,
+  e^{\mathrm{i}\omega_m 0^+}
+  \mathcal{G}(\mathbf{p},\mathrm{i}\omega_m)
+  \times(\text{自旋})
+  =v_0 n_{\mathrm{tot}}.
+\end{equation}
+Fock：
+\begin{equation}
+  \Sigma^{\mathrm{F}}(\mathbf{k})
+  =-\frac{1}{\beta L^d}\sum_{\mathbf{p},m}
+  v_{\mathbf{k}-\mathbf{p}}
+  e^{\mathrm{i}\omega_m 0^+}
+  \mathcal{G}(\mathbf{p},\mathrm{i}\omega_m).
+\end{equation}
+用 \eqref{eq:G0_tau} 的 $0^+$ 约定完成频率求和后回到静态 HF。
+
+\subsection{极化与屏蔽相互作用}
+
+不可约极化（气泡）
+\begin{equation}
+  \Pi(\mathbf{q},\mathrm{i}\nu_m)
+  =\frac{2}{\beta L^d}
+  \sum_{\mathbf{k}n}
+  \mathcal{G}(\mathbf{k},\mathrm{i}\omega_n)
+  \mathcal{G}(\mathbf{k}+\mathbf{q},\mathrm{i}\omega_n+\mathrm{i}\nu_m)
+  +\text{顶点修正}.
+\end{equation}
+RPA 取裸 $G_0$、无顶点修正，即 \eqref{eq:Pi_matsum}。屏蔽库仑线
+\begin{equation}
+  W(\mathbf{q},\mathrm{i}\nu_m)
+  =\frac{v_{\mathbf{q}}}{1-v_{\mathbf{q}}\Pi(\mathbf{q},\mathrm{i}\nu_m)},
+\end{equation}
+与介电函数 $\varepsilon=1-v\Pi$ 一致。GW 自能 $\Sigma=\mathrm{i}G W$（实频）在 Matsubara 下为
+\begin{equation}
+  \Sigma(\mathbf{k},\mathrm{i}\omega_n)
+  =-\frac{1}{\beta L^d}
+  \sum_{\mathbf{q}m}
+  W(\mathbf{q},\mathrm{i}\nu_m)
+  \mathcal{G}(\mathbf{k}-\mathbf{q},\mathrm{i}\omega_n-\mathrm{i}\nu_m).
+\end{equation}
+
+\begin{note}
+Mahan 的图规则与零温 Fetter--Walecka 规则平行：把 $\int\mathrm{d}t/2\pi$ 换成 $\beta^{-1}\sum_n$，把 $G_0(\omega)$ 换成 $\mathcal{G}_0(\mathrm{i}\omega_n)$。掌握一次，零温/有限温可以互相翻译。
+\end{note}

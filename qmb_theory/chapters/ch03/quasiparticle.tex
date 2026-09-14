@@ -1,0 +1,47 @@
+\section{准粒子}
+
+Gross 第 26 章问：相互作用体系的 $G(\mathbf{k},t)$ 在何时仍像“一个带寿命的粒子在传播”？
+
+\subsection{自由传播}
+
+\begin{equation}
+  iG_0(\mathbf{k},t)
+  =\theta(t)\theta(k-k_F)e^{-i\xi_{\mathbf{k}}t}
+  -\theta(-t)\theta(k_F-k)e^{-i\xi_{\mathbf{k}}t}.
+\end{equation}
+单一频率 $\xi_{\mathbf{k}}$，寿命无限。
+
+\subsection{相互作用：极点近似}
+
+Lehmann 表示在 $\mathbf{k}$ 固定时是许多 $\delta$ 峰之和。若谱权重在 $\omega=\varepsilon_{\mathbf{k}}^*$ 附近形成尖锐峰，可写
+\begin{equation}
+  G^R(\mathbf{k},\omega)
+  \approx
+  \frac{Z_{\mathbf{k}}}
+  {\omega-\varepsilon_{\mathbf{k}}^*+i\Gamma_{\mathbf{k}}\mathrm{sgn}(\varepsilon_{\mathbf{k}}^*)}
+  +G_{\mathrm{inc}},
+\label{eq:G_QP}
+\end{equation}
+$G_{\mathrm{inc}}$ 为平滑本底。时域
+\begin{equation}
+  G(\mathbf{k},t)
+  \sim
+  -i Z_{\mathbf{k}}
+  e^{-i\varepsilon_{\mathbf{k}}^* t-\Gamma_{\mathbf{k}}|t|}.
+\end{equation}
+\begin{itemize}
+  \item $\varepsilon_{\mathbf{k}}^*=\xi_{\mathbf{k}}+\mathrm{Re}\,\Sigma(\mathbf{k},\varepsilon_{\mathbf{k}}^*)$：重整化色散（极化云改动能）；
+  \item $Z_{\mathbf{k}}=\bigl[1-\partial_\omega\mathrm{Re}\Sigma\bigr]^{-1}$：相干权重，$0<Z\le1$；
+  \item $\Gamma_{\mathbf{k}}=-Z\mathrm{Im}\,\Sigma$：衰宽，寿命 $\tau=1/(2\Gamma)$。
+\end{itemize}
+HF 电子是 $Z=1$、$\Gamma=0$ 但 $\varepsilon_{\mathbf{k}}$ 已被交换孔重整的“准粒子”。费米液体要求在费米面 $\Gamma\sim(\varepsilon^*)^2\to0$，因而存在任意长寿命的激发。
+
+\subsection{与 Dyson / Schwinger 本征问题}
+
+精确
+\begin{equation}
+  \bigl[\omega-h_0(\mathbf{r})\bigr]\varphi(\mathbf{r})
+  -\int\mathrm{d}\mathbf{r}'\,\Sigma(\mathbf{r},\mathbf{r}',\omega)\varphi(\mathbf{r}')
+  =0
+\end{equation}
+在复频极点处给出 Dyson 轨道（Gross 引 Schwinger）。其本征值对应 $E_{N\pm1}-E_N$，振幅对应 $\langle N|\psi|N\pm1\rangle$。准粒子图景成立，当且仅当这些极点靠近实轴且 $Z$ 不太小。

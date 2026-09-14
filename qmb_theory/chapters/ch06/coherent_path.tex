@@ -1,0 +1,39 @@
+\section{相干态泛函积分}
+
+对多体体系，用相干态闭合关系代替坐标完备性，得到场的泛函积分。
+
+\subsection{玻色子}
+
+虚时作用量（正常序哈密顿量）
+\begin{equation}
+  S[\phi^*,\phi]
+  =\int_0^{\hbar\beta}\mathrm{d}\tau
+  \Bigl[
+  \sum_\alpha\phi_\alpha^*\hbar\partial_\tau\phi_\alpha
+  +H(\phi^*,\phi)
+  \Bigr],
+\end{equation}
+配分函数
+\begin{equation}
+  Z
+  =\int\mathcal{D}[\phi^*,\phi]\,
+  e^{-S/\hbar},
+\end{equation}
+场满足周期边界 $\phi(\hbar\beta)=\phi(0)$。
+
+\subsection{费米子}
+
+用 Grassmann 场 $\psi,\psi^*$，作用量形式类似，但
+\begin{equation}
+  \psi(\hbar\beta)=-\psi(0)
+\end{equation}
+（反周期），与 Matsubara 费米频率 $(2n+1)\pi/\beta$ 一致。二次型作用量的高斯积分直接给出 $\det$，对应自由费米子配分函数。
+
+\subsection{与二次量子化的等价性}
+
+泛函积分不引入新物理：它把 $\mathrm{Tr}\,T_\tau\exp(-\int H)$ 改写为场积分。优点是：
+\begin{itemize}
+  \item 平均场 = 鞍点；
+  \item 涨落 = 高斯积分 / 环图；
+  \item Hubbard--Stratonovich 变换可引入辅助场（密度、配对、自旋等）。
+\end{itemize}

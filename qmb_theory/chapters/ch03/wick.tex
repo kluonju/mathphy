@@ -1,0 +1,54 @@
+\section{Wick 定理}
+
+\subsection{自由理论中的平均值}
+
+对自由（二次型）哈密顿量，热平衡或基态下多点算符平均值可完全由两点收缩（contraction）表达。这就是 Wick 定理。
+
+对费米子，若 $\mathcal{O}$ 为产生湮灭算符的乘积，则
+\begin{equation}
+  \langle T\,\mathcal{O}\rangle_0
+  =\sum_{\mathrm{full\,contr.}}
+  (-1)^P\prod_{\mathrm{pairs}}
+  \langle T\,c\,c^\dagger\rangle_0,
+\end{equation}
+其中求和遍历所有把算符两两配对的方式，$P$ 为把配对排成标准顺序所需的置换奇偶性。
+
+\subsection{收缩与自由格林函数}
+
+基本收缩正是自由格林函数，例如
+\begin{equation}
+  \overline{c_\alpha(\tau)\,c_\beta^\dagger(\tau')}
+  \;\equiv\;
+  \langle T_\tau c_\alpha(\tau)c_\beta^\dagger(\tau')\rangle_0
+  =-\mathcal{G}^{(0)}_{\alpha\beta}(\tau-\tau').
+\end{equation}
+
+\textbf{热 Wick 的一种证法}（Mahan）：自由理论的生成函数是高斯的，
+\begin{equation}
+  \bigl\langle
+  T_\tau\exp\bigl(\eta^* c+c^\dagger\eta\bigr)
+  \bigr\rangle_0
+  =\exp\bigl(\eta^* \mathcal{G}_0\eta\bigr).
+\end{equation}
+对源 $\eta$ 多次求导即把任意偶数点函数化为 $\mathcal{G}_0$ 的配对和。费米子每次交换源产生一个负号。
+
+\subsection{为何重要}
+
+相互作用图展开中，每一个相互作用顶点会引入一串算符；Wick 定理把它们拆成 $G_0$ 线的产物，从而定义 Feynman 图规则。没有 Wick 定理，微扰级数将停留在形式层面。
+
+\begin{example}[四点函数]
+自由费米子四点函数分解为
+\begin{equation}
+\begin{aligned}
+  &\langle T\,c_1 c_2 c_3^\dagger c_4^\dagger\rangle_0\\
+  &\quad=
+  \langle T\,c_1 c_4^\dagger\rangle_0\langle T\,c_2 c_3^\dagger\rangle_0
+  -\langle T\,c_1 c_3^\dagger\rangle_0\langle T\,c_2 c_4^\dagger\rangle_0.
+\end{aligned}
+\end{equation}
+两项分别对应直接与交换收缩，符号来自费米子交换。
+\end{example}
+
+\begin{note}
+对有相互作用的热力学平均，严格 Wick 分解一般不成立；但在相互作用绘景的微扰展开中，对\textbf{自由}演化下的编序平均值，Wick 定理仍然适用。这正是标准图技术的逻辑。
+\end{note}

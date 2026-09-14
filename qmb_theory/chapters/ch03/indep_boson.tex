@@ -1,0 +1,47 @@
+\section{独立玻色子模型}
+
+Mahan 第 4 章用若干严格可解模型检验格林函数语言。独立玻色子模型（电子加位移声子，无反冲）可精确求解，并展示极化子云、Franck--Condon 因子与边带。
+
+\subsection{哈密顿量}
+
+\begin{equation}
+  H
+  =\varepsilon c^\dagger c
+  +\omega_0 a^\dagger a
+  +M c^\dagger c\,(a+a^\dagger).
+\end{equation}
+电子数 $n=0,1$ 守恒。对 $n=1$，完成平方：
+\begin{equation}
+  H
+  =(\varepsilon-M^2/\omega_0)c^\dagger c
+  +\omega_0
+  \bigl(a^\dagger +n M/\omega_0\bigr)
+  \bigl(a+n M/\omega_0\bigr).
+\end{equation}
+基态能量移动 $\Delta=-M^2/\omega_0$（小极化子结合能）。
+
+\subsection{正则变换}
+
+Lang--Firsov 变换 $U=e^{n(M/\omega_0)(a^\dagger-a)}$ 把电子算符映为
+\begin{equation}
+  \tilde c
+  =c\,X,
+  \qquad
+  X=e^{-(M/\omega_0)(a^\dagger-a)},
+\end{equation}
+$X$ 为声子位移算符。零温谱函数
+\begin{equation}
+  A(\omega)
+  =e^{-g}
+  \sum_{n=0}^{\infty}
+  \frac{g^n}{n!}
+  \delta\bigl(\omega-\varepsilon-\Delta-n\omega_0\bigr),
+  \qquad
+  g=(M/\omega_0)^2.
+\label{eq:FC}
+\end{equation}
+这是 Poisson 权重的声子边带：零声子线权重 $e^{-g}$（Debye--Waller），多声子峰间隔 $\omega_0$。有限温把 $n_B$ 并入修正的 Bessel 展开。
+
+\subsection{教训}
+
+精确 $G$ 有无穷多极点，不是单一准粒子极点。弱耦合 $g\ll1$ 时谱权重集中在零声子线，$Z=e^{-g}\approx1-g$；强耦合时零声子线被指数压灭。电声问题中“$\lambda$ 不大”并不自动保证准粒子图像——还要看 $g$ 与色散/反冲。

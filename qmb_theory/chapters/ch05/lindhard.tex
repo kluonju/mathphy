@@ -1,0 +1,89 @@
+\section{Lindhard 函数}
+
+Lindhard 函数是非相互作用电子气的密度响应 $\chi_0$，RPA 的输入。推导与闭式对齐 GV 第 4 章。
+
+\subsection{从自由粒子 Kubo 公式出发}
+
+$\hat n_{\mathbf{q}}=\sum_{\mathbf{k}\sigma}c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}+\mathbf{q},\sigma}$。Wick 收缩后
+\begin{equation}
+  \chi_0(\mathbf{q},\omega)
+  =\frac{1}{L^d}
+  \sum_{\mathbf{k}\sigma}
+  \frac{f_{\mathbf{k}\sigma}-f_{\mathbf{k}+\mathbf{q},\sigma}}
+  {\hbar\omega+\varepsilon_{\mathbf{k}}-\varepsilon_{\mathbf{k}+\mathbf{q}}+\mathrm{i}0^+},
+\label{eq:lindhard_def}
+\end{equation}
+$\varepsilon_{\mathbf{k}}=\hbar^2k^2/(2m)$。推导：对易子平均值 $\langle[n_{\mathbf{q}}(t),n_{-\mathbf{q}}]\rangle$ 化为 $(f_{\mathbf{k}}-f_{\mathbf{k}+\mathbf{q}})e^{-\mathrm{i}(\varepsilon_{\mathbf{k}+\mathbf{q}}-\varepsilon_{\mathbf{k}})t/\hbar}$，再对 $t>0$ 积分。能量差
+\begin{equation}
+  \varepsilon_{\mathbf{k}+\mathbf{q}}-\varepsilon_{\mathbf{k}}
+  =\frac{\hbar^2}{m}
+  \bigl(\mathbf{k}\cdot\mathbf{q}+q^2/2\bigr).
+\end{equation}
+无相互作用时纵向自旋响应与密度响应相同（反自旋不关联）；横向 $\chi_{+-}^{(0)}$ 在极化气中不同。
+
+\subsection{静态闭式}
+
+零温静态为实。令 $\bar q_\sigma=q/k_{F\sigma}$，$N_\sigma(0)$ 为单自旋费米面态密度，
+\begin{equation}
+\begin{aligned}
+  d=3:\quad
+  \chi_{0\sigma}(q,0)
+  &=-N_\sigma(0)
+  \left[
+  \frac12+\frac{4-\bar q_\sigma^2}{8\bar q_\sigma}
+  \ln\left|\frac{\bar q_\sigma+2}{\bar q_\sigma-2}\right|
+  \right],\\
+  d=2:\quad
+  \chi_{0\sigma}(q,0)
+  &=-N_\sigma(0)
+  \left[
+  1-\theta(\bar q_\sigma-2)
+  \sqrt{1-4/\bar q_\sigma^2}
+  \right].
+\end{aligned}
+\label{eq:chi0_static}
+\end{equation}
+顺磁三维 $N_\uparrow(0)+N_\downarrow(0)=mk_F/(\pi^2\hbar^2)=\partial n/\partial\mu$，故
+\begin{equation}
+  \lim_{q\to0}\chi_0(q,0)
+  =-\frac{\partial n}{\partial\mu}
+  =-n^2 K_0.
+\label{eq:chi0_q0}
+\end{equation}
+无量纲 Lindhard 函数 $F(x)$（$x=q/k_F$）满足 $F(0)=1$，
+\begin{equation}
+  \chi_0(q,0)
+  =-\frac{m k_F}{\pi^2\hbar^2}F(x),
+  \qquad
+  F(x)
+  =\frac12+\frac{4-x^2}{8x}\ln\left|\frac{2+x}{2-x}\right|.
+\label{eq:Fstd}
+\end{equation}
+
+\subsection{\texorpdfstring{$2k_F$}{2kF} 奇异性}
+
+$F'(x)\sim\ln|x-2|$（三维）；二维在 $q=2k_F$ 处 $\chi_0$ 本身有平方根奇异。几何起源是费米面直径弦。后果：CDW 倾向、声子 Kohn 反常、Friedel/RKKY 振荡。
+
+\subsection{粒子--空穴连续区}
+
+$\mathrm{Im}\,\chi_0\neq0$ 当且仅当存在满足
+$\hbar\omega=\varepsilon_{\mathbf{k}+\mathbf{q}}-\varepsilon_{\mathbf{k}}$、$|\mathbf{k}|<k_F<|\mathbf{k}+\mathbf{q}|$
+的对。边界
+\begin{equation}
+  \omega_{\pm}(q)
+  =\frac{\hbar}{m}\Bigl(qk_F\pm\frac{q^2}{2}\Bigr).
+\end{equation}
+$q\le2k_F$ 时为 $0\le\omega\le\omega_+(q)$（下界取 $\max\{0,\omega_-(q)\}$）；$q>2k_F$ 时为 $\omega_-\le\omega\le\omega_+$。连续区内集体模式被朗道阻尼。
+
+动态实部由 Kramer--Kronig 或直接主值积分得到；归一以 \eqref{eq:chi0_q0} 为准。有限温度用费米函数替换阶跃，连续区边缘被热展宽。
+
+\subsection{杂质与扩散极}
+
+弱无序下，小 $q,\omega$ 的密度响应由扩散极主导
+\begin{equation}
+  \chi(q,\omega)
+  \approx
+  -N(0)\,
+  \frac{D q^2}{-\mathrm{i}\omega+D q^2},
+\end{equation}
+$D=v_F^2\tau/d$ 为扩散系数。这取代清洁极限的 Lindhard 粒子--空穴结构，是无序电子气与弱局域化理论的出发点（GV §4.6）。

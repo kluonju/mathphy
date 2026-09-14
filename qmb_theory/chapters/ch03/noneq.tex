@@ -1,0 +1,28 @@
+\section{非平衡格林函数简介}
+
+平衡态理论用单一温度与化学势描述；输运、泵浦探测、含时驱动等需要非平衡框架。施均仁讲义（参考 Haug--Jauho）采用围道（contour）格林函数。此处仅给结构，细节可留作拓展阅读。
+
+\subsection{Keldysh / 围道编序}
+
+把时间定义在从 $t=-\infty$ 到 $+\infty$ 再折回的围道 $\mathcal{C}$ 上，定义围道编序格林函数
+\begin{equation}
+  G^{\mathcal{C}}(1,2)
+  =-\mathrm{i}
+  \bigl\langle
+  T_{\mathcal{C}}\,
+  \psi(1)\psi^\dagger(2)
+  \bigr\rangle.
+\end{equation}
+投影到实时间后得到常用分量：$G^{R}$、$G^{A}$、较小/较大函数 $G^{<}$、$G^{>}$，以及 Keldysh 分量。它们满足
+\begin{equation}
+  G^{R}-G^{A}=G^{>}-G^{<},
+\end{equation}
+并在平衡态时由涨落耗散定理相互约束；非平衡时独立动力学方程必须同时推进。
+
+\subsection{Dyson 方程与输运}
+
+围道上仍有形式 Dyson 方程 $G=G_0+G_0\Sigma G$。落到实时间后成为一组耦合积分方程（Kadanoff--Baym / Keldysh 方程）。稳态输运中，流可以用 $G^{<}$ 与结区自能写出（Meir--Wingreen 公式等）。
+
+\begin{note}
+对本课程大纲，掌握平衡 Matsubara $\leftrightarrow$ 实频解析延拓已够用。遇到明确的非平衡实验设定时，再进入围道形式主义。
+\end{note}

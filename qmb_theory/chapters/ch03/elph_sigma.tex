@@ -1,0 +1,56 @@
+\section{电子--声子自能与 Migdal 定理}
+
+有了 Matsubara 图规则，可以把 Fröhlich 哈密顿量 \eqref{eq:frohlich} 推进到可计算的自能（Mahan 第 7 章）。
+
+\subsection{最低阶电子自能}
+
+\begin{equation}
+  \Sigma(\mathbf{k},\mathrm{i}\omega_n)
+  =\frac{1}{\beta L^d}
+  \sum_{\mathbf{q},m\lambda}
+  |M_{\mathbf{q}\lambda}|^2
+  \mathcal{D}_0(\mathbf{q},\mathrm{i}\nu_m)
+  \mathcal{G}(\mathbf{k}-\mathbf{q},\mathrm{i}\omega_n-\mathrm{i}\nu_m),
+\label{eq:Sigma_ep}
+\end{equation}
+$\mathcal{D}_0$ 见 \eqref{eq:D0}。对 $m$ 做玻色频率求和后，实频
+\begin{equation}
+  \Sigma^R(\mathbf{k},\omega)
+  =\sum_{\mathbf{q}\lambda}
+  |M_{\mathbf{q}\lambda}|^2
+  \left[
+  \frac{n_B(\omega_{\mathbf{q}})+1-n_F(\xi_{\mathbf{k}-\mathbf{q}})}
+  {\omega-\xi_{\mathbf{k}-\mathbf{q}}-\omega_{\mathbf{q}}+\mathrm{i}0^+}
+  +\frac{n_B(\omega_{\mathbf{q}})+n_F(\xi_{\mathbf{k}-\mathbf{q}})}
+  {\omega-\xi_{\mathbf{k}-\mathbf{q}}+\omega_{\mathbf{q}}+\mathrm{i}0^+}
+  \right].
+\label{eq:Sigma_ep_R}
+\end{equation}
+两项分别对应发射与吸收声子。
+
+\subsection{质量重整与 \texorpdfstring{$\lambda$}{lambda}}
+
+费米面、$\omega\to0$：
+\begin{equation}
+  \mathrm{Re}\,\Sigma(\omega)\approx-\lambda\omega,
+  \qquad
+  \lambda=2\int_0^{\infty}\frac{\mathrm{d}\omega}{\omega}\,\alpha^2F(\omega),
+\label{eq:lambda}
+\end{equation}
+Eliashberg 函数 $\alpha^2F$ 为费米面平均的 $|M|^2$ 乘声子谱。于是
+\begin{equation}
+  \frac{m^*}{m}=1+\lambda.
+\end{equation}
+$\mathrm{Im}\,\Sigma$ 在 Debye 窗口内给出有限寿命，窗口外迅速变小（光学实验中的“声子结构”）。
+
+\subsection{Migdal 定理}
+
+顶点修正 $\sim\omega_D/E_F\ll1$。金属中可忽略交叉声子线，只保留 \eqref{eq:Sigma_ep} 的彩虹图。$\lambda$ 很大或 $\omega_D\sim E_F$ 时定理失效。
+
+\subsection{弱耦合 Fröhlich 极化子}
+
+单一电子、无费米海时，\eqref{eq:Sigma_ep_R} 在 $T=0$、$k=0$ 给出
+\begin{equation}
+  \Delta E=-\sum_{\mathbf{q}}\frac{|M_{\mathbf{q}}|^2}{\omega_{\mathbf{q}}+\varepsilon_{\mathbf{q}}},
+\end{equation}
+极性光学模积出 $\Delta E=-\alpha\omega_{\mathrm{LO}}$，$m^*/m=1+\alpha/6+\cdots$。强耦合需独立玻色子/LLP 变分，见上一节。

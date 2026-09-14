@@ -1,0 +1,138 @@
+\section{Method of images for Green's functions}
+
+\subsection{Fundamental solution in unbounded space}
+
+Write the Green's function as the sum of a singular free-space part and a regular correction,
+\begin{equation}
+G=G_0+G_1,
+\end{equation}
+where
+\begin{equation}
+\Delta G_0=\delta(\mathbf{r}-\mathbf{r}_0),
+\qquad
+\Delta G_1=0.
+\end{equation}
+For the Dirichlet problem $G|_{\Sigma}=0$ one must have $G_1|_{\Sigma}=-G_0|_{\Sigma}$.
+
+\paragraph{Three dimensions.}
+Place the source at the origin and seek a radial solution of $\Delta G_0=0$ for $r\neq0$:
+\begin{equation}
+\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d}r}\Bigl(r^2\frac{\mathrm{d}G_0}{\mathrm{d}r}\Bigr)=0
+\implies
+G_0=-\frac{C_1}{r}+C_2.
+\end{equation}
+Requiring $G_0\to0$ at infinity forces $C_2=0$. Integrating $\Delta G_0=\delta$ over a small ball about the origin gives $4\pi C_1=1$, so $C_1=1/(4\pi)$. Restoring a general source point,
+\begin{equation}
+\label{eq:G0-3d}
+G_0(\mathbf{r},\mathbf{r}_0)=-\frac{1}{4\pi\,|\mathbf{r}-\mathbf{r}_0|}.
+\end{equation}
+
+\paragraph{Two dimensions.}
+The same argument yields
+\begin{equation}
+\label{eq:G0-2d}
+G_0(\mathbf{r},\mathbf{r}_0)
+=-\frac{1}{2\pi}\ln\frac{1}{|\mathbf{r}-\mathbf{r}_0|}
+=\frac{1}{2\pi}\ln|\mathbf{r}-\mathbf{r}_0|.
+\end{equation}
+Electrostatically, $G_0$ is the potential of a charge $-\varepsilon_0$ in free space.
+
+\subsection{Method of images}
+
+When the boundary geometry is simple, the regular part $G_1$ can be realized by fictitious image sources placed outside $T$. The physical domain then never sees the images, while the boundary condition is arranged to cancel.
+
+\subsubsection{Grounded conducting sphere}
+
+Seek the Dirichlet Green's function inside the ball of radius $a$:
+\begin{equation}
+\Delta G=\delta(\mathbf{r}-\mathbf{r}_0),\qquad G\big|_{\text{sphere}}=0.
+\end{equation}
+Let $M_0$ be the source at distance $r_0$ from the center $O$. Place an image $M_1$ on the ray $OM_0$ at the inverse point
+\begin{equation}
+r_1=\frac{a^2}{r_0},
+\qquad
+\mathbf{r}_1=\frac{a^2}{r_0^2}\mathbf{r}_0.
+\end{equation}
+Similar triangles on the sphere imply that the potential cancels on $r=a$ when the image strength is scaled by $a/r_0$:
+\begin{equation}
+\label{eq:G-sphere}
+G(\mathbf{r},\mathbf{r}_0)
+=-\frac{1}{4\pi}\frac{1}{|\mathbf{r}-\mathbf{r}_0|}
++\frac{a}{r_0}\frac{1}{4\pi}\frac{1}{\bigl|\mathbf{r}-\tfrac{a^2}{r_0^2}\mathbf{r}_0\bigr|}.
+\end{equation}
+
+\subsubsection{Disk (two-dimensional Dirichlet)}
+
+For the disk $\rho<a$,
+\begin{equation}
+\Delta G=\delta(\mathbf{r}-\mathbf{r}_0),\qquad G\big|_{\rho=a}=0,
+\end{equation}
+the corresponding Green's function is
+\begin{equation}
+\label{eq:G-disk}
+G(\mathbf{r},\mathbf{r}_0)
+=-\frac{1}{2\pi}\ln\frac{1}{|\mathbf{r}-\mathbf{r}_0|}
++\frac{1}{2\pi}\ln\frac{1}{|\mathbf{r}-\mathbf{r}_1|}
++\frac{1}{2\pi}\ln\frac{a}{r_0},
+\end{equation}
+with $\mathbf{r}_1$ the same inverse point as above.
+
+\subsection{Worked examples: Poisson integrals}
+
+\begin{example}[Dirichlet problem inside a sphere]
+Solve
+\begin{equation}
+\Delta_3 u=0\quad(r<a),\qquad u\big|_{r=a}=f(\theta,\varphi).
+\end{equation}
+Use \eqref{eq:G-sphere} in the observation-point formula \eqref{eq:dirichlet-obs}. With
+\begin{equation}
+\frac{1}{|\mathbf{r}-\mathbf{r}_0|}=\bigl(r^2-2rr_0\cos\Theta+r_0^2\bigr)^{-1/2}
+\end{equation}
+and $\partial/\partial n_0=\partial/\partial r_0$ on $r_0=a$, one obtains the Poisson kernel
+\begin{equation}
+\frac{\partial G}{\partial n_0}\Big|_{\Sigma}
+=\frac{1}{4\pi a}\frac{a^2-r^2}{|\mathbf{r}-\mathbf{r}_0|^3}\Big|_{\Sigma}.
+\end{equation}
+The solution is the \textbf{Poisson integral for the sphere}:
+\begin{equation}
+\begin{aligned}
+u(r,\theta,\varphi)
+&=\frac{a}{4\pi}\int_0^\pi\int_0^{2\pi}
+f(\theta_0,\varphi_0)
+\frac{a^2-r^2}{(a^2-2ar\cos\Theta+r^2)^{3/2}}
+\sin\theta_0\,\mathrm{d}\theta_0\,\mathrm{d}\varphi_0.
+\end{aligned}
+\end{equation}
+\end{example}
+
+\begin{example}[Half-space $z>0$]
+Solve
+\begin{equation}
+\Delta_3 u=0\quad(z>0),\qquad u\big|_{z=0}=f(x,y).
+\end{equation}
+The Green's function with $G|_{z=0}=0$ is obtained by placing an opposite image at $M_1(x_0,y_0,-z_0)$:
+\begin{equation}
+G=-\frac{1}{4\pi|\mathbf{r}-\mathbf{r}_0|}+\frac{1}{4\pi|\mathbf{r}-\mathbf{r}_1|}.
+\end{equation}
+For the upper half-space the outward normal on the plane is $-\mathbf{e}_z$, so $\partial/\partial n_0=-\partial/\partial z_0$. The result is the \textbf{Poisson integral for the half-space}:
+\begin{equation}
+u(x,y,z)
+=\frac{z}{2\pi}\iint_{\mathbb{R}^2}
+\frac{f(x_0,y_0)}{\bigl[(x-x_0)^2+(y-y_0)^2+z^2\bigr]^{3/2}}\,\mathrm{d}x_0\,\mathrm{d}y_0.
+\end{equation}
+\end{example}
+
+\begin{example}[Disk and half-plane]
+For $\Delta_2 u=0$ in $\rho<a$ with $u|_{\rho=a}=f(\varphi)$,
+\begin{equation}
+u(\rho,\varphi)
+=\frac{a^2-\rho^2}{2\pi}\int_0^{2\pi}
+\frac{f(\varphi_0)}{a^2-2a\rho\cos(\varphi-\varphi_0)+\rho^2}\,\mathrm{d}\varphi_0.
+\end{equation}
+For $\Delta_2 u=0$ in $y>0$ with $u|_{y=0}=f(x)$,
+\begin{equation}
+u(x,y)
+=\frac{y}{\pi}\int_{-\infty}^{\infty}
+\frac{f(x_0)}{(x-x_0)^2+y^2}\,\mathrm{d}x_0.
+\end{equation}
+\end{example}

@@ -1,0 +1,42 @@
+\section{三种绘景}
+
+Gross--Runge--Heinonen《Many-Particle Theory》（以下简称 Gross）第 14 章强调：可观测量是矩阵元，因而可用随时间变化的幺正变换在不同“绘景”之间移动时间依赖，而不改变任何测量结果。
+
+\subsection{绘景变换}
+
+若 $A(t)$ 对每一时刻幺正，则
+\begin{equation}
+  |\psi\rangle_A=A(t)|\psi\rangle,
+  \qquad
+  O_A(t)=A(t)O A^\dagger(t)
+\end{equation}
+保持 $\langle\psi|O|\phi\rangle$ 不变。三种标准选择如下。
+
+\subsection{薛定谔绘景}
+
+$A=1$。态满足 $i\partial_t|\psi_S\rangle=H_S(t)|\psi_S\rangle$，算符只在 $H$ 显含时才随时间变。
+
+\subsection{海森堡绘景}
+
+$A(t)=U^\dagger(t,t_0)$，态冻结为 $t_0$ 的态，算符
+\begin{equation}
+  O_H(t)=U^\dagger(t,t_0)O_S U(t,t_0),
+  \qquad
+  i\partial_t O_H=[O_H,H_H]+\bigl(\partial_t O_S\bigr)_H.
+\end{equation}
+格林函数通常在此绘景定义。
+
+\subsection{相互作用（Dirac）绘景}
+
+把 $H=H_0+V$，令 $A(t)=e^{iH_0(t-t_0)}$（$\hbar=1$）。则
+\begin{equation}
+  i\partial_t|\psi_I\rangle=V_I(t)|\psi_I\rangle,
+  \qquad
+  V_I(t)=e^{iH_0 t}V e^{-iH_0 t},
+\end{equation}
+算符按自由 $H_0$ 运动。时间演化算符
+\begin{equation}
+  U_I(t,t')
+  =T\exp\Bigl(-i\int_{t'}^{t}\mathrm{d}\tau\,V_I(\tau)\Bigr)
+\end{equation}
+是零温图展开与 Gell-Mann--Low 定理的出发点。

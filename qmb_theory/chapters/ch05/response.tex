@@ -1,0 +1,36 @@
+\section{线性响应函数}
+
+\subsection{一般性质}
+
+平移、时间均匀体系中 $\chi=\chi(\mathbf{q},\omega)$ 满足：
+\begin{itemize}
+  \item \textbf{因果性}：$\chi^R(\mathbf{q},\omega)$ 在上半平面解析；
+  \item \textbf{Kramer--Kronig 关系}：
+  \begin{equation}
+    \mathrm{Re}\,\chi(\omega)
+    =\frac{1}{\pi}\mathcal{P}
+    \int_{-\infty}^{\infty}
+    \mathrm{d}\omega'
+    \frac{\mathrm{Im}\,\chi(\omega')}{\omega'-\omega};
+  \end{equation}
+  \item \textbf{涨落耗散}：$\mathrm{Im}\,\chi$ 与动态结构因子成正比（见谱表示一节）；
+  \item \textbf{求和规则}：由双对易子给出，例如密度通道的 f-sum rule
+  \begin{equation}
+    \int_0^{\infty}\mathrm{d}\omega\,
+    \omega\,\bigl(-\mathrm{Im}\,\chi_{nn}(\mathbf{q},\omega)\bigr)
+    =\pi n\frac{q^2}{m}.
+  \end{equation}
+  详细推导见后文谱表示一节。
+\end{itemize}
+
+\subsection{不同通道}
+
+\begin{itemize}
+  \item 密度--密度 $\chi_{nn}$：介电函数、屏蔽、等离激元；
+  \item 电流--电流：电导率（Kubo--Greenwood）；
+  \item 自旋--自旋：磁化率、磁激发。
+\end{itemize}
+
+\begin{definition}[广义极化率]
+线性响应函数定量描述“单位外场引起多大的诱导期望值”，并由平衡态动力学关联完全决定。
+\end{definition}

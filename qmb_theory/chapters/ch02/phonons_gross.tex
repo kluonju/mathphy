@@ -1,0 +1,49 @@
+\section{声子：从晶格振动到独立振子}
+
+Gross 第 12 章从离子位移的二次型哈密顿量出发，经简正坐标对角化为独立振子，其量子即声子。Fröhlich 耦合是下一步（已在电声节给出）。
+
+\subsection{谐振近似}
+
+离子相对平衡位 $\mathbf{R}_\ell^0$ 的位移 $\mathbf{u}_\ell$，势能展到二次：
+\begin{equation}
+  V_{\mathrm{ion}}
+  =\frac12\sum_{\ell\ell',\alpha\beta}
+  u_{\ell\alpha}
+  \Phi_{\alpha\beta}(\ell-\ell')
+  u_{\ell'\beta}.
+\end{equation}
+$\Phi$ 为力常数矩阵（对平移的齐次性使 $\sum_{\ell'}\Phi(\ell-\ell')=0$）。
+
+\subsection{简正模}
+
+Fourier 变换到 Bloch 波矢 $\mathbf{q}$（第一 Brillouin 区）与支 $\mu=1,2,3$，
+\begin{equation}
+  H_{\mathrm{ph}}
+  =\sum_{\mathbf{q}\mu}
+  \left(
+  \frac{|\mathbf{P}_{\mathbf{q}\mu}|^2}{2M}
+  +\frac12 M\omega_{\mathbf{q}\mu}^2 |Q_{\mathbf{q}\mu}|^2
+  \right),
+\label{eq:Hph_classical}
+\end{equation}
+其中 $\omega_{\mathbf{q}\mu}^2$ 是动力学矩阵 $D(\mathbf{q})=\Phi(\mathbf{q})/M$ 的本征值。条件 $\omega_{\mathbf{q}\mu}=\omega_{-\mathbf{q}\mu}=\omega_{\mathbf{q}+\mathbf{G},\mu}$。长波声学支 $\omega\sim c|\mathbf{q}|$，光学支趋于有限频率。
+
+\subsection{量子化}
+
+\begin{equation}
+  Q_{\mathbf{q}\mu}
+  =\sqrt{\frac{1}{2M\omega_{\mathbf{q}\mu}}}
+  \bigl(a_{\mathbf{q}\mu}+a_{-\mathbf{q}\mu}^\dagger\bigr),
+\end{equation}
+得
+\begin{equation}
+  H_{\mathrm{ph}}
+  =\sum_{\mathbf{q}\mu}
+  \omega_{\mathbf{q}\mu}
+  \bigl(a_{\mathbf{q}\mu}^\dagger a_{\mathbf{q}\mu}+\tfrac12\bigr).
+\end{equation}
+三次及以上非谐项引起声子--声子散射与热膨胀，此处忽略。
+
+\begin{note}
+电子--离子耦合线性于 $\mathbf{u}$ 时给出 \eqref{eq:frohlich}。Gross 第 13 章再用二阶微扰从交换声子导出有效电子--电子相互作用，见超导章。
+\end{note}

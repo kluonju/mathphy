@@ -1,0 +1,30 @@
+\section{Luttinger--Ward 泛函与骨架展开}
+
+把相互作用贡献写成 $G$ 的泛函 $\Phi[G]$（Luttinger--Ward），使得
+\begin{equation}
+  \Gamma[G]
+  =\Gamma_0[G]+\Phi[G],
+  \qquad
+  \Sigma[G]
+  =\frac{\delta\Phi}{\delta G}.
+\label{eq:LW}
+\end{equation}
+$\Phi$ 由\textbf{骨架图}（用全 $G$ 线、无自能插入）构成。由此自动得到 Dyson 方程
+\begin{equation}
+  G^{-1}=G_0^{-1}-\Sigma[G].
+\end{equation}
+Baym--Kadanoff 守恒近似即要求 $\Sigma$ 由某个 $\Phi$ 导出，从而保证粒子数、动量、能量等守恒律。
+
+常见近似：
+\begin{itemize}
+  \item HF：$\Phi$ 取一阶直接+交换；
+  \item GW：$\Phi$ 取环图级数（屏蔽相互作用 $W$）；
+  \item 涨落交换（FLEX）等更高阶梯子/气泡组合。
+\end{itemize}
+
+二粒子不可约顶点
+\begin{equation}
+  \Gamma^{(4)}
+  =\frac{\delta^2\Phi}{\delta G\,\delta G}
+\end{equation}
+进入 Bethe--Salpeter 方程，决定响应函数与集体模式。

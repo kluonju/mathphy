@@ -1,0 +1,47 @@
+\section{Landau 理论的微观导出}
+
+Gross 第 33 章从两点顶点的 $\omega$/$q$ 极限导出 Landau $f$ 函数，使唯象论与微观 $G$、$\Gamma$ 接通。
+
+\subsection{前向散射}
+
+准粒子之间的有效相互作用来自四点顶点在费米面、动量转移 $q\to0$ 的极限。两个极限不可交换：
+\begin{equation}
+  \Gamma^\omega
+  =\lim_{\omega\to0}\lim_{q\to0}\Gamma_{\mathrm{ph}}(q,\omega),
+  \qquad
+  \Gamma^q
+  =\lim_{q\to0}\lim_{\omega\to0}\Gamma_{\mathrm{ph}}.
+\end{equation}
+$\Gamma^\omega$ 对应准粒子尚未重新分布（Landau $f$ 的定义）；$\Gamma^q$ 对应热力学屏蔽后的响应。BS 方程给出
+\begin{equation}
+  \Gamma^q
+  =\frac{\Gamma^\omega}{1+N(0)\langle\Gamma^\omega\rangle_{\mathrm{ang}}},
+\end{equation}
+（示意，$\ell=0$ 通道。）于是
+\begin{equation}
+  f_{\mathbf{k}\sigma,\mathbf{k}'\sigma'}
+  =Z_{\mathbf{k}}Z_{\mathbf{k}'}
+  \Gamma^\omega(\mathbf{k}\sigma,\mathbf{k}'\sigma'),
+\end{equation}
+$Z$ 来自单粒子极点留数。勒让德展开后即 $F_\ell^{s,a}$。
+
+\subsection{有效质量}
+
+微观
+\begin{equation}
+  \frac{m^*}{m}
+  =\frac{1-\partial_\omega\mathrm{Re}\Sigma}{1+\partial_k\mathrm{Re}\Sigma/v_F^{(0)}}
+  \Big|_{k_F}.
+\end{equation}
+伽利略不变把 $\partial_k\Sigma$ 与 $F_1^s$ 锁定，回到 $m^*/m=1+F_1^s/3$。这是 Ward 恒等式在 boost 下的结果。
+
+\subsection{从微观到输运}
+
+Gross 第 32 章：准粒子玻尔兹曼方程
+\begin{equation}
+  \partial_t\delta n_{\mathbf{k}}
+  +\mathbf{v}_{\mathbf{k}}^*\cdot\nabla_{\mathbf{r}}
+  \bigl(\delta n_{\mathbf{k}}-\frac{\partial n^0}{\partial\varepsilon}\delta\varepsilon_{\mathbf{k}}\bigr)
+  =I_{\mathrm{coll}}[\delta n],
+\end{equation}
+$\delta\varepsilon=\sum f\delta n$。无碰撞极限给出零声；碰撞积分给出第一声衰减与粘滞。集体模式与第 5 章 $\chi(q,\omega)$ 的极点一致。

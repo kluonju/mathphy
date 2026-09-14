@@ -1,0 +1,50 @@
+\section{密度算符与一体密度矩阵}
+
+Gross 第 6 章把“在 $\mathbf{r}$ 找到粒子的概率”提升为二次量子化算符，并引入一体密度矩阵。这是等离子体、HF 与 DFT 的共同语言。
+
+\subsection{一体密度算符}
+
+$N$ 粒子体系中，
+\begin{equation}
+  \hat n(\mathbf{r})
+  =\sum_{i=1}^N \delta(\mathbf{r}-\hat{\mathbf{r}}_i)
+  =\sum_\sigma\psi_\sigma^\dagger(\mathbf{r})\psi_\sigma(\mathbf{r}).
+\end{equation}
+期望值 $n(\mathbf{r})=\langle\hat n(\mathbf{r})\rangle$。Fourier 分量
+\begin{equation}
+  \hat n_{\mathbf{q}}
+  =\int\mathrm{d}\mathbf{r}\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\hat n(\mathbf{r})
+  =\sum_{\mathbf{k}\sigma}
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}+\mathbf{q},\sigma}
+\end{equation}
+直接进入库仑相互作用 $\sum_{\mathbf{q}}v_{\mathbf{q}}(\hat n_{\mathbf{q}}\hat n_{-\mathbf{q}}-N)/2L^d$。
+
+\subsection{一体密度矩阵}
+
+\begin{equation}
+  \rho(\mathbf{r}\sigma,\mathbf{r}'\sigma')
+  =\bigl\langle
+  \psi_{\sigma'}^\dagger(\mathbf{r}')\psi_\sigma(\mathbf{r})
+  \bigr\rangle.
+\end{equation}
+对角元即密度；非对角元编码相干与交换。对单一 Slater 行列式，
+\begin{equation}
+  \rho(\mathbf{x},\mathbf{x}')
+  =\sum_i^{\mathrm{occ}}
+  \phi_i(\mathbf{x})\phi_i^*(\mathbf{x}'),
+  \qquad
+  \rho^2=\rho
+\end{equation}
+（幂等性是“纯行列式”的充要条件，Gross/L\"owdin）。自旋分辨的 $\rho_{\uparrow},\rho_{\downarrow}$ 决定 HF 交换核。
+
+\subsection{与对关联}
+
+二体密度
+\begin{equation}
+  n_2(\mathbf{r},\mathbf{r}')
+  =\bigl\langle
+  \psi^\dagger(\mathbf{r})\psi^\dagger(\mathbf{r}')\psi(\mathbf{r}')\psi(\mathbf{r})
+  \bigr\rangle
+  =n(\mathbf{r})n(\mathbf{r}')g(\mathbf{r},\mathbf{r}'),
+\end{equation}
+$g$ 即前文对关联函数。势能完全由 $n_2$ 或等价地由 $S(\mathbf{q})$ 决定。

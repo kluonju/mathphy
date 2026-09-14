@@ -1,0 +1,54 @@
+\section{电子声子耦合}
+
+离子在平衡位置附近的小振动可量子化为声子。本节先给出二次量子化哈密顿量（Mahan 第 7 章的出发点）；自能、Migdal 定理与极化子谱在格林函数章用 Matsubara 图规则计算。
+
+\subsection{晶格振动}
+
+离子位移的正模展开（$\hbar=1$）
+\begin{equation}
+  \mathbf{u}_{\ell}
+  =\sum_{\mathbf{q}\lambda}
+  \sqrt{\frac{1}{2NM\omega_{\mathbf{q}\lambda}}}
+  \mathbf{e}_{\mathbf{q}\lambda}
+  e^{\mathrm{i}\mathbf{q}\cdot\mathbf{R}_\ell}
+  \bigl(a_{\mathbf{q}\lambda}+a_{-\mathbf{q}\lambda}^\dagger\bigr).
+\end{equation}
+自由声子
+\begin{equation}
+  H_{\mathrm{ph}}
+  =\sum_{\mathbf{q}\lambda}
+  \omega_{\mathbf{q}\lambda}
+  \bigl(a_{\mathbf{q}\lambda}^\dagger a_{\mathbf{q}\lambda}+\tfrac12\bigr).
+\end{equation}
+
+\subsection{Fröhlich 相互作用}
+
+电子感受到的势为离子位移的一阶，
+\begin{equation}
+  \delta V(\mathbf{r})
+  =\sum_{\ell}\mathbf{u}_\ell\cdot\nabla v_{\mathrm{ei}}(\mathbf{r}-\mathbf{R}_\ell).
+\end{equation}
+二次量子化后
+\begin{equation}
+  H_{\mathrm{ep}}
+  =\sum_{\mathbf{k}\mathbf{q}\sigma\lambda}
+  M_{\mathbf{q}\lambda}\,
+  c_{\mathbf{k}+\mathbf{q},\sigma}^\dagger c_{\mathbf{k}\sigma}
+  \bigl(a_{\mathbf{q}\lambda}+a_{-\mathbf{q}\lambda}^\dagger\bigr).
+\label{eq:frohlich}
+\end{equation}
+形变势/声学支常有 $M_{\mathbf{q}}\propto\sqrt{q}$；极性光学支（三维 Fröhlich）
+\begin{equation}
+  |M_{\mathbf{q}}|^2
+  =\frac{2\pi e^2}{q^2}
+  \omega_{\mathrm{LO}}
+  \Bigl(\frac{1}{\varepsilon_\infty}-\frac{1}{\varepsilon_0}\Bigr).
+\end{equation}
+
+\subsection{物理后果（预告）}
+
+\begin{itemize}
+  \item 极化子：电子拖着晶格形变云，有效质量增大；
+  \item 声子介导吸引：$\lvert\omega\rvert<\omega_D$ 窗口内 $V_{\mathrm{eff}}=|M|^2\mathcal{D}(\omega)<0$，通向 BCS；
+  \item 电阻：电声散射决定金属 $\rho(T)$ 的 Bloch--Grüneisen 行为。
+\end{itemize}

@@ -1,0 +1,31 @@
+\section{费米液体的输运与集体模}
+
+Gross 第 32 章：Landau 动力学方程给出零声、自旋波与输运弛豫。
+
+\subsection{无碰撞动力学}
+
+\begin{equation}
+  \partial_t\delta n_{\mathbf{p}}
+  +\mathbf{v}_{\mathbf{p}}\cdot\nabla_{\mathbf{r}}
+  \bigl(\delta n_{\mathbf{p}}-\tfrac{\partial n^0}{\partial\varepsilon}\delta\varepsilon_{\mathbf{p}}\bigr)
+  =0
+  \qquad\text{(collisionless)}.
+\label{eq:landau_kinetic}
+\end{equation}
+平面波解 $\propto e^{\mathrm{i}(\mathbf{q}\cdot\mathbf{r}-\omega t)}$，对 $F_0^s$ 主导的各向同性形变得到零声色散
+\begin{equation}
+  \frac{\omega}{qv_F}
+  =s,
+  \qquad
+  \frac{s}{2}\ln\frac{s+1}{s-1}=1+\frac{1}{F_0^s}
+  \quad(F_0^s>0).
+\end{equation}
+$s>1$ 时模式位于粒子--空穴连续谱之上，无朗道阻尼。
+
+\subsection{有碰撞：黏滞与热导}
+
+把 \eqref{eq:landau_kinetic} 右端换成碰撞积分 $I[\delta n]$（费米黄金法则对准粒子散射）。近平衡展开得黏滞系数 $\eta\sim p_F^2\tau_{\eta}/m^*$、热导 $\kappa_T\sim C_V v_F^2\tau_T$。费米液体中 $\tau\sim T^{-2}$（相空间限制），故电阻率 $\rho\sim T^2$（若杂质可忽略）。
+
+\subsection{与微观响应的桥梁}
+
+$F_\ell$ 可由微观 $\Gamma^\omega$（Landau 极限的顶点）投影得到；集体极点应与密度/自旋响应的 RPA+局域场描述在长波极限一致。这把第 5、7 章连成一体。

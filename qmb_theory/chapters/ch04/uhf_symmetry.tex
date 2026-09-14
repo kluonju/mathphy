@@ -1,0 +1,25 @@
+\section{限制性 HF 与对称性困境}
+
+Gross 第 8 章讨论：Hartree--Fock 变分若强制波函数属于 $H$ 的对称性（自旋、空间点群），得到限制性 HF（RHF）；若允许破缺，得到非限制性 HF（UHF）。二者能量与对称性可能冲突。
+
+\subsection{RHF 与 UHF}
+
+RHF：轨道取为 $S_z$、$S^2$（闭壳层）及点群不可约表示的本征态，密度矩阵与 $H$ 对易。UHF：允许不同自旋不同空间轨道（不同轨道不同自旋，DODS），或允许电荷/自旋密度波。变分空间更大，故
+\begin{equation}
+  E_{\mathrm{UHF}}\le E_{\mathrm{RHF}}.
+\end{equation}
+
+\subsection{L\"owdin 对称性困境}
+
+真实基态必须是 $H$ 对称群的不可约表示（非简并时）。UHF 行列式常常\textbf{不是}这些好量子数的本征态（例如 $\langle S^2\rangle\neq s(s+1)$），尽管能量更低。RHF 对称正确但能量偏高。这就是对称性困境：在单一 Slater 行列式流形上，\textbf{能量最低}与\textbf{对称性正确}不能同时达到。
+
+出路：
+\begin{itemize}
+  \item 投影 HF：对 UHF 行列式做自旋/空间投影，再变分（Peierls--Yoccoz、L\"owdin 投影）；
+  \item 多组态（MCSCF、CI）：离开单一行列式；
+  \item 恢复对称的配对（BCS 投影粒子数）等。
+\end{itemize}
+
+\subsection{与均匀气的联系}
+
+平面波顺磁态是平移 + 自旋转动下的 RHF/UHF 公共解（Gross 第 9 章：UHF 算符在平面波基对角）。Overhauser SDW 则是破平移/自旋转动的 UHF，能量可低于顺磁平面波——正是困境在电子气中的实现。

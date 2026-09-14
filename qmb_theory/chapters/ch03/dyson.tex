@@ -1,0 +1,35 @@
+\section{Dyson 方程}
+
+\subsection{从几何级数到积分方程}
+
+把所有单粒子可约图求和，得到 Dyson 方程。在频率-动量空间（平移不变体系）中，
+\begin{equation}
+  G(k)=G_0(k)+G_0(k)\Sigma(k)G(k),
+\end{equation}
+从而
+\begin{equation}
+  G(k)=\bigl[G_0(k)^{-1}-\Sigma(k)\bigr]^{-1}.
+\end{equation}
+对自由色散 $\varepsilon_{\mathbf{k}}$，
+\begin{equation}
+  G^R(\mathbf{k},\omega)
+  =\frac{1}{\omega-\varepsilon_{\mathbf{k}}/\hbar-\Sigma^R(\mathbf{k},\omega)/\hbar+\mathrm{i}0^+}.
+\end{equation}
+自能的实部重整化能量，虚部给出衰宽（寿命）。
+
+\subsection{骨架展开与自洽}
+
+实践中常采用：
+\begin{itemize}
+  \item \textbf{非自洽}：$\Sigma=\Sigma[G_0]$，计算简单但守恒律可能破坏；
+  \item \textbf{自洽}：$\Sigma=\Sigma[G]$，需迭代求解，常改善热力学一致性；
+  \item \textbf{守恒近似}（Baym--Kadanoff）：由 $\Phi$ 泛函导出 $\Sigma=\delta\Phi/\delta G$，以保证粒子数、动量、能量等守恒律。
+\end{itemize}
+
+\subsection{与双粒子通道的联系}
+
+完整描述响应还需顶点函数与 Bethe--Salpeter 方程。Dyson 方程管的是单粒子通道；密度响应、自旋响应等则涉及粒子-空穴不可约顶点。线性响应一章将从另一角度切入同一物理。
+
+\begin{theorem}[形式结构]
+在平移不变、平衡体系中，单粒子传播子完全由自能通过 Dyson 方程确定；近似的核心在于如何截断或选择 $\Sigma$ 的图内容，而非改变该形式结构本身。
+\end{theorem}

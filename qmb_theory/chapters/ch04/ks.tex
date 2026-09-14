@@ -1,0 +1,44 @@
+\section{Kohn--Sham 方程}
+
+\subsection{辅助非相互作用体系}
+
+Kohn--Sham（KS）方法引入一个虚构的无相互作用电子体系，使其基态密度等于真实相互作用体系的密度。辅助体系的动能
+\begin{equation}
+  T_s[n]=\sum_i^{\mathrm{occ}}
+  \langle\phi_i|-\tfrac{\hbar^2}{2m}\nabla^2|\phi_i\rangle
+\end{equation}
+可用轨道精确计算。于是把未知的 $T[n]-T_s[n]$ 并入 $E_{\mathrm{xc}}$，定义
+\begin{equation}
+  E[n]
+  =T_s[n]+E_{\mathrm{H}}[n]+E_{\mathrm{xc}}[n]
+  +\int v_{\mathrm{ext}}n\,\mathrm{d}\mathbf{r}.
+\end{equation}
+
+\subsection{自洽 KS 方程}
+
+变分得到单粒子方程
+\begin{equation}
+  \Bigl(
+  -\frac{\hbar^2}{2m}\nabla^2
+  +v_{\mathrm{ext}}(\mathbf{r})
+  +v_{\mathrm{H}}(\mathbf{r})
+  +v_{\mathrm{xc}}(\mathbf{r})
+  \Bigr)\phi_i(\mathbf{r})
+  =\varepsilon_i\phi_i(\mathbf{r}),
+\end{equation}
+其中
+\begin{equation}
+  v_{\mathrm{xc}}(\mathbf{r})
+  =\frac{\delta E_{\mathrm{xc}}[n]}{\delta n(\mathbf{r})},
+  \qquad
+  n(\mathbf{r})=\sum_i^{\mathrm{occ}}|\phi_i(\mathbf{r})|^2.
+\end{equation}
+与 HF 相比，KS 交换关联势通常取为\textbf{局域（或半局域）乘性势}，计算上远更便宜；代价是 $E_{\mathrm{xc}}$ 必须近似。
+
+\subsection{如何解读 KS 本征值}
+
+严格说来，KS 轨道与本征值是辅助量。实践中，KS 能带结构常被用作真实准粒子谱的起点，但带隙等量往往被低估，需要 GW 等许多体修正。切勿把 KS 方程简单等同于“真实”单粒子薛定谔方程。
+
+\begin{note}[思政融入：理论服务实际]
+KS-DFT 使复杂材料的电子结构计算成为日常工具，广泛应用于能源材料、催化、半导体与量子材料等方向。中国科学家在算法、软件与材料发现等方面成果丰硕。把理论用于解决实际问题、服务国家发展，是科学工作者的重要使命。
+\end{note}

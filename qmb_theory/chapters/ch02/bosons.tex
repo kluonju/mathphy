@@ -1,0 +1,30 @@
+\section{玻色子的二次量子化}
+
+Gross 第 3 章专论玻色子。与费米子平行，但允许任意占据数，对易关系代替反对易。
+
+\subsection{对易关系与 Fock 态}
+
+\begin{equation}
+  [b_\alpha,b_\beta^\dagger]=\delta_{\alpha\beta},
+  \qquad
+  [b_\alpha,b_\beta]=0.
+\end{equation}
+\begin{equation}
+  |n_1,n_2,\ldots\rangle
+  =\prod_\alpha
+  \frac{(b_\alpha^\dagger)^{n_\alpha}}{\sqrt{n_\alpha!}}
+  |0\rangle,
+  \qquad
+  n_\alpha=0,1,2,\ldots.
+\end{equation}
+场算符 $\psi(\mathbf{r})=\sum_\alpha\phi_\alpha(\mathbf{r})b_\alpha$ 满足
+$[\psi(\mathbf{r}),\psi^\dagger(\mathbf{r}')]=\delta(\mathbf{r}-\mathbf{r}')$。
+
+\subsection{与费米子的关键差别}
+
+\begin{itemize}
+  \item 无 Pauli 限制，可发生 Bose 凝聚（宏观占据单一轨道）；
+  \item Wick 定理用对易收缩，图中无费米负号；
+  \item 凝聚体需把 $b_0$ 换成 $c$-数加涨落（Bogoliubov），见第 8 章。
+\end{itemize}
+声子、磁振子、冷原子等均用此语言；电子--声子问题中声子部分即玻色二次量子化。

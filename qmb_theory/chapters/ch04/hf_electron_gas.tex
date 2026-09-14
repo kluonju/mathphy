@@ -1,0 +1,71 @@
+\section{均匀电子气的 Hartree--Fock 理论}
+
+本节给出 GV 第 2.4 节的经典结果：jellium 的 HF 交换自能、交换能与带宽重整化。
+
+\subsection{变分态与能量分解}
+
+取平面波 Slater 行列式。均匀性使 Hartree 与背景相消，
+\begin{equation}
+  E_{\mathrm{HF}}=T+E_{\mathrm{x}},
+\end{equation}
+每粒子
+\begin{equation}
+  \varepsilon_{\mathrm{HF}}(r_s)
+  =\varepsilon_0(r_s)+\varepsilon_x(r_s)
+  =\frac{A_d}{r_s^2}-\frac{B_d}{r_s}\,\mathrm{Ry}.
+\end{equation}
+jellium 的特殊性：HF 轨道仍是平面波，故 HF 能与一阶微扰能重合；非均匀体系一般并非如此。
+
+\subsection{交换自能：三维闭式}
+
+\begin{equation}
+  \Sigma^{\mathrm{x}}_\sigma(\mathbf{k})
+  =-\int_{|\mathbf{q}|<k_{F\sigma}}
+  \frac{\mathrm{d}^d q}{(2\pi)^d}\,
+  v_{\mathbf{k}-\mathbf{q}}.
+\label{eq:Sigmax}
+\end{equation}
+三维 $v_q=4\pi e^2/q^2$，令 $y=k/k_{F\sigma}$，
+\begin{equation}
+  \Sigma^{\mathrm{x}}_\sigma(k)
+  =-\frac{2e^2 k_{F\sigma}}{\pi}
+  f_{3\mathrm{D}}(y),
+  \qquad
+  f_{3\mathrm{D}}(y)
+  =\frac12+\frac{1-y^2}{4y}
+  \ln\left|\frac{1+y}{1-y}\right|,
+\label{eq:Sigmax_closed}
+\end{equation}
+$f(0)=1$，$f(1)=1/2$，$f(\infty)=0$。等价写法
+\begin{equation}
+  \Sigma^{\mathrm{x}}(k)
+  =-\frac{e^2 k_F}{\pi}
+  \left[
+  1+\frac{k_F^2-k^2}{2kk_F}
+  \ln\left|\frac{k_F+k}{k_F-k}\right|
+  \right]
+\end{equation}
+（顺磁、$k_F=k_{F\sigma}$）。费米面
+\begin{equation}
+  \Sigma^{\mathrm{x}}(k_F)=-\frac{e^2 k_F}{\pi}.
+\end{equation}
+HF 准粒子能量 $\varepsilon_{\mathbf{k}}^{\mathrm{HF}}=\hbar^2k^2/(2m)+\Sigma^{\mathrm{x}}(k)$。
+
+\subsection{带宽与有效质量问题}
+
+HF 把能带底部压得比费米面更低（$|\Sigma^{\mathrm{x}}(0)|=2|\Sigma^{\mathrm{x}}(k_F)|$），带宽
+\begin{equation}
+  W_{\mathrm{HF}}
+  =\varepsilon_F+\Sigma^{\mathrm{x}}(k_F)-\Sigma^{\mathrm{x}}(0)
+  >\varepsilon_F.
+\end{equation}
+由 \eqref{eq:Sigmax_closed}，$\partial\Sigma^{\mathrm{x}}/\partial k|_{k_F}$ 对数发散，费米速度异常、有效质量趋于零——这是裸 HF 的缺陷。屏蔽（RPA）消除该奇异，恢复有限 $m^*$。
+
+\subsection{交换能与 \eqref{eq:Sigmax} 的关系}
+
+\begin{equation}
+  E_{\mathrm{x}}
+  =\frac12\sum_{\mathbf{k}\sigma}
+  n_{\mathbf{k}\sigma}\Sigma^{\mathrm{x}}_\sigma(\mathbf{k}),
+\end{equation}
+积分后即 \eqref{eq:ex_Bd}。实空间上，$E_{\mathrm{x}}$ 是交换孔的静电能。

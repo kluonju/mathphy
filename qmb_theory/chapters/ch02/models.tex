@@ -1,0 +1,73 @@
+\section{从“万物哈密顿量”到常用模型}
+
+多体理论的出发点往往是电子与离子的完整哈密顿量。通过冻结离子、保留振动、投影到 Bloch/Wannier 基等步骤，可得到 jellium、电子–声子、紧束缚、Hubbard、Anderson/Kondo 等模型。层次关系如下（对齐施均仁讲义第 1.4.2 节）。
+
+\subsection{层次概览}
+
+\begin{center}
+\begin{tabular}{c}
+电子+离子的“万物”哈密顿量\\
+$\downarrow$ 冻结离子 / $\downarrow$ 保留晶格振动\\
+jellium 电子液 \qquad / \qquad 电子–声子耦合\\
+$\downarrow$ 周期势 $\to$ Bloch / Wannier\\
+紧束缚模型\\
+$\downarrow$ 单带、局域相互作用\\
+Hubbard 模型\\
+$\downarrow$ 杂质极限\\
+Anderson 杂质 $\to$ Kondo 模型
+\end{tabular}
+\end{center}
+
+\subsection{紧束缚与 Hubbard}
+
+Wannier 基下单带紧束缚
+\begin{equation}
+  H=-\sum_{ij\sigma}t_{ij}c_{i\sigma}^\dagger c_{j\sigma}
+  +\sum_{ii'jj',\sigma\sigma'}
+  U_{ii'jj'}
+  c_{i\sigma}^\dagger c_{i'\sigma'}^\dagger
+  c_{j'\sigma'}c_{j\sigma}.
+\end{equation}
+若只保留近邻跃迁与同址排斥，即得 Hubbard 模型
+\begin{equation}
+  H=-t\sum_{\langle ij\rangle\sigma}
+  \bigl(c_{i\sigma}^\dagger c_{j\sigma}+\mathrm{h.c.}\bigr)
+  +U\sum_i n_{i\uparrow}n_{i\downarrow}.
+\label{eq:hubbard}
+\end{equation}
+交换型相互作用可写为自旋形式
+\begin{equation}
+  H_J=-2\sum_{ij}J_{ij}
+  \Bigl(
+  \mathbf{S}_i\cdot\mathbf{S}_j+\tfrac14 n_i n_j
+  \Bigr),
+  \qquad
+  \mathbf{S}_i=\tfrac12\sum_{\sigma\sigma'}
+  c_{i\sigma}^\dagger\boldsymbol{\tau}_{\sigma\sigma'}c_{i\sigma'}.
+\end{equation}
+
+\subsection{Anderson 杂质与 Kondo}
+
+杂质能级与传导带杂化：
+\begin{equation}
+\begin{aligned}
+  H
+  &=\sum_\sigma\varepsilon_f f_\sigma^\dagger f_\sigma
+  +U n_{f\uparrow}n_{f\downarrow}
+  +\sum_{\mathbf{k}\sigma}
+  \bigl(V_{\mathbf{k}}f_\sigma^\dagger c_{\mathbf{k}\sigma}+\mathrm{h.c.}\bigr)\\
+  &\quad+\sum_{\mathbf{k}\sigma}\varepsilon_{\mathbf{k}}
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma}.
+\end{aligned}
+\end{equation}
+深能级、大 $U$ 极限下可积出电荷涨落，得到 Kondo 交换
+\begin{equation}
+  H=\sum_{\mathbf{k}\sigma}\varepsilon_{\mathbf{k}}
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma}
+  -J\,\mathbf{S}_{\mathrm{imp}}\cdot\mathbf{s}(0).
+\end{equation}
+这是重费米子与局域关联效应的重要微观起源。
+
+\begin{note}
+Bloch 基下动量守恒可差一个倒格矢 $\mathbf{K}$，对应 Umklapp 过程，对电阻与一维/准一维系统尤其重要。
+\end{note}

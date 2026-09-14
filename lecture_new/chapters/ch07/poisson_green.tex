@@ -1,0 +1,190 @@
+\section{Green's function method for Poisson's equation}
+
+\subsection{Green's identities}
+
+Let $u(\mathbf{r})$ and $v(\mathbf{r})$ have continuous first derivatives throughout a spatial region $T$ and on its closed boundary surface $\Sigma$, and continuous second derivatives inside $T$. The divergence theorem applied to the vector field $u\nabla v$ gives
+\begin{equation}
+\iint_{\Sigma} u\,\nabla v\cdot\mathrm{d}\mathbf{S}
+=\iiint_{T}\nabla\cdot(u\nabla v)\,\mathrm{d}V
+=\iiint_{T}u\,\Delta v\,\mathrm{d}V
++\iiint_{T}\nabla u\cdot\nabla v\,\mathrm{d}V.
+\end{equation}
+This is \textbf{Green's first identity}. Interchanging $u$ and $v$ produces the companion identity
+\begin{equation}
+\iint_{\Sigma} v\,\nabla u\cdot\mathrm{d}\mathbf{S}
+=\iiint_{T}v\,\Delta u\,\mathrm{d}V
++\iiint_{T}\nabla u\cdot\nabla v\,\mathrm{d}V.
+\end{equation}
+Subtracting the two relations cancels the gradient products and yields \textbf{Green's second identity}
+\begin{equation}
+\label{eq:green2}
+\iint_{\Sigma}\Bigl(
+u\frac{\partial v}{\partial n}-v\frac{\partial u}{\partial n}
+\Bigr)\,\mathrm{d}S
+=\iiint_{T}\bigl(u\,\Delta v-v\,\Delta u\bigr)\,\mathrm{d}V,
+\end{equation}
+where $\partial/\partial n$ denotes the \emph{outward} normal derivative on $\Sigma$.
+
+\subsection{Poisson boundary-value problem and point sources}
+
+Consider the Poisson equation
+\begin{equation}
+\label{eq:poisson}
+\Delta u=f(\mathbf{r}),\qquad\mathbf{r}\in T,
+\end{equation}
+subject to the linear boundary condition
+\begin{equation}
+\label{eq:bc-gen}
+\Bigl[\alpha\frac{\partial u}{\partial n}+\beta u\Bigr]_{\Sigma}=\varphi(M).
+\end{equation}
+The three classical cases are:
+\begin{itemize}
+\item \textbf{Dirichlet} (first kind): $\alpha=0$, $\beta\neq0$;
+\item \textbf{Neumann} (second kind): $\alpha\neq0$, $\beta=0$;
+\item \textbf{Robin} (third kind): $\alpha\neq0$, $\beta\neq0$.
+\end{itemize}
+
+To represent an arbitrary source density $f$ as a continuum of point sources, introduce the Dirac delta function. Let $v(\mathbf{r},\mathbf{r}_0)$ be the field at $\mathbf{r}$ produced by a unit point source at $\mathbf{r}_0$. Then
+\begin{equation}
+\label{eq:v-delta}
+\Delta v(\mathbf{r},\mathbf{r}_0)=\delta(\mathbf{r}-\mathbf{r}_0).
+\end{equation}
+Formally combining \eqref{eq:poisson} and \eqref{eq:v-delta} with Green's second identity would give
+\begin{equation}
+\iiint_{T}\bigl(v\Delta u-u\Delta v\bigr)\,\mathrm{d}V
+=\iiint_{T}vf\,\mathrm{d}V
+-\iiint_{T}u\,\delta(\mathbf{r}-\mathbf{r}_0)\,\mathrm{d}V.
+\end{equation}
+The difficulty is that $\Delta v$ is singular at $\mathbf{r}=\mathbf{r}_0$, so Green's identity cannot be applied on the whole of $T$.
+
+\subsection{Excision of the singularity}
+
+Remove a small ball $K_\varepsilon$ of radius $\varepsilon$ centered at $\mathbf{r}_0$, with spherical boundary $\Sigma_\varepsilon$. On the excised domain $T\setminus K_\varepsilon$ the identity \eqref{eq:green2} is legitimate:
+\begin{equation}
+\begin{aligned}
+&\iiint_{T\setminus K_\varepsilon}\bigl(v\Delta u-u\Delta v\bigr)\,\mathrm{d}V\\
+&\qquad=
+\iint_{\Sigma}\Bigl(v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}\Bigr)\,\mathrm{d}S
++\iint_{\Sigma_\varepsilon}\Bigl(v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}\Bigr)\,\mathrm{d}S.
+\end{aligned}
+\end{equation}
+Since $\delta(\mathbf{r}-\mathbf{r}_0)=0$ for $\mathbf{r}\neq\mathbf{r}_0$, the volume integral reduces to $\iiint_{T\setminus K_\varepsilon}vf\,\mathrm{d}V$, and therefore
+\begin{equation}
+\label{eq:excised}
+\begin{aligned}
+&\iint_{\Sigma}\Bigl(v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}\Bigr)\,\mathrm{d}S
++\iint_{\Sigma_\varepsilon}\Bigl(v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}\Bigr)\,\mathrm{d}S\\
+&\qquad=
+\iiint_{T\setminus K_\varepsilon}vf\,\mathrm{d}V.
+\end{aligned}
+\end{equation}
+
+Near $\mathbf{r}_0$ the singular part of $v$ behaves as the Coulomb potential of charge $-\varepsilon_0$,
+\begin{equation}
+v\sim-\frac{1}{4\pi\,|\mathbf{r}-\mathbf{r}_0|}.
+\end{equation}
+As $\varepsilon\to0$ one finds
+\begin{equation}
+\iint_{\Sigma_\varepsilon}v\frac{\partial u}{\partial n}\,\mathrm{d}S\to0,
+\qquad
+\iint_{\Sigma_\varepsilon}u\frac{\partial v}{\partial n}\,\mathrm{d}S\to-u(\mathbf{r}_0).
+\end{equation}
+Passing to the limit in \eqref{eq:excised} yields the fundamental integral formula
+\begin{equation}
+\label{eq:fund-poisson}
+\begin{aligned}
+u(\mathbf{r}_0)
+&=\iiint_{T}v(\mathbf{r},\mathbf{r}_0)f(\mathbf{r})\,\mathrm{d}V\\
+&\quad-\iint_{\Sigma}\Bigl[
+v(\mathbf{r},\mathbf{r}_0)\frac{\partial u}{\partial n}
+-u(\mathbf{r})\frac{\partial v(\mathbf{r},\mathbf{r}_0)}{\partial n}
+\Bigr]\,\mathrm{d}S.
+\end{aligned}
+\end{equation}
+
+\begin{note}
+Formula \eqref{eq:fund-poisson} appears to require both $u$ and $\partial u/\partial n$ on $\Sigma$. A standard boundary-value problem supplies only one linear combination of them. The remedy is to choose $v$ so that the unknown boundary data drop out. That special choice is the Green's function.
+\end{note}
+
+\subsection{Dirichlet, Robin, and Neumann Green's functions}
+
+\paragraph{Dirichlet problem.}
+Require the auxiliary field $G$ (replacing $v$) to vanish on the boundary,
+\begin{equation}
+G\big|_{\Sigma}=0.
+\end{equation}
+Then \eqref{eq:fund-poisson} becomes
+\begin{equation}
+\label{eq:dirichlet-G}
+u(\mathbf{r}_0)
+=\iiint_{T}G(\mathbf{r},\mathbf{r}_0)f(\mathbf{r})\,\mathrm{d}V
++\iint_{\Sigma}\phi(\mathbf{r})\frac{\partial G(\mathbf{r},\mathbf{r}_0)}{\partial n}\,\mathrm{d}S,
+\end{equation}
+where $\phi=u|_{\Sigma}$. Here $G$ is the Green's function of the first boundary-value problem.
+
+\paragraph{Robin (third) problem.}
+Impose the homogeneous condition of the same type as the given data,
+\begin{equation}
+\Bigl[\alpha\frac{\partial G}{\partial n}+\beta G\Bigr]_{\Sigma}=0.
+\end{equation}
+If $\bigl[\alpha\partial u/\partial n+\beta u\bigr]_{\Sigma}=\psi$, the solution formula reads
+\begin{equation}
+\label{eq:robin-G}
+u(\mathbf{r}_0)
+=\iiint_{T}Gf\,\mathrm{d}V
+-\frac{1}{\alpha}\iint_{\Sigma}G(\mathbf{r},\mathbf{r}_0)\psi(\mathbf{r})\,\mathrm{d}S.
+\end{equation}
+
+\paragraph{Neumann problem.}
+The naive requirements
+\begin{equation}
+\Delta G=\delta(\mathbf{r}-\mathbf{r}_0),
+\qquad
+\frac{\partial G}{\partial n}\Big|_{\Sigma}=0
+\end{equation}
+admit \emph{no} solution. Physically, a steady heat source inside an insulated region cannot reach equilibrium: the temperature rises without bound. One therefore introduces a \textbf{generalized Green's function} that includes a compensating uniform sink. In three dimensions,
+\begin{equation}
+\Delta G=\delta(\mathbf{r}-\mathbf{r}_0)-\frac{1}{V_T},
+\qquad
+\frac{\partial G}{\partial n}\Big|_{\Sigma}=0,
+\end{equation}
+where $V_T$ is the volume of $T$. In two dimensions the same construction uses $1/A_T$ with $A_T$ the area of the region.
+
+\subsection{Reciprocity and observation-point form}
+
+The Green's function is symmetric in its two arguments,
+\begin{equation}
+G(\mathbf{r},\mathbf{r}_0)=G(\mathbf{r}_0,\mathbf{r}).
+\end{equation}
+Interchanging the roles of the observation and source points, the Dirichlet formula becomes
+\begin{equation}
+\label{eq:dirichlet-obs}
+u(\mathbf{r})
+=\iiint_{T}G(\mathbf{r},\mathbf{r}_0)f(\mathbf{r}_0)\,\mathrm{d}V_0
++\iint_{\Sigma}\phi(\mathbf{r}_0)\frac{\partial G(\mathbf{r},\mathbf{r}_0)}{\partial n_0}\,\mathrm{d}S_0,
+\end{equation}
+and the Robin formula becomes
+\begin{equation}
+u(\mathbf{r})
+=\iiint_{T}G(\mathbf{r},\mathbf{r}_0)f(\mathbf{r}_0)\,\mathrm{d}V_0
+-\frac{1}{\alpha}\iint_{\Sigma}G(\mathbf{r},\mathbf{r}_0)\psi(\mathbf{r}_0)\,\mathrm{d}S_0.
+\end{equation}
+
+\begin{definition}[Physical content of $G$]
+The volume integral is the superposition of interior sources; the surface integral encodes the influence of the boundary data. The function $G$ itself is the field of a unit point source subject to the corresponding homogeneous boundary condition.
+\end{definition}
+
+\begin{note}[Proof of reciprocity]
+Fix $\mathbf{r}_1,\mathbf{r}_2\in T$. Excise small spheres about both points and apply Green's second identity to $u=G(\cdot,\mathbf{r}_1)$ and $v=G(\cdot,\mathbf{r}_2)$ on the remaining domain. The volume integrand and the contribution from the outer boundary $\Sigma$ vanish by the homogeneous boundary condition and by $\Delta G=\delta$. The limits on the two spheres give $G(\mathbf{r}_1,\mathbf{r}_2)=G(\mathbf{r}_2,\mathbf{r}_1)$.
+\end{note}
+
+For Laplace's equation ($f=0$) only the boundary integrals survive:
+\begin{equation}
+u(\mathbf{r})=\iint_{\Sigma}\varphi(\mathbf{r}_0)\frac{\partial G}{\partial n_0}\,\mathrm{d}S_0
+\qquad\text{(Dirichlet)},
+\end{equation}
+\begin{equation}
+u(\mathbf{r})=-\frac{1}{\alpha}\iint_{\Sigma}G\,\psi(\mathbf{r}_0)\,\mathrm{d}S_0
+\qquad\text{(Robin)}.
+\end{equation}
+Thus Green's method also solves homogeneous equations once the appropriate $G$ is known.

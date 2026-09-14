@@ -1,0 +1,27 @@
+\section{交换作用和关联作用}
+
+\subsection{交换孔}
+
+由于反对称性，同自旋电子的对关联函数在短距离被压制，形成\textbf{交换孔}（exchange hole）。其效果是减少电子相互靠近的概率，从而降低相互作用能。HF 精确描述这一效应（在单行列式级别）。
+
+对均匀电子气，交换能密度可解析求出，并成为 LDA 的重要输入。
+
+\subsection{关联：超越 HF}
+
+关联指 HF 之外的一切：不同自旋电子的库仑回避、动力学屏蔽、虚激发造成的能量降低等。关联能使
+\begin{equation}
+  E_{\mathrm{c}}=E_{\mathrm{exact}}-E_{\mathrm{HF}}
+\end{equation}
+（对给定外势的基态）。关联虽然往往只占总量的一小部分，但对化学键、能隙、磁性与相变等可能起决定作用。
+
+\subsection{语言对照}
+
+\begin{itemize}
+  \item 在图语言中：HF 对应自能的一阶 Hartree+Fock 图；关联来自更高阶与屏蔽梯子/气泡等过程。
+  \item 在波函数语言中：关联对应把单一 Slater 行列式扩展为多组态叠加（CI、偶合簇等）。
+  \item 在 DFT 语言中：交换与关联被打包进 $E_{\mathrm{xc}}[n]$，不再单独构造多体波函数。
+\end{itemize}
+
+理解这三者的分工，有助于判断何时 HF 已足够、何时必须引入关联，以及 DFT 近似可能在何处失效（如强关联莫特体系）。
+
+对均匀电子气，HF 交换能与交换自能的显式结果见上一节；LDA 正是把均匀气的 $\varepsilon_{\mathrm{x}}(n)$、$\varepsilon_{\mathrm{c}}(n)$ 用作非均匀密度的局域输入。

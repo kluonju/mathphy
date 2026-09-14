@@ -1,0 +1,34 @@
+\section{有效作用量}
+
+引入双线性源 $J$，使配分函数
+\begin{equation}
+  Z[J]
+  =\mathrm{Tr}\,
+  T_\tau\exp\Bigl(
+  -\int_0^\beta(H-J\cdot\psi^\dagger\psi)
+  \Bigr)
+\end{equation}
+成为连通格林函数的生成泛函：
+\begin{equation}
+  W[J]=\ln Z[J],
+  \qquad
+  G=\frac{\delta W}{\delta J}.
+\end{equation}
+Legendre 变换定义有效作用量（1PI 生成泛函）
+\begin{equation}
+  \Gamma[G]
+  =W[J]-\mathrm{Tr}(JG),
+\end{equation}
+满足
+\begin{equation}
+  \frac{\delta\Gamma}{\delta G}=-J.
+\end{equation}
+无源物理点 $J=0$ 对应 $\delta\Gamma/\delta G=0$，即自洽确定物理格林函数。对自由理论，
+\begin{equation}
+  \Gamma_0[G]
+  =\mathrm{Tr}\ln(-G^{-1})-\mathrm{Tr}\bigl((G_0^{-1})G\bigr)+\mathrm{const}.
+\end{equation}
+
+\begin{note}
+有效作用量的二阶导数给出不可约顶点；Dyson、Bethe--Salpeter 等方程均可由 $\Gamma$ 的驻点与展开得到。
+\end{note}

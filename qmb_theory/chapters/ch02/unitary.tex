@@ -1,0 +1,24 @@
+\section{幺正变换与场算符}
+
+Gross 第 4 章：二次量子化中的基变换是 Fock 空间上的幺正变换，场算符把坐标与占据数表象连起来。
+
+\subsection{单粒子基变换}
+
+若 $\phi'_\beta=\sum_\alpha\phi_\alpha U_{\alpha\beta}$，$U^\dagger U=1$，则
+\begin{equation}
+  c'_\beta=\sum_\alpha U_{\alpha\beta}^* c_\alpha,
+  \qquad
+  \{c'_\beta,c_\gamma'^\dagger\}=\delta_{\beta\gamma}.
+\end{equation}
+这保持粒子数与对易关系，对应 Fock 空间幺正算符 $\mathcal{U}$，使 $c'=\mathcal{U}^\dagger c\,\mathcal{U}$。Bogoliubov 变换（BEC/BCS）是混合 $c$ 与 $c^\dagger$ 的线性正则变换，仍由某幺正 $\mathcal{U}$ 实现，但一般不守恒粒子数。
+
+\subsection{场算符}
+
+\begin{equation}
+  \psi_\sigma(\mathbf{r})=\sum_\alpha\phi_\alpha(\mathbf{r})c_{\alpha\sigma}
+\end{equation}
+把任意单体算符写成 $\int\psi^\dagger a\psi$，与基选择无关。密度
+\begin{equation}
+  \hat n(\mathbf{r})=\sum_\sigma\psi_\sigma^\dagger(\mathbf{r})\psi_\sigma(\mathbf{r})
+\end{equation}
+的 Fourier 分量 $\hat n_{\mathbf{q}}$ 即第 6 讲（Gross 第 6 章）讨论的密度算符，是等离子体、线性响应与 $S(\mathbf{q})$ 的共同起点。

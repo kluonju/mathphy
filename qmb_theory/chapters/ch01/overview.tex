@@ -1,0 +1,55 @@
+\section{量子多体问题概述}
+
+\subsection{从单体到多体}
+
+单粒子量子力学中，波函数 $\psi(\mathbf{r},t)$ 满足薛定谔方程
+\begin{equation}
+  i\hbar\partial_t\psi(\mathbf{r},t)
+  =\Bigl[-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{r})\Bigr]\psi(\mathbf{r},t).
+\end{equation}
+一旦粒子数增多，且粒子之间存在相互作用，态空间维数随 $N$ 指数增长。对全同费米子，反对称多体波函数写在坐标表象中为
+\begin{equation}
+  \Psi(\mathbf{r}_1\sigma_1,\ldots,\mathbf{r}_N\sigma_N),
+\end{equation}
+其中 $\sigma_i$ 为自旋指标。直接处理 $\Psi$ 在绝大多数凝聚态问题中既不现实，也不直观。
+
+因此，多体理论通常采取以下策略之一或组合：
+\begin{itemize}
+  \item \textbf{二次量子化}：用产生/湮灭算符在 Fock 空间中表述动力学，自动实现交换对称性；
+  \item \textbf{格林函数与关联函数}：直接计算响应与谱，而不是完整波函数；
+  \item \textbf{平均场与有效理论}：用自洽场或集体坐标降低自由度；
+  \item \textbf{数值方法}：精确对角化、量子蒙特卡罗、密度矩阵重整化群、张量网络等。
+\end{itemize}
+
+本课程侧重解析与半解析工具，特别是二次量子化、格林函数、Hartree--Fock/密度泛函以及线性响应。
+
+\subsection{典型哈密顿量}
+
+凝聚态中最常见的电子体系可用
+\begin{equation}
+  H=\sum_i\Bigl(\frac{\mathbf{p}_i^2}{2m}+V_{\mathrm{ion}}(\mathbf{r}_i)\Bigr)
+  +\frac12\sum_{i\neq j}\frac{e^2}{|\mathbf{r}_i-\mathbf{r}_j|}
+\end{equation}
+描述，其中第一项为动能与晶格/杂质势，第二项为库仑相互作用。在固体中，离子振动引入声子自由度，电子–声子耦合可导致超导、极化子等现象。
+
+另一类重要模型是格点模型，例如 Hubbard 模型
+\begin{equation}
+  H=-t\sum_{\langle ij\rangle\sigma}
+  \bigl(c_{i\sigma}^\dagger c_{j\sigma}+\mathrm{h.c.}\bigr)
+  +U\sum_i n_{i\uparrow}n_{i\downarrow},
+\end{equation}
+它以最少的参数刻画局域相互作用与巡游之间的竞争，是强关联物理的基本出发点。
+
+\subsection{可观测量与实验接口}
+
+理论最终要对接实验。常见可观测量包括：
+\begin{itemize}
+  \item 热力学量：能量、比热、磁化率、压缩率；
+  \item 输运：电导、热导、Hall 效应；
+  \item 谱学：光电子谱（ARPES）、中子散射、光学电导、隧道谱。
+\end{itemize}
+格林函数与线性响应把微观哈密顿量与这些宏观/谱学量系统地联系起来。涨落耗散定理则表明：平衡态涨落决定系统对弱外场的响应。
+
+\begin{note}[思政融入：科学精神]
+量子多体理论的发展离不开一代代研究者对真理的执着追求。从量子统计的奠基，到二次量子化与场论语言的引入，再到密度泛函与现代关联方法，每一次突破都伴随着概念澄清与艰苦计算。学习本课程时，宜同时了解关键人物的生平与贡献，体会严谨态度与献身科学的精神。
+\end{note}

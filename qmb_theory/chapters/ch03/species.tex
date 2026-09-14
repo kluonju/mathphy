@@ -1,0 +1,59 @@
+\section{各类格林函数及其关系}
+
+Mahan《Many-Particle Physics》以 real-time 的大于/小于函数为出发点，再过渡到编序、retard 与 Matsubara。以下取 $\hbar=1$（Mahan 惯例；恢复 $\hbar$ 时频率与时间成对出现）。
+
+\subsection{大于、小于函数}
+
+\begin{equation}
+\begin{aligned}
+  G^>(\mathbf{k},t,t')
+  &=-\mathrm{i}\bigl\langle c_{\mathbf{k}}(t)c_{\mathbf{k}}^\dagger(t')\bigr\rangle,\\
+  G^<(\mathbf{k},t,t')
+  &=+\mathrm{i}\bigl\langle c_{\mathbf{k}}^\dagger(t')c_{\mathbf{k}}(t)\bigr\rangle.
+\end{aligned}
+\label{eq:Ggl}
+\end{equation}
+（费米子；$G^<$ 的符号约定使 $G^<(t,t)=+\mathrm{i}n_{\mathbf{k}}$。）编序格林函数
+\begin{equation}
+  G(t,t')
+  =-\mathrm{i}\bigl\langle T\,c(t)c^\dagger(t')\bigr\rangle
+  =\theta(t-t')G^>(t,t')+\theta(t'-t)G^<(t,t').
+\end{equation}
+
+\subsection{与 retarded / advanced 的关系}
+
+\begin{equation}
+\begin{aligned}
+  G^R&= \theta(t-t')\bigl(G^>-G^<\bigr),\\
+  G^A&= \theta(t'-t)\bigl(G^<-G^>\bigr),
+\end{aligned}
+\end{equation}
+从而
+\begin{equation}
+  G^R-G^A=G^>-G^<.
+\end{equation}
+谱函数
+\begin{equation}
+  A(\mathbf{k},\omega)
+  =-\frac{1}{\pi}\mathrm{Im}\,G^R(\mathbf{k},\omega)
+  =\frac{\mathrm{i}}{2\pi}\bigl[G^R-G^A\bigr]
+  =\frac{\mathrm{i}}{2\pi}\bigl[G^>-G^<\bigr].
+\label{eq:A_from_G}
+\end{equation}
+
+\subsection{平衡态涨落耗散（Mahan 形式）}
+
+平衡时 $G^{\gtrless}$ 不是独立的：
+\begin{equation}
+  G^<(\mathbf{k},\omega)
+  =2\pi\mathrm{i}\,n_F(\omega)A(\mathbf{k},\omega),
+  \qquad
+  G^>(\mathbf{k},\omega)
+  =-2\pi\mathrm{i}\bigl[1-n_F(\omega)\bigr]A(\mathbf{k},\omega),
+\label{eq:Ggl_eq}
+\end{equation}
+其中 $n_F(\omega)=(e^{\beta(\omega-\mu)}+1)^{-1}$（若能量从零算起则把 $\mu$ 放进 $\omega$ 的定义）。这就是单粒子通道的 FDT：知道谱 $A$ 与温度，即知占据与空穴激发。
+
+\begin{note}
+非平衡时 $G^<$ 与 $G^R$ 独立演化（Keldysh）；平衡是 \eqref{eq:Ggl_eq} 把它们锁在一起。
+\end{note}

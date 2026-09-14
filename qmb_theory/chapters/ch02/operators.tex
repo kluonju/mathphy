@@ -1,0 +1,42 @@
+\section{量子力学和算符}
+
+\subsection{态空间与可观测量}
+
+量子力学中，物理系统的纯态由 Hilbert 空间中的矢量表述（Dirac 记号 $|\psi\rangle$）。可观测量对应自伴算符 $A=A^\dagger$，测量结果为 $A$ 的本征值。态 $|\psi\rangle$ 下的期望值为
+\begin{equation}
+  \langle A\rangle=\langle\psi|A|\psi\rangle.
+\end{equation}
+时间演化由哈密顿量 $H$ 生成：薛定谔绘景中
+\begin{equation}
+  i\hbar\partial_t|\psi(t)\rangle=H|\psi(t)\rangle,
+\end{equation}
+海森堡绘景中算符满足
+\begin{equation}
+  i\hbar\frac{\mathrm{d}A_H}{\mathrm{d}t}=[A_H,H]+\mathrm{i}\hbar\partial_t A_H.
+\end{equation}
+
+\subsection{对易关系与不确定性}
+
+正则坐标与动量满足
+\begin{equation}
+  [x_i,p_j]=\mathrm{i}\hbar\delta_{ij}.
+\end{equation}
+一般地，若 $[A,B]=\mathrm{i}C$，则有不确定性关系
+\begin{equation}
+  \Delta A\,\Delta B\ge\frac12|\langle C\rangle|.
+\end{equation}
+角动量、自旋等代数结构在多体问题中同样重要，例如电子自旋 $1/2$ 的 Pauli 矩阵表示。
+
+\subsection{从一阶量子化到二阶量子化}
+
+“一阶量子化”指把经典力学量提升为算符，波函数描述固定粒子数的态。“二阶量子化”则进一步把波函数本身提升为场算符，粒子数成为动力学变量。对非相对论多体问题，二次量子化主要是一种\textbf{表象与记号}的变革：它等价于对称/反对称波函数语言，但在处理相互作用、响应与图展开时远更方便。
+
+\begin{example}[谐振子：产生湮灭算符的原型]
+一维谐振子可写成
+\begin{equation}
+  H=\hbar\omega\Bigl(a^\dagger a+\tfrac12\Bigr),
+  \qquad
+  [a,a^\dagger]=1.
+\end{equation}
+$a^\dagger$、$a$ 分别使量子数 $n$ 增加或减少 1。多体理论中的玻色子产生湮灭算符正是这一结构的推广。
+\end{example}

@@ -1,0 +1,135 @@
+\section{Matsubara 格林函数：谱表示与频率求和}
+
+有限温度计算的标准语言是 Matsubara 技巧（Mahan 第 3 章）。本节给出周期性、谱表示、以及最常用的频率求和公式——这是图计算真正动手时的核心代数。
+
+\subsection{虚时定义与（反）周期性}
+
+巨正则密度矩阵 $\rho=e^{-\beta(H-\mu N)}/Z$。定义
+\begin{equation}
+  \mathcal{G}(\tau)
+  =-\bigl\langle T_\tau\,c(\tau)c^\dagger(0)\bigr\rangle,
+  \qquad
+  c(\tau)=e^{\tau K}c\,e^{-\tau K},
+  \quad K=H-\mu N,
+\end{equation}
+$\tau\in[0,\beta]$。利用迹的循环性：
+\begin{equation}
+\begin{aligned}
+  \mathcal{G}(\tau<0)
+  &=+\bigl\langle c^\dagger(0)c(\tau)\bigr\rangle
+  =+\frac{1}{Z}\mathrm{Tr}\bigl[e^{-\beta K}c^\dagger e^{\tau K}c e^{-\tau K}\bigr]\\
+  &=-\zeta\,\mathcal{G}(\tau+\beta),
+\end{aligned}
+\end{equation}
+$\zeta=-1$ 费米、$+1$ 玻色。故费米子\textbf{反周期}、玻色子周期：
+\begin{equation}
+  \mathcal{G}(\tau+\beta)=\zeta\,\mathcal{G}(\tau).
+\label{eq:Gperiod}
+\end{equation}
+
+\subsection{Matsubara 频率}
+
+Fourier 级数
+\begin{equation}
+  \mathcal{G}(\tau)
+  =\frac{1}{\beta}\sum_n
+  e^{-\mathrm{i}\omega_n\tau}\mathcal{G}(\mathrm{i}\omega_n),
+  \qquad
+  \mathcal{G}(\mathrm{i}\omega_n)
+  =\int_0^\beta\mathrm{d}\tau\,
+  e^{\mathrm{i}\omega_n\tau}\mathcal{G}(\tau),
+\end{equation}
+\begin{equation}
+  \omega_n
+  =
+  \begin{cases}
+    (2n+1)\pi/\beta, & \text{费米},\\
+    2n\pi/\beta, & \text{玻色},
+  \end{cases}
+  \qquad n\in\mathbb{Z}.
+\end{equation}
+
+\subsection{谱表示}
+
+插入 $K$ 的本征态，与零温 Lehmann 同样步骤，得到
+\begin{equation}
+  \mathcal{G}(\mathrm{i}\omega_n)
+  =\int_{-\infty}^{\infty}
+  \frac{\mathrm{d}\omega\,A(\omega)}{\mathrm{i}\omega_n-\omega},
+\label{eq:G_spectral}
+\end{equation}
+$A(\omega)\ge0$，$\int A=1$。解析延拓的唯一性（在无穷远处 $G\sim 1/z$）保证
+\begin{equation}
+  G^R(\omega)
+  =\mathcal{G}(\mathrm{i}\omega_n\to\omega+\mathrm{i}0^+)
+  =\int\frac{A(\omega')}{\omega-\omega'+\mathrm{i}0^+}\mathrm{d}\omega'.
+\end{equation}
+自由费米子 $A(\omega)=\delta(\omega-\xi_{\mathbf{k}})$，$\xi_{\mathbf{k}}=\varepsilon_{\mathbf{k}}-\mu$，
+\begin{equation}
+  \mathcal{G}_0(\mathbf{k},\mathrm{i}\omega_n)
+  =\frac{1}{\mathrm{i}\omega_n-\xi_{\mathbf{k}}},
+  \qquad
+  \mathcal{G}_0(\mathbf{k},\tau)
+  =-e^{-\xi_{\mathbf{k}}\tau}
+  \bigl[\theta(\tau)(1-n_F(\xi_{\mathbf{k}}))
+  -\theta(-\tau)n_F(\xi_{\mathbf{k}})\bigr].
+\label{eq:G0_tau}
+\end{equation}
+
+\subsection{频率求和：留数技巧}
+
+图中出现
+\begin{equation}
+  S=\frac{1}{\beta}\sum_n
+  h(\mathrm{i}\omega_n).
+\end{equation}
+费米情形用 $n_F(z)=(e^{\beta z}+1)^{-1}$，其极点在 $z=\mathrm{i}\omega_n$，留数 $-1/\beta$。故
+\begin{equation}
+  \frac{1}{\beta}\sum_n h(\mathrm{i}\omega_n)
+  =-\sum_j\mathrm{Res}\bigl[h(z)n_F(z)\bigr]_{z=z_j},
+\label{eq:matsum_F}
+\end{equation}
+$z_j$ 为 $h$ 的极点（围道在无穷远处收敛需 $h(z)\sim 1/z^{1+\delta}$；否则乘 $e^{z0^+}$）。玻色求和把 $n_F$ 换成 $-n_B(z)$，$n_B=(e^{\beta z}-1)^{-1}$。
+
+\begin{example}[占据数]
+取 $h(z)=e^{z\eta}/(z-\xi)$，$\eta\to0^+$，
+\begin{equation}
+  \frac{1}{\beta}\sum_n
+  \frac{e^{\mathrm{i}\omega_n\eta}}{\mathrm{i}\omega_n-\xi}
+  =n_F(\xi).
+\end{equation}
+这正是 $\langle c^\dagger c\rangle=n_F(\xi)$。$\eta\to0^-$ 则给出 $n_F-1$。
+\end{example}
+
+\begin{example}[极化气泡中的费米圈]
+RPA/Lindhard 的 Matsubara 形式
+\begin{equation}
+  \Pi(\mathbf{q},\mathrm{i}\nu_m)
+  =\frac{2}{\beta L^d}
+  \sum_{\mathbf{k},n}
+  \mathcal{G}_0(\mathbf{k},\mathrm{i}\omega_n)
+  \mathcal{G}_0(\mathbf{k}+\mathbf{q},\mathrm{i}\omega_n+\mathrm{i}\nu_m).
+\end{equation}
+对 $n$ 用 \eqref{eq:matsum_F}，
+\begin{equation}
+  \Pi(\mathbf{q},\mathrm{i}\nu_m)
+  =\frac{2}{L^d}
+  \sum_{\mathbf{k}}
+  \frac{n_F(\xi_{\mathbf{k}})-n_F(\xi_{\mathbf{k}+\mathbf{q}})}
+  {\mathrm{i}\nu_m+\xi_{\mathbf{k}}-\xi_{\mathbf{k}+\mathbf{q}}},
+\label{eq:Pi_matsum}
+\end{equation}
+解析延拓后即 Lindhard 函数 \eqref{eq:lindhard_def}。这是 Mahan 把图规则接到电子气响应的标准步骤。
+\end{example}
+
+\subsection{自由玻色（声子）传播子}
+
+对位移型算符 $A_{\mathbf{q}}=a_{\mathbf{q}}+a_{-\mathbf{q}}^\dagger$，
+\begin{equation}
+  \mathcal{D}_0(\mathbf{q},\mathrm{i}\nu_m)
+  =-\frac{2\omega_{\mathbf{q}}}{\nu_m^2+\omega_{\mathbf{q}}^2}
+  =\frac{1}{\mathrm{i}\nu_m-\omega_{\mathbf{q}}}
+  -\frac{1}{\mathrm{i}\nu_m+\omega_{\mathbf{q}}}.
+\label{eq:D0}
+\end{equation}
+（总体符号随 $\mathcal{D}=-\langle T_\tau A A\rangle$ 的定义而异；上式与常见电子--声子自能公式配套。）

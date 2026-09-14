@@ -1,0 +1,41 @@
+\section{Goldstone 连锁集群与真空振幅}
+
+Gross 第 21 章对真空振幅 $\langle\Phi_0|U|\Phi_0\rangle$ 的不连通图做指数求和，得到 Goldstone 连锁集群定理。这是零温关联能图计算的骨架。
+
+\subsection{真空振幅}
+
+绝热演化下
+\begin{equation}
+  \langle\Phi_0|U_\varepsilon(0,-\infty)|\Phi_0\rangle
+  =\sum_{n=0}^{\infty}
+  \frac{(-\mathrm{i})^n}{n!}
+  \int\mathrm{d}t_1\cdots\mathrm{d}t_n
+  e^{-\varepsilon(|t_1|+\cdots)}
+  \langle\Phi_0|T\,V_I(t_1)\cdots V_I(t_n)|\Phi_0\rangle.
+\end{equation}
+每一项用 Wick 变成 $G_0$ 线与相互作用线的真空图（可含不连通部分）。
+
+\subsection{指数化}
+
+设连通真空图之和为 $\langle\Phi_0|U|\Phi_0\rangle_c$，则全部图（含 $m$ 个互不连通块）给出
+\begin{equation}
+  \langle\Phi_0|U|\Phi_0\rangle
+  =\exp\bigl(\langle\Phi_0|U|\Phi_0\rangle_c\bigr).
+\label{eq:goldstone}
+\end{equation}
+\textbf{推导要点}：不连通块之间的对称因子 $1/m!$ 与指数级数一致；动量守恒体系中“漂浮”的不连通真空泡只贡献总体积因子，指数化后进入强度量。
+
+\subsection{能量移动}
+
+\begin{equation}
+  \Delta E
+  =\mathrm{i}
+  \frac{\partial}{\partial t}
+  \ln\langle\Phi_0|U(t,-\infty)|\Phi_0\rangle\Big|_{t=0}
+  =\text{只含连通真空图的 Goldstone 能量规则}.
+\end{equation}
+Goldstone 能量规则：每条空穴线、粒子线赋予能量分母（中间态激发能），每条相互作用线赋予矩阵元，对所有内部动量求和。GMB 环图求和即在此规则下对一族连通图重求和。
+
+\begin{note}
+有限温对应 $\ln(Z/Z_0)=$ 连通真空图（Matsubara）。零温 Goldstone 与有限温连锁集群是同一结构的两个极限。
+\end{note}

@@ -426,22 +426,12 @@ g'(a)&=\lim_{z\to a}\frac{g(z)-g(a)}{z-a},
 由题设 $f(a)=0$、$g(a)=0$，因此当 $z\neq a$ 时，
 \[
 \frac{f(z)}{g(z)}
-=\frac{f(z)-0}{g(z)-0}
-=\frac{f(z)-f(a)}{g(z)-g(a)}.
-\]
-分子、分母同时除以 $z-a$（$z\neq a$ 时合法）：
-\[
-\frac{f(z)}{g(z)}
+=\frac{f(z)-f(a)}{g(z)-g(a)}
 =\frac{\dfrac{f(z)-f(a)}{z-a}}{\dfrac{g(z)-g(a)}{z-a}}.
 \]
-
-现在取极限 $z\to a$. 分子的极限正是 $f'(a)$，分母的极限正是 $g'(a)$.
-又题设 $g'(a)\neq 0$，故存在 $a$ 的某个去心邻域，使得其中
-\[
-\left|\frac{g(z)-g(a)}{z-a}-g'(a)\right|<\frac{|g'(a)|}{2},
-\]
-从而 $\dfrac{g(z)-g(a)}{z-a}\neq 0$，也就有 $g(z)\neq 0$. 因此在该邻域内商 $\dfrac{f(z)}{g(z)}$ 有定义，
-并且可用“商的极限 $=$ 极限的商”：
+两边取极限 $z\to a$. 分子趋于 $f'(a)$，分母趋于 $g'(a)$.
+又 $g'(a)\neq 0$，故在 $a$ 的某个去心邻域内 $g(z)\neq 0$（见下方补充说明），
+商有定义，且
 \[
 \lim_{z\to a}\frac{f(z)}{g(z)}
 =\frac{\displaystyle\lim_{z\to a}\dfrac{f(z)-f(a)}{z-a}}
@@ -449,6 +439,26 @@ g'(a)&=\lim_{z\to a}\frac{g(z)-g(a)}{z-a},
 =\frac{f'(a)}{g'(a)}.
 \]
 \hfill $\square$
+
+\medskip
+\noindent\textbf{补充说明（为何 $g'(a)\neq 0$ 蕴含附近 $g(z)\neq 0$）。}\\
+记差商 $q(z)=\dfrac{g(z)-g(a)}{z-a}$（$z\neq a$）.
+由 $g'(a)=\lim q(z)$ 及 $g'(a)\neq 0$，取 $\varepsilon=\dfrac{|g'(a)|}{2}>0$，
+存在 $\delta>0$，使得当 $0<|z-a|<\delta$ 时
+\[
+\bigl|q(z)-g'(a)\bigr|<\frac{|g'(a)|}{2}.
+\]
+几何上，$q(z)$ 落在以 $g'(a)$ 为圆心、半径 $\dfrac{|g'(a)|}{2}$ 的开圆盘内；
+该圆盘不含原点（圆心到原点距离为 $|g'(a)|$，半径仅为其一半）.
+用反向三角不等式：
+\begin{align*}
+|q(z)|
+&=\bigl|g'(a)+\bigl(q(z)-g'(a)\bigr)\bigr|
+\geq |g'(a)|-\bigl|q(z)-g'(a)\bigr|
+> \frac{|g'(a)|}{2}>0.
+\end{align*}
+故 $q(z)\neq 0$. 又 $z\neq a$，所以 $g(z)-g(a)\neq 0$；再由 $g(a)=0$ 得 $g(z)\neq 0$.
+直观上：$g'(a)\neq 0$ 说明 $a$ 是 $g$ 的单零点，附近不再有其他零点.
 \end{solution}
 
 %==========================================================================

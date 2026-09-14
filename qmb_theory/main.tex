@@ -1,7 +1,6 @@
 \documentclass[11pt,a4paper]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-% \usepackage{CJKutf8}
 \usepackage{ctex}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{graphicx}
@@ -13,24 +12,23 @@
 \usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=OliveGreen,urlcolor=RoyalBlue]{hyperref}
 \usepackage[margin=1in]{geometry}
 \usepackage{setspace}
-\usepackage{lipsum}
 \setstretch{1.05}
 
-% Keep Chinese text support, but use English names for floats.
+% 保留中文支持，浮动体名称用英文以便与 lecture_new 一致；也可改为图/表。
 \ctexset{figurename=Figure, tablename=Table}
 
-\newtheorem{definition}{Definition}[chapter]
-\newtheorem{example}{Example}[chapter]
-\newtheorem{note}{Note}[chapter]
-\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{definition}{定义}[chapter]
+\newtheorem{example}{例}[chapter]
+\newtheorem{note}{注}[chapter]
+\newtheorem{theorem}{定理}[chapter]
 
-% Each chapter sets this once; module imports then stay local to that chapter.
+% 各章设置一次路径；子节通过 \chapterinput 局部导入。
 \newcommand{\currentchapterpath}{}
 \newcommand{\chapterinput}[1]{\subimport{\currentchapterpath}{#1.tex}}
 
-\title{Mathematical Methods for Physics}
-\author{Kai Luo}
-\date{updated on \today}
+\title{量子多体理论\\[0.4em]\large Quantum Many-body Theory}
+\author{罗凯}
+\date{更新于 \today}
 
 \begin{document}
 
@@ -41,8 +39,7 @@
 
 \mainmatter
 
-% Compile only selected chapters at a time.
-% Uncomment the next line and list the chapter files you want to build.
+% 若只需编译部分章节，取消下一行注释并列出文件。
 % \includeonly{chapters/ch01/ch01,chapters/ch02/ch02}
 
 \include{chapters/ch01/ch01}
@@ -52,6 +49,7 @@
 \include{chapters/ch05/ch05}
 \include{chapters/ch06/ch06}
 \include{chapters/ch07/ch07}
+\include{chapters/ch08/ch08}
 
 \backmatter
 

@@ -1,0 +1,44 @@
+\section{局域交换：Slater 势与优化有效势}
+
+精确 HF 交换算符非局域，计算昂贵。GV §2.8 给出两类局域化方案，是 LDA 交换的前身。
+
+\subsection{Slater 局域交换}
+
+对每个占据轨道定义轨道依赖交换势 $V_{x,\alpha}(\mathbf{r})$，再按密度加权平均：
+\begin{equation}
+  V_x^{S}(\mathbf{r})
+  =\frac{
+  \sum_\alpha n_\alpha|\phi_\alpha(\mathbf{r})|^2 V_{x,\alpha}(\mathbf{r})
+  }{
+  \sum_\alpha n_\alpha|\phi_\alpha(\mathbf{r})|^2
+  }.
+\label{eq:slaterVx}
+\end{equation}
+利用 Slater 行列式的 $g$ \eqref{eq:g_slater}，可证
+\begin{equation}
+  V_x^{S}(\mathbf{r})
+  =\int\mathrm{d}\mathbf{r}'\,
+  \frac{e^2 n(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}
+  \bigl[g(\mathbf{r},\mathbf{r}')-1\bigr].
+\end{equation}
+即 Slater 势是\textbf{交换孔的静电势}。均匀气中它是常数，等于 $2\varepsilon_x$（每自旋平均交换能的两倍），渐近 $r\to\infty$ 时有限体系 $V_x^S\sim -e^2/r$。
+
+\subsection{优化有效势（OEP）}
+
+要求局域势 $V_x(\mathbf{r})$ 使由该势产生的 Slater 行列式能量最低，得到积分方程（Sharp--Horton / Talman--Shadwick）。OEP 比 Slater 更接近精确 HF，且自然给出正确的 $-e^2/r$ 渐近。实践中常用 KLI 近似求解。
+
+\subsection{与 LDA 交换的关系}
+
+均匀气 $\varepsilon_x(n)=-B_d n^{1/d}\times\text{const}$，其函数导数
+\begin{equation}
+  v_x^{\mathrm{LDA}}(n)
+  =\frac{\mathrm{d}(n\varepsilon_x)}{\mathrm{d}n}
+  =\frac{d+1}{d}\varepsilon_x(n)
+\end{equation}
+即 Dirac/Gaspar 势。三维
+\begin{equation}
+  v_x^{\mathrm{LDA}}
+  =-\frac{e^2}{\pi}(3\pi^2 n)^{1/3}
+  =-\frac{e^2 k_F}{\pi},
+\end{equation}
+恰为 $\Sigma^{\mathrm{x}}(k_F)$，而非 Slater 的 $2\varepsilon_x=-(3/2)e^2k_F/\pi$。KS 方程应使用函数导数而非 Slater 平均——这是 DFT 与 HF 局域化之间的关键差别。

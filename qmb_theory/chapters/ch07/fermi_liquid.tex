@@ -1,0 +1,107 @@
+\section{Landau 费米液体理论}
+
+本节按 GV 第 8 章，给出正常费米液体的唯象论、宏观响应与微观极限。该框架不仅适用于普通金属（$m^*/m\sim1$），也适用于液 $^3$He（$m^*/m\sim3$）与重费米子（$m^*/m$ 可达数百）。
+
+\subsection{准粒子能量泛函}
+
+低能激发由准粒子分布 $\delta n_{\mathbf{k}\sigma}$ 描述：
+\begin{equation}
+  \delta E
+  =\sum_{\mathbf{k}\sigma}
+  \varepsilon_{\mathbf{k}}^0\,\delta n_{\mathbf{k}\sigma}
+  +\frac{1}{2L^d}
+  \sum_{\mathbf{k}\mathbf{k}'\sigma\sigma'}
+  f_{\mathbf{k}\sigma,\mathbf{k}'\sigma'}
+  \delta n_{\mathbf{k}\sigma}\delta n_{\mathbf{k}'\sigma'}.
+\label{eq:landauE}
+\end{equation}
+$\varepsilon_{\mathbf{k}}^0$ 已含自能实部；$f$ 为准粒子相互作用函数，仅在费米面附近需要。自旋分解
+\begin{equation}
+  f^{\sigma\sigma'}
+  =f^s+s s' f^a,
+  \qquad s=\pm1,
+\end{equation}
+再按勒让德多项式展开（三维）
+\begin{equation}
+  N(0)f^{s,a}(\theta)
+  =\sum_{\ell=0}^{\infty}
+  F_\ell^{s,a}P_\ell(\cos\theta),
+\end{equation}
+$N(0)=m^*k_F/\pi^2\hbar^2$ 为准粒子态密度（含自旋）。无量纲 Landau 参数 $F_\ell^{s,a}$ 是理论的全部低能输入。
+
+\subsection{有效质量、压缩率与自旋磁化率}
+
+伽利略不变的库仑系统中，
+\begin{equation}
+  \frac{m^*}{m}=1+\frac{F_1^s}{3}.
+\label{eq:mstar}
+\end{equation}
+固有压缩率与 Pauli 磁化率
+\begin{equation}
+  \frac{K}{K_0}
+  =\frac{m^*/m}{1+F_0^s},
+  \qquad
+  \frac{\chi_S}{\chi_P}
+  =\frac{m^*/m}{1+F_0^a}.
+\label{eq:Kchi_FL}
+\end{equation}
+与 HF 比较：HF 相当于特定的 $F_0^{s,a}$ 且 $m^*\to0$ 的病态极限；费米液体允许 $K/K_0\neq\chi_S/\chi_P$，与 GV 图 1.21 的关联劈裂一致。
+
+Pomeranchuk 稳定性：
+\begin{equation}
+  1+\frac{F_\ell^{s,a}}{2\ell+1}>0.
+\end{equation}
+$F_0^s<-1$ 为压缩失稳，$F_0^a<-1$ 为铁磁（Stoner）失稳。
+
+\subsection{\texorpdfstring{$\omega$}{omega} 极限与 \texorpdfstring{$q$}{q} 极限}
+
+微观上 $f$ 来自不可约顶点 $\Gamma$ 在费米面的正向散射。两个不可对易极限：
+\begin{itemize}
+  \item $q/\omega\to0$（$\omega$ 极限）：准粒子来不及重新分布，对应碰撞少的动力学（零声）；
+  \item $\omega/q\to0$（$q$ 极限）：局域平衡，对应热力学响应（第一声/压缩率）。
+\end{itemize}
+Landau $f$ 定义为 $\omega$ 极限的 $\Gamma^\omega$；热力学量则由 $q$ 极限 $\Gamma^q$ 给出，二者由积分方程相连。这解释了为何不能用静态 $\chi(q\to0,\omega=0)$ 的 Lindhard 组合直接读取 $m^*$。
+
+\subsection{零声}
+
+无碰撞、长波密度振荡的色散由
+\begin{equation}
+  \frac{s}{2}\ln\frac{s+1}{s-1}-1
+  =\frac{1}{F_0^s}
+  \quad
+  \bigl(s=\omega/(q v_F^*),\ \ell=0\text{ 模型}\bigr)
+\end{equation}
+决定。$F_0^s>0$ 时存在 $s>1$ 的无阻尼零声；等离激元是库仑长程力下被推到 $\omega_p$ 的类似模式。
+
+\subsection{微观：自能、\texorpdfstring{$Z$}{Z} 与 Luttinger 定理}
+
+费米面附近
+\begin{equation}
+  G^R(\mathbf{k},\omega)
+  \approx
+  \frac{Z_{\mathbf{k}}}
+  {\omega-\xi_{\mathbf{k}}/\hbar+\mathrm{i}0^+\,\mathrm{sgn}\,\xi_{\mathbf{k}}},
+\end{equation}
+\begin{equation}
+  Z^{-1}
+  =1-\partial_\omega\mathrm{Re}\Sigma(\mathbf{k}_F,\omega)|_{\omega=0},
+  \qquad
+  \frac{m^*}{m}
+  =\frac{1}{Z}
+  \frac{1}{1+\partial_k\mathrm{Re}\Sigma/v_F^{(0)}}.
+\end{equation}
+Luttinger 定理：费米面所围体积由密度固定，
+\begin{equation}
+  n=\frac{k_F^3}{3\pi^2}
+  \quad(d=3\text{ 顺磁}),
+\end{equation}
+只要存在由 $G$ 零点定义的费米面且无对称性破缺。比热
+\begin{equation}
+  C_V=\frac{m^* k_F}{3\hbar^2}k_B^2 T
+  \quad\text{（每体积，三维）}
+\end{equation}
+直接测 $m^*$。
+
+\begin{note}
+一维是 Luttinger 液体而非费米液体（GV 第 9 章）：无长寿命准粒子，$Z=0$，关联函数为幂律。二维在足够低温仍可以是费米液体，但正向散射的相空间更受限。
+\end{note}

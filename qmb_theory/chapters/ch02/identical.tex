@@ -1,0 +1,32 @@
+\section{全同粒子}
+
+\subsection{交换对称性}
+
+自然界中的基本粒子（及许多准粒子）是全同的：交换任意两个粒子，物理上不可区分。量子力学要求多体波函数在交换下要么对称（玻色子），要么反对称（费米子）：
+\begin{equation}
+  P_{ij}\Psi=\pm\Psi.
+\end{equation}
+费米子的反对称性导致 Pauli 不相容原理：两个费米子不能占据同一单粒子态。
+
+\subsection{Slater 行列式与永久式}
+
+$N$ 个费米子若占据正交单粒子轨道 $\{\phi_{k_1},\ldots,\phi_{k_N}\}$，则多体波函数可取 Slater 行列式
+\begin{equation}
+  \Psi(\mathbf{x}_1,\ldots,\mathbf{x}_N)
+  =\frac{1}{\sqrt{N!}}
+  \det\bigl[\phi_{k_i}(\mathbf{x}_j)\bigr],
+\end{equation}
+其中 $\mathbf{x}=(\mathbf{r},\sigma)$。玻色子对应的是永久式（permanent）。Hartree--Fock 理论正是在 Slater 行列式流形上做变分优化。
+
+\subsection{粒子数表象}
+
+与其跟踪坐标空间中的巨大波函数，不如用各单粒子态的占据数 $\{n_\alpha\}$ 标记态。对费米子 $n_\alpha=0,1$，对玻色子 $n_\alpha=0,1,2,\ldots$。全体占据数组态张成 Fock 空间
+\begin{equation}
+  \mathcal{F}
+  =\bigoplus_{N=0}^\infty \mathcal{H}_N^{(\pm)},
+\end{equation}
+其中 $\mathcal{H}_N^{(\pm)}$ 为 $N$ 粒子对称/反对称子空间。二次量子化算符在 $\mathcal{F}$ 上自然作用。
+
+\begin{note}
+真空态 $|0\rangle$ 表示所有单粒子态均未被占据。多体激发可理解为在真空上作用一串产生算符得到的态。对有限密度体系，常以填满的费米海为“真空”，其上的粒子与空穴激发构成低能自由度。
+\end{note}

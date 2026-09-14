@@ -1,0 +1,35 @@
+\section{涨落耗散定理}
+
+\subsection{响应与平衡涨落}
+
+由 Kubo 公式 \eqref{eq:kubo}，响应函数的虚部编码耗散。另一方面，平衡态算符涨落的频谱由动态结构因子（或对称关联函数）给出。涨落耗散定理（FDT）把二者联系起来。
+
+对一般算符 $A$、$B$，在频率空间（平衡态）
+\begin{equation}
+  \mathrm{Im}\,\chi^R_{BA}(\omega)
+  =\frac{1}{2\hbar}
+  \bigl(1-e^{-\beta\hbar\omega}\bigr)
+  S_{BA}(\omega),
+\label{eq:FDT_gen}
+\end{equation}
+其中 $S_{BA}$ 为相应涨落谱（具体预因子随 $S$ 的 $2\pi$ 约定略有不同）。密度通道的形式见 \eqref{eq:FDT_chi}。
+
+\subsection{推导要点}
+
+\begin{enumerate}
+  \item 用 Lehmann 表示同时写出 $\chi^R$ 与 $S$；
+  \item 矩阵元相同，能量 $\delta$ 函数相同，差别仅在于热因子与对易子相对编序期望的组合；
+  \item 利用 $e^{-\beta E_n}/e^{-\beta E_m}=e^{-\beta(E_n-E_m)}$ 整理即得 FDT。
+\end{enumerate}
+
+\subsection{物理含义}
+
+\begin{itemize}
+  \item 测量耗散（吸收）等价于探测相应算符的平衡涨落；
+  \item 经典高温极限 $\hbar\omega\ll k_BT$ 时，$\mathrm{Im}\,\chi\sim(\omega/2k_BT)S_{\mathrm{sym}}$；
+  \item 导电、磁化率、密度响应均可纳入同一框架。
+\end{itemize}
+
+\begin{note}
+FDT 是平衡统计与线性响应之间的桥梁。电子液中，由 $S(q,\omega)$ 经 \eqref{eq:FDT_chi} 得 $\mathrm{Im}\,\chi$，再经 Kramer--Kronig 得实部，从而构造 $\varepsilon(q,\omega)$。
+\end{note}

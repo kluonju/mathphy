@@ -1,0 +1,13 @@
+\section{推广：DFT 与 DMFT 的有效作用量视角}
+
+\subsection{密度泛函}
+
+若源取为局域势 $\varphi(\mathbf{r})$，与密度 $\rho(\mathbf{r})$ 耦合，则 Legendre 变换后得到能量密度泛函。Hohenberg--Kohn 定理对应“势 $\leftrightarrow$ 密度”映射的可逆性；Kohn--Sham 则是对动能用非相互作用参照系的实用构造。这与 $\Phi$ 泛函思想同源，只是变量从 $G$ 换成了 $n(\mathbf{r})$。
+
+\subsection{动力学平均场（DMFT）}
+
+对晶格模型，可引入局域、频率依赖的源，使局域格林函数 $G_{\mathrm{loc}}(\mathrm{i}\omega_n)$ 成为基本变量。有效问题化为嵌入自洽介质中的 Anderson 杂质模型：局域关联被非微扰地保留，而空间涨落在最简 DMFT 中被忽略。这是强关联材料计算的重要框架，也是施均仁讲义强调的“通向真实材料计算”的桥梁之一。
+
+\begin{example}[变量选择]
+HF/DFT：$n$ 或轨道；GW/骨架：$\Sigma[G]$；DMFT：$G_{\mathrm{loc}}$；配对超流：异常 $F=\langle\psi\psi\rangle$。有效理论的第一步往往是选对慢变量。
+\end{example}

@@ -1,0 +1,66 @@
+\section{局域场因子、STLS 与有效相互作用}
+
+超越 RPA 的系统化方式是局域场因子（GV §5.4--5.6）。
+
+\subsection{定义}
+
+\begin{equation}
+  \chi_{\mathrm{irr}}
+  =\frac{\chi_0}{1+v_{\mathbf{q}}G(\mathbf{q},\omega)\chi_0},
+  \qquad
+  \varepsilon
+  =1-\frac{v_{\mathbf{q}}\chi_0}{1+v_{\mathbf{q}}G\chi_0}.
+\label{eq:local_field}
+\end{equation}
+自旋通道可定义 $G_\pm$ 或 $G_{\uparrow\uparrow},G_{\uparrow\downarrow}$。压缩率与自旋磁化率增强
+\begin{equation}
+  \frac{K}{K_0}
+  =\frac{1}{1-v_{\mathrm{scr}}N(0)(1-G_+(0))},
+\end{equation}
+（示意；精确预因子见 GV）把 $G(q\to0)$ 与热力学相连：
+\begin{equation}
+  \lim_{q\to0}G_+(q,0)
+  =1-\frac{K_0}{K}.
+\end{equation}
+
+\subsection{Hubbard 与 STLS}
+
+Hubbard 近似用交换孔的特征波矢插值
+\begin{equation}
+  G_H(q)
+  \approx
+  \frac{q^2}{q^2+k_F^2}
+  \quad\text{（三维示意）},
+\end{equation}
+使 $q\to\infty$ 与 $q\to0$ 极限合理。STLS（Singwi--Tosi--Land--Sj\"olander）用
+\begin{equation}
+  G(q)
+  =-\frac{1}{n}
+  \int\frac{\mathrm{d}^d q'}{(2\pi)^d}
+  \frac{\mathbf{q}\cdot\mathbf{q}'}{q'^2}
+  \bigl[S(\mathbf{q}-\mathbf{q}')-1\bigr]
+\end{equation}
+与 $S(q)$ 通过涨落耗散自洽，显著改善 $g(0)$ 与关联能。Slater 型 $G_{\uparrow\uparrow}$ 由 $S_0-1$ 给出，$G_{\uparrow\downarrow}=0$（纯交换）。
+
+\subsection{有效相互作用}
+
+三种常用屏蔽势（GV §5.5）：
+\begin{itemize}
+  \item 试探电荷--试探电荷：$W_{tt}=v_q/\varepsilon$；
+  \item 电子--试探电荷：多一个 $(1-G)$ 因子；
+  \item 电子--电子：含 $G_\pm$，进入准粒子散射与超导配对核。
+\end{itemize}
+
+\subsection{Friedel 振荡}
+
+杂质静势的诱导密度
+\begin{equation}
+  \delta n(r)
+  \propto
+  \frac{\cos(2k_F r+\eta)}{r^{d}}
+\end{equation}
+（渐近）。振荡波矢由 $\chi(q,0)$ 在 $2k_F$ 的奇异决定；振幅依赖 $G(q)$。STM 可探测局域态密度的相应振荡。
+
+\begin{example}[对照 GV]
+静态 $F(q)$、$G(q/k_F)$、等离色散与 $S(q,\omega)$ 的图是电子液理论的“标准像”。建议用 \eqref{eq:Fstd}、\eqref{eq:RPA}、\eqref{eq:ERPA} 复现高密极限，再讨论 $g(0)$ 问题。
+\end{example}

@@ -1,0 +1,37 @@
+\section{玻色--爱因斯坦凝聚与超流}
+
+\subsection{理想玻色气的 BEC}
+
+三维理想玻色气在
+\begin{equation}
+  T_c
+  =\frac{2\pi\hbar^2}{mk_B}
+  \Bigl(\frac{n}{\zeta(3/2)}\Bigr)^{2/3}
+\end{equation}
+发生动量 $\mathbf{k}=0$ 态的宏观占据：$n_0/n>0$。这是 $U(1)$ 相位对称性破缺的最简实现（严格说理想气需小心处理）。
+
+\subsection{弱相互作用：Bogoliubov 理论}
+
+接触相互作用 $g$ 下，凝聚体密度 $\rho_c$，对涨落做 Bogoliubov 变换
+\begin{equation}
+  \begin{pmatrix}\psi_{\mathbf{k}}\\\psi_{-\mathbf{k}}^\dagger\end{pmatrix}
+  =
+  \begin{pmatrix}u_k&v_k^*\\v_k&u_k^*\end{pmatrix}
+  \begin{pmatrix}\varphi_{\mathbf{k}}\\\varphi_{-\mathbf{k}}^\dagger\end{pmatrix},
+  \qquad
+  |u|^2-|v|^2=1,
+\end{equation}
+对角化后得到色散
+\begin{equation}
+  E_k
+  =\sqrt{
+  \varepsilon_k(\varepsilon_k+2g\rho_c)
+  },
+  \qquad
+  \varepsilon_k=\frac{\hbar^2k^2}{2m}.
+\end{equation}
+长波 $E_k\approx \hbar c |k|$，$c=\sqrt{g\rho_c/m}$ 为声速——这是超流临界速度的微观起源之一（Landau 判据）。
+
+\subsection{超流性}
+
+超流密度 $\rho_s$ 刻画对相位梯度的刚性响应。二维有限温下由 BKT 机制通过涡旋解离破坏超流，而非简单的 $n_0\to0$。

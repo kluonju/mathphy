@@ -1,0 +1,18 @@
+\section{简介}
+
+精确求解一般库仑多体问题几乎不可能。实用路线是：
+\begin{enumerate}
+  \item 选择一个受限制的试探态族（如 Slater 行列式）；
+  \item 在该族上变分最小化能量；
+  \item 或寻找一个等效单体问题，使其密度等于真实基态密度。
+\end{enumerate}
+Hartree 方法用乘积波函数，忽略交换；Fock 引入反对称化，得到 HF。DFT 则根本改变变量：从波函数转向密度 $n(\mathbf{r})$。
+
+三类效应常被区分：
+\begin{itemize}
+  \item \textbf{经典库仑（Hartree）能}：由平均电荷密度产生的静电能量；
+  \item \textbf{交换（exchange）}：Pauli 原理导致的同自旋电子相互回避，降低库仑惩罚；
+  \item \textbf{关联（correlation）}：超出 HF 的动力学关联，进一步关联不同电子的运动。
+\end{itemize}
+
+HF 精确包含交换（在单一行列式层面），但完全忽略关联。DFT 形式上把交换与关联都塞进交换关联泛函 $E_{\mathrm{xc}}[n]$，近似的质量决定计算精度。

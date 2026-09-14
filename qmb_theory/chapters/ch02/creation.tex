@@ -1,0 +1,148 @@
+\section{产生湮灭算符和基本性质}
+
+\subsection{定义与代数}
+
+设 $\{\lvert\alpha\rangle\}$ 为单粒子完备正交归一基。玻色子产生、湮灭算符满足
+\begin{equation}
+  [b_\alpha,b_\beta^\dagger]=\delta_{\alpha\beta},
+  \qquad
+  [b_\alpha,b_\beta]=[b_\alpha^\dagger,b_\beta^\dagger]=0;
+\end{equation}
+费米子满足反对易关系
+\begin{equation}
+  \{c_\alpha,c_\beta^\dagger\}=\delta_{\alpha\beta},
+  \qquad
+  \{c_\alpha,c_\beta\}=\{c_\alpha^\dagger,c_\beta^\dagger\}=0.
+\end{equation}
+粒子数算符 $n_\alpha=a_\alpha^\dagger a_\alpha$（$a$ 代表 $b$ 或 $c$）的本征值为占据数。
+
+对费米子，若约定模式按固定次序排列，则
+\begin{equation}
+  c_\alpha\lvert\{n\}\rangle
+  =(-1)^{S_\alpha}\sqrt{n_\alpha}\,\lvert n_\alpha-1\rangle,
+  \qquad
+  c_\alpha^\dagger\lvert\{n\}\rangle
+  =(-1)^{S_\alpha}\sqrt{1-n_\alpha}\,\lvert n_\alpha+1\rangle,
+\end{equation}
+其中 $S_\alpha=\sum_{\beta<\alpha}n_\beta$ 是相位因子，用以保持整体反对称。
+
+\subsection{场算符与密度}
+
+在坐标表象中，
+\begin{equation}
+  \psi_\sigma(\mathbf{r})
+  =\sum_\alpha \phi_\alpha(\mathbf{r})\,c_{\alpha\sigma},
+  \qquad
+  \psi_\sigma^\dagger(\mathbf{r})
+  =\sum_\alpha \phi_\alpha^*(\mathbf{r})\,c_{\alpha\sigma}^\dagger,
+\end{equation}
+并满足
+\begin{equation}
+  \{\psi_\sigma(\mathbf{r}),\psi_{\sigma'}^\dagger(\mathbf{r}')\}
+  =\delta_{\sigma\sigma'}\delta(\mathbf{r}-\mathbf{r}').
+\end{equation}
+粒子密度与粒子数算符为
+\begin{equation}
+  \hat n(\mathbf{r})=\sum_\sigma\psi_\sigma^\dagger(\mathbf{r})\psi_\sigma(\mathbf{r}),
+  \qquad
+  \hat N=\int\mathrm{d}\mathbf{r}\,\hat n(\mathbf{r})
+  =\sum_{\alpha\sigma}c_{\alpha\sigma}^\dagger c_{\alpha\sigma}.
+\end{equation}
+平面波基 $\phi_{\mathbf{k}}(\mathbf{r})=V^{-1/2}e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}$ 下，
+\begin{equation}
+  \psi_\sigma(\mathbf{r})
+  =\frac{1}{\sqrt{V}}\sum_{\mathbf{k}}
+  e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}c_{\mathbf{k}\sigma},
+\end{equation}
+密度起伏的 Fourier 分量（Giuliani--Vignale 常用记号）为
+\begin{equation}
+  \hat n_{\mathbf{q}}
+  =\sum_{\mathbf{k}\sigma}
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}+\mathbf{q},\sigma}
+  =\int\mathrm{d}\mathbf{r}\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\hat n(\mathbf{r}).
+\end{equation}
+
+\subsection{单体算符的二次量子化：推导}
+
+一阶量子化中单体算符 $A=\sum_{i=1}^N a(i)$。在 Fock 空间中，其对任意占据组态的矩阵元可写为
+\begin{equation}
+  A=\sum_{\alpha\beta}
+  \langle\alpha|a|\beta\rangle\,c_\alpha^\dagger c_\beta.
+\end{equation}
+\textbf{推导要点}：在 $N$ 粒子反对称态上，把 $a(1)$ 夹在两 Slater 行列式之间，用 Laplace 展开与轨道正交性，只留下单粒子矩阵元 $\langle\alpha|a|\beta\rangle$；再用产生湮灭算符重写占据数的升降，即得上式。动能与外势因此成为
+\begin{equation}
+  T=\sum_{\mathbf{k}\sigma}\frac{\hbar^2k^2}{2m}
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma},
+  \qquad
+  V_{\mathrm{ext}}
+  =\sum_{\mathbf{k}\mathbf{k}'\sigma}
+  \tilde v_{\mathrm{ext}}(\mathbf{k}-\mathbf{k}')
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}'\sigma}.
+\end{equation}
+
+\subsection{二体相互作用：推导与矩阵元}
+
+二体算符 $V=\frac12\sum_{i\neq j}v(\mathbf{r}_i-\mathbf{r}_j)$ 的二次量子化形式为
+\begin{equation}
+  V=\frac12\sum_{\alpha\beta\gamma\delta}
+  \langle\alpha\beta|v|\gamma\delta\rangle
+  c_\alpha^\dagger c_\beta^\dagger c_\delta c_\gamma,
+\label{eq:V2nd}
+\end{equation}
+其中
+\begin{equation}
+  \langle\alpha\beta|v|\gamma\delta\rangle
+  =\int\mathrm{d}\mathbf{r}\,\mathrm{d}\mathbf{r}'\,
+  \phi_\alpha^*(\mathbf{r})\phi_\beta^*(\mathbf{r}')
+  v(\mathbf{r}-\mathbf{r}')
+  \phi_\gamma(\mathbf{r})\phi_\delta(\mathbf{r}').
+\end{equation}
+算符顺序取 $c^\dagger c^\dagger c\,c$（先湮灭后产生的反向书写），以使费米子符号与行列式展开一致。
+
+对平移不变的库仑作用 $v(\mathbf{r})=e^2/r$，平面波矩阵元只在动量守恒时非零。令
+\begin{equation}
+  v_{\mathbf{q}}=\int\mathrm{d}\mathbf{r}\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\frac{e^2}{r}
+  =\frac{4\pi e^2}{q^2}
+  \qquad(q\neq0),\label{eq:vq}
+\end{equation}
+则（自旋守恒、忽略 $q=0$ 项时）
+\begin{equation}
+  V=\frac{1}{2V}\sum_{\mathbf{q}\neq0}v_{\mathbf{q}}
+  \sum_{\substack{\mathbf{k}\mathbf{k}'\\ \sigma\sigma'}}
+  c_{\mathbf{k}+\mathbf{q},\sigma}^\dagger
+  c_{\mathbf{k}'-\mathbf{q},\sigma'}^\dagger
+  c_{\mathbf{k}',\sigma'}
+  c_{\mathbf{k},\sigma}.
+\label{eq:Vcoulomb}
+\end{equation}
+等价地，
+\begin{equation}
+  V=\frac{1}{2V}\sum_{\mathbf{q}\neq0}v_{\mathbf{q}}
+  \bigl(\hat n_{\mathbf{q}}\hat n_{-\mathbf{q}}-\hat N\bigr),
+\end{equation}
+其中 $-\hat N$ 来自 $i=j$ 自作用的扣除（因 $\hat n_{\mathbf{q}}\hat n_{-\mathbf{q}}$ 含自作用项）。
+
+\begin{example}[自由费米气]
+无相互作用时
+\begin{equation}
+  H_0=\sum_{\mathbf{k}\sigma}\varepsilon_{\mathbf{k}}
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma},
+  \qquad
+  \varepsilon_{\mathbf{k}}=\frac{\hbar^2k^2}{2m}.
+\end{equation}
+零温基态为费米海：$n_{\mathbf{k}\sigma}=\theta(k_F-k)$，密度
+\begin{equation}
+  n=\frac{N}{V}=\frac{k_F^3}{3\pi^2}
+  \quad\Rightarrow\quad
+  k_F=(3\pi^2 n)^{1/3}.
+\end{equation}
+\end{example}
+
+\subsection{运动方程}
+
+海森堡运动方程
+\begin{equation}
+  i\hbar\partial_t c_{\mathbf{k}\sigma}(t)
+  =[c_{\mathbf{k}\sigma}(t),H]
+\end{equation}
+在含 \eqref{eq:Vcoulomb} 时，右边产生三个算符的乘积，从而关联函数满足 Martin--Schwinger 无穷层级。平均场截断（用密度平均值替换算符）即导向 Hartree--Fock。

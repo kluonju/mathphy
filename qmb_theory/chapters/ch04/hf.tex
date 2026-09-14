@@ -1,0 +1,77 @@
+\section{Hartree--Fock 方程}
+
+\subsection{能量泛函}
+
+取试探态为单一 Slater 行列式 $|\Phi\rangle$，由正交自旋轨道 $\{\phi_i\}$ 构成。能量期望值
+\begin{equation}
+  E[\{\phi_i\}]
+  =\langle\Phi|T+V_{\mathrm{ext}}+V_{ee}|\Phi\rangle
+\end{equation}
+可写为
+\begin{equation}
+\begin{aligned}
+  E
+  &=\sum_i \int\phi_i^*(\mathbf{x})
+  \Bigl(-\tfrac{\hbar^2}{2m}\nabla^2+v_{\mathrm{ext}}(\mathbf{r})\Bigr)
+  \phi_i(\mathbf{x})\,\mathrm{d}\mathbf{x}\\
+  &\quad+\frac12\sum_{ij}\bigl(J_{ij}-K_{ij}\bigr),
+\end{aligned}
+\end{equation}
+其中 Coulomb（Hartree）与交换积分分别为
+\begin{equation}
+\begin{aligned}
+  J_{ij}
+  &=\int\mathrm{d}\mathbf{x}\,\mathrm{d}\mathbf{x}'\,
+  |\phi_i(\mathbf{x})|^2
+  \frac{e^2}{|\mathbf{r}-\mathbf{r}'|}
+  |\phi_j(\mathbf{x}')|^2,\\
+  K_{ij}
+  &=\int\mathrm{d}\mathbf{x}\,\mathrm{d}\mathbf{x}'\,
+  \phi_i^*(\mathbf{x})\phi_j^*(\mathbf{x}')
+  \frac{e^2}{|\mathbf{r}-\mathbf{r}'|}
+  \phi_j(\mathbf{x})\phi_i(\mathbf{x}').
+\end{aligned}
+\end{equation}
+$K_{ij}$ 仅在同自旋时非零（自旋轨道含自旋部分时已自动体现）。
+
+\subsection{自洽方程}
+
+在 $\langle\phi_i|\phi_j\rangle=\delta_{ij}$ 约束下变分，得到 HF 方程
+\begin{equation}
+  \Bigl(
+  -\frac{\hbar^2}{2m}\nabla^2+v_{\mathrm{ext}}(\mathbf{r})
+  +v_{\mathrm{H}}(\mathbf{r})
+  \Bigr)\phi_i(\mathbf{x})
+  -\int\mathrm{d}\mathbf{x}'\,
+  v_{\mathrm{x}}(\mathbf{x},\mathbf{x}')\phi_i(\mathbf{x}')
+  =\varepsilon_i\phi_i(\mathbf{x}),
+\end{equation}
+其中
+\begin{equation}
+  v_{\mathrm{H}}(\mathbf{r})
+  =\int\frac{e^2\,n(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,\mathrm{d}\mathbf{r}',
+  \qquad
+  n(\mathbf{r})=\sum_i^{\mathrm{occ}}|\phi_i(\mathbf{r})|^2,
+\end{equation}
+非局域交换核
+\begin{equation}
+  v_{\mathrm{x}}(\mathbf{x},\mathbf{x}')
+  =\sum_j^{\mathrm{occ}}
+  \phi_j(\mathbf{x})\frac{e^2}{|\mathbf{r}-\mathbf{r}'|}\phi_j^*(\mathbf{x}').
+\end{equation}
+
+\subsection{二次量子化语言中的 HF 分解}
+
+对相互作用 \eqref{eq:Vcoulomb}，平均场用
+\begin{equation}
+  c^\dagger c^\dagger c\,c
+  \;\longrightarrow\;
+  \langle c^\dagger c\rangle c^\dagger c
+  -\langle c^\dagger c\rangle c^\dagger c
+  \quad\text{（直接 $-$ 交换）}
+\end{equation}
+得到自旋依赖自能。均匀体系中 Hartree 项被背景抵消，只剩交换自能 $\Sigma^{\mathrm{x}}(\mathbf{k})$（见下一节）。
+
+\begin{note}
+HF 轨道能 $\varepsilon_i$ 通过 Koopmans 定理与电离能近似相联系，但忽略轨道弛豫与关联，定量上常有系统误差。
+\end{note}

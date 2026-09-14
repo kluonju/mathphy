@@ -1,0 +1,59 @@
+\section{自旋极化、Bloch 转变与 HF 稳定性}
+
+GV §2.4.2--2.6 讨论 HF 能量对极化的依赖、Bloch 铁磁以及 Overhauser 密度波不稳定性。这些结果表明：单一 Slater 行列式空间中的“真实基态”往往不是简单的顺磁平面波。
+
+\subsection{极化能量}
+
+定义 $p=(N_\uparrow-N_\downarrow)/N$。任意维
+\begin{equation}
+\begin{aligned}
+  \varepsilon_{\mathrm{HF}}(r_s,p)
+  &=\frac{A_d}{2r_s^2}
+  \Bigl[
+  (1+p)^{(d+2)/d}+(1-p)^{(d+2)/d}
+  \Bigr]\\
+  &\quad
+  -\frac{B_d}{2r_s}
+  \Bigl[
+  (1+p)^{(d+1)/d}+(1-p)^{(d+1)/d}
+  \Bigr]
+  \,\mathrm{Ry}.
+\end{aligned}
+\label{eq:HF_pol}
+\end{equation}
+动能惩罚 $\propto p^2$ 量级在高密占优，交换获益 $\propto |p|$ 在低密占优。HF 相图中部分极化从不是最低能：存在从 $p=0$ 到 $p=1$ 的突变（Bloch 转变），
+\begin{equation}
+  r_s^{B}
+  \approx
+  \begin{cases}
+    5.45, & d=3,\\
+    2.01, & d=2.
+  \end{cases}
+\end{equation}
+QMC 显示真实铁磁远在更大 $r_s$：HF 缺少反自旋关联。
+
+\subsection{压缩率与自旋磁化率}
+
+顺磁 HF 态
+\begin{equation}
+  \frac{K}{K_0}
+  =\frac{\chi_S}{\chi_P}
+  =\frac{1}{1-r_s/r_s^\star},
+  \qquad
+  r_s^\star
+  \approx
+  \begin{cases}
+    6.03, & d=3,\\
+    2.22, & d=2.
+  \end{cases}
+\label{eq:K_HF}
+\end{equation}
+二者相等是 HF 的特征；关联将它们劈裂。$r_s\to r_s^\star$ 的发散标志局域失稳。
+
+\subsection{Overhauser 不稳定性}
+
+即使在 Bloch 转变之前，Overhauser 证明：对库仑电子气，相对顺磁平面波，总可以构造能量更低的自旋密度波（SDW）Slater 行列式（螺旋 SDW 等）。物理上，费米面 $2k_F$ 处交换积分的奇异使密度波通道失稳。真实体系中关联与屏蔽可抑制或改变该失稳；但该定理说明“简单费米海”在纯 HF 下并非全局稳定。
+
+\begin{note}
+HF 的教训：变分空间（单一行列式）内的最优解可以具有复杂的自旋/电荷序；比较能量时必须同时考虑均匀极化、SDW/CDW 与配对（BCS 平均场已超出粒子数守恒的单一行列式）。
+\end{note}

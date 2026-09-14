@@ -1,0 +1,26 @@
+\section{骨架图与自洽微扰论}
+
+Gross 第 25 章：把自能图分成骨架（skeleton），再用全 $G$ 穿衣，得到自洽微扰论，并把 HF 重新解释为最低阶骨架。
+
+\subsection{骨架}
+
+若一个不可约自能图在去掉外腿后，内部不再含自能插入，则称为骨架。例如一阶 Hartree、Fock 是骨架；在 Fock 的 $G_0$ 线上再插一个泡则不是骨架。
+
+\subsection{穿衣}
+
+对每个骨架，把内部所有 $G_0$ 换成全 $G$，并对全部骨架求和：
+\begin{equation}
+  \Sigma[G]
+  =\sum_{\text{skeletons}}
+  \Sigma_{\mathrm{skel}}[G].
+\label{eq:skeleton}
+\end{equation}
+再与 Dyson 方程 $G^{-1}=G_0^{-1}-\Sigma[G]$ 联立，即自洽微扰论。这与 Luttinger--Ward $\Phi$ 泛函 $\Sigma=\delta\Phi/\delta G$ 一致：$\Phi$ 的骨架真空图导数给出骨架自能。
+
+\subsection{HF 作为最低阶}
+
+只保留一阶骨架并用全 $G$（实际即占据数自洽）的平面波/轨道，回到 HF。更高阶骨架给出关联：二阶日落图、GW（环穿衣）等。守恒近似要求所用骨架来自同一 $\Phi$。
+
+\begin{example}[与非自洽的差别]
+$\Sigma[G_0]$ 计算便宜，但热力学关系（如粒子数 $=-\partial\Omega/\partial\mu$）与谱之和规则容易破坏。$\Sigma[G]$ 迭代更贵，通常更一致。
+\end{example}

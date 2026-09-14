@@ -1,0 +1,80 @@
+\section{相干态}
+
+相干态是湮灭算符的本征态，是通向路径积分与泛函积分的桥梁。本节内容对齐北京大学施均仁《多体系统的量子理论》讲义第 1.5 节。
+
+\subsection{定义}
+
+\begin{equation}
+  \hat a_\alpha|\phi\rangle=\phi_\alpha|\phi\rangle.
+\label{eq:coherent_def}
+\end{equation}
+产生算符一般\textbf{没有}普通本征态。对费米子，本征值不能是普通复数，而必须是 Grassmann 数：
+\begin{equation}
+  \phi_\alpha\phi_\beta+\phi_\beta\phi_\alpha=0.
+\end{equation}
+
+\subsection{玻色相干态}
+
+定义为
+\begin{equation}
+  |\phi\rangle
+  =\exp\Bigl(\sum_\alpha\phi_\alpha\hat a_\alpha^\dagger\Bigr)|0\rangle.
+\end{equation}
+重叠
+\begin{equation}
+  \langle\phi|\phi'\rangle
+  =\exp(\phi^*\cdot\phi')
+  =\exp\Bigl(\sum_\alpha\phi_\alpha^*\phi'_\alpha\Bigr).
+\end{equation}
+相干态不是正交归一基，而是超完备的。闭合关系
+\begin{equation}
+  \int\mathrm{d}\mu(\phi)\,|\phi\rangle\langle\phi|=1,
+  \qquad
+  \mathrm{d}\mu(\phi)
+  =\prod_\alpha\frac{\mathrm{d}\phi_\alpha\,\mathrm{d}\phi_\alpha^*}{2\pi\mathrm{i}}.
+\end{equation}
+任意态可在相干态表象下用波函数 $\langle\phi|\psi\rangle$ 表示；正规序哈密顿量的矩阵元特别简单：
+\begin{equation}
+  \langle\phi|:H(\hat a^\dagger,\hat a):|\phi'\rangle
+  =H(\phi^*,\phi')\,\langle\phi|\phi'\rangle.
+\end{equation}
+
+\subsection{Grassmann 代数}
+
+Grassmann 生成元 $\{\xi_i\}$ 满足 $\xi_i\xi_j+\xi_j\xi_i=0$，因而 $\xi_i^2=0$。对单个变量，
+\begin{equation}
+  f(\xi)=f_0+f_1\xi,
+\end{equation}
+积分约定（Berezin）
+\begin{equation}
+  \int\mathrm{d}\xi\,1=0,
+  \qquad
+  \int\mathrm{d}\xi\,\xi=1,
+\end{equation}
+且微分从左边作用。多变量高斯积分
+\begin{equation}
+  \int\prod_i\mathrm{d}\xi_i^*\,\mathrm{d}\xi_i\,
+  \exp\bigl(-\xi^\dagger A\xi+\eta^\dagger\xi+\xi^\dagger\eta\bigr)
+  =\det A\,
+  \exp\bigl(\eta^\dagger A^{-1}\eta\bigr)
+\end{equation}
+（玻色情形对应 $(\det A)^{-1}$ 与普通复数积分）。
+
+\subsection{费米相干态}
+
+\begin{equation}
+  |\xi\rangle
+  =\exp\Bigl(-\sum_\alpha\xi_\alpha\hat c_\alpha^\dagger\Bigr)|0\rangle,
+  \qquad
+  \hat c_\alpha|\xi\rangle=\xi_\alpha|\xi\rangle,
+\end{equation}
+其中 $\xi_\alpha$ 与 $\hat c$ 反对易约定需仔细处理。闭合关系形式为
+\begin{equation}
+  \int\prod_\alpha\mathrm{d}\xi_\alpha^*\,\mathrm{d}\xi_\alpha\,
+  e^{-\xi^*\cdot\xi}|\xi\rangle\langle\xi|=1.
+\end{equation}
+由此可把配分函数写成 Grassmann 路径积分，是有限温度费米子图技术的另一条出发点。
+
+\begin{note}
+相干态本身不改变物理，但把算符代数变成“经典”变量上的积分，使微扰展开、平均场与有效作用量的推导更为系统。详见后文“泛函积分”一章。
+\end{note}

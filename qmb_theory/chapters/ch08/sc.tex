@@ -1,0 +1,124 @@
+\section{超导}
+
+传统超导的微观理论把 Mahan 的电声自能与配对通道结合起来。本节给出 Cooper 不稳定性、BCS 能隙方程的推导，以及 Eliashberg 方程的结构。
+
+\subsection{Cooper 不稳定性}
+
+费米海 $|F\rangle$ 上放一对 $(\mathbf{k}\uparrow,-\mathbf{k}\downarrow)$，试探态
+\begin{equation}
+  |\Psi\rangle
+  =\sum_{\mathbf{k}}'
+  \varphi_{\mathbf{k}}
+  c_{\mathbf{k}\uparrow}^\dagger c_{-\mathbf{k}\downarrow}^\dagger
+  |F\rangle.
+\end{equation}
+若有效相互作用在壳层 $|\xi_{\mathbf{k}}|<\omega_c$ 内为吸引 $-V$，Schrödinger 方程给出
+\begin{equation}
+  1
+  =V\sum_{\mathbf{k}}'
+  \frac{1}{2|\xi_{\mathbf{k}}|-E}.
+\end{equation}
+二维/三维对数发散迫使 $E<0$ 的束缚解：
+\begin{equation}
+  E
+  \approx
+  -2\omega_c\exp\bigl(-2/N(0)V\bigr).
+\end{equation}
+任意弱吸引都使费米海不稳定——这是 Cooper 问题。声子提供的 $V_{\mathrm{eff}}(\omega)=|M|^2\mathcal{D}(\omega)$ 在 $|\omega|<\omega_D$ 为负，从而给出 $\omega_c\sim\omega_D$。
+
+\subsection{BCS 平均场：从约化哈密顿量出发}
+
+约化配对哈密顿量
+\begin{equation}
+  H
+  =\sum_{\mathbf{k}\sigma}\xi_{\mathbf{k}}c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma}
+  +\sum_{\mathbf{k}\mathbf{k}'}
+  V_{\mathbf{k}\mathbf{k}'}
+  c_{\mathbf{k}\uparrow}^\dagger c_{-\mathbf{k}\downarrow}^\dagger
+  c_{-\mathbf{k}'\downarrow}c_{\mathbf{k}'\uparrow}.
+\end{equation}
+平均场 $\Delta_{\mathbf{k}}=\sum_{\mathbf{k}'}V_{\mathbf{k}\mathbf{k}'}\langle c_{-\mathbf{k}'\downarrow}c_{\mathbf{k}'\uparrow}\rangle$，
+\begin{equation}
+  H_{\mathrm{MF}}
+  =\sum_{\mathbf{k}\sigma}\xi_{\mathbf{k}}c^\dagger c
+  +\sum_{\mathbf{k}}
+  \bigl(
+  \Delta_{\mathbf{k}}c_{\mathbf{k}\uparrow}^\dagger c_{-\mathbf{k}\downarrow}^\dagger
+  +\mathrm{h.c.}
+  \bigr)
+  +\mathrm{const}.
+\end{equation}
+Bogoliubov 变换
+\begin{equation}
+  \gamma_{\mathbf{k}\uparrow}
+  =u_{\mathbf{k}}c_{\mathbf{k}\uparrow}-v_{\mathbf{k}}c_{-\mathbf{k}\downarrow}^\dagger,
+  \qquad
+  |u|^2+|v|^2=1,
+\end{equation}
+对角化条件
+\begin{equation}
+  E_{\mathbf{k}}
+  =\sqrt{\xi_{\mathbf{k}}^2+|\Delta_{\mathbf{k}}|^2},
+  \qquad
+  |v_{\mathbf{k}}|^2
+  =\frac12\Bigl(1-\frac{\xi_{\mathbf{k}}}{E_{\mathbf{k}}}\Bigr).
+\end{equation}
+自洽
+\begin{equation}
+  \Delta_{\mathbf{k}}
+  =-\sum_{\mathbf{k}'}
+  V_{\mathbf{k}\mathbf{k}'}
+  \frac{\Delta_{\mathbf{k}'}}{2E_{\mathbf{k}'}}
+  \tanh\frac{\beta E_{\mathbf{k}'}}{2}.
+\label{eq:gap}
+\end{equation}
+接触吸引 $V_{\mathbf{k}\mathbf{k}'}=-V\theta(\omega_c-|\xi|)\theta(\omega_c-|\xi'|)$ 时 $\Delta$ 与 $\mathbf{k}$ 无关，
+\begin{equation}
+  1
+  =\frac{N(0)V}{2}
+  \int_{-\omega_c}^{\omega_c}
+  \mathrm{d}\xi\,
+  \frac{\tanh(\beta E/2)}{E}.
+\end{equation}
+$T_c$ 由 $\Delta\to0$ 给出
+\begin{equation}
+  k_BT_c
+  \approx 1.13\,\omega_c\,e^{-1/N(0)V}.
+\end{equation}
+零温 $\Delta(0)\approx1.76\,k_BT_c$。比热跳跃、超声衰减、NMR 与隧道谱均由 $E_{\mathbf{k}}$ 的相空间决定。
+
+\subsection{Eliashberg 方程（结构）}
+
+保留声子动力学与 $\lambda$，自能成为 $2\times2$ Nambu 矩阵。费米面平均后，
+\begin{equation}
+\begin{aligned}
+  Z(\mathrm{i}\omega_n)\mathrm{i}\omega_n
+  &=\mathrm{i}\omega_n
+  +\pi T\sum_m
+  \lambda(n-m)
+  \frac{\omega_m Z_m}{\sqrt{(Z_m\omega_m)^2+\Delta_m^2}},\\
+  \Delta(\mathrm{i}\omega_n)Z_n
+  &=\pi T\sum_m
+  \bigl[\lambda(n-m)-\mu^*\bigr]
+  \frac{\Delta_m}{\sqrt{(Z_m\omega_m)^2+\Delta_m^2}},
+\end{aligned}
+\label{eq:eliashberg}
+\end{equation}
+$\lambda(n)=\int\mathrm{d}\omega\,\alpha^2F(\omega)\,2\omega/(\omega^2+\nu_n^2)$，$\mu^*$ 为 Coulomb 赝势。弱耦合、Einstein 谱时回到 BCS，且 $\omega_c\to\omega_D$、$N(0)V\to\lambda-\mu^*$。Migdal 定理保证忽略顶点后该方程组在 $\lambda\lesssim 1$ 仍然可靠。
+
+\subsection{有效理论与 Anderson--Higgs}
+
+相位 $\theta$ 的有效作用量与电磁场耦合后，Goldstone 模被“吃掉”，光子获得质量——Anderson--Higgs 机制，宏观上对应 Meissner 效应与伦敦穿透深度
+\begin{equation}
+  \lambda_L
+  =\sqrt{\frac{m^*c^2}{4\pi n_s e^2}}.
+\end{equation}
+Ginzburg--Landau 自由能
+\begin{equation}
+  f
+  =a|\psi|^2+b|\psi|^4
+  +\frac{1}{2m^*}
+  \bigl|(-\mathrm{i}\hbar\nabla-e^*\mathbf{A})\psi\bigr|^2
+  +\frac{B^2}{2\mu_0}
+\end{equation}
+可在 $T_c$ 附近由 \eqref{eq:gap} 的梯度展开得到。

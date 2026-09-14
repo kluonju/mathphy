@@ -1,0 +1,69 @@
+\section{Kubo 电导率}
+
+Mahan 第 8 章把线性响应落到电流--电流关联，得到光学与直流电导。取 $e>0$，$\hbar=1$。
+
+\subsection{电流算符}
+
+均匀规范下，
+\begin{equation}
+  \mathbf{j}
+  =\frac{e}{m L^d}
+  \sum_{\mathbf{k}\sigma}
+  \hbar\mathbf{k}\,
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma}
+  -\frac{e^2 n}{m}\mathbf{A}
+  \quad
+  \text{（顺磁 $+$ 抗磁）}.
+\end{equation}
+线性响应只保留对 $\mathbf{A}$ 的一阶。
+
+\subsection{Kubo 公式}
+
+诱导电流 $\langle j_\alpha\rangle=\chi_{j_\alpha j_\beta}^R(\omega)A_\beta(\omega)+\text{抗磁项}$。电导率张量
+\begin{equation}
+  \sigma_{\alpha\beta}(\omega)
+  =\frac{\mathrm{i}e^2 n}{m\omega}\delta_{\alpha\beta}
+  +\frac{\mathrm{i}}{\omega}
+  \Pi_{\alpha\beta}^R(\omega),
+\label{eq:kubo_sigma}
+\end{equation}
+其中流--流推迟关联
+\begin{equation}
+  \Pi_{\alpha\beta}(t)
+  =-\mathrm{i}\theta(t)
+  \bigl\langle
+  [j_\alpha^{(p)}(t),j_\beta^{(p)}(0)]
+  \bigr\rangle
+\end{equation}
+只用顺磁电流。规范不变性要求 $\omega\to0$ 时抗磁项与 $\Pi(0)$ 相消，绝缘体 $\sigma(0)=0$，金属留下 Drude 权重。
+
+等价的密度响应形式（连续性）把纵向电导与 $\chi_{nn}$ 联系起来：
+\begin{equation}
+  \sigma_L(q,\omega)
+  =\frac{\mathrm{i}e^2\omega}{q^2}\chi_{nn}(q,\omega).
+\end{equation}
+$q\to0$ 即光学纵向电导。
+
+\subsection{气泡近似与 Drude}
+
+无顶角修正时，$\Pi$ 由两个 $G$ 的气泡给出。弹性杂质、弛豫时间 $\tau$ 下
+\begin{equation}
+  \sigma(\omega)
+  =\frac{ne^2\tau/m}{1-\mathrm{i}\omega\tau},
+\label{eq:drude}
+\end{equation}
+直流 $\sigma_{\mathrm{dc}}=ne^2\tau/m$。电声散射使 $1/\tau(T)$ 在高温 $\propto T$，低温 $\propto T^5$（布洛赫--格林艾森，需形变势与声子占用）。
+
+\subsection{光学定理与 \texorpdfstring{$f$}{f}-sum}
+
+$\mathrm{Re}\,\sigma(\omega)$ 为吸收。对所有频率积分
+\begin{equation}
+  \int_0^{\infty}\mathrm{d}\omega\,
+  \mathrm{Re}\,\sigma(\omega)
+  =\frac{\pi n e^2}{2m},
+\end{equation}
+与密度通道 f-sum \eqref{eq:fsum} 同一守恒律。相互作用可把光谱重量从 Drude 峰转移到中红外，但积分不变。
+
+\begin{note}
+完整的“ladder + 杂质平均”给出 Boltzmann 方程的图推导（Mahan §8.1）。顶角修正在 conserving 近似中不可少，否则破坏电荷守恒。
+\end{note}

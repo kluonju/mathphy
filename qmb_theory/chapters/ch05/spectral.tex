@@ -1,0 +1,89 @@
+\section{求和规则、刚度定理与涨落耗散}
+
+GV 第 3 章在 Kubo 公式之上建立一组与相互作用细节无关的精确约束。任何近似（Lindhard、RPA、局域场）都必须接受这些检验。
+
+\subsection{Lehmann 表示与耗散}
+
+对厄米算符 $A$、$B$，
+\begin{equation}
+  \chi_{AB}(\omega)
+  =\sum_{nm}
+  \frac{e^{-\beta E_n}}{Z}
+  \left(
+  \frac{A_{nm}B_{mn}}{\hbar\omega-E_m+E_n+\mathrm{i}0^+}
+  -\frac{B_{nm}A_{mn}}{\hbar\omega+E_m-E_n+\mathrm{i}0^+}
+  \right).
+\end{equation}
+$\mathrm{Im}\,\chi$ 由 $\delta(\hbar\omega-E_m+E_n)$ 给出，对应吸收。因果性 $\Rightarrow$ Kramer--Kronig：
+\begin{equation}
+  \mathrm{Re}\,\chi(\omega)
+  =\frac{1}{\pi}\mathcal{P}
+  \int_{-\infty}^{\infty}
+  \mathrm{d}\omega'
+  \frac{\mathrm{Im}\,\chi(\omega')}{\omega'-\omega}.
+\end{equation}
+
+\subsection{涨落耗散}
+
+动态结构因子
+\begin{equation}
+  S(\mathbf{q},\omega)
+  =\frac{1}{2\pi N}
+  \int_{-\infty}^{\infty}\mathrm{d}t\,
+  e^{\mathrm{i}\omega t}
+  \bigl\langle
+  \hat n_{\mathbf{q}}(t)\hat n_{-\mathbf{q}}(0)
+  \bigr\rangle
+\end{equation}
+满足
+\begin{equation}
+  -\frac{\hbar}{n\pi}\mathrm{Im}\,\chi_{nn}(\mathbf{q},\omega)
+  =\bigl(1-e^{-\beta\hbar\omega}\bigr)S(\mathbf{q},\omega).
+\label{eq:FDT_chi}
+\end{equation}
+零温 $\omega>0$ 时 $-\mathrm{Im}\,\chi_{nn}/(n\pi)=S/\hbar$。静态结构因子
+\begin{equation}
+  S(\mathbf{q})
+  =\int_0^{\infty}\mathrm{d}\omega\,S(\mathbf{q},\omega).
+\end{equation}
+
+\subsection{f-sum rule 与压缩率求和规则}
+
+双对易子 $[ [n_{\mathbf{q}},T], n_{-\mathbf{q}} ]=N\hbar^2 q^2/m$ 给出
+\begin{equation}
+  \int_0^{\infty}\mathrm{d}\omega\,
+  \omega\bigl(-\mathrm{Im}\,\chi_{nn}(\mathbf{q},\omega)\bigr)
+  =\pi n\frac{q^2}{m}.
+\label{eq:fsum}
+\end{equation}
+长波静态
+\begin{equation}
+  \lim_{q\to0}\chi_{nn}(q,0)
+  =-n^2 K
+  \quad\text{（固有压缩率）}.
+\label{eq:compr_sum}
+\end{equation}
+注意：全响应 $\chi_{nn}$ 与不可约 $\chi_{\mathrm{irr}}$ 在 $q\to0$ 时因 $v_q$ 发散而行为不同；压缩率求和规则必须用正确的通道（GV §3.3.4、§5.2.2）。
+
+\subsection{刚度定理}
+
+若缓慢外场把体系推离基态，能量二阶变化由静态逆响应给出：
+\begin{equation}
+  \delta E
+  =\frac12
+  \int
+  \delta n\,
+  \chi^{-1}(q\to0,0)\,
+  \delta n.
+\end{equation}
+这把光谱求和规则与热力学刚度（压缩率、自旋刚度）连起来，也是 DFT 二次响应与集体模式质量的出发点。
+
+\subsection{电流响应与电导}
+
+电流--电流响应 $\chi_{jj}$ 在 $q\to0$ 给出电导率（Kubo--Greenwood）。规范不变性要求纵向 $\chi_{jj}$ 与 $\chi_{nn}$ 由连续性方程相联系：
+\begin{equation}
+  \omega^2\chi_{nn}(q,\omega)
+  =q^2\chi_{jj}^L(q,\omega)
+  +\frac{n q^2}{m}.
+\end{equation}
+绝缘体与金属的差别体现在 $\omega\to0$ 的 $\mathrm{Re}\,\sigma(\omega)$：金属有 Drude 权重，绝缘体由 f-sum 中的正则权（regular weight）表征。

@@ -1,0 +1,30 @@
+\section{Wigner 晶体与电子液相图}
+
+低密极限库仑主导，电子趋于局域化成晶格，以降低势能：这是 Wigner 晶体。GV §1.6--1.7 给出经典静电能、零点振动与 QMC 相图。
+
+\subsection{经典静电能}
+
+把电子放在 $d$ 维 Bravais 格点，背景均匀。每粒子 Madelung 能
+\begin{equation}
+  \varepsilon_{\mathrm{M}}
+  =-c_d/r_s\quad(\mathrm{Ry}),
+\end{equation}
+$c_d$ 依赖于晶格类型。三维 bcc 的 Madelung 常数略优于 fcc/hcp，是经典 Wigner 晶体的候选。该能量低于均匀液的 HF 交换能标度，但动能惩罚在高密时禁止结晶。
+
+\subsection{零点振动}
+
+简谐展开给出等离型纵向支与剪切横波。零点能 $\propto r_s^{-3/2}$（三维），在中间 $r_s$ 与 Madelung 能竞争。融化由 Lindemann 判据或 QMC 自由能比较判定。
+
+\subsection{相图要点}
+
+量子蒙特卡罗（Ceperley 等）给出大致图像：
+\begin{itemize}
+  \item 三维：顺磁费米液体在高密稳定；极化与 Wigner 晶体出现在很大的 $r_s$（晶体约 $r_s\sim100$ 量级）；
+  \item 二维：结晶更易（约 $r_s\sim30$ 量级），并与中间相、微扰等讨论并存；
+  \item HF 预言的 Bloch 铁磁（三维 $r_s^B\approx5.45$）被关联强烈推迟。
+\end{itemize}
+实验上，低密二维电子气与半导体异质结、液氦表面电子是寻找 Wigner 晶体的主要平台。
+
+\begin{note}
+电子液相图提醒我们：HF/RPA 描述的是高到中等密度的液体；低密必须换语言（经典相关、晶格、强关联）。$r_s$ 是选择理论工具的第一判据。
+\end{note}

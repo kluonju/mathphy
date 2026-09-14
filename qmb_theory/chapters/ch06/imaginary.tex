@@ -1,0 +1,20 @@
+\section{虚时路径积分与配分函数}
+
+量子统计中，配分函数
+\begin{equation}
+  Z=\mathrm{Tr}\,e^{-\beta\hat H}
+  =\int\mathrm{d}x\,
+  \bigl\langle x\big|e^{-\beta\hat H}\big|x\bigr\rangle.
+\end{equation}
+与实时传播幅比较，形式对应 $t_f-t_i\to-\mathrm{i}\hbar\beta$（Wick 转动）。虚时 $\tau\in[0,\hbar\beta]$ 上，
+\begin{equation}
+  Z
+  =\int_{x(0)=x(\hbar\beta)}
+  \mathcal{D}[x(\tau)]\,
+  \exp\Bigl(
+  -\frac{1}{\hbar}
+  \int_0^{\hbar\beta}\mathrm{d}\tau\,
+  \bigl[\tfrac{m}{2}\dot x^2+V(x)\bigr]
+  \Bigr).
+\end{equation}
+周期边界条件 $x(0)=x(\hbar\beta)$ 来自迹。由此，有限温度问题化为一个“欧氏”作用量上的路径积分。
