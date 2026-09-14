@@ -1,6 +1,6 @@
 \section{Goldstone 连锁集群与真空振幅}
 
-Gross 第 21 章对真空振幅 $\langle\Phi_0|U|\Phi_0\rangle$ 的不连通图做指数求和，得到 Goldstone 连锁集群定理。这是零温关联能图计算的骨架。
+Gross 第 21 章对真空振幅 $\langle\Phi_0|U|\Phi_0\rangle$ 的不连通图做指数求和，得到 Goldstone 连锁集群定理，并给出能量移动的连通图规则。
 
 \subsection{真空振幅}
 
@@ -13,28 +13,44 @@ Gross 第 21 章对真空振幅 $\langle\Phi_0|U|\Phi_0\rangle$ 的不连通图�
   e^{-\varepsilon(|t_1|+\cdots)}
   \langle\Phi_0|T\,V_I(t_1)\cdots V_I(t_n)|\Phi_0\rangle.
 \end{equation}
-每一项用 Wick 变成 $G_0$ 线与相互作用线的真空图（可含不连通部分）。
+每一项用 Wick 变成 $G_0$ 线与相互作用线的真空图（可含不连通部分）。一阶只有两类：直接（Hartree 泡）与交换（Fock）。等时 $G_0$ 按规则取 $G_0(\mathbf{x}t,\mathbf{x}'t^+)$（空穴占据）。
 
-\subsection{指数化}
+\subsection{连锁集群定理}
 
-设连通真空图之和为 $\langle\Phi_0|U|\Phi_0\rangle_c$，则全部图（含 $m$ 个互不连通块）给出
+设连通真空图之和记为 $\langle\Phi_0|U|\Phi_0\rangle_{\ell}$，则
 \begin{equation}
   \langle\Phi_0|U|\Phi_0\rangle
-  =\exp\bigl(\langle\Phi_0|U|\Phi_0\rangle_c\bigr).
+  =\exp\bigl(\langle\Phi_0|U|\Phi_0\rangle_{\ell}\bigr).
 \label{eq:goldstone}
 \end{equation}
-\textbf{推导要点}：不连通块之间的对称因子 $1/m!$ 与指数级数一致；动量守恒体系中“漂浮”的不连通真空泡只贡献总体积因子，指数化后进入强度量。
+\textbf{推导要点}：任意不连通图可因子化为连通块之积；同构块的排列给出 $1/m!$，恰与指数级数一致。动量守恒时“漂浮”的不连通泡只贡献体积因子，强度量由连通部分决定。
 
 \subsection{能量移动}
 
 \begin{equation}
   \Delta E
-  =\mathrm{i}
-  \frac{\partial}{\partial t}
-  \ln\langle\Phi_0|U(t,-\infty)|\Phi_0\rangle\Big|_{t=0}
-  =\text{只含连通真空图的 Goldstone 能量规则}.
+  =\lim_{\varepsilon\to0}
+  \mathrm{i}
+  \partial_t
+  \ln\langle\Phi_0|U_\varepsilon(t,-\infty)|\Phi_0\rangle\Big|_{t=0}
+  =\lim_{\varepsilon\to0}
+  \mathrm{i}
+  \partial_t
+  \langle\Phi_0|U_\varepsilon(t,-\infty)|\Phi_0\rangle_{\ell}\Big|_{t=0}.
 \end{equation}
-Goldstone 能量规则：每条空穴线、粒子线赋予能量分母（中间态激发能），每条相互作用线赋予矩阵元，对所有内部动量求和。GMB 环图求和即在此规则下对一族连通图重求和。
+只对连通图求导后，$\Delta E$ 是强度量。
+
+\subsection{Goldstone 能量规则（实用形式）}
+
+把连通真空图改画为“时间向上”的 Goldstone 图后：
+\begin{enumerate}
+  \item 每条指向下的空穴线、指向上的粒子线贡献中间态；
+  \item 每个中间态赋予能量分母
+  $\bigl(\sum\varepsilon_{\mathrm{h}}-\sum\varepsilon_{\mathrm{p}}\bigr)^{-1}$（相对于无扰基态）；
+  \item 每条相互作用线给出矩阵元 $v$（含直接/交换符号）；
+  \item 对内部动量（及自旋）求和，并计入图的拓扑对称因子。
+\end{enumerate}
+GMB 环图求和即在此规则下对一族连通图做无穷重求和，而不是逐阶截断 Rayleigh--Schr\"odinger 级数。
 
 \begin{note}
 有限温对应 $\ln(Z/Z_0)=$ 连通真空图（Matsubara）。零温 Goldstone 与有限温连锁集群是同一结构的两个极限。

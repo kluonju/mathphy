@@ -1,54 +1,255 @@
-\section{Wick 定理}
+\section{Wick 定理及其证明}
 
-\subsection{自由理论中的平均值}
+本节按 Gross 第 19 章给出粒子--空穴语言下 Wick 定理的完整证明：先证正规序形式（引理 + 归纳），再过渡到时间编序与真空期望。有限温情形在末节用生成函数简述。
 
-对自由（二次型）哈密顿量，热平衡或基态下多点算符平均值可完全由两点收缩（contraction）表达。这就是 Wick 定理。
+\subsection{粒子、空穴与真空}
 
-对费米子，若 $\mathcal{O}$ 为产生湮灭算符的乘积，则
-\begin{equation}
-  \langle T\,\mathcal{O}\rangle_0
-  =\sum_{\mathrm{full\,contr.}}
-  (-1)^P\prod_{\mathrm{pairs}}
-  \langle T\,c\,c^\dagger\rangle_0,
-\end{equation}
-其中求和遍历所有把算符两两配对的方式，$P$ 为把配对排成标准顺序所需的置换奇偶性。
-
-\subsection{收缩与自由格林函数}
-
-基本收缩正是自由格林函数，例如
-\begin{equation}
-  \overline{c_\alpha(\tau)\,c_\beta^\dagger(\tau')}
-  \;\equiv\;
-  \langle T_\tau c_\alpha(\tau)c_\beta^\dagger(\tau')\rangle_0
-  =-\mathcal{G}^{(0)}_{\alpha\beta}(\tau-\tau').
-\end{equation}
-
-\textbf{热 Wick 的一种证法}（Mahan）：自由理论的生成函数是高斯的，
-\begin{equation}
-  \bigl\langle
-  T_\tau\exp\bigl(\eta^* c+c^\dagger\eta\bigr)
-  \bigr\rangle_0
-  =\exp\bigl(\eta^* \mathcal{G}_0\eta\bigr).
-\end{equation}
-对源 $\eta$ 多次求导即把任意偶数点函数化为 $\mathcal{G}_0$ 的配对和。费米子每次交换源产生一个负号。
-
-\subsection{为何重要}
-
-相互作用图展开中，每一个相互作用顶点会引入一串算符；Wick 定理把它们拆成 $G_0$ 线的产物，从而定义 Feynman 图规则。没有 Wick 定理，微扰级数将停留在形式层面。
-
-\begin{example}[四点函数]
-自由费米子四点函数分解为
+取 $H_0$ 的基态为填满至 $\varepsilon_F$ 的费米海 $|\Phi_0\rangle$。定义
 \begin{equation}
 \begin{aligned}
-  &\langle T\,c_1 c_2 c_3^\dagger c_4^\dagger\rangle_0\\
-  &\quad=
-  \langle T\,c_1 c_4^\dagger\rangle_0\langle T\,c_2 c_3^\dagger\rangle_0
-  -\langle T\,c_1 c_3^\dagger\rangle_0\langle T\,c_2 c_4^\dagger\rangle_0.
+  a_i&=c_i,\quad a_i^\dagger=c_i^\dagger
+  &&(\varepsilon_i>\varepsilon_F),\\
+  b_i&=c_i^\dagger,\quad b_i^\dagger=c_i
+  &&(\varepsilon_i<\varepsilon_F).
 \end{aligned}
 \end{equation}
-两项分别对应直接与交换收缩，符号来自费米子交换。
-\end{example}
+则 $a_i|\Phi_0\rangle=b_i|\Phi_0\rangle=0$，故称 $|\Phi_0\rangle$ 为相对费米海的真空。粒子算符与空穴算符相互反对易。相互作用绘景中
+$a_i(t)=a_i e^{-i\varepsilon_i t}$，$b_i(t)=b_i e^{-i|\varepsilon_i-\mu|t}$（记号上常把空穴能量取正）。
+
+场算符可分解为产生部分（下标 $+$）与湮灭部分（下标 $-$）：
+\begin{equation}
+  \psi=\psi^{(+)}+\psi^{(-)},
+  \qquad
+  \psi^{(-)}|\Phi_0\rangle=0=(\psi^\dagger)^{(-)}|\Phi_0\rangle.
+\end{equation}
+
+\subsection{正规序}
+
+粒子/空穴算符乘积的\textbf{正规序} $N(\cdots)$：把全部湮灭算符移到产生算符右边，并乘以完成该重排所需置换的符号（始终按反对易计）。例如（$\varepsilon_i,\varepsilon_k>\varepsilon_F$，$\varepsilon_j<\varepsilon_F$）
+\begin{equation}
+  N\bigl[c_i(t_1)c_j(t_2)c_k^\dagger(t_3)\bigr]
+  =(+)\,c_j(t_2)\,c_k^\dagger(t_3)\,c_i(t_1).
+\end{equation}
+要点：
+\begin{itemize}
+  \item 时间依赖不影响正规序的定义；
+  \item 产生算符之间（或湮灭算符之间）的次序可任意改写，因它们彼此反对易，所得算符相同；
+  \item 对线性组合按线性扩展：$N(\alpha A+\beta B)=\alpha N(A)+\beta N(B)$。
+\end{itemize}
+因此，任意含正规序因子的真空期望值为零：
+\begin{equation}
+  \langle\Phi_0|N(\cdots)|\Phi_0\rangle=0,
+\end{equation}
+因为最右边总有一个湮灭算符作用在 $|\Phi_0\rangle$ 上（或最左边产生算符作用在 $\langle\Phi_0|$ 上）。
+
+\subsection{配对（pairing）}
+
+对两个粒子/空穴算符（或其线性组合的分量）定义
+\begin{equation}
+  \overline{AB}
+  :=AB-N(AB).
+\label{eq:pairing}
+\end{equation}
+若 $\{A,B\}=0$，则 $N(AB)=-BA$，从而 $\overline{AB}=0$。非零配对必为 $c$-数。显式地，
+\begin{equation}
+\begin{aligned}
+  \overline{a_i(t)a_j^\dagger(t')}
+  &=\delta_{ij}\,e^{-i\varepsilon_i(t-t')},\\
+  \overline{b_i(t)b_j^\dagger(t')}
+  &=\delta_{ij}\,e^{-i|\varepsilon_i|(t-t')},
+\end{aligned}
+\end{equation}
+其余粒子/空穴组合的配对为零。由此
+\begin{equation}
+  \langle\Phi_0|AB|\Phi_0\rangle
+  =\overline{AB}.
+\end{equation}
+
+含配对的正规序定义为：先把配成对的算符移到最左（计符号 $(-1)^q$），再对剩余算符取正规序；配对本身是 $c$-数，可提出。
+
+\subsection{引理}
+
+\begin{lemma}[右乘湮灭/产生算符]
+对任意粒子/空穴算符 $A_1,\ldots,A_n$ 与 $B$，
+\begin{equation}
+  N(A_1\cdots A_n)\,B
+  =\sum_{r=1}^n
+  N\bigl(A_1\cdots\overline{A_r B}\cdots A_n\bigr)
+  +N(A_1\cdots A_n B).
+\label{eq:wick_lemma}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+若 $B$ 为湮灭算符，则一切 $\overline{A_r B}=0$，引理化为
+$N(A_1\cdots A_n)B=N(A_1\cdots A_n B)$，由正规序定义成立。
+
+若 $B$ 为产生算符，则仅当 $A_r$ 为湮灭算符时 $\overline{A_r B}$ 可能非零。此时只需对“$A_1,\ldots,A_n$ 全为湮灭算符”证明
+\begin{equation}
+  A_1\cdots A_n B
+  =\sum_{r=1}^n
+  (-1)^{r+n}\,\overline{A_r B}\,
+  A_1\cdots\widehat{A_r}\cdots A_n
+  +(-1)^n B A_1\cdots A_n,
+\label{eq:lemma_ann}
+\end{equation}
+（$\widehat{A_r}$ 表示删去 $A_r$；符号来自把 $A_r$ 与 $B$ 移到一起所需的交换。）一般情形可在左边再乘产生算符还原。
+
+对 \eqref{eq:lemma_ann} 用归纳法。$n=1$：由 \eqref{eq:pairing} 即
+$A_1 B=\overline{A_1 B}+N(A_1 B)=\overline{A_1 B}-B A_1$。
+设 $n$ 成立，左边乘湮灭算符 $A_0$：
+\begin{equation}
+\begin{aligned}
+  A_0 A_1\cdots A_n B
+  &=\sum_{r=1}^n(-1)^{r+n}\overline{A_r B}\,
+  A_0 A_1\cdots\widehat{A_r}\cdots A_n\\
+  &\quad+(-1)^n A_0 B\,A_1\cdots A_n.
+\end{aligned}
+\end{equation}
+再用 $A_0 B=-B A_0+\overline{A_0 B}$，最后一项拆成
+$(-1)^n\overline{A_0 B}\,A_1\cdots A_n+(-1)^{n+1}B A_0\cdots A_n$，
+恰为 $n+1$ 时的 \eqref{eq:lemma_ann}。
+\end{proof}
+
+\subsection{正规序形式的 Wick 定理}
+
+\begin{theorem}[Wick，普通乘积]
+\begin{equation}
+\begin{aligned}
+  A_1\cdots A_n
+  &=N(A_1\cdots A_n)\\
+  &\quad+\sum_{i<j}
+  N\bigl(A_1\cdots\overline{A_i A_j}\cdots A_n\bigr)\\
+  &\quad+\sum_{\text{two pairs}}
+  N(\cdots\overline{\,\cdot\,}\,\overline{\,\cdot\,}\cdots)
+  +\cdots
+  +\text{(even $n$) fully paired terms}.
+\end{aligned}
+\label{eq:wick_N}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+对 $n$ 归纳。$n=1,2$ 即配对定义。设对 $n$ 成立，右边乘 $A_{n+1}$：
+\begin{equation}
+  A_1\cdots A_n A_{n+1}
+  =N(A_1\cdots A_n)A_{n+1}
+  +\sum_{\text{terms with pairings}}N(\cdots)\,A_{n+1}.
+\end{equation}
+对每一项用引理 \eqref{eq:wick_lemma}：把 $A_{n+1}$ 吞进正规序时，要么进入 $N(\cdots A_{n+1})$，要么与某个 $A_r$ 结成新配对。前者给出 $(n+1)$ 个算符的无配对正规序；后者把“$k$ 个配对”升级为“$k+1$ 个配对”。全部项恰好穷尽 \eqref{eq:wick_N} 在 $n+1$ 时的内容。
+
+由线性性，定理对粒子/空穴算符的线性组合（因而对场算符）同样成立。
+\end{proof}
+
+\subsection{收缩与时间编序}
+
+对含时算符定义\textbf{收缩}（contraction）
+\begin{equation}
+  \overline{A(t)B(t')}
+  :=
+  T\bigl(A(t)B(t')\bigr)
+  -N\bigl(A(t)B(t')\bigr).
+\label{eq:contraction}
+\end{equation}
+由 $T$ 与 $N$ 的反对称性，
+\begin{equation}
+  \overline{A(t)B(t')}
+  =-\,\overline{B(t')A(t)}.
+\end{equation}
+与配对的关系为：当 $t>t'$ 时收缩等于配对 $\overline{A(t)B(t')}$；当 $t'<t$ 时收缩等于配对 $\overline{B(t')A(t)}$。故收缩仍是 $c$-数，且
+\begin{equation}
+  \langle\Phi_0|T\bigl(A(t)B(t')\bigr)|\Phi_0\rangle
+  =\overline{A(t)B(t')}.
+\end{equation}
+对 $H_0$ 的产生湮灭算符，非零收缩正是自由传播子：
+\begin{equation}
+\begin{aligned}
+  \overline{c_j(t)c_k^\dagger(t')}
+  &=\delta_{jk}\,e^{-i\varepsilon_j(t-t')}
+  \bigl[
+  \theta(t-t')\theta(\varepsilon_j-\varepsilon_F)
+  -\theta(t'-t)\theta(\varepsilon_F-\varepsilon_j)
+  \bigr]\\
+  &=i G^{(0)}(j t,k t').
+\end{aligned}
+\label{eq:contr_G0}
+\end{equation}
+场算符同理：$\overline{\psi(xt)\psi^\dagger(yt')}=iG^{(0)}(xt,yt')$，而
+$\overline{\psi\psi}=\overline{\psi^\dagger\psi^\dagger}=0$。
+
+\subsection{时间编序形式的 Wick 定理}
+
+\begin{theorem}[Wick，$T$ 乘积]
+\begin{equation}
+\begin{aligned}
+  T(A_1\cdots A_n)
+  &=N(A_1\cdots A_n)\\
+  &\quad+\sum_{i<j}
+  N\bigl(A_1\cdots\overline{A_i A_j}\cdots A_n\bigr)\\
+  &\quad+\cdots
+  +\text{fully contracted terms (even $n$)}.
+\end{aligned}
+\label{eq:wick_T}
+\end{equation}
+费米子：把一对收缩算符移到乘积最左所需交换次数为奇时，该项带负号。
+\end{theorem}
+
+\begin{proof}
+设 $P$ 为把时间排成 $t_{P(1)}\ge t_{P(2)}\ge\cdots$ 的置换，则
+\begin{equation}
+  T(A_1\cdots A_n)
+  =\mathrm{sgn}(P)\,
+  A_{P(1)}\cdots A_{P(n)}.
+\end{equation}
+对右边用已证的 \eqref{eq:wick_N}。因时间已排序，其中每个配对恰等于对应的收缩 \eqref{eq:contraction}。再把下标 $P(i)$ 写回 $1,\ldots,n$，并吸收 $\mathrm{sgn}(P)$ 与费米交换符号，即得 \eqref{eq:wick_T}。
+\end{proof}
+
+\subsection{真空期望：完全收缩}
+
+对 \eqref{eq:wick_T} 取 $\langle\Phi_0|\cdots|\Phi_0\rangle$，一切含 $N(\cdots)$ 的项消失，故
+\begin{equation}
+  \langle\Phi_0|T(A_1\cdots A_{2m})|\Phi_0\rangle
+  =\sum_{\mathrm{perfect\,matchings}}
+  (-1)^P
+  \prod_{\mathrm{pairs}}
+  \overline{A_{i_s}A_{j_s}}.
+\label{eq:wick_vev}
+\end{equation}
+奇数个算符的真空期望为零。这就是图技术的出发点：微扰展开中的
+$\langle T\,V_I(t_1)\cdots\psi\psi^\dagger\rangle_0$ 化为 $G^{(0)}$ 线的产物。
+
+\subsection{四点函数示例}
+
+\begin{equation}
+\begin{aligned}
+  &\langle\Phi_0|
+  T\,c_1 c_2 c_3^\dagger c_4^\dagger
+  |\Phi_0\rangle\\
+  &\quad=
+  \overline{c_1 c_4^\dagger}\,\overline{c_2 c_3^\dagger}
+  -\overline{c_1 c_3^\dagger}\,\overline{c_2 c_4^\dagger}.
+\end{aligned}
+\end{equation}
+第一项为直接收缩，第二项为交换收缩（多一次费米交换）。用 \eqref{eq:contr_G0} 即得两点 $G^{(0)}$ 的行列式结构。
+
+\subsection{有限温度：生成函数证明概要}
+
+巨正则自由理论中，源耦合的生成函数是高斯的（Mahan）：
+\begin{equation}
+  \Bigl\langle
+  T_\tau\exp\Bigl(
+  \sum_\alpha
+  \bigl[
+  \eta_\alpha^*(\tau)c_\alpha(\tau)
+  +c_\alpha^\dagger(\tau)\eta_\alpha(\tau)
+  \bigr]
+  \Bigr)
+  \Bigr\rangle_0
+  =\exp\bigl(\eta^*\,\mathcal{G}^{(0)}\,\eta\bigr).
+\end{equation}
+对 Grassmann 源 $\eta,\eta^*$ 求 $2m$ 次导并令源为零，左边给出
+$\langle T_\tau c\cdots c^\dagger\rangle_0$，右边给出全部两两配对 $\mathcal{G}^{(0)}$ 的求和（含费米符号）。这与 \eqref{eq:wick_vev} 同构，只是真空换为自由热平均、收缩换为 $-\mathcal{G}^{(0)}$。
 
 \begin{note}
-对有相互作用的热力学平均，严格 Wick 分解一般不成立；但在相互作用绘景的微扰展开中，对\textbf{自由}演化下的编序平均值，Wick 定理仍然适用。这正是标准图技术的逻辑。
+Wick 定理依赖自由（二次型）动力学：只有此时配对/收缩为 $c$-数且高阶矩由二阶矩决定。有相互作用的热力学平均一般不能直接 Wick 分解；相互作用绘景微扰展开中，对 $H_0$ 演化下的编序平均，本定理仍然适用。
 \end{note}

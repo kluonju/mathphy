@@ -278,7 +278,8 @@ z^2=(2+i y)^2=4- y^2 + i\,4y.
 \[
 \boxed{\;\int_{(1)} z^2\,dz=\int_{(2)} z^2\,dz=\frac{2}{3}+\frac{11}{3}i\;.}
 \]
-这符合期望，因为 \(f(z)=z^2\) 在全平面解析，因此对同一端点的曲线积分与路径无关（亦可由柯西定理/原函数原理说明：原函数为 \(F(z)=\tfrac{1}{3}z^3\)）。
+这符合期望，因为 \(f(z)=z^2\) 在全平面解析，因此对同一端点的曲线积分与路径无关。
+% （亦可由柯西定理/原函数原理说明：原函数为 \(F(z)=\tfrac{1}{3}z^3\)）
 
 \end{solution}
 \end{frame}
@@ -288,17 +289,54 @@ z^2=(2+i y)^2=4- y^2 + i\,4y.
   \subsection{柯西积分定理}
 
   \begin{frame}{柯西积分定理}
-    柯西积分定理(简称柯西定理)说的是,如果$f(z)$是解析函数,$f'(z)$在闭合路径$C$%构成的单连通
-区域内任一点连续,有
+    柯西积分定理(简称柯西定理)说的是,如果$f(z)$在单连通区域$D$内解析,且$f'(z)$连续,则对$D$内任一闭合路径$C$有
 \begin{equation}
-    \oint_C f(z) dz = 0.
+    \oint_C f(z)\, dz = 0.
 \end{equation}
-所有的闭合回路的积分我们用$\oint$来表示.证明会用到格林公式和柯西-黎曼条件,具体参考其他书目,其中
-格林公式为
+所有的闭合回路的积分我们用$\oint$来表示.证明用到实平面上的格林公式以及柯西-黎曼条件.格林公式为
 \begin{equation}
-    \oint_\ell P dx + Q dy = \iint_S \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}  \right) dx dy
+    \oint_\ell P\, dx + Q\, dy = \iint_S \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}  \right) dx\, dy,
 \end{equation}
+其中$S$是$\ell$所围的区域,回路取正向(区域内点始终在前进方向的左侧).
+\end{frame}
 
+\begin{frame}{柯西积分定理的证明}
+\small
+\textbf{证}\quad 记$f(z)=u(x,y)+\imath v(x,y)$, $dz=dx+\imath dy$. 由积分定义,
+\begin{equation}
+    \oint_C f(z)\, dz
+    = \oint_C (u\,dx - v\,dy)
+    + \imath \oint_C (v\,dx + u\,dy).
+\end{equation}
+对实部取$P=u$, $Q=-v$, 格林公式给出
+\begin{equation}
+    \oint_C (u\,dx - v\,dy)
+    = \iint_S \Bigl( -\frac{\partial v}{\partial x} - \frac{\partial u}{\partial y} \Bigr)\, dx\, dy.
+\end{equation}
+对虚部取$P=v$, $Q=u$, 同样有
+\begin{equation}
+    \oint_C (v\,dx + u\,dy)
+    = \iint_S \Bigl( \frac{\partial u}{\partial x} - \frac{\partial v}{\partial y} \Bigr)\, dx\, dy.
+\end{equation}
+\end{frame}
+
+\begin{frame}{柯西积分定理的证明}
+\small
+因为$f$在$S$上解析且$f'$连续, $u,v$的一阶偏导数连续,并满足柯西-黎曼方程
+\begin{equation}
+    \frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},\qquad
+    \frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}.
+\end{equation}
+于是两个被积函数恒为零:
+\begin{equation}
+    -\frac{\partial v}{\partial x}-\frac{\partial u}{\partial y}=0,\qquad
+    \frac{\partial u}{\partial x}-\frac{\partial v}{\partial y}=0.
+\end{equation}
+故实部、虚部的面积分均为零,从而
+\[
+    \oint_C f(z)\, dz = 0.
+\]
+\textbf{推论}\quad 在单连通解析区域内,两端点固定时积分与路径无关:若$\ell_1,\ell_2$从同一点到同一点,则$\ell_1-\ell_2$成闭合回路,由柯西定理积分为零,即$\int_{\ell_1}f\,dz=\int_{\ell_2}f\,dz$.
 \end{frame}
 
 
@@ -615,17 +653,69 @@ $|\zeta - z|$的极小值为$\delta$, $C$的长度为$s$,则
 \]
 由于$R$任意选定,令$R\to \infty$,有$f'(z) \equiv 0$,所以$f(z)$为常数.
 
-刘维尔定理的一个应用是可以证明代数基本定理,即对任意$n$阶多项式(Polynomial)
+下一个应用是代数基本定理: 任意非常数多项式在复平面上必有根.
+\end{frame}
+
+\begin{frame}{代数基本定理}
+\small
+\textbf{代数基本定理}\quad 任意$n$次多项式($n>0$, $a_n\neq 0$)
 \begin{equation}
-    P(z) = \sum_{k=0}^{n} a_k z^k (n>0, a_n \neq 0)
+    P(z) = \sum_{k=0}^{n} a_k z^k
     \label{eq:poly}
 \end{equation}
-有$n$个根满足$P(z) = 0$. 它的证明可以通过反证的方法. 假设$P(z)$没有零点,即$P(z)\neq 0$, 则$1/P(z)$是解析
-且有界的,根据刘维尔定理可知$1/P(z)$为常数,即$P(z)$为常数,与$a_n\neq 0$矛盾.可以知道,$P(z)$至少有一个根,记为$\lambda_1$,
-那么对$P(z)/(z-\lambda_1)$这一$n-1$阶多项式进行上述论证,我们可以降次直至一阶多项式,共计$n$个根,因此$n$阶多项式
-有$n$个根.
+在复平面上恰有$n$个根(计重数).
 
-  \end{frame}
+证明分两步:
+\begin{enumerate}
+    \item 用刘维尔定理(反证)说明$P$至少有一个根;
+    \item 因式分解后降次,归纳得到恰好$n$个根.
+\end{enumerate}
+关键在于第一步: 若处处无根,则$1/P$是有界的完全函数(entire function,即在全复平面解析),从而为常数,矛盾. 下面把``有界''写清楚.
+\end{frame}
+
+\begin{frame}{代数基本定理: 至少有一根}
+\small
+\textbf{步骤 1 (反证).}\quad 假设$P(z)\neq 0$对一切$z\in\mathbb{C}$成立.
+
+\textbf{步骤 2.}\quad $P$是完全函数(全平面解析)且处处非零,故
+\[
+    f(z)=\frac{1}{P(z)}
+\]
+也是完全函数.
+
+\textbf{步骤 3 (有界性).}\quad 把最高次项提出,
+\[
+    P(z)=a_n z^n\left(1+\frac{a_{n-1}}{a_n z}+\cdots+\frac{a_0}{a_n z^n}\right).
+\]
+当$|z|$充分大时,括号内趋于$1$,因而存在$R>0$,使得$|z|>R$时括号的模$\geq 1/2$,于是
+\[
+    |P(z)|\geq \frac{|a_n|}{2}|z|^n
+    \quad\Longrightarrow\quad
+    |f(z)|\leq \frac{2}{|a_n|\,|z|^n}.
+\]
+特别地,$|z|>R$时$|f|$有界; 在闭圆盘$|z|\leq R$上$f$连续,故也有界. 因此$f$在全平面有界.
+\end{frame}
+
+\begin{frame}{代数基本定理: 降次得 $n$ 个根}
+\small
+\textbf{步骤 4.}\quad 由刘维尔定理,$f=1/P$为常数,从而$P$为常数. 这与$n>0$、$a_n\neq 0$矛盾.
+
+因此假设不成立: $P$至少有一个根,记为$\lambda_1$.
+
+\textbf{步骤 5 (降次).}\quad 于是可分解
+\[
+    P(z)=(z-\lambda_1)P_1(z),
+\]
+其中$P_1$是$n-1$次多项式. 对$P_1$重复步骤 1--4,得到根$\lambda_2$; 再对$n-2$次多项式继续,直至一次多项式. 共得到$n$个根(计重数).
+
+\textbf{小结.}\quad
+\[
+    \text{无根}\ \Longrightarrow\ \frac{1}{P}\ \text{有界完全函数}
+    \ \Longrightarrow\ \text{常数(刘维尔)}
+    \ \Longrightarrow\ \text{矛盾}.
+\]
+故非常数多项式必有根; 反复因式分解即得代数基本定理.
+\end{frame}
  \begin{frame}{总结}
   \small
 柯西积分定理： 解析函数的闭合回路积分为零。
@@ -644,12 +734,12 @@ $$
   柯西积分公式及其导数公式
         \begin{equation*}
             f(z) = \frac{1}{2\pi \imath} \oint_C \frac{f(\zeta)}{\zeta - z} d \zeta.
-            \label{eq:cauchy_formula}
+            % \label{eq:cauchy_formula}
         \end{equation*}
 
         \begin{equation*}
     f^{(n)}(z) = \frac{n!}{2\pi \imath} \oint_C \frac{f(\zeta)}{(\zeta - z)^{n+1}} d \zeta.
-    \label{eq:cauchy_formula_nth_derivative}
+    % \label{eq:cauchy_formula_nth_derivative}
 \end{equation*}
 
  \end{frame}

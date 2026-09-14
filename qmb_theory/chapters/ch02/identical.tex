@@ -1,12 +1,14 @@
 \section{全同粒子}
 
+Gross 第 1 章强调：经典可区分的全同粒子在量子力学中不可区分，波函数必须按交换对称性分类。
+
 \subsection{交换对称性}
 
 自然界中的基本粒子（及许多准粒子）是全同的：交换任意两个粒子，物理上不可区分。量子力学要求多体波函数在交换下要么对称（玻色子），要么反对称（费米子）：
 \begin{equation}
   P_{ij}\Psi=\pm\Psi.
 \end{equation}
-费米子的反对称性导致 Pauli 不相容原理：两个费米子不能占据同一单粒子态。
+费米子的反对称性导致 Pauli 不相容原理：两个费米子不能占据同一单粒子态。自旋--统计定理把自旋与对称性绑定（半整数自旋 $\Rightarrow$ 费米子）。
 
 \subsection{Slater 行列式与永久式}
 
@@ -17,6 +19,17 @@ $N$ 个费米子若占据正交单粒子轨道 $\{\phi_{k_1},\ldots,\phi_{k_N}\}
   \det\bigl[\phi_{k_i}(\mathbf{x}_j)\bigr],
 \end{equation}
 其中 $\mathbf{x}=(\mathbf{r},\sigma)$。玻色子对应的是永久式（permanent）。Hartree--Fock 理论正是在 Slater 行列式流形上做变分优化。
+
+\subsection{约化密度矩阵（预告）}
+
+对纯态 $|\Psi\rangle$，一体约化密度矩阵
+\begin{equation}
+  \rho_1(\mathbf{x},\mathbf{x}')
+  =N\int\mathrm{d}\mathbf{x}_2\cdots\mathrm{d}\mathbf{x}_N
+  \Psi(\mathbf{x},\mathbf{x}_2,\ldots)
+  \Psi^*(\mathbf{x}',\mathbf{x}_2,\ldots)
+\end{equation}
+的本征值是自然轨道占据数。二次量子化后 $\rho_1=\langle\psi^\dagger\psi\rangle$，见密度算符一节。
 
 \subsection{粒子数表象}
 

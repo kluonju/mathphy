@@ -1,0 +1,53 @@
+\section{有效相互作用与穿衣顶点}
+
+Gross 第 28 章：在相互作用线上插入全部极化图得穿衣相互作用 $W$；再引入不可约顶点 $\Lambda$，并强调避免双重计数。
+
+\subsection{极化插入与 $W$}
+
+对裸线 $v$ 反复插入极化泡，几何级数给出
+\begin{equation}
+  W(1,2)
+  =v(1,2)
+  +\int\mathrm{d}3\,\mathrm{d}4\,
+  v(1,3)\,
+  \Pi(3,4)\,
+  W(4,2),
+\label{eq:W_def}
+\end{equation}
+或在均匀体系
+\begin{equation}
+  W(\mathbf{q},\omega)
+  =\frac{v_{\mathbf{q}}}{1-v_{\mathbf{q}}\Pi(\mathbf{q},\omega)}
+  =\frac{v_{\mathbf{q}}}{\varepsilon(\mathbf{q},\omega)}.
+\end{equation}
+RPA 取 $\Pi=\Pi_0$（Lindhard）。等离激元是 $\varepsilon(\mathbf{q},\omega)=0$ 的极点，因而出现在 $W$ 与密度响应上，\textbf{不是}单粒子 $G$ 的极点。
+
+\subsection{不可约顶点 $\Lambda$}
+
+\textbf{顶点插入}：接在相互作用端点与两条 $G$ 腿之间、且不能再切开自能或极化泡的图。不可约顶点 $\Lambda(k;q)$ 是全部此类插入之和。示意
+\begin{equation}
+  \Lambda
+  =1
+  +I\,G G\,\Lambda,
+\end{equation}
+$I=\delta\Sigma/\delta G$ 时与守恒近似一致。
+
+\subsection{双重计数警告}
+
+把 $\Lambda$ 写入自能时，\textbf{只能挂在有效相互作用的一端}；若两端都挂 $\Lambda$，会与已含在 $W$ 或 $\Sigma$ 中的图重复（Gross 图 28.12--28.13）。正确的示意结构是
+\begin{equation}
+  \Sigma
+  \sim
+  G\,W\,\Lambda
+  \quad\text{（一端顶点）},
+\end{equation}
+而非 $\Lambda G W\Lambda$。
+
+\subsection{部分求和的选择}
+
+\begin{itemize}
+  \item \textbf{环图}：长程库仑、等离激元、GMB；
+  \item \textbf{梯子图}：短程强排斥、低密气、顶点修正主导；
+  \item \textbf{骨架自洽}：$\Sigma[G]$、$W[\Pi]$、$\Lambda$ 联立迭代。
+\end{itemize}
+何种最优取决于力程与能标。Ward 恒等式把 $q\to0$ 的 $\Lambda$ 与 $\partial G^{-1}/\partial\mu$ 相连，保证电荷守恒，并衔接微观 Landau 参数。

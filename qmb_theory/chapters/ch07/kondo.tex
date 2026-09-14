@@ -4,44 +4,52 @@ Gross 第 34 章用费米液体语言讨论磁杂质：电阻极小、Kondo 温�
 
 \subsection{现象}
 
-纯金属低温 $\rho\sim T^5$（电声）。掺入稀磁杂质（Fe、Mn 等）后，$\rho(T)$ 出现极小；$T_{\min}$ 随杂质浓度 $n_i$ 变化，极小深度 $\propto n_i$。这超出简单势能散射。
+纯金属低温 $\rho\sim T^5$（电声）。掺入稀磁杂质后，$\rho(T)$ 出现极小；$T_{\min}$ 与极小深度随杂质浓度 $n_i$ 变化。简单势能散射（Born）给不出随降温上升的电阻。
 
-\subsection{Kondo 的对数}
+\subsection{Kondo 哈密顿量与二阶对数}
 
-交换
 \begin{equation}
   H_K
   =\sum_{\mathbf{k}\sigma}\xi_{\mathbf{k}}c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma}
   +J\,\mathbf{S}\cdot\mathbf{s}(0),
 \end{equation}
-$J>0$ 为反铁磁。二阶自旋翻转过程因费米海 Pauli 阻塞产生
+$J>0$ 为反铁磁，$\mathbf{s}(0)$ 为原点处传导电子自旋密度。考虑自旋翻转散射 $k\sigma\to k'\sigma'$：二阶过程可经中间态 $k''$，费米海的占据/空态限制使能量积分出现
+\begin{equation}
+  \int_{-D}^{D}\mathrm{d}\xi\,
+  \frac{f(\xi)}{\omega-\xi}
+  \sim
+  \ln\frac{D}{|\omega|}.
+\end{equation}
+从而有效耦合
 \begin{equation}
   J_{\mathrm{eff}}(\omega)
   =J+J^2 N(0)\ln(D/|\omega|)+\cdots.
+\label{eq:Jeff}
 \end{equation}
-电阻
+电阻在 Born 级 $\propto |J_{\mathrm{eff}}|^2$，
 \begin{equation}
   \rho(T)
   \approx
   \rho_0
   \bigl[1+2J N(0)\ln(D/T)+\cdots\bigr]^2
 \end{equation}
-随降温上升，与电声 $T^5$ 相加即给出极小。对数在
+随降温上升；与电声 $T^5$ 相加即给出极小。对数在
 \begin{equation}
-  T_K\sim D\exp\bigl(-1/JN(0)\bigr)
+  T_K\sim D\exp\bigl(-1/(J N(0))\bigr)
 \end{equation}
-处发散，微扰崩溃。
+处使 $J_{\mathrm{eff}}$ 形式上发散，微扰崩溃——需重整化群或数值方法。
 
-\subsection{低能费米液体}
+\subsection{低能费米液体（Nozi\`eres）}
 
-$T\ll T_K$ 时杂质自旋被传导电子单态屏蔽，固定点是\textbf{局域费米液体}（Nozi\`eres）：
+$T\ll T_K$ 时杂质自旋被传导电子单态屏蔽，固定点是\textbf{局域费米液体}：
 \begin{itemize}
-  \item 费米面相移 $\delta=\pi/2$（幺正极限），$s$ 波共振；
-  \item 比热、磁化率由同一 Wilson 比 $R=\pi^2 k_B^2\chi/(3\mu_B^2\gamma)=2$ 联系；
-  \item $\Delta\rho(T)\propto (T/T_K)^2$。
+  \item 费米面相移 $\delta_\sigma=\pi/2$（幺正极限，$s$ 波）；
+  \item 比热系数 $\gamma$ 与磁化率 $\chi$ 由 Wilson 比
+  $R=\pi^2 k_B^2\chi/(3\mu_B^2\gamma)=2$ 联系；
+  \item 电阻修正 $\Delta\rho(T)\propto(T/T_K)^2$（费米液体 $T^2$ 律）。
 \end{itemize}
-Anderson 模型在 $U\to\infty$、深能级极限经 Schrieffer--Wolff 变换化为 Kondo。完整温度标度需数值重整化群；费米液体只控制红外。
+Anderson 模型在 $U\to\infty$、深局域能级极限经 Schrieffer--Wolff 变换化为 Kondo：$J\sim |V_{hyb}|^2/|\varepsilon_d|$。
 
 \begin{note}
-Gross 强调：即便强关联杂质，低能仍可能用少数 Landau 参数描述。这与第 7 章“准粒子是普适红外语言”的主题一致。
+Gross 强调：即便强关联杂质，红外仍可用少数 Landau 型参数描述。这与“准粒子是普适低能语言”的主题一致。
 \end{note}

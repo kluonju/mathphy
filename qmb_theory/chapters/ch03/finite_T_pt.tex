@@ -1,8 +1,25 @@
 \section{有限温度微扰论}
 
-Gross 第 29 章把零温图技术推广到有限 $T$：用密度矩阵/配分函数代替真空期望，Matsubara 频率自然出现。
+Gross 第 29 章把零温图技术推广到有限 $T$：用巨正则密度算符代替真空期望，Matsubara 频率自然出现。
 
-\subsection{从配分函数出发}
+\subsection{巨正则平均}
+
+精确本征态 $|\Psi_i\rangle$ 能量 $E_i$、粒子数 $N_i$。巨正则概率
+\begin{equation}
+  P_i
+  =\frac{e^{-\beta(E_i-\mu N_i)}}{Z_G},
+  \qquad
+  Z_G
+  =\mathrm{Tr}\,e^{-\beta(H-\mu N)}.
+\end{equation}
+Bloch 密度算符 $\rho_G=e^{-\beta(H-\mu N)}$，任意可观测量
+\begin{equation}
+  \langle A\rangle
+  =\frac{\mathrm{Tr}(\rho_G A)}{\mathrm{Tr}\,\rho_G}.
+\end{equation}
+无扰平均记为 $\langle\,\cdot\,\rangle_0$（$H\to H_0$）。例如自由费米子 $\langle n_{\mathbf{k}}\rangle_0=f(\xi_{\mathbf{k}})$。
+
+\subsection{从配分函数到图}
 
 \begin{equation}
   Z
@@ -14,8 +31,8 @@ Gross 第 29 章把零温图技术推广到有限 $T$：用密度矩阵/配分�
   \Bigr)
   \Bigr\rangle_0.
 \end{equation}
-展开后 Wick 收缩给出虚时图；对时间积分等价于 Matsubara 频率守恒。连通图指数化后，$\Omega-\Omega_0=-\beta^{-1}\ln(Z/Z_0)$ 等于连通真空图之和。
+展开后 Wick 收缩给出虚时图；对虚时积分等价于 Matsubara 频率守恒。连通图指数化后，$\Omega-\Omega_0=-\beta^{-1}\ln(Z/Z_0)$ 等于连通真空图之和。
 
 \subsection{与零温的对应}
 
-$\beta\to\infty$ 且化学势固定在能隙内时，Matsubara 和变为实频积分，连锁集群回到 Goldstone。有限 $T$ 的优势是：无需绝热开关即可定义热力学势，并自然包含热激发（费米/玻色分布）。实践中第 3 章 Matsubara 规则已覆盖计算层面；此处强调概念来源是配分函数而非真空振幅。
+$\beta\to\infty$ 且化学势固定在能隙内时，Matsubara 和变为实频积分，连锁集群回到 Goldstone。有限 $T$ 无需绝热开关即可定义热力学势，并自然包含热激发。实践中第 3 章 Matsubara 规则已覆盖计算；此处强调概念来源是配分函数而非真空振幅。

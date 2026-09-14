@@ -2,59 +2,51 @@
 
 \subsection{微扰展开的图示}
 
-把相互作用 $H_{\mathrm{int}}$ 按 Dyson 级数展开后，每一项用 Wick 定理变成 $G_0$ 线与相互作用顶点的乘积。用图表示：
+把 $U_I$ 或 $S(\beta)$ 按 Dyson 级数展开后，每一项用 Wick 定理变成 $G_0$ 线与相互作用顶点的乘积。用图表示：
 \begin{itemize}
-  \item 有向实线：自由传播子 $G_0$；
-  \item 虚线或波浪线：相互作用（瞬时库仑线、声子线等）；
-  \item 顶点：守恒量（电荷、动量、自旋）流入流出平衡。
+  \item 有向实线：自由传播子 $G_0$（向上粒子、向下空穴）；
+  \item 虚线或波浪线：相互作用（瞬时库仑、声子等）；
+  \item 顶点：动量、频率、自旋守恒。
 \end{itemize}
-每个图对应一个可计算的积分/求和表达式，并带有组合因子与费米子符号。
 
-\subsection{连通图与真空图}
+\subsection{零温规则要点（Gross / Fetter--Walecka）}
 
-热力学势与基态能移主要由连通真空图贡献；单粒子格林函数的修正来自带有两个外腿的连通图。忽略非连通部分可避免对体积因子的重复计数，并使“强度量”的图求和结构更清晰。
+\begin{enumerate}
+  \item 每条 $G_0$ 线：$\mathrm{i}G_0(k)$（约定随教材；注意 $\mathrm{i}$ 的位置）；
+  \item 每条相互作用：$ -\mathrm{i}v_{\mathbf{q}}$（或等价约定）；
+  \item 每个顶点：$(2\pi)^4\delta^{(4)}(\sum k)$；
+  \item 内部动量：$\int\mathrm{d}^4k/(2\pi)^4$；
+  \item 每个费米圈：额外 $(-1)$；等时线取 $t\to t^+$；
+  \item 对称因子：图的自同构群阶的倒数。
+\end{enumerate}
+有限温：把 $\int\mathrm{d}\omega/2\pi$ 换成 $\beta^{-1}\sum_n$，并把 $G_0(\omega)$ 换成 $\mathcal{G}_0(\mathrm{i}\omega_n)$（见 Matsubara 规则节）。
 
-\subsection{连锁集群定理}
+\subsection{连通图与连锁集群}
 
-有限温度微扰展开中，配分函数
+热力学势与基态能移由连通真空图决定；单粒子 $G$ 的修正来自带两条外腿的连通图。连锁集群：
 \begin{equation}
-  Z=Z_0
-  \Bigl\langle
-  T_\tau\exp\Bigl(-\int_0^\beta H_{\mathrm{int}}(\tau)\,\mathrm{d}\tau\Bigr)
-  \Bigr\rangle_0
-\end{equation}
-的图求和包含不连通真空泡。\textbf{连锁集群定理}（linked-cluster theorem）断言
-\begin{equation}
+  \langle\Phi_0|U|\Phi_0\rangle
+  =\exp\bigl(\langle\Phi_0|U|\Phi_0\rangle_{\ell}\bigr),
+  \qquad
   \ln(Z/Z_0)
-  =\text{全部连通真空图之和},
+  =\text{连通真空图}.
 \end{equation}
-从而巨势 $\Omega=-k_BT\ln Z$ 对体积严格可加。这是施均仁讲义微扰论章节的核心结构定理之一。
-
-\subsection{Hugenholtz 图}
-
-对密度--密度型瞬时相互作用，常把直接与交换顶点合并，用粗点表示反对称化相互作用，得到 Hugenholtz 图：图更少、对称因子更清晰，与标准 Feynman 图一一对应。
 
 \subsection{自能图}
 
-单粒子不可约图的和定义为自能 $\Sigma$。最低阶（一阶）对密度-密度相互作用给出 Hartree 与 Fock 贡献：
-\begin{itemize}
-  \item Hartree：闭合密度泡与另一条传播线通过相互作用相连；
-  \item Fock：交换型连接，体现 Pauli 原理。
-\end{itemize}
-更高阶包含屏蔽、顶点修正等过程。
-
-\begin{example}[二阶自能示意]
-对短程相互作用，二阶自能常含“日出”（sunset）图等，积分形式示意性地写作
+1PI 图之和为 $\Sigma$。一阶：Hartree（密度泡）与 Fock（交换）。二阶短程常含日落图
 \begin{equation}
   \Sigma^{(2)}(k)
   \sim
   \sum_{k_1k_2}
   |V|^2\,
-  G_0(k_1)G_0(k_2)G_0(k-k_1+k_2),
+  G_0(k_1)G_0(k_2)G_0(k-k_1+k_2).
 \end{equation}
-具体动量/频率标记依所用绘景（实频或 Matsubara）而定。
-\end{example}
 
-\subsection{读图的物理直觉}
+\subsection{Hugenholtz 图}
 
-图不仅是计算工具，也是过程叙事：哪条线表示粒子、哪条表示空穴、何时发射玻色子、何时发生交换散射。训练读图能力，有助于判断哪些过程在低能或长波极限下主导。
+对瞬时密度--密度相互作用，把直接与交换顶点合并为反对称化粗点，图更少、对称因子更清晰。
+
+\begin{note}
+图既是计算处方，也是过程叙事：哪条线是粒子/空穴、何时交换动量。读图能力决定能否判断长波/低能主导过程。
+\end{note}

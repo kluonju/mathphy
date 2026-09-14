@@ -1,0 +1,43 @@
+\section{平移不变体系的二次量子化哈密顿量}
+
+Gross 第 5 章把“平面波 + 动量守恒相互作用”写成标准二次量子化形式，是 jellium、Hubbard（动量空间）与后续图技术的共同出发点。
+
+\subsection{动能}
+
+单粒子本征态取平面波（箱归一化 $L^d$），
+\begin{equation}
+  H_0
+  =\sum_{\mathbf{k}\sigma}
+  \varepsilon_{\mathbf{k}}
+  c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}\sigma},
+  \qquad
+  \varepsilon_{\mathbf{k}}=\frac{\hbar^2k^2}{2m}.
+\end{equation}
+
+\subsection{二体相互作用}
+
+动量空间矩阵元只依赖动量转移时，
+\begin{equation}
+\begin{aligned}
+  V
+  &=\frac{1}{2L^d}
+  \sum_{\mathbf{k}\mathbf{p}\mathbf{q}}
+  \sum_{\sigma\sigma'}
+  v_{\mathbf{q}}
+  c_{\mathbf{k}+\mathbf{q},\sigma}^\dagger
+  c_{\mathbf{p}-\mathbf{q},\sigma'}^\dagger
+  c_{\mathbf{p}\sigma'}
+  c_{\mathbf{k}\sigma}.
+\end{aligned}
+\label{eq:V_transl}
+\end{equation}
+库仑 $v_{\mathbf{q}}=4\pi e^2/q^2$（三维，$q\neq0$）；jellium 中 $q=0$ 被均匀正电背景抵消，见 \eqref{eq:jelliumH}。接触相互作用 $v_{\mathbf{q}}=U$ 即 Hubbard 的动量形式。
+
+\subsection{为何重要}
+
+\begin{enumerate}
+  \item 总动量守恒：真空图与自能图的外线动量规则简单；
+  \item $G=G(\mathbf{k},\omega)$、$\Pi=\Pi(\mathbf{q},\omega)$ 只依赖少数变量；
+  \item 粒子--空穴激发、等离激元、Cooper 对都在此运动学下分类。
+\end{enumerate}
+后文 jellium、GMB、RPA 均默认 \eqref{eq:V_transl}。

@@ -1,10 +1,10 @@
 \section{粒子与空穴算符}
 
-Gross 第 19 章把 Wick 定理建立在相对费米海的粒子/空穴算符上。这比“对任意真空收缩”更贴近固体物理的语言。
+Gross 第 19 章把 Wick 定理建立在相对费米海的粒子/空穴算符上，比“对任意真空收缩”更贴近固体物理语言。
 
 \subsection{定义}
 
-取无扰基态为填满的费米海 $|\Phi_0\rangle$，单粒子能级以 $\varepsilon_F$ 为界。定义
+取无扰基态为填满的费米海 $|\Phi_0\rangle$。定义
 \begin{equation}
 \begin{aligned}
   a_{\mathbf{k}}&=c_{\mathbf{k}},
@@ -18,12 +18,11 @@ Gross 第 19 章把 Wick 定理建立在相对费米海的粒子/空穴算符上
 \end{aligned}
 \label{eq:ph_ops}
 \end{equation}
-前者为粒子算符，后者为空穴算符。
 则
 \begin{equation}
-  a_{\mathbf{k}}|\Phi_0\rangle=b_{\mathbf{k}}|\Phi_0\rangle=0,
+  a_{\mathbf{k}}|\Phi_0\rangle=b_{\mathbf{k}}|\Phi_0\rangle=0:
 \end{equation}
-即 $|\Phi_0\rangle$ 是粒子--空穴真空。$a$ 与 $b$ 相互反对易（作用在不同轨道）。
+$|\Phi_0\rangle$ 是粒子--空穴真空。$a$ 与 $b$ 作用于不同轨道，相互反对易。
 
 \subsection{自由哈密顿量}
 
@@ -33,7 +32,7 @@ Gross 第 19 章把 Wick 定理建立在相对费米海的粒子/空穴算符上
   +\sum_{k>k_F}\xi_{\mathbf{k}}a_{\mathbf{k}}^\dagger a_{\mathbf{k}}
   +\sum_{k<k_F}|\xi_{\mathbf{k}}|b_{\mathbf{k}}^\dagger b_{\mathbf{k}},
 \end{equation}
-$\xi_{\mathbf{k}}=\varepsilon_{\mathbf{k}}-\mu$。激发能 $=$ 粒子能量之和 $+$ 空穴能量之和（空穴能量为 $\mu-\varepsilon_{\mathbf{k}}>0$）。
+$\xi_{\mathbf{k}}=\varepsilon_{\mathbf{k}}-\mu$。任意中间态激发能 $=$ 粒子能量之和 $+$ 空穴能量之和，正是 Goldstone 分母的来源。
 
 \subsection{场算符的分解}
 
@@ -41,27 +40,18 @@ $\xi_{\mathbf{k}}=\varepsilon_{\mathbf{k}}-\mu$。激发能 $=$ 粒子能量之�
   \psi(\mathbf{r})
   =\psi^{(+)}(\mathbf{r})+\psi^{(-)}(\mathbf{r}),
 \end{equation}
-$\psi^{(+)}$ 含空穴产生（$k<k_F$ 的 $b^\dagger$），$\psi^{(-)}$ 含粒子湮灭（$k>k_F$ 的 $a$）。相互作用绘景中
+$\psi^{(+)}$ 含空穴产生（$k<k_F$ 的 $b^\dagger$），$\psi^{(-)}$ 含粒子湮灭（$k>k_F$ 的 $a$）。相互作用绘景中（见 \eqref{eq:c_I}）
 \begin{equation}
   a_{\mathbf{k}}(t)=a_{\mathbf{k}}e^{-i\xi_{\mathbf{k}}t},
   \qquad
   b_{\mathbf{k}}(t)=b_{\mathbf{k}}e^{-i|\xi_{\mathbf{k}}|t}.
 \end{equation}
 
-\subsection{正规序与收缩}
+\subsection{正规序、收缩与 Wick}
 
-粒子/空穴算符乘积的正规序 $N(\cdots)$ 把所有 $a^\dagger,b^\dagger$ 移到左边。收缩定义为
-\begin{equation}
-  \overline{A B}
-  =T(AB)-N(AB),
-\end{equation}
-非零收缩只有
+正规序 $N(\cdots)$ 把所有 $a^\dagger,b^\dagger$ 移到左边。收缩 $\overline{AB}=T(AB)-N(AB)$ 为 $c$-数；非零者即
 \begin{equation}
   \overline{a_{\mathbf{k}}(t)a_{\mathbf{p}}^\dagger(t')}
   =\delta_{\mathbf{k}\mathbf{p}}\theta(t-t')e^{-i\xi_{\mathbf{k}}(t-t')},
 \end{equation}
-以及空穴的 $\theta(t'-t)$ 项。这正是自由 $G_0$ 的粒子/空穴分解。Wick 定理：编序乘积 $=$ 全部完全收缩 $+$ 含正规序的部分；对真空期望只留完全收缩。
-
-\begin{note}
-图中向下的空穴线与向上的粒子线，即来自此分解。等时线必须规定 $t'\to t^+$ 以免占据数歧义。
-\end{note}
+以及空穴的 $\theta(t'-t)$ 项。Wick 定理：编序乘积 $=$ 全部完全收缩 $+$ 含正规序项；真空期望只留完全收缩。这直接给出自由 $G_0$ 的粒子/空穴分解，并解释图中“向下空穴线 / 向上粒子线”。等时线必须规定 $t'\to t^+$ 以免占据数歧义。

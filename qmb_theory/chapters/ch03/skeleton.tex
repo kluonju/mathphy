@@ -2,11 +2,15 @@
 
 Gross 第 25 章：把自能图分成骨架（skeleton），再用全 $G$ 穿衣，得到自洽微扰论，并把 HF 重新解释为最低阶骨架。
 
-\subsection{骨架}
+\subsection{骨架的定义}
 
-若一个不可约自能图在去掉外腿后，内部不再含自能插入，则称为骨架。例如一阶 Hartree、Fock 是骨架；在 Fock 的 $G_0$ 线上再插一个泡则不是骨架。
+若一个 1PI 自能图在去掉外腿后，内部不再含自能插入（即内部传播线都是“骨架线”，不在其上再挂 $\Sigma$ 泡），则称为骨架。例如：
+\begin{itemize}
+  \item 一阶 Hartree、Fock 是骨架；
+  \item 在 Fock 的某条 $G_0$ 上再插一个自能泡，则不是骨架（该图已含在“穿衣 $G$ 的一阶 Fock”中）。
+\end{itemize}
 
-\subsection{穿衣}
+\subsection{穿衣规则}
 
 对每个骨架，把内部所有 $G_0$ 换成全 $G$，并对全部骨架求和：
 \begin{equation}
@@ -15,12 +19,27 @@ Gross 第 25 章：把自能图分成骨架（skeleton），再用全 $G$ 穿衣
   \Sigma_{\mathrm{skel}}[G].
 \label{eq:skeleton}
 \end{equation}
-再与 Dyson 方程 $G^{-1}=G_0^{-1}-\Sigma[G]$ 联立，即自洽微扰论。这与 Luttinger--Ward $\Phi$ 泛函 $\Sigma=\delta\Phi/\delta G$ 一致：$\Phi$ 的骨架真空图导数给出骨架自能。
+再与 Dyson 方程 $G^{-1}=G_0^{-1}-\Sigma[G]$ 联立，即自洽微扰论。这与 Luttinger--Ward 泛函一致：$\Phi[G]$ 的骨架真空图满足 $\Sigma=\delta\Phi/\delta G$。
 
-\subsection{HF 作为最低阶}
+\subsection{HF 作为最低阶骨架}
 
-只保留一阶骨架并用全 $G$（实际即占据数自洽）的平面波/轨道，回到 HF。更高阶骨架给出关联：二阶日落图、GW（环穿衣）等。守恒近似要求所用骨架来自同一 $\Phi$。
+只保留一阶骨架并用全 $G$（占据数由自洽 $G$ 的谱决定）即回到 HF：
+\begin{equation}
+  \Sigma^{\mathrm{HF}}(\mathbf{x},\mathbf{x}')
+  =\delta(\mathbf{x}-\mathbf{x}')v_{\mathrm{H}}[n]
+  -v_{\mathrm{x}}[\rho],
+\end{equation}
+$\rho$ 由 $G$ 的等时极限给出。因此 HF 不是“另一套理论”，而是骨架展开的第一项。
+
+\subsection{更高阶}
+
+\begin{itemize}
+  \item 二阶日落（sunset）图：短程关联；
+  \item GW：环穿衣，$W=v/(1-v\Pi[G])$，$\Sigma=iGW$；
+  \item 梯子：低密、硬核。
+\end{itemize}
+守恒要求所用骨架来自同一 $\Phi$；随意混用不同阶的 $\Sigma$ 与 $\Gamma$ 会破坏连续方程。
 
 \begin{example}[与非自洽的差别]
-$\Sigma[G_0]$ 计算便宜，但热力学关系（如粒子数 $=-\partial\Omega/\partial\mu$）与谱之和规则容易破坏。$\Sigma[G]$ 迭代更贵，通常更一致。
+$\Sigma[G_0]$ 计算便宜，但 $n=-\partial\Omega/\partial\mu$、谱之和规则等容易破坏。$\Sigma[G]$ 迭代更贵，通常更一致。实践中常折中：部分自洽（只更新 $G$ 的准粒子部分）等。
 \end{example}

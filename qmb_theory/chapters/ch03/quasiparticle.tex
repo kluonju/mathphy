@@ -9,11 +9,11 @@ Gross 第 26 章问：相互作用体系的 $G(\mathbf{k},t)$ 在何时仍像“
   =\theta(t)\theta(k-k_F)e^{-i\xi_{\mathbf{k}}t}
   -\theta(-t)\theta(k_F-k)e^{-i\xi_{\mathbf{k}}t}.
 \end{equation}
-单一频率 $\xi_{\mathbf{k}}$，寿命无限。
+单一频率 $\xi_{\mathbf{k}}$，寿命无限。Fourier 后 $G_0^R=1/(\omega-\xi_{\mathbf{k}}+i0^+)$。
 
-\subsection{相互作用：极点近似}
+\subsection{Lehmann 与极点近似}
 
-Lehmann 表示在 $\mathbf{k}$ 固定时是许多 $\delta$ 峰之和。若谱权重在 $\omega=\varepsilon_{\mathbf{k}}^*$ 附近形成尖锐峰，可写
+精确谱表示把 $G$ 写成许多 $\delta(\omega-E_m+E_n)$ 之和。若在 $\omega=\varepsilon_{\mathbf{k}}^*$ 附近形成尖锐峰，可写
 \begin{equation}
   G^R(\mathbf{k},\omega)
   \approx
@@ -27,14 +27,16 @@ $G_{\mathrm{inc}}$ 为平滑本底。时域
   G(\mathbf{k},t)
   \sim
   -i Z_{\mathbf{k}}
-  e^{-i\varepsilon_{\mathbf{k}}^* t-\Gamma_{\mathbf{k}}|t|}.
+  e^{-i\varepsilon_{\mathbf{k}}^* t-\Gamma_{\mathbf{k}}|t|}
+  \qquad(|t|\text{ 不太大}).
 \end{equation}
+物理含义：
 \begin{itemize}
-  \item $\varepsilon_{\mathbf{k}}^*=\xi_{\mathbf{k}}+\mathrm{Re}\,\Sigma(\mathbf{k},\varepsilon_{\mathbf{k}}^*)$：重整化色散（极化云改动能）；
-  \item $Z_{\mathbf{k}}=\bigl[1-\partial_\omega\mathrm{Re}\Sigma\bigr]^{-1}$：相干权重，$0<Z\le1$；
-  \item $\Gamma_{\mathbf{k}}=-Z\mathrm{Im}\,\Sigma$：衰宽，寿命 $\tau=1/(2\Gamma)$。
+  \item $\varepsilon_{\mathbf{k}}^*=\xi_{\mathbf{k}}+\mathrm{Re}\,\Sigma(\mathbf{k},\varepsilon_{\mathbf{k}}^*)$：极化云重整化的色散；
+  \item $Z_{\mathbf{k}}=\bigl[1-\partial_\omega\mathrm{Re}\Sigma\bigr]^{-1}\in(0,1]$：相干权重（从裸粒子到准粒子的重叠）；
+  \item $\Gamma_{\mathbf{k}}=-Z\,\mathrm{Im}\,\Sigma$：衰宽，$\tau=1/(2\Gamma)$。
 \end{itemize}
-HF 电子是 $Z=1$、$\Gamma=0$ 但 $\varepsilon_{\mathbf{k}}$ 已被交换孔重整的“准粒子”。费米液体要求在费米面 $\Gamma\sim(\varepsilon^*)^2\to0$，因而存在任意长寿命的激发。
+HF 电子是 $Z=1$、$\Gamma=0$ 但色散已被交换孔重整的极端准粒子。费米液体要求费米面 $\Gamma\sim(\varepsilon^*)^2\to0$，故存在任意长寿命激发。
 
 \subsection{与 Dyson / Schwinger 本征问题}
 
@@ -44,4 +46,8 @@ HF 电子是 $Z=1$、$\Gamma=0$ 但 $\varepsilon_{\mathbf{k}}$ 已被交换孔�
   -\int\mathrm{d}\mathbf{r}'\,\Sigma(\mathbf{r},\mathbf{r}',\omega)\varphi(\mathbf{r}')
   =0
 \end{equation}
-在复频极点处给出 Dyson 轨道（Gross 引 Schwinger）。其本征值对应 $E_{N\pm1}-E_N$，振幅对应 $\langle N|\psi|N\pm1\rangle$。准粒子图景成立，当且仅当这些极点靠近实轴且 $Z$ 不太小。
+在复频极点处给出 Dyson 轨道。本征值对应 $E_{N\pm1}-E_N$，振幅对应 $\langle N|\psi|N\pm1\rangle$。准粒子图景成立，当且仅当这些极点靠近实轴且 $Z$ 不太小（强关联 Mott 区 $Z\to0$，图景崩溃）。
+
+\begin{note}
+集体模式（等离激元）是 $G_2$ 或 $\chi$ 的极点，一般不是 $G$ 的极点。单粒子谱上的“卫星峰”可以是等离激元伴线，但那是 $A(\mathbf{k},\omega)$ 的附加结构，而非把等离激元当作准粒子色散。
+\end{note}

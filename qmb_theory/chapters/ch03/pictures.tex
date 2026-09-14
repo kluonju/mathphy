@@ -1,8 +1,8 @@
 \section{三种绘景}
 
-Gross--Runge--Heinonen《Many-Particle Theory》（以下简称 Gross）第 14 章强调：可观测量是矩阵元，因而可用随时间变化的幺正变换在不同“绘景”之间移动时间依赖，而不改变任何测量结果。
+Gross 第 14 章强调：可观测量是矩阵元，因而可用随时间变化的幺正变换在不同“绘景”之间移动时间依赖，而不改变任何测量结果。
 
-\subsection{绘景变换}
+\subsection{绘景变换的一般结构}
 
 若 $A(t)$ 对每一时刻幺正，则
 \begin{equation}
@@ -10,33 +10,83 @@ Gross--Runge--Heinonen《Many-Particle Theory》（以下简称 Gross）第 14 �
   \qquad
   O_A(t)=A(t)O A^\dagger(t)
 \end{equation}
-保持 $\langle\psi|O|\phi\rangle$ 不变。三种标准选择如下。
+保持 $\langle\psi|O|\phi\rangle$ 不变。三种标准选择如下（取 $\hbar=1$，参考时刻 $t_0=0$）。
 
 \subsection{薛定谔绘景}
 
-$A=1$。态满足 $i\partial_t|\psi_S\rangle=H_S(t)|\psi_S\rangle$，算符只在 $H$ 显含时才随时间变。
+$A=1$。态满足
+\begin{equation}
+  i\partial_t|\psi_S\rangle=H_S(t)|\psi_S\rangle,
+\end{equation}
+算符只在 $H$ 显含时间时才随 $t$ 变。时间演化算符
+\begin{equation}
+  U(t,t')
+  =T\exp\Bigl(-i\int_{t'}^{t}\mathrm{d}\tau\,H_S(\tau)\Bigr)
+\end{equation}
+满足 $i\partial_t U=H_S(t)U$、$U(t',t')=1$。
 
 \subsection{海森堡绘景}
 
-$A(t)=U^\dagger(t,t_0)$，态冻结为 $t_0$ 的态，算符
+取 $A(t)=U^\dagger(t,0)$。则态冻结为初态，$|\psi_H\rangle=|\psi_S(0)\rangle$，算符
 \begin{equation}
-  O_H(t)=U^\dagger(t,t_0)O_S U(t,t_0),
-  \qquad
-  i\partial_t O_H=[O_H,H_H]+\bigl(\partial_t O_S\bigr)_H.
+  O_H(t)=U^\dagger(t,0)O_S U(t,0).
 \end{equation}
-格林函数通常在此绘景定义。
+对 $t$ 求导并用 $i\partial_t U=HU$ 得海森堡方程
+\begin{equation}
+  i\partial_t O_H
+  =[O_H,H_H]
+  +\bigl(\partial_t O_S\bigr)_H.
+\end{equation}
+格林函数通常在此绘景用海森堡场算符定义。
 
 \subsection{相互作用（Dirac）绘景}
 
-把 $H=H_0+V$，令 $A(t)=e^{iH_0(t-t_0)}$（$\hbar=1$）。则
+把 $H=H_0+V$（$H_0$ 不含时），令
+\begin{equation}
+  |\psi_I\rangle
+  =e^{iH_0 t}|\psi_S\rangle,
+  \qquad
+  O_I(t)
+  =e^{iH_0 t}O_S e^{-iH_0 t}.
+\end{equation}
+则 $H_0$ 在薛定谔与相互作用绘景中相同：$[H_0]_I=H_0$。态的方程为
 \begin{equation}
   i\partial_t|\psi_I\rangle=V_I(t)|\psi_I\rangle,
   \qquad
   V_I(t)=e^{iH_0 t}V e^{-iH_0 t},
 \end{equation}
-算符按自由 $H_0$ 运动。时间演化算符
+算符则按自由 $H_0$ 运动：
+\begin{equation}
+  i\partial_t O_I=[O_I,H_0]+(\partial_t O_S)_I.
+\end{equation}
+相互作用绘景演化算符
 \begin{equation}
   U_I(t,t')
   =T\exp\Bigl(-i\int_{t'}^{t}\mathrm{d}\tau\,V_I(\tau)\Bigr)
+\label{eq:UI}
 \end{equation}
 是零温图展开与 Gell-Mann--Low 定理的出发点。
+
+\subsection{产生湮灭算符在相互作用绘景中的相位}
+
+设 $H_0=\sum_j\varepsilon_j c_j^\dagger c_j$。在任意占据数本征态 $|\phi_\alpha\rangle$ 上，
+\begin{equation}
+  H_0 c_j|\phi_\alpha\rangle
+  =(\varepsilon_j\text{ 已从该态扣除后的能量})
+  =(W_\alpha-\varepsilon_j)c_j|\phi_\alpha\rangle,
+\end{equation}
+因而
+\begin{equation}
+  c_j(t)_I
+  =e^{iH_0 t}c_j e^{-iH_0 t}
+  =c_j e^{-i\varepsilon_j t},
+  \qquad
+  c_j^\dagger(t)_I
+  =c_j^\dagger e^{i\varepsilon_j t}.
+\label{eq:c_I}
+\end{equation}
+（对 $|\phi_\alpha\rangle$ 逐态验证后由完备性推广到算符等式。）这是画 $G_0$ 线时“粒子线带 $e^{-i\xi t}$、空穴线带 $e^{-i|\xi|t}$”的来源。
+
+\begin{note}
+$H=H_0+V$ 的划分原则上任意，只要 $H_0$ 不含时。实践中 $H_0$ 取独立粒子（自由或 HF），$V$ 为剩余相互作用；否则 $V_I(t)$ 的 Wick 收缩不再对应简单的 $G_0$。
+\end{note}

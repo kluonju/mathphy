@@ -1,15 +1,16 @@
 \section{绝热打开与 Gell-Mann--Low 定理}
 
-Gross 第 18 章把相互作用从 $t=-\infty$ 以 $e^{-\varepsilon|t|}$ 缓慢打开，使微扰级数有定义，并给出与相互作用基态的联系。
+Gross 第 18 章把相互作用从 $t=-\infty$ 以 $e^{-\varepsilon|t|}$ 缓慢打开，使微扰级数有定义，并给出与相互作用本征态的联系。
 
 \subsection{绝热演化}
 
-令 $V_\varepsilon(t)=e^{-\varepsilon|t|}V$。从无扰基态 $|\Phi_0\rangle$（能量 $W_0$）出发，
+令 $V_\varepsilon(t)=e^{-\varepsilon|t|}V$。从无扰基态 $|\Phi_0\rangle$（能量 $W_0$）出发，相互作用绘景演化算符 \eqref{eq:UI} 给出
 \begin{equation}
   |\Psi_\varepsilon(0)\rangle
   =U_{\varepsilon}(0,-\infty)|\Phi_0\rangle.
 \end{equation}
-$\varepsilon\to0^+$ 对应无限缓慢打开。直接极限 $|\Psi_\varepsilon\rangle$ 含无穷相位 $e^{-i\varphi/\varepsilon}$，不能逐项存在。
+$\varepsilon\to0^+$ 对应无限缓慢打开。直接极限 $|\Psi_\varepsilon\rangle$ 含发散相位因子
+$\exp\bigl(-\mathrm{i}\int_{-\infty}^{0}\mathrm{d}t\,\Delta E\,e^{-\varepsilon|t|}\bigr)$，不能逐项存在。
 
 \subsection{Gell-Mann--Low 定理}
 
@@ -20,16 +21,26 @@ $\varepsilon\to0^+$ 对应无限缓慢打开。直接极限 $|\Psi_\varepsilon\r
   =\lim_{\varepsilon\to0}
   \frac{U_\varepsilon(0,-\infty)|\Phi_0\rangle}
   {\langle\Phi_0|U_\varepsilon(0,-\infty)|\Phi_0\rangle}
+\label{eq:GML}
 \end{equation}
 在微扰论每一阶都存在，则 $|\Psi\rangle$ 是完全哈密顿量 $H=H_0+V$ 的本征态。定理\textbf{不保证}它是基态，只保证是某个本征态。
 \end{theorem}
 
-\textbf{证明要点}：对 $|\Psi_\varepsilon\rangle$ 作用 $(H_0-W_0)$，把 $[H_0,U_\varepsilon]$ 写成对 $V_I$ 的时间导数；积分后得到
-$(H-E_\varepsilon)|\Psi_\varepsilon\rangle$ 正比于 $\varepsilon$ 的表面项。$\varepsilon\to0$ 且用分母去掉相位后，$H|\Psi\rangle=E|\Psi\rangle$。
+\subsection{证明要点（Gross 路线）}
 
-\subsection{与连锁集群}
+\begin{enumerate}
+  \item 对 $|\Psi_\varepsilon\rangle$ 作用 $(H_0-W_0)$。因 $H_0$ 与 $U_\varepsilon$ 不对易，
+  $[H_0,U_\varepsilon]$ 可通过 $i\partial_t V_I$ 写成对时间的全导数加上与 $V_I$ 的对易子。
+  \item 积分后得到
+  \begin{equation}
+    (H_0+V_\varepsilon(0)-E_\varepsilon)|\Psi_\varepsilon\rangle
+    =\varepsilon\times\text{（边界/表面项）}.
+  \end{equation}
+  \item $\varepsilon\to0$ 时右端趋于零；分母 $\langle\Phi_0|U_\varepsilon|\Phi_0\rangle$ 恰好消去整体相位，使 \eqref{eq:GML} 的极限若存在则满足 $H|\Psi\rangle=E|\Psi\rangle$。
+\end{enumerate}
 
-能量移动
+\subsection{能量移动与连通图}
+
 \begin{equation}
   \Delta E
   =\lim_{\varepsilon\to0}
@@ -38,8 +49,11 @@ $(H-E_\varepsilon)|\Psi_\varepsilon\rangle$ 正比于 $\varepsilon$ 的表面项
   }{
   \langle\Phi_0|U_\varepsilon(0,-\infty)|\Phi_0\rangle
   }
+  =\mathrm{i}
+  \partial_t
+  \ln\langle\Phi_0|U_\varepsilon(t,-\infty)|\Phi_0\rangle\Big|_{t=0}.
 \end{equation}
-只含连通真空图。这是零温图技术计算关联能（含下一节 GMB）的合法化声明。
+连锁集群定理保证只需连通真空图。这是零温图技术计算关联能（含 GMB）的合法化声明。
 
 \begin{note}
 若无扰基态与真基态正交（对称性破缺、能级交叉），绝热打开可能走到激发态。超导、磁有序需先选对平均场真空，再谈图。

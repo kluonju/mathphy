@@ -1,24 +1,49 @@
 \section{幺正变换与场算符}
 
-Gross 第 4 章：二次量子化中的基变换是 Fock 空间上的幺正变换，场算符把坐标与占据数表象连起来。
+Gross 第 4 章：二次量子化中的基变换是 Fock 空间上的幺正变换；场算符把坐标表象与占据数表象连起来。
 
 \subsection{单粒子基变换}
 
-若 $\phi'_\beta=\sum_\alpha\phi_\alpha U_{\alpha\beta}$，$U^\dagger U=1$，则
+若新轨道 $\phi'_\beta(\mathbf{r})=\sum_\alpha\phi_\alpha(\mathbf{r})U_{\alpha\beta}$，$U^\dagger U=1$，则产生湮灭算符
 \begin{equation}
   c'_\beta=\sum_\alpha U_{\alpha\beta}^* c_\alpha,
   \qquad
-  \{c'_\beta,c_\gamma'^\dagger\}=\delta_{\beta\gamma}.
+  \{c'_\beta,(c'_\gamma)^\dagger\}=\delta_{\beta\gamma}.
 \end{equation}
-这保持粒子数与对易关系，对应 Fock 空间幺正算符 $\mathcal{U}$，使 $c'=\mathcal{U}^\dagger c\,\mathcal{U}$。Bogoliubov 变换（BEC/BCS）是混合 $c$ 与 $c^\dagger$ 的线性正则变换，仍由某幺正 $\mathcal{U}$ 实现，但一般不守恒粒子数。
+存在 Fock 空间幺正算符 $\mathcal{U}$（由 $U$ 诱导），使 $c'=\mathcal{U}^\dagger c\,\mathcal{U}$。哈密顿量的矩阵元在新基下用 $c'$ 重写，物理不变。
+
+\subsection{Bogoliubov 变换}
+
+更一般的线性正则变换混合湮灭与产生，
+\begin{equation}
+  \alpha_{\mathbf{k}}
+  =u_{\mathbf{k}}c_{\mathbf{k}}+v_{\mathbf{k}}c_{-\mathbf{k}}^\dagger,
+  \qquad
+  |u|^2-|v|^2=1
+  \text{（玻色）或 }|u|^2+|v|^2=1\text{（费米）},
+\end{equation}
+仍保持对易/反对易关系，对应某幺正 $\mathcal{U}$，但一般\textbf{不}守恒粒子数。BEC 的位移变换 $b_0\to\sqrt{N_0}+b_0$ 与 BCS 的 $u,v$ 即此例。
 
 \subsection{场算符}
 
 \begin{equation}
-  \psi_\sigma(\mathbf{r})=\sum_\alpha\phi_\alpha(\mathbf{r})c_{\alpha\sigma}
+  \psi_\sigma(\mathbf{r})=\sum_\alpha\phi_\alpha(\mathbf{r})c_{\alpha\sigma},
+  \qquad
+  \{\psi_\sigma(\mathbf{r}),\psi_{\sigma'}^\dagger(\mathbf{r}')\}=\delta_{\sigma\sigma'}\delta(\mathbf{r}-\mathbf{r}').
 \end{equation}
-把任意单体算符写成 $\int\psi^\dagger a\psi$，与基选择无关。密度
+任意单体算符
 \begin{equation}
-  \hat n(\mathbf{r})=\sum_\sigma\psi_\sigma^\dagger(\mathbf{r})\psi_\sigma(\mathbf{r})
+  A^{(1)}
+  =\sum_{ij}
+  \langle i|a|j\rangle
+  c_i^\dagger c_j
+  =\sum_\sigma\int\mathrm{d}\mathbf{r}\,
+  \psi_\sigma^\dagger(\mathbf{r})
+  a(\mathbf{r})
+  \psi_\sigma(\mathbf{r}),
 \end{equation}
-的 Fourier 分量 $\hat n_{\mathbf{q}}$ 即第 6 讲（Gross 第 6 章）讨论的密度算符，是等离子体、线性响应与 $S(\mathbf{q})$ 的共同起点。
+与基选择无关。密度 $\hat n(\mathbf{r})=\sum_\sigma\psi_\sigma^\dagger\psi_\sigma$ 的 Fourier 分量即 Gross 第 6 章的密度算符，是等离子体、线性响应与 $S(\mathbf{q})$ 的共同起点。
+
+\begin{note}
+“二次量子化与表象无关”：先选便于求解 $H_0$ 的基（平面波、布洛赫、分子轨道），再用场算符写相互作用；图技术中的动量标签即来自该选择。
+\end{note}

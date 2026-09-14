@@ -1,33 +1,54 @@
 \section{时间无关微扰论与 Rayleigh--Schr\"odinger 级数}
 
-Gross 第 17 章先复习普通量子力学的定态微扰，再过渡到绝热/图技术。多体中 $H_0$ 取为独立粒子（HF 或自由费米气），$V$ 为剩余相互作用。
+Gross 第 17 章先复习定态微扰，再过渡到绝热/图技术。多体中 $H_0$ 取独立粒子，$V$ 为剩余相互作用。
 
-\subsection{能量与态的形式级数}
+\subsection{投影与形式解}
 
-非简并时，
+令 $P=|\Phi_0\rangle\langle\Phi_0|$，$Q=1-P$。本征方程 $(H_0+V)|\Psi\rangle=E|\Psi\rangle$ 在中间归一 $\langle\Phi_0|\Psi\rangle=1$ 下可写
+\begin{equation}
+  |\Psi\rangle
+  =|\Phi_0\rangle
+  +\frac{Q}{E-H_0}V|\Psi\rangle,
+  \qquad
+  E
+  =W_0+\langle\Phi_0|V|\Psi\rangle.
+\end{equation}
+迭代即得 Rayleigh--Schr\"odinger（RS）级数。非简并时展开到二阶：
 \begin{equation}
 \begin{aligned}
   E
-  &=E_0
+  &=W_0
   +\langle\Phi_0|V|\Phi_0\rangle
   +\sum_{n\neq0}
-  \frac{|\langle\Phi_n|V|\Phi_0\rangle|^2}{E_0-E_n^{(0)}}
+  \frac{|\langle\Phi_n|V|\Phi_0\rangle|^2}{W_0-W_n}
   +\cdots,\\
   |\Psi\rangle
   &=|\Phi_0\rangle
   +\sum_{n\neq0}
   |\Phi_n\rangle
-  \frac{\langle\Phi_n|V|\Phi_0\rangle}{E_0-E_n^{(0)}}
+  \frac{\langle\Phi_n|V|\Phi_0\rangle}{W_0-W_n}
   +\cdots.
 \end{aligned}
 \label{eq:RS}
 \end{equation}
-中间态 $|\Phi_n\rangle$ 是 $H_0$ 的粒子--空穴激发。分母为激发能 $\sum\varepsilon_p-\sum\varepsilon_h$。
+中间态 $|\Phi_n\rangle$ 是粒子--空穴激发；$W_0-W_n=\sum\varepsilon_h-\sum\varepsilon_p<0$。
 
 \subsection{与 Goldstone 图的对应}
 
-把矩阵元 $\langle\Phi_n|V|\Phi_0\rangle$ 画成相互作用线连接粒子/空穴线，并对时间（或能量分母）排序，即得 Goldstone 图。连锁集群保证只对连通图求和。红外发散（如电子气二阶直接项）表明必须对无穷子系列重求和（RPA/GMB），而不能逐阶截断 \eqref{eq:RS}。
+把 $\langle\Phi_n|V|\Phi_0\rangle$ 画成相互作用线连接粒子/空穴线，并对中间态能量分母排序，即得 Goldstone 图。连锁集群保证只对连通图求和：RS 中不连通项在高阶会与低阶相乘出现，指数化后被去掉。
+
+\subsection{红外问题：为何必须重求和}
+
+电子气二阶直接项
+\begin{equation}
+  E^{(2)}_{\mathrm{dir}}
+  \propto
+  \sum_{\mathbf{q}}
+  \frac{v_{\mathbf{q}}^2}{q}
+  \times\text{（相空间）}
+\end{equation}
+在小 $q$ 对数发散。这不是 RS 数学错误，而是长程未屏蔽涨落：必须对环图无穷求和（GMB/RPA），而不能在二阶截断 \eqref{eq:RS}。
 
 \begin{note}
-简并微扰（开壳层、对称性破缺）需先对角化简并子空间，或改用耦合簇/CI。这与 UHF 对称性困境同源。
+简并微扰（开壳层）需先对角化简并子空间。UHF 对称性破缺可理解为在更大变分空间里“选一个”简并方向。
 \end{note}

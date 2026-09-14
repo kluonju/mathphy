@@ -1,31 +1,51 @@
 \section{费米液体的输运与集体模}
 
-Gross 第 32 章：Landau 动力学方程给出零声、自旋波与输运弛豫。
+Gross 第 32 章：由 Landau 动力学方程导出零声，并讨论碰撞导致的输运系数。
 
 \subsection{无碰撞动力学}
 
+准粒子分布 $n_{\mathbf{p}}(\mathbf{r},t)$ 的守恒形式（无碰撞）为
 \begin{equation}
   \partial_t\delta n_{\mathbf{p}}
   +\mathbf{v}_{\mathbf{p}}\cdot\nabla_{\mathbf{r}}
-  \bigl(\delta n_{\mathbf{p}}-\tfrac{\partial n^0}{\partial\varepsilon}\delta\varepsilon_{\mathbf{p}}\bigr)
-  =0
-  \qquad\text{(collisionless)}.
+  \bigl(
+  \delta n_{\mathbf{p}}
+  -\frac{\partial n^0}{\partial\varepsilon_{\mathbf{p}}}
+  \delta\varepsilon_{\mathbf{p}}
+  \bigr)
+  =0,
 \label{eq:landau_kinetic}
 \end{equation}
-平面波解 $\propto e^{\mathrm{i}(\mathbf{q}\cdot\mathbf{r}-\omega t)}$，对 $F_0^s$ 主导的各向同性形变得到零声色散
+其中 $\delta\varepsilon_{\mathbf{p}}=\sum_{\mathbf{p}'}f_{\mathbf{p}\mathbf{p}'}\delta n_{\mathbf{p}'}$，$\mathbf{v}_{\mathbf{p}}=\nabla_{\mathbf{p}}\varepsilon_{\mathbf{p}}$。第二项中减去 $(\partial n^0/\partial\varepsilon)\delta\varepsilon$ 是因为局域平衡已按重整化能量重新填充。
+
+\subsection{零声色散}
+
+设 $\delta n\propto e^{i(\mathbf{q}\cdot\mathbf{r}-\omega t)}$，并只保留 $F_0^s$ 各向同性形变。令
 \begin{equation}
-  \frac{\omega}{qv_F}
-  =s,
+  \nu(\hat{\mathbf{p}})
+  =\delta n_{\mathbf{p}}\Big/\Bigl(-\frac{\partial n^0}{\partial\varepsilon}\Bigr),
   \qquad
-  \frac{s}{2}\ln\frac{s+1}{s-1}=1+\frac{1}{F_0^s}
-  \quad(F_0^s>0).
+  s=\frac{\omega}{q v_F}.
 \end{equation}
-$s>1$ 时模式位于粒子--空穴连续谱之上，无朗道阻尼。
+对费米面角积分后得
+\begin{equation}
+  \frac{s}{2}\ln\frac{s+1}{s-1}-1
+  =\frac{1}{F_0^s}
+  \qquad(F_0^s>0).
+\label{eq:zerosound}
+\end{equation}
+$s>1$ 的根位于粒子--空穴连续谱 $\omega<q v_F$ 之上，无朗道阻尼，称为\textbf{零声}（碰撞可忽略的高频/短波极限，$\omega\tau\gg1$）。$F_0^s\to0$ 时 $s\to1^+$，模式并入连续谱边缘。
 
-\subsection{有碰撞：黏滞与热导}
+\subsection{第一声与碰撞}
 
-把 \eqref{eq:landau_kinetic} 右端换成碰撞积分 $I[\delta n]$（费米黄金法则对准粒子散射）。近平衡展开得黏滞系数 $\eta\sim p_F^2\tau_{\eta}/m^*$、热导 $\kappa_T\sim C_V v_F^2\tau_T$。费米液体中 $\tau\sim T^{-2}$（相空间限制），故电阻率 $\rho\sim T^2$（若杂质可忽略）。
+当 $\omega\tau\ll1$，碰撞积分强迫局部热平衡，恢复流体力学：第一声速由压缩率决定，
+\begin{equation}
+  c_1^2
+  =\frac{v_F^2}{3}
+  \frac{1+F_0^s}{1+F_1^s/3}.
+\end{equation}
+黏滞 $\eta\sim p_F^2\tau_\eta/m^*$、热导 $\kappa_T\sim C_V v_F^2\tau_T$。费米液体相空间给出 $\tau\sim T^{-2}$，故纯净极限 $\rho\sim T^2$。
 
-\subsection{与微观响应的桥梁}
+\subsection{与微观响应}
 
-$F_\ell$ 可由微观 $\Gamma^\omega$（Landau 极限的顶点）投影得到；集体极点应与密度/自旋响应的 RPA+局域场描述在长波极限一致。这把第 5、7 章连成一体。
+$F_\ell$ 由微观 $\Gamma^\omega$ 投影得到；零声极点应与密度响应 $\chi(q,\omega)$ 在相应通道的集体极点一致。这把第 5 章 RPA/局域场与第 7 章 Landau 参数连成一体。

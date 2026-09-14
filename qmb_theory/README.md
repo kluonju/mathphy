@@ -34,12 +34,12 @@ xelatex main.tex
 | 章 | 内容 | 主要依据 |
 |----|------|----------|
 | 1 绪论 | 多体问题概述、理论发展 | 课程大纲 |
-| 2 二次量子化 | jellium、密度算符、玻色子、声子简正模、Fröhlich、相干态 | GV + Gross Ch3–6,12 + Mahan |
-| 3 格林函数 | 绘景、GML、RS/Goldstone、骨架、$G(k,\omega)$、GMB、BS、有限温 | Gross Ch14–29 + Mahan |
+| 2 二次量子化 | 全同粒子、平移不变 $H$、密度算符、声子、Fröhlich | GV + Gross Ch1–6,12 |
+| 3 格林函数 | GML、Goldstone、$W$/顶点、GMB、骨架、有限温 | Gross Ch14–29 + Mahan |
 | 4 HF 与 DFT | RHF/UHF 困境、交换自能、Slater/OEP、KS/LDA | Gross Ch7–10 + GV |
 | 5 线性响应 | 经典/量子等离、Lindhard/RPA/STLS、Kubo 电导 | Gross Ch11 + GV + Mahan |
 | 6 泛函积分 | 路径积分、虚时、相干态泛函积分 | 施均仁 Ch3 |
 | 7 有效作用量 | Landau 平衡/输运、微观极限、Kondo | Gross Ch30–34 + GV Ch8 |
-| 8 相变与 SSB | Landau、BEC、声子介导 $V_{\mathrm{eff}}$、BCS/Eliashberg | Gross Ch13 + 施均仁 + Mahan |
+| 8 相变与 SSB | Landau、BEC、声子 $V_{\mathrm{eff}}$、Cooper/BCS | Gross Ch13 + 施均仁 + Mahan |
 
 教材：Fabrizio, *A course in quantum many-body theory*, Springer, 2022.

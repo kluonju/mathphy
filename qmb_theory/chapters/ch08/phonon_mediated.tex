@@ -1,42 +1,71 @@
 \section{声子介导的有效相互作用}
 
-Gross 第 13 章用二阶微扰，从电--声哈密顿量导出电子之间的有效相互作用；在能量壳层附近可为吸引，从而触发 Cooper 不稳定性。
+Gross 第 13 章用二阶微扰，从电--声哈密顿量逐步导出电子之间的有效相互作用；在费米面附近可为吸引，从而触发 Cooper 不稳定性。
+
+\subsection{模型}
+
+取
+\begin{equation}
+  H
+  =H_{\mathrm{el}}+H_{\mathrm{ph}}+H_{\mathrm{ep}},
+\end{equation}
+其中 $H_{\mathrm{ep}}=\sum_{\mathbf{k}\mathbf{q}\sigma}M_{\mathbf{q}}
+c_{\mathbf{k}+\mathbf{q}\sigma}^\dagger c_{\mathbf{k}\sigma}
+(a_{\mathbf{q}}+a_{-\mathbf{q}}^\dagger)$（Fr\"ohlich；$|M_{\mathbf{q}}|^2$ 即前文 $|V_{\mathbf{q}}|^2$）。无扰真空取为无声子、电子占据给定组态。
 
 \subsection{单电子自能（二阶）}
 
-对状态 $c_{\mathbf{k}\sigma}^\dagger|\mathrm{vac}\rangle$，中间态发射声子后电子动量为 $\mathbf{k}+\mathbf{q}$，
+对状态 $|\mathbf{k}\sigma\rangle=c_{\mathbf{k}\sigma}^\dagger|\mathrm{vac}\rangle$，中间态为发射一个 $(\mathbf{q})$ 声子后电子到 $\mathbf{k}+\mathbf{q}$：
+\begin{equation}
+  |\mathrm{int}\rangle
+  =a_{\mathbf{q}}^\dagger c_{\mathbf{k}+\mathbf{q}\sigma}^\dagger|\mathrm{vac}\rangle,
+  \qquad
+  E_{\mathrm{int}}
+  =\xi_{\mathbf{k}+\mathbf{q}}+\omega_{\mathbf{q}}.
+\end{equation}
+二阶能量移动
 \begin{equation}
   (\Delta E)^{(2)}_{\mathbf{k}}
   =\sum_{\mathbf{q}}
-  \frac{|V_{\mathbf{q}}|^2}
+  \frac{|M_{\mathbf{q}}|^2}
   {\xi_{\mathbf{k}}-(\xi_{\mathbf{k}+\mathbf{q}}+\omega_{\mathbf{q}})}.
+\label{eq:polaron_shift}
 \end{equation}
-这重整化单电子色散（极化子移动）。
+这重整化单电子色散（极化子移动）。吸收声子的过程对 $T=0$ 真空不贡献（无热声子）。
 
-\subsection{两电子交换声子}
+\subsection{两电子：交换声子}
 
-对 $c_{\mathbf{k}\sigma}^\dagger c_{\mathbf{k}'\sigma'}^\dagger|\mathrm{vac}\rangle$，除各自自能外，还有交换一个动量 $\mathbf{q}$ 的声子的交叉项。它等价于一阶有效势
+对 $|\mathbf{k}\sigma,\mathbf{k}'\sigma'\rangle$，除各自 \eqref{eq:polaron_shift} 外，还有交叉中间态：一个电子发射 $\mathbf{q}$、另一个吸收。矩阵元非零要求动量匹配。该交叉项可改写为对有效势的一阶贡献：
 \begin{equation}
 \begin{aligned}
-  V_{\mathrm{eff}}(\mathbf{k},\mathbf{k}';\mathbf{q})
-  &=|V_{\mathbf{q}}|^2
+  &\langle\mathbf{k}+\mathbf{q},\mathbf{k}'-\mathbf{q}|
+  V_{\mathrm{eff}}|
+  \mathbf{k},\mathbf{k}'\rangle\\
+  &\quad=
+  |M_{\mathbf{q}}|^2
   \Biggl[
   \frac{1}{\xi_{\mathbf{k}}-(\xi_{\mathbf{k}+\mathbf{q}}+\omega_{\mathbf{q}})}
   +\frac{1}{\xi_{\mathbf{k}'}-(\xi_{\mathbf{k}'-\mathbf{q}}+\omega_{\mathbf{q}})}
-  \Biggr]\\
-  &\quad
-  +\cdots.
+  \Biggr].
 \end{aligned}
 \end{equation}
-在能量转移 $\omega\sim0$、且两电子都靠近费米面时，可化为
+若能量转移记为 $\omega$（把时间依赖/推迟结构恢复），并取两电子都在费米面附近，则合并为
 \begin{equation}
   V_{\mathrm{eff}}(\mathbf{q},\omega)
-  =\frac{2|V_{\mathbf{q}}|^2\omega_{\mathbf{q}}}
-  {\omega^2-\omega_{\mathbf{q}}^2},
+  =\frac{2|M_{\mathbf{q}}|^2\omega_{\mathbf{q}}}
+  {\omega^2-\omega_{\mathbf{q}}^2}.
 \label{eq:Veff_ph}
 \end{equation}
-（与用 $\mathcal{D}(\mathbf{q},\omega)$ 写出的结果同构）。当 $|\omega|<\omega_{\mathbf{q}}$ 时 $V_{\mathrm{eff}}<0$：\textbf{延迟吸引}。
+（与用声子传播子 $\mathcal{D}(\mathbf{q},\omega)$ 写出的 $-|M|^2\mathcal{D}$ 同构。）当 $|\omega|<\omega_{\mathbf{q}}$ 时 $V_{\mathrm{eff}}<0$：\textbf{延迟吸引}。恰在 $\varepsilon_F$ 上、$\omega\to0$ 时
+\begin{equation}
+  V_{\mathrm{eff}}(\mathbf{q},0)
+  =-\frac{2|M_{\mathbf{q}}|^2}{\omega_{\mathbf{q}}}.
+\end{equation}
 
 \subsection{与库仑的竞争}
 
-总有效相互作用 $\approx v_{\mathbf{q}}/\varepsilon(\mathbf{q},\omega)+V_{\mathrm{eff}}$。静态库仑被屏蔽后仍偏排斥，但在 Debye 窗口内声子吸引可占优，从而 $N(0)V>0$ 的 BCS 参数。这是第 8 章 Cooper/BCS 的微观输入；Eliashberg 则保留完整的 $\omega$ 依赖而不用瞬时 $V$。
+总有效相互作用 $\approx v_{\mathbf{q}}/\varepsilon(\mathbf{q},\omega)+V_{\mathrm{eff}}$。静态库仑被屏蔽后仍偏排斥，但在 Debye 窗口 $|\omega|\lesssim\omega_D$ 内声子吸引可占优，从而 $N(0)|V|>0$ 的 BCS 参数。Eliashberg 保留完整 $\omega$ 依赖而不用瞬时 $V$。
+
+\subsection{吸引不等于真空束缚}
+
+三维势阱中，吸引势须超过临界强度才形成双体束缚态。费米海上的 Cooper 问题不同：费米海的 Pauli 阻塞使散射振幅出现 $\ln$ 发散，\textbf{任意弱}吸引都产生不稳定性。因此“声子给出 $V_{\mathrm{eff}}<0$”只是必要条件；超导性来自 Cooper 对数，而非真空中的双电子束缚。

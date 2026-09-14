@@ -1,0 +1,22 @@
+\begin{tikzpicture}[>=Stealth, scale=1.25]
+  \draw[->] (-0.25,0) -- (2.55,0) node[right] {$x$};
+  \draw[->] (0,-0.25) -- (0,2.35) node[above] {$y$};
+  \def\R{2.05}
+  \draw[thick, blue!65!black,
+        decoration={markings, mark=at position 0.58 with {\arrow{>}}},
+        postaction=decorate]
+    (0,0) -- (\R,0);
+  \draw[thick, blue!65!black,
+        decoration={markings, mark=at position 0.50 with {\arrow{>}}},
+        postaction=decorate]
+    (\R,0) arc (0:45:\R);
+  \draw[thick, blue!65!black,
+        decoration={markings, mark=at position 0.42 with {\arrow{>}}},
+        postaction=decorate]
+    (45:\R) -- (0,0);
+  \draw[densely dotted] (0.45,0) arc (0:45:0.45);
+  \node[right] at (22:0.52) {\scriptsize $\pi/4$};
+  \node[below] at (0.95,0) {$R$};
+  \node at (28:\R+0.28) {$C_R$};
+  \node[above left] at (45:1.15) {$Re^{\imath\pi/4}$};
+\end{tikzpicture}

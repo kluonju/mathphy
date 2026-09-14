@@ -1,26 +1,43 @@
 \section{\texorpdfstring{$G(\mathbf{k},\omega)$}{G(k,omega)} 的谱结构与协变分析}
 
-Gross 第 24 章对单粒子传播子作动量--频率分析：极点、分支割线与重整化常数如何从自能读出。
+Gross 第 24 章对单粒子传播子作动量--频率分析：把坐标空间图 Fourier 变换到 $(k,\omega)$，并读出极点与分支割线。
+
+\subsection{Fourier 与顶点守恒}
+
+平移不变时
+\begin{equation}
+  G_{\alpha\beta}(x,y)
+  =\int\frac{\mathrm{d}^4k}{(2\pi)^4}
+  e^{-ik\cdot(x-y)}
+  G_{\alpha\beta}(k).
+\end{equation}
+每条相互作用线贡献 $v(\mathbf{q})$（瞬时则无频率依赖），每条 $G_0$ 贡献 $G_0(k)$。对内部顶点坐标积分产生四动量 $\delta$ 函数：每个顶点处 $\sum k_{\mathrm{in}}=\sum k_{\mathrm{out}}$。等时线的 $t\to t^+$ 在频率空间成为 $e^{i\omega 0^+}$ 收敛因子。
 
 \subsection{解析结构}
 
-推迟函数在上半平面解析。对均匀体系，
+推迟函数在上半平面解析：
 \begin{equation}
   G^R(\mathbf{k},\omega)
   =\frac{1}{\omega-\varepsilon_{\mathbf{k}}^0-\Sigma^R(\mathbf{k},\omega)}.
 \end{equation}
-若 $\Sigma=\Sigma'-\mathrm{i}\Sigma''$ 且 $\Sigma''$ 小，则近似极点
+若 $\Sigma=\Sigma'-i\Sigma''$ 且 $\Sigma''$ 小，则近似极点
 \begin{equation}
+\begin{aligned}
   E_{\mathbf{k}}
-  =\varepsilon_{\mathbf{k}}^0+\Sigma'(\mathbf{k},E_{\mathbf{k}}),
-  \qquad
+  &=\varepsilon_{\mathbf{k}}^0+\Sigma'(\mathbf{k},E_{\mathbf{k}}),\\
   Z_{\mathbf{k}}
-  =\Bigl(
+  &=\Bigl(
   1-\partial_\omega\Sigma'(\mathbf{k},\omega)\big|_{E_{\mathbf{k}}}
-  \Bigr)^{-1},
+  \Bigr)^{-1}.
+\end{aligned}
 \end{equation}
-谱函数 $A=Z\,\delta(\omega-E)+$ 非相干背景（分支割线）。费米液体要求 $\Sigma''(\omega)\propto\omega^2$ 在费米面附近，从而准粒子寿命 $\tau\sim1/\omega^2$。
+谱函数 $A(\mathbf{k},\omega)=-\frac{1}{\pi}\mathrm{Im}\,G^R$ 在极点附近呈 Lorentz 峰，权重 $Z$，外加非相干本底（分支割线）。费米液体要求 $\Sigma''(\omega)\propto\omega^2$（$\omega\to0$），从而 $\tau\sim1/\omega^2$。
 
-\subsection{协变/图的组织}
+\subsection{图的尺度分类}
 
-按外动量 $\mathbf{k}$ 与频率 $\omega$ 的“尺度”分类自能图：Hartree 只移动化学势；Fock 给出动量依赖；动力学屏蔽（GW）同时产生 $\omega$ 依赖与寿命。骨架展开 \eqref{eq:skeleton} 保证同一物理过程不被重复计数。实验上 ARPES 测 $A(\mathbf{k},\omega)$，隧道/光电子谱测积分态密度。
+\begin{itemize}
+  \item Hartree：只移动化学势（均匀气中常被抵消）；
+  \item Fock：给出动量依赖、静态 $\Sigma(\mathbf{k})$；
+  \item 动力学屏蔽（GW）：$\Sigma(\mathbf{k},\omega)$ 有虚部与寿命。
+\end{itemize}
+骨架展开 \eqref{eq:skeleton} 保证同一过程不被重复计数。ARPES 测 $A(\mathbf{k},\omega)$；积分态密度由隧道/光电子谱给出。
