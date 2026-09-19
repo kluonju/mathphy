@@ -1,0 +1,61 @@
+\begin{tikzpicture}[
+    font=\small,
+    setshape/.style={draw, thick, fill=gray!15},
+    elem/.style={circle, draw, fill, inner sep=1.35pt},
+    maparrow/.style={-{Stealth[length=1.15mm, width=1.05mm]}, thick},
+  ]
+  \newcommand{\drawsets}{%
+    \draw[setshape] (0,0) ellipse (0.58 and 1.26);
+    \draw[setshape] (2.32,0) ellipse (0.58 and 1.26);
+    \node[below] at (0,-1.40) {$A$};
+    \node[below] at (2.32,-1.40) {$B$};
+  }
+
+  % (a) injective, not surjective
+  \begin{scope}
+    \drawsets
+    \node at (1.16,1.62) {(a) injective};
+    \node[elem] (a1) at (0,0.52) {};
+    \node[elem] (a2) at (0,0) {};
+    \node[elem] (a3) at (0,-0.52) {};
+    \node[elem] (b1) at (2.32,0.72) {};
+    \node[elem] (b2) at (2.32,0.24) {};
+    \node[elem] (b3) at (2.32,-0.24) {};
+    \node[elem] (b4) at (2.32,-0.72) {};
+    \draw[maparrow] (a1.east) -- (b1.west);
+    \draw[maparrow] (a2.east) -- (b2.west);
+    \draw[maparrow] (a3.east) -- (b3.west);
+  \end{scope}
+
+  % (b) surjective, not injective
+  \begin{scope}[xshift=4.45cm]
+    \drawsets
+    \node at (1.16,1.62) {(b) surjective};
+    \node[elem] (c1) at (0,0.72) {};
+    \node[elem] (c2) at (0,0.24) {};
+    \node[elem] (c3) at (0,-0.24) {};
+    \node[elem] (c4) at (0,-0.72) {};
+    \node[elem] (d1) at (2.32,0.52) {};
+    \node[elem] (d2) at (2.32,0) {};
+    \node[elem] (d3) at (2.32,-0.52) {};
+    \draw[maparrow] (c1.east) -- (d1.west);
+    \draw[maparrow] (c2.east) to[bend left=14] (d2.west);
+    \draw[maparrow] (c3.east) to[bend right=14] (d2.west);
+    \draw[maparrow] (c4.east) -- (d3.west);
+  \end{scope}
+
+  % (c) bijective
+  \begin{scope}[xshift=8.90cm]
+    \drawsets
+    \node at (1.16,1.62) {(c) bijective};
+    \node[elem] (e1) at (0,0.52) {};
+    \node[elem] (e2) at (0,0) {};
+    \node[elem] (e3) at (0,-0.52) {};
+    \node[elem] (f1) at (2.32,0.52) {};
+    \node[elem] (f2) at (2.32,0) {};
+    \node[elem] (f3) at (2.32,-0.52) {};
+    \draw[maparrow] (e1.east) -- (f1.west);
+    \draw[maparrow] (e2.east) -- (f2.west);
+    \draw[maparrow] (e3.east) -- (f3.west);
+  \end{scope}
+\end{tikzpicture}

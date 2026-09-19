@@ -1,0 +1,8 @@
+% First-use typography and indexing.
+% Concepts appear in italic; acronyms appear in sans-serif.
+\newcommand{\term}[1]{\textit{#1}\index{#1}}
+\newcommand{\termidx}[2]{\textit{#1}\index{#2}}
+\newcommand{\termsub}[2]{\textit{#2}\index{#1!#2}}
+\newcommand{\acro}[1]{\textsf{#1}\index{#1}}
+\newcommand{\acrodef}[2]{\textit{#2} (\textsf{#1})\index{#2}\index{#1}}
+\newcommand{\idx}[1]{\index{#1}}

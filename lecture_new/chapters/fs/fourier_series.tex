@@ -21,17 +21,17 @@ Just as for vectors, a linearly independent function set can be orthogonalized. 
 \varphi_n=f_n-\sum_{j=1}^{n-1}
 \frac{(f_n,\varphi_j)}{(\varphi_j,\varphi_j)}\varphi_j.
 \end{equation}
-For an orthonormal set, the best finite expansion $f\approx\sum_{n=1}^N c_n\varphi_n$ has coefficients $c_n=(f,\varphi_n)$. Positivity of the squared error gives Bessel's inequality,
+For an orthonormal set, the best finite expansion $f\approx\sum_{n=1}^N c_n\varphi_n$ has coefficients $c_n=(f,\varphi_n)$. Positivity of the squared error gives \termidx{Bessel's inequality}{Bessel's inequality},
 \begin{equation}
 \sum_{n=1}^{\infty}|c_n|^2\leq\lVert f\rVert^2.
 \end{equation}
-An orthonormal set is complete when its finite expansions approximate every piecewise continuous function arbitrarily well in mean square. For a complete set, Bessel's inequality becomes Parseval's relation,
+An orthonormal set is \term{complete} when its finite expansions approximate every piecewise continuous function arbitrarily well in mean square. For a complete set, Bessel's inequality becomes \termidx{Parseval's relation}{Parseval's identity},
 \begin{equation}
 \sum_{n=1}^{\infty}c_n^*d_n=(f,g),
 \qquad c_n=(f,\varphi_n),\quad d_n=(g,\varphi_n).
 \end{equation}
 
-This is exactly the same idea as projecting a vector onto an orthonormal basis in Euclidean space: the Fourier coefficients are the components of the function in the chosen basis, and orthogonality makes the components independent.
+This is exactly the same idea as projecting a vector onto an orthonormal basis in Euclidean space: the \term{Fourier coefficients} are the components of the function in the chosen basis, and orthogonality makes the components independent.
 
 \subsection{Origin in heat flow}
 
@@ -53,7 +53,7 @@ A_n=\frac{2}{\ell}\int_0^\ell f(x)\sin\left(\frac{n\pi x}{\ell}\right)\,dx.
 
 \subsection{Fourier theorem}
 
-For a function of period $2\ell$, the Fourier series is
+For a function of period $2\ell$, the \term{Fourier series} is
 \begin{equation}
 f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}
 \left[a_n\cos\left(\frac{n\pi x}{\ell}\right)+b_n\sin\left(\frac{n\pi x}{\ell}\right)\right],
@@ -69,7 +69,7 @@ The trigonometric basis is orthogonal on one period:
 (\cos nx,\cos mx)=\pi\delta_{mn},\qquad
 (\sin nx,\cos mx)=0
 \end{equation}
-for $m,n\neq0$. This orthogonality is the reason the coefficients can be extracted by simple integration. The Dirichlet conditions require finitely many discontinuities and extrema in each period. At a jump $x_0$, the series converges to $[f(x_0^-)+f(x_0^+)]/2$. Odd functions have sine series; even functions have cosine series.
+for $m,n\neq0$. This orthogonality is the reason the coefficients can be extracted by simple integration. The \term{Dirichlet conditions} require finitely many discontinuities and extrema in each period. At a jump $x_0$, the series converges to $[f(x_0^-)+f(x_0^+)]/2$. Odd functions have sine series; even functions have cosine series.
 
 The equivalent complex form is
 \begin{equation}

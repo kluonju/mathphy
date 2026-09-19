@@ -1,6 +1,6 @@
 \section{Examples of partial differential equations}
 
-A partial differential equation relates an unknown function of several independent variables to its partial derivatives. The independent variables often include position $\mathbf{x}$ and time $t$, but they may instead be spatial coordinates, momenta, or parameters. Some PDEs describe a single scalar field $u$, whereas others are systems for vector- or tensor-valued fields. Equations without a time variable are called stationary; equations containing time derivatives describe evolution.
+A \acrodef{PDE}{partial differential equation} relates an unknown function of several independent variables to its partial derivatives. The independent variables often include position $\mathbf{x}$ and time $t$, but they may instead be spatial coordinates, momenta, or parameters. Some PDEs describe a single scalar field $u$, whereas others are systems for vector- or tensor-valued fields. Equations without a time variable are called stationary; equations containing time derivatives describe evolution.
 
 The same equation can occur in very different settings. Conversely, changing physical assumptions may lead to a different PDE for the same broad phenomenon. The examples below provide a working catalogue before the detailed derivations in the rest of this chapter.
 
@@ -12,7 +12,7 @@ u_t+c u_x=0
 \end{equation}
 describes a profile transported at constant speed $c$. Its solutions have the form $u(x,t)=g(x-ct)$, so the profile moves without changing shape. It can model the concentration of a tracer carried by a uniform one-dimensional flow.
 
-More generally, a conserved density $\rho(\mathbf{x},t)$ with flux $\mathbf{J}$ satisfies the continuity equation
+More generally, a conserved density $\rho(\mathbf{x},t)$ with flux $\mathbf{J}$ satisfies the \term{continuity equation}
 \begin{equation}
 \rho_t+\nabla\cdot\mathbf{J}=s,
 \end{equation}
@@ -24,7 +24,7 @@ The divergence term measures net outward flux from a small volume. This balance-
 
 \subsection{Waves and elasticity}
 
-The scalar wave equation in $d$ spatial dimensions is
+The scalar \term{wave equation} in $d$ spatial dimensions is
 \begin{equation}
 u_{tt}-c^2\nabla^2u=0.
 \end{equation}

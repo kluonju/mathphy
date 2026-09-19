@@ -8,7 +8,7 @@ f(x)=\lim_{\ell\to\infty}\sum_{n=-\infty}^{\infty} c_n e^{\mathrm{i}\omega_n x},
 \qquad
 c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}f(x)e^{-\mathrm{i}\omega_n x}\,dx.
 \end{equation}
-As $\ell\to\infty$, the sum turns into an integral, and the coefficient becomes frequency density. This is the essence of the Fourier integral. Using the symmetric convention,
+As $\ell\to\infty$, the sum turns into an integral, and the coefficient becomes frequency density. This is the essence of the \term{Fourier integral}. Using the symmetric convention, the \term{Fourier transform} and its inverse are
 \begin{align}
 F(\omega)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-\mathrm{i}\omega x}\,dx,\\
 f(x)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}F(\omega)e^{\mathrm{i}\omega x}\,d\omega.
@@ -48,7 +48,7 @@ If $\mathcal{F}[f]=F$, then
 \mathcal{F}[f(x-x_0)]&=e^{-\mathrm{i}\omega x_0}F(\omega),\\
 \mathcal{F}[e^{\mathrm{i}\omega_0x}f(x)]&=F(\omega-\omega_0).
 \end{align}
-The derivative theorem is especially important: differentiation in physical space corresponds to multiplication by $\mathrm{i}\omega$ in frequency space. The same idea converts many linear ODEs and PDEs into algebraic problems in Fourier space. For convolution $(f_1*f_2)(x)=\int_{-\infty}^{\infty}f_1(s)f_2(x-s)\,ds$, the symmetric normalization gives $\mathcal{F}[f_1*f_2]=\sqrt{2\pi}F_1F_2$.
+The derivative theorem is especially important: differentiation in physical space corresponds to multiplication by $\mathrm{i}\omega$ in frequency space. The derivative theorem is especially important: differentiation in physical space corresponds to multiplication by $\mathrm{i}\omega$ in frequency space. The same idea converts many linear \acrodef{ODE}{ordinary differential equations} and PDEs into algebraic problems in Fourier space. For \term{convolution} $(f_1*f_2)(x)=\int_{-\infty}^{\infty}f_1(s)f_2(x-s)\,ds$, the symmetric normalization gives $\mathcal{F}[f_1*f_2]=\sqrt{2\pi}F_1F_2$.
 
 \subsection{Higher-dimensional transforms}
 

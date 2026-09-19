@@ -2,9 +2,9 @@
 
 \subsection{Origin and basic concept}
 
-The delta function describes quantities concentrated at a point, such as a point mass, a point charge, or an impulsive force. A mass $m$ uniformly distributed on $[-\ell/2,\ell/2]$ has density $\rho_\ell(x)=m\,\operatorname{rect}(x/\ell)/\ell$. As $\ell\to0$, it remains of total mass $m$ while becoming concentrated at the origin. This limiting object is represented by $m\delta(x)$. Intuitively, $\delta(x)$ is zero except at the origin, where it becomes singular in such a way that its integral is one. It is a generalized function rather than an ordinary function, but it is extremely useful in physics and engineering because it cleanly models concentrated sources. In the same way a narrow pulse approaches a point impulse, the delta function is the idealized limit of a very sharp, very tall distribution of unit area.
+The \term{delta function} describes quantities concentrated at a point, such as a point mass, a point charge, or an impulsive force. A mass $m$ uniformly distributed on $[-\ell/2,\ell/2]$ has density $\rho_\ell(x)=m\,\operatorname{rect}(x/\ell)/\ell$. As $\ell\to0$, it remains of total mass $m$ while becoming concentrated at the origin. This limiting object is represented by $m\delta(x)$. Intuitively, $\delta(x)$ is zero except at the origin, where it becomes singular in such a way that its integral is one. It is a generalized function rather than an ordinary function, but it is extremely useful in physics and engineering because it cleanly models concentrated sources. In the same way a narrow pulse approaches a point impulse, the delta function is the idealized limit of a very sharp, very tall distribution of unit area.
 
-The cleanest construction starts from a normalized Gaussian. With $f_\sigma(x)=(2\pi\sigma^2)^{-1/2}e^{-x^2/(2\sigma^2)}$ one has $\int f_\sigma = 1$ for every $\sigma>0$. The Fourier transform $\widetilde f_\sigma(k)=e^{-\sigma^2k^2/2}$ stays finite as $\sigma\to 0$ and tends to $1$, while $f_\sigma$ vanishes pointwise at every $x\neq 0$. The limiting object is the Dirac delta distribution $\delta(x)$; mathematicians (Schwartz, 1950) prefer the word \emph{distribution} and call it a Dirac mass (despite its dimensions being $\mathrm{m}^{-1}$).
+The cleanest construction starts from a normalized Gaussian. With $f_\sigma(x)=(2\pi\sigma^2)^{-1/2}e^{-x^2/(2\sigma^2)}$ one has $\int f_\sigma = 1$ for every $\sigma>0$. The Fourier transform $\widetilde f_\sigma(k)=e^{-\sigma^2k^2/2}$ stays finite as $\sigma\to 0$ and tends to $1$, while $f_\sigma$ vanishes pointwise at every $x\neq 0$. The limiting object is the \term{Dirac delta} distribution $\delta(x)$; mathematicians (Schwartz, 1950) prefer the word \term{distribution} and call it a Dirac mass (despite its dimensions being $\mathrm{m}^{-1}$).
 
 The delta distribution is characterized by
 \begin{equation}
@@ -12,7 +12,7 @@ The delta distribution is characterized by
 \qquad
 \int_{-\infty}^{\infty}f(x)\,\delta(x-a)\,dx=f(a).
 \end{equation}
-The second identity is the sifting property: the delta function picks out the value of the function at the singular point. It is the defining property; one does not assign numerical values to $\delta(x)$ itself, only to its integrals against smooth test functions.
+The second identity is the \term{sifting property}: the delta function picks out the value of the function at the singular point. It is the defining property; one does not assign numerical values to $\delta(x)$ itself, only to its integrals against smooth test functions.
 
 \subsection{Limiting representations}
 

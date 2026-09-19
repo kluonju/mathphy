@@ -1,6 +1,6 @@
 \section{Initial, boundary, and stationary conditions}
 
-A PDE alone expresses a local physical law, not a complete physical situation. A solution is a sufficiently smooth function which possesses all derivatives required by the equation and makes it an identity in its domain. Finding the equation is therefore only the first part of a physical problem: one must still identify which solution represents the actual system. There are usually infinitely many solutions of the PDE alone, so a unique physical solution normally requires data describing the state initially and the way the system interacts with its boundary. A PDE together with these supplementary data is called an initial-boundary-value problem.
+A PDE alone expresses a local physical law, not a complete physical situation. A solution is a sufficiently smooth function which possesses all derivatives required by the equation and makes it an identity in its domain. Finding the equation is therefore only the first part of a physical problem: one must still identify which solution represents the actual system. There are usually infinitely many solutions of the PDE alone, so a unique physical solution normally requires data describing the state initially and the way the system interacts with its boundary. A PDE together with these supplementary data is called an \acrodef{IBVP}{initial-boundary-value problem}.
 
 For a string fixed at both ends, the wave equation \eqref{eq:ch04-wave} is supplemented by
 \begin{equation}
@@ -24,9 +24,9 @@ Thus the desired solution satisfies the PDE in the open space-time strip $0<x<l$
 
 Three common boundary conditions have distinct physical interpretations. In a general spatial domain $\Omega$, they may be written as
 \begin{align}
-u|_{\partial\Omega}&=g &&\text{Dirichlet condition: the field value is prescribed},\\
-\frac{\partial u}{\partial n}\bigg|_{\partial\Omega}&=h &&\text{Neumann condition: normal flux or slope is prescribed},\\
-\alpha u+\beta\frac{\partial u}{\partial n}&=r &&\text{Robin condition: value and flux are coupled}.
+u|_{\partial\Omega}&=g &&\text{\term{Dirichlet} condition: the field value is prescribed},\\
+\frac{\partial u}{\partial n}\bigg|_{\partial\Omega}&=h &&\text{\term{Neumann} condition: normal flux or slope is prescribed},\\
+\alpha u+\beta\frac{\partial u}{\partial n}&=r &&\text{\term{Robin} condition: value and flux are coupled}.
 \end{align}
 The first type is also called a Dirichlet condition. It fixes the field itself, as in a string attached to an immovable support or a body held at a prescribed temperature. For a string, a Neumann condition $u_x(0,t)=0$ describes a free end, because the transverse component of the tension vanishes there. More generally,
 \begin{equation}

@@ -13,7 +13,7 @@ In $\mathbb{R}^n$, the coordinates of a point are $(x_1,x_2,\ldots,x_n)$, and a 
 The entry in row $i$ and column $j$ of a matrix $M$ is denoted by $M_{ij}$.
 
 \subsection{Einstein summation convention}
-The Einstein summation convention suppresses an explicit summation sign: an index repeated exactly twice in a term is summed over its full range. Thus
+The \term{Einstein summation convention} suppresses an explicit summation sign: an index repeated exactly twice in a term is summed over its full range. Thus
 \begin{equation}
 \mathbf{u}\cdot\mathbf{v}=\sum_{i=1}^{n}u_iv_i=u_iv_i,
 \end{equation}
@@ -21,14 +21,14 @@ and matrix multiplication becomes
 \begin{equation}
 [AB]_{ij}=\sum_{k=1}^{n}A_{ik}B_{kj}=A_{ik}B_{kj}.
 \end{equation}
-An index that is summed over is a \emph{dummy index}; an index that occurs once in each term is a \emph{free index}. Dummy indices may be renamed, while free indices must remain unchanged. For example,
+An index that is summed over is a \term{dummy index}; an index that occurs once in each term is a \term{free index}. Dummy indices may be renamed, while free indices must remain unchanged. For example,
 \begin{equation}
 A_{ik}B_{kl}C_{lj}=A_{im}B_{ml}C_{lj},
 \end{equation}
 but $A_{ik}B_{kk}C_{kj}$ is invalid because $k$ occurs three times. As a practical rule, each index should occur once or twice in any term, never more.
 
 \subsection{Kronecker delta and Levi-Civita symbol}
-The Kronecker delta is the component form of the identity matrix:
+The \term{Kronecker delta} is the component form of the identity matrix:
 \begin{equation}
 \delta_{ij}=\begin{cases}
 1, & i=j,\\
@@ -45,7 +45,7 @@ Its useful contraction identities are
 \end{equation}
 Proofs of these contractions are collected in Exercise~\ref{ex:index-delta}.
 
-In three dimensions, the completely antisymmetric Levi-Civita symbol is
+In three dimensions, the completely antisymmetric \term{Levi-Civita symbol} is
 \begin{equation}
 \varepsilon_{ijk}=\begin{cases}
 +1, & (i,j,k)\text{ is an even permutation of }(1,2,3),\\

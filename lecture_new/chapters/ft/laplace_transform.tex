@@ -2,14 +2,14 @@
 
 \subsection{Definition and existence}
 
-The Fourier transform is powerful for spectral analysis, but functions such as $e^{\alpha t}$ with $\alpha>0$ are not absolutely integrable and therefore have no ordinary Fourier transform. Initial-value problems also concern $t\geq0$. Multiplying a causal function by $e^{-\sigma t}$ supplies a convergence factor and leads to the Laplace transform
+The Fourier transform is powerful for spectral analysis, but functions such as $e^{\alpha t}$ with $\alpha>0$ are not absolutely integrable and therefore have no ordinary Fourier transform. Initial-value problems also concern $t\geq0$. Multiplying a causal function by $e^{-\sigma t}$ supplies a convergence factor and leads to the \term{Laplace transform}
 \begin{equation}
 \bar f(p)=\mathcal{L}\{f(t)\}=\int_0^\infty e^{-pt}f(t)\,dt,
 \qquad p=\sigma+\mathrm{i}\omega.
 \end{equation}
 The function $f$ is the original and $\bar f$ its transform. A sufficient existence condition is that $f$ and its derivative be piecewise continuous on every finite subinterval of $[0,\infty)$ and that $|f(t)|\leq Me^{\sigma_0t}$ for some constants $M$ and $\sigma_0$. The number $\sigma_0$ is called an abscissa of convergence. In the half-plane $\operatorname{Re}p>\sigma_0$, $\bar f$ is analytic and tends to zero as $|p|\to\infty$.
 
-The inverse transform is the Bromwich integral
+The inverse transform is the \term{Bromwich integral}
 \begin{equation}
 f(t)=\mathcal{L}^{-1}[\bar f(p)]
 =\frac{1}{2\pi\mathrm{i}}\int_{\sigma-\mathrm{i}\infty}^{\sigma+\mathrm{i}\infty}

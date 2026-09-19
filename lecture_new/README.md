@@ -17,16 +17,20 @@ This directory contains a simple book template where each chapter is kept in its
 
 ## To compile the whole book
 
-Run:
+The notes use XeLaTeX, BibTeX, and MakeIndex:
 
 ```bash
-pdflatex main.tex
+xelatex main.tex
+bibtex main
+python3 scripts/build_index.py main.idx main.ind
+xelatex main.tex
+xelatex main.tex
 ```
 
 or, more robustly:
 
 ```bash
-latexmk -pdf main.tex
+latexmk -xelatex -bibtex main.tex
 ```
 
 ## To build only one chapter at a time
