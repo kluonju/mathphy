@@ -556,39 +556,39 @@ $$
   
 
 
-  \begin{frame}{例题}
-    \small
-    \only<1>{
-\begin{example}
-    计算 
-    $$
-    I = \oint_\gamma \frac{e^z}{z^n}, 
-    $$
-    其中, $n\in \mathbb{Z}$, $\gamma$为满足$|z| = 1$的圆.
-\end{example}
-}
-\onslide<2->{
-\begin{solution}
-    我们需要计算复变函数 \( \frac{e^z}{z^n} \) 在单位圆 \( \gamma \) 上的闭合积分，
-    其中 \( n \in \mathbb{Z} \).
-函数 \( f(z) = \frac{e^z}{z^n} \) 的奇点位于 \( z = 0 \).
-当 \( n \leq 0 \) 时，\( z = 0 \) 是解析点, 根据柯西定理可得积分为零.
-当 \( n \geq 1 \) 时，\( z = 0 \) 是奇点, 根据柯西公式(\ref{eq:cauchy_formula_nth_derivative})可计算积分,
-$$ I = \frac{2 \pi \imath }{(n-1)!}$$
+%   \begin{frame}{例题}
+%     \small
+%     \only<1>{
+% \begin{example}
+%     计算 
+%     $$
+%     I = \oint_\gamma \frac{e^z}{z^n}, 
+%     $$
+%     其中, $n\in \mathbb{Z}$, $\gamma$为满足$|z| = 1$的圆.
+% \end{example}
+% }
+% \onslide<2->{
+% \begin{solution}
+%     我们需要计算复变函数 \( \frac{e^z}{z^n} \) 在单位圆 \( \gamma \) 上的闭合积分，
+%     其中 \( n \in \mathbb{Z} \).
+% 函数 \( f(z) = \frac{e^z}{z^n} \) 的奇点位于 \( z = 0 \).
+% 当 \( n \leq 0 \) 时，\( z = 0 \) 是解析点, 根据柯西定理可得积分为零.
+% 当 \( n \geq 1 \) 时，\( z = 0 \) 是奇点, 根据柯西公式(\ref{eq:cauchy_formula_nth_derivative})可计算积分,
+% $$ I = \frac{2 \pi \imath }{(n-1)!}$$
 
-综上所述，积分的结果为：
+% 综上所述，积分的结果为：
 
-\[
-I = \oint_\gamma \frac{e^z}{z^n} \, dz =
-\begin{cases}
-\frac{2\pi i}{(n-1)!}, & \text{如果 } n \geq 1, \\
-0, & \text{如果 } n \leq 0.
-\end{cases}
-\]
+% \[
+% I = \oint_\gamma \frac{e^z}{z^n} \, dz =
+% \begin{cases}
+% \frac{2\pi i}{(n-1)!}, & \text{如果 } n \geq 1, \\
+% 0, & \text{如果 } n \leq 0.
+% \end{cases}
+% \]
 
-\end{solution}
-}
-\end{frame}
+% \end{solution}
+% }
+% \end{frame}
 
 
 \begin{frame}{例题}
@@ -670,7 +670,7 @@ $|\zeta - z|$的极小值为$\delta$, $C$的长度为$s$,则
     \item 用刘维尔定理(反证)说明$P$至少有一个根;
     \item 因式分解后降次,归纳得到恰好$n$个根.
 \end{enumerate}
-关键在于第一步: 若处处无根,则$1/P$是有界的完全函数(entire function,即在全复平面解析),从而为常数,矛盾. 下面把``有界''写清楚.
+若处处无根,则$1/P$是有界且复平面解析, 根据刘维尔定理, 从而为常数,矛盾.
 \end{frame}
 
 \begin{frame}{代数基本定理: 至少有一根}
