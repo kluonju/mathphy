@@ -9,7 +9,7 @@ Since $n^{-2}=\int_0^\infty te^{-nt}\,dt$, summing the geometric series inside t
 =\int_0^\infty\frac{t}{e^t-1}\,dt
 =\frac{\pi^2}{6}.
 \end{equation}
-The same result follows from the Parseval identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$: its nonzero complex Fourier coefficients have magnitude $1/|n|$.
+The same result follows from the Parseval identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$, derived in the preceding chapter: its nonzero complex Fourier coefficients have magnitude $1/|n|$.
 
 \subsection{Evaluating definite integrals}
 
@@ -28,28 +28,6 @@ Applying the same idea to two cosine transforms yields, for $a,b>0$,
 \int_0^\infty\frac{\cos(at)-\cos(bt)}{t}\,dt=\ln\frac{b}{a}.
 \end{equation}
 This kind of integral identity is useful because many impossible-looking integrals become transparent once one recognizes the correct transform pair.
-
-\begin{note}
-Use Parseval's identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$:
-\begin{equation}
-\sum_{n=-\infty}^{\infty}|c_n|^2
-=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,dx.
-\end{equation}
-For $n\neq0$,
-\begin{equation}
- c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}xe^{-inx}\,dx=\frac{(-1)^n}{n}\,\mathrm{i},
-\end{equation}
-so $|c_n|^2=1/n^2$. Therefore,
-\begin{equation}
-2\sum_{n=1}^{\infty}\frac{1}{n^2}
-=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,dx
-=\frac{\pi^2}{3},
-\end{equation}
-which gives
-\begin{equation}
-\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
-\end{equation}
-\end{note}
 
 \subsection{Solving an initial-value problem}
 

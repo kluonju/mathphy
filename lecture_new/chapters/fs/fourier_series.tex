@@ -91,3 +91,25 @@ f(x)=\frac{2\ell}{\pi}\sum_{n=1}^{\infty}
 At $x=\ell/2$, this gives the Leibniz series $\pi/4=1-1/3+1/5-\cdots$. Applying Parseval's identity to a square wave similarly gives $\sum_{n=0}^{\infty}(2n+1)^{-2}=\pi^2/8$. The underlying idea is again the same: any sufficiently regular periodic function can be decomposed into a sum of elementary harmonics, and the coefficients control the weight of each harmonic.
 \end{example}
 
+\begin{note}
+Use Parseval's identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$:
+\begin{equation}
+\sum_{n=-\infty}^{\infty}|c_n|^2
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,dx.
+\end{equation}
+For $n\neq0$,
+\begin{equation}
+ c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}xe^{-inx}\,dx=\frac{(-1)^n}{n}\,\mathrm{i},
+\end{equation}
+so $|c_n|^2=1/n^2$. Therefore,
+\begin{equation}
+2\sum_{n=1}^{\infty}\frac{1}{n^2}
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,dx
+=\frac{\pi^2}{3},
+\end{equation}
+which gives
+\begin{equation}
+\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+\end{equation}
+\end{note}
+

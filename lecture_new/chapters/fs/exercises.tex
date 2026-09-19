@@ -1,0 +1,46 @@
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+The following exercises collect the main proofs and applications of the Fourier-series identities introduced in this chapter.
+
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\begin{enumerate}
+    \item\label{ex:fourier-orthogonality} Verify the orthogonality relations
+    \begin{equation*}
+        \int_{-\pi}^{\pi}\sin(mx)\sin(nx)\,dx=\pi\delta_{mn},\qquad
+        \int_{-\pi}^{\pi}\cos(mx)\cos(nx)\,dx=\pi\delta_{mn},\qquad
+        \int_{-\pi}^{\pi}\sin(mx)\cos(nx)\,dx=0.
+    \end{equation*}
+    Use them to derive the coefficients $a_n$ and $b_n$ for the Fourier series of a $2\pi$-periodic function.
+
+    \item\label{ex:fourier-even-odd} Show that if $f$ is even, then $b_n=0$ for all $n$, while if $f$ is odd, then $a_n=0$ for all $n$. Explain how the parity of $f$ determines the Fourier basis that appears in the expansion.
+
+    \item\label{ex:fourier-parseval} Prove Parseval's identity in the complex form
+    \begin{equation*}
+        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,dx
+        =\sum_{n=-\infty}^{\infty}|c_n|^2,
+    \end{equation*}
+    and then derive the real-form identity
+    \begin{equation*}
+        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,dx
+        =\frac{a_0^2}{4}+\frac12\sum_{n=1}^{\infty}(a_n^2+b_n^2).
+    \end{equation*}
+
+    \item\label{ex:fourier-sawtooth} Derive the periodic sawtooth expansion
+    \begin{equation*}
+        f(x)=\frac{2\ell}{\pi}\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}\sin\left(\frac{n\pi x}{\ell}\right)
+    \end{equation*}
+    for $f(x)=x$ on $(-\ell,\ell)$, and show that setting $x=\ell/2$ yields the Leibniz formula for $\pi/4$.
+
+    \item\label{ex:fourier-heat} Starting from the heat equation on $[0,\ell]$ with zero Dirichlet boundary conditions,
+    \begin{equation*}
+        T_t=T_{xx},\qquad T(0,t)=T(\ell,t)=0,
+    \end{equation*}
+    use separation of variables to derive the modes $T_n(x,t)=A_n\sin(n\pi x/\ell)e^{-n^2\pi^2 t/\ell^2}$. Explain why the long-time limit is $T\to0$.
+
+    \item\label{ex:basel-series} Use Parseval's identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$ to derive the Basel sum
+    \begin{equation*}
+        \sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+    \end{equation*}
+    Explain the role of the Fourier coefficients in the computation.
+\end{enumerate}
