@@ -34,11 +34,11 @@ u(x,t)
 
 \subsection{Finite interval with Neumann ends}
 
-As a second illustration take a forced string on $[0,l]$ with free ends and vanishing initial data,
+As a second illustration take a forced string on $[0,\ell]$ with free ends and vanishing initial data,
 \begin{equation}
 \begin{gathered}
-u_{tt}-a^2 u_{xx}=A\cos\frac{\pi x}{l}\sin\omega t,\\
-u_x\big|_{x=0}=u_x\big|_{x=l}=0,
+u_{tt}-a^2 u_{xx}=A\cos\frac{\pi x}{\ell}\sin\omega t,\\
+u_x\big|_{x=0}=u_x\big|_{x=\ell}=0,
 \qquad
 u\big|_{t=0}=u_t\big|_{t=0}=0.
 \end{gathered}
@@ -47,20 +47,20 @@ The impulse problem is the homogeneous wave equation with $G|_{t=\tau+0}=0$, $G_
 \begin{equation}
 \begin{aligned}
 G(x,t;\xi,\tau)
-&=\frac{t-\tau}{l}
+&=\frac{t-\tau}{\ell}
 +\frac{2}{\pi a}\sum_{n=1}^{\infty}\frac{1}{n}
-\sin\frac{n\pi a(t-\tau)}{l}
-\cos\frac{n\pi\xi}{l}\cos\frac{n\pi x}{l}.
+\sin\frac{n\pi a(t-\tau)}{\ell}
+\cos\frac{n\pi\xi}{\ell}\cos\frac{n\pi x}{\ell}.
 \end{aligned}
 \end{equation}
-Inserting into $u=\int_0^t\int_0^l f\,G\,\mathrm{d}\xi\,\mathrm{d}\tau$ and using orthogonality retains only the $n=1$ mode:
+Inserting into $u=\int_0^t\int_0^\ell f\,G\,\mathrm{d}\xi\,\mathrm{d}\tau$ and using orthogonality retains only the $n=1$ mode:
 \begin{equation}
 u(x,t)
-=\frac{Al}{\pi a}\frac{1}{\omega^2-\pi^2 a^2/l^2}
-\Bigl(\omega\sin\frac{\pi a t}{l}-\frac{\pi a}{l}\sin\omega t\Bigr)
-\cos\frac{\pi x}{l}.
+=\frac{A\ell}{\pi a}\frac{1}{\omega^2-\pi^2 a^2/\ell^2}
+\Bigl(\omega\sin\frac{\pi a t}{\ell}-\frac{\pi a}{\ell}\sin\omega t\Bigr)
+\cos\frac{\pi x}{\ell}.
 \end{equation}
-When $\omega=\pi a/l$ the denominator vanishes and a resonant solution with secular growth must be constructed separately.
+When $\omega=\pi a/\ell$ the denominator vanishes and a resonant solution with secular growth must be constructed separately.
 
 \subsection{Infinite line heat equation}
 

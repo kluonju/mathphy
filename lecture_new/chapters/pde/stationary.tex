@@ -4,7 +4,7 @@ A PDE alone expresses a local physical law, not a complete physical situation. A
 
 For a string fixed at both ends, the wave equation \eqref{eq:ch04-wave} is supplemented by
 \begin{equation}
-u(0,t)=u(l,t)=0,
+u(0,t)=u(\ell,t)=0,
 \qquad
 u(x,0)=\varphi(x),\quad u_t(x,0)=\psi(x).
 \label{eq:ch04-string-ibvp}
@@ -15,7 +15,7 @@ The initial displacement $\varphi$ and initial velocity $\psi$ select one motion
 \begin{aligned}
 u_{tt}-a^2u_{xx}&=f(x,t), &&0<x<l,\quad t>0,\\
 u(x,0)&=\varphi(x),\qquad u_t(x,0)=\psi(x), &&0\leq x\leq l,\\
-u(0,t)&=0,\qquad u(l,t)=0, &&t\geq0.
+u(0,t)&=0,\qquad u(\ell,t)=0, &&t\geq0.
 \end{aligned}
 \right.
 \label{eq:ch04-full-string-ibvp}
@@ -32,9 +32,9 @@ The first type is also called a Dirichlet condition. It fixes the field itself, 
 \begin{equation}
 u_x(0,t)=\mu(t)
 \end{equation}
-prescribes a time-dependent transverse force at the endpoint. This is the second, or Neumann, boundary condition. A Robin condition is the third boundary condition and can model an elastic support: if its spring constant is $k$, the endpoint displacement measures the spring extension, while force balance at $x=l$ gives
+prescribes a time-dependent transverse force at the endpoint. This is the second, or Neumann, boundary condition. A Robin condition is the third boundary condition and can model an elastic support: if its spring constant is $k$, the endpoint displacement measures the spring extension, while force balance at $x=\ell$ gives
 \begin{equation}
-T u_x(l,t)+k u(l,t)=0,
+T u_x(\ell,t)+k u(\ell,t)=0,
 \end{equation}
 or $u_x+\sigma u=0$ with $\sigma=k/T$. The more general form $u_x+\sigma u=v(t)$ includes an applied endpoint force as well as the elastic restoring force.
 
@@ -50,7 +50,7 @@ u_x^2+u_y^2=u
 \end{equation}
 is fully nonlinear because the highest derivatives do not occur linearly.
 
-An equation containing a nonzero prescribed source, such as $f(x,t)$ in \eqref{eq:ch04-full-string-ibvp}, is inhomogeneous; its source-free version is homogeneous. Likewise, $u(0,t)=u(l,t)=0$ are homogeneous boundary conditions, whereas nonzero prescribed endpoint displacements are inhomogeneous boundary conditions. Initial conditions are homogeneous only when both $\varphi$ and $\psi$ vanish. Homogeneous linear problems are especially important because of the superposition principle: if $u_1$ and $u_2$ solve the same homogeneous linear equation and homogeneous boundary conditions, then $c_1u_1+c_2u_2$ does too. Separation of variables builds useful solutions from this fact.
+An equation containing a nonzero prescribed source, such as $f(x,t)$ in \eqref{eq:ch04-full-string-ibvp}, is inhomogeneous; its source-free version is homogeneous. Likewise, $u(0,t)=u(\ell,t)=0$ are homogeneous boundary conditions, whereas nonzero prescribed endpoint displacements are inhomogeneous boundary conditions. Initial conditions are homogeneous only when both $\varphi$ and $\psi$ vanish. Homogeneous linear problems are especially important because of the superposition principle: if $u_1$ and $u_2$ solve the same homogeneous linear equation and homogeneous boundary conditions, then $c_1u_1+c_2u_2$ does too. Separation of variables builds useful solutions from this fact.
 
 For equilibrium problems there is no initial-time evolution. One instead prescribes data on the spatial boundary and solves an elliptic boundary-value problem such as \eqref{eq:ch04-laplace-poisson}. In physical language, a stationary solution is one for which sources, fluxes, and constraints balance so that the observable field no longer changes with time. Initial conditions therefore belong naturally to evolution equations, while boundary conditions remain essential for both evolution and stationary problems.
 
@@ -85,7 +85,7 @@ The boundary condition at $x=0$ gives $B=T_0$, and the one at $x=L$ gives $A=(T_
 \end{equation}
 The temperature is linear because there is no source in the interior. The constant heat flux
 \begin{equation}
-q_x=-k\frac{\mathrm du}{\mathrm dx}
+q_x=-k\frac{\mathrm{d}u}{\mathrm{d}x}
 =-k\frac{T_L-T_0}{L}
 \end{equation}
 also verifies the stationary balance: equal amounts of heat enter and leave every interior slice.

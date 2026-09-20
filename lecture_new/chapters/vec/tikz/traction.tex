@@ -1,0 +1,17 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=1.9mm]}, line width=0.85pt},
+  ]
+  % Oriented surface patch: n is the geometric normal, t=σ n need not
+  % be parallel to n.
+  \fill[gray!12] (0,0) -- (2.15,0.35) -- (1.85,1.55) -- (-0.30,1.20) -- cycle;
+  \draw[gray!55] (0,0) -- (2.15,0.35) -- (1.85,1.55) -- (-0.30,1.20) -- cycle;
+  \node[gray, font=\scriptsize] at (0.95,0.78) {$\mathrm{d}\mathbf{S}$};
+
+  \coordinate (C) at (0.92,0.78);
+  \draw[vec, MidnightBlue] (C) -- ++(0.15,1.15)
+    node[above] {$\hat{\mathbf{n}}$};
+  \draw[vec, BrickRed] (C) -- ++(1.15,0.72)
+    node[right] {$\mathbf{t}=\sigma\hat{\mathbf{n}}$};
+\end{tikzpicture}

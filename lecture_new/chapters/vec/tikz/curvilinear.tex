@@ -1,0 +1,35 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=1.8mm]}, line width=0.8pt},
+  ]
+  % (a) cylindrical: top view in the xy-plane
+  \begin{scope}
+    \draw[gray!50, thin] (-0.25,0) -- (2.15,0) node[right] {$x$};
+    \draw[gray!50, thin] (0,-0.25) -- (0,2.15) node[above] {$y$};
+    \draw[gray!40, dashed] (0,0) circle (1.25);
+    \coordinate (P) at (1.05,0.68);
+    \fill[MidnightBlue] (P) circle (1.3pt);
+    \draw[gray] (0,0) -- (P);
+    \draw[vec, MidnightBlue] (P) -- ++(0.52,0.34) node[right] {$\mathbf{e}_r$};
+    \draw[vec, BrickRed] (P) -- ++(-0.34,0.52) node[above] {$\mathbf{e}_\phi$};
+    \draw[ForestGreen, line width=0.8pt] (P) circle (0.14);
+    \fill[ForestGreen] (P) circle (0.9pt);
+    \node[ForestGreen, font=\scriptsize, below left] at (P) {$\mathbf{e}_z$};
+    \node at (1.0,-0.55) {(a) cylindrical};
+  \end{scope}
+
+  % (b) spherical: meridian in the xz-plane
+  \begin{scope}[xshift=4.45cm]
+    \draw[gray!50, thin] (-0.25,0) -- (2.15,0) node[right] {$x$};
+    \draw[gray!50, thin] (0,-0.25) -- (0,2.15) node[above] {$z$};
+    \draw[gray!40, dashed] (1.45,0) arc (0:90:1.45);
+    \coordinate (Q) at ({1.45*0.766},{1.45*0.643}); % θ≈50° from z
+    \fill[MidnightBlue] (Q) circle (1.3pt);
+    \draw[gray] (0,0) -- (Q);
+    \draw[vec, MidnightBlue] (Q) -- ++(0.42,0.35) node[right] {$\mathbf{e}_r$};
+    \draw[vec, BrickRed] (Q) -- ++(0.35,-0.42) node[right] {$\mathbf{e}_\theta$};
+    \draw[vec, ForestGreen] (Q) -- ++(-0.52,0.12) node[left] {$\mathbf{e}_\phi$};
+    \node at (1.0,-0.55) {(b) spherical};
+  \end{scope}
+\end{tikzpicture}

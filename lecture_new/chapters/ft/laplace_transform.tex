@@ -4,7 +4,7 @@
 
 The Fourier transform is powerful for spectral analysis, but functions such as $e^{\alpha t}$ with $\alpha>0$ are not absolutely integrable and therefore have no ordinary Fourier transform. Initial-value problems also concern $t\geq0$. Multiplying a causal function by $e^{-\sigma t}$ supplies a convergence factor and leads to the \term{Laplace transform}
 \begin{equation}
-\bar f(p)=\mathcal{L}\{f(t)\}=\int_0^\infty e^{-pt}f(t)\,dt,
+\bar f(p)=\mathcal{L}\{f(t)\}=\int_0^\infty e^{-pt}f(t)\,\mathrm{d}t,
 \qquad p=\sigma+\mathrm{i}\omega.
 \end{equation}
 The function $f$ is the original and $\bar f$ its transform. A sufficient existence condition is that $f$ and its derivative be piecewise continuous on every finite subinterval of $[0,\infty)$ and that $|f(t)|\leq Me^{\sigma_0t}$ for some constants $M$ and $\sigma_0$. The number $\sigma_0$ is called an abscissa of convergence. In the half-plane $\operatorname{Re}p>\sigma_0$, $\bar f$ is analytic and tends to zero as $|p|\to\infty$.
@@ -21,9 +21,9 @@ It follows directly by applying Fourier inversion to $e^{-\sigma t}f(t)$. The La
 \begin{example}
 Direct integration gives
 \begin{align}
-\mathcal{L}\{1\}&=\int_0^\infty e^{-pt}\,dt=\frac{1}{p}, &
-\mathcal{L}\{t^n\}&=\int_0^\infty t^n e^{-pt}\,dt=\frac{n!}{p^{n+1}},\\
-\mathcal{L}\{e^{st}\}&=\int_0^\infty e^{(s-p)t}\,dt=\frac{1}{p-s}, &
+\mathcal{L}\{1\}&=\int_0^\infty e^{-pt}\,\mathrm{d}t=\frac{1}{p}, &
+\mathcal{L}\{t^n\}&=\int_0^\infty t^n e^{-pt}\,\mathrm{d}t=\frac{n!}{p^{n+1}},\\
+\mathcal{L}\{e^{st}\}&=\int_0^\infty e^{(s-p)t}\,\mathrm{d}t=\frac{1}{p-s}, &
 \mathcal{L}\{t^ne^{st}\}&=\frac{n!}{(p-s)^{n+1}},\\
 \mathcal{L}\{\cosh kt\}&=\frac12\left(\frac{1}{p-k}+\frac{1}{p+k}\right)=\frac{p}{p^2-k^2}, &
 \mathcal{L}\{\sinh kt\}&=\frac12\left(\frac{1}{p-k}-\frac{1}{p+k}\right)=\frac{k}{p^2-k^2}.
@@ -37,14 +37,14 @@ Writing $f(t)\longleftrightarrow\bar f(p)$, the principal rules are
 \begin{align}
 f'(t)&\longleftrightarrow p\bar f(p)-f(0),\\
 f^{(n)}(t)&\longleftrightarrow p^n\bar f-p^{n-1}f(0)-\cdots-f^{(n-1)}(0),\\
-\int_0^tf(\tau)\,d\tau&\longleftrightarrow\frac{\bar f(p)}{p},\\
+\int_0^tf(\tau)\,\mathrm{d}\tau&\longleftrightarrow\frac{\bar f(p)}{p},\\
 f(at)&\longleftrightarrow\frac{1}{a}\bar f(p/a),\\
 e^{-\lambda t}f(t)&\longleftrightarrow\bar f(p+\lambda),\\
 f(t-t_0)\Theta(t-t_0)&\longleftrightarrow e^{-pt_0}\bar f(p).
 \end{align}
 For the causal convolution
 \begin{equation}
-(f_1*f_2)(t)=\int_0^tf_1(\tau)f_2(t-\tau)\,d\tau,
+(f_1*f_2)(t)=\int_0^tf_1(\tau)f_2(t-\tau)\,\mathrm{d}\tau,
 \end{equation}
 the convolution theorem states $f_1*f_2\longleftrightarrow\bar f_1\bar f_2$.
 

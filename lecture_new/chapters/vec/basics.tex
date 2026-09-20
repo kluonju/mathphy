@@ -10,6 +10,13 @@ and its magnitude is
     |\mathbf{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}.
 \end{equation}
 
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{components.tex}
+    \caption{Cartesian components of a vector in the $xy$-plane.}
+    \label{fig:vec-components}
+\end{figure}
+
 % The same ideas extend naturally from three dimensions to $\mathbb{R}^n$. An $n$-dimensional vector is an ordered list of components,
 % \begin{equation}
 %     \mathbf{v}=(v_1,v_2,\ldots,v_n)
@@ -93,10 +100,10 @@ Vector addition and subtraction are performed componentwise:
 \end{equation}
 Geometrically, addition corresponds to the parallelogram rule; subtraction can be viewed by placing vectors head-to-tail so that $\mathbf{B}-\mathbf{A}$ is the vector from the tip of $\mathbf{A}$ to the tip of $\mathbf{B}$.
 
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=0.6\textwidth]{figures/vec_sum_diff.png}
-    \caption{Vector addition (parallelogram) and subtraction (head-to-tail).}
+    \subimport{tikz/}{sum_diff.tex}
+    \caption{Addition by the parallelogram rule, and subtraction as the vector from the tip of $\mathbf{A}$ to the tip of $\mathbf{B}$, using the example $\mathbf{A}=4\mathbf{e}_x+4\mathbf{e}_y$, $\mathbf{B}=\mathbf{e}_x+8\mathbf{e}_y$.}
     \label{fig:vec_sum_diff}
 \end{figure}
 
@@ -137,10 +144,10 @@ where $\theta$ is the angle between them. In components,
     \mathbf{A}\cdot\mathbf{B}=A_xB_x+A_yB_y+A_zB_z.
 \end{equation}
 
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/vec_dot_product.png}
-    \caption{Dot product: projection and angle $\theta$.}
+    \subimport{tikz/}{dot_product.tex}
+    \caption{The angle in $\mathbf{A}\cdot\mathbf{B}=|\mathbf{A}|\,|\mathbf{B}|\cos\theta$. Here $\mathbf{B}=2\mathbf{e}_x$ and $\mathbf{A}=\sqrt{3}\,\mathbf{e}_x+\mathbf{e}_y$, so $\theta=30^\circ$.}
     \label{fig:vec_dot}
 \end{figure}
 
@@ -197,10 +204,10 @@ Equivalently, if $\mathbf{u}=(a,0,b)$ and $\mathbf{v}=(-a,0,b)$, then
 \end{equation}
 \end{example}
 
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/vec_water_bond_angle.png}
-    \caption{Water molecule bond angle from a dot-product calculation.}
+    \subimport{tikz/}{water_bond.tex}
+    \caption{Bond vectors of $\mathrm{H}_2\mathrm{O}$ in the $xz$-plane. The angle $\alpha$ is obtained from $\mathbf{u}\cdot\mathbf{v}$.}
     \label{fig:water_bond}
 \end{figure}
 
@@ -230,10 +237,10 @@ and direction given by the right-hand rule. Componentwise it may be written as t
     \mathbf{A}\times\mathbf{B}=\begin{vmatrix}\mathbf{e}_x & \mathbf{e}_y & \mathbf{e}_z \\\\ A_x & A_y & A_z \\\\ B_x & B_y & B_z \end{vmatrix}.
 \end{equation}
 
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/vec_cross_product.png}
-    \caption{Cross product: right-hand rule and parallelogram area.}
+    \subimport{tikz/}{cross_product.tex}
+    \caption{The cross product $\mathbf{A}\times\mathbf{B}$ is orthogonal to the parallelogram spanned by $\mathbf{A}$ and $\mathbf{B}$, with magnitude equal to that area and sense given by the right-hand rule.}
     \label{fig:vec_cross}
 \end{figure}
 
@@ -321,10 +328,10 @@ these properties are summarized by
 \end{aligned}
 \end{equation}
 
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/vec_scalar_triple_product.png}
-    \caption{Scalar triple product as the signed volume of a parallelepiped.}
+    \subimport{tikz/}{parallelepiped.tex}
+    \caption{The scalar triple product $\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})$ is the signed volume of the parallelepiped spanned by the three vectors. The edges shown are those of the worked example $\mathbf{A}=\mathbf{e}_x+\mathbf{e}_y$, $\mathbf{B}=\mathbf{e}_y+\mathbf{e}_z$, $\mathbf{C}=\mathbf{e}_x+\mathbf{e}_z$.}
     \label{fig:scalar_triple_product}
 \end{figure}
 
@@ -413,6 +420,13 @@ For example, with $\mathbf{v}=2\mathbf{e}_x-\mathbf{e}_y+3\mathbf{e}_z$ and $\ha
 This form is used to separate transverse and longitudinal components, for example when resolving motion or fields relative to a preferred direction.
 \end{example}
 
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{perp_component.tex}
+    \caption{The vector triple product $\hat{\mathbf{n}}\times(\mathbf{v}\times\hat{\mathbf{n}})$ extracts the part of $\mathbf{v}$ orthogonal to a preferred direction $\hat{\mathbf{n}}$.}
+    \label{fig:vec-perp}
+\end{figure}
+
 % \begin{definition}
 % A definition is a precise statement of meaning.
 % \end{definition}
@@ -445,3 +459,10 @@ where the repeated index $j$ is summed. Applying two matrices in succession give
     M(N\mathbf{x})=(MN)\mathbf{x}.
 \end{equation}
 The columns of the identity matrix are the basis vectors, so $I\mathbf{x}=\mathbf{x}$.
+
+\begin{figure}[H]
+    \centering
+    \subimport{tikz/}{linear_map.tex}
+    \caption{A matrix sends the unit square to the parallelogram spanned by its columns. The figure uses $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$ from the inverse-matrix examples.}
+    \label{fig:vec-linear-map}
+\end{figure}

@@ -14,7 +14,7 @@ c_a(\mathbf{x})=0,
 \end{equation}
 be independent constraints. Introduce the augmented function
 \begin{equation}
-\mathcal F(\mathbf{x},\lambda_a)=f(\mathbf{x})-\lambda_a c_a(\mathbf{x}),
+\mathcal{F}(\mathbf{x},\lambda_a)=f(\mathbf{x})-\lambda_a c_a(\mathbf{x}),
 \end{equation}
 where repeated $a$ is summed. Treating both $\mathbf{x}$ and the multipliers as independent variables gives the stationary equations
 \begin{equation}
@@ -24,19 +24,19 @@ where repeated $a$ is summed. Treating both $\mathbf{x}$ and the multipliers as 
 c_a(\mathbf{x})=0.
 \end{equation}
 
-The multiplier values are not chosen in advance; they are determined along with the extremizing point. The same equations are obtained if one thinks of $\mathcal F$ as a function on the larger space $\mathbb R^n\times\mathbb R^k$, in which case the conditions $\partial\mathcal F/\partial \lambda_a=0$ simply reproduce the constraints $c_a=0$. Thus the multiplier trick subsumes the constraint into the search for ordinary critical points, at the cost of enlarging the space by $k$ dimensions.
+The multiplier values are not chosen in advance; they are determined along with the extremizing point. The same equations are obtained if one thinks of $\mathcal{F}$ as a function on the larger space $\mathbb{R}^n\times\mathbb{R}^k$, in which case the conditions $\partial\mathcal{F}/\partial \lambda_a=0$ simply reproduce the constraints $c_a=0$. Thus the multiplier trick subsumes the constraint into the search for ordinary critical points, at the cost of enlarging the space by $k$ dimensions.
 
 \subsection{Geometric view}
 
-The method has a transparent geometric interpretation. The gradient $\nabla f$ measures both the rate at which $f$ changes and the direction in which it is increasing; this direction is normal to the level sets of $f$. For a small displacement $\mathrm d\mathbf x$ the linear change in $f$ is
+The method has a transparent geometric interpretation. The gradient $\nabla f$ measures both the rate at which $f$ changes and the direction in which it is increasing; this direction is normal to the level sets of $f$. For a small displacement $\mathrm{d}\mathbf{x}$ the linear change in $f$ is
 \begin{equation}
-\mathrm df=\nabla f\cdot\mathrm d\mathbf x,
+\mathrm{d}f=\nabla f\cdot\mathrm{d}\mathbf{x},
 \end{equation}
 and the linear change in each constraint is
 \begin{equation}
-\mathrm dc_a=\nabla c_a\cdot\mathrm d\mathbf x.
+\mathrm{d}c_a=\nabla c_a\cdot\mathrm{d}\mathbf{x}.
 \end{equation}
-At a constrained critical point the only displacements that are admissible are those that preserve the constraint to first order, namely those for which $\nabla c_a\cdot\mathrm d\mathbf x=0$ for every $a$. The required stationarity $\mathrm df=0$ on this restricted set forces $\nabla f$ to be orthogonal to every admissible direction; equivalently $\nabla f$ must lie in the span of the constraint normals:
+At a constrained critical point the only displacements that are admissible are those that preserve the constraint to first order, namely those for which $\nabla c_a\cdot\mathrm{d}\mathbf{x}=0$ for every $a$. The required stationarity $\mathrm{d}f=0$ on this restricted set forces $\nabla f$ to be orthogonal to every admissible direction; equivalently $\nabla f$ must lie in the span of the constraint normals:
 \begin{equation}
 \nabla f=\lambda_a\nabla c_a.
 \end{equation}
@@ -69,7 +69,7 @@ together with $xy=1$. The first pair gives $x=y$; together with $xy=1$ this yiel
 
 \subsection{Multiple constraints and higher-dimensional cases}
 
-The same construction extends naturally to several constraints and to higher-dimensional search spaces. With $k$ independent constraints in $\mathbb R^n$, the $k$ multipliers label the basis in which $\nabla f$ is expressed; the system of stationary equations and the dimension count always balance, giving $n+k$ equations in $n+k$ unknowns.
+The same construction extends naturally to several constraints and to higher-dimensional search spaces. With $k$ independent constraints in $\mathbb{R}^n$, the $k$ multipliers label the basis in which $\nabla f$ is expressed; the system of stationary equations and the dimension count always balance, giving $n+k$ equations in $n+k$ unknowns.
 
 \begin{example}[Height function on a sphere]
 Find the critical points of the height $f=z$ on the unit sphere $x^2+y^2+z^2=1$. With $c=x^2+y^2+z^2-1=0$ the multiplier equations read
@@ -99,7 +99,7 @@ Let $N$ vertices $(x_i,y_i)$, $i=1,\ldots,N$, lie on the unit circle, so that $c
 \begin{equation}
 A=\frac12\sum_{i=1}^N\bigl(x_iy_{i+1}-x_{i+1}y_i\bigr),
 \end{equation}
-with $(x_{N+1},y_{N+1})\equiv(x_1,y_1)$. Varying the augmented function $\mathcal F=A-\sum_j\lambda_j c_j$ with respect to $x_i,y_i$ gives
+with $(x_{N+1},y_{N+1})\equiv(x_1,y_1)$. Varying the augmented function $\mathcal{F}=A-\sum_j\lambda_j c_j$ with respect to $x_i,y_i$ gives
 \begin{equation}
 y_{i+1}-y_{i-1}=2\lambda_i x_i,
 \qquad x_{i-1}-x_{i+1}=2\lambda_i y_i.
@@ -113,9 +113,9 @@ which is the statement that every consecutive dot product is the same. The dot p
 
 \subsection{Classification of critical points}
 
-Constrained extrema, like their unconstrained counterparts, must be classified as minima, maxima, or saddles. The local type is read off from the Hessian restricted to the tangent space of the constraint. For one constraint $c=0$ in $\mathbb R^n$, the tangent space at a critical point $\mathbf x^\star$ is
+Constrained extrema, like their unconstrained counterparts, must be classified as minima, maxima, or saddles. The local type is read off from the Hessian restricted to the tangent space of the constraint. For one constraint $c=0$ in $\mathbb{R}^n$, the tangent space at a critical point $\mathbf{x}^\star$ is
 \begin{equation}
-T=\bigl\{\mathbf v\in\mathbb R^n\ :\ \nabla c(\mathbf x^\star)\cdot\mathbf v=0\bigr\},
+T=\bigl\{\mathbf{v}\in\mathbb{R}^n\ :\ \nabla c(\mathbf{x}^\star)\cdot\mathbf{v}=0\bigr\},
 \end{equation}
 an $(n-1)$-dimensional affine subspace. The restricted Hessian
 \begin{equation}

@@ -1,0 +1,33 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=2.0mm]}, line width=0.9pt},
+  ]
+  % A=4 e_x+4 e_y, B=e_x+8 e_y, scaled. Coordinates are local to each panel.
+  \def\s{0.28}
+
+  \begin{scope}
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (4*\s,4*\s);
+    \coordinate (B) at (1*\s,8*\s);
+    \coordinate (S) at (5*\s,12*\s);
+    \fill[Plum!10] (O) -- (A) -- (S) -- (B) -- cycle;
+    \draw[gray!45] (A) -- (S) -- (B);
+    \draw[vec, MidnightBlue] (O) -- (A) node[left] {$\mathbf{A}$};
+    \draw[vec, BrickRed] (O) -- (B) node[left, yshift=10pt] {$\mathbf{B}$};
+    \draw[vec, Plum] (O) -- (S) node[right] {$\mathbf{A}+\mathbf{B}$};
+    \fill (O) circle (1.15pt);
+    \node at (0.70,-0.55) {(a) parallelogram};
+  \end{scope}
+
+  \begin{scope}[xshift=4.9cm]
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (4*\s,4*\s);
+    \coordinate (B) at (1*\s,8*\s);
+    \draw[vec, MidnightBlue] (O) -- (A) node[left] {$\mathbf{A}$};
+    \draw[vec, BrickRed] (O) -- (B) node[right] {$\mathbf{B}$};
+    \draw[vec, Plum] (A) -- (B) node[midway, left, xshift=-1pt] {$\mathbf{B}-\mathbf{A}$};
+    \fill (O) circle (1.15pt);
+    \node at (0.55,-0.55) {(b) $\mathbf{B}-\mathbf{A}$};
+  \end{scope}
+\end{tikzpicture}

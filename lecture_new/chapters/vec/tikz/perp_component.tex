@@ -1,0 +1,28 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=2.0mm]}, line width=0.9pt},
+    constr/.style={gray, densely dashed, thin},
+  ]
+  % Example: v=2 e_x - e_y + 3 e_z, n=e_z.  Draw in the xz-plane the
+  % parallel and perpendicular parts (the e_y component is omitted).
+  \coordinate (O) at (0,0);
+  \coordinate (V) at (2.1,1.85);
+  \coordinate (N) at (0,1.85);
+  \coordinate (P) at (2.1,0);
+
+  \draw[gray!50, thin] (-0.4,0) -- (2.7,0) node[right] {$\perp\hat{\mathbf{n}}$};
+  \draw[gray!50, thin] (0,-0.35) -- (0,2.25) node[above] {$\hat{\mathbf{n}}$};
+
+  \draw[vec, ForestGreen] (O) -- (N) node[left] {$\hat{\mathbf{n}}$};
+  \draw[vec, MidnightBlue] (O) -- (V) node[above right] {$\mathbf{v}$};
+  \draw[vec, BrickRed] (O) -- (P)
+    node[below, pos=0.55] {$\mathbf{v}_\perp$};
+  \draw[constr] (V) -- (P);
+  \draw[constr] (V) -- (N);
+  \draw[gray] (P) ++(-0.12,0) -- ++(0,0.12) -- ++(0.12,0);
+  \fill (O) circle (1.15pt);
+
+  \node at (1.35,-0.85)
+    {$\mathbf{v}_\perp=\hat{\mathbf{n}}\times(\mathbf{v}\times\hat{\mathbf{n}})$};
+\end{tikzpicture}

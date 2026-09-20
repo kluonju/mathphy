@@ -4,7 +4,7 @@ The starting point for a mathematical model is a physical quantity to be determi
 
 \subsection{The vibrating-string equation}
 
-The vibrating-string equation, first studied systematically by D'Alembert and others in the eighteenth century, is a prototype for a large class of PDEs. Consider a uniform, flexible string of length $l$, fixed at both ends and held taut. We seek the motion when it makes small transverse vibrations near its equilibrium position.
+The vibrating-string equation, first studied systematically by D'Alembert and others in the eighteenth century, is a prototype for a large class of PDEs. Consider a uniform, flexible string of length $\ell$, fixed at both ends and held taut. We seek the motion when it makes small transverse vibrations near its equilibrium position.
 
 Turning this physical problem into a mathematical model requires idealizations that retain the leading physical effects:
 \begin{enumerate}
@@ -12,11 +12,11 @@ Turning this physical problem into a mathematical model requires idealizations t
 \item The motion is confined to one plane and is transverse: every material point moves perpendicular to the equilibrium $x$ axis, with a small displacement.
 \item The string is perfectly flexible, so it does not resist bending. The tension is tangent to the deformed string, and its dependence on extension obeys Hooke's law.
 \end{enumerate}
-We first neglect external forces. Place the fixed endpoints at $x=0$ and $x=l$, and let $u(x,t)$ be the transverse displacement at time $t$. For a fixed $t$, the graph of $u$ is the instantaneous shape of the string.
+We first neglect external forces. Place the fixed endpoints at $x=0$ and $x=\ell$, and let $u(x,t)$ be the transverse displacement at time $t$. For a fixed $t$, the graph of $u$ is the instantaneous shape of the string.
 
 Choose the small segment between $x$ and $x+\Delta x$. Its arc length is
 \begin{equation}
-\Delta s=\int_x^{x+\Delta x}\sqrt{1+u_x(\xi,t)^2}\,\mathrm d\xi.
+\Delta s=\int_x^{x+\Delta x}\sqrt{1+u_x(\xi,t)^2}\,\mathrm{d}\xi.
 \end{equation}
 Since the vibration is small, $u_x^2$ is negligible relative to $1$, and hence $\Delta s\approx\Delta x$. The segment therefore undergoes negligible extension. Its tension is independent of time, and the horizontal force balance will show that its magnitude is also independent of $x$.
 
@@ -47,12 +47,12 @@ T\bigl[u_x(x+\Delta x,t)-u_x(x,t)\bigr].
 
 The source derivation applies the impulse--momentum theorem over a short time interval $[t,t+\Delta t]$. The tension impulse is
 \begin{equation}
-\int_t^{t+\Delta t}T\bigl[u_x(x+\Delta x,\tau)-u_x(x,\tau)\bigr] \,\mathrm d\tau.
+\int_t^{t+\Delta t}T\bigl[u_x(x+\Delta x,\tau)-u_x(x,\tau)\bigr] \,\mathrm{d}\tau.
 \end{equation}
-The momentum of the segment is $\int_x^{x+\Delta x}\rho u_t(\xi,t)\,\mathrm d\xi$. Equating the impulse to its change in momentum, and using the fundamental theorem of calculus, gives
+The momentum of the segment is $\int_x^{x+\Delta x}\rho u_t(\xi,t)\,\mathrm{d}\xi$. Equating the impulse to its change in momentum, and using the fundamental theorem of calculus, gives
 \begin{equation}
 \int_t^{t+\Delta t}\int_x^{x+\Delta x}
-\left(Tu_{xx}-\rho u_{tt}\right)\,\mathrm d\xi\,\mathrm d\tau=0.
+\left(Tu_{xx}-\rho u_{tt}\right)\,\mathrm{d}\xi\,\mathrm{d}\tau=0.
 \end{equation}
 Because the spatial and time intervals are arbitrary, the integrand must vanish:
 \begin{equation}
@@ -67,12 +67,12 @@ Here $a$ is the wave speed. The derivation applies only to small transverse vibr
 
 Now suppose that a transverse external force density $F(x,t)$ acts on the string. Its impulse on the segment over $[t,t+\Delta t]$ is
 \begin{equation}
-\int_t^{t+\Delta t}\int_x^{x+\Delta x}F(\xi,\tau)\,\mathrm d\xi\,\mathrm d\tau.
+\int_t^{t+\Delta t}\int_x^{x+\Delta x}F(\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
 \end{equation}
 Adding this term to the impulse balance gives
 \begin{equation}
 \int_t^{t+\Delta t}\int_x^{x+\Delta x}
-\left(Tu_{xx}-\rho u_{tt}+F\right)\,\mathrm d\xi\,\mathrm d\tau=0.
+\left(Tu_{xx}-\rho u_{tt}+F\right)\,\mathrm{d}\xi\,\mathrm{d}\tau=0.
 \end{equation}
 Again using arbitrariness of the intervals and defining $f=F/\rho$, the forced-vibration equation is
 \begin{equation}
@@ -83,29 +83,29 @@ The wave equation is \term{hyperbolic}: changes propagate at finite speed and in
 
 \subsection{The heat equation}
 
-Consider heat conduction in a body $G$. Let $u(x,y,z,t)$ denote its temperature at position $(x,y,z)$ and time $t$. The local relation between temperature and heat flow is Fourier's experimental law. During a time interval $\mathrm dt$, the heat crossing an oriented surface element $\mathrm dS$ in the outward normal direction $\mathbf n$ is
+Consider heat conduction in a body $G$. Let $u(x,y,z,t)$ denote its temperature at position $(x,y,z)$ and time $t$. The local relation between temperature and heat flow is Fourier's experimental law. During a time interval $\mathrm{d}t$, the heat crossing an oriented surface element $\mathrm{d}S$ in the outward normal direction $\mathbf{n}$ is
 \begin{equation}
-dQ=-k(x,y,z)\frac{\partial u}{\partial n}\,\mathrm dS\,\mathrm dt.
+\mathrm{d}Q=-k(x,y,z)\frac{\partial u}{\partial n}\,\mathrm{d}S\,\mathrm{d}t.
 \end{equation}
 Here $k>0$ is the thermal conductivity. The minus sign is essential: heat flows from high temperature to low temperature, hence opposite to the direction in which $u$ increases.
 
 Choose an arbitrary closed surface $\Gamma$ inside the body and let $\Omega$ be the region that it encloses. The heat flowing \,\emph{into} $\Omega$ between $t_1$ and $t_2$ is
 \begin{equation}
-Q=\int_{t_1}^{t_2}\iint_\Gamma k\frac{\partial u}{\partial n}\,\mathrm dS\,\mathrm dt.
+Q=\int_{t_1}^{t_2}\iint_\Gamma k\frac{\partial u}{\partial n}\,\mathrm{d}S\,\mathrm{d}t.
 \end{equation}
 The sign has changed because $\partial u/\partial n$ uses the outward normal, whereas positive $Q$ is defined as heat entering the region. If $c(x,y,z)$ is the specific heat and $\rho(x,y,z)$ the mass density, the increase in internal thermal energy over the same interval is
 \begin{equation}
-\iiint_\Omega \rho c\,[u(x,y,z,t_2)-u(x,y,z,t_1)]\,\mathrm dV.
+\iiint_\Omega \rho c\,[u(x,y,z,t_2)-u(x,y,z,t_1)]\,\mathrm{d}V.
 \end{equation}
 Conservation of energy equates these two quantities. Assume that $u$ has continuous second spatial derivatives and a continuous first time derivative. The divergence theorem converts the surface integral to a volume integral:
 \begin{equation}
-\int_{t_1}^{t_2}\iiint_\Omega \nabla\cdot(k\nabla u)\,\mathrm dV\,\mathrm dt
-=\iiint_\Omega \rho c\left(\int_{t_1}^{t_2}u_t\,\mathrm dt\right)\mathrm dV.
+\int_{t_1}^{t_2}\iiint_\Omega \nabla\cdot(k\nabla u)\,\mathrm{d}V\,\mathrm{d}t
+=\iiint_\Omega \rho c\left(\int_{t_1}^{t_2}u_t\,\mathrm{d}t\right)\mathrm{d}V.
 \end{equation}
 Changing the order of integration places both sides in one integral:
 \begin{equation}
 \int_{t_1}^{t_2}\iiint_\Omega
-\left[\rho c\,u_t-\nabla\cdot(k\nabla u)\right]\,\mathrm dV\,\mathrm dt=0.
+\left[\rho c\,u_t-\nabla\cdot(k\nabla u)\right]\,\mathrm{d}V\,\mathrm{d}t=0.
 \end{equation}
 Because both the time interval and the region $\Omega$ are arbitrary, the integrand must vanish. Thus the heat-conduction equation for a nonuniform isotropic body is
 \begin{equation}
@@ -122,7 +122,7 @@ This is the homogeneous \term{heat equation}. Diffusion smooths temperature diff
 
 Finally, suppose a heat source produces energy at rate $F(x,y,z,t)$ per unit volume. Its total contribution to the energy balance is
 \begin{equation}
-\int_{t_1}^{t_2}\iiint_\Omega F(x,y,z,t)\,\mathrm dV\,\mathrm dt.
+\int_{t_1}^{t_2}\iiint_\Omega F(x,y,z,t)\,\mathrm{d}V\,\mathrm{d}t.
 \end{equation}
 Adding it to the balance gives
 \begin{equation}
@@ -184,19 +184,19 @@ The concave-down profile has its maximum at the center of the slab. The source c
 
 Electrostatics supplies another important application. Electric field lines begin on positive charge and end on negative charge; they do not form closed loops in a static field. In SI units, Gauss's law for any closed surface $\Sigma$ enclosing a volume $\Omega$ is
 \begin{equation}
-\oint_\Sigma\mathbf E\cdot\mathrm d\mathbf S
-=\frac{1}{\varepsilon_0}\iiint_\Omega\rho_e\,\mathrm dV.
+\oint_\Sigma\mathbf{E}\cdot\mathrm{d}\mathbf{S}
+=\frac{1}{\varepsilon_0}\iiint_\Omega\rho_e\,\mathrm{d}V.
 \end{equation}
 Using the divergence theorem and the fact that $\Omega$ is arbitrary gives the local Gauss law. Together with the vanishing curl of the electrostatic field, it reads
 \begin{equation}
-\nabla\cdot\mathbf E=\frac{\rho_e}{\varepsilon_0},
-\qquad \nabla\times\mathbf E=0.
+\nabla\cdot\mathbf{E}=\frac{\rho_e}{\varepsilon_0},
+\qquad \nabla\times\mathbf{E}=0.
 \end{equation}
-The curl-free condition permits a scalar potential $V$ with $\mathbf E=-\nabla V$. This replacement is possible because an irrotational field has path-independent line integrals. Substitution into Gauss's law yields
+The curl-free condition permits a scalar potential $V$ with $\mathbf{E}=-\nabla V$. This replacement is possible because an irrotational field has path-independent line integrals. Substitution into Gauss's law yields
 \begin{equation}
 \nabla^2V=-\frac{\rho_e}{\varepsilon_0}.
 \end{equation}
-Thus $V$ obeys Poisson's equation where charge is present and Laplace's equation in charge-free regions. Replacing a vector field by a scalar potential is often the decisive simplification: once $V$ is known, the physical field follows from $\mathbf E=-\nabla V$.
+Thus $V$ obeys Poisson's equation where charge is present and Laplace's equation in charge-free regions. Replacing a vector field by a scalar potential is often the decisive simplification: once $V$ is known, the physical field follows from $\mathbf{E}=-\nabla V$.
 
 \begin{example}[Potential between parallel conducting plates]
 Between two large parallel conducting plates, suppose there is no charge and the potential depends only on the perpendicular coordinate $x$. If $V(0)=0$ and $V(d)=V_0$, Laplace's equation reduces to
@@ -207,7 +207,7 @@ Hence
 \begin{equation}
 V(x)=\frac{V_0}{d}x,
 \qquad
-\mathbf E=-\frac{V_0}{d}\,\mathbf e_x.
+\mathbf{E}=-\frac{V_0}{d}\,\mathbf{e}_x.
 \end{equation}
 The potential changes linearly and the electric field is uniform. This is the source-free counterpart of the heated-slab problem: boundary values alone determine the interior field.
 \end{example}

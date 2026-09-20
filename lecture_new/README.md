@@ -33,6 +33,8 @@ or, more robustly:
 latexmk -xelatex -bibtex main.tex
 ```
 
+The local `.latexmkrc` runs XeLaTeX and builds the index with `scripts/build_index.py` (the `makeindex` binary is not required).
+
 ## To build only one chapter at a time
 
 Edit `main.tex` and uncomment:

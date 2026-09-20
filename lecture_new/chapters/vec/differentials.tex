@@ -32,6 +32,13 @@ Since
 \end{equation}
 $\nabla f$ points in the direction of steepest increase of $f$. It is perpendicular to an equipotential surface, because motion along such a surface gives $\mathrm{d}f=0$.
 
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{gradient.tex}
+    \caption{Level curves of a scalar field and the gradient $\nabla f$, which is orthogonal to each equipotential and points toward increasing $f$.}
+    \label{fig:vec-gradient}
+\end{figure}
+
 In cylindrical coordinates $(r,\phi,z)$ and spherical coordinates $(r,\theta,\phi)$, the gradient becomes
 \begin{equation}
 \nabla f=\mathbf{e}_r\frac{\partial f}{\partial r}
@@ -44,6 +51,13 @@ and
 +\mathbf{e}_\theta\frac{1}{r}\frac{\partial f}{\partial\theta}
 +\mathbf{e}_\phi\frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}.
 \end{equation}
+
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{curvilinear.tex}
+    \caption{Local orthonormal bases in cylindrical and spherical coordinates, in which the gradient formulae of this section are written.}
+    \label{fig:vec-curvilinear}
+\end{figure}
 
 \begin{example}[Gradients in different coordinates]
 Let $a$ and $b$ be constants.
@@ -101,6 +115,13 @@ For the path that first follows the $x$ axis and then moves vertically, the firs
 Any other path gives the same result because the field is a gradient.
 \end{example}
 
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{path_independence.tex}
+    \caption{Two paths from the origin to $P=(x_0,y_0)$. For $\mathbf{F}=\nabla f$ the line integrals coincide.}
+    \label{fig:vec-path}
+\end{figure}
+
 \subsection{Flux and divergence}
 The flux of a vector field $\mathbf{A}$ through a closed surface $S$ is
 \begin{equation}
@@ -122,6 +143,13 @@ Thus divergence is the local rate of net outward flux per unit volume. The \term
 \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
 =\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.
 \end{equation}
+
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{divergence.tex}
+    \caption{Net outward flux through a small rectangular volume. Dividing by $\Delta V$ produces $\nabla\cdot\mathbf{A}$ in the continuum limit.}
+    \label{fig:vec-divergence}
+\end{figure}
 
 \begin{example}[Divergence theorem]
 For $\mathbf{A}=x\mathbf{e}_x+y\mathbf{e}_y+z\mathbf{e}_z$,
@@ -146,6 +174,13 @@ C\approx\left(\frac{\partial A_y}{\partial x}
 -\frac{\partial A_x}{\partial y}\right)\Delta x\,\Delta y
 =(\nabla\times\mathbf{A})_z\,\Delta S.
 \end{equation}
+
+\begin{figure}[H]
+    \centering
+    \subimport{tikz/}{curl_loop.tex}
+    \caption{Circulation around a small rectangle in the $xy$-plane. The enclosed flux of $\nabla\times\mathbf{A}$ is $(\nabla\times\mathbf{A})_z\,\Delta x\,\Delta y$.}
+    \label{fig:vec-curl}
+\end{figure}
 More generally,
 \begin{equation}
 (\nabla\times\mathbf{A})\cdot\hat{\mathbf{n}}
@@ -178,6 +213,13 @@ Since $\nabla\times\mathbf{A}=2\mathbf{e}_z$, the disk integral is
 \end{equation}
 in agreement with the line integral. Any other oriented surface spanning the same boundary gives the same result.
 \end{example}
+
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{stokes.tex}
+    \caption{The Stokes example: $\mathbf{A}=-y\,\mathbf{e}_x+x\,\mathbf{e}_y-z\,\mathbf{e}_z$ has counterclockwise circulation on the circle $L$, matching $\nabla\times\mathbf{A}=2\mathbf{e}_z$ through the disk $S$.}
+    \label{fig:vec-stokes}
+\end{figure}
 
 The identities $\nabla\times(\nabla f)=\mathbf{0}$ and
 $\nabla\cdot(\nabla\times\mathbf{A})=0$ are the local differential counterparts of these integral statements.

@@ -1,0 +1,14 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=2.0mm]}, line width=0.9pt},
+  ]
+  % Angular velocity and angular momentum need not be parallel.
+  \draw[gray!45, thin] (-0.3,0) -- (2.55,0);
+  \draw[gray!45, thin] (0,-0.3) -- (0,2.15);
+  \draw[vec, MidnightBlue] (0,0) -- (1.85,0.55)
+    node[below right] {$\boldsymbol{\omega}$};
+  \draw[vec, BrickRed] (0,0) -- (0.85,1.85)
+    node[above] {$\mathbf{L}=I\boldsymbol{\omega}$};
+  \fill (0,0) circle (1.15pt);
+\end{tikzpicture}

@@ -5,7 +5,7 @@
 Consider the forced vibration problem
 \begin{equation}
 \label{eq:wave-forced}
-u_{tt}-a^2\Delta u=f(\mathbf{r},t),
+u_{tt}-a^2\nabla^2 u=f(\mathbf{r},t),
 \end{equation}
 \begin{equation}
 \Bigl[\alpha\frac{\partial u}{\partial n}+\beta u\Bigr]_{\Sigma}=\theta(M,t),
@@ -26,7 +26,7 @@ f(\mathbf{r}_0,\tau)\,
 The \textbf{Green's function} $G(\mathbf{r},t;\mathbf{r}_0,t_0)$ is the response to a unit impulse at $(\mathbf{r}_0,t_0)$ with $t_0>0$:
 \begin{equation}
 \label{eq:wave-G}
-G_{tt}-a^2\Delta G=\delta(\mathbf{r}-\mathbf{r}_0)\delta(t-t_0),
+G_{tt}-a^2\nabla^2 G=\delta(\mathbf{r}-\mathbf{r}_0)\delta(t-t_0),
 \end{equation}
 \begin{equation}
 \Bigl[\alpha\frac{\partial G}{\partial n}+\beta G\Bigr]_{\Sigma}=0,
@@ -71,7 +71,7 @@ The three terms are, respectively, the accumulated effect of the forcing, the co
 
 For the inhomogeneous heat problem
 \begin{equation}
-u_t-a^2\Delta u=f(\mathbf{r},t),
+u_t-a^2\nabla^2 u=f(\mathbf{r},t),
 \end{equation}
 \begin{equation}
 \Bigl[\alpha\frac{\partial u}{\partial n}+\beta u\Bigr]_{\Sigma}=\theta(M,t),

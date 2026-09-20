@@ -1,0 +1,24 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=2.1mm]}, line width=0.9pt},
+    constr/.style={gray, densely dashed, thin},
+  ]
+  \def\s{1.15}
+  \coordinate (O) at (0,0);
+  \coordinate (B) at (2*\s,0);
+  \coordinate (A) at ({1.732*\s},\s);
+  \coordinate (P) at ({1.732*\s},0);
+
+  \draw[gray!50, thin] (-0.25,0) -- (2.7,0);
+  \fill (O) circle (1.15pt) node[below left] {$O$};
+
+  \draw[vec, BrickRed] (O) -- (B) node[below right, pos=0.92] {$\mathbf{B}$};
+  \draw[vec, MidnightBlue] (O) -- (A) node[above left] {$\mathbf{A}$};
+  \draw[constr] (A) -- (P);
+  \fill (P) circle (1.05pt);
+  \draw pic[draw, angle radius=0.68cm, angle eccentricity=1.45, "$\theta$"]
+    {angle = B--O--A};
+  \draw[gray] (P) ++(-0.14,0) -- ++(0,0.14) -- ++(0.14,0);
+  \node[gray] at (0.95,-0.42) {$|\mathbf{A}|\cos\theta$};
+\end{tikzpicture}

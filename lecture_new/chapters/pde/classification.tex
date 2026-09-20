@@ -7,8 +7,8 @@ A u_{xx}+2B u_{xy}+C u_{yy}+D u_x+E u_y+Fu=G,
 \end{equation}
 the coefficient functions are real functions of $x$ and $y$. More generally, for independent variables $x_1,\ldots,x_n$, a second-order linear equation has the form
 \begin{equation}
-\sum_{i,j=1}^n a_{ij}(\mathbf x)u_{x_ix_j}
-+\sum_{i=1}^n b_i(\mathbf x)u_{x_i}+c(\mathbf x)u+f(\mathbf x)=0.
+\sum_{i,j=1}^n a_{ij}(\mathbf{x})u_{x_ix_j}
++\sum_{i=1}^n b_i(\mathbf{x})u_{x_i}+c(\mathbf{x})u+f(\mathbf{x})=0.
 \end{equation}
 Because the equation and any accompanying data are linear, solutions can be superposed whenever the corresponding equations and data are superposed. The two-variable case is where the classification and its reduction can be displayed most directly.
 
@@ -70,14 +70,14 @@ To eliminate the $u_{\xi\xi}$ term, choose $\xi$ to satisfy $A_{11}=0$. Written 
 \begin{equation}
 Az_x^2+2Bz_xz_y+Cz_y^2=0.
 \end{equation}
-The level curves $z(x,y)=\text{constant}$ obey $\mathrm dy/\mathrm dx=-z_x/z_y$. Therefore their slopes satisfy the \term{characteristic equation}
+The level curves $z(x,y)=\text{constant}$ obey $\mathrm{d}y/\mathrm{d}x=-z_x/z_y$. Therefore their slopes satisfy the \term{characteristic equation}
 \begin{equation}
-A\left(\frac{\mathrm dy}{\mathrm dx}\right)^2
--2B\frac{\mathrm dy}{\mathrm dx}+C=0.
+A\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2
+-2B\frac{\mathrm{d}y}{\mathrm{d}x}+C=0.
 \end{equation}
 Its two formal roots are
 \begin{equation}
-\frac{\mathrm dy}{\mathrm dx}
+\frac{\mathrm{d}y}{\mathrm{d}x}
 =\frac{B\pm\sqrt{B^2-AC}}{A}.
 \end{equation}
 Thus hyperbolic equations have two distinct real characteristic families, parabolic equations have one repeated family, and elliptic equations have no real characteristic curves. The type may change from one region to another when the coefficients vary.
@@ -119,7 +119,7 @@ u_{\alpha\alpha}-u_{\beta\beta}
 \end{equation}
 The one-dimensional wave equation is already in this difference-of-squares form.
 
-For a parabolic equation, $B^2-AC=0$, and the characteristic equation has the single root $\mathrm dy/\mathrm dx=B/A$. Use its characteristic family as $\xi$, then select a second coordinate $\eta$ which is not characteristic. Since $\xi_x/\xi_y=-B/A$, direct substitution gives
+For a parabolic equation, $B^2-AC=0$, and the characteristic equation has the single root $\mathrm{d}y/\mathrm{d}x=B/A$. Use its characteristic family as $\xi$, then select a second coordinate $\eta$ which is not characteristic. Since $\xi_x/\xi_y=-B/A$, direct substitution gives
 \begin{align}
 A_{11}&=\xi_y^2\left[A\left(\frac{\xi_x}{\xi_y}\right)^2
 +2B\frac{\xi_x}{\xi_y}+C\right]=0,\\
@@ -139,21 +139,21 @@ For an elliptic equation, the characteristic coordinates are complex conjugates,
 \xi=\alpha+i\beta,\qquad \eta=\alpha-i\beta,
 \qquad
 \alpha=\frac{\xi+\eta}{2},\quad
-\beta=\frac{\xi-\eta}{2i},
+\beta=\frac{\xi-\eta}{2\mathrm{i}},
 \end{equation}
 gives the intermediate identities
 \begin{equation}
 u_{\xi\eta}=\frac14\left(u_{\alpha\alpha}+u_{\beta\beta}\right),
 \quad
-u_\xi=\frac12(u_\alpha-iu_\beta),
+u_\xi=\frac12(u_\alpha-\mathrm{i}u_\beta),
 \quad
-u_\eta=\frac12(u_\alpha+iu_\beta).
+u_\eta=\frac12(u_\alpha+\mathrm{i}u_\beta).
 \end{equation}
 The semi-canonical mixed-derivative equation therefore becomes
 \begin{equation}
 u_{\alpha\alpha}+u_{\beta\beta}
 =-\frac{1}{A_{12}}\left[(B_1+B_2)u_\alpha
-+i(B_2-B_1)u_\beta+2\widetilde C u+2\widetilde F\right].
++\mathrm{i}(B_2-B_1)u_\beta+2\widetilde C u+2\widetilde F\right].
 \end{equation}
 The canonical principal part is therefore elliptic rather than wave-like. Steady temperature fields, electrostatic potentials, steady concentration profiles, and irrotational steady flows all lead to this class.
 

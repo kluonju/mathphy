@@ -17,7 +17,7 @@ For $|a|<1$, exactly one lies inside $|z|=1$. Its simple residue produces the di
 
 For integrals on the whole real line, a large semicircle in the upper half-plane is natural when the arc contribution vanishes. The residue theorem then gives
 \begin{equation}
-\int_{-\infty}^{\infty}f(x)\,dx=2\pi\mathrm{i}\sum_{\operatorname{Im}z_j>0}\operatorname{Res}(f;z_j).
+\int_{-\infty}^{\infty}f(x)\,\mathrm{d}x=2\pi\mathrm{i}\sum_{\operatorname{Im}z_j>0}\operatorname{Res}(f;z_j).
 \end{equation}
 
 \begin{figure}[htb]
@@ -29,7 +29,7 @@ For integrals on the whole real line, a large semicircle in the upper half-plane
 
 Taking $f(z)=1/(1+z^2)$ leaves only the pole at $z=\mathrm{i}$ in the upper half-plane and gives $\int_{-\infty}^{\infty}dx/(1+x^2)=\pi$. With an exponential factor, Jordan's lemma similarly gives, for $a,m>0$,
 \begin{equation}
-\int_0^\infty\frac{\cos(mx)}{x^2+a^2}\,dx=\frac{\pi}{2a}e^{-am}.
+\int_0^\infty\frac{\cos(mx)}{x^2+a^2}\,\mathrm{d}x=\frac{\pi}{2a}e^{-am}.
 \end{equation}
 
 For the exponential contour method, assume $f$ is analytic apart from finitely many upper-half-plane poles and decreases sufficiently fast. On $z=Re^{\mathrm{i}\theta}$,
@@ -38,34 +38,34 @@ For the exponential contour method, assume $f$ is analytic apart from finitely m
 \end{equation}
 Using $\sin\theta\geq2\theta/\pi$ on $[0,\pi/2]$ proves that the arc integral tends to zero. This is Jordan's lemma and gives
 \begin{equation}
-\int_{-\infty}^{\infty}f(x)e^{\mathrm{i}mx}\,dx
+\int_{-\infty}^{\infty}f(x)e^{\mathrm{i}mx}\,\mathrm{d}x
 =2\pi\mathrm{i}\sum_{\operatorname{Im}z_j>0}\operatorname{Res}\left(e^{\mathrm{i}mz}f(z);z_j\right).
 \end{equation}
 Even cosine and odd sine integrals reduce to this formula by symmetry.
 
 For the arc estimate, suppose $|f(z)|<\varepsilon$ on the large semicircle. Then
 \begin{align}
-\left|\int_{C_R}f(z)e^{\mathrm{i}mz}\,dz\right|
-&\leq2\varepsilon R\int_0^{\pi/2}e^{-mR\sin\theta}\,d\theta\nonumber\\
-&\leq2\varepsilon R\int_0^{\pi/2}e^{-2mR\theta/\pi}\,d\theta
+\left|\int_{C_R}f(z)e^{\mathrm{i}mz}\,\mathrm{d}z\right|
+&\leq2\varepsilon R\int_0^{\pi/2}e^{-mR\sin\theta}\,\mathrm{d}\theta\nonumber\\
+&\leq2\varepsilon R\int_0^{\pi/2}e^{-2mR\theta/\pi}\,\mathrm{d}\theta
 <\frac{\pi\varepsilon}{m}.
 \end{align}
 This proves Jordan's lemma. If $F$ is even, then
 \begin{equation}
-\int_0^\infty F(x)\cos(mx)\,dx
-=\frac12\int_{-\infty}^{\infty}F(x)e^{\mathrm{i}mx}\,dx;
+\int_0^\infty F(x)\cos(mx)\,\mathrm{d}x
+=\frac12\int_{-\infty}^{\infty}F(x)e^{\mathrm{i}mx}\,\mathrm{d}x;
 \end{equation}
 the analogous statement holds for odd sine integrals.
 
 Parameter differentiation provides a complementary method. From
 \begin{equation}
-\int_0^\infty e^{-ax}\cos(bx)\,dx=\frac{a}{a^2+b^2},
+\int_0^\infty e^{-ax}\cos(bx)\,\mathrm{d}x=\frac{a}{a^2+b^2},
 \end{equation}
 differentiation with respect to $a$ gives
 \begin{equation}
-\int_0^\infty xe^{-ax}\cos(bx)\,dx=\frac{a^2-b^2}{(a^2+b^2)^2}.
+\int_0^\infty xe^{-ax}\cos(bx)\,\mathrm{d}x=\frac{a^2-b^2}{(a^2+b^2)^2}.
 \end{equation}
-Adding a damping factor to $\int_0^\infty\sin x/x\,dx$ and removing it at the end gives the classic result $\pi/2$. A keyhole contour gives the beta-integral form
+Adding a damping factor to $\int_0^\infty\sin x/x\,\mathrm{d}x$ and removing it at the end gives the classic result $\pi/2$. A keyhole contour gives the beta-integral form
 \begin{equation}
-\int_0^\infty\frac{x^{\alpha-1}}{1+x}\,dx=\frac{\pi}{\sin(\pi\alpha)},\qquad 0<\alpha<1.
+\int_0^\infty\frac{x^{\alpha-1}}{1+x}\,\mathrm{d}x=\frac{\pi}{\sin(\pi\alpha)},\qquad 0<\alpha<1.
 \end{equation}

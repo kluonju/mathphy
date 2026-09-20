@@ -7,9 +7,9 @@ The following exercises collect the main proofs and applications of the Fourier-
 \begin{enumerate}
     \item\label{ex:fourier-orthogonality} Verify the orthogonality relations
     \begin{equation*}
-        \int_{-\pi}^{\pi}\sin(mx)\sin(nx)\,dx=\pi\delta_{mn},\qquad
-        \int_{-\pi}^{\pi}\cos(mx)\cos(nx)\,dx=\pi\delta_{mn},\qquad
-        \int_{-\pi}^{\pi}\sin(mx)\cos(nx)\,dx=0.
+        \int_{-\pi}^{\pi}\sin(mx)\sin(nx)\,\mathrm{d}x=\pi\delta_{mn},\qquad
+        \int_{-\pi}^{\pi}\cos(mx)\cos(nx)\,\mathrm{d}x=\pi\delta_{mn},\qquad
+        \int_{-\pi}^{\pi}\sin(mx)\cos(nx)\,\mathrm{d}x=0.
     \end{equation*}
     Use them to derive the coefficients $a_n$ and $b_n$ for the Fourier series of a $2\pi$-periodic function.
 
@@ -17,12 +17,12 @@ The following exercises collect the main proofs and applications of the Fourier-
 
     \item\label{ex:fourier-parseval} Prove Parseval's identity in the complex form
     \begin{equation*}
-        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,dx
+        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x
         =\sum_{n=-\infty}^{\infty}|c_n|^2,
     \end{equation*}
     and then derive the real-form identity
     \begin{equation*}
-        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,dx
+        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x
         =\frac{a_0^2}{4}+\frac12\sum_{n=1}^{\infty}(a_n^2+b_n^2).
     \end{equation*}
 

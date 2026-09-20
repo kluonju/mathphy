@@ -1,0 +1,13 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+  ]
+  % Matrix product C_{ij}=A_{ik} B_{kj} as a two-node tensor network.
+  \node[draw, thick, rounded corners=1pt, inner sep=4pt] (A) at (0,0) {$A$};
+  \node[draw, thick, rounded corners=1pt, inner sep=4pt] (B) at (2.35,0) {$B$};
+  \draw[thick] (-1.15,0) -- (A) node[midway, above] {$i$};
+  \draw[thick] (A) -- (B) node[midway, above] {$k$};
+  \draw[thick] (B) -- (3.50,0) node[midway, above] {$j$};
+  \node[gray, font=\scriptsize] at (1.18,-0.55)
+    {$C_{ij}=A_{ik}B_{kj}$};
+\end{tikzpicture}

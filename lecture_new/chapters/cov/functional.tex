@@ -79,12 +79,12 @@ so a free endpoint requires $\partial L/\partial u'=0$ there.
 For a field $u(\mathbf{x})$ on a region $\Omega$, the definition becomes
 \begin{equation}
 \delta J=\int_\Omega\frac{\delta J}{\delta u(\mathbf{x})}
-\eta(\mathbf{x})\,\mathrm{d}^d x
+\eta(\mathbf{x})\,\mathrm{d}^d\mathbf{x}
 +\text{boundary terms}.
 \end{equation}
 The one-dimensional derivative $\mathrm{d}/\mathrm{d}x$ is replaced by spatial derivatives $\partial_i$. This is the form used in continuum mechanics, electrostatics, wave theory, and field theory. If
 \begin{equation}
-J[u]=\int_\Omega F(\mathbf{x},u,\partial_i u)\,\mathrm{d}^d x,
+J[u]=\int_\Omega F(\mathbf{x},u,\partial_i u)\,\mathrm{d}^d\mathbf{x},
 \end{equation}
 then
 \begin{equation}
@@ -151,34 +151,34 @@ F_u-\frac{\partial F_{u_x}}{\partial x}
 \end{equation}
 
 \subsection{Functional derivatives in density-functional theory}
-Density-functional theory (DFT) uses the particle density $n(\mathbf r)$ as the basic field. Its variational viewpoint is especially clear: rather than searching over many-particle states directly, one asks which admissible density makes an energy functional stationary. The density is constrained by particle-number normalization:
+Density-functional theory (DFT) uses the particle density $n(\mathbf{r})$ as the basic field. Its variational viewpoint is especially clear: rather than searching over many-particle states directly, one asks which admissible density makes an energy functional stationary. The density is constrained by particle-number normalization:
 \begin{equation}
-\int n(\mathbf r)\,\mathrm{d}^3r=N.
+\int n(\mathbf{r})\,\mathrm{d}^3\mathbf{r}=N.
 \end{equation}
 For an energy functional $E[n]$, the constrained stationary condition is obtained by introducing the chemical-potential multiplier $\mu$:
 \begin{equation}
-\widetilde E[n]=E[n]-\mu\left(\int n(\mathbf r)\,\mathrm{d}^3r-N\right).
+\widetilde E[n]=E[n]-\mu\left(\int n(\mathbf{r})\,\mathrm{d}^3\mathbf{r}-N\right).
 \end{equation}
 The Euler equation is therefore
 \begin{equation}
-\frac{\delta E[n]}{\delta n(\mathbf r)}=\mu.
+\frac{\delta E[n]}{\delta n(\mathbf{r})}=\mu.
 \end{equation}
 The constant $\mu$ enforces normalization and is interpreted physically as the chemical potential at a ground-state solution. In particular, it is spatially constant at equilibrium even when the external potential and density vary from place to place.
 
 \begin{example}[Local density functional]
 Consider the simple functional
 \begin{equation}
-E[n]=\int\left(Cn(\mathbf r)^{5/3}
-+v(\mathbf r)n(\mathbf r)\right)\,\mathrm{d}^3r,
+E[n]=\int\left(Cn(\mathbf{r})^{5/3}
++v(\mathbf{r})n(\mathbf{r})\right)\,\mathrm{d}^3\mathbf{r},
 \end{equation}
-where $C$ is a constant and $v(\mathbf r)$ is an external potential. Since the integrand contains no derivatives of $n$,
+where $C$ is a constant and $v(\mathbf{r})$ is an external potential. Since the integrand contains no derivatives of $n$,
 \begin{equation}
-\frac{\delta E}{\delta n(\mathbf r)}
-=\frac{5}{3}C n(\mathbf r)^{2/3}+v(\mathbf r).
+\frac{\delta E}{\delta n(\mathbf{r})}
+=\frac{5}{3}C n(\mathbf{r})^{2/3}+v(\mathbf{r}).
 \end{equation}
 The normalized stationary density satisfies
 \begin{equation}
-\frac{5}{3}C n(\mathbf r)^{2/3}+v(\mathbf r)=\mu.
+\frac{5}{3}C n(\mathbf{r})^{2/3}+v(\mathbf{r})=\mu.
 \end{equation}
 This illustrates the direct analogue between the Euler--Lagrange equation for a function $u(x)$ and the Euler equation for a density field. Because no derivatives of $n$ occur, the condition is algebraic at each point, coupled globally only through the normalization constant $\mu$.
 \end{example}
@@ -187,23 +187,23 @@ This illustrates the direct analogue between the Euler--Lagrange equation for a 
 A simple interacting-electron model adds the Hartree contribution
 \begin{equation}
 E_H[n]=\frac12\int\!\int
-\frac{n(\mathbf r)n(\mathbf r')}{|\mathbf r-\mathbf r'|}
-\,\mathrm{d}^3r\,\mathrm{d}^3r'.
+\frac{n(\mathbf{r})n(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}
+\,\mathrm{d}^3\mathbf{r}\,\mathrm{d}^3\mathbf{r}'.
 \end{equation}
 Its functional derivative is the Hartree potential
 \begin{equation}
-\frac{\delta E_H}{\delta n(\mathbf r)}
-=\int\frac{n(\mathbf r')}{|\mathbf r-\mathbf r'|}\,\mathrm{d}^3r'.
+\frac{\delta E_H}{\delta n(\mathbf{r})}
+=\int\frac{n(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,\mathrm{d}^3\mathbf{r}'.
 \end{equation}
 For
 \begin{equation}
-E[n]=C\int n^{5/3}\,\mathrm{d}^3r
-+\int v_{\mathrm{ext}}n\,\mathrm{d}^3r+E_H[n],
+E[n]=C\int n^{5/3}\,\mathrm{d}^3\mathbf{r}
++\int v_{\mathrm{ext}}n\,\mathrm{d}^3\mathbf{r}+E_H[n],
 \end{equation}
 the density equation becomes
 \begin{equation}
-\frac53 Cn(\mathbf r)^{2/3}+v_{\mathrm{ext}}(\mathbf r)
-+v_H(\mathbf r)=\mu.
+\frac53 Cn(\mathbf{r})^{2/3}+v_{\mathrm{ext}}(\mathbf{r})
++v_H(\mathbf{r})=\mu.
 \end{equation}
 No numerical solution is required to see the variational structure: each term contributes its own functional derivative. The local kinetic-like term and external-potential term respond at the same point, whereas the Hartree contribution records the electrostatic influence of density throughout space.
 \end{example}

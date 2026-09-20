@@ -3,17 +3,17 @@
 \indexentry{real numbers|hyperpage}{1}
 \indexentry{complex numbers|hyperpage}{1}
 \indexentry{mapping|hyperpage}{1}
-\indexentry{domain|hyperpage}{1}
-\indexentry{codomain|hyperpage}{1}
-\indexentry{mapping!injective|hyperpage}{1}
-\indexentry{mapping!surjective|hyperpage}{1}
-\indexentry{mapping!bijection|hyperpage}{1}
+\indexentry{domain|hyperpage}{2}
+\indexentry{codomain|hyperpage}{2}
+\indexentry{mapping!injective|hyperpage}{2}
+\indexentry{mapping!surjective|hyperpage}{2}
+\indexentry{mapping!bijection|hyperpage}{2}
 \indexentry{function|hyperpage}{2}
 \indexentry{image|hyperpage}{2}
 \indexentry{Euler's formula|hyperpage}{2}
 \indexentry{continuous|hyperpage}{3}
 \indexentry{derivative|hyperpage}{3}
-\indexentry{antiderivative|hyperpage}{3}
+\indexentry{antiderivative|hyperpage}{4}
 \indexentry{Leibniz rule|hyperpage}{4}
 \indexentry{gradient|hyperpage}{4}
 \indexentry{Taylor series|hyperpage}{4}
@@ -30,80 +30,83 @@
 \indexentry{orthonormal|hyperpage}{5}
 \indexentry{vector|hyperpage}{7}
 \indexentry{scalar|hyperpage}{7}
-\indexentry{gradient|hyperpage}{14}
-\indexentry{divergence|hyperpage}{14}
-\indexentry{curl|hyperpage}{14}
-\indexentry{divergence theorem|hyperpage}{15}
-\indexentry{Stokes' theorem|hyperpage}{16}
-\indexentry{Einstein summation convention|hyperpage}{17}
-\indexentry{dummy index|hyperpage}{17}
-\indexentry{free index|hyperpage}{17}
-\indexentry{Kronecker delta|hyperpage}{17}
-\indexentry{Levi-Civita symbol|hyperpage}{17}
-\indexentry{tensors|hyperpage}{20}
-\indexentry{multilinear|hyperpage}{20}
-\indexentry{complex number|hyperpage}{27}
-\indexentry{Argand diagram|hyperpage}{27}
-\indexentry{principal argument|hyperpage}{28}
-\indexentry{branch point|hyperpage}{30}
-\indexentry{branch cut|hyperpage}{30}
-\indexentry{Cauchy--Riemann equations|hyperpage}{31}
-\indexentry{analytic|hyperpage}{31}
-\indexentry{entire|hyperpage}{31}
-\indexentry{harmonic|hyperpage}{31}
-\indexentry{contour integral|hyperpage}{31}
-\indexentry{Cauchy's integral theorem|hyperpage}{32}
-\indexentry{Laurent series|hyperpage}{35}
-\indexentry{removable|hyperpage}{35}
-\indexentry{pole|hyperpage}{35}
-\indexentry{essential|hyperpage}{35}
-\indexentry{residue|hyperpage}{35}
-\indexentry{residue theorem|hyperpage}{35}
-\indexentry{partial differential equation|hyperpage}{43}
-\indexentry{PDE|hyperpage}{43}
-\indexentry{continuity equation|hyperpage}{43}
-\indexentry{wave equation|hyperpage}{44}
-\indexentry{hyperbolic|hyperpage}{48}
-\indexentry{heat equation|hyperpage}{49}
-\indexentry{parabolic|hyperpage}{49}
-\indexentry{elliptic|hyperpage}{50}
-\indexentry{Laplace's equation|hyperpage}{50}
-\indexentry{Poisson's equation|hyperpage}{50}
-\indexentry{initial-boundary-value problem|hyperpage}{51}
-\indexentry{IBVP|hyperpage}{51}
-\indexentry{Dirichlet|hyperpage}{52}
-\indexentry{Neumann|hyperpage}{52}
-\indexentry{Robin|hyperpage}{52}
-\indexentry{characteristic equation|hyperpage}{55}
-\indexentry{Separation of variables|hyperpage}{57}
-\indexentry{Bessel's inequality|hyperpage}{62}
-\indexentry{complete|hyperpage}{62}
-\indexentry{Parseval's identity|hyperpage}{62}
-\indexentry{Fourier coefficients|hyperpage}{62}
-\indexentry{Fourier series|hyperpage}{62}
-\indexentry{Dirichlet conditions|hyperpage}{63}
-\indexentry{Fourier integral|hyperpage}{65}
-\indexentry{Fourier transform|hyperpage}{65}
-\indexentry{ordinary differential equations|hyperpage}{66}
-\indexentry{ODE|hyperpage}{66}
-\indexentry{convolution|hyperpage}{66}
-\indexentry{delta function|hyperpage}{67}
-\indexentry{Dirac delta|hyperpage}{67}
-\indexentry{distribution|hyperpage}{67}
-\indexentry{sifting property|hyperpage}{67}
-\indexentry{Laplace transform|hyperpage}{73}
-\indexentry{Bromwich integral|hyperpage}{73}
-\indexentry{functionals|hyperpage}{77}
-\indexentry{Lagrangian density|hyperpage}{77}
-\indexentry{Euler--Lagrange equation|hyperpage}{80}
-\indexentry{generalized coordinates|hyperpage}{81}
-\indexentry{action|hyperpage}{81}
-\indexentry{Hamilton's principle|hyperpage}{82}
-\indexentry{Hamiltonian|hyperpage}{82}
-\indexentry{Hamilton's equations|hyperpage}{82}
-\indexentry{Lagrange multipliers|hyperpage}{82}
-\indexentry{Green's function method|hyperpage}{91}
-\indexentry{point-source influence function|hyperpage}{91}
-\indexentry{Green's identity!first|hyperpage}{91}
-\indexentry{Green's identity!second|hyperpage}{91}
-\indexentry{method of images|hyperpage}{94}
+\indexentry{inverse matrix|hyperpage}{14}
+\indexentry{cofactor|hyperpage}{14}
+\indexentry{adjugate|hyperpage}{14}
+\indexentry{gradient|hyperpage}{16}
+\indexentry{divergence|hyperpage}{16}
+\indexentry{curl|hyperpage}{16}
+\indexentry{divergence theorem|hyperpage}{18}
+\indexentry{Stokes' theorem|hyperpage}{19}
+\indexentry{Einstein summation convention|hyperpage}{20}
+\indexentry{dummy index|hyperpage}{20}
+\indexentry{free index|hyperpage}{20}
+\indexentry{Kronecker delta|hyperpage}{20}
+\indexentry{Levi-Civita symbol|hyperpage}{21}
+\indexentry{tensors|hyperpage}{23}
+\indexentry{multilinear|hyperpage}{23}
+\indexentry{complex number|hyperpage}{31}
+\indexentry{Argand diagram|hyperpage}{31}
+\indexentry{principal argument|hyperpage}{32}
+\indexentry{branch point|hyperpage}{34}
+\indexentry{branch cut|hyperpage}{34}
+\indexentry{Cauchy--Riemann equations|hyperpage}{35}
+\indexentry{analytic|hyperpage}{35}
+\indexentry{entire|hyperpage}{35}
+\indexentry{harmonic|hyperpage}{35}
+\indexentry{contour integral|hyperpage}{35}
+\indexentry{Cauchy's integral theorem|hyperpage}{36}
+\indexentry{Laurent series|hyperpage}{39}
+\indexentry{removable|hyperpage}{39}
+\indexentry{pole|hyperpage}{39}
+\indexentry{essential|hyperpage}{39}
+\indexentry{residue|hyperpage}{39}
+\indexentry{residue theorem|hyperpage}{39}
+\indexentry{partial differential equation|hyperpage}{47}
+\indexentry{PDE|hyperpage}{47}
+\indexentry{continuity equation|hyperpage}{47}
+\indexentry{wave equation|hyperpage}{48}
+\indexentry{hyperbolic|hyperpage}{52}
+\indexentry{heat equation|hyperpage}{53}
+\indexentry{parabolic|hyperpage}{53}
+\indexentry{elliptic|hyperpage}{54}
+\indexentry{Laplace's equation|hyperpage}{54}
+\indexentry{Poisson's equation|hyperpage}{54}
+\indexentry{initial-boundary-value problem|hyperpage}{55}
+\indexentry{IBVP|hyperpage}{55}
+\indexentry{Dirichlet|hyperpage}{56}
+\indexentry{Neumann|hyperpage}{56}
+\indexentry{Robin|hyperpage}{56}
+\indexentry{characteristic equation|hyperpage}{59}
+\indexentry{Separation of variables|hyperpage}{61}
+\indexentry{Bessel's inequality|hyperpage}{66}
+\indexentry{complete|hyperpage}{66}
+\indexentry{Parseval's identity|hyperpage}{66}
+\indexentry{Fourier coefficients|hyperpage}{66}
+\indexentry{Fourier series|hyperpage}{66}
+\indexentry{Dirichlet conditions|hyperpage}{67}
+\indexentry{Fourier integral|hyperpage}{69}
+\indexentry{Fourier transform|hyperpage}{69}
+\indexentry{ordinary differential equations|hyperpage}{70}
+\indexentry{ODE|hyperpage}{70}
+\indexentry{convolution|hyperpage}{70}
+\indexentry{delta function|hyperpage}{71}
+\indexentry{Dirac delta|hyperpage}{71}
+\indexentry{distribution|hyperpage}{71}
+\indexentry{sifting property|hyperpage}{71}
+\indexentry{Laplace transform|hyperpage}{77}
+\indexentry{Bromwich integral|hyperpage}{77}
+\indexentry{functionals|hyperpage}{81}
+\indexentry{Lagrangian density|hyperpage}{81}
+\indexentry{Euler--Lagrange equation|hyperpage}{84}
+\indexentry{generalized coordinates|hyperpage}{85}
+\indexentry{action|hyperpage}{85}
+\indexentry{Hamilton's principle|hyperpage}{86}
+\indexentry{Hamiltonian|hyperpage}{86}
+\indexentry{Hamilton's equations|hyperpage}{86}
+\indexentry{Lagrange multipliers|hyperpage}{86}
+\indexentry{Green's function method|hyperpage}{95}
+\indexentry{point-source influence function|hyperpage}{95}
+\indexentry{Green's identity!first|hyperpage}{95}
+\indexentry{Green's identity!second|hyperpage}{95}
+\indexentry{method of images|hyperpage}{98}

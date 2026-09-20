@@ -1,0 +1,17 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=2.1mm]}, line width=0.9pt},
+    constr/.style={gray, densely dashed, thin},
+  ]
+  \draw[gray!55, thin] (-0.3,0) -- (3.4,0) node[right] {$x$};
+  \draw[gray!55, thin] (0,-0.3) -- (0,2.4) node[above] {$y$};
+  \fill (0,0) circle (1.1pt) node[below left] {$O$};
+
+  \coordinate (A) at (2.6,1.65);
+  \draw[constr] (A) -- (2.6,0) node[below] {$A_x$};
+  \draw[constr] (A) -- (0,1.65) node[left] {$A_y$};
+  \draw[vec, gray] (0,0) -- (0.95,0) node[below, xshift=6pt, yshift=-1pt] {$\mathbf{e}_x$};
+  \draw[vec, gray] (0,0) -- (0,0.95) node[left, yshift=6pt] {$\mathbf{e}_y$};
+  \draw[vec, MidnightBlue] (0,0) -- (A) node[midway, above left] {$\mathbf{A}$};
+\end{tikzpicture}

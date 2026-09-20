@@ -1,0 +1,25 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=2.0mm]}, line width=0.9pt},
+  ]
+  % xz-plane: H1=(0.757,0.586), H2=(-0.757,0.586), scale 2.6.
+  \def\s{2.55}
+  \coordinate (O) at (0,0);
+  \coordinate (H1) at (0.757*\s, 0.586*\s);
+  \coordinate (H2) at (-0.757*\s, 0.586*\s);
+
+  \draw[gray!50, thin] (-2.35,0) -- (2.35,0) node[right] {$x$};
+  \draw[gray!50, thin] (0,-0.25) -- (0,2.15) node[above] {$z$};
+
+  \draw[vec, MidnightBlue] (O) -- (H1) node[midway, below right] {$\mathbf{u}$};
+  \draw[vec, BrickRed] (O) -- (H2) node[midway, below left] {$\mathbf{v}$};
+  \draw pic[draw, angle radius=0.62cm, angle eccentricity=1.7, "$\alpha$"]
+    {angle = H1--O--H2};
+
+  \fill[ForestGreen] (O) circle (2.0pt) node[below left] {$\mathrm{O}$};
+  \fill[MidnightBlue!70] (H1) circle (2.0pt) node[above right] {$\mathrm{H}_1$};
+  \fill[BrickRed!80] (H2) circle (2.0pt) node[above left] {$\mathrm{H}_2$};
+  \node[gray, font=\scriptsize] at (2.05,1.95) {$(0.757,0,0.586)$};
+  \node[gray, font=\scriptsize] at (-2.05,1.95) {$(-0.757,0,0.586)$};
+\end{tikzpicture}

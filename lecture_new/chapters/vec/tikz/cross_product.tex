@@ -1,0 +1,22 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=2.0mm]}, line width=0.9pt},
+  ]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (2.45,0.18);
+  \coordinate (B) at (0.95,1.25);
+  \coordinate (AB) at (3.40,1.43);
+  \coordinate (C) at (0.12,1.95);
+
+  \fill[MidnightBlue!7] (O) -- (A) -- (AB) -- (B) -- cycle;
+  \foreach \t in {0.18,0.36,0.54,0.72,0.90} {
+    \draw[gray!30, thin] ($ (O)!\t!(A) $) -- ($ (B)!\t!(AB) $);
+  }
+  \draw[gray!50] (A) -- (AB) -- (B);
+  \draw[vec, MidnightBlue] (O) -- (A) node[below] {$\mathbf{A}$};
+  \draw[vec, BrickRed] (O) -- (B) node[left] {$\mathbf{B}$};
+  \draw[vec, Plum] (O) -- (C) node[above left] {$\mathbf{A}\times\mathbf{B}$};
+  \fill (O) circle (1.2pt);
+  \node[gray] at (1.85,0.72) {$|\mathbf{A}\times\mathbf{B}|$};
+\end{tikzpicture}

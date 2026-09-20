@@ -4,31 +4,31 @@
 
 For real functions on $[a,b]$, define the inner product by
 \begin{equation}
-(f,g)=\int_a^b f(x)g(x)\,dx.
+\langle f,g\rangle=\int_a^b f(x)g(x)\,\mathrm{d}x.
 \end{equation}
 The Schwarz inequality is
 \begin{equation}
-|(f,g)|^2\leq(f,f)(g,g),
+|\langle f,g\rangle|^2\leq\langle f,f\rangle\langle g,g\rangle,
 \end{equation}
-with equality precisely when $f$ and $g$ are linearly dependent. Functions are orthogonal when $(f,g)=0$; the squared norm is $\lVert f\rVert^2=(f,f)$. For complex functions, the appropriate inner product is
+with equality precisely when $f$ and $g$ are linearly dependent. Functions are orthogonal when $\langle f,g\rangle=0$; the squared norm is $\lVert f\rVert^2=\langle f,f\rangle$. For complex functions, the appropriate inner product is
 \begin{equation}
-(f,g)=\int_a^b f^*(x)g(x)\,dx.
+\langle f,g\rangle=\int_a^b f^*(x)g(x)\,\mathrm{d}x.
 \end{equation}
-A set $\{\varphi_n\}$ is orthonormal when $(\varphi_m,\varphi_n)=\delta_{mn}$. Orthogonality implies linear independence: multiplying $\sum_n c_n\varphi_n=0$ by $\varphi_j^*$ and integrating gives $c_j=0$.
+A set $\{\varphi_n\}$ is orthonormal when $\langle\varphi_m,\varphi_n\rangle=\delta_{mn}$. Orthogonality implies linear independence: multiplying $\sum_n c_n\varphi_n=0$ by $\varphi_j^*$ and integrating gives $c_j=0$.
 
 Just as for vectors, a linearly independent function set can be orthogonalized. The Gram--Schmidt construction begins with $\varphi_1=f_1$ and continues as
 \begin{equation}
 \varphi_n=f_n-\sum_{j=1}^{n-1}
-\frac{(f_n,\varphi_j)}{(\varphi_j,\varphi_j)}\varphi_j.
+\frac{\langle f_n,\varphi_j\rangle}{\langle\varphi_j,\varphi_j\rangle}\varphi_j.
 \end{equation}
-For an orthonormal set, the best finite expansion $f\approx\sum_{n=1}^N c_n\varphi_n$ has coefficients $c_n=(f,\varphi_n)$. Positivity of the squared error gives \termidx{Bessel's inequality}{Bessel's inequality},
+For an orthonormal set, the best finite expansion $f\approx\sum_{n=1}^N c_n\varphi_n$ has coefficients $c_n=\langle f,\varphi_n\rangle$. Positivity of the squared error gives \termidx{Bessel's inequality}{Bessel's inequality},
 \begin{equation}
 \sum_{n=1}^{\infty}|c_n|^2\leq\lVert f\rVert^2.
 \end{equation}
 An orthonormal set is \term{complete} when its finite expansions approximate every piecewise continuous function arbitrarily well in mean square. For a complete set, Bessel's inequality becomes \termidx{Parseval's relation}{Parseval's identity},
 \begin{equation}
-\sum_{n=1}^{\infty}c_n^*d_n=(f,g),
-\qquad c_n=(f,\varphi_n),\quad d_n=(g,\varphi_n).
+\sum_{n=1}^{\infty}c_n^*d_n=\langle f,g\rangle,
+\qquad c_n=\langle f,\varphi_n\rangle,\quad d_n=\langle g,\varphi_n\rangle.
 \end{equation}
 
 This is exactly the same idea as projecting a vector onto an orthonormal basis in Euclidean space: the \term{Fourier coefficients} are the components of the function in the chosen basis, and orthogonality makes the components independent.
@@ -48,7 +48,7 @@ Linearity permits their superposition. Thus an arbitrary initial temperature $T(
 \begin{equation}
 f(x)=\sum_{n=1}^{\infty}A_n\sin\left(\frac{n\pi x}{\ell}\right),
 \qquad
-A_n=\frac{2}{\ell}\int_0^\ell f(x)\sin\left(\frac{n\pi x}{\ell}\right)\,dx.
+A_n=\frac{2}{\ell}\int_0^\ell f(x)\sin\left(\frac{n\pi x}{\ell}\right)\,\mathrm{d}x.
 \end{equation}
 
 \subsection{Fourier theorem}
@@ -60,25 +60,25 @@ f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}
 \end{equation}
 where
 \begin{align}
-a_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)\cos\left(\frac{n\pi x}{\ell}\right)\,dx,\\
-b_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)\sin\left(\frac{n\pi x}{\ell}\right)\,dx.
+a_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)\cos\left(\frac{n\pi x}{\ell}\right)\,\mathrm{d}x,\\
+b_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)\sin\left(\frac{n\pi x}{\ell}\right)\,\mathrm{d}x.
 \end{align}
 The trigonometric basis is orthogonal on one period:
 \begin{equation}
-(\sin nx,\sin mx)=\pi\delta_{mn},\qquad
-(\cos nx,\cos mx)=\pi\delta_{mn},\qquad
-(\sin nx,\cos mx)=0
+\langle\sin nx,\sin mx\rangle=\pi\delta_{mn},\qquad
+\langle\cos nx,\cos mx\rangle=\pi\delta_{mn},\qquad
+\langle\sin nx,\cos mx\rangle=0
 \end{equation}
 for $m,n\neq0$. This orthogonality is the reason the coefficients can be extracted by simple integration. The \term{Dirichlet conditions} require finitely many discontinuities and extrema in each period. At a jump $x_0$, the series converges to $[f(x_0^-)+f(x_0^+)]/2$. Odd functions have sine series; even functions have cosine series.
 
 The equivalent complex form is
 \begin{equation}
 f(x)=\sum_{n=-\infty}^{\infty}c_ne^{\mathrm{i}n\pi x/\ell},
-\qquad c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}f(x)e^{-\mathrm{i}n\pi x/\ell}\,dx.
+\qquad c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}f(x)e^{-\mathrm{i}n\pi x/\ell}\,\mathrm{d}x.
 \end{equation}
 For real $f$, $c_{-n}=c_n^*$. Parseval's identity becomes
 \begin{equation}
-\frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,dx=\sum_{n=-\infty}^{\infty}|c_n|^2
+\frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x=\sum_{n=-\infty}^{\infty}|c_n|^2
 =\frac{a_0^2}{4}+\frac12\sum_{n=1}^{\infty}(a_n^2+b_n^2).
 \end{equation}
 
@@ -95,16 +95,16 @@ At $x=\ell/2$, this gives the Leibniz series $\pi/4=1-1/3+1/5-\cdots$. Applying 
 Use Parseval's identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$:
 \begin{equation}
 \sum_{n=-\infty}^{\infty}|c_n|^2
-=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,dx.
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,\mathrm{d}x.
 \end{equation}
 For $n\neq0$,
 \begin{equation}
- c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}xe^{-inx}\,dx=\frac{(-1)^n}{n}\,\mathrm{i},
+ c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}xe^{-\mathrm{i}nx}\,\mathrm{d}x=\frac{(-1)^n}{n}\,\mathrm{i},
 \end{equation}
 so $|c_n|^2=1/n^2$. Therefore,
 \begin{equation}
 2\sum_{n=1}^{\infty}\frac{1}{n^2}
-=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,dx
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,\mathrm{d}x
 =\frac{\pi^2}{3},
 \end{equation}
 which gives

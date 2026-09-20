@@ -56,11 +56,11 @@ This equation expresses the vanishing of the mean curvature of the equilibrium s
 
 A wave disturbance in a field $u(x,t)$ can be written as a superposition of plane waves,
 \begin{equation}
-u(x,t)=\frac{1}{(2\pi)^2}\iint e^{\mathrm{i}(kx-\omega t)}\,\widetilde u(k,\omega)\,\mathrm{d}k\,\mathrm{d}\omega,
+u(x,t)=\frac{1}{2\pi}\iint e^{\mathrm{i}(kx-\omega t)}\,U(k,\omega)\,\mathrm{d}k\,\mathrm{d}\omega,
 \end{equation}
 restricted to those $(k,\omega)$ that satisfy the dispersion relation $D(k,\omega)=0$ of the medium. For waves of fixed frequency $\omega$ the relation $\omega=\omega(k)$ singles out the allowed wavenumbers, and the disturbance propagates as
 \begin{equation}
-u(x,t)=\frac{1}{2\pi}\int e^{\mathrm{i}(kx-\omega(k)t)}\,\widetilde u(k)\,\mathrm{d}k.
+u(x,t)=\frac{1}{\sqrt{2\pi}}\int e^{\mathrm{i}(kx-\omega(k)t)}\,U(k)\,\mathrm{d}k.
 \end{equation}
 
 The phase of the integrand, $\phi(k)=kx-\omega(k)t$, oscillates rapidly for generic $k$ and contributions from different wavenumbers interfere destructively. The integrand is appreciable only where $\phi$ is stationary, i.e. where $\phi'(k)=0$. This condition is a constrained stationarity problem: minimize $\phi(k)$ subject to the dispersion relation $D(k,\omega)=0$. The corresponding Lagrange-multiplier equations,
@@ -94,23 +94,23 @@ A particularly elegant use of Lagrange multipliers arises in the foundations of 
 \begin{equation}
 S=-\sum_{i=1}^N p_i\ln p_i,
 \end{equation}
-subject to the normalization constraint $\sum_i p_i=1$ and to whatever further constraints $\sum_i p_i\,\mathcal O_i(x_i)=\langle\mathcal O\rangle$ encode the given averages.
+subject to the normalization constraint $\sum_i p_i=1$ and to whatever further constraints $\sum_i p_i\,\mathcal{O}_i(x_i)=\langle\mathcal{O}\rangle$ encode the given averages.
 
 The augmented function reads
 \begin{equation}
-\mathcal F=-\sum_i p_i\ln p_i-\lambda_0\!\left(\sum_i p_i-1\right)-\sum_a\lambda_a\!\left(\sum_i p_i\,\mathcal O_a(x_i)-\langle\mathcal O_a\rangle\right).
+\mathcal{F}=-\sum_i p_i\ln p_i-\lambda_0\!\left(\sum_i p_i-1\right)-\sum_a\lambda_a\!\left(\sum_i p_i\,\mathcal{O}_a(x_i)-\langle\mathcal{O}_a\rangle\right).
 \end{equation}
 Varying with respect to $p_i$ yields
 \begin{equation}
--\ln p_i-1-\lambda_0-\lambda_a\mathcal O_a(x_i)=0,
+-\ln p_i-1-\lambda_0-\lambda_a\mathcal{O}_a(x_i)=0,
 \end{equation}
 so that
 \begin{equation}
-p_i=\frac{1}{Z}\exp\!\left(-\sum_a\lambda_a\mathcal O_a(x_i)\right),
+p_i=\frac{1}{Z}\exp\!\left(-\sum_a\lambda_a\mathcal{O}_a(x_i)\right),
 \qquad
-Z=\sum_i\exp\!\left(-\sum_a\lambda_a\mathcal O_a(x_i)\right).
+Z=\sum_i\exp\!\left(-\sum_a\lambda_a\mathcal{O}_a(x_i)\right).
 \end{equation}
-The normalization constant $Z$, called the partition function, is determined by the constraint $\sum_i p_i=1$, while the multipliers $\lambda_a$ are fixed by the average-value constraints $\langle\mathcal O_a\rangle$.
+The normalization constant $Z$, called the partition function, is determined by the constraint $\sum_i p_i=1$, while the multipliers $\lambda_a$ are fixed by the average-value constraints $\langle\mathcal{O}_a\rangle$.
 
 \begin{example}[Canonical ensemble]
 If the only constraint besides normalization is the average energy $\langle E\rangle$, the maximum-entropy distribution is

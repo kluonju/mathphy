@@ -1,151 +1,154 @@
 \begin{theindex}
 
-  \item action, \hyperpage{81}
-  \item analytic, \hyperpage{31}
-  \item antiderivative, \hyperpage{3}
-  \item Argand diagram, \hyperpage{27}
+  \item action, \hyperpage{85}
+  \item adjugate, \hyperpage{14}
+  \item analytic, \hyperpage{35}
+  \item antiderivative, \hyperpage{4}
+  \item Argand diagram, \hyperpage{31}
   \indexspace
 
   \item basis, \hyperpage{4}
-  \item Bessel's inequality, \hyperpage{62}
-  \item branch cut, \hyperpage{30}
-  \item branch point, \hyperpage{30}
-  \item Bromwich integral, \hyperpage{73}
+  \item Bessel's inequality, \hyperpage{66}
+  \item branch cut, \hyperpage{34}
+  \item branch point, \hyperpage{34}
+  \item Bromwich integral, \hyperpage{77}
   \indexspace
 
-  \item Cauchy--Riemann equations, \hyperpage{31}
-  \item Cauchy's integral theorem, \hyperpage{32}
-  \item characteristic equation, \hyperpage{55}
-  \item codomain, \hyperpage{1}
-  \item complete, \hyperpage{62}
-  \item complex number, \hyperpage{27}
+  \item Cauchy--Riemann equations, \hyperpage{35}
+  \item Cauchy's integral theorem, \hyperpage{36}
+  \item characteristic equation, \hyperpage{59}
+  \item codomain, \hyperpage{2}
+  \item cofactor, \hyperpage{14}
+  \item complete, \hyperpage{66}
+  \item complex number, \hyperpage{31}
   \item complex numbers, \hyperpage{1}
-  \item continuity equation, \hyperpage{43}
+  \item continuity equation, \hyperpage{47}
   \item continuous, \hyperpage{3}
-  \item contour integral, \hyperpage{31}
-  \item convolution, \hyperpage{66}
-  \item curl, \hyperpage{14}
+  \item contour integral, \hyperpage{35}
+  \item convolution, \hyperpage{70}
+  \item curl, \hyperpage{16}
   \indexspace
 
-  \item delta function, \hyperpage{67}
+  \item delta function, \hyperpage{71}
   \item derivative, \hyperpage{3}
   \item dimension, \hyperpage{4}
-  \item Dirac delta, \hyperpage{67}
-  \item Dirichlet, \hyperpage{52}
-  \item Dirichlet conditions, \hyperpage{63}
-  \item distribution, \hyperpage{67}
-  \item divergence, \hyperpage{14}
-  \item divergence theorem, \hyperpage{15}
-  \item domain, \hyperpage{1}
-  \item dummy index, \hyperpage{17}
+  \item Dirac delta, \hyperpage{71}
+  \item Dirichlet, \hyperpage{56}
+  \item Dirichlet conditions, \hyperpage{67}
+  \item distribution, \hyperpage{71}
+  \item divergence, \hyperpage{16}
+  \item divergence theorem, \hyperpage{18}
+  \item domain, \hyperpage{2}
+  \item dummy index, \hyperpage{20}
   \indexspace
 
   \item eigenvalue, \hyperpage{5}
   \item eigenvector, \hyperpage{5}
-  \item Einstein summation convention, \hyperpage{17}
-  \item elliptic, \hyperpage{50}
-  \item entire, \hyperpage{31}
-  \item essential, \hyperpage{35}
-  \item Euler--Lagrange equation, \hyperpage{80}
+  \item Einstein summation convention, \hyperpage{20}
+  \item elliptic, \hyperpage{54}
+  \item entire, \hyperpage{35}
+  \item essential, \hyperpage{39}
+  \item Euler--Lagrange equation, \hyperpage{84}
   \item Euler's formula, \hyperpage{2}
   \indexspace
 
-  \item Fourier coefficients, \hyperpage{62}
-  \item Fourier integral, \hyperpage{65}
-  \item Fourier series, \hyperpage{62}
-  \item Fourier transform, \hyperpage{65}
-  \item free index, \hyperpage{17}
+  \item Fourier coefficients, \hyperpage{66}
+  \item Fourier integral, \hyperpage{69}
+  \item Fourier series, \hyperpage{66}
+  \item Fourier transform, \hyperpage{69}
+  \item free index, \hyperpage{20}
   \item function, \hyperpage{2}
-  \item functionals, \hyperpage{77}
+  \item functionals, \hyperpage{81}
   \indexspace
 
-  \item generalized coordinates, \hyperpage{81}
-  \item gradient, \hyperpage{4}, \hyperpage{14}
+  \item generalized coordinates, \hyperpage{85}
+  \item gradient, \hyperpage{4}, \hyperpage{16}
   \item Gram--Schmidt orthogonalization, \hyperpage{5}
-  \item Green's function method, \hyperpage{91}
+  \item Green's function method, \hyperpage{95}
   \item Green's identity
-    \subitem first, \hyperpage{91}
-    \subitem second, \hyperpage{91}
+    \subitem first, \hyperpage{95}
+    \subitem second, \hyperpage{95}
   \indexspace
 
-  \item Hamiltonian, \hyperpage{82}
-  \item Hamilton's equations, \hyperpage{82}
-  \item Hamilton's principle, \hyperpage{82}
-  \item harmonic, \hyperpage{31}
-  \item heat equation, \hyperpage{49}
-  \item hyperbolic, \hyperpage{48}
+  \item Hamiltonian, \hyperpage{86}
+  \item Hamilton's equations, \hyperpage{86}
+  \item Hamilton's principle, \hyperpage{86}
+  \item harmonic, \hyperpage{35}
+  \item heat equation, \hyperpage{53}
+  \item hyperbolic, \hyperpage{52}
   \indexspace
 
-  \item IBVP, \hyperpage{51}
+  \item IBVP, \hyperpage{55}
   \item image, \hyperpage{2}
-  \item initial-boundary-value problem, \hyperpage{51}
+  \item initial-boundary-value problem, \hyperpage{55}
   \item inner product, \hyperpage{5}
   \item integers, \hyperpage{1}
+  \item inverse matrix, \hyperpage{14}
   \indexspace
 
-  \item Kronecker delta, \hyperpage{17}
+  \item Kronecker delta, \hyperpage{20}
   \indexspace
 
-  \item Lagrange multipliers, \hyperpage{82}
-  \item Lagrangian density, \hyperpage{77}
-  \item Laplace's equation, \hyperpage{50}
-  \item Laplace transform, \hyperpage{73}
-  \item Laurent series, \hyperpage{35}
+  \item Lagrange multipliers, \hyperpage{86}
+  \item Lagrangian density, \hyperpage{81}
+  \item Laplace's equation, \hyperpage{54}
+  \item Laplace transform, \hyperpage{77}
+  \item Laurent series, \hyperpage{39}
   \item Leibniz rule, \hyperpage{4}
-  \item Levi-Civita symbol, \hyperpage{17}
+  \item Levi-Civita symbol, \hyperpage{21}
   \item linearly independent, \hyperpage{4}
   \indexspace
 
   \item mapping, \hyperpage{1}
-    \subitem bijection, \hyperpage{1}
-    \subitem injective, \hyperpage{1}
-    \subitem surjective, \hyperpage{1}
+    \subitem bijection, \hyperpage{2}
+    \subitem injective, \hyperpage{2}
+    \subitem surjective, \hyperpage{2}
   \item matrix, \hyperpage{4}
-  \item method of images, \hyperpage{94}
-  \item multilinear, \hyperpage{20}
+  \item method of images, \hyperpage{98}
+  \item multilinear, \hyperpage{23}
   \indexspace
 
   \item natural numbers, \hyperpage{1}
-  \item Neumann, \hyperpage{52}
+  \item Neumann, \hyperpage{56}
   \indexspace
 
-  \item ODE, \hyperpage{66}
-  \item ordinary differential equations, \hyperpage{66}
+  \item ODE, \hyperpage{70}
+  \item ordinary differential equations, \hyperpage{70}
   \item orthogonal, \hyperpage{5}
   \item orthonormal, \hyperpage{5}
   \indexspace
 
-  \item parabolic, \hyperpage{49}
-  \item Parseval's identity, \hyperpage{62}
-  \item partial differential equation, \hyperpage{43}
-  \item PDE, \hyperpage{43}
-  \item point-source influence function, \hyperpage{91}
-  \item Poisson's equation, \hyperpage{50}
-  \item pole, \hyperpage{35}
-  \item principal argument, \hyperpage{28}
+  \item parabolic, \hyperpage{53}
+  \item Parseval's identity, \hyperpage{66}
+  \item partial differential equation, \hyperpage{47}
+  \item PDE, \hyperpage{47}
+  \item point-source influence function, \hyperpage{95}
+  \item Poisson's equation, \hyperpage{54}
+  \item pole, \hyperpage{39}
+  \item principal argument, \hyperpage{32}
   \indexspace
 
   \item real numbers, \hyperpage{1}
-  \item removable, \hyperpage{35}
-  \item residue, \hyperpage{35}
-  \item residue theorem, \hyperpage{35}
-  \item Robin, \hyperpage{52}
+  \item removable, \hyperpage{39}
+  \item residue, \hyperpage{39}
+  \item residue theorem, \hyperpage{39}
+  \item Robin, \hyperpage{56}
   \indexspace
 
   \item scalar, \hyperpage{7}
-  \item Separation of variables, \hyperpage{57}
-  \item sifting property, \hyperpage{67}
-  \item Stokes' theorem, \hyperpage{16}
+  \item Separation of variables, \hyperpage{61}
+  \item sifting property, \hyperpage{71}
+  \item Stokes' theorem, \hyperpage{19}
   \indexspace
 
   \item Taylor series, \hyperpage{4}
-  \item tensors, \hyperpage{20}
+  \item tensors, \hyperpage{23}
   \indexspace
 
   \item vector, \hyperpage{7}
   \item vector space, \hyperpage{4}
   \indexspace
 
-  \item wave equation, \hyperpage{44}
+  \item wave equation, \hyperpage{48}
 
 \end{theindex}

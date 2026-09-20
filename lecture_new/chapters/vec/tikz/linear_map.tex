@@ -1,0 +1,35 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=1.9mm]}, line width=0.85pt},
+  ]
+  % A = ((2,1),(1,2)) maps the unit square to the parallelogram spanned
+  % by the columns (2,1) and (1,2).  Scale 0.85.
+  \def\s{0.85}
+
+  \begin{scope}
+    \coordinate (O) at (0,0);
+    \coordinate (E1) at (\s,0);
+    \coordinate (E2) at (0,\s);
+    \coordinate (E12) at (\s,\s);
+    \fill[gray!12] (O) -- (E1) -- (E12) -- (E2) -- cycle;
+    \draw[gray!50] (O) -- (E1) -- (E12) -- (E2) -- cycle;
+    \draw[vec, gray] (O) -- (E1) node[below] {$\mathbf{e}_x$};
+    \draw[vec, gray] (O) -- (E2) node[left] {$\mathbf{e}_y$};
+    \fill (O) circle (1.1pt);
+    \node at (0.55,-0.72) {(a) unit square};
+  \end{scope}
+
+  \begin{scope}[xshift=3.55cm]
+    \coordinate (O) at (0,0);
+    \coordinate (A1) at (2*\s,1*\s);
+    \coordinate (A2) at (1*\s,2*\s);
+    \coordinate (A12) at (3*\s,3*\s);
+    \fill[Plum!12] (O) -- (A1) -- (A12) -- (A2) -- cycle;
+    \draw[gray!45] (A1) -- (A12) -- (A2);
+    \draw[vec, MidnightBlue] (O) -- (A1) node[below right] {$A\mathbf{e}_x$};
+    \draw[vec, BrickRed] (O) -- (A2) node[left] {$A\mathbf{e}_y$};
+    \fill (O) circle (1.1pt);
+    \node at (1.15,-0.72) {(b) image under $A$};
+  \end{scope}
+\end{tikzpicture}

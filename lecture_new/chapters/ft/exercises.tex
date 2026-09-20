@@ -17,13 +17,13 @@ The following exercises collect the main proofs and applications of the Fourier-
 
     \item\label{ex:fourier-convolution} Show that the Fourier transform diagonalizes convolution:
     \begin{equation*}
-        \mathcal{F}\{f*g\}(\omega)=\sqrt{2\pi}\,\hat f(\omega)\hat g(\omega).
+        \mathcal{F}\{f*g\}(\omega)=\sqrt{2\pi}\,F(\omega)G(\omega).
     \end{equation*}
     Explain why this makes the Fourier transform especially useful in solving linear differential equations and filtering problems.
 
     \item\label{ex:delta-sifting} Prove the sifting property
     \begin{equation*}
-        \int_{-\infty}^{\infty}f(x)\delta(x-a)\,dx=f(a),
+        \int_{-\infty}^{\infty}f(x)\delta(x-a)\,\mathrm{d}x=f(a),
     \end{equation*}
     and show that $\delta(ax)=\delta(x)/|a|$ for $a\neq0$. Interpret this result physically as the limit of a sharply localized pulse of unit area.
 

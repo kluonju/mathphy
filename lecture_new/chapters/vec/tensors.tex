@@ -69,6 +69,13 @@ The tensor $\sigma_{ij}$ contains more information than a single force vector be
 \end{equation}
 so that $t_i=-pn_i$; the pressure acts normally and equally in every direction.
 
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{traction.tex}
+    \caption{Traction on an oriented surface element. In an anisotropic medium $\mathbf{t}=\sigma\hat{\mathbf{n}}$ need not be parallel to the geometric normal.}
+    \label{fig:vec-traction}
+\end{figure}
+
 For a small deformation, the symmetric strain tensor is
 \begin{equation}
 \epsilon_{ij}=\frac12\left(\partial_i u_j+\partial_j u_i\right),
@@ -201,12 +208,26 @@ Because $I_{ij}=I_{ji}$, it can be diagonalized by choosing principal axes. In t
 \end{equation}
 which shows that angular momentum need not be parallel to angular velocity unless the body rotates about a principal axis or has sufficient symmetry.
 
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{inertia.tex}
+    \caption{The inertia tensor maps $\boldsymbol{\omega}$ to $\mathbf{L}=I\boldsymbol{\omega}$. The two vectors are parallel only in a principal-axis frame, or for a sufficiently symmetric body.}
+    \label{fig:vec-inertia}
+\end{figure}
+
 \subsection{A first look at tensor networks}
 A tensor network is a diagram and an associated contraction rule. Each node represents a tensor, and each line represents an index. Joining two lines means summing over the shared index. For example, matrix multiplication is the smallest tensor network:
 \begin{equation}
 C_{ij}=A_{ik}B_{kj}.
 \end{equation}
 The index $k$ is an internal bond, while $i$ and $j$ remain open as the input and output indices.
+
+\begin{figure}[htb]
+    \centering
+    \subimport{tikz/}{tensor_network.tex}
+    \caption{Matrix multiplication as a tensor network: the contracted index $k$ is an internal bond.}
+    \label{fig:vec-tensor-network}
+\end{figure}
 
 The same idea represents a vector as a one-legged tensor and a matrix as a two-legged tensor. A rank-three tensor can be contracted with a vector by
 \begin{equation}

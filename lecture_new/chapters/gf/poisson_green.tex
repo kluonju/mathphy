@@ -6,13 +6,13 @@ Let $u(\mathbf{r})$ and $v(\mathbf{r})$ have continuous first derivatives throug
 \begin{equation}
 \iint_{\Sigma} u\,\nabla v\cdot\mathrm{d}\mathbf{S}
 =\iiint_{T}\nabla\cdot(u\nabla v)\,\mathrm{d}V
-=\iiint_{T}u\,\Delta v\,\mathrm{d}V
+=\iiint_{T}u\,\nabla^2 v\,\mathrm{d}V
 +\iiint_{T}\nabla u\cdot\nabla v\,\mathrm{d}V.
 \end{equation}
 This is \termidx{Green's first identity}{Green's identity!first}. Interchanging $u$ and $v$ produces the companion identity
 \begin{equation}
 \iint_{\Sigma} v\,\nabla u\cdot\mathrm{d}\mathbf{S}
-=\iiint_{T}v\,\Delta u\,\mathrm{d}V
+=\iiint_{T}v\,\nabla^2 u\,\mathrm{d}V
 +\iiint_{T}\nabla u\cdot\nabla v\,\mathrm{d}V.
 \end{equation}
 Subtracting the two relations cancels the gradient products and yields \termidx{Green's second identity}{Green's identity!second}
@@ -21,7 +21,7 @@ Subtracting the two relations cancels the gradient products and yields \termidx{
 \iint_{\Sigma}\Bigl(
 u\frac{\partial v}{\partial n}-v\frac{\partial u}{\partial n}
 \Bigr)\,\mathrm{d}S
-=\iiint_{T}\bigl(u\,\Delta v-v\,\Delta u\bigr)\,\mathrm{d}V,
+=\iiint_{T}\bigl(u\,\nabla^2 v-v\,\nabla^2 u\bigr)\,\mathrm{d}V,
 \end{equation}
 where $\partial/\partial n$ denotes the \emph{outward} normal derivative on $\Sigma$.
 
@@ -30,7 +30,7 @@ where $\partial/\partial n$ denotes the \emph{outward} normal derivative on $\Si
 Consider the Poisson equation
 \begin{equation}
 \label{eq:poisson}
-\Delta u=f(\mathbf{r}),\qquad\mathbf{r}\in T,
+\nabla^2 u=f(\mathbf{r}),\qquad\mathbf{r}\in T,
 \end{equation}
 subject to the linear boundary condition
 \begin{equation}
@@ -47,22 +47,22 @@ The three classical cases are:
 To represent an arbitrary source density $f$ as a continuum of point sources, introduce the Dirac delta function. Let $v(\mathbf{r},\mathbf{r}_0)$ be the field at $\mathbf{r}$ produced by a unit point source at $\mathbf{r}_0$. Then
 \begin{equation}
 \label{eq:v-delta}
-\Delta v(\mathbf{r},\mathbf{r}_0)=\delta(\mathbf{r}-\mathbf{r}_0).
+\nabla^2 v(\mathbf{r},\mathbf{r}_0)=\delta(\mathbf{r}-\mathbf{r}_0).
 \end{equation}
 Formally combining \eqref{eq:poisson} and \eqref{eq:v-delta} with Green's second identity would give
 \begin{equation}
-\iiint_{T}\bigl(v\Delta u-u\Delta v\bigr)\,\mathrm{d}V
+\iiint_{T}\bigl(v\nabla^2 u-u\nabla^2 v\bigr)\,\mathrm{d}V
 =\iiint_{T}vf\,\mathrm{d}V
 -\iiint_{T}u\,\delta(\mathbf{r}-\mathbf{r}_0)\,\mathrm{d}V.
 \end{equation}
-The difficulty is that $\Delta v$ is singular at $\mathbf{r}=\mathbf{r}_0$, so Green's identity cannot be applied on the whole of $T$.
+The difficulty is that $\nabla^2 v$ is singular at $\mathbf{r}=\mathbf{r}_0$, so Green's identity cannot be applied on the whole of $T$.
 
 \subsection{Excision of the singularity}
 
 Remove a small ball $K_\varepsilon$ of radius $\varepsilon$ centered at $\mathbf{r}_0$, with spherical boundary $\Sigma_\varepsilon$. On the excised domain $T\setminus K_\varepsilon$ the identity \eqref{eq:green2} is legitimate:
 \begin{equation}
 \begin{aligned}
-&\iiint_{T\setminus K_\varepsilon}\bigl(v\Delta u-u\Delta v\bigr)\,\mathrm{d}V\\
+&\iiint_{T\setminus K_\varepsilon}\bigl(v\nabla^2 u-u\nabla^2 v\bigr)\,\mathrm{d}V\\
 &\qquad=
 \iint_{\Sigma}\Bigl(v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}\Bigr)\,\mathrm{d}S
 +\iint_{\Sigma_\varepsilon}\Bigl(v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}\Bigr)\,\mathrm{d}S.
@@ -138,13 +138,13 @@ u(\mathbf{r}_0)
 \paragraph{Neumann problem.}
 The naive requirements
 \begin{equation}
-\Delta G=\delta(\mathbf{r}-\mathbf{r}_0),
+\nabla^2 G=\delta(\mathbf{r}-\mathbf{r}_0),
 \qquad
 \frac{\partial G}{\partial n}\Big|_{\Sigma}=0
 \end{equation}
 admit \emph{no} solution. Physically, a steady heat source inside an insulated region cannot reach equilibrium: the temperature rises without bound. One therefore introduces a \textbf{generalized Green's function} that includes a compensating uniform sink. In three dimensions,
 \begin{equation}
-\Delta G=\delta(\mathbf{r}-\mathbf{r}_0)-\frac{1}{V_T},
+\nabla^2 G=\delta(\mathbf{r}-\mathbf{r}_0)-\frac{1}{V_T},
 \qquad
 \frac{\partial G}{\partial n}\Big|_{\Sigma}=0,
 \end{equation}
@@ -175,7 +175,7 @@ The volume integral is the superposition of interior sources; the surface integr
 \end{definition}
 
 \begin{note}[Proof of reciprocity]
-Fix $\mathbf{r}_1,\mathbf{r}_2\in T$. Excise small spheres about both points and apply Green's second identity to $u=G(\cdot,\mathbf{r}_1)$ and $v=G(\cdot,\mathbf{r}_2)$ on the remaining domain. The volume integrand and the contribution from the outer boundary $\Sigma$ vanish by the homogeneous boundary condition and by $\Delta G=\delta$. The limits on the two spheres give $G(\mathbf{r}_1,\mathbf{r}_2)=G(\mathbf{r}_2,\mathbf{r}_1)$.
+Fix $\mathbf{r}_1,\mathbf{r}_2\in T$. Excise small spheres about both points and apply Green's second identity to $u=G(\cdot,\mathbf{r}_1)$ and $v=G(\cdot,\mathbf{r}_2)$ on the remaining domain. The volume integrand and the contribution from the outer boundary $\Sigma$ vanish by the homogeneous boundary condition and by $\nabla^2 G=\delta$. The limits on the two spheres give $G(\mathbf{r}_1,\mathbf{r}_2)=G(\mathbf{r}_2,\mathbf{r}_1)$.
 \end{note}
 
 For Laplace's equation ($f=0$) only the boundary integrals survive:

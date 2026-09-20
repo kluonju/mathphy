@@ -2,11 +2,11 @@
 
 \subsection{Summing series}
 
-Since $n^{-2}=\int_0^\infty te^{-nt}\,dt$, summing the geometric series inside the integral gives
+Since $n^{-2}=\int_0^\infty te^{-nt}\,\mathrm{d}t$, summing the geometric series inside the integral gives
 \begin{equation}
 \sum_{n=1}^{\infty}\frac{1}{n^2}
-=\int_0^\infty t\sum_{n=1}^{\infty}e^{-nt}\,dt
-=\int_0^\infty\frac{t}{e^t-1}\,dt
+=\int_0^\infty t\sum_{n=1}^{\infty}e^{-nt}\,\mathrm{d}t
+=\int_0^\infty\frac{t}{e^t-1}\,\mathrm{d}t
 =\frac{\pi^2}{6}.
 \end{equation}
 The same result follows from the Parseval identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$, derived in the preceding chapter: its nonzero complex Fourier coefficients have magnitude $1/|n|$.
@@ -19,13 +19,13 @@ When the required convergence conditions hold,
 \end{equation}
 For example,
 \begin{equation}
-\int_0^\infty\frac{\sin t}{t}\,dt
+\int_0^\infty\frac{\sin t}{t}\,\mathrm{d}t
 =\int_0^\infty\frac{1}{p^2+1}\,dp
 =\frac{\pi}{2}.
 \end{equation}
 Applying the same idea to two cosine transforms yields, for $a,b>0$,
 \begin{equation}
-\int_0^\infty\frac{\cos(at)-\cos(bt)}{t}\,dt=\ln\frac{b}{a}.
+\int_0^\infty\frac{\cos(at)-\cos(bt)}{t}\,\mathrm{d}t=\ln\frac{b}{a}.
 \end{equation}
 This kind of integral identity is useful because many impossible-looking integrals become transparent once one recognizes the correct transform pair.
 

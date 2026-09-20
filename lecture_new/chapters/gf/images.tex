@@ -8,20 +8,20 @@ G=G_0+G_1,
 \end{equation}
 where
 \begin{equation}
-\Delta G_0=\delta(\mathbf{r}-\mathbf{r}_0),
+\nabla^2 G_0=\delta(\mathbf{r}-\mathbf{r}_0),
 \qquad
-\Delta G_1=0.
+\nabla^2 G_1=0.
 \end{equation}
 For the Dirichlet problem $G|_{\Sigma}=0$ one must have $G_1|_{\Sigma}=-G_0|_{\Sigma}$. The regular part is often constructed by the \term{method of images}.
 
 \paragraph{Three dimensions.}
-Place the source at the origin and seek a radial solution of $\Delta G_0=0$ for $r\neq0$:
+Place the source at the origin and seek a radial solution of $\nabla^2 G_0=0$ for $r\neq0$:
 \begin{equation}
 \frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d}r}\Bigl(r^2\frac{\mathrm{d}G_0}{\mathrm{d}r}\Bigr)=0
 \implies
 G_0=-\frac{C_1}{r}+C_2.
 \end{equation}
-Requiring $G_0\to0$ at infinity forces $C_2=0$. Integrating $\Delta G_0=\delta$ over a small ball about the origin gives $4\pi C_1=1$, so $C_1=1/(4\pi)$. Restoring a general source point,
+Requiring $G_0\to0$ at infinity forces $C_2=0$. Integrating $\nabla^2 G_0=\delta$ over a small ball about the origin gives $4\pi C_1=1$, so $C_1=1/(4\pi)$. Restoring a general source point,
 \begin{equation}
 \label{eq:G0-3d}
 G_0(\mathbf{r},\mathbf{r}_0)=-\frac{1}{4\pi\,|\mathbf{r}-\mathbf{r}_0|}.
@@ -45,7 +45,7 @@ When the boundary geometry is simple, the regular part $G_1$ can be realized by 
 
 Seek the Dirichlet Green's function inside the ball of radius $a$:
 \begin{equation}
-\Delta G=\delta(\mathbf{r}-\mathbf{r}_0),\qquad G\big|_{\text{sphere}}=0.
+\nabla^2 G=\delta(\mathbf{r}-\mathbf{r}_0),\qquad G\big|_{\text{sphere}}=0.
 \end{equation}
 Let $M_0$ be the source at distance $r_0$ from the center $O$. Place an image $M_1$ on the ray $OM_0$ at the inverse point
 \begin{equation}
@@ -65,7 +65,7 @@ G(\mathbf{r},\mathbf{r}_0)
 
 For the disk $\rho<a$,
 \begin{equation}
-\Delta G=\delta(\mathbf{r}-\mathbf{r}_0),\qquad G\big|_{\rho=a}=0,
+\nabla^2 G=\delta(\mathbf{r}-\mathbf{r}_0),\qquad G\big|_{\rho=a}=0,
 \end{equation}
 the corresponding Green's function is
 \begin{equation}
@@ -82,7 +82,7 @@ with $\mathbf{r}_1$ the same inverse point as above.
 \begin{example}[Dirichlet problem inside a sphere]
 Solve
 \begin{equation}
-\Delta_3 u=0\quad(r<a),\qquad u\big|_{r=a}=f(\theta,\varphi).
+\nabla^2 u=0\quad(r<a),\qquad u\big|_{r=a}=f(\theta,\varphi).
 \end{equation}
 Use \eqref{eq:G-sphere} in the observation-point formula \eqref{eq:dirichlet-obs}. With
 \begin{equation}
@@ -108,7 +108,7 @@ f(\theta_0,\varphi_0)
 \begin{example}[Half-space $z>0$]
 Solve
 \begin{equation}
-\Delta_3 u=0\quad(z>0),\qquad u\big|_{z=0}=f(x,y).
+\nabla^2 u=0\quad(z>0),\qquad u\big|_{z=0}=f(x,y).
 \end{equation}
 The Green's function with $G|_{z=0}=0$ is obtained by placing an opposite image at $M_1(x_0,y_0,-z_0)$:
 \begin{equation}
@@ -123,13 +123,13 @@ u(x,y,z)
 \end{example}
 
 \begin{example}[Disk and half-plane]
-For $\Delta_2 u=0$ in $\rho<a$ with $u|_{\rho=a}=f(\varphi)$,
+For $\nabla^2 u=0$ in $\rho<a$ with $u|_{\rho=a}=f(\varphi)$,
 \begin{equation}
 u(\rho,\varphi)
 =\frac{a^2-\rho^2}{2\pi}\int_0^{2\pi}
 \frac{f(\varphi_0)}{a^2-2a\rho\cos(\varphi-\varphi_0)+\rho^2}\,\mathrm{d}\varphi_0.
 \end{equation}
-For $\Delta_2 u=0$ in $y>0$ with $u|_{y=0}=f(x)$,
+For $\nabla^2 u=0$ in $y>0$ with $u|_{y=0}=f(x)$,
 \begin{equation}
 u(x,y)
 =\frac{y}{\pi}\int_{-\infty}^{\infty}

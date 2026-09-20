@@ -1,0 +1,24 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=1.6mm]}, line width=0.75pt},
+  ]
+  % Small loop in the xy-plane: circulation defining (curl A)_z.
+  \coordinate (O) at (0,0);
+  \coordinate (X) at (2.15,0);
+  \coordinate (Y) at (0,1.55);
+  \coordinate (XY) at (2.15,1.55);
+
+  \fill[Plum!8] (O) -- (X) -- (XY) -- (Y) -- cycle;
+  \draw[Plum, line width=0.9pt]
+    (O) -- (X) -- (XY) -- (Y) -- cycle;
+
+  \draw[vec, MidnightBlue] (0.35,-0.18) -- (1.80,-0.18);
+  \draw[vec, MidnightBlue] (2.33,0.25) -- (2.33,1.30);
+  \draw[vec, MidnightBlue] (1.80,1.73) -- (0.35,1.73);
+  \draw[vec, MidnightBlue] (-0.18,1.30) -- (-0.18,0.25);
+
+  \node[font=\scriptsize] at (1.08,-0.42) {$\Delta x$};
+  \node[font=\scriptsize] at (2.62,0.78) {$\Delta y$};
+  \node at (1.08,0.78) {$(\nabla\times\mathbf{A})_z$};
+\end{tikzpicture}
