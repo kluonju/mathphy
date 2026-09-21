@@ -440,6 +440,13 @@ $$
 它的半径则称为\textbf{收敛半径}. 
 至于在收敛圆周上的收敛情况则需要具体分析.
 
+在收敛圆内可以取一个比收敛半径稍小的半径$R_1 < R$, 可以利用比值判别法
+\begin{equation}
+\lim_{k\to \infty} \frac{|a_{k+1}R_1^{k+1}|}{|a_kR_1^k|} = 
+\lim_{k\to \infty} \frac{|a_{k+1}|}{|a_k|}R_1 = \frac{R_1}{R} < 1
+\end{equation}
+可知在$R_1$内级数绝对收敛且一致收敛.
+
 \onslide<2->{
 \begin{example}
 求幂级数$1 - z^2 + z^4 - z^6\cdots$的收敛圆,$z$为复变数.
@@ -482,6 +489,44 @@ $$
   %   \end{solution}
   % \end{frame}
 
+  \begin{frame}{收敛圆内不可能有奇点}
+  \small
+幂级数 $\sum_{k=0}^{\infty}a_k(z-z_0)^k$ 在收敛圆 $|z-z_0|<R$ 内绝对且一致收敛,
+其和函数 $f(z)$ 在圆内解析. 因此\textbf{收敛圆内不可能有奇点}.
+
+若圆内某点 $z_1$ 是 $f(z)$ 的奇点, 则沿 $z_0$ 到 $z_1$ 的射线,
+级数不可能在比 $|z_1-z_0|$ 更远处收敛, 这与收敛半径为 $R>|z_1-z_0|$ 矛盾.
+
+反过来, 收敛半径正是 $z_0$ 到 $f(z)$ 最近奇点的距离:
+圆周 $|z-z_0|=R$ 上至少存在一个奇点, 否则可将圆再扩大.
+
+\onslide<2->{
+\begin{example}
+几何级数 $\displaystyle\sum_{k=0}^{\infty}z^k=\frac{1}{1-z}$ 的收敛半径 $R=1$,
+和函数的唯一奇点 $z=1$ 恰好落在收敛圆周上.
+\end{example}
+}
+  \end{frame}
+
+  \begin{frame}{圆内逐项求导、积分不改变收敛半径}
+  \small
+设 $f(z)=\sum_{k=0}^{\infty}a_k(z-z_0)^k$ 的收敛半径为 $R$.
+在收敛圆内可以逐项求导、逐项积分:
+\begin{equation}
+f'(z)=\sum_{k=1}^{\infty}k a_k(z-z_0)^{k-1},\qquad
+\int^{z}f(\zeta)\,\mathrm{d}\zeta
+=\sum_{k=0}^{\infty}\frac{a_k}{k+1}(z-z_0)^{k+1}+C.
+\end{equation}
+所得级数的收敛半径仍为 $R$.
+用比值判别法即可看出: 原来 $R=\lim_{k\to\infty}|a_k/a_{k+1}|$,
+求导后系数变为 $b_k=(k+1)a_{k+1}$,
+\begin{equation}
+\lim_{k\to\infty}\Bigl|\frac{b_k}{b_{k+1}}\Bigr|
+=\lim_{k\to\infty}\frac{k+1}{k+2}\Bigl|\frac{a_{k+1}}{a_{k+2}}\Bigr|=R.
+\end{equation}
+积分只多一个 $1/(k+1)$, 同样不改变极限. 因而可在圆内求导任意次, 和函数无穷次可微.
+圆周上的收敛性则可能改变, 需要另行判定.
+  \end{frame}
 
 \subsection{泰勒级数(Taylor Series)和洛朗级数(Laurent Series)}
 
@@ -520,7 +565,7 @@ $$
         & \only<4->{= \sum_{k=0} ^{\infty}  \frac{f^{(k)}(z_0)}{k!} (z-z_0)^k}
     \end{aligned}
 \end{equation}
-\textbf{思考: 如何证明泰勒展开的唯一性?}
+\onslide<5->{\textbf{思考: 如何证明泰勒展开的唯一性?}}
 \end{frame}
 
 \begin{frame}{推论}
