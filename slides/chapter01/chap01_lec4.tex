@@ -663,7 +663,31 @@ $R_1$.如果
 主部收敛,那么对$|(z-z_0)^{-1}|$比某半径小的圆内收敛.若该圆半径为$1/R_2$,可以知当$|z-z_0|> R_2$,主部收敛.
 如果$R_2 < R_1$那么级数在环域$R_2 < |z- z_0| < R_1$内绝对一致收敛,级数求和为解析函数,级数可以逐项求导.该环域称为\textbf{收敛环}.
 如果$R_2 > R_1$那么该级数发散.
+
+当收敛环圆心处的内园半径无限缩小时, 收敛环逐渐逼近收敛圆, 收敛区域为
+$0 < |z-z_0| < R_1$,这时我们称圆心$z_0$为函数$f(z)$的\textbf{孤立奇点}.
 \end{frame}
+
+\begin{frame}{无穷远点处的洛朗级数}
+如果函数$f(z)$在无穷远点不解析，但在无穷远点的一个空心邻域内单值解析，
+那么我们可以将函数$f(z)$展开为洛朗级数，
+级数的主部为无穷远点的一个空心邻域内的洛朗级数。
+意味着，我们可以做一个变量替换$t = 1/z$, 在$t=0$($z=\infty$)空心邻域内单值解析，
+于是，我们有
+\[
+f(1/t) = \sum_{k=-\infty}^{\infty} a_k t^k, 0 < |t| < R_2, 
+\]
+其中$R_2$是$t=0$空心邻域的收敛半径。
+
+于是，我们可以得到
+\[
+f(z) = \sum_{k=-\infty}^{\infty} a_k z^{-k},  \frac{1}{R_2} < |z| < \infty, 
+\]
+
+这时对应的正幂项为主部, 负幂项为解析部，反应了函数$f(z)$在无穷远点附近的行为。
+\end{frame}
+
+
 
 \begin{frame}{例题}
   \small
@@ -728,17 +752,43 @@ e^{\frac{1}{z}} = \sum_{k=-\infty}^{0} \frac{1}{(-k)!} z^k ( |z| > 0) .
 \begin{frame}{例题}
   \small
 \begin{solution}
-对于极点$z=0$处的洛朗级数展开,我们可以利用$(1-\alpha z)^n$的泰勒展开.有
+\only<1>{
+$(1-\alpha z)^n$ 在 $z=0$ 处的泰勒展开即广义二项式级数
+\begin{equation}
+(1-\alpha z)^n
+=\sum_{k=0}^{\infty}\binom{n}{k}(-\alpha)^k z^k
+=\sum_{k=0}^{\infty}\frac{n(n-1)\cdots(n-k+1)}{k!}(-\alpha)^k z^k,
+\end{equation}
+通项为 $a_k=\binom{n}{k}(-\alpha)^k$,
+收敛域为 $|\alpha z|<1$, 即 $|z|<1/|\alpha|$ ($\alpha\neq 0$).
+$n$ 不必为自然数; 当 $n$ 为非负整数时级数在有限项后终止, 处处收敛.
+}
+\only<2>{
+本题 $f(z)=-1/[8z(1-z/2)^3]$, 取 $n=-3$, $\alpha=1/2$,
 \[
-    \begin{aligned}
-    f(z) &= -\frac{1}{8z(1-z/2)^3}
-    \\
-     &= -\frac{1}{8z}\left[ 1 + (-3) (-\frac{z}{2}) + \frac{(-3)(-4)}{2!} \left( -\frac{z}{2}\right)^2 + \cdots \right] 
-    \\
-     &= -\frac{1}{8z} - \frac{3}{16} - \frac{3z}{16} + \cdots   
-    \end{aligned}
+\Bigl(1-\frac{z}{2}\Bigr)^{-3}
+=\sum_{k=0}^{\infty}\binom{-3}{k}\Bigl(-\frac{z}{2}\Bigr)^k
+=\sum_{k=0}^{\infty}\binom{k+2}{2}\Bigl(\frac{z}{2}\Bigr)^k,
+\quad |z|<2.
 \]
-由定义可知,$z=0$为一阶奇点,留数为$-1/8$.对于$z=2$的洛朗级数展开,我们将函数写成
+故
+\[
+f(z)
+=-\frac{1}{8z}\sum_{k=0}^{\infty}\binom{k+2}{2}\frac{z^k}{2^k}
+=\sum_{k=0}^{\infty}-\frac{(k+1)(k+2)}{2^{k+4}}z^{k-1},
+\quad 0<|z|<2.
+\]
+前几项为 $-\frac{1}{8z}-\frac{3}{16}-\frac{3z}{16}+\cdots$.
+该洛朗展开的收敛域为 $0<|z|<2$.
+$z=0$ 为一阶极点, 留数为 $-1/8$.
+}
+\end{solution}
+\end{frame}
+
+\begin{frame}{例题}
+  \small
+\begin{solution}
+对于 $z=2$ 的洛朗级数展开, 我们将函数写成
 \[
     \begin{aligned}
         f(z) &= \frac{1}{(z-2)^3} \frac{1}{z-2 + 2}
@@ -750,7 +800,59 @@ e^{\frac{1}{z}} = \sum_{k=-\infty}^{0} \frac{1}{(-k)!} z^k ( |z| > 0) .
         &= \frac{1}{2(z-2)^3} - \frac{1}{4(z-2)^2} + \frac{1}{8(z-2)} - \frac{1}{16} + \cdots
     \end{aligned}
 \]
-由定义可知,$z=2$为三阶极点,留数为$1/8$.
+几何级数 $\sum_{k=0}^{\infty}(-1)^k\bigl((z-2)/2\bigr)^k$ 在 $|(z-2)/2|<1$ 即 $|z-2|<2$ 内收敛.
+再计及 $z=2$ 处的极点, 该洛朗展开的收敛域为 $0<|z-2|<2$.
+由定义可知, $z=2$ 为三阶极点, 留数为 $1/8$.
+\end{solution}
+\end{frame}
+
+\begin{frame}{例题}
+  \small
+\begin{example}
+将
+\[
+f(z)=\frac{1}{z(z-1)}
+\]
+分别在 $0<|z|<1$ (以 $z=0$ 为中心) 和 $|z|>1$ (以无穷远点为中心) 内展开为洛朗级数.
+\end{example}
+\end{frame}
+
+\begin{frame}{例题}
+  \small
+\begin{solution}
+奇点为 $z=0$ 与 $z=1$.
+
+\only<1>{
+在 $0<|z|<1$ 内以 $z=0$ 为中心. $|z|<1$,
+\[
+f(z)=\frac{1}{z(z-1)}
+=-\frac{1}{z(1-z)}
+=-\frac{1}{z}\sum_{k=0}^{\infty}z^k
+=-\sum_{k=0}^{\infty}z^{k-1}.
+\]
+即
+\[
+f(z)=-z^{-1}-1-z-z^2-\cdots,
+\quad 0<|z|<1.
+\]
+}
+
+\only<2>{
+在 $|z|>1$ 内以无穷远点为中心. 令 $t=1/z$, 则 $|z|>1$ 化为 $0<|t|<1$,
+\[
+f(1/t)=\frac{1}{(1/t)(1/t-1)}=\frac{t^2}{1-t}
+=t^2\sum_{k=0}^{\infty}t^k
+=\sum_{k=0}^{\infty}t^{k+2},
+\quad |t|<1.
+\]
+代回 $t=1/z$,
+\[
+f(z)=\sum_{k=0}^{\infty}z^{-(k+2)}
+=z^{-2}+z^{-3}+z^{-4}+\cdots,
+\quad |z|>1.
+\]
+按无穷远点的约定, 这是 $\sum a_k z^{-k}$, 其中 $a_0=a_1=0$, $a_k=1$ ($k\geq 2$).
+}
 \end{solution}
 \end{frame}
 
