@@ -39,4 +39,27 @@ After a second integration, the extremal satisfies an equation of the form
 so the constrained shortest curve is an arc of a circle. The constants are fixed by the endpoint and area conditions. Equivalently, differentiating the first integral shows that the curvature is constant. The area requirement therefore changes the straight-line solution of the unconstrained problem into a constant-curvature curve.
 \end{example}
 
+\begin{example}[Catenary]
+For a uniform flexible chain with linear density $\rho$, the gravitational potential energy is
+\begin{equation}
+U[u]=\rho g\int_{-L/2}^{L/2}u(x)\sqrt{1+u'(x)^2}\,\mathrm{d}x.
+\end{equation}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.42\textwidth]{figures/roadside.png}
+\includegraphics[width=0.42\textwidth]{figures/cobweb.png}
+\caption{Physical examples of catenary-like curves.}
+\label{fig:ch03-catenary-examples}
+\end{figure}
+For a small segment, $\mathrm{d}m=\rho\,\mathrm{d}s=\rho\sqrt{1+u'^2}\,\mathrm{d}x$, so its potential-energy contribution is $g u\,\mathrm{d}m$. Summing all segments gives the displayed functional. The supports fix the endpoints, and the total chain length
+\begin{equation}
+\int_{-L/2}^{L/2}\sqrt{1+u'(x)^2}\,\mathrm{d}x=\ell
+\end{equation}
+is prescribed. The length constraint enters through a constant multiplier, so the augmented integrand is $(\rho g u+\lambda)\sqrt{1+u'^2}$. Its Euler--Lagrange equation gives the catenary
+\begin{equation}
+u(x)=a\cosh\left(\frac{x-x_c}{a}\right)+u_c,
+\end{equation}
+with constants determined by the support geometry and chain length. A catenary is therefore a balance of gravity and tension, rather than a parabola; its near-vertex parabolic approximation can nevertheless be useful over a short span.
+\end{example}
+
 The multiplier method for integral constraints is the function-space analogue of finite-dimensional Lagrange multipliers. The constraint is enforced by varying with respect to $\lambda$, while the Euler--Lagrange equation follows from varying with respect to $u$. This division of roles is also the origin of the constant chemical potential in the normalized density problem discussed earlier.

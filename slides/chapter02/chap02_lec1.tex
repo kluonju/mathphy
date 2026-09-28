@@ -1,0 +1,793 @@
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xeCJK}
+\usepackage{zhnumber}
+\usepackage{tikz}
+\usetikzlibrary{quotes,angles,arrows.meta,calc}
+
+\usetheme{metropolis}
+\usepackage{beamercolorthemeHistNanjing}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}
+
+\newcommand{\vecfig}[1]{%
+  \IfFileExists{tikz/#1.tex}%
+    {\input{tikz/#1.tex}}%
+    {\input{../../lecture_new/chapters/vec/tikz/#1.tex}}}
+
+\include{macro}
+
+\title{矢量分析}
+\subtitle{第一讲：矢量运算}
+
+
+\date{\zhdigits{\the\year},\zhganzhinian{\the\year}年秋}
+\author{罗凯}
+\institute{南京理工大学物理学院}
+
+\usebackgroundtemplate{%
+\begin{tikzpicture}[remember picture,overlay]
+  \node[opacity=0.05, at=(current page.center)] {
+    \includegraphics[width=0.6\paperwidth]{njust-logo.jpeg}
+  };
+\end{tikzpicture}}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSubsection{
+  \begin{frame}{提纲}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSubsection{
+  \begin{frame}{提纲}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\section{矢量}
+
+\begin{frame}{本章要抓住的那根纲}
+  \begin{quote}
+    引其纲，万目皆张。\\
+    \hfill ——《吕氏春秋·用民》
+  \end{quote}
+  渔网的总绳一旦被拉住，所有网眼就跟着张开。
+  矢量就是后面矩阵、微分算子和张量的这根总绳。
+  \vspace{0.4em}
+  同一套材料的标准叙述见 Arfken、Weber 与 Harris，以及 Byron 与 Fuller。
+\end{frame}
+
+\begin{frame}{标量与矢量}
+  \textbf{矢量}既有大小，又有方向。
+  \textbf{标量}只有大小。
+  \vspace{0.5em}
+  物理里常见的矢量：
+  \begin{itemize}
+    \item 力学中的力、速度、加速度；
+    \item 电磁学中的电磁场；
+    \item 流体力学中的流动速度。
+  \end{itemize}
+  维数可以高于三维，从而进入更一般的高维空间。
+  这些空间之间的线性映射用矩阵表示：当 $A\mathbf{x}=\mathbf{b}$ 可逆时，
+  \begin{equation*}
+    \mathbf{x}=A^{-1}\mathbf{b}.
+  \end{equation*}
+  逆矩阵的构造放在第二讲。
+  \vspace{0.3em}
+  本章把矢量写成粗体，例如 $\mathbf{A}$。
+\end{frame}
+
+\subsection{分量与运算}
+
+\begin{frame}{直角分量}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      三维直角坐标系中
+      \begin{equation*}
+        \mathbf{A}
+        = A_x\mathbf{e}_x
+        + A_y\mathbf{e}_y
+        + A_z\mathbf{e}_z.
+      \end{equation*}
+      $\{\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z\}$ 是单位正交基。
+      两个矢量相等，当且仅当每一对对应分量都相等。
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \vecfig{components}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{模}
+  由勾股定理，
+  \begin{equation*}
+    |\mathbf{A}|
+    = \sqrt{A_x^2+A_y^2+A_z^2}.
+  \end{equation*}
+  只在 $xy$ 平面内时 $A_z=0$，公式退化为
+  $\sqrt{A_x^2+A_y^2}$。
+  \vspace{0.6em}
+  零矢量的每个分量都是 $0$，模也是 $0$。
+  它是唯一没有方向的矢量。
+\end{frame}
+
+\begin{frame}{标量与数乘}
+  温度、质量、电荷都由一个大小描写，所以是标量。
+  用标量 $\alpha$ 去乘矢量，就是逐个分量去乘：
+  \begin{equation*}
+    \alpha\mathbf{A}
+    = \alpha A_x\mathbf{e}_x
+    + \alpha A_y\mathbf{e}_y
+    + \alpha A_z\mathbf{e}_z.
+  \end{equation*}
+  因此
+  \begin{equation*}
+    |\alpha\mathbf{A}|
+    = \sqrt{\alpha^2(A_x^2+A_y^2+A_z^2)}
+    = |\alpha|\,|\mathbf{A}|.
+  \end{equation*}
+  \begin{itemize}
+    \item $\alpha>0$：方向不变，长度乘以 $\alpha$。
+    \item $\alpha<0$：方向反转，长度乘以 $|\alpha|$。
+    \item $\alpha=0$：得到零矢量。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{加法与减法}
+  加减法逐分量进行：
+  \begin{align*}
+    \mathbf{A}\pm\mathbf{B}
+    &= (A_x\pm B_x)\mathbf{e}_x
+     + (A_y\pm B_y)\mathbf{e}_y \\
+    &\quad + (A_z\pm B_z)\mathbf{e}_z.
+  \end{align*}
+  几何上，加法服从平行四边形法则。
+  把两矢量首尾相接时，$\mathbf{B}-\mathbf{A}$ 是从 $\mathbf{A}$ 的箭尖指向 $\mathbf{B}$ 的箭尖的矢量。
+\end{frame}
+
+\begin{frame}{加法与减法的图}
+  \centering
+  \scalebox{0.92}{\vecfig{sum_diff}}
+  \vspace{0.4em}
+
+  {\small 图中 $\mathbf{A}=4\mathbf{e}_x+4\mathbf{e}_y$，
+  $\mathbf{B}=\mathbf{e}_x+8\mathbf{e}_y$。
+  下一页把这个例子算完。}
+\end{frame}
+
+\begin{frame}{例：和与差}
+  取 $\mathbf{A}=4\mathbf{e}_x+4\mathbf{e}_y$，
+  $\mathbf{B}=\mathbf{e}_x+8\mathbf{e}_y$。
+  逐分量相加：
+  \begin{align*}
+    \mathbf{S}
+    &= \mathbf{A}+\mathbf{B}
+     = (4+1)\mathbf{e}_x+(4+8)\mathbf{e}_y \\
+    &= 5\mathbf{e}_x+12\mathbf{e}_y.
+  \end{align*}
+  模为
+  \begin{align*}
+    |\mathbf{S}|
+    &= \sqrt{5^2+12^2}
+     = \sqrt{25+144}
+     = \sqrt{169}
+     = 13.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{例：和与差（续）}
+  差为
+  \begin{align*}
+    \mathbf{D}
+    &= \mathbf{B}-\mathbf{A}
+     = (1-4)\mathbf{e}_x+(8-4)\mathbf{e}_y \\
+    &= -3\mathbf{e}_x+4\mathbf{e}_y.
+  \end{align*}
+  因而
+  \begin{align*}
+    |\mathbf{D}|
+    &= \sqrt{(-3)^2+4^2}
+     = \sqrt{9+16}
+     = \sqrt{25}
+     = 5.
+  \end{align*}
+  $5$--$12$--$13$ 与 $3$--$4$--$5$ 两组勾股数正好核对这两个模。
+\end{frame}
+
+\subsection{点积}
+
+\begin{frame}{点积的两种写法}
+  两个矢量的点积（标量积）是一个标量：
+  \begin{equation*}
+    \mathbf{A}\cdot\mathbf{B}
+    = |\mathbf{A}|\,|\mathbf{B}|\cos\theta,
+  \end{equation*}
+  其中 $\theta$ 是二者的夹角。
+  在直角分量下，利用
+  $\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}$ 展开：
+  \begin{align*}
+    \mathbf{A}\cdot\mathbf{B}
+    &= (A_x\mathbf{e}_x+A_y\mathbf{e}_y+A_z\mathbf{e}_z)
+      \cdot
+      (B_x\mathbf{e}_x+B_y\mathbf{e}_y+B_z\mathbf{e}_z) \\
+    &= A_x B_x+A_y B_y+A_z B_z.
+  \end{align*}
+  交叉项因为基矢正交而消失。
+\end{frame}
+
+\begin{frame}{点积读出夹角}
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      由 $\cos\theta$ 的符号：
+      \begin{itemize}
+        \item $\mathbf{A}\cdot\mathbf{B}>0$：锐角；
+        \item $\mathbf{A}\cdot\mathbf{B}=0$：两矢量垂直；
+        \item $\mathbf{A}\cdot\mathbf{B}<0$：钝角。
+      \end{itemize}
+      特别地，$\mathbf{A}\cdot\mathbf{A}=|\mathbf{A}|^2$。
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \scalebox{0.82}{\vecfig{dot_product}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：由点积求夹角}
+  设
+  $\mathbf{A}=\sqrt{3}\,\mathbf{e}_x+\mathbf{e}_y$，
+  $\mathbf{B}=2\mathbf{e}_x$。
+  先算模：
+  \begin{align*}
+    |\mathbf{A}|
+    &= \sqrt{(\sqrt{3})^2+1^2}
+     = \sqrt{3+1}
+     = \sqrt{4}
+     = 2,\\
+    |\mathbf{B}|
+    &= \sqrt{2^2}=2.
+  \end{align*}
+  再算点积：
+  \begin{equation*}
+    \mathbf{A}\cdot\mathbf{B}
+    = (\sqrt{3})(2)+1\cdot 0
+    = 2\sqrt{3}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：由点积求夹角（续）}
+  代入几何定义
+  $\mathbf{A}\cdot\mathbf{B}=|\mathbf{A}|\,|\mathbf{B}|\cos\theta$：
+  \begin{equation*}
+    2\sqrt{3}
+    = 2\cdot 2\cos\theta
+    = 4\cos\theta,
+  \end{equation*}
+  所以
+  \begin{equation*}
+    \cos\theta=\frac{\sqrt{3}}{2},
+    \qquad
+    \theta
+    = \cos^{-1}\!\Bigl(\frac{\sqrt{3}}{2}\Bigr)
+    = 30^\circ.
+  \end{equation*}
+  $\mathbf{B}$ 沿 $x$ 轴，$\mathbf{A}$ 与它成 $30^\circ$，与前图一致。
+\end{frame}
+
+\begin{frame}{例：水分子的键角}
+  % \centering
+  \begin{figure}
+  \centering
+  % \includegraphics[width=0.8\textwidth]{water_bond.png}
+  \vecfig{water_bond}
+  \end{figure}
+
+  把氧原子放在原点，两个氢原子（单位：\AA）为
+  \begin{equation*}
+    \mathrm{H}_1=(0.757,\,0,\,0.586),
+    \qquad
+    \mathrm{H}_2=(-0.757,\,0,\,0.586).
+  \end{equation*}
+  键矢量 $\mathbf{u}=\overrightarrow{\mathrm{OH}_1}$，
+  $\mathbf{v}=\overrightarrow{\mathrm{OH}_2}$。
+  记 $a=0.757$，$b=0.586$，则
+  \begin{equation*}
+    \mathbf{u}=(a,0,b),
+    \qquad
+    \mathbf{v}=(-a,0,b).
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：水分子的键角}
+  \begin{align*}
+    \mathbf{u}\cdot\mathbf{v}
+    &= a(-a)+0\cdot 0+b\cdot b
+     = b^2-a^2,\\
+    |\mathbf{u}|^2
+    &= a^2+b^2
+     = |\mathbf{v}|^2.
+  \end{align*}
+  因此
+  \begin{equation*}
+    \cos\alpha
+    = \frac{\mathbf{u}\cdot\mathbf{v}}{|\mathbf{u}|\,|\mathbf{v}|}
+    = \frac{b^2-a^2}{a^2+b^2}.
+  \end{equation*}
+  代入数值：
+  \begin{align*}
+    a^2&=0.757^2=0.573049,\\
+    b^2&=0.586^2=0.343396,\\
+    \cos\alpha
+    &= \frac{0.343396-0.573049}{0.573049+0.343396}
+     = \frac{-0.229653}{0.916445}
+     \approx -0.251.
+  \end{align*}
+  所以 $\alpha=\arccos(-0.251)\approx 104.5^\circ$。
+\end{frame}
+
+% \begin{frame}{例：水分子的键角（图）}
+%   \centering
+%   \scalebox{0.62}{\vecfig{water_bond}}
+% \end{frame}
+
+\begin{frame}{例：用点积判断垂直}
+  判断
+  $\mathbf{p}=2\mathbf{e}_x-\mathbf{e}_y+2\mathbf{e}_z$
+  与
+  $\mathbf{q}=\mathbf{e}_x+2\mathbf{e}_y$
+  是否垂直。
+  \vspace{0.5em}
+  \begin{align*}
+    \mathbf{p}\cdot\mathbf{q}
+    &= 2\cdot 1+(-1)\cdot 2+2\cdot 0 \\
+    &= 2-2+0
+     = 0.
+  \end{align*}
+  点积为零，所以 $\mathbf{p}\perp\mathbf{q}$。
+  一旦点积已经是零，就不必再算两个模。
+\end{frame}
+
+\begin{frame}{小结}
+  \begin{itemize}
+    \item $\mathbf{A}=A_x\mathbf{e}_x+A_y\mathbf{e}_y+A_z\mathbf{e}_z$，
+      $|\mathbf{A}|=\sqrt{A_x^2+A_y^2+A_z^2}$。
+    \item 数乘逐分量进行；负标量使方向反转。
+    \item 加法是平行四边形法则；$\mathbf{B}-\mathbf{A}$ 从 $\mathbf{A}$ 的箭尖指向 $\mathbf{B}$ 的箭尖。
+    \item $\mathbf{A}\cdot\mathbf{B}=|\mathbf{A}|\,|\mathbf{B}|\cos\theta
+      =A_xB_x+A_yB_y+A_zB_z$，
+      后一式来自基矢的正交性。
+    \item 点积为零就是垂直的判据。
+  \end{itemize}
+\end{frame}
+
+\section{矢量的乘积}
+
+\subsection{叉积}
+
+\begin{frame}{叉积}
+  $\mathbf{A}\times\mathbf{B}$ 同时垂直于 $\mathbf{A}$ 和 $\mathbf{B}$。
+  它的模等于二者所张平行四边形的面积：
+  \begin{equation*}
+    |\mathbf{A}\times\mathbf{B}|
+    = |\mathbf{A}|\,|\mathbf{B}|\sin\theta.
+  \end{equation*}
+  方向由右手定则确定。
+  分量形式写成行列式
+  \begin{equation*}
+    \mathbf{A}\times\mathbf{B}
+    =
+    \begin{vmatrix}
+      \mathbf{e}_x & \mathbf{e}_y & \mathbf{e}_z \\
+      A_x & A_y & A_z \\
+      B_x & B_y & B_z
+    \end{vmatrix}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{按第一行展开}
+  把行列式按第一行展开：
+  \begin{align*}
+    \mathbf{A}\times\mathbf{B}
+    &= \mathbf{e}_x(A_y B_z-A_z B_y)
+     - \mathbf{e}_y(A_x B_z-A_z B_x) \\
+    &\quad + \mathbf{e}_z(A_x B_y-A_y B_x).
+  \end{align*}
+  由此直接读出三条性质：
+  \begin{itemize}
+    \item 交换 $\mathbf{A}$ 与 $\mathbf{B}$ 相当于交换两行，行列式变号，所以
+      $\mathbf{A}\times\mathbf{B}=-\mathbf{B}\times\mathbf{A}$。
+    \item $\mathbf{A}=\mathbf{B}$ 时两行相同，所以 $\mathbf{A}\times\mathbf{A}=\mathbf{0}$。
+    \item 两矢量平行时 $\sin\theta=0$，叉积为零。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{叉积的几何}
+  \begin{columns}[c]
+    \begin{column}{0.40\textwidth}
+      叉积立在平行四边形所在平面之外，长度等于这块面积，指向由右手定则给出。
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \centering
+      \scalebox{0.9}{\vecfig{cross_product}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：把行列式展开}
+  设
+  $\mathbf{A}=-\mathbf{e}_x+\mathbf{e}_y+\mathbf{e}_z$，
+  $\mathbf{B}=\mathbf{e}_x-\mathbf{e}_y+\mathbf{e}_z$。
+  \begin{align*}
+    \mathbf{A}\times\mathbf{B}
+    &=
+    \begin{vmatrix}
+      \mathbf{e}_x & \mathbf{e}_y & \mathbf{e}_z \\
+      -1 & 1 & 1 \\
+      1 & -1 & 1
+    \end{vmatrix} \\
+    &= \mathbf{e}_x\bigl(1\cdot 1-1\cdot(-1)\bigr)
+     - \mathbf{e}_y\bigl((-1)\cdot 1-1\cdot 1\bigr) \\
+    &\quad + \mathbf{e}_z\bigl((-1)\cdot(-1)-1\cdot 1\bigr) \\
+    &= \mathbf{e}_x(1+1)
+     - \mathbf{e}_y(-1-1)
+     + \mathbf{e}_z(1-1) \\
+    &= 2\mathbf{e}_x+2\mathbf{e}_y.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{例：单位法向}
+  上一步的模是
+  \begin{equation*}
+    |\mathbf{A}\times\mathbf{B}|
+    = \sqrt{2^2+2^2}
+    = \sqrt{8}
+    = 2\sqrt{2}.
+  \end{equation*}
+  右手定向的单位法向为
+  \begin{equation*}
+    \mathbf{e}_n
+    = \frac{\mathbf{A}\times\mathbf{B}}{|\mathbf{A}\times\mathbf{B}|}
+    = \frac{2\mathbf{e}_x+2\mathbf{e}_y}{2\sqrt{2}}
+    = \frac{1}{\sqrt{2}}(\mathbf{e}_x+\mathbf{e}_y).
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：同时求出夹角}
+  同一对矢量的点积与模：
+  \begin{align*}
+    \mathbf{A}\cdot\mathbf{B}
+    &= (-1)(1)+1\cdot(-1)+1\cdot 1
+     = -1-1+1
+     = -1,\\
+    |\mathbf{A}|
+    &= \sqrt{(-1)^2+1^2+1^2}
+     = \sqrt{3},
+    \qquad
+    |\mathbf{B}|=\sqrt{3}.
+  \end{align*}
+  所以
+  \begin{equation*}
+    \cos\theta
+    = \frac{-1}{\sqrt{3}\cdot\sqrt{3}}
+    = -\frac13,
+    \qquad
+    \theta
+    = \cos^{-1}\!\Bigl(-\frac13\Bigr)
+    \approx 109.47^\circ.
+  \end{equation*}
+  叉积给出法向，点积给出平面内的夹角。
+\end{frame}
+
+\subsection{三重积}
+
+\begin{frame}{标量三重积}
+  $(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}$
+  与
+  $\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})$
+  是同一个标量。
+  它的绝对值是三个矢量所张平行六面体的体积，符号记录定向。
+  \vspace{0.4em}
+  把叉积代入点积：
+  \begin{align*}
+    \mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})
+    &= A_x(B_y C_z-B_z C_y) \\
+    &\quad + A_y(B_z C_x-B_x C_z) \\
+    &\quad + A_z(B_x C_y-B_y C_x).
+  \end{align*}
+  这正是行列式按第一行的展开，所以
+  \begin{equation*}
+    \mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})
+    =
+    \begin{vmatrix}
+      A_x & A_y & A_z \\
+      B_x & B_y & B_z \\
+      C_x & C_y & C_z
+    \end{vmatrix}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{点与叉可以交换}
+  把 $(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}$ 按同样方式展开，
+  $x$ 分量贡献
+  $(A_y B_z-A_z B_y)C_x$，
+  其余两项类似。
+  重新集项后得到
+  \begin{equation*}
+    (\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}
+    = A_x(B_y C_z-B_z C_y)+\cdots
+    = \mathbf{A}\cdot(\mathbf{B}\times\mathbf{C}).
+  \end{equation*}
+  交换点与叉不改变结果。
+  行列式交换两行变号、循环换行不变号，因此若记
+  $[\mathbf{A},\mathbf{B},\mathbf{C}]=\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})$，则
+  \begin{align*}
+    [\mathbf{A},\mathbf{B},\mathbf{C}]
+    &= [\mathbf{B},\mathbf{C},\mathbf{A}]
+     = [\mathbf{C},\mathbf{A},\mathbf{B}] \\
+    &= -[\mathbf{A},\mathbf{C},\mathbf{B}]
+     = -[\mathbf{B},\mathbf{A},\mathbf{C}]
+     = -[\mathbf{C},\mathbf{B},\mathbf{A}].
+  \end{align*}
+\end{frame}
+
+\begin{frame}{例：体积}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      取
+      $\mathbf{A}=\mathbf{e}_x+\mathbf{e}_y$，
+      $\mathbf{B}=\mathbf{e}_y+\mathbf{e}_z$，
+      $\mathbf{C}=\mathbf{e}_x+\mathbf{e}_z$。
+      \begin{align*}
+        \mathbf{A}\times\mathbf{B}
+        &= \mathbf{e}_x(1\cdot 1-0\cdot 1) \\
+        &\quad - \mathbf{e}_y(1\cdot 1-0\cdot 0) \\
+        &\quad + \mathbf{e}_z(1\cdot 1-1\cdot 0) \\
+        &= \mathbf{e}_x-\mathbf{e}_y+\mathbf{e}_z.
+      \end{align*}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \scalebox{0.72}{\vecfig{parallelepiped}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：体积（续）}
+  \begin{align*}
+    (\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}
+    &= (\mathbf{e}_x-\mathbf{e}_y+\mathbf{e}_z)
+      \cdot(\mathbf{e}_x+\mathbf{e}_z) \\
+    &= 1+0+1
+     = 2.
+  \end{align*}
+  有向体积是 $2$，几何体积是 $|2|=2$。
+  用行列式直接验算：
+  \begin{equation*}
+    \begin{vmatrix}
+      1 & 1 & 0 \\
+      0 & 1 & 1 \\
+      1 & 0 & 1
+    \end{vmatrix}
+    = 1(1-0)-1(0-1)+0
+    = 1+1
+    = 2.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{拉格朗日恒等式}
+  \begin{equation*}
+    (\mathbf{A}\times\mathbf{B})\cdot(\mathbf{C}\times\mathbf{D})
+    = (\mathbf{A}\cdot\mathbf{C})(\mathbf{B}\cdot\mathbf{D})
+    - (\mathbf{A}\cdot\mathbf{D})(\mathbf{B}\cdot\mathbf{C}).
+  \end{equation*}
+  先把两个叉积写成
+  \begin{align*}
+    (\mathbf{A}\times\mathbf{B})_i
+    &= \varepsilon_{ijk} A_j B_k,\\
+    (\mathbf{C}\times\mathbf{D})_i
+    &= \varepsilon_{ilm} C_l D_m.
+  \end{align*}
+  它们的点积是
+  \begin{equation*}
+    \varepsilon_{ijk}\varepsilon_{ilm}\, A_j B_k C_l D_m.
+  \end{equation*}
+  缩并公式
+  $\varepsilon_{ijk}\varepsilon_{ilm}
+  =\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}$
+  将在第三讲证明。这里先用它把上式化完。
+\end{frame}
+
+\begin{frame}{拉格朗日恒等式的化简}
+  \begin{align*}
+    &\varepsilon_{ijk}\varepsilon_{ilm}\, A_j B_k C_l D_m \\
+    &\quad = (\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl})
+      A_j B_k C_l D_m \\
+    &\quad = A_j B_k C_j D_k
+      - A_j B_k C_k D_j \\
+    &\quad = (A_j C_j)(B_k D_k)
+      - (A_j D_j)(B_k C_k) \\
+    &\quad = (\mathbf{A}\cdot\mathbf{C})(\mathbf{B}\cdot\mathbf{D})
+      - (\mathbf{A}\cdot\mathbf{D})(\mathbf{B}\cdot\mathbf{C}).
+  \end{align*}
+  第一步用了缩并公式，后面两步只是把重复指标收成点积。
+\end{frame}
+
+\begin{frame}{矢量三重积}
+  $\mathbf{A}\times(\mathbf{B}\times\mathbf{C})$ 垂直于 $\mathbf{A}$，
+  并落在 $\mathbf{B}$ 与 $\mathbf{C}$ 所张的平面里。
+  叉积没有结合律，两个括法给出不同的矢量：
+  \begin{equation*}
+    \mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+    \quad\text{与}\quad
+    (\mathbf{A}\times\mathbf{B})\times\mathbf{C}.
+  \end{equation*}
+  两条化简公式是
+  \begin{align*}
+    \mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+    &= (\mathbf{A}\cdot\mathbf{C})\mathbf{B}
+     - (\mathbf{A}\cdot\mathbf{B})\mathbf{C},\\
+    (\mathbf{A}\times\mathbf{B})\times\mathbf{C}
+    &= (\mathbf{A}\cdot\mathbf{C})\mathbf{B}
+     - (\mathbf{B}\cdot\mathbf{C})\mathbf{A}.
+  \end{align*}
+  嵌套的叉积因此可以化成原来三个矢量的线性组合。
+\end{frame}
+
+\begin{frame}{推导：$x$ 分量}
+  先算出
+  \begin{align*}
+    (\mathbf{B}\times\mathbf{C})_y
+    &= B_z C_x-B_x C_z,\\
+    (\mathbf{B}\times\mathbf{C})_z
+    &= B_x C_y-B_y C_x.
+  \end{align*}
+  于是
+  \begin{align*}
+    \bigl[\mathbf{A}\times(\mathbf{B}\times\mathbf{C})\bigr]_x
+    &= A_y(B_x C_y-B_y C_x)
+     - A_z(B_z C_x-B_x C_z) \\
+    &= B_x(A_y C_y+A_z C_z)
+     - C_x(A_y B_y+A_z B_z) \\
+    &= B_x\bigl(\mathbf{A}\cdot\mathbf{C}-A_x C_x\bigr)
+     - C_x\bigl(\mathbf{A}\cdot\mathbf{B}-A_x B_x\bigr) \\
+    &= (\mathbf{A}\cdot\mathbf{C})B_x
+     - (\mathbf{A}\cdot\mathbf{B})C_x.
+  \end{align*}
+  $y$、$z$ 分量的算法相同，合起来就是第一条化简公式。
+  把公式中的矢量循环置换，得到第二条。
+\end{frame}
+
+\begin{frame}{循环和为零}
+  把三条化简公式相加：
+  \begin{align*}
+    &\mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+     + \mathbf{B}\times(\mathbf{C}\times\mathbf{A})
+     + \mathbf{C}\times(\mathbf{A}\times\mathbf{B}) \\
+    &\quad =
+      \bigl[(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{A}\cdot\mathbf{B})\mathbf{C}\bigr] \\
+    &\qquad +
+      \bigl[(\mathbf{B}\cdot\mathbf{A})\mathbf{C}-(\mathbf{B}\cdot\mathbf{C})\mathbf{A}\bigr] \\
+    &\qquad +
+      \bigl[(\mathbf{C}\cdot\mathbf{B})\mathbf{A}-(\mathbf{C}\cdot\mathbf{A})\mathbf{B}\bigr].
+  \end{align*}
+  $\mathbf{A}$、$\mathbf{B}$、$\mathbf{C}$ 的系数分别是
+  $-(\mathbf{B}\cdot\mathbf{C})+(\mathbf{C}\cdot\mathbf{B})=0$，
+  其余两项同样抵消，所以循环和是 $\mathbf{0}$。
+\end{frame}
+
+\begin{frame}{例：垂直于给定方向的分量}
+  设 $\hat{\mathbf{n}}$ 是单位矢量，$\hat{\mathbf{n}}\cdot\hat{\mathbf{n}}=1$。
+  代入第一条恒等式：
+  \begin{align*}
+    \hat{\mathbf{n}}\times(\mathbf{v}\times\hat{\mathbf{n}})
+    &= (\hat{\mathbf{n}}\cdot\hat{\mathbf{n}})\mathbf{v}
+     - (\hat{\mathbf{n}}\cdot\mathbf{v})\hat{\mathbf{n}} \\
+    &= \mathbf{v}-(\mathbf{v}\cdot\hat{\mathbf{n}})\hat{\mathbf{n}}.
+  \end{align*}
+  减去的那一项是 $\mathbf{v}$ 沿 $\hat{\mathbf{n}}$ 的投影，
+  剩下的就是垂直于 $\hat{\mathbf{n}}$ 的分量。
+\end{frame}
+
+\begin{frame}{例：垂直分量的数值}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      取 $\mathbf{v}=2\mathbf{e}_x-\mathbf{e}_y+3\mathbf{e}_z$，
+      $\hat{\mathbf{n}}=\mathbf{e}_z$。
+      \begin{align*}
+        \mathbf{v}\cdot\mathbf{e}_z &= 3,\\
+        \hat{\mathbf{n}}\times(\mathbf{v}\times\hat{\mathbf{n}})
+        &= \mathbf{v}-3\mathbf{e}_z \\
+        &= 2\mathbf{e}_x-\mathbf{e}_y.
+      \end{align*}
+      沿选定方向分解横向与纵向分量时就用这个形式。
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \scalebox{0.82}{\vecfig{perp_component}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{从矢量到矩阵}
+
+\begin{frame}{若干矢量排成矩阵}
+  把矢量当作列：
+  \begin{equation*}
+    M
+    =
+    \begin{pmatrix}
+      a_{11} & a_{12} & a_{13} \\
+      a_{21} & a_{22} & a_{23} \\
+      a_{31} & a_{32} & a_{33}
+    \end{pmatrix}.
+  \end{equation*}
+  矩阵作用在矢量上，就是列的线性组合：
+  \begin{equation*}
+    M\mathbf{x}
+    = x_1\mathbf{a}_1+x_2\mathbf{a}_2+x_3\mathbf{a}_3.
+  \end{equation*}
+  因此矩阵表示线性变换：它可以旋转、拉伸、反射或剪切。
+  用分量写，重复指标 $j$ 要求和，
+  \begin{equation*}
+    (M\mathbf{x})_i=M_{ij}x_j.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{相继两次映射}
+  先作用 $N$，再作用 $M$：
+  \begin{equation*}
+    \bigl(M(N\mathbf{x})\bigr)_i
+    = M_{ij}(N\mathbf{x})_j
+    = M_{ij} N_{jk} x_k
+    = (MN)_{ik} x_k.
+  \end{equation*}
+  所以
+  \begin{equation*}
+    M(N\mathbf{x})=(MN)\mathbf{x}.
+  \end{equation*}
+  单位矩阵的列就是基矢，因而 $I\mathbf{x}=\mathbf{x}$。
+\end{frame}
+
+\begin{frame}{单位正方形被送到平行四边形}
+  \begin{columns}[c]
+    \begin{column}{0.38\textwidth}
+      \begin{equation*}
+        A=\begin{pmatrix}2&1\\1&2\end{pmatrix}
+      \end{equation*}
+      的两列是 $\mathbf{e}_x$ 与 $\mathbf{e}_y$ 的像。
+      单位正方形被送到这两列所张的平行四边形。
+      下一讲把这个映射反过来。
+    \end{column}
+    \begin{column}{0.60\textwidth}
+      \centering
+      \scalebox{0.78}{\vecfig{linear_map}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{小结}
+  \begin{itemize}
+    \item $|\mathbf{A}\times\mathbf{B}|=|\mathbf{A}|\,|\mathbf{B}|\sin\theta$，方向由右手定则给出。
+    \item 标量三重积等于三行行列式，是有向体积；轮换不变号，对换变号。
+    \item 拉格朗日恒等式把两个叉积的点积化成四个点积。
+    \item 矢量三重积化成 $(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{A}\cdot\mathbf{B})\mathbf{C}$，循环和为零。
+    \item 矩阵按列做线性组合；两次映射对应于矩阵相乘。
+  \end{itemize}
+\end{frame}
+
+\end{document}

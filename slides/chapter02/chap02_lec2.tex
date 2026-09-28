@@ -1,0 +1,795 @@
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xeCJK}
+\usepackage{zhnumber}
+\usepackage{tikz}
+\usetikzlibrary{quotes,angles,arrows.meta,calc}
+
+\usetheme{metropolis}
+\usepackage{beamercolorthemeHistNanjing}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}
+
+\newcommand{\vecfig}[1]{%
+  \IfFileExists{tikz/#1.tex}%
+    {\input{tikz/#1.tex}}%
+    {\input{../../lecture_new/chapters/vec/tikz/#1.tex}}}
+
+\include{macro}
+
+\title{矢量分析}
+\subtitle{第二讲：逆矩阵与微分算子}
+
+
+\date{\zhdigits{\the\year},\zhganzhinian{\the\year}年秋}
+\author{罗凯}
+\institute{南京理工大学物理学院}
+
+\usebackgroundtemplate{%
+\begin{tikzpicture}[remember picture,overlay]
+  \node[opacity=0.05, at=(current page.center)] {
+    \includegraphics[width=0.6\paperwidth]{njust-logo.jpeg}
+  };
+\end{tikzpicture}}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSubsection{
+  \begin{frame}{提纲}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\AtBeginSubsection{
+  \begin{frame}{提纲}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\section{逆矩阵}
+
+\subsection{定义}
+
+\begin{frame}{把线性映射做回去}
+  方阵 $A$ 表示映射 $\mathbf{x}\mapsto A\mathbf{x}$。
+  这个映射可以做回去，当且仅当存在\textbf{逆矩阵} $A^{-1}$，满足
+  \begin{equation*}
+    AA^{-1}=A^{-1}A=I.
+  \end{equation*}
+  用指标写就是
+  \begin{equation*}
+    A_{ik}(A^{-1})_{kj}
+    =(A^{-1})_{ik}A_{kj}
+    =\delta_{ij}.
+  \end{equation*}
+  只要逆存在，它就是唯一的：若 $B$ 与 $C$ 都是逆，则
+  $B=BI=B(AC)=(BA)C=IC=C$。
+\end{frame}
+
+\begin{frame}{逆存在的条件}
+  预备知识里已经指出：这样的矩阵存在且唯一，当且仅当 $\det A\neq 0$。
+  此时线性方程组 $A\mathbf{x}=\mathbf{b}$ 有唯一解
+  \begin{equation*}
+    \mathbf{x}=A^{-1}\mathbf{b}.
+  \end{equation*}
+  \begin{itemize}
+    \item $\det A\neq 0$：对每一个 $\mathbf{b}$ 都有唯一解。
+    \item $\det A=0$：或者无解，或者有无穷多解。
+  \end{itemize}
+  几何上，各列张成整个空间，正是行列式非零的时候。
+\end{frame}
+
+\subsection{用余子式构造}
+
+\begin{frame}{余子式}
+  删去 $A$ 的第 $i$ 行、第 $j$ 列，剩下一个 $(n-1)\times(n-1)$ 子矩阵。
+  它的行列式是子式 $M_{ij}$。
+  相应的\textbf{余子式}（代数余子式）为
+  \begin{equation*}
+    C_{ij}=(-1)^{i+j}M_{ij}.
+  \end{equation*}
+  \textbf{伴随矩阵}是余子式矩阵的转置：
+  \begin{equation*}
+    (\operatorname{adj} A)_{ij}=C_{ji}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{由伴随矩阵得到逆}
+  行列式按一行展开，以及不同行与余子式的正交性，给出
+  \begin{equation*}
+    A\,(\operatorname{adj} A)
+    =(\operatorname{adj} A)\,A
+    =(\det A)\,I.
+  \end{equation*}
+  当 $\det A\neq 0$ 时两边除以 $\det A$：
+  \begin{equation*}
+    A^{-1}
+    =\frac{1}{\det A}\,\operatorname{adj} A.
+  \end{equation*}
+  $n$ 较大时，把增广矩阵 $[A\mid I]$ 做行化简通常更快：
+  左块变成 $I$ 时，右块就是 $A^{-1}$。
+\end{frame}
+
+\begin{frame}{$2\times 2$ 公式的推导}
+  对
+  $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$，
+  四个余子式是
+  \begin{align*}
+    C_{11}&=(-1)^{2}d=d, &
+    C_{12}&=(-1)^{3}c=-c,\\
+    C_{21}&=(-1)^{3}b=-b, &
+    C_{22}&=(-1)^{4}a=a.
+  \end{align*}
+  转置后
+  \begin{equation*}
+    \operatorname{adj} A
+    =
+    \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
+  \end{equation*}
+  又 $\det A=ad-bc$，所以在 $ad-bc\neq 0$ 时
+  \begin{equation*}
+    A^{-1}
+    =\frac{1}{ad-bc}
+    \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
+  \end{equation*}
+  操作口诀：对角元对调，非对角元变号，再除以行列式。
+\end{frame}
+
+\subsection{例题}
+
+\begin{frame}{例：$2\times 2$ 的逆}
+  设
+  \begin{equation*}
+    A=\begin{pmatrix}2&1\\1&2\end{pmatrix},
+    \qquad
+    \mathbf{b}=\begin{pmatrix}1\\0\end{pmatrix}.
+  \end{equation*}
+  行列式
+  \begin{equation*}
+    \det A=2\cdot 2-1\cdot 1=4-1=3\neq 0,
+  \end{equation*}
+  所以 $A$ 可逆，并且
+  \begin{equation*}
+    A^{-1}
+    =\frac13
+    \begin{pmatrix}2&-1\\-1&2\end{pmatrix}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：直接相乘核对}
+  \begin{align*}
+    AA^{-1}
+    &= \frac13
+    \begin{pmatrix}2&1\\1&2\end{pmatrix}
+    \begin{pmatrix}2&-1\\-1&2\end{pmatrix} \\
+    &= \frac13
+    \begin{pmatrix}
+      4-1 & -2+2 \\
+      2-2 & -1+4
+    \end{pmatrix}
+    = \frac13
+    \begin{pmatrix}3&0\\0&3\end{pmatrix}
+    = I.
+  \end{align*}
+  四个元素都写出来，定义里的 $AA^{-1}=I$ 就核对完了。
+\end{frame}
+
+\begin{frame}{例：解 $A\mathbf{x}=\mathbf{b}$}
+  \begin{columns}[c]
+    \begin{column}{0.4\textwidth}
+      \begin{align*}
+        \mathbf{x}
+        &= A^{-1}\mathbf{b}
+         = \frac13
+        \begin{pmatrix}2&-1\\-1&2\end{pmatrix}
+        \begin{pmatrix}1\\0\end{pmatrix} \\
+        &= \frac13
+        \begin{pmatrix}2\\-1\end{pmatrix}
+         = \begin{pmatrix}2/3\\-1/3\end{pmatrix}.
+      \end{align*}
+      逆映射把 $\mathbf{b}=\mathbf{e}_x$ 送回 $\mathbf{x}$。
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \scalebox{0.98}{\vecfig{inverse_map}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：三维余子式，先算行列式}
+  考虑
+  \begin{equation*}
+    A=
+    \begin{pmatrix}
+      2&1&0\\
+      1&2&1\\
+      0&1&2
+    \end{pmatrix}.
+  \end{equation*}
+  沿第一行展开：
+  \begin{align*}
+    \det A
+    &= 2
+    \begin{vmatrix}2&1\\1&2\end{vmatrix}
+     - 1
+    \begin{vmatrix}1&1\\0&2\end{vmatrix}
+     + 0
+    \begin{vmatrix}1&2\\0&1\end{vmatrix} \\
+    &= 2(4-1)-1(2-0)
+     = 6-2
+     = 4.
+  \end{align*}
+  行列式非零，逆存在。
+\end{frame}
+
+\begin{frame}{例：第一行的三个余子式}
+  \begin{align*}
+    C_{11}
+    &= (+)\begin{vmatrix}2&1\\1&2\end{vmatrix}
+     = 4-1=3,\\[0.3em]
+    C_{12}
+    &= (-)\begin{vmatrix}1&1\\0&2\end{vmatrix}
+     = -(2-0)=-2,\\[0.3em]
+    C_{13}
+    &= (+)\begin{vmatrix}1&2\\0&1\end{vmatrix}
+     = 1-0=1.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{例：第二行的三个余子式}
+  \begin{align*}
+    C_{21}
+    &= (-)\begin{vmatrix}1&0\\1&2\end{vmatrix}
+     = -(2-0)=-2,\\[0.3em]
+    C_{22}
+    &= (+)\begin{vmatrix}2&0\\0&2\end{vmatrix}
+     = 4-0=4,\\[0.3em]
+    C_{23}
+    &= (-)\begin{vmatrix}2&1\\0&1\end{vmatrix}
+     = -(2-0)=-2.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{例：第三行的三个余子式}
+  \begin{align*}
+    C_{31}
+    &= (+)\begin{vmatrix}1&0\\2&1\end{vmatrix}
+     = 1-0=1,\\[0.3em]
+    C_{32}
+    &= (-)\begin{vmatrix}2&0\\1&1\end{vmatrix}
+     = -(2-0)=-2,\\[0.3em]
+    C_{33}
+    &= (+)\begin{vmatrix}2&1\\1&2\end{vmatrix}
+     = 4-1=3.
+  \end{align*}
+  收集起来，
+  \begin{equation*}
+    C=
+    \begin{pmatrix}
+      3&-2&1\\
+      -2&4&-2\\
+      1&-2&3
+    \end{pmatrix}.
+  \end{equation*}
+  $C$ 已经对称，所以 $\operatorname{adj} A=C^{\mathsf T}=C$。
+\end{frame}
+
+\begin{frame}{例：写出 $A^{-1}$ 并核对一个元素}
+  \begin{equation*}
+    A^{-1}
+    =\frac14
+    \begin{pmatrix}
+      3&-2&1\\
+      -2&4&-2\\
+      1&-2&3
+    \end{pmatrix}.
+  \end{equation*}
+  $A\,(\operatorname{adj} A)$ 的 $(1,1)$ 元是
+  \begin{equation*}
+    2\cdot 3+1\cdot(-2)+0\cdot 1=6-2=4=\det A.
+  \end{equation*}
+  非对角元同样抵消。例如 $(1,2)$ 元：
+  \begin{equation*}
+    2\cdot(-2)+1\cdot 4+0\cdot(-2)=-4+4=0.
+  \end{equation*}
+  这与 $A\,(\operatorname{adj} A)=(\det A)\,I$ 一致。
+\end{frame}
+
+\begin{frame}{正交矩阵}
+  若 $R_{ki}R_{kj}=\delta_{ij}$，则
+  \begin{equation*}
+    R^{\mathsf T}R=I,
+    \qquad
+    R^{-1}=R^{\mathsf T}.
+  \end{equation*}
+  旋转矩阵是日常的例子，不必再做余子式展开。
+  二维旋转
+  \begin{equation*}
+    R=
+    \begin{pmatrix}
+      \cos\theta & -\sin\theta \\
+      \sin\theta & \cos\theta
+    \end{pmatrix}
+  \end{equation*}
+  的具体核对放在第三讲的指标计算里。
+\end{frame}
+
+\begin{frame}{小结}
+  \begin{itemize}
+    \item $AA^{-1}=A^{-1}A=I$，并且这个矩阵存在且唯一当且仅当 $\det A\neq 0$。
+    \item $C_{ij}=(-1)^{i+j}M_{ij}$，
+      $A^{-1}=(\det A)^{-1}\operatorname{adj} A$。
+    \item $2\times 2$ 时对角元对调、非对角元变号，再除以 $ad-bc$。
+    \item $n$ 较大时，行化简 $[A\mid I]$ 与余子式公式给出同一个逆。
+    \item 正交矩阵的逆就是它的转置。
+  \end{itemize}
+\end{frame}
+
+\section{微分算子}
+
+\begin{frame}{全微分}
+  标量场的全微分是
+  \begin{equation*}
+    \mathrm{d}f
+    = \frac{\partial f}{\partial x}\,\mathrm{d}x
+    + \frac{\partial f}{\partial y}\,\mathrm{d}y
+    + \frac{\partial f}{\partial z}\,\mathrm{d}z.
+  \end{equation*}
+  记号 $\nabla$ 单独没有意义。
+  它与标量结合得到梯度，与矢量做点积得到散度，做叉积得到旋度。
+\end{frame}
+
+\subsection{梯度}
+
+\begin{frame}{梯度的定义}
+  \begin{equation*}
+    \nabla f
+    = \frac{\partial f}{\partial x}\mathbf{e}_x
+    + \frac{\partial f}{\partial y}\mathbf{e}_y
+    + \frac{\partial f}{\partial z}\mathbf{e}_z.
+  \end{equation*}
+  位移
+  \begin{equation*}
+    \mathrm{d}\boldsymbol{\ell}
+    = \mathrm{d}x\,\mathbf{e}_x
+    + \mathrm{d}y\,\mathbf{e}_y
+    + \mathrm{d}z\,\mathbf{e}_z
+  \end{equation*}
+  与梯度的点积正好拼回全微分：
+  \begin{equation*}
+    \nabla f\cdot\mathrm{d}\boldsymbol{\ell}
+    = \frac{\partial f}{\partial x}\,\mathrm{d}x
+    + \frac{\partial f}{\partial y}\,\mathrm{d}y
+    + \frac{\partial f}{\partial z}\,\mathrm{d}z
+    = \mathrm{d}f.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{最陡上升方向}
+  把点积写成夹角：
+  \begin{equation*}
+    \mathrm{d}f
+    = |\nabla f|\,|\mathrm{d}\boldsymbol{\ell}|\cos\theta.
+  \end{equation*}
+  步长 $|\mathrm{d}\boldsymbol{\ell}|$ 固定时，$\cos\theta=1$ 使 $\mathrm{d}f$ 最大，
+  所以 $\nabla f$ 指向 $f$ 增加最快的方向。
+  \vspace{0.4em}
+  沿等势面移动时 $\mathrm{d}f=0$，于是
+  $\nabla f\cdot\mathrm{d}\boldsymbol{\ell}=0$。
+  梯度垂直于等势面。
+\end{frame}
+
+\begin{frame}{等值线与梯度}
+  \begin{columns}[c]
+    \begin{column}{0.46\textwidth}
+      图中的圆是 $f$ 的等值线。
+      箭头与等值线正交，并指向 $f$ 增大的一侧。
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \vecfig{gradient}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{柱坐标与球坐标}
+  柱坐标 $(r,\phi,z)$：
+  \begin{equation*}
+    \nabla f
+    = \mathbf{e}_r\frac{\partial f}{\partial r}
+    + \mathbf{e}_\phi\frac{1}{r}\frac{\partial f}{\partial\phi}
+    + \mathbf{e}_z\frac{\partial f}{\partial z}.
+  \end{equation*}
+  球坐标 $(r,\theta,\phi)$：
+  \begin{equation*}
+    \nabla f
+    = \mathbf{e}_r\frac{\partial f}{\partial r}
+    + \mathbf{e}_\theta\frac{1}{r}\frac{\partial f}{\partial\theta}
+    + \mathbf{e}_\phi\frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}.
+  \end{equation*}
+  角度方向上的 $r$ 与 $r\sin\theta$ 是弧长的尺度因子：
+  $\mathrm{d}\ell_\phi=r\,\mathrm{d}\phi$，
+  球坐标里还有 $\mathrm{d}\ell_\phi=r\sin\theta\,\mathrm{d}\phi$。
+\end{frame}
+
+\begin{frame}{局部正交归一基}
+  \centering
+  \scalebox{0.92}{\vecfig{curvilinear}}
+  \vspace{0.3em}
+
+  {\small 上一页的公式写在这些局部基上，而不是写在同一个固定的直角基上。}
+\end{frame}
+
+\begin{frame}{例：直角坐标}
+  设 $a,b$ 为常数，$f=ax^2 y+by^2 z$。
+  三个偏导数分别是
+  \begin{align*}
+    \frac{\partial f}{\partial x}
+    &= 2axy,\\
+    \frac{\partial f}{\partial y}
+    &= ax^2+2byz,\\
+    \frac{\partial f}{\partial z}
+    &= by^2.
+  \end{align*}
+  所以
+  \begin{equation*}
+    \nabla f
+    = 2axy\,\mathbf{e}_x
+    +(ax^2+2byz)\,\mathbf{e}_y
+    +by^2\,\mathbf{e}_z.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：柱坐标，先求偏导}
+  设 $f=ar^2\sin\phi+brz\cos 2\phi$。
+  \begin{align*}
+    \frac{\partial f}{\partial r}
+    &= 2ar\sin\phi+bz\cos 2\phi,\\
+    \frac{\partial f}{\partial\phi}
+    &= ar^2\cos\phi+brz(-2\sin 2\phi) \\
+    &= ar^2\cos\phi-2brz\sin 2\phi,\\
+    \frac{\partial f}{\partial z}
+    &= br\cos 2\phi.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{例：柱坐标，配上尺度因子}
+  梯度的角分量为
+  \begin{align*}
+    \frac{1}{r}\frac{\partial f}{\partial\phi}
+    &= \frac{1}{r}(ar^2\cos\phi-2brz\sin 2\phi) \\
+    &= ar\cos\phi-2bz\sin 2\phi.
+  \end{align*}
+  因此
+  \begin{align*}
+    \nabla f
+    &= (2ar\sin\phi+bz\cos 2\phi)\,\mathbf{e}_r \\
+    &\quad +(ar\cos\phi-2bz\sin 2\phi)\,\mathbf{e}_\phi
+     + br\cos 2\phi\,\mathbf{e}_z.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{例：球坐标}
+  设 $f=a+br\sin\theta\cos\phi$。常数 $a$ 的导数是零。
+  \begin{align*}
+    \frac{\partial f}{\partial r}
+    &= b\sin\theta\cos\phi,\\
+    \frac{1}{r}\frac{\partial f}{\partial\theta}
+    &= \frac{1}{r}\cdot br\cos\theta\cos\phi
+     = b\cos\theta\cos\phi,\\
+    \frac{1}{r\sin\theta}\frac{\partial f}{\partial\phi}
+    &= \frac{1}{r\sin\theta}\cdot br\sin\theta(-\sin\phi)
+     = -b\sin\phi.
+  \end{align*}
+  所以
+  \begin{equation*}
+    \nabla f
+    = b\sin\theta\cos\phi\,\mathbf{e}_r
+    + b\cos\theta\cos\phi\,\mathbf{e}_\theta
+    - b\sin\phi\,\mathbf{e}_\phi.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{梯度场的线积分}
+  力场沿路径 $L$ 所做的功是
+  \begin{equation*}
+    W=\int_L\mathbf{F}\cdot\mathrm{d}\boldsymbol{\ell}.
+  \end{equation*}
+  若 $\mathbf{F}=\nabla f$，链式法则给出
+  \begin{equation*}
+    \nabla f\cdot\mathrm{d}\boldsymbol{\ell}
+    = \mathrm{d}f,
+  \end{equation*}
+  两端积分：
+  \begin{equation*}
+    \int_A^B\nabla f\cdot\mathrm{d}\boldsymbol{\ell}
+    = \int_A^B\mathrm{d}f
+    = f(B)-f(A).
+  \end{equation*}
+  积分只依赖于端点。闭路上 $A=B$，积分是零。
+\end{frame}
+
+\begin{frame}{例：第一条折线}
+  取 $f=x^2 y$，则
+  \begin{equation*}
+    \nabla f=2xy\,\mathbf{e}_x+x^2\,\mathbf{e}_y.
+  \end{equation*}
+  由端点公式，从原点到 $P=(x_0,y_0)$ 的任意路径都给出
+  $f(P)-f(O)=x_0^2 y_0$。
+  下面直接算两条折线来核对。
+  \vspace{0.3em}
+  路径 $L_1$：先沿 $x$ 轴到 $(x_0,0)$，再竖直走到 $(x_0,y_0)$。
+  第一段 $y=0$，$\mathrm{d}y=0$，被积函数 $2xy\,\mathrm{d}x=0$。
+  第二段 $x=x_0$，$\mathrm{d}x=0$，
+  \begin{equation*}
+    \int_0^{y_0} x_0^2\,\mathrm{d}y=x_0^2 y_0.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：第二条折线}
+  路径 $L_2$：先沿 $y$ 轴到 $(0,y_0)$，再水平走到 $(x_0,y_0)$。
+  第一段 $x=0$，$\mathrm{d}x=0$，被积函数 $x^2\,\mathrm{d}y=0$。
+  第二段 $y=y_0$，$\mathrm{d}y=0$，
+  \begin{equation*}
+    \int_0^{x_0} 2x y_0\,\mathrm{d}x
+    = y_0\, x^2\Big|_0^{x_0}
+    = x_0^2 y_0.
+  \end{equation*}
+  两条路径结果相同，因为场是梯度。
+  端点公式说明任何其他路径也给出同一个值。
+\end{frame}
+
+\begin{frame}{两条路径}
+  \centering
+  \scalebox{0.95}{\vecfig{path_independence}}
+\end{frame}
+
+\subsection{散度}
+
+\begin{frame}{通量}
+  矢量场 $\mathbf{A}$ 穿过闭曲面 $S$ 的通量是
+  \begin{equation*}
+    \Phi=\oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S},
+    \qquad
+    \mathrm{d}\mathbf{S}=\hat{\mathbf{n}}\,\mathrm{d}S,
+  \end{equation*}
+  其中 $\hat{\mathbf{n}}$ 是外法向。
+  净通量为正，内部有源；净通量为负，内部有汇。
+\end{frame}
+
+\begin{frame}{小长方体的一对面}
+  考虑边长 $\Delta x,\Delta y,\Delta z$ 的小长方体。
+  在 $x$ 与 $x+\Delta x$ 这一对面，外法向分别是 $-\mathbf{e}_x$ 与 $\mathbf{e}_x$，面积都是 $\Delta y\Delta z$。
+  净贡献为
+  \begin{align*}
+    &\bigl[A_x(x+\Delta x)-A_x(x)\bigr]\Delta y\Delta z \\
+    &\quad \approx
+      \frac{\partial A_x}{\partial x}\,\Delta x\,\Delta y\,\Delta z.
+  \end{align*}
+  $y$、$z$ 两对面给出类似的两项。
+  净通量除以体积 $\Delta V=\Delta x\Delta y\Delta z$，再令小盒趋于一点：
+  \begin{equation*}
+    \nabla\cdot\mathbf{A}
+    = \frac{\partial A_x}{\partial x}
+    + \frac{\partial A_y}{\partial y}
+    + \frac{\partial A_z}{\partial z}.
+  \end{equation*}
+  散度是单位体积的净向外通量。
+\end{frame}
+
+\begin{frame}{散度定理}
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      把体积分成小盒，内部面上的通量成对抵消，只留下外表面。
+      局部描述与整体描述因此连在一起：
+      \begin{equation*}
+        \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+        = \int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.
+      \end{equation*}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \scalebox{0.82}{\vecfig{divergence}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：先算体积分}
+  对 $\mathbf{A}=x\mathbf{e}_x+y\mathbf{e}_y+z\mathbf{e}_z$，
+  \begin{equation*}
+    \nabla\cdot\mathbf{A}
+    = \frac{\partial x}{\partial x}
+    + \frac{\partial y}{\partial y}
+    + \frac{\partial z}{\partial z}
+    = 1+1+1
+    = 3.
+  \end{equation*}
+  长方体边长为 $a,b,c$，一角在原点，
+  \begin{equation*}
+    \int_V\nabla\cdot\mathbf{A}\,\mathrm{d}V
+    = \int_0^a\int_0^b\int_0^c 3\,\mathrm{d}z\,\mathrm{d}y\,\mathrm{d}x
+    = 3abc.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：六个面的通量}
+  \small
+  \begin{align*}
+    x=a:\ &\mathbf{A}\cdot\mathbf{e}_x=a, &&
+      \text{通量}=a\cdot bc=abc,\\
+    x=0:\ &\mathbf{A}\cdot(-\mathbf{e}_x)=0, &&
+      \text{通量}=0,\\
+    y=b:\ &\mathbf{A}\cdot\mathbf{e}_y=b, &&
+      \text{通量}=b\cdot ac=abc,\\
+    y=0:\ &\mathbf{A}\cdot(-\mathbf{e}_y)=0, &&
+      \text{通量}=0,\\
+    z=c:\ &\mathbf{A}\cdot\mathbf{e}_z=c, &&
+      \text{通量}=c\cdot ab=abc,\\
+    z=0:\ &\mathbf{A}\cdot(-\mathbf{e}_z)=0, &&
+      \text{通量}=0.
+  \end{align*}
+  \normalsize
+  六个面合计 $3abc$，与体积分相同。
+\end{frame}
+
+\subsection{旋度}
+
+\begin{frame}{环量}
+  矢量场沿闭路 $L$ 的环量是
+  \begin{equation*}
+    C=\oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}.
+  \end{equation*}
+  旋度衡量单位面积上的环量。
+\end{frame}
+
+\begin{frame}{小矩形上的环量}
+  在 $xy$ 平面上取边长 $\Delta x,\Delta y$ 的小矩形，逆时针走向。
+  底边贡献 $A_x(x,y)\Delta x$，
+  顶边反向，贡献 $-A_x(x,y+\Delta y)\Delta x$，
+  右边贡献 $A_y(x+\Delta x,y)\Delta y$，
+  左边贡献 $-A_y(x,y)\Delta y$。
+  合起来
+  \begin{align*}
+    C
+    &\approx
+      \bigl[A_y(x+\Delta x,y)-A_y(x,y)\bigr]\Delta y \\
+    &\quad -
+      \bigl[A_x(x,y+\Delta y)-A_x(x,y)\bigr]\Delta x \\
+    &\approx
+      \Bigl(
+        \frac{\partial A_y}{\partial x}
+        -\frac{\partial A_x}{\partial y}
+      \Bigr)\Delta x\,\Delta y.
+  \end{align*}
+  括号里的量就是 $(\nabla\times\mathbf{A})_z$。
+\end{frame}
+
+\begin{frame}{小矩形}
+  \centering
+  \vecfig{curl_loop}
+  \vspace{0.4em}
+
+  {\small 把曲面铺满这样的小环后，内部公共边上的积分方向相反，彼此抵消。}
+\end{frame}
+
+\begin{frame}{一般定义与斯托克斯定理}
+  对法向为 $\hat{\mathbf{n}}$ 的小面元，
+  \begin{equation*}
+    (\nabla\times\mathbf{A})\cdot\hat{\mathbf{n}}
+    = \lim_{\Delta S\to 0}
+      \frac{1}{\Delta S}
+      \oint_{\partial(\Delta S)}
+      \mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}.
+  \end{equation*}
+  环路与法向由右手定则联系。
+  把曲面分成小环并抵消内部边，得到斯托克斯定理：
+  \begin{equation*}
+    \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+    = \int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}.
+  \end{equation*}
+  张在同一条边界上的任何定向曲面给出同一个旋度通量。
+\end{frame}
+
+\begin{frame}{两个恒等式}
+  梯度没有环量，旋度没有净源：
+  \begin{equation*}
+    \nabla\times(\nabla f)=\mathbf{0},
+    \qquad
+    \nabla\cdot(\nabla\times\mathbf{A})=0.
+  \end{equation*}
+  它们是上面两条积分定理的局部形式。
+  用直角分量可以直接核对 $z$ 分量：
+  \begin{align*}
+    \bigl(\nabla\times\nabla f\bigr)_z
+    &= \partial_x\partial_y f-\partial_y\partial_x f
+     = 0,
+  \end{align*}
+  因为混合偏导可交换。
+  完整的指标证明，连同
+  $\nabla\times(\nabla\times\mathbf{E})
+  =\nabla(\nabla\cdot\mathbf{E})-\nabla^2\mathbf{E}$，
+  放在第三讲。
+\end{frame}
+
+\begin{frame}{例：先算旋度}
+  设 $\mathbf{A}=-y\,\mathbf{e}_x+x\,\mathbf{e}_y-z\,\mathbf{e}_z$。
+  \begin{align*}
+    (\nabla\times\mathbf{A})_x
+    &= \partial_y A_z-\partial_z A_y
+     = 0-0=0,\\
+    (\nabla\times\mathbf{A})_y
+    &= \partial_z A_x-\partial_x A_z
+     = 0-0=0,\\
+    (\nabla\times\mathbf{A})_z
+    &= \partial_x A_y-\partial_y A_x
+     = \partial_x(x)-\partial_y(-y)
+     = 1-(-1)
+     = 2.
+  \end{align*}
+  所以 $\nabla\times\mathbf{A}=2\mathbf{e}_z$。
+\end{frame}
+
+\begin{frame}{例：圆上的线积分}
+  $L$ 是 $xy$ 平面上半径为 $R$ 的圆：
+  $x=R\cos\phi$，$y=R\sin\phi$，$z=0$，
+  $\phi$ 从 $0$ 到 $2\pi$。
+  \begin{align*}
+    \mathrm{d}x&=-R\sin\phi\,\mathrm{d}\phi,\\
+    \mathrm{d}y&=R\cos\phi\,\mathrm{d}\phi,\\
+    \mathrm{d}z&=0.
+  \end{align*}
+  于是
+  \begin{align*}
+    \mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+    &= -y\,\mathrm{d}x+x\,\mathrm{d}y-z\,\mathrm{d}z \\
+    &= -(R\sin\phi)(-R\sin\phi\,\mathrm{d}\phi)
+     +(R\cos\phi)(R\cos\phi\,\mathrm{d}\phi) \\
+    &= R^2(\sin^2\phi+\cos^2\phi)\,\mathrm{d}\phi
+     = R^2\,\mathrm{d}\phi.
+  \end{align*}
+  积分得
+  $\displaystyle\oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+  =\int_0^{2\pi}R^2\,\mathrm{d}\phi=2\pi R^2$。
+\end{frame}
+
+\begin{frame}{例：圆盘上的面积分}
+  取 $L$ 所围的圆盘，$ \mathrm{d}\mathbf{S}=\mathbf{e}_z\,\mathrm{d}S$。
+  \begin{equation*}
+    \int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}
+    = \int_S 2\,\mathrm{d}S
+    = 2\cdot\pi R^2
+    = 2\pi R^2.
+  \end{equation*}
+  线积分与面积分相等。
+  张在同一条 $L$ 上的其他定向曲面给出同一个结果。
+\end{frame}
+
+\begin{frame}{斯托克斯定理的图}
+  \centering
+  \scalebox{0.9}{\vecfig{stokes}}
+\end{frame}
+
+\begin{frame}{小结}
+  \begin{itemize}
+    \item $\mathrm{d}f=\nabla f\cdot\mathrm{d}\boldsymbol{\ell}$。
+      梯度指向最陡上升方向，并垂直于等势面。
+    \item 柱坐标、球坐标的梯度要带上弧长尺度因子。
+    \item 梯度的线积分等于端点函数值之差。两条折线都给出 $x_0^2 y_0$。
+    \item 散度是单位体积的净向外通量；六个面的通量等于 $3abc$。
+    \item 旋度是单位面积的环量；圆上的 $2\pi R^2$ 与圆盘上的旋度通量相同。
+  \end{itemize}
+\end{frame}
+
+\end{document}

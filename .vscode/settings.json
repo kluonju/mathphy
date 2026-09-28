@@ -1,5 +1,6 @@
 {
   "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.rootFile.indicator": "\\begin{document}",
   "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
   "latex-workshop.latex.build.forceRecipeUsage": false,
   "latex-workshop.latex.recipes": [

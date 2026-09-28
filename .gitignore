@@ -12,4 +12,8 @@
 *.log
 *.nav
 *.snm
-lecture_new/mcp
+*.bcf
+*.blg
+*.xml
+*.idx
+*.ind

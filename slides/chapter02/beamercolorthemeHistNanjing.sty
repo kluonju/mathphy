@@ -1,0 +1,42 @@
+% beamercolorthemeHistNanjing.sty
+% 定义“历史文化主题”配色：帝王紫 + 雨花石灰 + 金陵土黄
+\ProvidesPackage{beamercolorthemeHistNanjing}
+\mode<presentation>
+
+% 配色定义
+% \definecolor{HistPurple}{RGB}{87, 36, 123}       % rgb(87, 36, 123) from njust.edu.cn
+\definecolor{HistPurple}{RGB}{153, 0, 153}       % logo 标准色 from njust.edu.cn
+% \definecolor{HistPurple}{RGB}{126, 90, 155}       % 帝王紫 (#7E5A9B)
+\definecolor{HistStone}{RGB}{68, 68, 68}          % 雨花石灰 (#444444)
+\definecolor{HistClay}{RGB}{184, 106, 51}         % 金陵土黄 (#B86A33)
+\definecolor{HistGray}{RGB}{180, 180, 180}         % 金陵土黄 (#B86A33)
+\definecolor{HistBlue}{RGB}{28, 79, 161}        % 南京理工大学蓝 
+\definecolor{HistWhite}{RGB}{255, 255, 255}        % 南京理工大学蓝 
+\definecolor{HistBlack}{RGB}{0, 0, 0}        % 南京理工大学蓝 
+
+% 正文与背景
+\setbeamercolor{normal text}{fg=black, bg=white}
+\setbeamercolor{background canvas}{bg=white}
+
+% 主结构色（章节、标题）
+\setbeamercolor{structure}{fg=HistPurple}
+
+% 幻灯片标题
+\setbeamercolor{frametitle}{fg=white, bg=HistPurple}
+\setbeamercolor{title}{fg=HistPurple}
+
+% 区块(Block)
+\setbeamercolor{block title}{fg=white, bg=HistBlue}
+\setbeamercolor{block body}{fg=black, bg=HistStone!10}
+
+% 列表符号
+\setbeamercolor{item}{fg=HistClay}
+\setbeamercolor{subitem}{fg=HistClay}
+
+% % 目录中小节
+% \setbeamercolor{section in toc}{fg=HistPurple}
+% \setbeamercolor{subsection in toc}{fg=HistBlue}
+
+% % 导航符号与页脚样式
+% \setbeamertemplate{navigation symbols}{}
+% \setbeamertemplate{footline}[frame number]
