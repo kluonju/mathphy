@@ -1,0 +1,28 @@
+\begin{tikzpicture}[scale=1.0]
+  % axes
+  \draw[very thick, ->] (-3,0) -- (3,0) node[right] {$x$};
+  \draw[very thick, ->] (0,-2.5) -- (0,2.5) node[above] {$u(x)$};
+
+  % endpoints fixed
+  \coordinate (A) at (-2.5, -1.0);
+  \coordinate (B) at (2.5, 1.5);
+  \filldraw (A) circle (1.5pt) node[below left] {$u(a)$};
+  \filldraw (B) circle (1.5pt) node[above right] {$u(b)$};
+
+  % nominal curve
+  \draw[red, very thick, domain=-2.5:2.5, samples=80]
+    plot (\x, {-1 + 1.0*\x - 0.15*\x*\x})
+         node[right] {$u(x)$};
+
+  % varied curve u + eps eta
+  \draw[blue, very thick, dashed, domain=-2.5:2.5, samples=80]
+    plot (\x, {-1 + 1.0*\x - 0.15*\x*\x + 0.4*sin(deg(2.5*\x))})
+         node[above] {$u(x)+\varepsilon\eta(x)$};
+
+  % delta label
+  \draw[<->, gray] (0, {-1+0-0.15*0}) -- (0, {-1+0-0.15*0+0.4*sin(0)});
+  \node[gray] at (0.3, 0.0) {$\delta u$};
+
+  \node at (0, 3.0) {变分法};
+  \node at (0, -2.3) {\large $\delta J = 0$};
+\end{tikzpicture}

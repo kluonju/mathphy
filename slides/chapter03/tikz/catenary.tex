@@ -1,0 +1,25 @@
+\begin{tikzpicture}[scale=1.0]
+  % axes
+  \draw[->, thick] (-3.5,0) -- (3.5,0) node[right] {$x$};
+  \draw[->, thick] (0,-0.5) -- (0,3.5) node[above] {$u(x)$};
+
+  % supports
+  \draw[very thick] (-2.5, 0) -- (-2.5, -0.25);
+  \draw[very thick] (2.5, 0) -- (2.5, -0.25);
+
+  % catenary y = a cosh(x/a) + b
+  \draw[red, very thick, domain=-2.3:2.3, samples=120]
+    plot (\x, {1.0*cosh(\x/1.0) - 0.4}) node[above right] {$u(x)$};
+
+  % vertex marker
+  \filldraw (0, 0.6) circle (1pt);
+  \node[below] at (0, 0.6) {$(x_c,u_c)$};
+
+  % labels
+  \filldraw (-2.5, 1.184) circle (1pt) node[above left] {$u(-L/2)$};
+  \filldraw (2.5, 1.184) circle (1pt) node[above right] {$u(L/2)$};
+
+  % parabola for comparison
+  \draw[dashed, blue, thick, domain=-2.3:2.3]
+    plot (\x, {0.06*\x*\x + 0.6}) node[right] {抛物线近似};
+\end{tikzpicture}

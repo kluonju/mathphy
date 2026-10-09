@@ -1,0 +1,26 @@
+\begin{tikzpicture}[scale=1.1]
+  % contour c = 0
+  \draw[red, very thick] (0,0) ellipse (3cm and 2cm);
+  \node[red] at (3.2, 1.5) {$c(\mathbf{x})=0$};
+
+  % normal at the critical point
+  \coordinate (P) at (1.8, 0.7);
+  \filldraw (P) circle (1.5pt);
+  \node[below right] at (P) {$\mathbf{x}^\star$};
+
+  % gradient of f
+  \draw[->, very thick, blue] (P) -- ($(P)+(2.4, 0.7)$)
+    node[right, blue] {$\nabla f$};
+  % gradients of constraints (one example)
+  \draw[->, very thick, teal] (P) -- ($(P)+(1.5, 1.8)$)
+    node[above right, teal] {$\nabla c_a$};
+  \draw[->, very thick, teal] (P) -- ($(P)+(-0.9, 1.9)$)
+    node[above left, teal] {$\nabla c_b$};
+
+  % tangent line to the constraint
+  \draw[dashed, thick, gray] ($(P)+(-2.5, -0.7)$) -- ($(P)+(2.5, 0.7)$);
+  \node[gray] at ($(P)+(2.2, -1.1)$) {$T$};
+
+  % legend
+  \node at (0, -2.6) {$\nabla f=\lambda_a\nabla c_a$};
+\end{tikzpicture}
