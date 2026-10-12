@@ -1,0 +1,633 @@
+% Solutions to Homework 4 — Math Physics Methods (数学物理方法)
+
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools, graphicx, multicol, array}
+\usepackage{ctex}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Res}{\operatorname{Res}}
+
+\theoremstyle{remark}
+\newtheorem{problem}{}
+\theoremstyle{definition}
+\newtheorem{solution}{解}
+
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+\setlength{\headheight}{15.11996pt}
+\setlength{\topmargin}{-3.11996pt}
+
+\newcommand{\duedate}{\zhdate{2026/10/20}}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyhead[L]{数学物理方法}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{课后习题肆 \quad 参考解答}
+
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{截止日期\duedate}
+\fancyfoot[R]{任课教师:罗凯}
+
+\begin{document}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+
+%==========================================================================
+\begin{problem}
+  在指定的点 $z_0$ 的邻域上将下列函数展开为泰勒级数.
+  \begin{enumerate}
+    \item $\arctan z$的主值, 在 $z_0=0$;(提示:试着利用级数展开然后逐项积分.)
+    \item $\ln z$ 在 $z_0=\imath$;
+    \item $\ln \left(1+e^z\right)$ 在 $z_0=0$.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(1)}
+主值支满足 $\arctan 0=0$，因而
+\[
+\arctan z=\int_{0}^{z}\frac{1}{1+t^{2}}\,\mathrm{d}t.
+\]
+当 $|t|<1$ 时，
+\[
+\frac{1}{1+t^{2}}=\sum_{n=0}^{\infty}(-t^{2})^{n}=\sum_{n=0}^{\infty}(-1)^{n}t^{2n}.
+\]
+在 $|z|<1$ 内逐项积分，
+\[
+\arctan z
+=\int_{0}^{z}\sum_{n=0}^{\infty}(-1)^{n}t^{2n}\,\mathrm{d}t
+=\sum_{n=0}^{\infty}(-1)^{n}\frac{z^{2n+1}}{2n+1},\qquad |z|<1.
+\]
+收敛半径为 $1$，与主值支在 $z=\pm\imath$ 处的支点到原点的距离一致。
+
+\textbf{(2)}
+在 $z=\imath$ 的不含原点的邻域内取对数的解析分支，
+\[
+(\ln z)'=\frac{1}{z},\qquad
+(\ln z)^{(k)}=(-1)^{k-1}\frac{(k-1)!}{z^{k}}\quad(k\geq 1).
+\]
+泰勒系数为
+\[
+a_{k}
+=\frac{(\ln z)^{(k)}\big|_{z=\imath}}{k!}
+=\frac{(-1)^{k-1}}{k\,\imath^{k}}
+=-\frac{\imath^{k}}{k}.
+\]
+又 $a_{0}=\ln\imath$，故在 $|z-\imath|<1$ 内
+\[
+\ln z
+=\ln\imath-\sum_{k=1}^{\infty}\frac{\imath^{k}}{k}(z-\imath)^{k}.
+\]
+若取主值，则 $\ln\imath=\imath\pi/2$。收敛圆由到支点 $z=0$ 的距离决定。
+
+\textbf{(3)}
+$1+e^{0}=2\neq 0$，故 $\ln(1+e^{z})$ 在 $z=0$ 解析。令
+\[
+g(z)=\ln(1+e^{z})-\frac{z}{2}.
+\]
+由 $\ln(1+e^{-z})=-z+\ln(1+e^{z})$ 得 $g(-z)=g(z)$，$g$ 为偶函数，因此 $g$ 在 $0$ 处的奇阶导数为零。于是 $f(z)=\ln(1+e^{z})$ 在 $0$ 处三阶及更高的奇阶导数都为零。直接计算
+\begin{align*}
+f(0)&=\ln 2,\\
+f'(z)&=\frac{e^{z}}{1+e^{z}},&
+f'(0)&=\frac12,\\
+f''(z)&=\frac{e^{z}}{(1+e^{z})^{2}},&
+f''(0)&=\frac14.
+\end{align*}
+由 $f''(z)$ 再求导，
+\[
+f'''(z)
+=\frac{e^{z}(1+e^{z})^{2}-e^{z}\cdot 2(1+e^{z})e^{z}}{(1+e^{z})^{4}}
+=\frac{e^{z}-e^{2z}}{(1+e^{z})^{3}},
+\]
+故 $f'''(0)=0$。继续求导，
+\[
+f^{(4)}(0)
+=\frac{(e^{z}-2e^{2z})(1+e^{z})^{3}-(e^{z}-e^{2z})\cdot 3(1+e^{z})^{2}e^{z}}{(1+e^{z})^{6}}\bigg|_{z=0}
+=\frac{(-1)\cdot 8}{8^{2}}
+=-\frac18.
+\]
+所以
+\[
+\ln(1+e^{z})
+=\ln 2+\frac12 z+\frac{1}{8}z^{2}-\frac{1}{192}z^{4}+\cdots,
+\]
+其中 $z^{4}$ 的系数是 $f^{(4)}(0)/4!=-1/(8\cdot 24)=-1/192$，而 $z^{3}$、$z^{5}$ 等奇次项的系数为零。
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  在指定环域上(或可去除奇点$z_0$处)将下列函数展开为洛朗级数.
+  \begin{enumerate}
+    \item $\dfrac{1}{z^{2}(z-1)}$ 在 $z_0=1$;
+    \item $\dfrac{1}{(z-2)(z-3)}$ 在 $|z|>3$;
+    \item $\ln \left(1+e^z\right)$ 在 $z_0=0$;
+    \item $\frac{1}{z(z+1)}$, 在 $1<|z-i|<\sqrt{2}$.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(1)}
+奇点为 $z=0$ 与 $z=1$。在 $z_{0}=1$ 附近，$|z-1|<1$ 时可用二项式展开。令 $w=z-1$，则 $z=1+w$，
+\[
+\frac{1}{z^{2}(z-1)}
+=\frac{1}{w(1+w)^{2}}
+=\frac{1}{w}(1+w)^{-2}.
+\]
+用
+\[
+(1+w)^{a}
+=1+\sum_{n=1}^{\infty}\frac{a(a-1)\cdots(a-n+1)}{n!}w^{n},
+\qquad |w|<1,
+\]
+取 $a=-2$，
+\[
+(1+w)^{-2}
+=\sum_{n=0}^{\infty}(-1)^{n}(n+1)w^{n}.
+\]
+于是在 $0<|z-1|<1$ 内
+\begin{align*}
+\frac{1}{z^{2}(z-1)}
+&=\sum_{n=0}^{\infty}(-1)^{n}(n+1)(z-1)^{n-1}\\
+&=\frac{1}{z-1}-2+3(z-1)-4(z-1)^{2}+\cdots.
+\end{align*}
+
+\textbf{(2)}
+分解为
+\[
+\frac{1}{(z-2)(z-3)}=\frac{1}{z-3}-\frac{1}{z-2}.
+\]
+当 $|z|>3$ 时，$\bigl|\dfrac{3}{z}\bigr|<1$，$\bigl|\dfrac{2}{z}\bigr|<1$，
+\begin{align*}
+\frac{1}{z-3}
+&=\frac{1}{z}\cdot\frac{1}{1-3/z}
+=\sum_{n=0}^{\infty}3^{n}z^{-n-1},\\
+\frac{1}{z-2}
+&=\sum_{n=0}^{\infty}2^{n}z^{-n-1}.
+\end{align*}
+因此
+\[
+\frac{1}{(z-2)(z-3)}
+=\sum_{n=0}^{\infty}(3^{n}-2^{n})z^{-n-1},\qquad |z|>3.
+\]
+
+\textbf{(3)}
+$z=0$ 是可去奇点，实际上是解析点，洛朗级数就是第 1 题 (3) 的泰勒级数：
+\[
+\ln(1+e^{z})
+=\ln 2+\frac12 z+\frac18 z^{2}-\frac{1}{192}z^{4}+\cdots.
+\]
+
+\textbf{(4)}
+\[
+\frac{1}{z(z+1)}=\frac{1}{z}-\frac{1}{z+1}
+=\frac{1}{(z-\imath)+\imath}-\frac{1}{(z-\imath)+(1+\imath)}.
+\]
+极点 $z=0$、$z=-1$ 到 $\imath$ 的距离分别是 $1$ 与 $\sqrt{2}$。在环域 $1<|z-\imath|<\sqrt{2}$ 中
+\[
+\Bigl|\frac{\imath}{z-\imath}\Bigr|<1,
+\qquad
+\Bigl|\frac{z-\imath}{1+\imath}\Bigr|<1,
+\]
+所以内点 $z=0$ 对应负幂，外点 $z=-1$ 对应正幂：
+\begin{align*}
+\frac{1}{(z-\imath)+\imath}
+&=\frac{1}{z-\imath}\cdot\frac{1}{1+\dfrac{\imath}{z-\imath}}
+=\sum_{n=0}^{\infty}(-\imath)^{n}(z-\imath)^{-n-1},\\[4pt]
+\frac{1}{(z-\imath)+(1+\imath)}
+&=\frac{1}{1+\imath}\sum_{n=0}^{\infty}\Bigl(-\frac{z-\imath}{1+\imath}\Bigr)^{n}
+=\sum_{n=0}^{\infty}(-1)^{n}\frac{(z-\imath)^{n}}{(1+\imath)^{n+1}}.
+\end{align*}
+故
+\[
+\frac{1}{z(z+1)}
+=\sum_{n=0}^{\infty}(-\imath)^{n}(z-\imath)^{-n-1}
+-\sum_{n=0}^{\infty}(-1)^{n}\frac{(z-\imath)^{n}}{(1+\imath)^{n+1}}.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+ 求下列函数在指定点 $z_0$ 的留数:
+
+ \begin{enumerate}
+  \item  $\frac{e^{z^2}}{z-1}, z_0=1$;
+  \item $\frac{e^{z^2}}{(z-1)^2}, \quad z_0=1$;
+  \item $\left(\frac{z}{1-\cos z}\right)^2, z_0=0$;
+  \item  $\frac{1+e^z}{z^4}, z_0=0$;
+  \item $\frac{1}{z^2 \sin z}, z_0=0$.
+ \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(1)}
+$z=1$ 是一阶极点，
+\[
+\Res_{z=1}\frac{e^{z^{2}}}{z-1}
+=\bigl[(z-1)\tfrac{e^{z^{2}}}{z-1}\bigr]_{z=1}
+=e.
+\]
+
+\textbf{(2)}
+$z=1$ 是二阶极点，
+\[
+\Res_{z=1}\frac{e^{z^{2}}}{(z-1)^{2}}
+=\frac{\mathrm{d}}{\mathrm{d}z}\bigl(e^{z^{2}}\bigr)\bigg|_{z=1}
+=2ze^{z^{2}}\big|_{z=1}
+=2e.
+\]
+
+\textbf{(3)}
+记 $f(z)=\bigl(z/(1-\cos z)\bigr)^{2}$。因为 $\cos(-z)=\cos z$，
+\[
+f(-z)=\Bigl(\frac{-z}{1-\cos(-z)}\Bigr)^{2}=f(z),
+\]
+$f$ 是偶函数，洛朗级数只含 $z$ 的偶次幂，不含 $z^{-1}$ 项，所以
+\[
+\Res_{z=0}f(z)=0.
+\]
+（由 $1-\cos z\sim z^{2}/2$ 可知 $f(z)\sim 4/z^{2}$，$z=0$ 确是二阶极点，但留数仍为零。）
+
+\textbf{(4)}
+\[
+e^{z}=1+z+\frac{z^{2}}{2!}+\frac{z^{3}}{3!}+\frac{z^{4}}{4!}+\cdots,
+\]
+\[
+\frac{1+e^{z}}{z^{4}}
+=\frac{2}{z^{4}}+\frac{1}{z^{3}}+\frac{1}{2z^{2}}+\frac{1}{6z}+\frac{1}{24}+\cdots.
+\]
+$z^{-1}$ 的系数是 $1/3!$，故
+\[
+\Res_{z=0}\frac{1+e^{z}}{z^{4}}=\frac16.
+\]
+
+\textbf{(5)}
+$\sin z=z-z^{3}/3!+z^{5}/5!-\cdots$，所以 $z=0$ 是三阶极点，
+\begin{align*}
+\frac{1}{z^{2}\sin z}
+&=\frac{1}{z^{3}}\Bigl(1-\frac{z^{2}}{3!}+\frac{z^{4}}{5!}-\cdots\Bigr)^{-1}\\
+&=\frac{1}{z^{3}}\Bigl(1+\frac{z^{2}}{3!}+O(z^{4})\Bigr)
+=\frac{1}{z^{3}}+\frac{1}{6z}+O(z).
+\end{align*}
+因此
+\[
+\Res_{z=0}\frac{1}{z^{2}\sin z}=\frac16.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+分情况讨论 $F(z)=\frac{f^{\prime}(z)}{f(z)}=\frac{d}{d z} \ln f(z)$ 在 $z=a$ 点的性质, 
+  若 $a$ 点是 $f(z)$ 的: 
+  \\
+  (1) $m$ 阶零 点; 
+  \\
+  (2) $m$ 阶极点.
+  \\
+  如果 $z=a$ 是 $F(z)$ 的孤立奇点的话, 则求出函数 $F(z)$ 在该点的留数.
+\end{problem}
+
+\begin{solution}
+设 $m\geq 1$。
+
+\textbf{(1)}
+若 $a$ 是 $f$ 的 $m$ 阶零点，则在 $a$ 的邻域内
+\[
+f(z)=(z-a)^{m}g(z),
+\]
+其中 $g$ 解析且 $g(a)\neq 0$。于是
+\begin{align*}
+f'(z)
+&=m(z-a)^{m-1}g(z)+(z-a)^{m}g'(z)\\
+&=(z-a)^{m-1}\bigl[mg(z)+(z-a)g'(z)\bigr],
+\end{align*}
+\[
+F(z)=\frac{f'(z)}{f(z)}
+=\frac{1}{z-a}\Bigl[m+(z-a)\frac{g'(z)}{g(z)}\Bigr].
+\]
+方括号在 $z=a$ 解析，取值 $m\neq 0$，所以 $z=a$ 是 $F$ 的一阶极点，留数为
+\[
+\Res_{z=a}F(z)
+=\lim_{z\to a}(z-a)F(z)
+=m.
+\]
+
+\textbf{(2)}
+若 $a$ 是 $f$ 的 $m$ 阶极点，则
+\[
+f(z)=(z-a)^{-m}h(z),
+\]
+其中 $h$ 解析且 $h(a)\neq 0$。同样得到
+\[
+F(z)=\frac{1}{z-a}\Bigl[-m+(z-a)\frac{h'(z)}{h(z)}\Bigr].
+\]
+$z=a$ 是 $F$ 的一阶极点，留数为
+\[
+\Res_{z=a}F(z)=-m.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  计算下列积分值
+  \begin{enumerate}
+    \item $\oint_C \frac{d z}{1+z^4}, C$ 为 $|z-1|=1$;
+    \item $\oint_{|z|=2} \frac{1}{z^3\left(z^{10}-2\right)} d z$;
+    \item $\oint_{|z|=1} \frac{e^z}{z^3} d z$; 
+    \item $\int_0^{2 \pi} \frac{d x}{(a+b \cos x)^2}, \quad a>b>0$;
+    \item $\int_{-\infty}^{\infty} \frac{d x}{(x^2 + a^2)(x^2+b^2)}, \quad a>0, b>0$;
+    \item $\int_{-\infty}^{\infty} \frac{x^2 d x}{\left(x^2+1\right)\left(x^2-2 x \cos \theta+1\right)}, \theta$ 为实数, 且 $\sin \theta \neq 0$.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\textbf{(1)}
+$1+z^{4}=0$ 给出四个一阶极点
+\[
+z^{4}=-1=e^{\imath(\pi+2k\pi)},\qquad
+z_{k}=e^{\imath(2k+1)\pi/4},\quad k=0,1,2,3,
+\]
+即 $e^{\imath\pi/4}$、$e^{\imath 3\pi/4}$、$e^{\imath 5\pi/4}$、$e^{-\imath\pi/4}$。
+圆周 $|z-1|=1$ 只把实部为正的两个极点包在内部：
+\[
+\bigl|e^{\pm\imath\pi/4}-1\bigr|^{2}=2-\sqrt{2}<1,
+\]
+而 $e^{\imath 3\pi/4}$、$e^{\imath 5\pi/4}$ 在圆外。单极点留数为
+\[
+\Res_{z=z_{k}}\frac{1}{1+z^{4}}
+=\frac{1}{4z_{k}^{3}}
+=-\frac{z_{k}}{4},
+\]
+这里用了 $z_{k}^{4}=-1$，从而 $z_{k}^{3}=-1/z_{k}$。两留数之和为
+\[
+-\frac14\bigl(e^{\imath\pi/4}+e^{-\imath\pi/4}\bigr)
+=-\frac12\cos\frac{\pi}{4}
+=-\frac{\sqrt{2}}{4}.
+\]
+故
+\[
+\oint_{C}\frac{\mathrm{d}z}{1+z^{4}}
+=2\pi\imath\cdot\Bigl(-\frac{\sqrt{2}}{4}\Bigr)
+=-\frac{\pi\imath}{\sqrt{2}}.
+\]
+
+\textbf{(2)}
+被积函数的有限远极点为三阶极点 $z=0$，以及
+\[
+z_{k}=2^{1/10}e^{\imath k\pi/5},\qquad k=0,1,\ldots,9,
+\]
+它们都是一阶极点，模长 $2^{1/10}<2$。因此 $|z|=2$ 把全部分有限远极点都包含在内。
+
+令 $z=1/w$，无穷远点的留数是
+\[
+\Res(f,\infty)
+=-\Res_{w=0}\frac{1}{w^{2}}f\Bigl(\frac{1}{w}\Bigr).
+\]
+而
+\[
+f\Bigl(\frac{1}{w}\Bigr)
+=\frac{w^{13}}{1-2w^{10}},
+\qquad
+\frac{1}{w^{2}}f\Bigl(\frac{1}{w}\Bigr)
+=\frac{w^{11}}{1-2w^{10}}
+\]
+在 $w=0$ 解析且留数为 $0$，所以 $\Res(f,\infty)=0$。全平面（含无穷远点）留数之和为零，从而有限远极点的留数之和为零，
+\[
+\oint_{|z|=2}\frac{\mathrm{d}z}{z^{3}(z^{10}-2)}=0.
+\]
+
+\textbf{(3)}
+$z=0$ 是三阶极点，
+\[
+\Res_{z=0}\frac{e^{z}}{z^{3}}
+=\frac{1}{2!}\frac{\mathrm{d}^{2}}{\mathrm{d}z^{2}}(e^{z})\bigg|_{z=0}
+=\frac12.
+\]
+所以
+\[
+\oint_{|z|=1}\frac{e^{z}}{z^{3}}\,\mathrm{d}z
+=2\pi\imath\cdot\frac12
+=\pi\imath.
+\]
+
+\textbf{(4)}
+令 $z=e^{\imath x}$，则 $\mathrm{d}x=\mathrm{d}z/(\imath z)$，$\cos x=(z+z^{-1})/2$，积分化为单位圆上的正向积分
+\begin{align*}
+I
+&=\oint_{|z|=1}\frac{\mathrm{d}z}{\imath z}
+\frac{1}{\Bigl(a+b\dfrac{z+z^{-1}}{2}\Bigr)^{2}}
+=\oint_{|z|=1}\frac{z\,\mathrm{d}z}{\imath\Bigl(\dfrac{b}{2}z^{2}+az+\dfrac{b}{2}\Bigr)^{2}}\\
+&=\frac{4}{\imath b^{2}}\oint_{|z|=1}
+\frac{z\,\mathrm{d}z}{\bigl(z^{2}+\dfrac{2a}{b}z+1\bigr)^{2}}.
+\end{align*}
+方程 $z^{2}+(2a/b)z+1=0$ 的两根为
+\[
+z_{1,2}
+=-\frac{a}{b}\pm\sqrt{\Bigl(\frac{a}{b}\Bigr)^{2}-1}.
+\]
+由 $a>b>0$ 知 $a/b>1$，$z_{2}<-1$ 在单位圆外；又 $z_{1}z_{2}=1$，故 $|z_{1}|<1$，$z_{1}$ 是被积函数在圆内唯一的二阶极点。记
+\[
+h(z)=\frac{z}{(z-z_{2})^{2}},
+\]
+则
+\[
+\Res_{z=z_{1}}\frac{z}{(z-z_{1})^{2}(z-z_{2})^{2}}
+=h'(z_{1})
+=-\frac{z_{1}+z_{2}}{(z_{1}-z_{2})^{3}}.
+\]
+代入 $z_{1}+z_{2}=-2a/b$、$z_{1}-z_{2}=2\sqrt{(a/b)^{2}-1}$，
+\[
+h'(z_{1})
+=\frac{2a/b}{8\bigl[(a/b)^{2}-1\bigr]^{3/2}}
+=\frac{a/b}{4\bigl[(a/b)^{2}-1\bigr]^{3/2}}.
+\]
+因此
+\begin{align*}
+I
+&=2\pi\imath\cdot\frac{4}{\imath b^{2}}\cdot h'(z_{1})
+=\frac{2\pi a}{b^{3}\bigl[(a/b)^{2}-1\bigr]^{3/2}}
+=\frac{2\pi a}{(a^{2}-b^{2})^{3/2}}.
+\end{align*}
+
+\textbf{(5)}
+被积函数有四个一阶极点 $\pm\imath a$、$\pm\imath b$。上半平面闭路时，大圆弧上的积分随半径趋于零。
+
+若 $a\neq b$，上半平面的极点是 $\imath a$ 与 $\imath b$，
+\begin{align*}
+\Res_{z=\imath a}
+&=\frac{1}{2\imath a\,(b^{2}-a^{2})},&
+\Res_{z=\imath b}
+&=\frac{1}{2\imath b\,(a^{2}-b^{2})}.
+\end{align*}
+两者之和为
+\[
+\frac{1}{2\imath(b^{2}-a^{2})}\Bigl(\frac{1}{a}-\frac{1}{b}\Bigr)
+=\frac{1}{2\imath\, ab(a+b)}.
+\]
+故
+\[
+\int_{-\infty}^{\infty}\frac{\mathrm{d}x}{(x^{2}+a^{2})(x^{2}+b^{2})}
+=2\pi\imath\cdot\frac{1}{2\imath\, ab(a+b)}
+=\frac{\pi}{ab(a+b)}.
+\]
+
+若 $a=b$，则 $z=\imath a$ 是二阶极点，
+\[
+\Res_{z=\imath a}\frac{1}{(z^{2}+a^{2})^{2}}
+=\frac{\mathrm{d}}{\mathrm{d}z}\Bigl(\frac{1}{(z+\imath a)^{2}}\Bigr)\bigg|_{z=\imath a}
+=\frac{1}{4\imath a^{3}},
+\]
+积分等于 $2\pi\imath\cdot 1/(4\imath a^{3})=\pi/(2a^{3})$，与 $a=b$ 时的 $\pi/(ab(a+b))$ 相同。因此对一切 $a>0$、$b>0$，
+\[
+\int_{-\infty}^{\infty}\frac{\mathrm{d}x}{(x^{2}+a^{2})(x^{2}+b^{2})}
+=\frac{\pi}{ab(a+b)}.
+\]
+
+\textbf{(6)}
+\[
+x^{2}-2x\cos\theta+1=(x-e^{\imath\theta})(x-e^{-\imath\theta}),
+\]
+极点为 $\pm\imath$ 以及 $e^{\pm\imath\theta}$。条件 $\sin\theta\neq 0$ 保证后两个极点不在实轴上。分母比分子高两次，上半平面大圆弧上的积分趋于零。
+
+先设四个极点互不相同，即 $\cos\theta\neq 0$。
+
+若 $\sin\theta>0$，则 $e^{\imath\theta}$ 在上半平面，$e^{-\imath\theta}$ 在下半平面。上半平面的极点是 $\imath$ 与 $e^{\imath\theta}$：
+\begin{align*}
+\Res_{z=\imath}
+&=\frac{-1}{2\imath\,(\imath-e^{\imath\theta})(\imath-e^{-\imath\theta})}
+=\frac{-1}{4\cos\theta},\\[4pt]
+\Res_{z=e^{\imath\theta}}
+&=\frac{e^{2\imath\theta}}{(e^{2\imath\theta}+1)\cdot 2\imath\sin\theta}
+=\frac{e^{\imath\theta}}{4\imath\sin\theta\cos\theta}.
+\end{align*}
+这里用了 $(\imath-e^{\imath\theta})(\imath-e^{-\imath\theta})=-2\imath\cos\theta$，以及 $e^{2\imath\theta}+1=2e^{\imath\theta}\cos\theta$。于是
+\begin{align*}
+I
+&=2\pi\imath\Biggl(
+-\frac{1}{4\cos\theta}
++\frac{e^{\imath\theta}}{4\imath\sin\theta\cos\theta}
+\Biggr)
+=\frac{\pi\imath}{2\cos\theta}
+\Biggl(-1+\frac{e^{\imath\theta}}{\imath\sin\theta}\Biggr).
+\end{align*}
+而
+\[
+\frac{e^{\imath\theta}}{\imath\sin\theta}
+=1-\imath\frac{\cos\theta}{\sin\theta},
+\]
+括号等于 $-\imath\cos\theta/\sin\theta$，故
+\[
+I=\frac{\pi\imath}{2\cos\theta}\cdot\Bigl(-\imath\frac{\cos\theta}{\sin\theta}\Bigr)
+=\frac{\pi}{2\sin\theta}.
+\]
+
+若 $\sin\theta<0$，上半平面的极点是 $\imath$ 与 $e^{-\imath\theta}$。同样计算
+\[
+\Res_{z=e^{-\imath\theta}}
+=\frac{e^{-\imath\theta}}{-4\imath\sin\theta\cos\theta},
+\]
+\[
+I
+=2\pi\imath\Biggl(
+-\frac{1}{4\cos\theta}
++\frac{e^{-\imath\theta}}{-4\imath\sin\theta\cos\theta}
+\Biggr)
+=-\frac{\pi}{2\sin\theta}.
+\]
+此时 $\sin\theta<0$，所以 $I=\pi/(2|\sin\theta|)$。
+
+若 $\cos\theta=0$，则 $\sin\theta=\pm 1$，被积函数化为 $x^{2}/(x^{2}+1)^{2}$。上半平面只有二阶极点 $z=\imath$，
+\[
+\Res_{z=\imath}\frac{z^{2}}{(z^{2}+1)^{2}}
+=\frac{\mathrm{d}}{\mathrm{d}z}\Bigl(\frac{z^{2}}{(z+\imath)^{2}}\Bigr)\bigg|_{z=\imath}
+=\frac{1}{4\imath},
+\]
+积分等于 $2\pi\imath\cdot 1/(4\imath)=\pi/2$，与 $\pi/(2|\sin\theta|)$ 一致。
+
+综上，对一切满足 $\sin\theta\neq 0$ 的实数 $\theta$，
+\[
+\int_{-\infty}^{\infty}
+\frac{x^{2}\,\mathrm{d}x}{(x^{2}+1)(x^{2}-2x\cos\theta+1)}
+=\frac{\pi}{2|\sin\theta|}.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  计算积分
+  $$
+  \int_0^{2 \pi} \cos ^{2 n} x d x \text {. }
+  $$
+\end{problem}
+
+\begin{solution}
+设 $n$ 为非负整数。令 $z=e^{\imath x}$，则 $\mathrm{d}x=\mathrm{d}z/(\imath z)$，$\cos x=(z+z^{-1})/2$，路径是单位圆。
+\[
+\cos^{2n}x
+=\frac{1}{2^{2n}}\Bigl(z+\frac{1}{z}\Bigr)^{2n}
+=\frac{1}{2^{2n}}\sum_{k=0}^{2n}\binom{2n}{k}z^{2k-2n}.
+\]
+因此
+\begin{align*}
+\int_{0}^{2\pi}\cos^{2n}x\,\mathrm{d}x
+&=\frac{1}{2^{2n}}\sum_{k=0}^{2n}\binom{2n}{k}
+\oint_{|z|=1}z^{2k-2n}\frac{\mathrm{d}z}{\imath z}\\
+&=\frac{1}{2^{2n}\imath}\sum_{k=0}^{2n}\binom{2n}{k}
+\oint_{|z|=1}z^{2k-2n-1}\,\mathrm{d}z.
+\end{align*}
+只有幂次为 $-1$ 的项有贡献，即 $2k-2n-1=-1$，从而 $k=n$。该项的积分是 $2\pi\imath$，故
+\[
+\int_{0}^{2\pi}\cos^{2n}x\,\mathrm{d}x
+=\frac{1}{2^{2n}\imath}\binom{2n}{n}\cdot 2\pi\imath
+=\frac{2\pi}{4^{n}}\binom{2n}{n}.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  计算积分
+  $$
+  \int_{-\infty}^{\infty} \frac{e^{\imath m x}}{x-\imath \alpha} d x,
+  $$
+  和
+  $$
+  \int_{-\infty}^{\infty} \frac{e^{\imath m x}}{x+\imath \alpha} d x.
+  $$
+  其中$m>0, \Re \alpha > 0$.
+\end{problem}
+
+\begin{solution}
+$m>0$ 时 $e^{\imath m z}=e^{\imath m x}e^{-my}$ 在上半平面 $y>0$ 指数衰减。两个被积函数的极点都不在实轴上：$\Re\alpha>0$ 意味着 $\imath\alpha$ 的虚部为正，$-\imath\alpha$ 的虚部为负。积分作为瑕积分存在。取上半平面的半圆闭路，半径 $R\to\infty$ 时，由若尔当引理，大圆弧上的积分趋于零。
+
+第一个被积函数在 $z=\imath\alpha$ 有一阶极点，且该点落在上半平面内，留数为
+\[
+\Res_{z=\imath\alpha}\frac{e^{\imath m z}}{z-\imath\alpha}
+=e^{\imath m(\imath\alpha)}
+=e^{-m\alpha}.
+\]
+所以
+\[
+\int_{-\infty}^{\infty}\frac{e^{\imath m x}}{x-\imath\alpha}\,\mathrm{d}x
+=2\pi\imath\, e^{-m\alpha}.
+\]
+
+第二个被积函数的极点 $z=-\imath\alpha$ 在下半平面，上半平面内没有极点，闭路积分等于零，因而
+\[
+\int_{-\infty}^{\infty}\frac{e^{\imath m x}}{x+\imath\alpha}\,\mathrm{d}x
+=0.
+\]
+\end{solution}
+
+\end{document}

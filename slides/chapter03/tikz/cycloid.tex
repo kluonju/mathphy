@@ -1,19 +1,24 @@
 \begin{tikzpicture}[scale=1.2]
-  % axes
-  \draw[->, thick] (-0.5,0) -- (6.5,0) node[right] {$x$};
-  \draw[->, thick] (0,-2) -- (0,2.5) node[above] {$y$};
+  % axes (y-up convention; curves dip below x-axis since the particle descends)
+  \draw[->, thick] (0, 0) -- (4.2, 0) node[right] {$x$};
+  \draw[->, thick] (0, -2.6) -- (0, 0.5) node[above] {$y$};
 
-  % cycloid: x = a(t - sin t), y = a(1 - cos t)
-  \draw[red, very thick, domain=0:6.28, samples=120]
-    plot ({1.2*(\x - sin(\x r))}, {-1.2*(1 - cos(\x r))});
+  % common endpoints: start (top), end (bottom)
+  \coordinate (P0) at (0, 0);
+  \coordinate (P1) at (3.1416, -2);
 
-  % straight line for comparison
-  \draw[dashed, blue, thick] (0,0) -- (6, -2);
-  \node[blue] at (5.0, -2.4) {直线};
+  % straight line: chord from (0,0) to (pi, -2)
+  \draw[blue, dashed, very thick] (P0) -- (P1);
+
+  % cycloid half-arch: x(t) = a(t - sin t), y(t) = a(cos t - 1) with a=1, t in [0, pi]
+  \draw[red, very thick, domain=0:3.1416, samples=120, smooth]
+    plot ({1*(\x - sin(\x r))}, {1*(cos(\x r) - 1)});
 
   % labels
-  \filldraw (0,0) circle (1pt) node[below left] {$(x_0,y_0)$};
-  \filldraw (6.28, -1.2) circle (1pt) node[below right] {$(x_1,y_1)$};
+  \node[blue] at (1.5, -0.4) {直线};
+  \node[red]  at (1.5, -1.9) {摆线};
 
-  \node[red] at (3.5, 1.5) {摆线};
+  % endpoint markers
+  \filldraw (P0) circle (1.2pt) node[above left] {$(x_0,y_0)$};
+  \filldraw (P1) circle (1.2pt) node[below right] {$(x_1,y_1)$};
 \end{tikzpicture}

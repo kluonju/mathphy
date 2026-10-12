@@ -1,24 +1,48 @@
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[scale=1.0,
+  declare function={
+    % chord from (1,1.2) to (6,3.6), plus a bump that vanishes at both ends
+    uu(\t) = 1.2 + 0.48*(\t-1) + 0.055*(\t-1)*(6-\t);
+    % one half-period: 0 at x=1 and x=6, so the varied curve shares the endpoints
+    dd(\t) = sin(180*(\t-1)/5);
+  }]
   % axes
-  \draw[->, thick] (0,-0.5) -- (0,3.2) node[right] {$u(x)$};
-  \draw[->, thick] (-0.3,0) -- (5.2,0) node[below] {$x$};
+  \draw[->, thick] (0,-0.8) -- (0,4.3) node[right] {$u(x)$};
+  \draw[->, thick] (-0.5,0) -- (7.2,0) node[below] {$x$};
 
-  % endpoints
-  \coordinate (A) at (0.2, 0.3);
-  \coordinate (B) at (4.8, 2.5);
-  \draw[gray, dashed, thick] (A) -- (B);
+  % domain endpoints on x-axis
+  \coordinate (a) at (1, 0);
+  \coordinate (b) at (6, 0);
+  \draw[dotted, thick] (a) -- ++(0,-0.18) node[below] {$a$};
+  \draw[dotted, thick] (b) -- ++(0,-0.18) node[below] {$b$};
 
-  % nominal curve y = u(x)
-  \draw[red, very thick, domain=0.2:4.8, samples=80]
-    plot (\x, {0.3 + 0.5*\x - 0.04*\x*\x}) node[above right] {$u(x)$};
+  % shared endpoints of both curves
+  \coordinate (A) at (1, {uu(1)});
+  \coordinate (B) at (6, {uu(6)});
+  \draw[gray, dashed] (A) -- (B);
 
-  % varied curve u + eps eta
-  \draw[blue, very thick, dashed, domain=0.2:4.8, samples=80]
-    plot (\x, {0.3 + 0.5*\x - 0.04*\x*\x + 0.35*sin(deg(2*\x))})
-         node[above right] {$u+\varepsilon\eta$};
+  % nominal curve
+  \draw[red, very thick, domain=1:6, samples=160]
+    plot (\x, {uu(\x)});
+  % below the chord, clear of both curves
+  \node[red, anchor=north] at (4.15, 2.32) {$u(x)$};
 
-  % labels
-  \filldraw (A) circle (1.2pt) node[below left] {$(a,u(a))$};
-  \filldraw (B) circle (1.2pt) node[above right] {$(b,u(b))$};
-  \node[gray] at (3.5, 0.6) {$\eta(a)=\eta(b)=0$};
+  % varied curve: same endpoints, one smooth half-wave of small amplitude
+  \draw[blue, very thick, dashed, domain=1:6, samples=160]
+    plot (\x, {uu(\x) + 0.28*dd(\x)});
+  % open region above the rising blue curve
+  \node[blue, anchor=south west] at (0.55, 3.08) {$u+\varepsilon\,\delta u$};
+
+  % shared endpoint markers
+  \filldraw[red] (A) circle (1.4pt);
+  \filldraw[red] (B) circle (1.4pt);
+  \node[red, anchor=east] at ($(A)+(-0.18,-0.22)$) {$\bigl(a,u(a)\bigr)$};
+  \node[red, anchor=south west] at ($(B)+(0.10,0.10)$) {$\bigl(b,u(b)\bigr)$};
+
+  % gap at the crest of the half-wave (x = 3.5); label sits above both curves
+  \coordinate (Nu) at (3.5, {uu(3.5)});
+  \coordinate (M)  at (3.5, {uu(3.5) + 0.28});
+  \draw[<->, thin] (Nu) -- (M);
+  \node[anchor=south] at (4.05, 3.62) {$\varepsilon\,\delta u(x)$};
+
+  \node[gray, font=\small] at (3.5,-0.55) {$\delta u(a)=\delta u(b)=0$};
 \end{tikzpicture}
