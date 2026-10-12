@@ -1,17 +1,17 @@
 \begin{tikzpicture}[scale=1.0]
-  % y upward; three curves share the endpoints
+  % y upward; concave, straight, and convex share the endpoints
   \draw[->, thick] (0,0) -- (5.85,0) node[right] {$x$};
   \draw[->, thick] (0,-2.55) -- (0,0.45) node[above] {$y$};
 
   \coordinate (A) at (0,0);
   \coordinate (B) at (5,-2);
 
+  % concave: graph lies above the chord (drops late)
+  \draw[teal, very thick, domain=0:5, samples=80, smooth]
+    plot (\x, {-2*(\x/5)*(\x/5)});
   % straight chord
   \draw[blue, dashed, very thick] (A) -- (B);
-  % circular arc through A and B, bulging below the chord
-  \draw[orange, very thick, domain=-135.28:-88.33, samples=80, smooth]
-    plot ({4.8026+6.7594*cos(\x)}, {4.7566+6.7594*sin(\x)});
-  % steep curve: cycloid half-arch stretched to the same endpoints
+  % convex: graph lies below the chord (drops early)
   \draw[red, very thick, domain=0:3.1416, samples=100, smooth]
     plot ({(5/3.1416)*(\x - sin(\x r))}, {cos(\x r) - 1});
 

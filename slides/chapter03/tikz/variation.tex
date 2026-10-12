@@ -30,7 +30,7 @@
   \draw[blue, very thick, dashed, domain=1:6, samples=160]
     plot (\x, {uu(\x) + 0.28*dd(\x)});
   % open region above the rising blue curve
-  \node[blue, anchor=south west] at (0.55, 3.08) {$u+\varepsilon\,\delta u$};
+  \node[blue, anchor=south west] at (0.55, 3.08) {$u+\delta u$};
 
   % shared endpoint markers
   \filldraw[red] (A) circle (1.4pt);
@@ -42,7 +42,7 @@
   \coordinate (Nu) at (3.5, {uu(3.5)});
   \coordinate (M)  at (3.5, {uu(3.5) + 0.28});
   \draw[<->, thin] (Nu) -- (M);
-  \node[anchor=south] at (4.05, 3.62) {$\varepsilon\,\delta u(x)$};
+  \node[anchor=south] at (4.05, 3.62) {$\delta u(x)$};
 
   \node[gray, font=\small] at (3.5,-0.55) {$\delta u(a)=\delta u(b)=0$};
 \end{tikzpicture}
