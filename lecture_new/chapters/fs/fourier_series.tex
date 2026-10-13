@@ -2,114 +2,308 @@
 
 \subsection{Orthogonal functions}
 
-For real functions on $[a,b]$, define the inner product by
+Fourier series are a special case of expanding a function in an orthogonal basis. The geometric picture is the same as resolving a vector into components along perpendicular axes: the coefficient of each basis function is an inner product, and distinct basis functions do not contaminate one another's coefficients.
+
+For real functions on a finite interval $[a,b]$, define the inner product by
 \begin{equation}
 \langle f,g\rangle=\int_a^b f(x)g(x)\,\mathrm{d}x.
+\label{eq:ch05-inner}
 \end{equation}
-The Schwarz inequality is
+It is linear in each argument and symmetric. The Schwarz inequality is
 \begin{equation}
 |\langle f,g\rangle|^2\leq\langle f,f\rangle\langle g,g\rangle,
 \end{equation}
-with equality precisely when $f$ and $g$ are linearly dependent. Functions are orthogonal when $\langle f,g\rangle=0$; the squared norm is $\lVert f\rVert^2=\langle f,f\rangle$. For complex functions, the appropriate inner product is
+with equality precisely when $f$ and $g$ are linearly dependent. Functions are \term{orthogonal} when $\langle f,g\rangle=0$. The squared norm is $\lVert f\rVert^2=\langle f,f\rangle$. For complex-valued functions the inner product that makes the norm $\int|f|^2$ is
 \begin{equation}
-\langle f,g\rangle=\int_a^b f^*(x)g(x)\,\mathrm{d}x.
+\langle f,g\rangle=\int_a^b f^*(x)g(x)\,\mathrm{d}x,
 \end{equation}
-A set $\{\varphi_n\}$ is orthonormal when $\langle\varphi_m,\varphi_n\rangle=\delta_{mn}$. Orthogonality implies linear independence: multiplying $\sum_n c_n\varphi_n=0$ by $\varphi_j^*$ and integrating gives $c_j=0$.
+so that the first argument is conjugated. A set $\{\varphi_n\}$ is \term{orthonormal} when $\langle\varphi_m,\varphi_n\rangle=\delta_{mn}$.
 
-Just as for vectors, a linearly independent function set can be orthogonalized. The Gram--Schmidt construction begins with $\varphi_1=f_1$ and continues as
+\begin{example}[Sine functions on a full period]
+On $[0,2\pi]$,
+\begin{equation}
+\int_0^{2\pi}\sin(nx)\sin(mx)\,\mathrm{d}x
+=\frac12\int_0^{2\pi}\Bigl[\cos((n-m)x)-\cos((n+m)x)\Bigr]\,\mathrm{d}x.
+\end{equation}
+If $n$ and $m$ are positive integers and $n\neq m$, both cosines integrate to zero over a whole number of periods. If $n=m\geq 1$, the first term is $1$ and the integral equals $\pi$. The same calculation with the product-to-sum identity for cosines gives
+\begin{equation}
+\int_0^{2\pi}\cos(nx)\cos(mx)\,\mathrm{d}x=\pi\delta_{mn}
+\qquad(n,m\geq 1),
+\end{equation}
+while every sine--cosine product integrates to zero. Thus $\{\sin nx,\cos nx\}_{n\geq 1}$, together with the constant function, is an orthogonal set on one period. The constant is special: $\int_0^{2\pi}1\,\mathrm{d}x=2\pi$, twice the norm of $\cos(nx)$.
+\end{example}
+
+Orthogonality implies linear independence. If $\sum_n c_n\varphi_n=0$ and the set is orthogonal, multiply by $\varphi_j^*$ and integrate. Every term except $j$ drops out, and $\langle\varphi_j,\varphi_j\rangle\neq 0$ forces $c_j=0$.
+
+A linearly independent set that is not yet orthogonal can be orthogonalized by the Gram--Schmidt construction. Begin with $\varphi_1=f_1$ and continue as
 \begin{equation}
 \varphi_n=f_n-\sum_{j=1}^{n-1}
 \frac{\langle f_n,\varphi_j\rangle}{\langle\varphi_j,\varphi_j\rangle}\varphi_j.
+\label{eq:ch05-gram-schmidt}
 \end{equation}
-For an orthonormal set, the best finite expansion $f\approx\sum_{n=1}^N c_n\varphi_n$ has coefficients $c_n=\langle f,\varphi_n\rangle$. Positivity of the squared error gives \termidx{Bessel's inequality}{Bessel's inequality},
-\begin{equation}
-\sum_{n=1}^{\infty}|c_n|^2\leq\lVert f\rVert^2.
-\end{equation}
-An orthonormal set is \term{complete} when its finite expansions approximate every piecewise continuous function arbitrarily well in mean square. For a complete set, Bessel's inequality becomes \termidx{Parseval's relation}{Parseval's identity},
-\begin{equation}
-\sum_{n=1}^{\infty}c_n^*d_n=\langle f,g\rangle,
-\qquad c_n=\langle f,\varphi_n\rangle,\quad d_n=\langle g,\varphi_n\rangle.
-\end{equation}
+Each new function has had its projections onto the previous ones removed, so $\langle\varphi_n,\varphi_j\rangle=0$ for $j<n$. Dividing by $\lVert\varphi_n\rVert$ produces an orthonormal set when a unit norm is wanted.
 
-This is exactly the same idea as projecting a vector onto an orthonormal basis in Euclidean space: the \term{Fourier coefficients} are the components of the function in the chosen basis, and orthogonality makes the components independent.
+\begin{example}[{Orthogonalizing $\{1,x\}$ on $[0,1]$}]
+Take $f_1=1$ and $f_2=x$. Then $\varphi_1=1$ and $\langle\varphi_1,\varphi_1\rangle=1$. The inner product $\langle x,1\rangle=\int_0^1 x\,\mathrm{d}x=1/2$, so
+\begin{equation}
+\varphi_2=x-\frac12.
+\end{equation}
+This is the unique linear polynomial orthogonal to constants on $[0,1]$, up to a scalar multiple. Its squared norm is
+\begin{equation}
+\int_0^1\Bigl(x-\frac12\Bigr)^2\,\mathrm{d}x=\int_{-1/2}^{1/2}u^2\,\mathrm{d}u=\frac{1}{12},
+\end{equation}
+so the corresponding orthonormal pair is $1$ and $\sqrt{12}\,(x-1/2)$. The same subtraction is what removes the mean from a signal before one looks at its variation.
+\end{example}
+
+Once an orthonormal set is chosen, the coefficients in a finite expansion $f\approx\sum_{n=1}^N c_n\varphi_n$ that minimize the mean-square error are the inner products
+\begin{equation}
+c_n=\langle f,\varphi_n\rangle.
+\label{eq:ch05-coeff}
+\end{equation}
+To see why, expand $\lVert f-\sum c_n\varphi_n\rVert^2$ and differentiate with respect to each coefficient, or complete the square. Substituting these optimal coefficients and using positivity of the squared error gives \termidx{Bessel's inequality}{Bessel's inequality}:
+\begin{equation}
+\sum_{n=1}^{N}|c_n|^2\leq\lVert f\rVert^2.
+\label{eq:ch05-bessel}
+\end{equation}
+The partial sum of $|c_n|^2$ cannot exceed the squared size of $f$. Letting $N\to\infty$ keeps the inequality.
+
+An orthonormal set is \term{complete} when, for every piecewise continuous $f$, the mean-square error can be made arbitrarily small by taking enough terms. Completeness turns Bessel's inequality into an equality. For two functions with coefficients $c_n=\langle f,\varphi_n\rangle$ and $d_n=\langle g,\varphi_n\rangle$,
+\begin{equation}
+\sum_{n=1}^{\infty}c_n^*d_n=\langle f,g\rangle.
+\label{eq:ch05-parseval-general}
+\end{equation}
+The special case $f=g$ says that the squared norm equals the sum of squared coefficients. Applying \eqref{eq:ch05-parseval-general} to $f+g$ and subtracting the two diagonal identities produces the cross term, so the general form is not an extra assumption.
+
+These coefficients are the components of $f$ in the chosen basis. Orthogonality is what makes the components independent: changing the amplitude of one mode does not change the inner product against another.
 
 \subsection{Origin in heat flow}
 
-Fourier introduced trigonometric series while studying heat flow in a uniform rod of length $\ell$. In dimensionless units, a temperature $T(x,t)$ with zero endpoint temperatures obeys
+Fourier introduced trigonometric series while studying heat flow in a uniform rod of length $\ell$. In dimensionless units the temperature $T(x,t)$ with ends held at zero satisfies
 \begin{equation}
-T_{xx}=T_t,\qquad T(0,t)=T(\ell,t)=0.
+T_{xx}=T_t,
+\qquad T(0,t)=T(\ell,t)=0.
+\label{eq:ch05-heat-rod}
 \end{equation}
-Letting $T=f(x)g(t)$ gives $f''/f=g'/g=-k^2$. The boundary conditions require $k=n\pi/\ell$ and yield the separated solutions
+The equation is linear and homogeneous, and the boundary conditions do not depend on $t$. A product trial solution $T=f(x)g(t)$ is therefore worth trying. Substitution gives $f''g=fg'$, and wherever the product is nonzero,
 \begin{equation}
-T_n(x,t)=A_n\sin\left(\frac{n\pi x}{\ell}\right)
-\exp\left(-\frac{n^2\pi^2t}{\ell^2}\right).
+\frac{f''}{f}=\frac{g'}{g}.
 \end{equation}
-Linearity permits their superposition. Thus an arbitrary initial temperature $T(x,0)=f(x)$ is represented by a sine series,
+The left side depends only on $x$ and the right side only on $t$, so both equal the same constant $c$. If $c>0$, then $g(t)$ grows exponentially as $t\to\infty$, which is not the behavior of a rod whose ends are refrigerated. The useful sign is $c=-k^2$ with $k$ real, and the separated equations are
 \begin{equation}
-f(x)=\sum_{n=1}^{\infty}A_n\sin\left(\frac{n\pi x}{\ell}\right),
-\qquad
-A_n=\frac{2}{\ell}\int_0^\ell f(x)\sin\left(\frac{n\pi x}{\ell}\right)\,\mathrm{d}x.
+f''+k^2f=0,
+\qquad g'+k^2g=0.
 \end{equation}
+Hence $f(x)=A\sin(kx)+B\cos(kx)$ and $g(t)=e^{-k^2t}$. The condition $T(0,t)=0$ forces $B=0$. The condition $T(\ell,t)=0$ then forces $\sin(k\ell)=0$, so
+\begin{equation}
+k_n=\frac{n\pi}{\ell},
+\qquad n=1,2,3,\ldots.
+\end{equation}
+Each integer $n$ gives one mode,
+\begin{equation}
+T_n(x,t)=A_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+\exp\Bigl(-\frac{n^2\pi^2 t}{\ell^2}\Bigr).
+\label{eq:ch05-heat-mode}
+\end{equation}
+The endpoint conditions have selected a discrete set of wavelengths. A negative separation constant was already excluded by the temperature remaining bounded; a zero separation constant gives a linear profile $f(x)$, which cannot vanish at both ends unless it is identically zero.
 
-\subsection{Fourier theorem}
+Because the problem is linear, a sum of modes is again a solution:
+\begin{equation}
+T(x,t)=\sum_{n=1}^{\infty}A_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+\exp\Bigl(-\frac{n^2\pi^2 t}{\ell^2}\Bigr).
+\end{equation}
+At $t=0$ the exponentials equal $1$, so an arbitrary initial temperature $T(x,0)=f(x)$ must be written as a sine series
+\begin{equation}
+f(x)=\sum_{n=1}^{\infty}A_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr).
+\label{eq:ch05-sine-series}
+\end{equation}
+The coefficient is an inner product against the corresponding sine, corrected by its norm. On $[0,\ell]$,
+\begin{equation}
+\int_0^\ell\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\sin\Bigl(\frac{m\pi x}{\ell}\Bigr)\,\mathrm{d}x
+=\frac{\ell}{2}\delta_{mn}
+\qquad(n,m\geq 1).
+\end{equation}
+Multiply \eqref{eq:ch05-sine-series} by $\sin(m\pi x/\ell)$, integrate, and use this relation:
+\begin{equation}
+A_m=\frac{2}{\ell}\int_0^\ell f(x)\sin\Bigl(\frac{m\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+\label{eq:ch05-sine-coeff}
+\end{equation}
+Higher modes decay faster. For large $t$ the temperature is dominated by the fundamental, and $T\to 0$ because both ends are held at zero and there is no heat source.
 
-For a function of period $2\ell$, the \term{Fourier series} is
+The same sine series represents any piecewise smooth function on $(0,\ell)$, whether or not it came from a heat problem. One extends it to $(-\ell,\ell)$ as an odd function and then periodically. That extension is the systematic reason a function prescribed only on a finite interval still has a trigonometric series.
+
+\subsection{The Fourier theorem}
+
+For a function of period $2\ell$,
+\begin{equation}
+f(x+2\ell)=f(x),
+\end{equation}
+the \term{Fourier series} is
 \begin{equation}
 f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}
-\left[a_n\cos\left(\frac{n\pi x}{\ell}\right)+b_n\sin\left(\frac{n\pi x}{\ell}\right)\right],
+\left[
+a_n\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)
++b_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+\right],
+\label{eq:ch05-fourier-series}
 \end{equation}
-where
+with coefficients
 \begin{align}
-a_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)\cos\left(\frac{n\pi x}{\ell}\right)\,\mathrm{d}x,\\
-b_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)\sin\left(\frac{n\pi x}{\ell}\right)\,\mathrm{d}x.
+a_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x,
+\label{eq:ch05-an}\\
+b_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}f(x)\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+\label{eq:ch05-bn}
 \end{align}
-The trigonometric basis is orthogonal on one period:
-\begin{equation}
-\langle\sin nx,\sin mx\rangle=\pi\delta_{mn},\qquad
-\langle\cos nx,\cos mx\rangle=\pi\delta_{mn},\qquad
-\langle\sin nx,\cos mx\rangle=0
-\end{equation}
-for $m,n\neq0$. This orthogonality is the reason the coefficients can be extracted by simple integration. The \term{Dirichlet conditions} require finitely many discontinuities and extrema in each period. At a jump $x_0$, the series converges to $[f(x_0^-)+f(x_0^+)]/2$. Odd functions have sine series; even functions have cosine series.
+The integral may equally well run over any interval of length $2\ell$. The factor $1/2$ in front of $a_0$ is a convention that lets \eqref{eq:ch05-an} remain valid at $n=0$. Indeed $\int_{-\ell}^{\ell}1\,\mathrm{d}x=2\ell$, whereas $\int_{-\ell}^{\ell}\cos^2(n\pi x/\ell)\,\mathrm{d}x=\ell$ for $n\geq 1$. Writing the constant term as $a_0/2$ compensates for that extra factor of $2$, and the constant term in the series is the mean value $(1/(2\ell))\int_{-\ell}^{\ell}f(x)\,\mathrm{d}x$.
 
-The equivalent complex form is
+The underlying orthogonality on one period is
+\begin{align}
+\int_{-\ell}^{\ell}\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\sin\Bigl(\frac{m\pi x}{\ell}\Bigr)\,\mathrm{d}x
+&=\ell\,\delta_{mn},\\
+\int_{-\ell}^{\ell}\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)\cos\Bigl(\frac{m\pi x}{\ell}\Bigr)\,\mathrm{d}x
+&=\ell\,\delta_{mn},
+\end{align}
+for positive integers $m,n$, together with the vanishing of every sine--cosine product. These identities are the reason each coefficient can be read off by a single integration.
+
+The classical sufficient conditions are the \term{Dirichlet conditions}: in each period, $f$ has finitely many jump discontinuities and finitely many local extrema, and it is absolutely integrable. A function satisfying them is called piecewise smooth in the elementary sense used here. At a jump $x_0$ the series does not have to reproduce a value that $f$ itself may not possess. It converges to the average of the two one-sided limits,
+\begin{equation}
+\frac{f(x_0^-)+f(x_0^+)}{2}.
+\label{eq:ch05-jump}
+\end{equation}
+At a point of continuity it converges to $f(x_0)$.
+
+\begin{example}[A square wave and its jump]
+Let $\ell=1$ and
+\begin{equation}
+f(x)=
+\begin{cases}
+-1,&-1<x<0,\\
++1,&0<x<1,
+\end{cases}
+\end{equation}
+extended with period $2$. The function is odd, so every $a_n$ vanishes. For $n\geq 1$,
+\begin{equation}
+b_n=\int_{-1}^{1}f(x)\sin(n\pi x)\,\mathrm{d}x
+=2\int_0^1\sin(n\pi x)\,\mathrm{d}x
+=\frac{2\bigl(1-(-1)^n\bigr)}{n\pi}.
+\end{equation}
+Thus $b_n=4/(n\pi)$ when $n$ is odd and $b_n=0$ when $n$ is even:
+\begin{equation}
+f(x)=\frac{4}{\pi}\sum_{k=0}^{\infty}
+\frac{\sin\bigl((2k+1)\pi x\bigr)}{2k+1}.
+\label{eq:ch05-square}
+\end{equation}
+At $x=0$ the two one-sided limits are $-1$ and $+1$, and \eqref{eq:ch05-jump} says the series sums to $0$, which is visible because every term vanishes. At $x=1/2$, where $f$ is continuous and equals $1$,
+\begin{equation}
+1=\frac{4}{\pi}\Bigl(1-\frac13+\frac15-\frac17+\cdots\Bigr),
+\end{equation}
+which rearranges to the Leibniz series $\pi/4=1-1/3+1/5-\cdots$. Near each jump the partial sums overshoot by a fixed fraction of the jump and then oscillate; that overshoot does not shrink as more terms are added, even though the mean-square error does go to zero. Pointwise graphs and mean-square approximation answer different questions.
+\end{example}
+
+Parity cuts the series in half. If $f$ is odd, $f(x)\cos(n\pi x/\ell)$ is odd and $f(x)\sin(n\pi x/\ell)$ is even, so $a_n=0$ and only the sine series survives. If $f$ is even, only the cosine series survives, including the constant term. On an interval $(0,\ell)$ where no parity is given, one may choose the extension: the odd extension produces the sine series \eqref{eq:ch05-sine-series}, and the even extension produces a cosine series. The choice is dictated by the boundary conditions when the series comes from a differential equation, as it was for the rod with zero end temperatures.
+
+The same expansion can be written with complex exponentials. Euler's formula converts each sine and cosine into a pair $e^{\pm\mathrm{i}n\pi x/\ell}$, and collecting coefficients gives
 \begin{equation}
 f(x)=\sum_{n=-\infty}^{\infty}c_ne^{\mathrm{i}n\pi x/\ell},
-\qquad c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}f(x)e^{-\mathrm{i}n\pi x/\ell}\,\mathrm{d}x.
+\qquad
+c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}f(x)e^{-\mathrm{i}n\pi x/\ell}\,\mathrm{d}x.
+\label{eq:ch05-complex-series}
 \end{equation}
-For real $f$, $c_{-n}=c_n^*$. Parseval's identity becomes
+For $n>0$ the two languages are related by
 \begin{equation}
-\frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x=\sum_{n=-\infty}^{\infty}|c_n|^2
-=\frac{a_0^2}{4}+\frac12\sum_{n=1}^{\infty}(a_n^2+b_n^2).
+c_n=\frac{a_n-\mathrm{i}b_n}{2},
+\qquad
+c_{-n}=\frac{a_n+\mathrm{i}b_n}{2},
+\qquad
+c_0=\frac{a_0}{2}.
 \end{equation}
+If $f$ is real, $c_{-n}=c_n^*$. The complex exponentials are orthogonal on one period,
+\begin{equation}
+\int_{-\ell}^{\ell}e^{-\mathrm{i}m\pi x/\ell}e^{\mathrm{i}n\pi x/\ell}\,\mathrm{d}x=2\ell\,\delta_{mn},
+\end{equation}
+which is why the factor in front of the integral for $c_n$ is $1/(2\ell)$.
 
-\begin{example}
-On $(-\ell,\ell)$ let $f(x)=x$ and extend it periodically. This odd sawtooth has
+\begin{example}[The sawtooth $f(x)=x$]
+On $(-\ell,\ell)$ let $f(x)=x$, and extend it periodically. The periodic function jumps at every odd multiple of $\ell$. It is odd, so $a_n=0$. Integration by parts with $u=x$ and $\mathrm{d}v=\sin(n\pi x/\ell)\,\mathrm{d}x$ gives
+\begin{align}
+\int_0^{\ell}x\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x
+&=\Bigl[-x\frac{\ell}{n\pi}\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)\Bigr]_0^{\ell}
++\frac{\ell}{n\pi}\int_0^{\ell}\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x
+\nonumber\\
+&=-\frac{\ell^2}{n\pi}(-1)^n,
+\end{align}
+the remaining integral vanishing. Therefore
+\begin{equation}
+b_n=\frac{2}{\ell}\int_0^{\ell}x\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x
+=\frac{2\ell}{n\pi}(-1)^{n+1},
+\end{equation}
+and
 \begin{equation}
 f(x)=\frac{2\ell}{\pi}\sum_{n=1}^{\infty}
-\frac{(-1)^{n+1}}{n}\sin\left(\frac{n\pi x}{\ell}\right).
+\frac{(-1)^{n+1}}{n}\sin\Bigl(\frac{n\pi x}{\ell}\Bigr),
+\qquad -\ell<x<\ell.
+\label{eq:ch05-sawtooth}
 \end{equation}
-At $x=\ell/2$, this gives the Leibniz series $\pi/4=1-1/3+1/5-\cdots$. Applying Parseval's identity to a square wave similarly gives $\sum_{n=0}^{\infty}(2n+1)^{-2}=\pi^2/8$. The underlying idea is again the same: any sufficiently regular periodic function can be decomposed into a sum of elementary harmonics, and the coefficients control the weight of each harmonic.
+At $x=\ell/2$ one has $f=\ell/2$, while $\sin(n\pi/2)$ equals $0$, $1$, $0$, $-1,\ldots$ as $n$ runs through the positive integers. The surviving terms are
+\begin{equation}
+\frac{\ell}{2}=\frac{2\ell}{\pi}\Bigl(1-\frac13+\frac15-\frac17+\cdots\Bigr),
+\end{equation}
+hence again $\pi/4=\sum_{k=0}^{\infty}(-1)^k/(2k+1)$. At $x=\ell$ the periodic function jumps from $\ell$ down to $-\ell$, and the series sums to the average $0$, in agreement with every sine vanishing there.
+\end{example}
+
+\subsection{Parseval's identity}
+
+Substitute the complex series into the mean square and use orthogonality of the exponentials. All cross terms integrate to zero, leaving
+\begin{equation}
+\frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x
+=\sum_{n=-\infty}^{\infty}|c_n|^2.
+\label{eq:ch05-parseval}
+\end{equation}
+In the sine--cosine coefficients the same identity reads
+\begin{equation}
+\frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x
+=\frac{a_0^2}{4}+\frac12\sum_{n=1}^{\infty}(a_n^2+b_n^2).
+\label{eq:ch05-parseval-real}
+\end{equation}
+This is \termidx{Parseval's identity}{Parseval's identity} for Fourier series. If a complicated waveform is decomposed into harmonics of amplitudes $c_n$, the mean intensity is the sum of the intensities of the harmonics. Nothing is lost and nothing is counted twice, which is the equality case of Bessel's inequality for this complete set.
+
+\begin{example}[The square wave yields $\pi^2/8$]
+Return to \eqref{eq:ch05-square}, where $\ell=1$, $a_n=0$, and $b_n=4/(n\pi)$ for odd $n$. Then $|f|^2=1$ almost everywhere, so the left side of \eqref{eq:ch05-parseval-real} equals $1$. The right side is
+\begin{equation}
+\frac12\sum_{k=0}^{\infty}\Bigl(\frac{4}{(2k+1)\pi}\Bigr)^2
+=\frac{8}{\pi^2}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^2}.
+\end{equation}
+Therefore
+\begin{equation}
+\sum_{k=0}^{\infty}\frac{1}{(2k+1)^2}=\frac{\pi^2}{8}.
+\end{equation}
+\end{example}
+
+\begin{example}[{The sawtooth on $[-\pi,\pi]$ yields $\pi^2/6$}]
+Let $f(x)=x$ on $[-\pi,\pi]$, so $\ell=\pi$ and $c_0=0$. For $n\neq 0$,
+\begin{equation}
+c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}x e^{-\mathrm{i}nx}\,\mathrm{d}x.
+\end{equation}
+Integrate by parts. The integral of the exponential over full periods vanishes, and the boundary term is
+\begin{equation}
+\Bigl[\frac{x e^{-\mathrm{i}nx}}{-{\mathrm{i}n}}\Bigr]_{-\pi}^{\pi}
+=\frac{2\pi(-1)^n}{-{\mathrm{i}n}}
+=\frac{2\pi\mathrm{i}(-1)^n}{n},
+\end{equation}
+where $1/(-\mathrm{i})=\mathrm{i}$ was used. Hence $c_n=\mathrm{i}(-1)^n/n$ and $|c_n|^2=1/n^2$. Parseval's identity \eqref{eq:ch05-parseval} becomes
+\begin{equation}
+\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,\mathrm{d}x
+=\frac{1}{2\pi}\cdot\frac{2\pi^3}{3}
+=\frac{\pi^2}{3}
+=2\sum_{n=1}^{\infty}\frac{1}{n^2}.
+\end{equation}
+The Basel sum follows:
+\begin{equation}
+\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+\label{eq:ch05-basel}
+\end{equation}
+The same number will reappear as a Laplace-transform integral in the next chapter. The two calculations check each other.
 \end{example}
 
 \begin{note}
-Use Parseval's identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$:
-\begin{equation}
-\sum_{n=-\infty}^{\infty}|c_n|^2
-=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,\mathrm{d}x.
-\end{equation}
-For $n\neq0$,
-\begin{equation}
- c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi}xe^{-\mathrm{i}nx}\,\mathrm{d}x=\frac{(-1)^n}{n}\,\mathrm{i},
-\end{equation}
-so $|c_n|^2=1/n^2$. Therefore,
-\begin{equation}
-2\sum_{n=1}^{\infty}\frac{1}{n^2}
-=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,\mathrm{d}x
-=\frac{\pi^2}{3},
-\end{equation}
-which gives
-\begin{equation}
-\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
-\end{equation}
+The left side of \eqref{eq:ch05-parseval} is $\pi^2/3$, not $\pi^2/6$. The factor $2$ that converts the sum over all nonzero integers into a sum over positive integers is what produces $\pi^2/6$. Dropping that factor is a common slip, and it is worth recomputing $\int_{-\pi}^{\pi}x^2\,\mathrm{d}x=2\pi^3/3$ whenever the identity is used.
 \end{note}
-

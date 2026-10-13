@@ -1,46 +1,27 @@
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
-The following exercises collect the main proofs and applications of the Fourier-series identities introduced in this chapter.
+The following exercises ask for calculations in the same style as the worked examples. A coefficient is not complete until the integral has been evaluated, and a series identity is not complete until both sides have been computed from the same function.
 
 \renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
 \renewcommand{\labelenumi}{\theenumi.}
 \begin{enumerate}
-    \item\label{ex:fourier-orthogonality} Verify the orthogonality relations
+    \item\label{ex:fourier-orthogonality} Verify
     \begin{equation*}
-        \int_{-\pi}^{\pi}\sin(mx)\sin(nx)\,\mathrm{d}x=\pi\delta_{mn},\qquad
-        \int_{-\pi}^{\pi}\cos(mx)\cos(nx)\,\mathrm{d}x=\pi\delta_{mn},\qquad
-        \int_{-\pi}^{\pi}\sin(mx)\cos(nx)\,\mathrm{d}x=0.
+        \int_{-\ell}^{\ell}\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\sin\Bigl(\frac{m\pi x}{\ell}\Bigr)\,\mathrm{d}x=\ell\delta_{mn}
     \end{equation*}
-    Use them to derive the coefficients $a_n$ and $b_n$ for the Fourier series of a $2\pi$-periodic function.
+    for positive integers $m,n$, and the companion identities for $\cos(n\pi x/\ell)\cos(m\pi x/\ell)$ and $\sin(n\pi x/\ell)\cos(m\pi x/\ell)$. Use them to derive \eqref{eq:ch05-an} and \eqref{eq:ch05-bn}, including the reason for writing the constant term as $a_0/2$.
 
-    \item\label{ex:fourier-even-odd} Show that if $f$ is even, then $b_n=0$ for all $n$, while if $f$ is odd, then $a_n=0$ for all $n$. Explain how the parity of $f$ determines the Fourier basis that appears in the expansion.
+    \item\label{ex:fourier-even-odd} Show that an even integrand over $[-\ell,\ell]$ reduces $a_n$ to $(2/\ell)\int_0^{\ell}$, while an odd integrand forces $a_n=0$. State the corresponding facts for $b_n$. On $(0,\ell)$, the function $f(x)=x$ has both a sine series and a cosine series. Explain what extension each one corresponds to, and compute the first series.
 
-    \item\label{ex:fourier-parseval} Prove Parseval's identity in the complex form
-    \begin{equation*}
-        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x
-        =\sum_{n=-\infty}^{\infty}|c_n|^2,
-    \end{equation*}
-    and then derive the real-form identity
-    \begin{equation*}
-        \frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x
-        =\frac{a_0^2}{4}+\frac12\sum_{n=1}^{\infty}(a_n^2+b_n^2).
-    \end{equation*}
+    \item\label{ex:gram-schmidt-quadratic} Continue the orthogonalization of $\{1,x\}$ on $[0,1]$: apply \eqref{eq:ch05-gram-schmidt} to $\{1,x,x^2\}$. Check that the quadratic you obtain is orthogonal to both $1$ and $x-1/2$.
 
-    \item\label{ex:fourier-sawtooth} Derive the periodic sawtooth expansion
-    \begin{equation*}
-        f(x)=\frac{2\ell}{\pi}\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}\sin\left(\frac{n\pi x}{\ell}\right)
-    \end{equation*}
-    for $f(x)=x$ on $(-\ell,\ell)$, and show that setting $x=\ell/2$ yields the Leibniz formula for $\pi/4$.
+    \item\label{ex:fourier-sawtooth} Derive \eqref{eq:ch05-sawtooth} for $f(x)=x$ on $(-\ell,\ell)$, and obtain the Leibniz series by setting $x=\ell/2$. Separately, evaluate the series at $x=\ell$ and interpret the value using \eqref{eq:ch05-jump}.
 
-    \item\label{ex:fourier-heat} Starting from the heat equation on $[0,\ell]$ with zero Dirichlet boundary conditions,
-    \begin{equation*}
-        T_t=T_{xx},\qquad T(0,t)=T(\ell,t)=0,
-    \end{equation*}
-    use separation of variables to derive the modes $T_n(x,t)=A_n\sin(n\pi x/\ell)e^{-n^2\pi^2 t/\ell^2}$. Explain why the long-time limit is $T\to0$.
+    \item\label{ex:cosine-abs} Find the cosine series of $f(x)=|x|$ on $[-\ell,\ell]$. Evaluate it at $x=0$ and deduce a numerical series for $\pi^2/8$. Compare the result with the square-wave calculation in the text.
 
-    \item\label{ex:basel-series} Use Parseval's identity for the periodic function $f(x)=x$ on $[-\pi,\pi]$ to derive the Basel sum
-    \begin{equation*}
-        \sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
-    \end{equation*}
-    Explain the role of the Fourier coefficients in the computation.
+    \item\label{ex:fourier-parseval} Derive \eqref{eq:ch05-parseval-real} from \eqref{eq:ch05-parseval} by expressing $|c_n|^2+|c_{-n}|^2$ in terms of $a_n$ and $b_n$.
+
+    \item\label{ex:basel-series} Recompute $c_n$ for $f(x)=x$ on $[-\pi,\pi]$ and the integral $(1/(2\pi))\int_{-\pi}^{\pi}x^2\,\mathrm{d}x$ independently, and only then conclude \eqref{eq:ch05-basel}. Which of the two sides supplies the factor $2$?
+
+    \item\label{ex:fourier-heat} For the rod \eqref{eq:ch05-heat-rod}, take the initial temperature $f(x)=T_0 x(\ell-x)/(\ell^2/4)$, so that the maximum value is $T_0$. Find $T(x,t)$. Which term dominates as $t\to\infty$, and why do the even coefficients vanish?
 \end{enumerate}

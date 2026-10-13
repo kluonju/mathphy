@@ -1,0 +1,384 @@
+% !TEX program = xelatex
+% 第一讲：lecture/fourier/fourier_series.tex
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{傅里叶分析}
+\subtitle{第一讲：傅里叶级数}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本章三讲}
+  傅里叶把一根棒上任意的初始温度，写成一串正弦温度的叠加。
+  这件事分成三讲：
+  \begin{enumerate}
+    \item \textbf{本讲}：周期函数的傅里叶级数，系数怎么算，能量怎么加。
+    \item 第二讲：周期拉长到整条直线，级数变成傅里叶变换。
+    \item 第三讲：给傅里叶变换乘上衰减因子，得到拉普拉斯变换，用来解初值问题。
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  \begin{enumerate}
+    \item 函数的内积、正交和施密特正交化；
+    \item 从热传导的分离变量看出，为什么要把函数展成正弦；
+    \item 傅里叶定理、狄利克雷条件，以及正弦、余弦、复指数三种写法；
+    \item 锯齿波与方波：莱布尼茨级数和帕塞瓦尔等式。
+  \end{enumerate}
+\end{frame}
+
+% =============================================================
+\section{正交函数}
+
+\begin{frame}{内积}
+  区间 $[a,b]$ 上两个函数的\textbf{内积}是
+  \begin{equation*}
+    (f,g)=\int_a^b f(x)\,g(x)\,\mathrm{d}x.
+  \end{equation*}
+  它满足施瓦茨不等式
+  \begin{equation*}
+    |(f,g)|^2\leq (f,f)\,(g,g),
+  \end{equation*}
+  等号当且仅当 $f$ 与 $g$ 线性相关。
+  \vspace{0.4em}
+
+  $(f,g)=0$ 时称二者\textbf{正交}。$(f,f)$ 称为\textbf{范数}，记作 $Nf$。范数为 $1$ 的函数称为归一化函数。
+\end{frame}
+
+\begin{frame}{例：正弦的正交性}
+  在 $[0,2\pi]$ 上，$m,n$ 为正整数，
+  \begin{equation*}
+    \int_0^{2\pi}\sin(nx)\sin(mx)\,\mathrm{d}x
+    =\pi\,\delta_{mn}\qquad(m,n\neq 0).
+  \end{equation*}
+  积化和差：$\sin A\sin B=\tfrac12[\cos(A-B)-\cos(A+B)]$。
+  $m\neq n$ 时积的是整周期余弦，积分为零；$m=n$ 时
+  \begin{equation*}
+    \int_0^{2\pi}\tfrac12\bigl(1-\cos(2nx)\bigr)\,\mathrm{d}x=\pi.
+  \end{equation*}
+  同样 $(\cos nx,\cos mx)=\pi\delta_{mn}$，而 $(\sin nx,\cos mx)=0$。
+\end{frame}
+
+\begin{frame}{正交归一与线性无关}
+  一组函数若
+  \begin{equation*}
+    (\varphi_i,\varphi_j)=\delta_{ij},
+  \end{equation*}
+  称为\textbf{正交归一组}。
+  \vspace{0.4em}
+
+  正交组一定线性无关。若 $\sum_i c_i\varphi_i(x)=0$，两边乘 $\varphi_j$ 再积分，得到 $c_j=0$。
+  \vspace{0.4em}
+
+  复函数的内积改成 $(f,g)=\int f^*(x)\,g(x)\,\mathrm{d}x$，范数是 $\int |f|^2\,\mathrm{d}x$。
+\end{frame}
+
+\begin{frame}{施密特正交化}
+  线性无关的 $f_1,\ldots,f_n$ 可以改造成正交组，步骤和向量的施密特方法相同：
+  \begin{align*}
+    \varphi_1&=f_1,\\
+    \varphi_k&=f_k-\sum_{j=1}^{k-1}
+      \frac{(f_k,\varphi_j)}{(\varphi_j,\varphi_j)}\,\varphi_j,
+    \qquad k=2,\ldots,n.
+  \end{align*}
+  每一步都减去 $\varphi_k$ 在已有方向上的投影。最后再除以范数，就得到正交归一组。
+\end{frame}
+
+\begin{frame}{例：$\{1,x\}$ 在 $[0,1]$ 上}
+  取 $f_1=1$，$f_2=x$。
+  \begin{equation*}
+    \varphi_1=1,
+    \qquad
+    (x,1)=\int_0^1 x\,\mathrm{d}x=\frac12,
+    \qquad
+    (1,1)=1.
+  \end{equation*}
+  于是
+  \begin{equation*}
+    \varphi_2=x-\frac12.
+  \end{equation*}
+  检验：$\displaystyle\int_0^1\bigl(x-\tfrac12\bigr)\,\mathrm{d}x=0$。
+  在 $[-1,1]$ 上 $(x,1)$ 本来就是零，$1$ 和 $x$ 已经正交，不必再减。
+\end{frame}
+
+\begin{frame}{展开系数}
+  若 $f=\sum_{i=1}^n c_i\varphi_i$，且 $\{\varphi_i\}$ 正交归一，则
+  \begin{equation*}
+    c_i=(f,\varphi_i)=\int f(x)\,\varphi_i(x)\,\mathrm{d}x.
+  \end{equation*}
+  $c_i$ 是 $f$ 在 $\varphi_i$ 方向上的分量。
+  \vspace{0.4em}
+
+  由
+  \(\displaystyle\int\Bigl(f-\sum_{i=1}^n c_i\varphi_i\Bigr)^2\mathrm{d}x\geq 0\)
+  展开，并利用 $c_i=(f,\varphi_i)$，得到
+  \begin{equation*}
+    \sum_{i=1}^n c_i^2\leq Nf.
+  \end{equation*}
+  $n\to\infty$ 仍成立。这是\textbf{贝塞尔不等式}：系数平方和收敛，并且不超过函数的范数。
+\end{frame}
+
+\begin{frame}{完备}
+  若对任意分段连续的 $f$，都能用有限项把平均平方误差
+  \begin{equation*}
+    \int\Bigl(f-\sum_{i=1}^n c_i\varphi_i\Bigr)^2\mathrm{d}x
+  \end{equation*}
+  压到任意小的正数以下，这组函数就是\textbf{完备}的。
+  \vspace{0.4em}
+
+  完备时贝塞尔不等式变成等式
+  \begin{equation*}
+    \sum_{i=1}^{\infty} c_i^2=Nf,
+  \end{equation*}
+  称为完备性关系。对两个函数，它推广成 $\sum c_i d_i=(f,g)$。
+\end{frame}
+
+% =============================================================
+\section{从热棒到正弦级数}
+
+\begin{frame}{傅里叶原来的问题}
+  长为 $\ell$ 的均匀棒，两端保持零度，初始温度是 $f(x)$。温度满足
+  \begin{equation*}
+    T_{xx}=T_t,
+    \qquad T(0,t)=T(\ell,t)=0.
+  \end{equation*}
+  这里把热扩散系数取成 $1$。问：$t$ 时刻的温度是什么？
+  \vspace{0.4em}
+
+  若初始温度已经是一个正弦，分离变量立刻给出答案。一般的 $f(x)$ 不是正弦。傅里叶的办法是先把 $f$ 写成正弦的和。
+\end{frame}
+
+\begin{frame}{分离变量}
+  令 $T=f(x)g(t)$，代入方程，
+  \begin{equation*}
+    \frac{f''(x)}{f(x)}=\frac{g'(t)}{g(t)}=c.
+  \end{equation*}
+  两边依赖的自变量不同，只能是同一个常数。
+  \vspace{0.4em}
+
+  若 $c>0$，$g(t)$ 随 $t$ 指数增长，温度会无限变大，不符合冷却的棒。因此取 $c=-k^2$。
+  \begin{equation*}
+    f(x)=A\sin(kx)+B\cos(kx),
+    \qquad g(t)=e^{-k^2 t}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{端点选出离散的正弦}
+  $T(0,t)=0$ 迫使 $B=0$。$T(\ell,t)=0$ 迫使 $\sin(k\ell)=0$，故
+  \begin{equation*}
+    k=\frac{n\pi}{\ell},
+    \qquad n=1,2,\ldots.
+  \end{equation*}
+  一个模式是
+  \begin{equation*}
+    T_n(x,t)=A_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+      e^{-n^2\pi^2 t/\ell^2}.
+  \end{equation*}
+  $t=0$ 时它是有 $n-1$ 个内部节点的正弦。节点越多，衰减越快。
+\end{frame}
+
+\begin{frame}{线性叠加}
+  方程和端点条件都是线性齐次的。若 $T_1,T_2$ 是解，则 $\alpha T_1+\beta T_2$ 也是解。
+  \vspace{0.4em}
+
+  因此一般初始温度可以写成
+  \begin{equation*}
+    T(x,t)=\sum_{n=1}^{\infty}
+      A_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+      e^{-n^2\pi^2 t/\ell^2}.
+  \end{equation*}
+  $t=0$ 时指数是 $1$，问题变成：哪些函数能写成
+  \begin{equation*}
+    f(x)=\sum_{n=1}^{\infty} A_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr),
+  \end{equation*}
+  以及 $A_n$ 怎么算。
+\end{frame}
+
+\begin{frame}{系数就是内积}
+  用 $\sin(m\pi x/\ell)$ 乘上式，在 $[0,\ell]$ 上积分。正交性只留下 $m=n$ 的一项，
+  \begin{equation*}
+    \boxed{A_n=\frac{2}{\ell}\int_0^{\ell}
+      f(x)\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.}
+  \end{equation*}
+  项数越多，平均平方误差越小。这就是热棒问题里的傅里叶正弦级数。
+\end{frame}
+
+% =============================================================
+\section{傅里叶定理}
+
+\begin{frame}{以 $2\ell$ 为周期的函数}
+  若 $f(x+2\ell)=f(x)$，则
+  \begin{equation*}
+    f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}
+      \Bigl[
+        a_n\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)
+        +b_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+      \Bigr],
+  \end{equation*}
+  \begin{align*}
+    a_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}
+      f(x)\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x,\\
+    b_n&=\frac{1}{\ell}\int_{-\ell}^{\ell}
+      f(x)\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+  \end{align*}
+  积分可以改到任何一个长为 $2\ell$ 的区间，例如 $[0,2\ell]$。常数项写成 $a_0/2$，是为了让 $a_n$ 的公式在 $n=0$ 时仍然适用。
+\end{frame}
+
+\begin{frame}{狄利克雷条件}
+  上面的展开在\textbf{狄利克雷条件}下成立：$f$ 在一个周期里只有有限个间断点，并且只有有限个极值。这样的函数称为分段平常。
+  \vspace{0.4em}
+
+  若 $x_0$ 是间断点，级数和不等于左极限或右极限，而等于二者的平均：
+  \begin{equation*}
+    \frac12\lim_{\epsilon\to 0}
+      \bigl[f(x_0+\epsilon)+f(x_0-\epsilon)\bigr].
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：方波在间断点}
+  在 $(-1,1)$ 上
+  \begin{equation*}
+    f(x)=\begin{cases}
+      -1, & x<0,\\
+      +1, & x>0,
+    \end{cases}
+  \end{equation*}
+  并按周期 $2$ 延拓。$x=0$ 处左极限是 $-1$，右极限是 $1$，级数和必须是 $0$。
+  \vspace{0.3em}
+
+  后面用帕塞瓦尔等式会算出
+  \begin{equation*}
+    f(x)=\frac{4}{\pi}\Bigl(
+      \sin(\pi x)+\frac13\sin(3\pi x)+\frac15\sin(5\pi x)+\cdots
+    \Bigr).
+  \end{equation*}
+  每一项在 $x=0$ 都是零，和确实是 $0$。
+\end{frame}
+
+\begin{frame}{奇函数与偶函数}
+  奇函数的余弦系数为零，只剩\textbf{正弦级数}
+  \begin{equation*}
+    f(x)=\sum_{n=1}^{\infty} b_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr).
+  \end{equation*}
+  偶函数的正弦系数为零，只剩\textbf{余弦级数}
+  \begin{equation*}
+    f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}
+      a_n\cos\Bigl(\frac{n\pi x}{\ell}\Bigr).
+  \end{equation*}
+  热棒两端为零，初始温度被奇延拓到 $[-\ell,\ell]$，所以只出现正弦。两端绝热则会选出余弦。
+\end{frame}
+
+\begin{frame}{复指数形式}
+  用 $e^{\mathrm{i}n\pi x/\ell}=\cos(n\pi x/\ell)+\mathrm{i}\sin(n\pi x/\ell)$ 合并系数，
+  \begin{equation*}
+    f(x)=\sum_{n=-\infty}^{\infty} c_n e^{\mathrm{i} n\pi x/\ell},
+    \qquad
+    c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}
+      f(x)\,e^{-\mathrm{i} n\pi x/\ell}\,\mathrm{d}x.
+  \end{equation*}
+  $n>0$ 时 $c_n=\tfrac12(a_n-\mathrm{i}b_n)$，$c_{-n}=\tfrac12(a_n+\mathrm{i}b_n)$，$c_0=a_0/2$。
+  $f$ 为实函数时 $c_{-n}=c_n^*$。
+  \vspace{0.3em}
+
+  复指数也正交：
+  \(\displaystyle\int_{-\ell}^{\ell} e^{-\mathrm{i}n\pi x/\ell}e^{\mathrm{i}m\pi x/\ell}\,\mathrm{d}x=2\ell\,\delta_{mn}\)。
+\end{frame}
+
+% =============================================================
+\section{两个例子与能量}
+
+\begin{frame}{例：锯齿波}
+  在 $(-\ell,\ell)$ 上取 $f(x)=x$，按周期 $2\ell$ 延拓。它是奇函数，$a_n=0$。
+  \begin{equation*}
+    b_n=\frac{2}{\ell}\int_0^{\ell} x\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+  \end{equation*}
+  分部积分，令 $k=n\pi/\ell$。边界项是
+  \begin{equation*}
+    \Bigl[-\frac{x\cos(kx)}{k}\Bigr]_0^{\ell}
+    =-\frac{\ell(-1)^n}{k}
+    =\frac{\ell^2}{n\pi}(-1)^{n+1}.
+  \end{equation*}
+  因此 $b_n=\dfrac{2\ell}{n\pi}(-1)^{n+1}$。
+\end{frame}
+
+\begin{frame}{锯齿波的级数与莱布尼茨等式}
+  \begin{equation*}
+    f(x)=\frac{2\ell}{\pi}\sum_{n=1}^{\infty}
+      \frac{(-1)^{n+1}}{n}\sin\Bigl(\frac{n\pi x}{\ell}\Bigr).
+  \end{equation*}
+  在 $x=0$ 和间断点 $x=\pm\ell$，级数和为 $0$，正是左右极限 $\ell$ 与 $-\ell$ 的平均。
+  \vspace{0.3em}
+
+  在 $x=\ell/2$，$f=\ell/2$，正弦只留下奇数项：
+  \begin{equation*}
+    \frac{\ell}{2}=\frac{2\ell}{\pi}\Bigl(1-\frac13+\frac15-\frac17+\cdots\Bigr).
+  \end{equation*}
+  约去 $\ell$，得到
+  \begin{equation*}
+    \frac{\pi}{4}=\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{帕塞瓦尔等式}
+  复系数的完备性关系写成能量
+  \begin{equation*}
+    E=\frac{1}{2\ell}\int_{-\ell}^{\ell}|f(x)|^2\,\mathrm{d}x
+     =\sum_{n=-\infty}^{\infty}|c_n|^2.
+  \end{equation*}
+  换回 $a_n,b_n$，
+  \begin{equation*}
+    \boxed{E=\frac{a_0^2}{4}+\sum_{n=1}^{\infty}
+      \Bigl(\frac{a_n^2}{2}+\frac{b_n^2}{2}\Bigr).}
+  \end{equation*}
+  这是\textbf{帕塞瓦尔等式}。一个波形拆成许多正弦、余弦之后，总能量是各成分强度之和。
+\end{frame}
+
+\begin{frame}{例：方波给出 $\pi^2/8$}
+  取周期 $2$，即 $\ell=1$，方波 $f=-1$（$x<0$），$f=1$（$x>0$）。
+  $a_n=0$，而
+  \begin{equation*}
+    b_n=2\int_0^1\sin(n\pi x)\,\mathrm{d}x
+      =\frac{2\bigl(1-(-1)^n\bigr)}{n\pi}.
+  \end{equation*}
+  $n$ 为偶数时 $b_n=0$；$n$ 为奇数时 $b_n=4/(n\pi)$。这就是前面写出的级数。
+  \vspace{0.3em}
+
+  左边 $E=1$。右边只剩奇数项 $\sum b_n^2/2$，于是
+  \begin{equation*}
+    \sum_{k=0}^{\infty}\frac{1}{(2k+1)^2}=\frac{\pi^2}{8}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：$f(x)=x$ 给出 $\pi^2/6$}
+  在 $[-\pi,\pi]$ 上 $f(x)=x$，$\ell=\pi$。$c_0=0$，
+  \begin{equation*}
+    c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi} x\,e^{-\mathrm{i}nx}\,\mathrm{d}x
+      =\mathrm{i}\,\frac{(-1)^n}{n}
+    \qquad(n\neq 0).
+  \end{equation*}
+  于是 $|c_n|^2=1/n^2$。帕塞瓦尔等式的左边是
+  \begin{equation*}
+    \frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,\mathrm{d}x=\frac{\pi^2}{3}
+    =2\sum_{n=1}^{\infty}\frac{1}{n^2}.
+  \end{equation*}
+  因此
+  \begin{equation*}
+    \sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+  \end{equation*}
+  第三讲会用拉普拉斯变换把同一个和写成另一个积分。
+\end{frame}
+
+\begin{frame}{本讲小结}
+  \begin{itemize}
+    \item 正交组上的分量是内积。贝塞尔不等式说系数平方和不超过范数；完备时二者相等。
+    \item 两端为零的热棒把初始温度展成正弦级数。一般周期函数还有余弦项，或写成 $c_n e^{\mathrm{i}n\pi x/\ell}$。
+    \item 间断点上级数取左右平均。锯齿波给出 $\pi/4$ 的交错级数，方波和 $f(x)=x$ 通过帕塞瓦尔等式给出 $\pi^2/8$ 与 $\pi^2/6$。
+  \end{itemize}
+  下一讲把周期 $2\ell$ 放到无穷，离散的 $n$ 变成连续的频率。
+\end{frame}
+
+\end{document}

@@ -1,45 +1,33 @@
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
-The following exercises collect the main proofs and applications of the Fourier-transform and Laplace-transform identities introduced in this chapter.
+Work in the symmetric convention \eqref{eq:ch06-ft}--\eqref{eq:ch06-ift} unless a problem says otherwise. A transform rule used in a solution should be the one proved for that convention, including the constant in the convolution theorem.
 
 \renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
 \renewcommand{\labelenumi}{\theenumi.}
 \begin{enumerate}
-    \item\label{ex:fourier-transform-limit} Starting from the Fourier-series formula on $[-\ell,\ell]$, show that as $\ell\to\infty$ the discrete set of wavenumbers becomes dense and the series turns into the Fourier integral. State the limiting form of the coefficient formula and identify the frequency spacing $\Delta\omega$.
+    \item\label{ex:fourier-transform-limit} Start from \eqref{eq:ch05-complex-series} and the spacing $\Delta\omega=\pi/\ell$. Show that $1/(2\ell)=\Delta\omega/(2\pi)$, and pass to the limit $\ell\to\infty$ to obtain the asymmetric pair with $2\pi$ on the inverse transform. Then define the symmetric transform \eqref{eq:ch06-ft} and write the matching inverse.
 
-    \item\label{ex:fourier-gaussian} For $f(x)=e^{-\alpha x^2}$ with $\alpha>0$, compute its Fourier transform and show that the transform is again a Gaussian. Interpret the effect of increasing $\alpha$ on the width in position space and frequency space.
+    \item\label{ex:fourier-exponential} Compute $\mathcal{F}[e^{-\alpha|x|}]$ for $\alpha>0$ from the definition. Recover $f(0)$ from the inversion integral and check it against $f(0)=1$.
 
-    \item\label{ex:fourier-derivative} Prove the derivative rule
-    \begin{equation*}
-        \mathcal{F}\{f'(x)\}=\mathrm{i}\omega\,\mathcal{F}\{f\}(\omega),
-    \end{equation*}
-    under suitable decay assumptions, and use it to show that the Fourier transform converts differentiation into multiplication by $\mathrm{i}\omega$.
+    \item\label{ex:fourier-rect} Compute the transform of the rectangular pulse of width $2a$ centered at the origin, and then of the same pulse centered at $x_0$. For which $\omega$ does the centered transform vanish? Why does moving the pulse leave those zeros unchanged?
 
-    \item\label{ex:fourier-convolution} Show that the Fourier transform diagonalizes convolution:
-    \begin{equation*}
-        \mathcal{F}\{f*g\}(\omega)=\sqrt{2\pi}\,F(\omega)G(\omega).
-    \end{equation*}
-    Explain why this makes the Fourier transform especially useful in solving linear differential equations and filtering problems.
+    \item\label{ex:fourier-gaussian} Complete the square for $\mathcal{F}[e^{-\alpha x^2}]$ and obtain \eqref{eq:ch06-gaussian}. Use \eqref{eq:ch06-similarity} to deduce $\mathcal{F}[e^{-\alpha(x-x_0)^2}]$ without another completion of the square.
 
-    \item\label{ex:delta-sifting} Prove the sifting property
-    \begin{equation*}
-        \int_{-\infty}^{\infty}f(x)\delta(x-a)\,\mathrm{d}x=f(a),
-    \end{equation*}
-    and show that $\delta(ax)=\delta(x)/|a|$ for $a\neq0$. Interpret this result physically as the limit of a sharply localized pulse of unit area.
+    \item\label{ex:fourier-derivative} Prove $\mathcal{F}[f']=\mathrm{i}\omega F$ by integration by parts, naming the boundary term that must vanish. Apply the rule twice to $u_{xx}=u_t$ on the whole line, with $u\to 0$ as $|x|\to\infty$, and write the equation satisfied by the transform in $x$.
 
-    \item\label{ex:laplace-derivative} Let $x(p)=\mathcal{L}\{X(t)\}$. Show that
-    \begin{equation*}
-        \mathcal{L}\{X'(t)\}=p x(p)-X(0),
-    \end{equation*}
-    and use this to solve the initial-value problem
-    \begin{equation*}
-        X''+\omega_0^2X=0,
-        \qquad X(0)=X_0,\quad X'(0)=0.
-    \end{equation*}
+    \item\label{ex:fourier-convolution} Prove \eqref{eq:ch06-conv-thm} for the convolution \eqref{eq:ch06-convolution}. Explain, with the change of variables written out, why $\int f_1(\alpha)f_2(\alpha-x)\,\mathrm{d}\alpha$ is not the same operation.
 
-    \item\label{ex:laplace-convolution} Prove the convolution theorem for the Laplace transform:
-    \begin{equation*}
-        \mathcal{L}\{(f*g)(t)\}=\mathcal{L}\{f\}(p)\mathcal{L}\{g\}(p).
-    \end{equation*}
-    Give one example where this identity simplifies the evaluation of an inverse Laplace transform.
+    \item\label{ex:aperture} Repeat the rectangular-aperture calculation in two dimensions and record the symmetric prefactor $1/(2\pi)$. Evaluate $F(0,0)$ both from the resulting formula and from \eqref{eq:ch06-ft-d}, and check that they agree.
+
+    \item\label{ex:delta-sifting} From the sifting property, prove $\delta(ax)=\delta(x)/|a|$ for $a\neq 0$, and evaluate $\int_{-\infty}^{\infty}(x^2+1)\delta(x^2-4)\,\mathrm{d}x$.
+
+    \item\label{ex:laplace-elementary} Compute $\mathcal{L}\{\sin(\omega t)\}$ and $\mathcal{L}\{\cos(\omega t)\}$ from $\mathcal{L}\{e^{\mathrm{i}\omega t}\}$, and state the half-plane. Then compute $\mathcal{L}\{e^{-\lambda t}\sin(\omega t)\}$ by the shift rule rather than by a new integration.
+
+    \item\label{ex:laplace-derivative} Solve $X''-3X'+2X=e^{t}$ with $X(0)=1$ and $X'(0)=0$ by the Laplace transform. Invert by partial fractions and check both initial conditions on the result.
+
+    \item\label{ex:partial-fractions} Invert $1/[p^2(p+1)]$ by partial fractions. Compare the linear term with the sign pattern in \eqref{eq:ch06-partial}.
+
+    \item\label{ex:delay-convolution} Invert $e^{-2p}/[(p+1)(p+2)]$ both by convolution and by partial fractions plus the delay rule. Confirm that the original is zero for $0\leq t<2$.
+
+    \item\label{ex:oscillator-drive} A driven oscillator $X''+\omega_0^2 X=\cos(\omega t)$, with $\omega\neq\omega_0$, starts from rest at the origin. Find $X(t)$ by the Laplace transform. Take the limit $\omega\to\omega_0$ and identify the resonant factor $t\sin(\omega_0 t)$.
 \end{enumerate}

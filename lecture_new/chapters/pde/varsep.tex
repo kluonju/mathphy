@@ -46,6 +46,41 @@ B_n=\frac{2}{n\pi a}\int_0^\ell\psi(x)\sin\left(\frac{n\pi x}{\ell}\right)\,\mat
 \end{equation}
 The $n$th term is a standing wave. It has nodes at $x=m\ell/n$ and angular frequency $\omega_n=n\pi a/\ell$. The mode $n=1$ is the fundamental; higher $n$ give harmonics. Thus an arbitrary small vibration is resolved into the string's natural modes.
 
+\begin{example}[One mode, checked by substitution]
+The single term $u=\sin(\pi x/\ell)\cos(\pi a t/\ell)$ satisfies both endpoint conditions. Differentiating,
+\begin{equation}
+u_{tt}=-\Bigl(\frac{\pi a}{\ell}\Bigr)^2 u,
+\qquad
+u_{xx}=-\Bigl(\frac{\pi}{\ell}\Bigr)^2 u,
+\end{equation}
+so $u_{tt}=a^2 u_{xx}$. At $t=0$ the string has shape $\sin(\pi x/\ell)$ and zero velocity. This is the pattern the general series is built from: each term is already a motion of the string, and the coefficients only decide how much of each motion is present.
+\end{example}
+
+\begin{example}[A parabolic pluck released from rest]
+Let the initial displacement be the parabola $\varphi(x)=x(\ell-x)$ and let $\psi=0$. Then every $B_n$ vanishes. With $k=n\pi/\ell$, two integrations by parts give
+\begin{equation}
+\int_0^{\ell}x(\ell-x)\sin(kx)\,\mathrm{d}x
+=\frac{2}{k^3}\bigl(1-(-1)^n\bigr),
+\end{equation}
+because $\varphi$ vanishes at both endpoints and $\varphi''=-2$. Therefore
+\begin{equation}
+A_n=\frac{2}{\ell}\cdot\frac{2\ell^3}{n^3\pi^3}\bigl(1-(-1)^n\bigr)
+=
+\begin{cases}
+8\ell^2/(n^3\pi^3),& n\text{ odd},\\
+0,& n\text{ even}.
+\end{cases}
+\end{equation}
+The parabola is symmetric about $x=\ell/2$, and the even modes are antisymmetric about that point, so their coefficients must vanish. The displacement is
+\begin{equation}
+u(x,t)=\sum_{m=0}^{\infty}
+\frac{8\ell^2}{(2m+1)^3\pi^3}
+\sin\Bigl(\frac{(2m+1)\pi x}{\ell}\Bigr)
+\cos\Bigl(\frac{(2m+1)\pi a t}{\ell}\Bigr).
+\end{equation}
+The amplitudes fall as $1/n^3$. A smooth pluck needs fewer harmonics than a jump.
+\end{example}
+
 \subsection{Why the Fourier coefficients appear}
 
 At $t=0$, the modal sum \eqref{eq:ch04-string-series} becomes a Fourier sine series for $\varphi(x)$, while its time derivative becomes a sine series for $\psi(x)$. Orthogonality of the functions $\sin(n\pi x/\ell)$ isolates the coefficients one at a time and produces the displayed integrals for $A_n$ and $B_n$. The sine basis is not an arbitrary preference: it is dictated by the homogeneous Dirichlet conditions at both endpoints. Free-end conditions would instead select a cosine basis.
@@ -71,3 +106,13 @@ T_n(t)=T_n^{\mathrm{free}}(t)
 f_n(\tau)\,\mathrm{d}\tau.
 \end{equation}
 The formula makes causality explicit: only forcing at $\tau\leq t$ can affect the motion at time $t$.
+
+\begin{example}[Duhamel's integral reproduces a constant force]
+Consider one mode with $\omega_n=\omega$, no free motion, and $f_n(t)=1$. The elementary solution of $T''+\omega^2 T=1$ with $T(0)=T'(0)=0$ is $T=(1-\cos\omega t)/\omega^2$. Duhamel's formula gives the same function:
+\begin{equation}
+\int_0^{t}\frac{\sin\bigl(\omega(t-\tau)\bigr)}{\omega}\,\mathrm{d}\tau
+=\frac{1}{\omega}\int_0^{t}\sin(\omega s)\,\mathrm{d}s
+=\frac{1-\cos(\omega t)}{\omega^2}.
+\end{equation}
+The integral is not a new physical assumption. For this forcing it is the variation-of-parameters solution written so that the response to each impulse $\mathrm{d}\tau$ is visible separately.
+\end{example}

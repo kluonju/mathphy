@@ -2,63 +2,221 @@
 
 \subsection{From a series to an integral}
 
-For a nonperiodic function on the real line, regard the Fourier series of the previous chapter as the limit $\ell\to\infty$. With $\omega_n=n\pi/\ell$ and $\Delta\omega=\pi/\ell$, the discrete frequencies become continuous. The original source keeps the limiting idea explicit:
+A function on the whole line need not repeat. One can still compare it with the complex Fourier series \eqref{eq:ch05-complex-series} by pretending that it is periodic with a very large period $2\ell$ and then letting $\ell\to\infty$. The discrete frequencies
 \begin{equation}
-f(x)=\lim_{\ell\to\infty}\sum_{n=-\infty}^{\infty} c_n e^{\mathrm{i}\omega_n x},
+\omega_n=\frac{n\pi}{\ell},
 \qquad
-c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}f(x)e^{-\mathrm{i}\omega_n x}\,\mathrm{d}x.
+\Delta\omega=\omega_n-\omega_{n-1}=\frac{\pi}{\ell},
 \end{equation}
-As $\ell\to\infty$, the sum turns into an integral, and the coefficient becomes frequency density. This is the essence of the \term{Fourier integral}. Using the symmetric convention, the \term{Fourier transform} and its inverse are
+become denser as the period grows. The complex coefficient on that period is
+\begin{equation}
+c_n=\frac{1}{2\ell}\int_{-\ell}^{\ell}f(x)e^{-\mathrm{i}\omega_n x}\,\mathrm{d}x,
+\end{equation}
+and the series is $f(x)=\sum_n c_n e^{\mathrm{i}\omega_n x}$. The spacing and the normalization are tied together by
+\begin{equation}
+\frac{1}{2\ell}=\frac{\Delta\omega}{2\pi}.
+\end{equation}
+Thus
+\begin{equation}
+f(x)=\sum_{n=-\infty}^{\infty}
+\left(\frac{1}{2\pi}\int_{-\ell}^{\ell}f(s)e^{-\mathrm{i}\omega_n s}\,\mathrm{d}s\right)
+e^{\mathrm{i}\omega_n x}\,\Delta\omega.
+\end{equation}
+As $\ell\to\infty$ the sum becomes an integral and the inner integral extends over the line. The resulting asymmetric pair is
 \begin{align}
-F(\omega)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-\mathrm{i}\omega x}\,\mathrm{d}x,\\
+F_{\mathrm{asym}}(\omega)
+&=\int_{-\infty}^{\infty}f(x)e^{-\mathrm{i}\omega x}\,\mathrm{d}x,\\
+f(x)
+&=\frac{1}{2\pi}\int_{-\infty}^{\infty}F_{\mathrm{asym}}(\omega)e^{\mathrm{i}\omega x}\,\mathrm{d}\omega.
+\end{align}
+The factor $2\pi$ sits on the inverse transform because it came from $\Delta\omega/(2\pi)$, not from the forward coefficient. Placing $2\pi$ on the forward transform, or calling the frequency density the inverse transform, mixes the two sides of this limit.
+
+It is convenient to split the constant symmetrically, writing $F(\omega)=F_{\mathrm{asym}}(\omega)/\sqrt{2\pi}$. The \term{Fourier transform} and its inverse used throughout these notes are then
+\begin{align}
+F(\omega)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-\mathrm{i}\omega x}\,\mathrm{d}x,
+\label{eq:ch06-ft}\\
 f(x)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}F(\omega)e^{\mathrm{i}\omega x}\,\mathrm{d}\omega.
+\label{eq:ch06-ift}
 \end{align}
-The Fourier integral theorem holds when $f$ satisfies the Dirichlet conditions on every finite interval and is absolutely integrable on the real line. At a discontinuity it returns the mean of the two limiting values.
+One abbreviates $F=\mathcal{F}[f]$ and $f=\mathcal{F}^{-1}[F]$. The function $f$ is the original and $F$ its transform. Differentiation will bring down a factor $\mathrm{i}\omega$ with no extra constant, which is why this sign convention, $e^{-\mathrm{i}\omega x}$ in the forward transform, is kept fixed.
 
-Equivalently,
+The Fourier integral theorem gives a usable sufficient condition. If $f$ satisfies the Dirichlet conditions on every finite interval and is absolutely integrable on the real line, then the inversion integral reproduces $f(x)$ at each point of continuity, and it reproduces the average of the two one-sided limits at a jump. Absolute integrability excludes, for example, a growing exponential $e^{\alpha x}$ with $\alpha>0$. That function is taken up by the Laplace transform later in the chapter.
+
+There is an equivalent real form. Combining positive and negative frequencies gives
 \begin{equation}
-f(x)=\int_0^\infty A(\omega)\cos(\omega x)\,\mathrm{d}\omega+
-\int_0^\infty B(\omega)\sin(\omega x)\,\mathrm{d}\omega,
+f(x)=\int_0^{\infty}A(\omega)\cos(\omega x)\,\mathrm{d}\omega
++\int_0^{\infty}B(\omega)\sin(\omega x)\,\mathrm{d}\omega,
 \end{equation}
-where $A(\omega)=\pi^{-1}\int f(x)\cos(\omega x)\,\mathrm{d}x$ and $B(\omega)=\pi^{-1}\int f(x)\sin(\omega x)\,\mathrm{d}x$. The representation $C(\omega)\cos[\omega x-\varphi(\omega)]$ defines the amplitude spectrum $C=(A^2+B^2)^{1/2}$ and phase spectrum $\varphi=\arctan(B/A)$.
+where
+\begin{equation}
+A(\omega)=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\cos(\omega x)\,\mathrm{d}x,
+\qquad
+B(\omega)=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x)\sin(\omega x)\,\mathrm{d}x.
+\end{equation}
+Writing $C\cos(\omega x-\varphi)$ with $C=\sqrt{A^2+B^2}$ and $\varphi=\arctan(B/A)$ separates the \term{amplitude spectrum} $C(\omega)$ from the \term{phase spectrum} $\varphi(\omega)$. An even original has $B=0$ and a cosine integral; an odd original has $A=0$ and a sine integral. An even real function has a real even transform, which is often the quickest check that a calculation has not picked up a spurious phase.
 
-\begin{example}
-For $f(x)=e^{-\alpha|x|}$ with $\alpha>0$, we split the integral at $x=0$ and obtain
+\subsection{Elementary transforms}
+
+The three calculations in this subsection are the ones used repeatedly later: a two-sided exponential, a unit impulse, and a Gaussian.
+
+\begin{example}[Two-sided exponential decay]
+Let $f(x)=e^{-\alpha|x|}$ with $\alpha>0$. Split the integral at the origin:
 \begin{align}
-F(\omega) &=\sqrt{\frac{1}{2\pi}}\left[\int_{-\infty}^{0}e^{\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x+
-\int_0^{\infty}e^{-\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x\right]\nonumber\\
-&=\sqrt{\frac{1}{2\pi}}\left(\frac{1}{\alpha+\mathrm{i}\omega}+\frac{1}{\alpha-\mathrm{i}\omega}\right)
+F(\omega)
+&=\frac{1}{\sqrt{2\pi}}
+\left(
+\int_{-\infty}^{0}e^{\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
++\int_0^{\infty}e^{-\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+\right)
 \nonumber\\
-&=\sqrt{\frac{1}{2\pi}}\frac{2\alpha}{\alpha^2+\omega^2}.
+&=\frac{1}{\sqrt{2\pi}}
+\left(\frac{1}{\alpha+\mathrm{i}\omega}+\frac{1}{\alpha-\mathrm{i}\omega}\right)
+=\sqrt{\frac{1}{2\pi}}\,\frac{2\alpha}{\alpha^2+\omega^2}.
 \end{align}
-The transform is real and even because the original function is even. For the delta distribution, $\mathcal{F}[\delta(x)]=1/\sqrt{2\pi}$. For $f(x)=e^{-\alpha x^2}$,
+The transform is real and even, as it must be for a real even original. Increasing $\alpha$ makes $f$ more concentrated about $x=0$ and makes $F$ decay more slowly. Localization in $x$ and localization in $\omega$ move in opposite directions.
+\end{example}
+
+A unit impulse is not a function, but its action under an integral is unambiguous and is enough to compute the transform. The \term{Dirac delta} satisfies
 \begin{equation}
-F(\omega)=\frac{1}{\sqrt{2\alpha}}e^{-\omega^2/(4\alpha)}.
+\int_{-\infty}^{\infty}\delta(x)\,\mathrm{d}x=1,
+\qquad
+\int_{-\infty}^{\infty}f(x)\delta(x-a)\,\mathrm{d}x=f(a)
 \end{equation}
-Thus a Gaussian transforms into a Gaussian, and greater localization in $x$ corresponds to greater spread in frequency.
+for continuous $f$. The second identity is the \term{sifting property}. One also has $\delta(-x)=\delta(x)$ and, for $a\neq 0$,
+\begin{equation}
+\delta(ax)=\frac{\delta(x)}{|a|}.
+\end{equation}
+A standard smooth approximation is the Lorentzian family $\varepsilon/[\pi(\varepsilon^2+x^2)]$, which has unit area for every $\varepsilon>0$ and concentrates at the origin as $\varepsilon\to 0$. The next section develops these facts, together with derivatives and composition; the transform itself is only the sifting property.
+
+\begin{example}[Transform of a delta function]
+\begin{equation}
+\mathcal{F}[\delta(x)]
+=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\delta(x)e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+=\frac{1}{\sqrt{2\pi}}.
+\end{equation}
+An impulse localized at a single point has a perfectly flat spectrum. Shifting the impulse multiplies the transform by a phase, $\mathcal{F}[\delta(x-x_0)]=e^{-\mathrm{i}\omega x_0}/\sqrt{2\pi}$, which is the delay rule of the next subsection.
+\end{example}
+
+\begin{example}[A Gaussian transforms to a Gaussian]
+Let $f(x)=e^{-\alpha x^2}$ with $\alpha>0$. Complete the square in the exponent of \eqref{eq:ch06-ft}:
+\begin{equation}
+-\alpha x^2-\mathrm{i}\omega x
+=-\alpha\left(x+\frac{\mathrm{i}\omega}{2\alpha}\right)^2-\frac{\omega^2}{4\alpha}.
+\end{equation}
+The contour shift $t=x+\mathrm{i}\omega/(2\alpha)$ does not change the integral of the Gaussian, whose integral on the real line is $\sqrt{\pi/\alpha}$. Therefore
+\begin{equation}
+F(\omega)
+=\frac{1}{\sqrt{2\pi}}e^{-\omega^2/(4\alpha)}\sqrt{\frac{\pi}{\alpha}}
+=\frac{1}{\sqrt{2\alpha}}\,e^{-\omega^2/(4\alpha)}.
+\label{eq:ch06-gaussian}
+\end{equation}
+The transform is again a Gaussian. The product of the decay constants in the two exponents is fixed: if the original narrows, the transform widens, and conversely. This is the same tradeoff seen for the exponential, now with an explicit width $\alpha^{-1/2}$ in $x$ and width $\alpha^{1/2}$ in $\omega$.
+\end{example}
+
+\begin{example}[A rectangular pulse]
+Let $f(x)=1$ for $|x|\leq a$ and $f(x)=0$ otherwise, with $a>0$. Then
+\begin{equation}
+F(\omega)
+=\frac{1}{\sqrt{2\pi}}\int_{-a}^{a}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+=\sqrt{\frac{2}{\pi}}\,\frac{\sin(a\omega)}{\omega}
+=\sqrt{\frac{2}{\pi}}\,a\,\frac{\sin(a\omega)}{a\omega}.
+\end{equation}
+At $\omega=0$ the quotient tends to $\sqrt{2/\pi}\,a$, which is also $F(0)=(1/\sqrt{2\pi})\int f$. The transform oscillates and decays as $1/|\omega|$. A wider pulse has a narrower central lobe. This one-dimensional pattern is the model for the rectangular aperture computed below.
 \end{example}
 
 \subsection{Basic properties}
 
-If $\mathcal{F}[f]=F$, then
+Assume $\mathcal{F}[f]=F$ and that $f$ and its derivatives decay fast enough for the boundary terms written below to vanish.
+
+Differentiation under the inversion integral \eqref{eq:ch06-ift}, or an integration by parts in \eqref{eq:ch06-ft}, gives the derivative theorem
+\begin{equation}
+\mathcal{F}[f']=\mathrm{i}\omega F(\omega).
+\label{eq:ch06-derivative}
+\end{equation}
+The boundary term $\bigl[f(x)e^{-\mathrm{i}\omega x}\bigr]_{-\infty}^{\infty}$ is zero by the decay assumption, and the remaining integral is $\mathrm{i}\omega$ times $F(\omega)$. Each extra derivative multiplies by another factor $\mathrm{i}\omega$. This is the reason a linear differential equation with constant coefficients becomes an algebraic equation for $F$.
+
+If $F(0)=0$ and the running integral $g(x)=\int_{-\infty}^{x}f(s)\,\mathrm{d}s$ tends to zero at infinity, the derivative theorem applied to $g$ yields
+\begin{equation}
+\mathcal{F}[g]=\frac{F(\omega)}{\mathrm{i}\omega}.
+\end{equation}
+The hypothesis $F(0)=0$ says that $f$ has integral zero, so $g(\infty)=0$. Without it, the running integral tends to a nonzero constant and is not a classical Fourier-transformable function.
+
+The remaining rules are changes of the variable or multiplications by exponentials. For $a\neq 0$,
+\begin{equation}
+\mathcal{F}[f(ax)]=\frac{1}{|a|}F\Bigl(\frac{\omega}{a}\Bigr).
+\label{eq:ch06-similarity}
+\end{equation}
+The absolute value is the Jacobian. A negative $a$ reverses the axis and would be missed by writing $1/a$. For a shift $x_0$,
+\begin{equation}
+\mathcal{F}[f(x-x_0)]=e^{-\mathrm{i}\omega x_0}F(\omega).
+\label{eq:ch06-delay}
+\end{equation}
+The proof is the substitution $u=x-x_0$ in \eqref{eq:ch06-ft}: the Jacobian is $1$, and $e^{-\mathrm{i}\omega x}=e^{-\mathrm{i}\omega(u+x_0)}$ factors out of the integral. Modulation is the companion statement, obtained by writing the extra exponential into the kernel,
+\begin{equation}
+\mathcal{F}[e^{\mathrm{i}\omega_0 x}f(x)]=F(\omega-\omega_0).
+\end{equation}
+A shift in time is a phase in frequency; a modulation in time is a shift in frequency.
+
+\begin{example}[The delay rule applied to a pulse]
+The rectangular pulse of width $2a$ centered at $x_0$ is the centered pulse shifted by $x_0$. Its transform is therefore
+\begin{equation}
+e^{-\mathrm{i}\omega x_0}\sqrt{\frac{2}{\pi}}\,\frac{\sin(a\omega)}{\omega}.
+\end{equation}
+The amplitude spectrum is unchanged. Only the phase $-\omega x_0$ records where the pulse sits. This is why a pure delay is invisible to an intensity measurement $|F(\omega)|^2$.
+\end{example}
+
+The \term{convolution} used here is
+\begin{equation}
+(f_1*f_2)(x)=\int_{-\infty}^{\infty}f_1(\alpha)f_2(x-\alpha)\,\mathrm{d}\alpha.
+\label{eq:ch06-convolution}
+\end{equation}
+The arguments are $x-\alpha$ and $\alpha$, not $\alpha-x$. The reflected convention $\int f_1(\alpha)f_2(\alpha-x)\,\mathrm{d}\alpha$ convolves $f_2$ with a reflected copy of $f_1$ and does not obey the product rule below. Substitute the inversion formula for $f_2$ and change the order of integration:
 \begin{align}
-\mathcal{F}[f']&=\mathrm{i}\omega F(\omega), &
-\mathcal{F}\left[\int^x f(s)\,\mathrm{d}s\right]&=\frac{F(\omega)}{\mathrm{i}\omega},\\
-\mathcal{F}[f(ax)]&=\frac{1}{|a|}F\left(\frac{\omega}{a}\right), &
-\mathcal{F}[f(x-x_0)]&=e^{-\mathrm{i}\omega x_0}F(\omega),\\
-\mathcal{F}[e^{\mathrm{i}\omega_0x}f(x)]&=F(\omega-\omega_0).
+(f_1*f_2)(x)
+&=\int f_1(\alpha)
+\left(\frac{1}{\sqrt{2\pi}}\int F_2(\omega)e^{\mathrm{i}\omega(x-\alpha)}\,\mathrm{d}\omega\right)\mathrm{d}\alpha
+\nonumber\\
+&=\frac{1}{\sqrt{2\pi}}\int F_2(\omega)e^{\mathrm{i}\omega x}
+\left(\int f_1(\alpha)e^{-\mathrm{i}\omega\alpha}\,\mathrm{d}\alpha\right)\mathrm{d}\omega
+\nonumber\\
+&=\frac{1}{\sqrt{2\pi}}\int\bigl(\sqrt{2\pi}\,F_1(\omega)F_2(\omega)\bigr)e^{\mathrm{i}\omega x}\,\mathrm{d}\omega.
 \end{align}
-The derivative theorem is especially important: differentiation in physical space corresponds to multiplication by $\mathrm{i}\omega$ in frequency space. The same idea converts many linear \acrodef{ODE}{ordinary differential equations} and PDEs into algebraic problems in Fourier space. For \term{convolution} $(f_1*f_2)(x)=\int_{-\infty}^{\infty}f_1(s)f_2(x-s)\,\mathrm{d}s$, the symmetric normalization gives $\mathcal{F}[f_1*f_2]=\sqrt{2\pi}F_1F_2$.
+The inner integral is $\sqrt{2\pi}\,F_1(\omega)$. Comparing with \eqref{eq:ch06-ift} gives the convolution theorem for this normalization,
+\begin{equation}
+\mathcal{F}[f_1*f_2]=\sqrt{2\pi}\,F_1(\omega)F_2(\omega).
+\label{eq:ch06-conv-thm}
+\end{equation}
+The factor $\sqrt{2\pi}$ belongs to the symmetric convention. It is absent from the asymmetric convention in which $2\pi$ sits entirely on one side, and it is absent from the Laplace convolution on a half-line. The next section returns to convolution in order to treat Gaussians, step functions, and products of delta functions; the identity \eqref{eq:ch06-conv-thm} is the form required there.
 
 \subsection{Higher-dimensional transforms}
 
-For $f(\mathbf{r})$ on $\mathbb{R}^d$,
+On $\mathbb{R}^d$ the same symmetric splitting of $(2\pi)^d$ puts the factor $(2\pi)^{-d/2}$ on each side:
 \begin{align}
-F(\mathbf{k})&=\frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d}f(\mathbf{r})e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}^d\mathbf{r},\\
-f(\mathbf{r})&=\frac{1}{(2\pi)^{d/2}}\int_{\mathbb{R}^d}F(\mathbf{k})e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}^d\mathbf{k}.
+F(\mathbf{k})
+&=\frac{1}{(2\pi)^{d/2}}
+\int_{\mathbb{R}^d}f(\mathbf{r})e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}^d\mathbf{r},
+\label{eq:ch06-ft-d}\\
+f(\mathbf{r})
+&=\frac{1}{(2\pi)^{d/2}}
+\int_{\mathbb{R}^d}F(\mathbf{k})e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}^d\mathbf{k}.
 \end{align}
-For a rectangular aperture $f(x,y)=A$ on $|x|\leq X$, $|y|\leq Y$ and zero otherwise, its two-dimensional transform is proportional to
-\begin{equation}
-AXY\frac{\sin(k_1X)}{k_1X}\frac{\sin(k_2Y)}{k_2Y}.
-\end{equation}
-This sinc pattern is the Fraunhofer diffraction pattern of a rectangular opening.
+An equivalent convention places $(2\pi)^{-d}$ on one side only. The two conventions must not be mixed inside a single calculation. In two dimensions the symmetric factor is $1/(2\pi)$ on each side. In three dimensions it is $(2\pi)^{-3/2}$ on each side.
+
+\begin{example}[Fraunhofer pattern of a rectangular aperture]
+Let $f(x,y)=A$ on the rectangle $|x|\leq X$, $|y|\leq Y$, and let $f=0$ outside. This is a standard model of a uniformly illuminated rectangular opening. With the two-dimensional symmetric transform,
+\begin{align}
+F(k_1,k_2)
+&=\frac{A}{2\pi}
+\int_{-X}^{X}e^{-\mathrm{i}k_1 x}\,\mathrm{d}x
+\int_{-Y}^{Y}e^{-\mathrm{i}k_2 y}\,\mathrm{d}y
+\nonumber\\
+&=\frac{A}{2\pi}
+\cdot\frac{2\sin(k_1 X)}{k_1}
+\cdot\frac{2\sin(k_2 Y)}{k_2}
+\nonumber\\
+&=\frac{2AXY}{\pi}
+\,\frac{\sin(k_1 X)}{k_1 X}
+\,\frac{\sin(k_2 Y)}{k_2 Y}.
+\end{align}
+Each factor $\sin(u)/u$ is the one-dimensional pulse transform. The pattern is bright on axis, where both quotients equal $1$ and $F(0,0)=2AXY/\pi$, and it has nodal lines $k_1 X=n\pi$ and $k_2 Y=m\pi$ for nonzero integers $n,m$. Using $(2\pi)^{-2}$ in front of this integral would disagree with \eqref{eq:ch06-ft-d} and would not reproduce the algebra above. The asymmetric two-dimensional convention, with $1/(2\pi)$ on the forward transform and no constant on the inverse, is a different pair and is not the one used here.
+\end{example}

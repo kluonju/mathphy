@@ -1,0 +1,628 @@
+% !TEX program = xelatex
+% 第三讲：varsep.tex + cartesian.tex
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{数学物理方程}
+\subtitle{第三讲：分离变量法}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲要完成的两个问题}
+  第二讲留下了两端固定弦的初边值问题，以及一个原则：坐标要和边界几何相配。
+  \vspace{0.4em}
+
+  本讲用\textbf{分离变量法}做完两件事。
+  \begin{enumerate}
+    \item 齐次波动方程加固定端：把运动分解成驻波，再用傅里叶正弦级数配初始数据。外力则化成一组受迫振子。
+    \item 均匀电场中的长直圆柱：直角坐标乘积解配不上圆边界，改到极坐标后，边界变成 $r=a$。
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  \begin{enumerate}
+    \item 先核对一个纯音，再问还有哪些纯音；
+    \item 分离变量得到正弦级数；初值已是正弦时直接读系数，否则做积分；
+    \item 先解一个不随时间变化的外力，再把它看成杜阿梅尔积分的特例；
+    \item 圆边界改用极坐标，最后把求出的势代回边界和远场。
+  \end{enumerate}
+\end{frame}
+
+% =============================================================
+\section{分离变量}
+
+\subsection{乘积解}
+
+\begin{frame}{固定弦}
+  先解齐次问题
+  \begin{equation*}
+    \left\{
+    \begin{aligned}
+      u_{tt}-a^2u_{xx}&=0, && 0<x<\ell,\ t>0,\\
+      u(0,t)&=u(\ell,t)=0, && t\geq 0,\\
+      u(x,0)&=\varphi(x),\quad u_t(x,0)=\psi(x).
+    \end{aligned}
+    \right.
+  \end{equation*}
+  分离变量寻找每一项只依赖一个自变量的乘积解，再叠加。先不要推导，只核对一个这样的解。
+\end{frame}
+
+\begin{frame}{例：先核对一个纯音}
+  设 $\omega=\pi a/\ell$，
+  \begin{equation*}
+    u(x,t)=\sin\Bigl(\frac{\pi x}{\ell}\Bigr)\cos(\omega t).
+  \end{equation*}
+  则 $u_{xx}=-(\pi/\ell)^2 u$，而 $\omega^2=a^2(\pi/\ell)^2$，故 $u_{tt}=-\omega^2 u=a^2 u_{xx}$。
+  \begin{itemize}
+    \item 端点：$\sin 0=\sin\pi=0$，所以 $u(0,t)=u(\ell,t)=0$。
+    \item 初始位移 $u(x,0)=\sin(\pi x/\ell)$，初始速度 $u_t(x,0)=0$。
+  \end{itemize}
+  这是从静止松开的基频。分离变量要做的，是把所有这种纯音找全，再按初始数据组合。
+\end{frame}
+
+\begin{frame}{代入并分离}
+  设一个模态是 $u(x,t)=X(x)T(t)$。代入 $u_{tt}-a^2u_{xx}=0$，除以 $a^2XT$（在 $XT\neq 0$ 处），
+  \begin{equation*}
+    \frac{X''}{X}=\frac{T''}{a^2T}=-\lambda.
+  \end{equation*}
+  左边只依赖 $x$，右边只依赖 $t$。它们在整个区域里相等，只能都等于同一个常数。把这个常数写成 $-\lambda$，是为了让固定端对应的 $\lambda$ 是正数。
+\end{frame}
+
+\begin{frame}{两个常微分方程}
+  分离后的方程是
+  \begin{equation*}
+    X''+\lambda X=0,
+    \qquad
+    T''+a^2\lambda T=0.
+  \end{equation*}
+  固定端 $u(0,t)=u(\ell,t)=0$ 对所有 $t$ 成立。$T$ 不恒为零，所以
+  \begin{equation*}
+    X(0)=X(\ell)=0.
+  \end{equation*}
+  这是 $X$ 的本征值问题：我们要的不是通解，而是能同时满足两个零端点条件的非零解。
+\end{frame}
+
+\begin{frame}{$\lambda<0$ 只有零解}
+  设 $\lambda=-\mu^2<0$，$\mu>0$。通解为
+  \begin{equation*}
+    X(x)=A\cosh(\mu x)+B\sinh(\mu x).
+  \end{equation*}
+  $X(0)=0$ 迫使 $A=0$。于是 $X(\ell)=B\sinh(\mu\ell)=0$。
+  $\sinh(\mu\ell)\neq 0$，故 $B=0$。
+  \vspace{0.4em}
+
+  指数型的增长和衰减不能在两个端点同时为零，除非整段弦都不动。
+\end{frame}
+
+\begin{frame}{$\lambda=0$ 也只有零解}
+  $\lambda=0$ 时 $X''=0$，所以 $X(x)=Ax+B$。
+  \begin{equation*}
+    X(0)=B=0,
+    \qquad
+    X(\ell)=A\ell=0.
+  \end{equation*}
+  因此 $A=B=0$。直线也不能同时过两个零端点，除非它就是 $x$ 轴。
+  \vspace{0.4em}
+
+  边界把允许的波长收成离散集合，而不是任意的空间振荡。
+\end{frame}
+
+\begin{frame}{正本征值}
+  只剩 $\lambda>0$。令 $\lambda=k^2$，$k>0$，则
+  \begin{equation*}
+    X(x)=A\cos(kx)+B\sin(kx).
+  \end{equation*}
+  $X(0)=0$ 给出 $A=0$。$X(\ell)=B\sin(k\ell)=0$。
+  要非零解，必须 $\sin(k\ell)=0$，即 $k\ell=n\pi$，$n=1,2,\ldots$。$n=0$ 回到已经排除的 $\lambda=0$；负的 $n$ 只改变 $B$ 的符号，不产生新的解。
+\end{frame}
+
+\begin{frame}{本征值与本征函数}
+  \begin{equation*}
+    \boxed{\lambda_n=\Bigl(\frac{n\pi}{\ell}\Bigr)^2,
+    \qquad
+    X_n(x)=\sin\Bigl(\frac{n\pi x}{\ell}\Bigr),
+    \qquad n=1,2,\ldots.}
+  \end{equation*}
+  $B$ 可以吸收到时间因子里，所以空间部分把 $B$ 取成 $1$。
+  \vspace{0.3em}
+
+  $X_n$ 在 $(0,\ell)$ 内有 $n-1$ 个节点，相邻节点的距离是半个波长 $\ell/n$。
+\end{frame}
+
+\subsection{时间因子与级数}
+
+\begin{frame}{每个模态怎样振动}
+  对 $\lambda_n$，时间方程是 $T''+\omega_n^2 T=0$，
+  \begin{equation*}
+    \omega_n=\frac{n\pi a}{\ell}.
+  \end{equation*}
+  通解为
+  \begin{equation*}
+    T_n(t)=A_n\cos\Bigl(\frac{n\pi a t}{\ell}\Bigr)
+           +B_n\sin\Bigl(\frac{n\pi a t}{\ell}\Bigr).
+  \end{equation*}
+  频率与 $n$ 成正比，也与波速 $a$ 成正比。弦越短、张得越紧，音调越高。
+\end{frame}
+
+\begin{frame}{叠加}
+  方程和边界条件都是线性齐次的，这些简正模可以相加：
+  \begin{equation*}
+    \boxed{
+    \begin{aligned}
+    u(x,t)=\sum_{n=1}^{\infty}
+    &\left[A_n\cos\Bigl(\frac{n\pi a t}{\ell}\Bigr)
+      +B_n\sin\Bigl(\frac{n\pi a t}{\ell}\Bigr)\right]\\
+    &\times\sin\Bigl(\frac{n\pi x}{\ell}\Bigr).
+    \end{aligned}}
+  \end{equation*}
+  只要系数使级数足够光滑，逐项求导就回到波动方程，而且每一项都满足 $u(0,t)=u(\ell,t)=0$。
+\end{frame}
+
+\begin{frame}{第 $n$ 项是驻波}
+  第 $n$ 项可以写成 $C_n\sin(n\pi x/\ell)\cos(\omega_n t-\phi_n)$。
+  \begin{itemize}
+    \item 节点固定在 $x=m\ell/n$，$m=0,1,\ldots,n$。波形不沿弦传播。
+    \item 角频率 $\omega_n=n\pi a/\ell$。
+    \item $n=1$ 是基频，更高的 $n$ 是泛音。
+  \end{itemize}
+  任意小振动都被分解成这根弦自己的自然模态。
+\end{frame}
+
+\subsection{傅里叶系数}
+
+\begin{frame}{$t=0$ 时级数变成正弦级数}
+  在 $t=0$，
+  \begin{equation*}
+    u(x,0)=\sum_{n=1}^{\infty} A_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)=\varphi(x).
+  \end{equation*}
+  对时间求导后再令 $t=0$，余弦项消失，正弦项留下因子 $\omega_n$：
+  \begin{equation*}
+    u_t(x,0)
+    =\sum_{n=1}^{\infty} B_n\omega_n\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+    =\psi(x).
+  \end{equation*}
+  $A_n$ 由初始形状决定，$B_n\omega_n$ 由初始速度决定。
+\end{frame}
+
+\begin{frame}{例：初值已经是两个正弦}
+  设弦从静止松开，
+  \begin{equation*}
+    \varphi(x)=\sin\Bigl(\frac{\pi x}{\ell}\Bigr)
+      +\frac12\sin\Bigl(\frac{2\pi x}{\ell}\Bigr),
+    \qquad \psi=0.
+  \end{equation*}
+  右端已经按本征函数写好，系数就是傅里叶系数：$A_1=1$，$A_2=1/2$，其余 $A_n=0$，并且每个 $B_n=0$。
+  \begin{equation*}
+    u=\sin\Bigl(\frac{\pi x}{\ell}\Bigr)\cos\Bigl(\frac{\pi a t}{\ell}\Bigr)
+     +\frac12\sin\Bigl(\frac{2\pi x}{\ell}\Bigr)
+      \cos\Bigl(\frac{2\pi a t}{\ell}\Bigr).
+  \end{equation*}
+  基频和二次泛音同时存在，二次泛音的频率是基频的两倍。形状不是正弦时，才需要下面的积分。
+\end{frame}
+
+\begin{frame}{正弦函数的正交性}
+  在 $[0,\ell]$ 上，
+  \begin{equation*}
+    \int_0^{\ell}
+      \sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+      \sin\Bigl(\frac{m\pi x}{\ell}\Bigr)\,\mathrm{d}x
+    =
+    \begin{cases}
+      0, & n\neq m,\\
+      \ell/2, & n=m\geq 1.
+    \end{cases}
+  \end{equation*}
+  用积化和差：$\sin P\sin Q=\tfrac12[\cos(P-Q)-\cos(P+Q)]$。$n\neq m$ 时积分的是整周期的余弦；$n=m$ 时 $\int_0^\ell \tfrac12\bigl(1-\cos(2n\pi x/\ell)\bigr)\,\mathrm{d}x=\ell/2$。
+\end{frame}
+
+\begin{frame}{系数公式}
+  用 $\sin(m\pi x/\ell)$ 去乘级数并在 $[0,\ell]$ 上积分，正交性把一个系数单独挑出来：
+  \begin{align*}
+    A_n&=\frac{2}{\ell}\int_0^{\ell}
+      \varphi(x)\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x,\\[4pt]
+    B_n\omega_n&=\frac{2}{\ell}\int_0^{\ell}
+      \psi(x)\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+  \end{align*}
+  因为 $\omega_n=n\pi a/\ell$，第二个积分等于 $B_n\omega_n$，故
+  \begin{equation*}
+    B_n=\frac{2}{n\pi a}\int_0^{\ell}
+      \psi(x)\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+  \end{equation*}
+  $\ell$ 在 $\omega_n=n\pi a/\ell$ 的分母里，和系数前的 $2/\ell$ 相消。
+\end{frame}
+
+\begin{frame}{例：抛物线初值只有奇次泛音}
+  从静止松开，初始形状 $\varphi(x)=x(\ell-x)$，$\psi=0$。它关于中点 $x=\ell/2$ 左右对称。
+  \vspace{0.3em}
+
+  $\sin(2\pi x/\ell)$、$\sin(4\pi x/\ell)$ 等偶数模关于中点反对称，和对称的 $\varphi$ 乘在一起积分为零。奇数模对称，留得下来。代入系数公式并分部积分，得到
+  \begin{equation*}
+    A_n=
+    \begin{cases}
+      8\ell^{2}/(n^{3}\pi^{3}), & n\text{ 为奇数},\\
+      0, & n\text{ 为偶数},
+    \end{cases}
+    \qquad B_n=0.
+  \end{equation*}
+  $1/n^3$ 衰减很快，只保留 $n=1$ 已经抓住拱形的主要部分；节点数要更多时才需要 $n=3,5,\ldots$。
+\end{frame}
+
+\begin{frame}{正弦基不是随意选的}
+  $\sin(n\pi x/\ell)$ 由两端的齐次狄利克雷条件决定。
+  \vspace{0.4em}
+
+  若两端都是自由端，$X'(0)=X'(\ell)=0$，同样的讨论会选出
+  \begin{equation*}
+    \lambda_n=\Bigl(\frac{n\pi}{\ell}\Bigr)^2,
+    \qquad
+    X_n(x)=\cos\Bigl(\frac{n\pi x}{\ell}\Bigr),
+    \qquad n=0,1,2,\ldots.
+  \end{equation*}
+  $n=0$ 是允许的常数解。一端固定、一端自由，则是只含四分之一波长奇数倍的正弦。基函数跟着边界条件走。
+\end{frame}
+
+% =============================================================
+\section{受迫振动}
+
+\subsection{按模态展开}
+
+\begin{frame}{外力也按本征函数展开}
+  边界条件仍是齐次的，位移和外力都按同一组 $X_n$ 展开：
+  \begin{equation*}
+    u(x,t)=\sum_n T_n(t)X_n(x),
+    \qquad
+    f(x,t)=\sum_n f_n(t)X_n(x).
+  \end{equation*}
+  对固定弦，$X_n=\sin(n\pi x/\ell)$，
+  \begin{equation*}
+    f_n(t)=\frac{2}{\ell}\int_0^{\ell}
+      f(x,t)\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+  \end{equation*}
+  这是傅里叶级数方法：空间依赖交给简正模，每个模态只剩一个时间上的常微分方程。
+\end{frame}
+
+\begin{frame}{模态振子}
+  把展开代入 $u_{tt}-a^2u_{xx}=f$。利用 $X_n''=-\lambda_n X_n$ 和 $\omega_n^2=a^2\lambda_n$，正交性把偏微分方程拆开：
+  \begin{equation*}
+    \boxed{T_n''+\omega_n^2 T_n=f_n(t).}
+  \end{equation*}
+  每个模态是一个固有频率为 $\omega_n$ 的受迫谐振子。$T_n(0)$ 和 $T_n'(0)$ 仍由 $\varphi$ 和 $\psi$ 的正弦系数给出，也就是上一节的 $A_n$ 和 $B_n\omega_n$。
+\end{frame}
+
+\begin{frame}{例：一个不随时间变化的外力}
+  设 $f(x,t)=\sin(\pi x/\ell)$，弦起初静止：$\varphi=\psi=0$。只有 $n=1$ 被激发，$f_1=1$，$\omega_1=\pi a/\ell$。
+  \begin{equation*}
+    T_1''+\omega_1^2 T_1=1.
+  \end{equation*}
+  特解是常数 $1/\omega_1^2$。通解 $T_1=A\cos(\omega_1 t)+B\sin(\omega_1 t)+1/\omega_1^2$。
+  $T_1(0)=0$ 给出 $A=-1/\omega_1^2$，$T_1'(0)=0$ 给出 $B=0$，所以
+  \begin{equation*}
+    u(x,t)=\frac{1-\cos(\omega_1 t)}{\omega_1^2}
+      \sin\Bigl(\frac{\pi x}{\ell}\Bigr).
+  \end{equation*}
+  弦以基频在静力平衡位置两侧振动，没有换到别的模态。
+\end{frame}
+
+\subsection{杜阿梅尔原理}
+
+\begin{frame}{把外力看成一串短冲量}
+  另一种等价的物理描述是杜阿梅尔原理。连续的力可以看成时刻 $\tau$ 相继作用的短冲量。
+  \begin{itemize}
+    \item 时刻 $\tau$ 的冲量给速度一个增量，大小与 $f(x,\tau)\,\mathrm{d}\tau$ 成正比。
+    \item 冲量之后，运动满足齐次波动方程。
+    \item 总响应是所有更早冲量的叠加。
+  \end{itemize}
+  因果性已经写在这个图像里：只有 $\tau\leq t$ 的力能影响时刻 $t$ 的运动。
+\end{frame}
+
+\begin{frame}{一个模态的冲量响应}
+  对 $T''+\omega^2 T=f_n(t)$，设 $t<\tau$ 时振子静止。$\tau$ 处的冲量 $f_n(\tau)\,\mathrm{d}\tau$ 不改变位移，却把速度增加 $f_n(\tau)\,\mathrm{d}\tau$。
+  \vspace{0.3em}
+
+  之后的自由运动是 $(f_n(\tau)\,\mathrm{d}\tau/\omega)\sin\bigl(\omega(t-\tau)\bigr)$：它在 $t=\tau$ 处为零，而那里的时间导数等于 $f_n(\tau)\,\mathrm{d}\tau$。
+\end{frame}
+
+\begin{frame}{杜阿梅尔公式}
+  从 $0$ 积分到 $t$，并加上没有外力时由初始数据决定的自由振动，
+  \begin{equation*}
+    \boxed{
+    T_n(t)=T_n^{\mathrm{free}}(t)
+    +\int_0^{t}
+      \frac{\sin\bigl(\omega_n(t-\tau)\bigr)}{\omega_n}
+      f_n(\tau)\,\mathrm{d}\tau.}
+  \end{equation*}
+  自由部分就是 $A_n\cos(\omega_n t)+B_n\sin(\omega_n t)$。积分上限是 $t$，不是 $\infty$。
+\end{frame}
+
+\begin{frame}{常数力是这个积分的特例}
+  上一例中 $f_1=1$，从静止开始，$T_1^{\mathrm{free}}=0$。杜阿梅尔积分变成
+  \begin{equation*}
+    \int_0^{t}\frac{\sin\bigl(\omega_1(t-\tau)\bigr)}{\omega_1}\,\mathrm{d}\tau
+    =\frac{1-\cos(\omega_1 t)}{\omega_1^2}.
+  \end{equation*}
+  令 $s=t-\tau$ 即可算出。结果和直接解振子方程相同。
+  \vspace{0.3em}
+
+  力随时间变化时，闭式特解不一定好写，积分仍然可用。力不随时间变化时，两种算法必须一致。
+\end{frame}
+
+% =============================================================
+\section{极坐标中的势}
+
+\subsection{坐标必须配合边界}
+
+\begin{frame}{直角坐标为什么失败}
+  分离变量是否成功，取决于坐标是否贴住边界。矩形和固定弦适合直角坐标；圆形边界提示极坐标。
+  \vspace{0.4em}
+
+  还有一个实用的反面：能使方程看起来熟悉的坐标，如果让边界条件无法分离，仍然是差的选择。
+\end{frame}
+
+\begin{frame}{均匀电场中的长直导线}
+  考虑带电云和地面之间、近似均匀的电场里的一条水平输电线。导线理想化为半径 $a$ 的无限长导体圆柱。
+  \begin{itemize}
+    \item 表面出现感应电荷，近处的均匀场被扭曲。
+    \item 远处，原来的背景场基本不变。
+  \end{itemize}
+  取柱轴为 $z$ 轴。几何和远场都与 $z$ 无关，三维静电问题化成横截面上的 $xy$ 平面。
+\end{frame}
+
+\begin{frame}{圆上不能把 $X$ 和 $Y$ 分开}
+  导体以外没有电荷，所以 $V_{xx}+V_{yy}=0$。圆形边界 $x^2+y^2=a^2$ 却让直角坐标的乘积试探解失效：若 $V=X(x)Y(y)$，边界上
+  \begin{equation*}
+    X(x)\,Y\bigl(\sqrt{a^2-x^2}\bigr)=0
+  \end{equation*}
+  不能拆成只约束 $X$ 的条件和只约束 $Y$ 的条件。
+  \vspace{0.4em}
+
+  极坐标里，同一条边界就是 $r=a$。
+\end{frame}
+
+\begin{frame}{极坐标中的拉普拉斯方程}
+  导体以外，
+  \begin{equation*}
+    V_{rr}+\frac{1}{r}V_r+\frac{1}{r^2}V_{\phi\phi}=0,
+    \qquad r>a.
+  \end{equation*}
+  导体取为势的零点，$V(a,\phi)=0$。这是允许的：静电导体是等势体，有物理意义的是势差。
+  \vspace{0.3em}
+
+  取 $x$ 轴平行于背景场 $\mathbf{E}_0$。
+\end{frame}
+
+\begin{frame}{远场}
+  远处 $E_x=E_0$，$E_y=0$，所以 $-\partial V/\partial x=E_0$，均匀场的势是 $-E_0 x=-E_0 r\cos\phi$。
+  \vspace{0.3em}
+
+  单位长度带电 $q_0$ 的圆柱，还贡献对数远场 $-(q_0/(2\pi\varepsilon_0))\ln r$。因此
+  \begin{equation*}
+    V(r,\phi)\sim
+    V_{\infty}-\frac{q_0}{2\pi\varepsilon_0}\ln r-E_0 r\cos\phi
+    \qquad (r\to\infty).
+  \end{equation*}
+  可加常数 $V_{\infty}$ 反映势零点的选择。我们已经把导体选成零势，这个常数会被 $r=a$ 上的条件定掉。
+\end{frame}
+
+\subsection{分离变量}
+
+\begin{frame}{角向与径向分开}
+  设 $V=R(r)\Phi(\phi)$。代入后除以 $R\Phi$，再乘 $r^2$，
+  \begin{equation*}
+    \frac{r}{R}\frac{\mathrm{d}}{\mathrm{d}r}
+      \left(r\frac{\mathrm{d}R}{\mathrm{d}r}\right)
+    =-\frac{\Phi''}{\Phi}=m^2.
+  \end{equation*}
+  左边只依赖 $r$，右边只依赖 $\phi$，所以两边等于同一个分离常数，这里写成 $m^2$。
+\end{frame}
+
+\begin{frame}{周期性选出整数 $m$}
+  $\phi$ 增加 $2\pi$ 后回到同一个物理点，所以 $\Phi(\phi+2\pi)=\Phi(\phi)$。
+  \begin{equation*}
+    \Phi''+m^2\Phi=0.
+  \end{equation*}
+  非周期的指数解被排除。允许的角向本征函数是 $\cos(m\phi)$ 和 $\sin(m\phi)$，$m=0,1,2,\ldots$。
+  \vspace{0.3em}
+
+  $m$ 不是任意实数。单值性把它离散化，作用和固定端把 $\lambda$ 离散化相同。
+\end{frame}
+
+\begin{frame}{径向欧拉方程}
+  径向方程是
+  \begin{equation*}
+    r^2 R''+r R'-m^2 R=0.
+  \end{equation*}
+  这是欧拉方程。令 $r=e^{s}$，即 $s=\ln r$，则
+  \begin{equation*}
+    r R_r=R_s,
+    \qquad
+    r^2 R_{rr}=R_{ss}-R_s,
+  \end{equation*}
+  代入后得到 $R_{ss}-m^2 R=0$。
+\end{frame}
+
+\begin{frame}{径向解}
+  $m\geq 1$ 时，$R_{ss}=m^2 R$，
+  \begin{equation*}
+    R=A e^{ms}+C e^{-ms}=A r^{m}+C r^{-m}.
+  \end{equation*}
+  $m=0$ 时 $R_{ss}=0$，
+  \begin{equation*}
+    R=C_0+D_0 s=C_0+D_0\ln r.
+  \end{equation*}
+  $r^{m}$ 在无穷远处增长，$r^{-m}$ 在无穷远处衰减。外部问题两种都先保留，再用远场决定去留。
+\end{frame}
+
+\begin{frame}{外部调和函数的一般形式}
+  \begin{equation*}
+    \begin{aligned}
+    V={}&C_0+D_0\ln r\\
+    &+\sum_{m=1}^{\infty}\Big[
+      \bigl(A_m r^{m}+C_m r^{-m}\bigr)\cos(m\phi)\\
+      &\qquad
+      +\bigl(B_m r^{m}+D_m r^{-m}\bigr)\sin(m\phi)
+    \Big].
+    \end{aligned}
+  \end{equation*}
+  内部问题 $r<a$ 则会丢掉 $\ln r$ 和 $r^{-m}$，因为它们在 $r=0$ 处发散。这里是外部区域 $r>a$，原点不在区域内。
+\end{frame}
+
+\subsection{两边的边界条件}
+
+\begin{frame}{导体表面}
+  $V(a,\phi)=0$ 对所有 $\phi$ 成立。傅里叶系数唯一，所以每一模的系数分别为零：
+  \begin{equation*}
+    C_0+D_0\ln a=0,
+    \qquad
+    A_m a^{m}+C_m a^{-m}=0,
+    \qquad
+    B_m a^{m}+D_m a^{-m}=0.
+  \end{equation*}
+  即
+  \begin{equation*}
+    C_0=-D_0\ln a,
+    \qquad
+    C_m=-a^{2m}A_m,
+    \qquad
+    D_m=-a^{2m}B_m.
+  \end{equation*}
+  每一个增长的径向项都配上一个衰减项，使它们在 $r=a$ 上抵消。
+\end{frame}
+
+\begin{frame}{远场丢掉 $m>1$}
+  远场里最高次是 $r^1$。因此所有 $m>1$ 的增长项 $r^{m}$ 必须消失，否则它们会压过给定的远场。
+  \begin{itemize}
+    \item $m\geq 2$：$A_m=B_m=0$，从而 $C_m=D_m=0$。
+    \item 正弦的 $m=1$：远场没有 $\sin\phi$，故 $B_1=D_1=0$。
+    \item 余弦的 $m=1$：要再现 $-E_0 r\cos\phi$，故 $A_1=-E_0$，并且 $C_1=-a^2 A_1=E_0 a^2$。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{对数项}
+  远场的对数系数给出 $D_0=-q_0/(2\pi\varepsilon_0)$。配合 $C_0=-D_0\ln a$，
+  \begin{equation*}
+    C_0+D_0\ln r
+    =D_0\ln\frac{r}{a}
+    =\frac{q_0}{2\pi\varepsilon_0}\ln\frac{a}{r}.
+  \end{equation*}
+  常数 $V_{\infty}$ 已经吸收进导体零势的选择，不再单独出现。
+\end{frame}
+
+\begin{frame}{中性圆柱}
+  $q_0=0$ 时只留下 $m=1$ 的余弦模：
+  \begin{equation*}
+    \boxed{V(r,\phi)
+    =-E_0\left(r-\frac{a^2}{r}\right)\cos\phi.}
+  \end{equation*}
+  第一项 $-E_0 r\cos\phi$ 是未被扰动的均匀场，衰减项 $E_0(a^2/r)\cos\phi$ 是感应面电荷产生的修正。二者在 $r=a$ 上相消，导体保持零势。
+\end{frame}
+
+\begin{frame}{代回边界和远场}
+  在 $r=a$ 上，
+  \begin{equation*}
+    r-\frac{a^2}{r}=a-a=0,
+  \end{equation*}
+  所以 $V(a,\phi)=0$，和导体零势一致。
+  \vspace{0.4em}
+
+  $r\to\infty$ 时 $a^2/r\to 0$，于是 $V\sim -E_0 r\cos\phi=-E_0 x$。因此
+  \begin{equation*}
+    E_x=-\frac{\partial V}{\partial x}\to E_0,
+    \qquad E_y\to 0.
+  \end{equation*}
+  近处被圆柱扭曲，远处回到原来的均匀场。这一步就是稳态清单里的最后一步：解必须同时满足方程、边界和远场。
+\end{frame}
+
+\begin{frame}{带电圆柱}
+  单位长度带电 $q_0$ 时，完整结果是
+  \begin{equation*}
+    V(r,\phi)
+    =\frac{q_0}{2\pi\varepsilon_0}\ln\frac{a}{r}
+    -E_0\left(r-\frac{a^2}{r}\right)\cos\phi.
+  \end{equation*}
+  对数项是长圆柱上电荷的势。在外部区域，它和放在轴上的线电荷的势形式相同。
+  \vspace{0.3em}
+
+  均匀场的项和感应电荷的项仍与中性情形一样。线电荷的势是轴对称的，不破坏已经满足的 $\cos\phi$ 边界搭配。
+\end{frame}
+
+\begin{frame}{表面场增强到 $2E_0$}
+  对中性圆柱，$V=-E_0(r-a^2/r)\cos\phi$，
+  \begin{equation*}
+    E_r=-\frac{\partial V}{\partial r}
+    =E_0\left(1+\frac{a^2}{r^2}\right)\cos\phi.
+  \end{equation*}
+  在 $r=a$ 上，$E_r=2E_0\cos\phi$。因此 $\phi=0$ 和 $\phi=\pi$ 两点，法向场的大小都是 $2E_0$。
+  \vspace{0.3em}
+
+  场在与外场对齐的两端被加强。那里更可能发生电击穿。
+\end{frame}
+
+\begin{frame}{赤道上势等于导体}
+  在 $y$ 轴上，$\phi=\pm\pi/2$，$\cos\phi=0$。感应修正和均匀场的势都为零。
+  \vspace{0.3em}
+
+  中性圆柱的势在这两条射线上处处等于导体的势。带电圆柱则只剩下对数项：赤道上的势等于线电荷的势，不再受均匀场那一对余弦项的影响。
+\end{frame}
+
+\begin{frame}{这个例子说明什么}
+  坐标选择不是装饰。
+  \begin{itemize}
+    \item 圆几何把难以分离的直角坐标边界条件，变成 $r$ 等于常数的条件。
+    \item 角向周期性离散化 $m$，导体边界把 $r^{m}$ 和 $r^{-m}$ 配成对，远场再决定哪些模留下。
+    \item 和固定弦是同一套步骤：分离、本征值、叠加、用边界和远场定系数。
+  \end{itemize}
+\end{frame}
+
+% =============================================================
+\section{全章小结}
+
+\begin{frame}{三条方程与三类问题}
+  \begin{align*}
+    u_{tt}-a^2\nabla^2 u&=f
+      && \text{双曲：有限速度传播},\\
+    u_t-\kappa\nabla^2 u&=f
+      && \text{抛物：扩散抹平},\\
+    \nabla^2 u&=f
+      && \text{椭圆：平衡或势}.
+  \end{align*}
+  两个自变量时，类型由 $\Delta=B^2-AC$ 的符号决定，而且非奇异的坐标变换不改变这个符号。
+\end{frame}
+
+\begin{frame}{定解与求解}
+  \begin{itemize}
+    \item 狄利克雷指定场，诺伊曼指定法向通量，罗宾把二者线性组合。
+    \item 齐次线性问题可以叠加。分离变量把边界条件变成本征值问题，初始数据或另一侧边界决定系数。
+    \item 固定弦的系数是正弦级数；圆柱外的势是 $\ln r$、$r^{\pm m}$ 乘三角函数。
+    \item 外力不改变空间模态，只把每个模态变成 $T_n''+\omega_n^2 T_n=f_n$。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{两条用了整章的公式}
+  两端固定的弦：
+  \begin{equation*}
+    u(x,t)=\sum_{n=1}^{\infty}
+    \bigl[A_n\cos(\omega_n t)+B_n\sin(\omega_n t)\bigr]
+    \sin\Bigl(\frac{n\pi x}{\ell}\Bigr),
+    \quad \omega_n=\frac{n\pi a}{\ell}.
+  \end{equation*}
+  均匀电场中的中性导体圆柱：
+  \begin{equation*}
+    V(r,\phi)=-E_0\left(r-\frac{a^2}{r}\right)\cos\phi.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{延伸阅读}
+  \begin{itemize}
+    \item Strauss, \textit{Partial Differential Equations}.
+    \item Tikhonov \& Samarskii, \textit{Equations of Mathematical Physics}.
+    \item Courant \& Hilbert, \textit{Methods of Mathematical Physics}, Vol.~II.
+  \end{itemize}
+  \vspace{0.6em}
+  傅里叶级数本身、球坐标和柱坐标里的特殊函数，以及格林函数，分别在后面的章节展开。
+\end{frame}
+
+\end{document}

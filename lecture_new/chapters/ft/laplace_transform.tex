@@ -1,73 +1,266 @@
 \section{Laplace transform and inversion}
 
-\subsection{Definition and existence}
+\subsection{From the Fourier integral to a half-line}
 
-The Fourier transform is powerful for spectral analysis, but functions such as $e^{\alpha t}$ with $\alpha>0$ are not absolutely integrable and therefore have no ordinary Fourier transform. Initial-value problems also concern $t\geq0$. Multiplying a causal function by $e^{-\sigma t}$ supplies a convergence factor and leads to the \term{Laplace transform}
+The Fourier transform is the right tool for spectra of functions that decay in both directions. It is a poor tool for two common situations. A growing exponential $e^{\alpha t}$ with $\alpha>0$ is not absolutely integrable, so \eqref{eq:ch06-ft} does not apply. And an initial-value problem asks for $t\geq 0$ only: the values before the initial instant are not part of the data.
+
+Both objections are removed by the same modification. Set $f(t)=0$ for $t<0$, and multiply by a decaying factor $e^{-\sigma t}$ with $\sigma$ large enough that
 \begin{equation}
-\bar f(p)=\mathcal{L}\{f(t)\}=\int_0^\infty e^{-pt}f(t)\,\mathrm{d}t,
-\qquad p=\sigma+\mathrm{i}\omega.
+g(t)=e^{-\sigma t}f(t)
 \end{equation}
-The function $f$ is the original and $\bar f$ its transform. A sufficient existence condition is that $f$ and its derivative be piecewise continuous on every finite subinterval of $[0,\infty)$ and that $|f(t)|\leq Me^{\sigma_0t}$ for some constants $M$ and $\sigma_0$. The number $\sigma_0$ is called an abscissa of convergence. In the half-plane $\operatorname{Re}p>\sigma_0$, $\bar f$ is analytic and tends to zero as $|p|\to\infty$.
+is absolutely integrable. The function $g$ has a Fourier transform. In the asymmetric normalization used to derive the inversion formula, that transform is
+\begin{equation}
+\frac{1}{2\pi}\int_0^{\infty}f(t)e^{-(\sigma+\mathrm{i}\omega)t}\,\mathrm{d}t.
+\end{equation}
+The combination $p=\sigma+\mathrm{i}\omega$ is the new variable. Absorbing the constant $2\pi$ into the definition produces the \term{Laplace transform}
+\begin{equation}
+\bar f(p)=\mathcal{L}\{f(t)\}=\int_0^{\infty}e^{-pt}f(t)\,\mathrm{d}t.
+\label{eq:ch06-laplace}
+\end{equation}
+The integral is the Laplace integral, $e^{-pt}$ is its kernel, and $\mathcal{L}$ is linear. The function $f$ is the original and $\bar f$ its transform.
 
-The inverse transform is the \term{Bromwich integral}
+Fourier inversion for $g$, followed by $g(t)=e^{-\sigma t}f(t)$ and $\mathrm{d}\omega=\mathrm{d}p/\mathrm{i}$, produces the \term{Bromwich integral}
 \begin{equation}
 f(t)=\mathcal{L}^{-1}[\bar f(p)]
 =\frac{1}{2\pi\mathrm{i}}\int_{\sigma-\mathrm{i}\infty}^{\sigma+\mathrm{i}\infty}
-\bar f(p)e^{pt}\,dp.
+\bar f(p)e^{pt}\,\mathrm{d}p,
 \label{eq:ch06-bromwich}
 \end{equation}
-It follows directly by applying Fourier inversion to $e^{-\sigma t}f(t)$. The Laplace transform is linear, and $\mathcal{L}\{\delta(t-t_0)\}=e^{-pt_0}$ for $t_0>0$. The practical significance is that differentiation in the time domain becomes multiplication by $p$ in the transform domain, so a differential equation with initial data is converted into an algebraic equation for $\bar f(p)$.
+valid for $t>0$ when $\sigma$ lies to the right of every singularity of $\bar f$. The vertical contour is the Bromwich line. For $t<0$ the same construction gives zero, which is the causal cutoff built into \eqref{eq:ch06-laplace}.
 
-\begin{example}
-Direct integration gives
+\subsection{Existence}
+
+A convenient sufficient condition is the following. On every finite subinterval of $[0,\infty)$, the function $f$ and its derivative are continuous except for finitely many jumps, and there exist constants $M$ and $\sigma_0$ such that
+\begin{equation}
+|f(t)|\leq M e^{\sigma_0 t}
+\qquad(t\geq 0).
+\end{equation}
+Any such $\sigma_0$ is an abscissa of convergence; the greatest lower bound of admissible $\sigma_0$ is the abscissa. In the half-plane $\operatorname{Re}p>\sigma_0$ the integral \eqref{eq:ch06-laplace} converges absolutely, $\bar f$ is analytic, and $\bar f(p)\to 0$ as $\operatorname{Re}p\to+\infty$ inside that half-plane. Consequently a transform that grows like a positive power of $p$ at infinity is not a Laplace transform of a function satisfying the bound above.
+
+The bound is sufficient, not necessary, and it is not automatic. The function $e^{t^2}$ grows faster than every exponential $e^{\sigma_0 t}$, and $\int_0^{\infty}e^{-pt}e^{t^2}\,\mathrm{d}t$ diverges for every $p$. Most of the functions that arise from linear differential equations with constant coefficients do satisfy the bound.
+
+The delta function sits at the edge of this class. For $t_0>0$,
+\begin{equation}
+\mathcal{L}\{\delta(t-t_0)\}
+=\int_0^{\infty}e^{-pt}\delta(t-t_0)\,\mathrm{d}t
+=e^{-pt_0}.
+\label{eq:ch06-laplace-delta}
+\end{equation}
+If the impulse is placed at the origin, the integral from $0$ to $\infty$ must be understood to include the endpoint, and $\mathcal{L}\{\delta(t)\}=1$.
+
+\subsection{Elementary transforms}
+
+Each formula below is an ordinary improper integral, and the half-plane is the set of $p$ for which it converges.
+
+\begin{example}[Powers of $t$]
+For $\operatorname{Re}p>0$,
+\begin{equation}
+\mathcal{L}\{1\}=\int_0^{\infty}e^{-pt}\,\mathrm{d}t=\frac{1}{p}.
+\end{equation}
+Integrate by parts, or differentiate both sides with respect to $p$, to get $\mathcal{L}\{t\}=1/p^2$. Repeating the differentiation gives, for each integer $n\geq 0$,
+\begin{equation}
+\mathcal{L}\{t^n\}=\frac{n!}{p^{n+1}},
+\qquad\operatorname{Re}p>0.
+\label{eq:ch06-laplace-tn}
+\end{equation}
+The same differentiation under the integral sign is justified by the exponential decay of $e^{-pt}$ for $\operatorname{Re}p>0$.
+\end{example}
+
+\begin{example}[Exponentials]
+For $\operatorname{Re}(p-s)>0$,
+\begin{equation}
+\mathcal{L}\{e^{st}\}=\int_0^{\infty}e^{-(p-s)t}\,\mathrm{d}t=\frac{1}{p-s}.
+\end{equation}
+Differentiating $n$ times with respect to $s$, or repeating the argument that produced \eqref{eq:ch06-laplace-tn}, yields
+\begin{equation}
+\mathcal{L}\{t^ne^{st}\}=\frac{n!}{(p-s)^{n+1}}.
+\end{equation}
+\end{example}
+
+\begin{example}[Hyperbolic functions]
+Write $\cosh(kt)=(e^{kt}+e^{-kt})/2$ and $\sinh(kt)=(e^{kt}-e^{-kt})/2$. Linearity and the previous example give, for $\operatorname{Re}p>|k|$,
 \begin{align}
-\mathcal{L}\{1\}&=\int_0^\infty e^{-pt}\,\mathrm{d}t=\frac{1}{p}, &
-\mathcal{L}\{t^n\}&=\int_0^\infty t^n e^{-pt}\,\mathrm{d}t=\frac{n!}{p^{n+1}},\\
-\mathcal{L}\{e^{st}\}&=\int_0^\infty e^{(s-p)t}\,\mathrm{d}t=\frac{1}{p-s}, &
-\mathcal{L}\{t^ne^{st}\}&=\frac{n!}{(p-s)^{n+1}},\\
-\mathcal{L}\{\cosh kt\}&=\frac12\left(\frac{1}{p-k}+\frac{1}{p+k}\right)=\frac{p}{p^2-k^2}, &
-\mathcal{L}\{\sinh kt\}&=\frac12\left(\frac{1}{p-k}-\frac{1}{p+k}\right)=\frac{k}{p^2-k^2}.
+\mathcal{L}\{\cosh(kt)\}
+&=\frac12\left(\frac{1}{p-k}+\frac{1}{p+k}\right)
+=\frac{p}{p^2-k^2},\\
+\mathcal{L}\{\sinh(kt)\}
+&=\frac12\left(\frac{1}{p-k}-\frac{1}{p+k}\right)
+=\frac{k}{p^2-k^2}.
 \end{align}
-Each formula holds in the half-plane where the defining integral converges. The point is that the Laplace transform turns elementary exponential and polynomial factors into rational functions, which is precisely why it is so useful in solving linear ODEs.
+\end{example}
+
+\begin{example}[Sine and cosine]
+Start from $\mathcal{L}\{e^{\mathrm{i}\omega t}\}=1/(p-\mathrm{i}\omega)$, valid for $\operatorname{Re}p>0$. The imaginary and real parts are
+\begin{align}
+\mathcal{L}\{\sin(\omega t)\}
+&=\operatorname{Im}\frac{1}{p-\mathrm{i}\omega}
+=\frac{\omega}{p^2+\omega^2},\\
+\mathcal{L}\{\cos(\omega t)\}
+&=\operatorname{Re}\frac{1}{p-\mathrm{i}\omega}
+=\frac{p}{p^2+\omega^2}.
+\end{align}
+These two transforms are the ones needed for the harmonic oscillator at the end of the chapter. The hyperbolic pair is the same calculation with $\omega$ replaced by $\mathrm{i}k$.
 \end{example}
 
 \subsection{Operational rules}
 
-Writing $f(t)\longleftrightarrow\bar f(p)$, the principal rules are
+Write $f(t)\longleftrightarrow\bar f(p)$. The rules below assume that every transform written on the right exists in a common half-plane.
+
+Differentiate \eqref{eq:ch06-laplace} under the integral after an integration by parts. With $u=e^{-pt}$ and $\mathrm{d}v=f'(t)\,\mathrm{d}t$,
+\begin{equation}
+\int_0^{\infty}e^{-pt}f'(t)\,\mathrm{d}t
+=\Bigl[e^{-pt}f(t)\Bigr]_0^{\infty}
++p\int_0^{\infty}e^{-pt}f(t)\,\mathrm{d}t,
+\end{equation}
+The boundary term equals $-f(0)$, because $e^{-pt}f(t)$ vanishes at infinity and equals $f(0)$ at $t=0$. Therefore
+\begin{equation}
+f'(t)\longleftrightarrow p\bar f(p)-f(0).
+\label{eq:ch06-laplace-derivative}
+\end{equation}
+Apply the identity to $f'$, then to $f''$, and so on:
+\begin{equation}
+f^{(n)}(t)\longleftrightarrow
+p^n\bar f(p)-p^{n-1}f(0)-p^{n-2}f'(0)-\cdots-f^{(n-1)}(0).
+\label{eq:ch06-laplace-nth}
+\end{equation}
+Initial values enter as polynomials in $p$. That is the practical advantage over the Fourier transform: the initial state of an oscillator or a circuit is part of the algebra, not an extra unknown.
+
+The integral, scaling, shift, and delay rules are
 \begin{align}
-f'(t)&\longleftrightarrow p\bar f(p)-f(0),\\
-f^{(n)}(t)&\longleftrightarrow p^n\bar f-p^{n-1}f(0)-\cdots-f^{(n-1)}(0),\\
-\int_0^tf(\tau)\,\mathrm{d}\tau&\longleftrightarrow\frac{\bar f(p)}{p},\\
-f(at)&\longleftrightarrow\frac{1}{a}\bar f(p/a),\\
+\int_0^{t}f(\tau)\,\mathrm{d}\tau
+&\longleftrightarrow\frac{\bar f(p)}{p},\\
+f(at)&\longleftrightarrow\frac{1}{a}\bar f(p/a)
+\qquad(a>0),\\
 e^{-\lambda t}f(t)&\longleftrightarrow\bar f(p+\lambda),\\
-f(t-t_0)\Theta(t-t_0)&\longleftrightarrow e^{-pt_0}\bar f(p).
+f(t-t_0)\Theta(t-t_0)&\longleftrightarrow e^{-pt_0}\bar f(p)
+\qquad(t_0>0).
 \end{align}
-For the causal convolution
-\begin{equation}
-(f_1*f_2)(t)=\int_0^tf_1(\tau)f_2(t-\tau)\,\mathrm{d}\tau,
-\end{equation}
-the convolution theorem states $f_1*f_2\longleftrightarrow\bar f_1\bar f_2$.
+Here $\Theta$ is the unit step, equal to $0$ for negative argument and $1$ for positive argument. The step in the delay rule is essential. Shifting a causal function to the right must keep it zero until the delayed signal arrives; writing $f(t-t_0)$ alone would describe a different function on $t>0$ whenever $f$ is nonzero for negative arguments.
 
-\subsection{Inverse transforms}
+The delay rule is the substitution $u=t-t_0$ in \eqref{eq:ch06-laplace}. The lower limit $t=t_0$ becomes $u=0$, and $e^{-pt}=e^{-pt_0}e^{-pu}$ factors out. The shift rule is the same integral with $p$ replaced by $p+\lambda$. The factor $1/a$ in the scaling rule is the Jacobian of $u=at$ for $a>0$; a negative scale factor would reverse time and leave the half-line.
 
-When $\bar f(p)e^{pt}$ has isolated poles and decays on a suitable left semicircle, the Bromwich contour may be closed to the left for $t>0$. The residue theorem then gives
+The causal \term{convolution} is
 \begin{equation}
-f(t)=\sum_j\operatorname*{Res}_{p=p_j}\left[\bar f(p)e^{pt}\right].
+(f_1*f_2)(t)=\int_0^{t}f_1(\tau)f_2(t-\tau)\,\mathrm{d}\tau.
+\label{eq:ch06-laplace-conv}
 \end{equation}
-Branch points require a branch cut instead of this simple pole sum. For example, a keyhole contour about the negative real axis applied to $\bar f(p)=p^{-1/2}$ gives
+Unlike \eqref{eq:ch06-conv-thm}, there is no factor of $2\pi$:
 \begin{equation}
-\mathcal{L}^{-1}\left\{\frac{1}{\sqrt p}\right\}=\frac{1}{\sqrt{\pi t}}.
+f_1*f_2\longleftrightarrow\bar f_1(p)\bar f_2(p).
+\label{eq:ch06-laplace-conv-thm}
 \end{equation}
-Differentiation in transform space also supplies the rule
-\begin{equation}
-\frac{d^n\bar f}{dp^n}\longleftrightarrow(-t)^nf(t),
-\end{equation}
-which, together with partial fractions and the delay and convolution rules, often avoids direct contour integration.
+The proof writes both originals as Bromwich integrals, or substitutes the definition of each transform into the product $\bar f_1\bar f_2$ and changes the order of integration. The region $\tau\geq 0$, $t-\tau\geq 0$ is exactly the triangle $0\leq\tau\leq t$.
 
-\begin{example}
-To invert $e^{-\alpha p}/[p(p+b)]$, use $e^{-\alpha p}/p\longleftrightarrow\Theta(t-\alpha)$ and $(p+b)^{-1}\longleftrightarrow e^{-bt}$. Convolution gives
+\subsection{Inversion by residues}
+
+For $t>0$, if $\bar f(p)e^{pt}$ is analytic except for finitely many poles, all of them to the left of the Bromwich line, and if $\bar f(p)\to 0$ as $|p|\to\infty$ in the half-plane $\operatorname{Re}p\leq\sigma$, uniformly in angle, then the integral of $\bar f(p)e^{pt}$ over a large leftward semicircle tends to zero. This is the form of Jordan's lemma needed here. Closing the contour and applying the residue theorem produces
 \begin{equation}
+f(t)=\sum_j\operatorname*{Res}_{p=p_j}\bigl[\bar f(p)e^{pt}\bigr],
+\qquad t>0.
+\label{eq:ch06-residues}
+\end{equation}
+The sum runs over every pole of the integrand. For $t<0$ the semicircle must be closed to the right, where $\bar f$ is analytic, and the integral vanishes.
+
+A simple pole of $\bar f$ at $p_j$, with $\bar f(p)=g(p)/(p-p_j)$ and $g$ analytic and nonzero there, contributes $g(p_j)e^{p_j t}$. A branch point is not a pole. Closing a semicircle through a branch cut is not legitimate, and \eqref{eq:ch06-residues} does not apply until a single-valued branch has been chosen and the cut has been routed around.
+
+\begin{example}[Inverting a rational function by partial fractions]
+Consider $\bar f(p)=1/[p^3(p+\alpha)]$ with $\alpha\neq 0$. Decompose
+\begin{equation}
+\frac{1}{p^3(p+\alpha)}
+=\frac{A}{p^3}+\frac{B}{p^2}+\frac{C}{p}+\frac{D}{p+\alpha}.
+\end{equation}
+Clearing the denominator gives
+\begin{equation}
+1=A(p+\alpha)+Bp(p+\alpha)+Cp^2(p+\alpha)+Dp^3.
+\end{equation}
+The value $p=0$ yields $A=1/\alpha$. The value $p=-\alpha$ yields $D=-1/\alpha^3$. Comparing coefficients of $p^3$ and $p^2$ then yields $C=1/\alpha^3$ and $B=-1/\alpha^2$. Hence
+\begin{equation}
+\frac{1}{p^3(p+\alpha)}
+=\frac{1}{\alpha}\frac{1}{p^3}
+-\frac{1}{\alpha^2}\frac{1}{p^2}
++\frac{1}{\alpha^3}\frac{1}{p}
+-\frac{1}{\alpha^3}\frac{1}{p+\alpha}.
+\end{equation}
+Invert term by term with \eqref{eq:ch06-laplace-tn} and $\mathcal{L}\{e^{-\alpha t}\}=1/(p+\alpha)$:
+\begin{equation}
+\mathcal{L}^{-1}\left\{\frac{1}{p^3(p+\alpha)}\right\}
+=\frac{t^2}{2\alpha}-\frac{t}{\alpha^2}+\frac{1}{\alpha^3}-\frac{e^{-\alpha t}}{\alpha^3}.
+\label{eq:ch06-partial}
+\end{equation}
+The coefficient of $t$ is negative because $B=-1/\alpha^2$. The opposite sign is inconsistent with the cleared equation at order $p^2$.
+\end{example}
+
+Differentiating the transform with respect to the parameter $p$ is often faster than a fresh integration. Under the existence condition one may differentiate \eqref{eq:ch06-laplace} under the integral sign:
+\begin{equation}
+\frac{\mathrm{d}^n\bar f}{\mathrm{d}p^n}
+=\int_0^{\infty}(-t)^n f(t)e^{-pt}\,\mathrm{d}t,
+\end{equation}
+and therefore
+\begin{equation}
+\frac{\mathrm{d}^n\bar f}{\mathrm{d}p^n}\longleftrightarrow(-t)^n f(t).
+\label{eq:ch06-p-derivative}
+\end{equation}
+In particular $\mathcal{L}\{t\}=-\mathrm{d}(1/p)/\mathrm{d}p=1/p^2$ and $\mathcal{L}\{t^2/2\}=\mathrm{d}^2(1/p)/\mathrm{d}p^2\big/2$, which recovers the powers already computed.
+
+\subsection{A branch point}
+
+The transform $\bar f(p)=p^{-1/2}$ is analytic in the cut plane. Take the branch
+\begin{equation}
+\sqrt{p}=\sqrt{|p|}\,\exp(\mathrm{i}\operatorname{Arg}p/2),
+\qquad\operatorname{Arg}p\in(-\pi,\pi),
+\end{equation}
+so the cut lies along the negative real axis. There is no pole to which \eqref{eq:ch06-residues} applies. For $t>0$ consider the contour that goes up the Bromwich line, along a large arc into the left half-plane, in along the upper side of the cut, around a small circle about the origin, and back along the lower side of the cut. The integrand is analytic inside this contour, so the integral vanishes. The integrals over the large arc and the small circle tend to zero as the radii tend to infinity and zero: on the small circle of radius $\varepsilon$ the length is $2\pi\varepsilon$ and $|e^{pt}/\sqrt{p}|$ is of order $\varepsilon^{-1/2}$.
+
+On the upper side, $p=re^{\mathrm{i}\pi}$, $\sqrt{p}=\mathrm{i}\sqrt{r}$, and the path toward the origin contributes
+\begin{equation}
+\int_{\infty}^{0}\frac{e^{-rt}}{\mathrm{i}\sqrt{r}}(-\mathrm{d}r)
+=\int_0^{\infty}\frac{e^{-rt}}{\mathrm{i}\sqrt{r}}\,\mathrm{d}r.
+\end{equation}
+On the lower side, $p=re^{-\mathrm{i}\pi}$, $\sqrt{p}=-\mathrm{i}\sqrt{r}$, and the path away from the origin contributes the same real integral. The two sides therefore add to $(2/\mathrm{i})\int_0^{\infty}e^{-rt}r^{-1/2}\,\mathrm{d}r$. The Bromwich integral is minus that sum. Since $-2/\mathrm{i}=2\mathrm{i}$,
+\begin{equation}
+\int_{\sigma-\mathrm{i}\infty}^{\sigma+\mathrm{i}\infty}\frac{e^{pt}}{\sqrt{p}}\,\mathrm{d}p
+=2\mathrm{i}\int_0^{\infty}\frac{e^{-rt}}{\sqrt{r}}\,\mathrm{d}r.
+\end{equation}
+Divide by $2\pi\mathrm{i}$:
+\begin{equation}
+f(t)=\frac{1}{\pi}\int_0^{\infty}\frac{e^{-rt}}{\sqrt{r}}\,\mathrm{d}r.
+\end{equation}
+The substitution $y=\sqrt{rt}$ gives $\mathrm{d}r=2y\,\mathrm{d}y/t$ and $\sqrt{r}=y/\sqrt{t}$, so
+\begin{equation}
+f(t)=\frac{1}{\pi}\cdot\frac{2}{\sqrt{t}}\int_0^{\infty}e^{-y^2}\,\mathrm{d}y
+=\frac{1}{\pi}\cdot\frac{2}{\sqrt{t}}\cdot\frac{\sqrt{\pi}}{2}
+=\frac{1}{\sqrt{\pi t}}.
+\end{equation}
+Thus
+\begin{equation}
+\mathcal{L}^{-1}\{p^{-1/2}\}=\frac{1}{\sqrt{\pi t}},
+\qquad
+\mathcal{L}\{t^{-1/2}\}=\sqrt{\frac{\pi}{p}}.
+\label{eq:ch06-sqrt}
+\end{equation}
+The second formula is the first read backwards. It is the model calculation whenever a transform has a branch point on the finite plane rather than a pole.
+
+\subsection{Delay and convolution together}
+
+\begin{example}[A delayed exponential response]
+Invert $e^{-\alpha p}/[p(p+b)]$ for $b\neq 0$ and $\alpha>0$. Separately,
+\begin{equation}
+\frac{1}{p}\longleftrightarrow\Theta(t),
+\qquad
+\frac{1}{p+b}\longleftrightarrow e^{-bt},
+\end{equation}
+and the delay rule turns the first pair into $e^{-\alpha p}/p\longleftrightarrow\Theta(t-\alpha)$. The product of transforms is the convolution \eqref{eq:ch06-laplace-conv}:
+\begin{align}
 \mathcal{L}^{-1}\left\{\frac{e^{-\alpha p}}{p(p+b)}\right\}
-=\frac{1-e^{-b(t-\alpha)}}{b}\Theta(t-\alpha).
+&=\int_0^{t}\Theta(\tau-\alpha)e^{-b(t-\tau)}\,\mathrm{d}\tau
+=\Theta(t-\alpha)\int_{\alpha}^{t}e^{-b(t-\tau)}\,\mathrm{d}\tau
+\nonumber\\
+&=\frac{1-e^{-b(t-\alpha)}}{b}\,\Theta(t-\alpha).
+\end{align}
+For $t<\alpha$ the step vanishes: the delayed signal has not arrived. The exponent is $t-\alpha$, the time since arrival, not an unrelated dummy index. The same result follows by partial fractions,
+\begin{equation}
+\frac{e^{-\alpha p}}{p(p+b)}
+=e^{-\alpha p}\left(\frac{1}{bp}-\frac{1}{b(p+b)}\right),
 \end{equation}
+and the delay rule applied to $1$ and to $e^{-bt}$.
 \end{example}
