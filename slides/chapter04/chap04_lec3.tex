@@ -1,5 +1,5 @@
 % !TEX program = xelatex
-% 第三讲：laplace_transform.tex + inverse_laplace_transform.tex + applications.tex
+% 语言与顺序按 lecture/fourier 中拉普拉斯变换、反变换与应用
 \documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
 \input{preamble}
 
@@ -12,225 +12,383 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{傅里叶变换还缺什么}
-  傅里叶变换适合看频谱，用在初值问题上有两处限制。
-  \begin{itemize}
-    \item 绝对可积是充分条件。$e^{\alpha t}$（$\alpha>0$）在 $t\to+\infty$ 时发散，不能直接套定义。
-    \item 反变换是对实频率的积分，常常不好算。
-  \end{itemize}
-  拉普拉斯变换只关心 $t\geq 0$，并乘上衰减因子 $e^{-\sigma t}$，把问题收成右半平面上的复变函数。
-\end{frame}
-
 \begin{frame}{本讲提纲}
   \begin{enumerate}
-    \item 由因果函数和收敛因子写出拉普拉斯变换，并回到 Bromwich 积分；
-    \item 基本像函数：常数、幂、指数、双曲函数和三角函数；
-    \item 导数定理与卷积，以及用留数、裂项、延迟求原函数；
-    \item 三个应用：级数、含 $1/t$ 的积分、简谐振子。
+    \item 拉普拉斯变换：收敛因子、拉普拉斯积分、Bromwich 积分；
+    \item 基本像函数与导数、积分、卷积等性质；
+    \item 拉普拉斯反变换：约当引理、对 $p$ 求导、裂项、支点；
+    \item 应用：级数和、定积分、简谐振子。
   \end{enumerate}
 \end{frame}
 
 % =============================================================
-\section{定义}
+\section{拉普拉斯变换}
 
-\begin{frame}{只保留 $t\geq 0$}
-  初值问题已知 $f(0)$，求 $t>0$ 的变化。$t<0$ 的值置为零：
+\begin{frame}{傅里叶变换的两处不足}
+  傅里叶变换在分析信号的频谱等方面是十分有效的，但在系统分析方面有不足之处：
+  \begin{itemize}
+    \item 对时间函数限制严格。绝对可积是充分条件，不少函数不能直接按定义求。如 $e^{\alpha t}$（$\alpha>0$），其傅里叶变换不存在。
+    \item 求解傅里叶反变换比较麻烦。
+  \end{itemize}
+  拉普拉斯变换常用于初始值问题：已知某个物理量在 $t=0$ 的值 $f(0)$，求解它在初始时刻之后的变化 $f(t)$。至于它在初始时刻之前的值，置
   \begin{equation*}
     f(t)=0\qquad(t<0).
   \end{equation*}
-  选 $\sigma>0$，令 $g(t)=e^{-\sigma t}f(t)$。若 $|f(t)|$ 不超过某个指数，$g$ 就绝对可积，可以对它做傅里叶变换。
 \end{frame}
 
-\begin{frame}{定义}
-  对 $g$ 作变换，并记 $p=\sigma+\mathrm{i}\omega$。定义
+\begin{frame}{加上收敛因子}
+  构造一个带收敛因子 $e^{-\sigma t}$（$\sigma>0$）的函数
   \begin{equation*}
-    \boxed{\bar f(p)=\mathcal{L}[f]
-      =\int_0^{\infty} e^{-pt}f(t)\,\mathrm{d}t.}
+    g(t)=e^{-\sigma t}f(t),
   \end{equation*}
-  这个积分是拉普拉斯积分，$e^{-pt}$ 是核。积分从 $0$ 开始，不是从 $-\infty$。
+  则 $g(t)$ 绝对可积。对 $g(t)$ 进行傅里叶变换，系数按 $1/(2\pi)$ 放在这一侧，
+  \begin{align*}
+    g(\omega)
+    &=\frac{1}{2\pi}\int_{-\infty}^{\infty}
+      g(t)\,e^{-\mathrm{i}\omega t}\,\mathrm{d}t \\
+    &=\frac{1}{2\pi}\int_{0}^{\infty}
+      f(t)\,e^{-(\sigma+\mathrm{i}\omega)t}\,\mathrm{d}t.
+  \end{align*}
+  下限改成 $0$，是因为 $t<0$ 时 $f(t)=0$。
+\end{frame}
+
+\begin{frame}{拉普拉斯积分}
+  将 $\sigma+\mathrm{i}\omega$ 记作 $p$，令 $\bar f(p)=2\pi\,g(\omega)$，则
+  \begin{equation*}
+    \bar f(p)
+    =\mathcal{L}\{f(t)\}
+    =\int_0^{\infty} e^{-pt}f(t)\,\mathrm{d}t.
+  \end{equation*}
+  该积分称为\textbf{拉普拉斯积分}，$\mathcal{L}$ 称为\textbf{拉普拉斯变换算符}，$e^{-pt}$ 称为拉普拉斯变换的\textbf{核}。注意这里的积分上下限。
   \vspace{0.4em}
 
-  $\bar f$ 是像函数，$f$ 是原函数。变换是线性的：
+  $\bar f(p)$ 又称为\textbf{像函数}，$f(t)$ 称为\textbf{原函数}。也记作
   \begin{equation*}
-    \mathcal{L}[af+bg]=a\mathcal{L}[f]+b\mathcal{L}[g].
+    \bar f(p)\risingdotseq f(t),
+    \qquad
+    f(t)\fallingdotseq\bar f(p).
   \end{equation*}
-  傅里叶变换同样是线性的。
 \end{frame}
 
-\begin{frame}{反变换：Bromwich 积分}
-  把 $g$ 的傅里叶逆变换写回 $f$，再用 $p=\sigma+\mathrm{i}\omega$，$\mathrm{d}\omega=\mathrm{d}p/\mathrm{i}$，得到
+\begin{frame}{从傅里叶逆变换回到 $f(t)$}
+  $g(\omega)$ 的傅里叶逆变换是
   \begin{equation*}
-    f(t)=\frac{1}{2\pi\mathrm{i}}
+    g(t)=\int_{-\infty}^{\infty} g(\omega)\,e^{\mathrm{i}\omega t}\,\mathrm{d}\omega.
+  \end{equation*}
+  代入 $\bar f(p)=2\pi\,g(\omega)$ 以及 $g(t)=e^{-\sigma t}f(t)$，
+  \begin{equation*}
+    e^{-\sigma t}f(t)
+    =\frac{1}{2\pi}\int_{-\infty}^{\infty}
+      \bar f(\sigma+\mathrm{i}\omega)\,e^{\mathrm{i}\omega t}\,\mathrm{d}\omega.
+  \end{equation*}
+  两边乘 $e^{\sigma t}$，
+  \begin{equation*}
+    f(t)
+    =\frac{1}{2\pi}\int_{-\infty}^{\infty}
+      \bar f(\sigma+\mathrm{i}\omega)\,
+      e^{(\sigma+\mathrm{i}\omega)t}\,\mathrm{d}\omega.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{Bromwich 积分}
+  由 $p=\sigma+\mathrm{i}\omega$，有 $\mathrm{d}p=\mathrm{i}\,\mathrm{d}\omega$，即
+  \begin{equation*}
+    \mathrm{d}\omega=\frac{1}{\mathrm{i}}\,\mathrm{d}p.
+  \end{equation*}
+  $\omega$ 从 $-\infty$ 到 $\infty$ 时，$p$ 沿直线 $\mathrm{Re}\,p=\sigma$ 从 $\sigma-\mathrm{i}\infty$ 走到 $\sigma+\mathrm{i}\infty$。因此
+  \begin{equation*}
+    f(t)
+    =\frac{1}{2\pi\mathrm{i}}
       \int_{\sigma-\mathrm{i}\infty}^{\sigma+\mathrm{i}\infty}
       \bar f(p)\,e^{pt}\,\mathrm{d}p.
   \end{equation*}
-  积分路径是竖直线 $\operatorname{Re}p=\sigma$，位于像函数的解析区域里。这就是 Bromwich 积分，也叫 Riemann--Mellin 积分。
+  这是 \textbf{Bromwich 积分}，也叫做 \textbf{Riemann--Mellin 积分}。
 \end{frame}
 
 \begin{frame}{存在的充分条件}
   \begin{enumerate}
-    \item 在每个有限区间 $[0,T]$ 上，$f$ 只有有限个间断点，其余点 $f$ 及其导数连续；
-    \item 存在 $M>0$ 和 $\sigma_0\geq 0$，使 $|f(t)|<M e^{\sigma_0 t}$。
+    \item 在 $0\leq t<\infty$ 的任一有限区间上，除了有限个间断点外，$f(t)$ 及其导数处处连续；
+    \item 存在常数 $M>0$ 和 $\sigma\geq 0$，使对任何 $t\geq 0$，
+      $|f(t)|<M e^{\sigma t}$。
   \end{enumerate}
-  $\sigma_0$ 的下界叫收敛横标。$\operatorname{Re}p>\sigma_0$ 时积分收敛，并且 $\bar f(p)$ 在这个半平面里解析。
+  $\sigma$ 的下界称为\textbf{收敛横标}，用 $\sigma_0$ 表示。在实际应用中，大多数函数都满足这个充分条件。
   \vspace{0.3em}
 
-  $e^{t^2}$ 比任何指数都长得快，不满足第二条。满足条件时，$\operatorname{Re}p\to+\infty$ 必有 $\bar f(p)\to 0$。像函数若在无穷远处像 $p$ 的正幂次那样变大，它就不是一个拉普拉斯像。
+  一个反例是 $e^{t^2}$。对任何 $\sigma$，$t^2-\sigma t\to\infty$，指数增长的上界盖不住它。
+  对于满足存在条件的函数，$\lim_{p\to\infty}\bar f(p)=0$。
+  若像函数在 $p\to\infty$ 时像 $p$ 的正幂次那样变大，逆变换就不存在。
+  $\bar f(p)$ 在 $\mathrm{Re}\,p>\sigma_0$ 的半平面是解析的。
 \end{frame}
 
-\begin{frame}{$\delta$ 函数的像}
-  $t_0>0$ 时，挑选性给出
+\begin{frame}{线性，以及 $\delta$ 函数}
+  不难看出拉普拉斯变换为\textbf{线性变换}，
   \begin{equation*}
-    \mathcal{L}[\delta(t-t_0)]
-    =\int_0^{\infty} e^{-pt}\delta(t-t_0)\,\mathrm{d}t
+    \mathcal{L}\{af+bg\}
+    =a\,\mathcal{L}\{f\}+b\,\mathcal{L}\{g\}.
+  \end{equation*}
+  不言而喻，傅里叶变换也是\textbf{线性变换}。
+  \vspace{0.4em}
+
+  对于 $\delta$ 函数，$t_0>0$ 时，
+  \begin{equation*}
+    \mathcal{L}\{\delta(t-t_0)\}
+    =\int_0^{\infty} e^{-pt}\,\delta(t-t_0)\,\mathrm{d}t
     =e^{-pt_0}.
   \end{equation*}
-  延迟一个脉冲，像函数就乘上 $e^{-pt_0}$。这和后面的延迟定理是同一件事。
 \end{frame}
 
-% =============================================================
-\section{基本像函数}
+\begin{frame}{例：$f(t)=1$}
+  $\mathrm{Re}\,p>0$ 时，
+  \begin{equation*}
+    \int_0^{\infty} e^{-pt}\,\mathrm{d}t
+    =\Bigl[-\frac{e^{-pt}}{p}\Bigr]_0^{\infty}
+    =\frac{1}{p}.
+  \end{equation*}
+  上限：$e^{-(\mathrm{Re}\,p)\,t}\to 0$。下限：$-(-1/p)=1/p$。
+  所以
+  \begin{equation*}
+    \mathcal{L}\{1\}=\frac{1}{p}.
+  \end{equation*}
+\end{frame}
 
-\begin{frame}{例：常数与 $t$}
-  $\operatorname{Re}p>0$ 时
+\begin{frame}{例：$f(t)=t$}
+  $\mathrm{Re}\,p>0$。分部积分，令 $u=t$，$\mathrm{d}v=e^{-pt}\,\mathrm{d}t$，
+  则 $\mathrm{d}u=\mathrm{d}t$，$v=-e^{-pt}/p$。
+  \begin{align*}
+    \int_0^{\infty} t\,e^{-pt}\,\mathrm{d}t
+    &=\Bigl[-\frac{t\,e^{-pt}}{p}\Bigr]_0^{\infty}
+      +\frac{1}{p}\int_0^{\infty} e^{-pt}\,\mathrm{d}t \\
+    &=0+\frac{1}{p}\cdot\frac{1}{p}
+     =\frac{1}{p^2}.
+  \end{align*}
+  边界项：上限被指数压住，下限有因子 $t=0$。
+\end{frame}
+
+\begin{frame}{例：$t^n$}
+  设 $\mathcal{L}\{t^n\}=n!/p^{n+1}$ 已经成立。再分部一次，
+  \begin{align*}
+    \int_0^{\infty} t^{n+1}e^{-pt}\,\mathrm{d}t
+    &=\Bigl[-\frac{t^{n+1}e^{-pt}}{p}\Bigr]_0^{\infty}
+      +\frac{n+1}{p}\int_0^{\infty} t^n e^{-pt}\,\mathrm{d}t \\
+    &=\frac{n+1}{p}\cdot\frac{n!}{p^{n+1}}
+     =\frac{(n+1)!}{p^{n+2}}.
+  \end{align*}
+  $n=0$ 时就是 $\mathcal{L}\{1\}=1/p$。因此
   \begin{equation*}
-    \mathcal{L}[1]=\int_0^{\infty} e^{-pt}\,\mathrm{d}t=\frac{1}{p}.
+    \mathcal{L}\{t^n\}=\frac{n!}{p^{n+1}},
+    \qquad \mathrm{Re}\,p>0.
   \end{equation*}
-  分部积分，$\displaystyle\int_0^{\infty} t e^{-pt}\,\mathrm{d}t=1/p^2$。
-  继续做下去，
-  \begin{equation*}
-    \mathcal{L}[t^n]=\frac{n!}{p^{n+1}},
-    \qquad n=0,1,2,\ldots.
-  \end{equation*}
-  检查：$p\to\infty$ 时这些像都趋于 $0$。
 \end{frame}
 
 \begin{frame}{例：指数}
-  $\operatorname{Re}(p-s)>0$ 时
+  $s$ 为常数，$\mathrm{Re}(p-s)>0$ 时，
   \begin{equation*}
-    \mathcal{L}[e^{st}]=\int_0^{\infty} e^{-(p-s)t}\,\mathrm{d}t=\frac{1}{p-s}.
+    \int_0^{\infty} e^{st}e^{-pt}\,\mathrm{d}t
+    =\int_0^{\infty} e^{-(p-s)t}\,\mathrm{d}t
+    =\frac{1}{p-s}.
   \end{equation*}
-  再乘上 $t$，仍用分部积分，
+  同样的分部积分，把 $p$ 换成 $p-s$，得到
   \begin{equation*}
-    \mathcal{L}[t^n e^{st}]=\frac{n!}{(p-s)^{n+1}}.
+    \mathcal{L}\{t\,e^{st}\}=\frac{1}{(p-s)^2},
+    \qquad
+    \mathcal{L}\{t^n e^{st}\}=\frac{n!}{(p-s)^{n+1}}.
   \end{equation*}
-  $s$ 把收敛横标从 $0$ 挪到 $\operatorname{Re}s$。$s$ 为正时，原函数指数增长，像函数的极点在 $p=s$。
 \end{frame}
 
 \begin{frame}{例：双曲函数}
-  $\cosh(kt)=\tfrac12(e^{kt}+e^{-kt})$，$\sinh(kt)=\tfrac12(e^{kt}-e^{-kt})$。用上一页的线性组合，
+  利用
+  \begin{equation*}
+    \cosh(kt)=\frac12\bigl(e^{kt}+e^{-kt}\bigr),
+    \qquad
+    \sinh(kt)=\frac12\bigl(e^{kt}-e^{-kt}\bigr).
+  \end{equation*}
+  $\mathrm{Re}\,p>|k|$ 时，
   \begin{align*}
-    \mathcal{L}[\cosh(kt)]
-      &=\frac{p}{p^2-k^2},\\
-    \mathcal{L}[\sinh(kt)]
-      &=\frac{k}{p^2-k^2}.
+    \mathcal{L}\{\cosh(kt)\}
+    &=\frac12\Biggl(\frac{1}{p-k}+\frac{1}{p+k}\Biggr)
+     =\frac12\cdot\frac{2p}{p^2-k^2}
+     =\frac{p}{p^2-k^2},\\[0.4em]
+    \mathcal{L}\{\sinh(kt)\}
+    &=\frac12\Biggl(\frac{1}{p-k}-\frac{1}{p+k}\Biggr)
+     =\frac{k}{p^2-k^2}.
   \end{align*}
-  要求 $\operatorname{Re}p>|k|$，两条指数才都收敛。
 \end{frame}
 
-\begin{frame}{正弦和余弦}
-  $\displaystyle\int_0^{\infty} e^{\mathrm{i}\omega t}e^{-pt}\,\mathrm{d}t
-    =1/(p-\mathrm{i}\omega)$，在 $\operatorname{Re}p>0$ 时成立。
-  取虚部和实部：
+\begin{frame}{例：正弦与余弦}
+  $\sin(\omega t)=(e^{\mathrm{i}\omega t}-e^{-\mathrm{i}\omega t})/(2\mathrm{i})$，
+  $\cos(\omega t)=(e^{\mathrm{i}\omega t}+e^{-\mathrm{i}\omega t})/2$。
+  $\mathrm{Re}\,p>0$ 时，
   \begin{align*}
-    \mathcal{L}[\sin(\omega t)]&=\frac{\omega}{p^2+\omega^2},\\
-    \mathcal{L}[\cos(\omega t)]&=\frac{p}{p^2+\omega^2}.
+    \mathcal{L}\{\sin\omega t\}
+    &=\frac{1}{2\mathrm{i}}
+      \Biggl(\frac{1}{p-\mathrm{i}\omega}-\frac{1}{p+\mathrm{i}\omega}\Biggr)
+     =\frac{\omega}{p^2+\omega^2},\\[0.4em]
+    \mathcal{L}\{\cos\omega t\}
+    &=\frac12
+      \Biggl(\frac{1}{p-\mathrm{i}\omega}+\frac{1}{p+\mathrm{i}\omega}\Biggr)
+     =\frac{p}{p^2+\omega^2}.
   \end{align*}
-  把双曲函数里的 $k$ 换成 $\mathrm{i}\omega$，分母 $p^2-k^2$ 变成 $p^2+\omega^2$，得到同一对公式。简谐振子的像就是余弦这一条。
+  中间一步：两个分母之差是 $2\mathrm{i}\omega$，再除以 $2\mathrm{i}$ 得到 $\omega$。
 \end{frame}
 
 % =============================================================
 \section{性质}
 
 \begin{frame}{导数定理}
-  分部积分，并假定 $e^{-pt}f(t)$ 在无穷远处消失：
-  \begin{equation*}
+  \textbf{导数定理}由分部积分得到。令 $u=e^{-pt}$，$\mathrm{d}v=f'(t)\,\mathrm{d}t$，
+  \begin{align*}
     \int_0^{\infty} f'(t)\,e^{-pt}\,\mathrm{d}t
-    =-f(0)+p\int_0^{\infty} f(t)\,e^{-pt}\,\mathrm{d}t.
-  \end{equation*}
-  因此
+    &=\Bigl[f(t)\,e^{-pt}\Bigr]_0^{\infty}
+      +p\int_0^{\infty} f(t)\,e^{-pt}\,\mathrm{d}t \\
+    &=-f(0)+p\,\bar f(p).
+  \end{align*}
+  上限在 $\mathrm{Re}\,p>\sigma_0$ 时消失。因此
   \begin{equation*}
-    \boxed{\mathcal{L}[f']=p\bar f(p)-f(0).}
+    f'(t)\fallingdotseq p\,\bar f(p)-f(0).
   \end{equation*}
-  和傅里叶变换的 $\mathrm{i}\omega F$ 相比，多出来的 $-f(0)$ 正是初值。这是拉普拉斯变换能解初值问题的原因。
 \end{frame}
 
 \begin{frame}{高阶导数}
-  对 $f'$ 再使用一次导数定理，
-  \begin{equation*}
-    \mathcal{L}[f'']=p^2\bar f(p)-pf(0)-f'(0).
-  \end{equation*}
-  一般地，
-  \begin{equation*}
-    \begin{aligned}
-    \mathcal{L}[f^{(n)}]
-      =p^n\bar f(p)
-      &-p^{n-1}f(0)-p^{n-2}f'(0)\\
-      &-\cdots-f^{(n-1)}(0).
-    \end{aligned}
-  \end{equation*}
-  二阶方程会用到 $f(0)$ 和 $f'(0)$，不多也不少。
-\end{frame}
-
-\begin{frame}{积分、相似、位移、延迟}
+  对 $f'$ 再做一次，
   \begin{align*}
-    \mathcal{L}\Bigl[\int_0^t \psi(\tau)\,\mathrm{d}\tau\Bigr]
-      &=\frac{1}{p}\mathcal{L}[\psi],\\
-    \mathcal{L}[f(at)]
-      &=\frac{1}{a}\bar f\Bigl(\frac{p}{a}\Bigr)
-      \quad(a>0),\\
-    \mathcal{L}[e^{-\lambda t}f(t)]
-      &=\bar f(p+\lambda),\\
-    \mathcal{L}[f(t-t_0)]
-      &=e^{-pt_0}\bar f(p).
+    f''(t)
+    &\fallingdotseq p\,\mathcal{L}\{f'\}-f'(0) \\
+    &=p\bigl(p\,\bar f(p)-f(0)\bigr)-f'(0) \\
+    &=p^2\bar f(p)-p f(0)-f'(0).
   \end{align*}
-  延迟时要记住 $t<t_0$ 的原函数是 $0$：平移以前，函数在负半轴上已经被截断。
+  如此递推，
+  \begin{equation*}
+    f^{(n)}(t)
+    \fallingdotseq
+    p^n\bar f(p)-p^{n-1}f(0)-\cdots-f^{(n-1)}(0).
+  \end{equation*}
+  比傅里叶变换的 $\mathrm{i}\omega F$ 多出来的，就是各阶初值。
 \end{frame}
 
-\begin{frame}{卷积}
+\begin{frame}{积分定理与相似定理}
+  令 $\displaystyle\Psi(t)=\int_0^t\psi(\tau)\,\mathrm{d}\tau$，则 $\Psi(0)=0$，$\Psi'=\psi$。
+  由导数定理得到\textbf{积分定理}：$\mathcal{L}\{\psi\}=p\,\mathcal{L}\{\Psi\}$，所以
+  \begin{equation*}
+    \int_0^t\psi(\tau)\,\mathrm{d}\tau
+    \fallingdotseq\frac{1}{p}\,\mathcal{L}\{\psi\}.
+  \end{equation*}
+  \vspace{0.4em}
+
+  \textbf{相似定理}：$a>0$ 时令 $u=at$，$\mathrm{d}t=\mathrm{d}u/a$，
+  \begin{equation*}
+    \int_0^{\infty} f(at)\,e^{-pt}\,\mathrm{d}t
+    =\frac{1}{a}\int_0^{\infty}
+      f(u)\,e^{-(p/a)u}\,\mathrm{d}u
+    =\frac{1}{a}\,\bar f\Bigl(\frac{p}{a}\Bigr).
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{位移定理与延迟定理}
+  \begin{equation*}
+    \int_0^{\infty} e^{-\lambda t}f(t)\,e^{-pt}\,\mathrm{d}t
+    =\bar f(p+\lambda),
+  \end{equation*}
+  即\textbf{位移定理} $e^{-\lambda t}f(t)\fallingdotseq\bar f(p+\lambda)$。
+  \vspace{0.4em}
+
+  \textbf{延迟定理}：$t<t_0$ 的原函数是 $0$。令 $u=t-t_0$，
+  \begin{align*}
+    \int_{t_0}^{\infty} f(t-t_0)\,e^{-pt}\,\mathrm{d}t
+    &=e^{-pt_0}\int_0^{\infty} f(u)\,e^{-pu}\,\mathrm{d}u \\
+    &=e^{-pt_0}\,\bar f(p).
+  \end{align*}
+\end{frame}
+
+\begin{frame}{卷积定理}
   \begin{equation*}
     (f_1*f_2)(t)
-    =\int_0^t f_1(\tau)\,f_2(t-\tau)\,\mathrm{d}\tau.
+    \equiv\int_0^t f_1(\tau)\,f_2(t-\tau)\,\mathrm{d}\tau
   \end{equation*}
-  上限是 $t$，因为两个原函数在负时间都是零。此时没有额外的 $2\pi$：
+  称为 $f_1$ 与 $f_2$ 的\textbf{卷积}。两个原函数在负时间都是零，所以上限是 $t$。
+  \begin{align*}
+    &\mathcal{L}\{f_1*f_2\}
+    =\int_0^{\infty}\mathrm{d}t\,e^{-pt}
+      \int_0^t\mathrm{d}\tau\,f_1(\tau)\,f_2(t-\tau).
+  \end{align*}
+  令 $u=t-\tau$，先对 $\tau$ 从 $0$ 到 $\infty$，再对 $u$ 从 $0$ 到 $\infty$，
   \begin{equation*}
-    \boxed{\mathcal{L}[f_1*f_2]=\bar f_1(p)\,\bar f_2(p).}
+    =\Biggl(\int_0^{\infty} f_1(\tau)\,e^{-p\tau}\,\mathrm{d}\tau\Biggr)
+     \Biggl(\int_0^{\infty} f_2(u)\,e^{-pu}\,\mathrm{d}u\Biggr)
+    =\bar f_1(p)\,\bar f_2(p).
   \end{equation*}
-  像函数相乘，对应原函数从 $0$ 卷积到 $t$。
 \end{frame}
 
 % =============================================================
-\section{反变换}
+\section{拉普拉斯反变换}
 
-\begin{frame}{留数}
-  $t>0$ 时，$e^{pt}$ 在左半平面衰减。若 $\bar f(p)$ 在左方的大圆弧上一致趋于零，推广的若尔当引理说，那段弧上的积分趋于零。
-  \vspace{0.4em}
-
-  竖直线左边的奇点因此都被回路圈进来。原函数等于这些奇点上的留数之和：
+\begin{frame}{推广的约当引理}
+  \textbf{推广的约当引理}。Bromwich 积分
   \begin{equation*}
-    f(t)=\sum_j
-      \operatorname{Res}\bigl[\bar f(p)\,e^{pt},\,p_j\bigr].
+    f(t)=\frac{1}{2\pi\mathrm{i}}
+      \int_{\sigma-\mathrm{i}\infty}^{\sigma+\mathrm{i}\infty}
+      \bar f(p)\,e^{pt}\,\mathrm{d}p.
   \end{equation*}
-  右半平面在收敛横标的右边没有奇点，不用加进去。
+  像函数是 $p$ 的解析函数，积分可以通过\textbf{留数定理}求得。
+  \vspace{0.3em}
+
+  设 $C_R$ 是以原点为圆心、半径为 $R$ 的圆周在直线 $\mathrm{Re}\,p=a>0$ 左侧的圆弧。
+  若 $|p|\to\infty$ 时 $\bar f(p)$ 在这段辐角范围内一致趋于零，则
+  \begin{equation*}
+    \lim_{R\to\infty}\int_{C_R}\bar f(p)\,e^{pt}\,\mathrm{d}p=0
+    \qquad(t>0).
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{留数之和}
+  所作路径在 $\mathrm{Re}\,p=a$ 的左半平面。$t>0$ 时把竖直线用左圆弧闭上，圆弧上的积分趋于零，
+  \begin{equation*}
+    f(t)=\sum_j\mathrm{Res}\bigl[\bar f(p)\,e^{pt},\,p_j\bigr].
+  \end{equation*}
+  留数取闭路所围的奇点。简单极点 $p_j$ 上，
+  \begin{equation*}
+    \mathrm{Res}
+    =\lim_{p\to p_j}(p-p_j)\,\bar f(p)\,e^{pt}.
+  \end{equation*}
 \end{frame}
 
 \begin{frame}{像函数对 $p$ 求导}
-  在 $\operatorname{Re}p>\sigma_0$ 内可以在积分号下求导：
+  $f(t)$ 满足拉普拉斯变换的充分条件时，$\bar f(p)$ 在 $\mathrm{Re}\,p>\sigma_0$ 的半平面解析，可以在积分号下求导：
+  \begin{align*}
+    \bar f^{(n)}(p)
+    &=\frac{\mathrm{d}^n}{\mathrm{d}p^n}
+      \int_0^{\infty} f(t)\,e^{-pt}\,\mathrm{d}t \\
+    &=\int_0^{\infty}(-t)^n f(t)\,e^{-pt}\,\mathrm{d}t.
+  \end{align*}
+  所以
   \begin{equation*}
-    \frac{\mathrm{d}^n}{\mathrm{d}p^n}\bar f(p)
-    =\int_0^{\infty}(-t)^n f(t)\,e^{-pt}\,\mathrm{d}t.
+    \bar f^{(n)}(p)\risingdotseq (-t)^n f(t).
   \end{equation*}
-  所以 $\bar f^{(n)}(p)$ 的原函数是 $(-t)^n f(t)$。
-  \vspace{0.3em}
-
-  例如 $\mathcal{L}[1]=1/p$，对 $p$ 求导一次，
+  特别地，$\mathcal{L}\{1\}=1/p$，
   \begin{equation*}
-    \frac{1}{p^2}=-\frac{\mathrm{d}}{\mathrm{d}p}\frac{1}{p}
+    \frac{1}{p^2}=-\frac{\mathrm{d}}{\mathrm{d}p}\frac{1}{p}\risingdotseq t,
+    \qquad
+    \frac{1}{p^3}=\frac12\frac{\mathrm{d}^2}{\mathrm{d}p^2}\frac{1}{p}
+      \risingdotseq\frac12 t^2.
   \end{equation*}
-  的原函数是 $t$。这和直接计算 $\mathcal{L}[t]$ 一致。
 \end{frame}
 
-\begin{frame}{例：有理函数裂项}
+\begin{frame}{待定系数}
+  把
+  \begin{equation*}
+    \frac{1}{p^3(p+\alpha)}
+    =\frac{A}{p^3}+\frac{B}{p^2}+\frac{C}{p}+\frac{D}{p+\alpha}
+  \end{equation*}
+  通分。分子
+  \begin{equation*}
+    A(p+\alpha)+Bp(p+\alpha)+Cp^2(p+\alpha)+Dp^3=1.
+  \end{equation*}
+  $p=0$ 给出 $A\alpha=1$，故 $A=1/\alpha$。
+  $p=-\alpha$ 给出 $D(-\alpha)^3=1$，故 $D=-1/\alpha^3$。
+  $p^3$ 的系数 $C+D=0$，故 $C=1/\alpha^3$。
+  $p^2$ 的系数 $B+C\alpha=0$，故 $B=-1/\alpha^2$。
+\end{frame}
+
+\begin{frame}{裂项之后逐项反演}
   \begin{equation*}
     \frac{1}{p^3(p+\alpha)}
     =\frac{1}{\alpha}\frac{1}{p^3}
@@ -238,74 +396,160 @@
      +\frac{1}{\alpha^3}\frac{1}{p}
      -\frac{1}{\alpha^3}\frac{1}{p+\alpha}.
   \end{equation*}
-  令 $p=0$ 得到 $1/p^3$ 的系数，令 $p=-\alpha$ 得到最后一项。逐项反演：
+  $1/p^3\risingdotseq t^2/2$，$1/p^2\risingdotseq t$，$1/p\risingdotseq 1$，
+  $1/(p+\alpha)\risingdotseq e^{-\alpha t}$。因此原函数是
   \begin{equation*}
     \frac{t^2}{2\alpha}-\frac{t}{\alpha^2}
-      +\frac{1}{\alpha^3}
-      -\frac{e^{-\alpha t}}{\alpha^3}.
+    +\frac{1}{\alpha^3}-\frac{e^{-\alpha t}}{\alpha^3}.
   \end{equation*}
-  $1/p^2$ 的系数是负的，所以 $t$ 的系数是 $-1/\alpha^2$。
+  $1/p^2$ 前面的系数是负的，所以 $t$ 的系数是 $-1/\alpha^2$。
 \end{frame}
 
 \begin{frame}{支点：$1/\sqrt{p}$}
-  $p=0$ 是支点，不能只画一条竖直线再补左半圆弧。从 $0$ 沿负实轴切开，辐角在割缝上沿取 $\pi$，下沿取 $-\pi$。
+  被积函数 $e^{pt}/\sqrt{p}$ 的唯一奇点是 $p=0$，这是极点型支点。
+  自 $p=0$ 沿负实轴把平面切开，再在一个单值分支上积分。
+  大圆弧 $C_R$ 和小圆 $C_\varepsilon$ 都以原点为圆心。
   \vspace{0.3em}
 
-  大圆弧和小圆的贡献都趋于零，闭路内没有奇点。竖直线上的积分于是等于割缝两侧的贡献。令 $y=\sqrt{|p|t}$，
-  \begin{equation*}
-    \mathcal{L}^{-1}\bigl[p^{-1/2}\bigr]
-    =\frac{1}{\sqrt{\pi t}}.
-  \end{equation*}
-  反过来说，$\mathcal{L}[1/\sqrt{\pi t}]=1/\sqrt{p}$。
+  令 $R\to\infty$，由推广的约当引理，$\displaystyle\int_{C_R}\to 0$。
+  小圆上 $|e^{pt}/\sqrt{p}|$ 乘上弧长 $2\pi\varepsilon$，在 $\varepsilon\to 0$ 时也趋于零。
+  闭路内无奇点，竖直线上的积分等于割线两侧积分的相反数。
 \end{frame}
 
-\begin{frame}{割缝两侧怎么加}
-  上沿 $\sqrt{p}=\mathrm{i}\sqrt{r}$，下沿 $\sqrt{p}=-\mathrm{i}\sqrt{r}$。两侧相加、再除以 $2\pi\mathrm{i}$ 之后，
+\begin{frame}{沿割线的辐角}
+  割线下沿的辐角为 $-\pi$，上沿的辐角为 $\pi$。于是
   \begin{equation*}
-    f(t)=\frac{1}{\pi}\int_0^{\infty}\frac{e^{-rt}}{\sqrt{r}}\,\mathrm{d}r.
+    \sqrt{p}=\begin{cases}
+      -\mathrm{i}\sqrt{|p|}, & \text{下沿},\\
+      \mathrm{i}\sqrt{|p|}, & \text{上沿}.
+    \end{cases}
   \end{equation*}
-  令 $y=\sqrt{rt}$，则 $\mathrm{d}r=2y\,\mathrm{d}y/t$。积分化为
+  Bromwich 积分等于
   \begin{equation*}
-    f(t)=\frac{2}{\pi\sqrt{t}}\int_0^{\infty}e^{-y^2}\,\mathrm{d}y
-    =\frac{1}{\sqrt{\pi t}},
+    f(t)=-\frac{1}{2\pi\mathrm{i}}
+      \Biggl(
+        \int_0^{-\infty}\frac{e^{pt}}{-\mathrm{i}\sqrt{|p|}}\,\mathrm{d}p
+        +\int_{-\infty}^{0}\frac{e^{pt}}{\mathrm{i}\sqrt{|p|}}\,\mathrm{d}p
+      \Biggr).
   \end{equation*}
-  其中 $\displaystyle\int_0^{\infty}e^{-y^2}\,\mathrm{d}y=\sqrt{\pi}/2$。
+  $1/(-\mathrm{i})=\mathrm{i}$，$1/\mathrm{i}=-\mathrm{i}$。两项化简后同号，
+  \begin{equation*}
+    f(t)=\frac{1}{\pi}\int_{-\infty}^{0}
+      \frac{e^{pt}}{\sqrt{|p|}}\,\mathrm{d}p.
+  \end{equation*}
 \end{frame}
 
-\begin{frame}{例：延迟与卷积一起用}
-  求 $e^{-\alpha p}/[p(p+b)]$ 的原函数，$b\neq 0$。
-  \vspace{0.3em}
-
-  $\mathcal{L}[\Theta(t)]=1/p$，延迟定理给出 $e^{-\alpha p}/p$ 的原函数 $\Theta(t-\alpha)$。
-  $1/(p+b)$ 的原函数是 $e^{-bt}$。二者相乘对应卷积：
+\begin{frame}{换成高斯积分}
+  令 $y=\sqrt{|p|\,t}$。$p$ 从 $-\infty$ 到 $0$ 时，$y$ 从 $\infty$ 到 $0$，
+  $p=-y^2/t$，$\mathrm{d}p=-(2y/t)\,\mathrm{d}y$，$1/\sqrt{|p|}=\sqrt{t}/y$。
   \begin{align*}
-    \int_0^t \Theta(\tau-\alpha)\,e^{-b(t-\tau)}\,\mathrm{d}\tau
-    &=\Theta(t-\alpha)\int_{\alpha}^{t} e^{-b(t-\tau)}\,\mathrm{d}\tau\\
+    f(t)
+    &=\frac{1}{\pi}\int_{\infty}^{0}
+      e^{-y^2}\,\frac{\sqrt{t}}{y}
+      \Bigl(-\frac{2y}{t}\Bigr)\mathrm{d}y \\
+    &=\frac{2}{\pi\sqrt{t}}\int_0^{\infty} e^{-y^2}\,\mathrm{d}y
+     =\frac{2}{\pi\sqrt{t}}\cdot\frac{\sqrt{\pi}}{2}
+     =\frac{1}{\sqrt{\pi t}}.
+  \end{align*}
+  反过来说，$\mathcal{L}\{1/\sqrt{\pi t}\}=1/\sqrt{p}$。
+\end{frame}
+
+\begin{frame}{例：延迟与卷积}
+  求 $e^{-\alpha p}/[p(p+b)]$ 的原函数。
+  $1/p\risingdotseq\Theta(t)$。应用延迟定理，
+  \begin{equation*}
+    \frac{e^{-\alpha p}}{p}\risingdotseq\Theta(t-\alpha),
+    \qquad
+    \frac{1}{p+b}\risingdotseq e^{-bt}.
+  \end{equation*}
+  像函数的乘积对应卷积，
+  \begin{align*}
+    \int_0^t\Theta(\tau-\alpha)\,e^{-b(t-\tau)}\,\mathrm{d}\tau
+    &=\Theta(t-\alpha)\int_{\alpha}^{t} e^{-b(t-\tau)}\,\mathrm{d}\tau \\
+    &=\Theta(t-\alpha)
+      \Biggl[\frac{1}{b}e^{-b(t-\tau)}\Biggr]_{\alpha}^{t} \\
     &=\frac{1-e^{-b(t-\alpha)}}{b}\,\Theta(t-\alpha).
   \end{align*}
-  $t<\alpha$ 时结果是零：信号还没有到达。
+  $t<\alpha$ 时结果为零。也可以先把分母裂成 $1/b\,(1/p-1/(p+b))$，再对每一项用延迟定理。
 \end{frame}
 
 % =============================================================
-\section{应用}
+\section{积分变换的应用}
 
-\begin{frame}{级数 $\sum 1/n^2$}
-  由 $\displaystyle\int_0^{\infty} t e^{-pt}\,\mathrm{d}t=1/p^2$，
-  \begin{align*}
+\begin{frame}{计算 $\sum 1/n^2$}
+  由 $\displaystyle\int_0^{\infty} t\,e^{-pt}\,\mathrm{d}t=1/p^2$（$\mathrm{Re}\,p>0$），取 $p=n$，
+  \begin{equation*}
+    \frac{1}{n^2}=\int_0^{\infty} t\,e^{-nt}\,\mathrm{d}t.
+  \end{equation*}
+  求和，
+  \begin{equation*}
     \sum_{n=1}^{\infty}\frac{1}{n^2}
-    &=\sum_{n=1}^{\infty}\int_0^{\infty} t\,e^{-nt}\,\mathrm{d}t\\
-    &=\int_0^{\infty}\frac{t}{e^{t}-1}\,\mathrm{d}t.
-  \end{align*}
-  交换求和与积分是因为被积函数非负。这个积分等于 $\pi^2/6$，和第一讲用 $f(x)=x$ 的帕塞瓦尔等式得到的结果相同。
+    =\int_0^{\infty} t\Biggl(\sum_{n=1}^{\infty} e^{-nt}\Biggr)\mathrm{d}t.
+  \end{equation*}
+  括号里是公比为 $e^{-t}$ 的等比级数，
+  \begin{equation*}
+    \sum_{n=1}^{\infty} e^{-nt}
+    =\frac{e^{-t}}{1-e^{-t}}
+    =\frac{1}{e^{t}-1}.
+  \end{equation*}
+  因此
+  \begin{equation*}
+    \sum_{n=1}^{\infty}\frac{1}{n^2}
+    =\int_0^{\infty}\frac{t}{e^{t}-1}\,\mathrm{d}t
+    =\frac{\pi^2}{6}.
+  \end{equation*}
 \end{frame}
 
-\begin{frame}{含 $1/t$ 的积分}
-  若 $\displaystyle\int_p^{\infty}\bar f(q)\,\mathrm{d}q$ 存在，并且 $t\to 0$ 时 $|f(t)/t|$ 有界，则
+\begin{frame}{用 Parseval 等式核对}
+  在 $[-\pi,\pi]$ 上取 $f(x)=x$，则 $\ell=\pi$，
   \begin{equation*}
-    \frac{f(t)}{t}
-    \quad\text{的像函数是}\quad
-    \int_p^{\infty}\bar f(q)\,\mathrm{d}q.
+    c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi} x\,e^{-\mathrm{i} nx}\,\mathrm{d}x.
   \end{equation*}
+  分部：$u=x$，$v=e^{-\mathrm{i} nx}/(-\mathrm{i} n)$（$n\neq 0$）。
+  $\displaystyle\int e^{-\mathrm{i} nx}\,\mathrm{d}x$ 在整周期上为零，只剩边界。
+  $e^{-\mathrm{i} n\pi}=e^{\mathrm{i} n\pi}=(-1)^n$，
+  \begin{align*}
+    \Biggl[\frac{x\,e^{-\mathrm{i} nx}}{-\mathrm{i} n}\Biggr]_{-\pi}^{\pi}
+    &=\frac{\pi(-1)^n}{-\mathrm{i} n}
+      -\frac{(-\pi)(-1)^n}{-\mathrm{i} n}
+     =\frac{2\pi\,\mathrm{i}}{n}(-1)^n.
+  \end{align*}
+  这里用了 $1/(-\mathrm{i})=\mathrm{i}$。再除以 $2\pi$，
+  \begin{equation*}
+    c_n=\frac{(-1)^n}{n}\,\mathrm{i},
+    \qquad |c_n|^2=\frac{1}{n^2},
+    \qquad c_0=0.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{核对的后一半}
+  Parseval 等式
+  \begin{equation*}
+    \sum_{n=-\infty}^{\infty}|c_n|^2
+    =\frac{1}{2\pi}\int_{-\pi}^{\pi} x^2\,\mathrm{d}x.
+  \end{equation*}
+  左边是 $2\sum_{n=1}^{\infty} 1/n^2$。右边
+  \begin{equation*}
+    \frac{1}{2\pi}\cdot\frac{2\pi^3}{3}=\frac{\pi^2}{3}.
+  \end{equation*}
+  所以
+  \begin{equation*}
+    \sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+  \end{equation*}
+  与拉普拉斯变换把级数改成 $\displaystyle\int_0^{\infty} t/(e^t-1)\,\mathrm{d}t$ 的结果一致。
+\end{frame}
+
+\begin{frame}{含 $1/t$ 的像}
+  若 $\displaystyle\int_p^{\infty}\bar f(q)\,\mathrm{d}q$ 存在，且 $t\to 0$ 时 $|f(t)/t|$ 有界，则
+  \begin{equation*}
+    \int_p^{\infty}\bar f(q)\,\mathrm{d}q
+    \risingdotseq\frac{f(t)}{t}.
+  \end{equation*}
+  这是对参数 $p$ 的积分：$\displaystyle\int_p^{\infty}\mathcal{L}\{f\}\,\mathrm{d}q
+    =\int_0^{\infty} f(t)\bigl(\int_p^{\infty} e^{-qt}\,\mathrm{d}q\bigr)\mathrm{d}t
+    =\mathcal{L}\{f(t)/t\}$。
+  \vspace{0.3em}
+
   再令 $p\to 0$，
   \begin{equation*}
     \int_0^{\infty}\frac{f(t)}{t}\,\mathrm{d}t
@@ -313,64 +557,94 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame}{例：$\displaystyle\int_0^{\infty}(\sin t)/t\,\mathrm{d}t$}
-  $\mathcal{L}[\sin t]=1/(p^2+1)$。于是
+\begin{frame}{例：$(\sin\omega t)/t$}
+  $\mathcal{L}\{\sin\omega t\}=\omega/(p^2+\omega^2)$。对像函数从 $p$ 积到 $\infty$，
+  \begin{align*}
+    \int_p^{\infty}\frac{\omega}{q^2+\omega^2}\,\mathrm{d}q
+    &=\bigl[\arctan(q/\omega)\bigr]_p^{\infty}
+     =\frac{\pi}{2}-\arctan\frac{p}{\omega}.
+  \end{align*}
+  因此
+  \begin{equation*}
+    \frac{\sin\omega t}{t}
+    \fallingdotseq\frac{\pi}{2}-\arctan\frac{p}{\omega}.
+  \end{equation*}
+  令 $p\to 0$、$\omega=1$，
   \begin{equation*}
     \int_0^{\infty}\frac{\sin t}{t}\,\mathrm{d}t
-    =\int_0^{\infty}\frac{1}{p^2+1}\,\mathrm{d}p
+    =\int_0^{\infty}\frac{\mathrm{d}p}{p^2+1}
     =\frac{\pi}{2}.
   \end{equation*}
-  被积函数在 $t=0$ 的极限是 $1$，奇点是可去的。直接在实轴上用留数并不方便，像函数的积分是反正切。
 \end{frame}
 
-\begin{frame}{例：$\displaystyle\int_0^{\infty}\dfrac{\cos(at)-\cos(bt)}{t}\,\mathrm{d}t$}
-  $a>0$，$b>0$。
-  $\mathcal{L}[\cos(at)-\cos(bt)]=p/(p^2+a^2)-p/(p^2+b^2)$，于是
+\begin{frame}{例：两个余弦之差}
+  $a>0$，$b>0$。$\mathcal{L}\{\cos at\}=p/(p^2+a^2)$，
   \begin{align*}
-    \int_0^{\infty}\frac{\cos(at)-\cos(bt)}{t}\,\mathrm{d}t
-    &=\int_0^{\infty}
-      \Bigl(\frac{p}{p^2+a^2}-\frac{p}{p^2+b^2}\Bigr)\mathrm{d}p\\
-    &=\frac12\Bigl[\ln\frac{p^2+a^2}{p^2+b^2}\Bigr]_0^{\infty}
-    =\ln\frac{b}{a}.
+    &\int_0^{\infty}\frac{\cos(at)-\cos(bt)}{t}\,\mathrm{d}t \\
+    &\quad=\int_0^{\infty}
+      \Biggl(\frac{p}{p^2+a^2}-\frac{p}{p^2+b^2}\Biggr)\mathrm{d}p.
   \end{align*}
-  上限趋于 $\ln 1=0$，下限留下 $-\ln(a/b)$。$t=0$ 处的极限是 $0$，同样是可去奇点。
+  原函数的不定积分是
+  \begin{equation*}
+    \int\frac{p\,\mathrm{d}p}{p^2+a^2}=\frac12\ln(p^2+a^2).
+  \end{equation*}
+  因此
+  \begin{equation*}
+    \Biggl[\frac12\ln\frac{p^2+a^2}{p^2+b^2}\Biggr]_0^{\infty}
+    =0-\frac12\ln\frac{a^2}{b^2}
+    =\ln\frac{b}{a}.
+  \end{equation*}
+  上限：分子分母都像 $p^2$，对数趋于 $\ln 1=0$。
 \end{frame}
 
 \begin{frame}{例：简谐振子}
+  质量为 $m$ 的质点在弹性系数为 $k$ 的弹簧牵引下做简谐运动，
   \begin{equation*}
-    m X''+k X=0,
-    \qquad X(0)=X_0,\quad X'(0)=0.
+    m\frac{\mathrm{d}^2 X}{\mathrm{d}t^2}+k X=0,
   \end{equation*}
-  设 $x(p)=\mathcal{L}[X]$。导数定理把方程变成代数方程
+  初始条件取 $X(0)=X_0$，$X'(0)=0$。
+  对方程作拉普拉斯变换，用 $x(p)$ 表示 $\mathcal{L}\{X\}$。
+  二阶导数定理
   \begin{equation*}
-    m\bigl(p^2 x(p)-p X_0\bigr)+k x(p)=0.
+    \mathcal{L}\{X''\}=p^2 x(p)-p X(0)-X'(0)
   \end{equation*}
-  令 $\omega_0^2=k/m$，
+  代入后，
   \begin{equation*}
-    x(p)=X_0\frac{p}{p^2+\omega_0^2}.
+    m\bigl(p^2 x-p X_0\bigr)+k x=0.
   \end{equation*}
-  这是 $\cos(\omega_0 t)$ 的像，所以 $X(t)=X_0\cos(\omega_0 t)$。
-  初速度为零，解里没有正弦项。
 \end{frame}
 
-\begin{frame}{若初速度不是零}
-  设 $X'(0)=V_0$。二阶导数定理多一项 $-m V_0$：
+\begin{frame}{解出原函数}
+  令 $\omega_0^2=k/m$，
+  \begin{equation*}
+    x(p)\bigl(mp^2+k\bigr)=mp X_0,
+    \qquad
+    x(p)=X_0\frac{p}{p^2+\omega_0^2}.
+  \end{equation*}
+  这正是 $\cos(\omega_0 t)$ 的像函数，所以
+  \begin{equation*}
+    X(t)=X_0\cos(\omega_0 t).
+  \end{equation*}
+  \vspace{0.4em}
+
+  若 $X'(0)=V_0$，导数定理多一项 $-m V_0$，
   \begin{equation*}
     x(p)=X_0\frac{p}{p^2+\omega_0^2}
-        +V_0\frac{1}{p^2+\omega_0^2}.
+        +\frac{V_0}{p^2+\omega_0^2}.
   \end{equation*}
-  第二项是 $\sin(\omega_0 t)/\omega_0$ 的像，因此
+  第二项是 $\sin(\omega_0 t)/\omega_0$ 的像，
   \begin{equation*}
-    X(t)=X_0\cos(\omega_0 t)+\frac{V_0}{\omega_0}\sin(\omega_0 t).
+    X(t)=X_0\cos(\omega_0 t)
+         +\frac{V_0}{\omega_0}\sin(\omega_0 t).
   \end{equation*}
-  微分方程变成了裂项。这就是本讲把导数定理放在卷积和反演前面的原因。
 \end{frame}
 
 \begin{frame}{本讲小结}
   \begin{itemize}
-    \item $\mathcal{L}[f]=\int_0^{\infty} e^{-pt}f(t)\,\mathrm{d}t$。它允许指数增长，并把 $t<0$ 截掉。
-    \item $\mathcal{L}[f']=p\bar f-f(0)$。初值出现在像函数里，所以振子方程可以直接解。
-    \item 有理像函数用裂项和留数；支点要切开。卷积与延迟用来处理 $e^{-\alpha p}$ 这种因子。
+    \item 令 $g(t)=e^{-\sigma t}f(t)$，再作傅里叶变换，得到拉普拉斯积分 $\bar f(p)=\int_0^{\infty} e^{-pt}f(t)\,\mathrm{d}t$。逆变换是 Bromwich 积分。
+    \item $f'\fallingdotseq p\bar f-f(0)$。初值进入像函数，常系数线性方程化成代数方程。
+    \item 有理像函数用待定系数裂项。$1/\sqrt{p}$ 沿负实轴切开，两侧的积分给出 $1/\sqrt{\pi t}$。
+    \item $\sum 1/n^2=\pi^2/6$；$\int_0^{\infty}(\sin t)/t\,\mathrm{d}t=\pi/2$；初速为零的振子是 $X_0\cos\omega_0 t$。
   \end{itemize}
 \end{frame}
 
