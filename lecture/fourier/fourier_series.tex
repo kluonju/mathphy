@@ -45,6 +45,18 @@ $N f$,
   \varphi_n(x) = f_n(x) - \sum_{j=1}^{n-1} \frac{(f_n, \varphi_j)}{(\varphi_j, \varphi_j)} \varphi_j(x)
 \end{equation}
 
+\begin{example}
+在 $[0,1]$ 上把 $\{1,x\}$ 正交化.
+\end{example}
+\begin{solution}
+取 $\varphi_1=1$,则 $(\varphi_1,\varphi_1)=1$,$(x,1)=\int_0^1 x\,\mathrm{d}x=1/2$,所以
+\begin{equation}
+  \varphi_2 = x - \frac12 .
+\end{equation}
+检验 $\int_0^1 (x-1/2)\,\mathrm{d}x=0$.其范数平方是 $\int_0^1 (x-1/2)^2\,\mathrm{d}x=1/12$,对应的归一化函数是 $\sqrt{12}\,(x-1/2)$.
+在对称区间 $[-1,1]$ 上, $(x,1)$ 本来就是零, $1$ 和 $x$ 已经正交,不必再减.
+\end{solution}
+
 下面我们来讨论正交函数组的完备性. 设$\varphi_1(x), \varphi_2(x), \cdots, \varphi_n(x)$是正交归一组, 我们可以定义
 \begin{equation}
   f(x) = \sum_{i=1}^n c_i \varphi_i(x)
@@ -202,6 +214,17 @@ $$
 \end{equation}
 称为\textbf{傅里叶余弦级数}.
 
+只在 $(0,\ell)$ 上给定的函数可以有很多种延拓,它们在 $(0,\ell)$ 上都代表原来的 $f$.边界条件常常把延拓定下来.要求 $f(0)=f(\ell)=0$ 时,把 $f$ 延拓成以 $2\ell$ 为周期的奇函数:在 $(0,\ell)$ 上 $g=f$,而 $-\ell<x<0$ 时 $g(x)=-f(-x)$.由周期性,$g(\ell+\epsilon)=g(-\ell+\epsilon)$;再由奇性,$g(-\ell+\epsilon)=-g(\ell-\epsilon)$.因此 $g$ 关于 $x=\ell$ 也是奇的.连续延拓只能有 $g(0)=g(\ell)=0$.正弦级数在这两个端点自动为零,系数是
+\begin{equation}
+  b_n = \frac{2}{\ell}\int_0^{\ell} f(x)\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+\end{equation}
+热棒两端保持零度,用的就是这个奇延拓.
+
+要求 $f'(0)=f'(\ell)=0$ 时,改成偶延拓,$g(-x)=g(x)$.偶函数的导数是奇函数,左右导数在 $x=0$ 处相等当且仅当 $f'(0)=0$.把原点移到 $x=\ell$,同样得到 $f'(\ell)=0$.余弦级数的导数是正弦级数,在两端自动为零.系数是
+\begin{equation}
+  a_n = \frac{2}{\ell}\int_0^{\ell} f(x)\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
+\end{equation}
+
 对于复指数的展开,不难发现可以写成
 \begin{equation}
   f(x) = \sum_{n=-\infty}^{\infty} c_n e^{\imath \frac{n\pi}{\ell} x},
@@ -230,23 +253,14 @@ $$
 求其傅里叶级数.
 \end{example}
 \begin{solution}
-不难判定通过解析延拓,该函数为奇函数,根据傅里叶展开系数公式,可以得
-\begin{align}
-b_n &=   \frac{1}{\ell} \int_{0}^{2\ell} f(x) \sin {  \left( \frac{n\pi}{\ell} x \right) } dx \nonumber
-\\
-&= \frac{1}{\ell} \int_{0}^{\ell} x  \sin {  \left( \frac{n\pi}{\ell} x \right) } dx \nonumber
-  % \\ & \quad 
-  +
- \frac{1}{\ell} \int_{\ell}^{2\ell} (x - 2\ell) \sin {  \left( \frac{n\pi}{\ell} x \right) } dx \nonumber
- \\ 
- &= \frac{2}{\ell} \int_{0}^{2\ell} x \sin {  \left( \frac{n\pi}{\ell} x \right) } dx \nonumber
-%  \\ & \quad 
- -2 \int_{\ell}^{2\ell}   \sin {  \left( \frac{n\pi}{\ell} x \right) } dx \nonumber
- \\
- & = \frac{2\ell}{n\pi} (-1)^{n+1}  \nonumber
-%  \\
-%  & = \frac{2}{n\pi}  \left[ (-1)^{n+1} (\ell -1)  -1 \right] , \nonumber
-\end{align}
+把一个周期挪到 $(-\ell,\ell)$,这个函数就是奇函数 $f(x)=x$,间断点在 $\pm\ell$.因此 $a_n=0$,并且
+\begin{equation}
+  b_n = \frac{2}{\ell}\int_0^{\ell} x\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x .
+\end{equation}
+分部积分,令 $u=x$,$\mathrm{d}v=\sin(n\pi x/\ell)\,\mathrm{d}x$,边界项是 $-\ell^2(-1)^n/(n\pi)$,剩余的余弦积分等于零,所以
+\begin{equation}
+  b_n = \frac{2\ell}{n\pi}(-1)^{n+1}.
+\end{equation}
 因此,该级数为
 \begin{align}
 f(x) &=  \sum_{n=1}^{\infty} \frac{2 \ell }{n\pi} (-1)^{n+1} \sin {  \left( \frac{n\pi}{\ell} x \right) }  \nonumber
@@ -290,7 +304,7 @@ $\int_0^1 \frac{d x}{1+x^2}=\left.\tan ^{-1} x\right|_0 ^1=\frac{\pi}{4}$,和被
 作为习题,证明对于矩形波,
 $f(x)=\left\{ \begin{array}{ll}-1, & x<0 \\ +1, &  x>0\end{array}\right.$, 其傅里叶级数为
 $$
-f(x)=\frac{4}{\pi} \left[  \sin \pi x+\frac{1}{3} \sin 3 \pi+\frac{1}{5 } \sin 5 x+\cdots \right]
+f(x)=\frac{4}{\pi} \left[  \sin (\pi x)+\frac{1}{3} \sin (3\pi x)+\frac{1}{5 } \sin (5\pi x)+\cdots \right]
 $$
 可以发现对于矩形波,其对应的能量为$1$,于是我们有
 $$
@@ -300,3 +314,61 @@ $$
 $$
 \sum_{n=0} \frac{1}{(2n+1)^2} = \frac{\pi^2}{8} .
 $$
+
+\subsection{三角系的完备性}
+前面把完备说成:平均平方误差可以小于任意正数.这里对分段平常的周期函数把这件事证完.先作换元 $\theta=\pi x/\ell$,把区间 $[-\ell,\ell]$ 化到 $[-\pi,\pi]$.两边的积分只差常数 $\ell/\pi$,所以只要在 $[-\pi,\pi]$ 上证明即可.此时
+\begin{equation}
+  a_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos(nx)\,\mathrm{d}x,
+  \qquad
+  b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin(nx)\,\mathrm{d}x.
+\end{equation}
+
+设 $s_n$ 是 $f$ 的 $n$ 阶傅里叶部分和,$T$ 是次数不超过 $n$ 的三角多项式,$r=T-s_n$.由系数定义,$\int_{-\pi}^{\pi}(f-s_n)\cos(kx)\,\mathrm{d}x=0$,正弦同样,所以 $\int(f-s_n)r\,\mathrm{d}x=0$.于是
+\begin{equation}
+  \int_{-\pi}^{\pi}(f-T)^2\,\mathrm{d}x
+  = \int_{-\pi}^{\pi}(f-s_n)^2\,\mathrm{d}x + \int_{-\pi}^{\pi} r^2\,\mathrm{d}x.
+\end{equation}
+第二项非负,因此在这个次数之内,$s_n$ 的平均平方误差最小.把平方展开,并用 $\int_{-\pi}^{\pi}\cos^2(kx)\,\mathrm{d}x=\pi$($k\geq 1$)和 $\int_{-\pi}^{\pi}1\,\mathrm{d}x=2\pi$,得到
+\begin{equation}
+  \int_{-\pi}^{\pi}(f-s_n)^2\,\mathrm{d}x
+  = \int_{-\pi}^{\pi} f^2\,\mathrm{d}x
+    - \pi\Biggl(\frac{a_0^2}{2}+\sum_{k=1}^{n}(a_k^2+b_k^2)\Biggr).
+\end{equation}
+左边非负,这就是三角系上的贝塞尔不等式.要证明完备,还要造出一组三角多项式,把这个差压到任意小.
+
+部分和可以写成卷积.记\textbf{狄里希利核}
+\begin{equation}
+  D_n(\theta) = \half + \sum_{k=1}^{n}\cos(k\theta)
+  = \frac{\sin\bigl((n+\half)\theta\bigr)}{2\sin(\theta/2)}.
+\end{equation}
+第二个等号用 $2\sin(\theta/2)$ 去乘求和式,积化和差后中间项相消.于是
+\begin{equation}
+  s_n(x) = \frac{1}{\pi}\int_{-\pi}^{\pi} f(t)\,D_n(t-x)\,\mathrm{d}t,
+\end{equation}
+并且 $\int_{-\pi}^{\pi} D_n(\theta)\,\mathrm{d}\theta=\pi$.
+
+把前 $n+1$ 个狄里希利核取平均,得到\textbf{费耶核}
+\begin{equation}
+  F_n(\theta)
+  = \frac{1}{n+1}\sum_{m=0}^{n} D_m(\theta)
+  = \frac{1}{2(n+1)}
+    \Biggl(\frac{\sin((n+1)\theta/2)}{\sin(\theta/2)}\Biggr)^2.
+\end{equation}
+它非负,积分仍是 $\pi$.对应的\textbf{费耶平均} $\sigma_n=(s_0+\cdots+s_n)/(n+1)$ 仍是次数不超过 $n$ 的三角多项式,并且
+\begin{equation}
+  \sigma_n(x)-f(x)
+  = \frac{1}{\pi}\int_{-\pi}^{\pi}\bigl[f(x-t)-f(x)\bigr] F_n(t)\,\mathrm{d}t.
+\end{equation}
+
+先设 $f$ 连续,并且 $f(-\pi)=f(\pi)$,从而在圆周上一致连续.给定 $\epsilon>0$,取 $\delta$ 使 $|t|<\delta$ 时 $|f(x-t)-f(x)|<\epsilon$.积分拆成 $|t|<\delta$ 和 $|t|\geq\delta$.$F_n\geq 0$,峰内的贡献小于 $\epsilon$.峰外 $|\sin(t/2)|\geq\sin(\delta/2)$,所以 $F_n$ 不超过 $1/\bigl(2(n+1)\sin^2(\delta/2)\bigr)$,$n$ 大时峰外的贡献可以小于 $\epsilon$.因此 $\sigma_n$ 一致收敛到 $f$,
+\begin{equation}
+  \int_{-\pi}^{\pi}(f-\sigma_n)^2\,\mathrm{d}x
+\end{equation}
+可以任意小.$s_n$ 的平均平方误差不超过 $\sigma_n$ 的,所以连续且周期闭合的函数已经可以用三角多项式在均方意义下逼近.
+
+若 $f$ 只是分段平常,一个周期里只有有限个跳跃.在每个跳跃处用一段宽度为 $\eta$ 的直线把左右值接上,端点 $f(-\pi)$ 与 $f(\pi)$ 同样接上,得到连续的周期函数 $h$.这些小区间上 $|f-h|$ 有界,$\eta$ 足够小时 $\int(f-h)^2$ 可以任意小.再对 $h$ 取三角多项式 $T$,使 $\int(h-T)^2$ 任意小.由 $(A+B)^2\leq 2A^2+2B^2$,
+\begin{equation}
+  \int(f-T)^2\,\mathrm{d}x
+  \leq 2\int(f-h)^2\,\mathrm{d}x + 2\int(h-T)^2\,\mathrm{d}x
+\end{equation}
+也可以任意小.$n$ 不小于 $T$ 的次数时,$\int(f-s_n)^2\leq\int(f-T)^2$.平均平方误差可以任意小,三角函数族完备.回到 $[-\ell,\ell]$,贝塞尔不等式里的余项趋于零,就得到正文中的 Parseval 等式.狄里希利条件另外保证间断点处级数和等于左右值的平均;这里证明的是平均平方意义下的完备.

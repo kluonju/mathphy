@@ -49,3 +49,28 @@
     \frac{\partial H}{\partial t}&=-\frac{\partial L}{\partial t}
 \end{align}
 对于保守系统,$\frac{\partial H}{\partial t}=0$, $H$为守恒量对应体系的能量.
+
+沿真实轨道 $q_i(t),p_i(t)$ 对 $H(q_i,p_i,t)$ 求全导数,
+\begin{equation}
+  \funcd{H}{t}
+  = \sum_i\left( \funcpd{H}{q_i}\dot q_i + \funcpd{H}{p_i}\dot p_i \right)
+    + \funcpd{H}{t}.
+\end{equation}
+代入哈密顿方程 $\dot q_i=\partial H/\partial p_i$、$\dot p_i=-\partial H/\partial q_i$,前两项相消,
+\begin{equation}
+  \funcd{H}{t} = \funcpd{H}{t} = -\funcpd{L}{t}.
+\end{equation}
+因此只要 $L$ 不显含时间,$\mathrm{d}H/\mathrm{d}t=0$,$H$ 沿轨道是常数.这对应时间平移对称性.对通常的 $L=K-V$,这个常数就是总能量.动量、角动量等其他守恒量同样来自 $L$ 的对称性.
+
+\begin{example}
+自由粒子与简谐振子的哈密顿量.
+\end{example}
+\begin{solution}
+自由粒子 $L=\half m\dot q^2$.共轭动量 $p=m\dot q$,所以 $H=p^2/(2m)$.哈密顿方程是 $\dot q=p/m$、$\dot p=0$,即匀速直线运动.
+
+简谐振子 $L=\half m\dot q^2-\half k q^2$.仍有 $p=m\dot q$,而
+\begin{equation}
+  H = \frac{p^2}{2m} + \half k q^2.
+\end{equation}
+哈密顿方程 $\dot q=p/m$、$\dot p=-kq$ 合起来就是 $m\ddot q+kq=0$.$L$ 不含 $t$,所以 $H$ 守恒,等于动能加势能.
+\end{solution}

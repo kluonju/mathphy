@@ -1,0 +1,81 @@
+\subsection{拉格朗日乘子}
+积分约束是把整条曲线限制住.更基本的情形是函数 $f(x_1,\ldots,x_n)$ 在若干等式 $c_a(x_1,\ldots,x_n)=0$ 下取极值.引入乘子 $\lambda_a$,作
+\begin{equation}
+  \mathcal{F} = f - \sum_a \lambda_a c_a .
+\end{equation}
+把 $x_i$ 和 $\lambda_a$ 都当成独立变量,驻点方程是
+\begin{equation}
+  \funcpd{f}{x_i} - \sum_a \lambda_a \funcpd{c_a}{x_i} = 0,
+  \qquad c_a = 0 .
+\end{equation}
+对 $\lambda_a$ 求导只是把约束写回来.
+
+几何上,$\nabla f$ 垂直于 $f$ 的等值面.约束曲面上允许的位移 $\mathrm{d}\bx$ 满足 $\nabla c_a\cdot\mathrm{d}\bx=0$.
+要让 $f$ 沿这些位移的一阶变化为零,$\nabla f$ 必须落在各个 $\nabla c_a$ 张成的法向里:
+\begin{equation}
+  \nabla f = \sum_a \lambda_a \nabla c_a .
+\end{equation}
+沿约束面走动时,$f$ 的一阶变化为零;在整个空间里 $\nabla f$ 不必为零.
+
+\begin{example}
+求平面 $x+y+z=1$ 上离原点最近的点.
+\end{example}
+\begin{solution}
+极小化 $f=x^2+y^2+z^2$,约束 $c=x+y+z-1=0$.驻点方程为
+\begin{equation}
+  2x=\lambda,\qquad 2y=\lambda,\qquad 2z=\lambda,\qquad x+y+z=1.
+\end{equation}
+于是 $x=y=z$,最近点是 $(1/3,1/3,1/3)$.三个偏导相等,是因为平面的法向是 $(1,1,1)$,而 $\nabla f=(2x,2y,2z)$ 必须与它平行.
+\end{solution}
+
+\begin{example}
+求 $f=x+y$ 在双曲线 $xy=1$ 上的驻点.
+\end{example}
+\begin{solution}
+\begin{equation}
+  1-\lambda y = 0, \qquad 1-\lambda x = 0, \qquad xy=1.
+\end{equation}
+前两式给出 $x=y$.代入 $xy=1$,得到 $(1,1)$ 和 $(-1,-1)$.
+在这两点,$x+y$ 的等值线与双曲线相切.
+\end{solution}
+
+\begin{example}
+单位球面上 $f=z$ 的极值.
+\end{example}
+\begin{solution}
+约束 $c=x^2+y^2+z^2-1=0$,增广函数 $\mathcal{F}=z-\lambda c$.
+\begin{equation}
+  -2\lambda x=0,\qquad -2\lambda y=0,\qquad 1-2\lambda z=0,\qquad x^2+y^2+z^2=1.
+\end{equation}
+若 $\lambda=0$,第三式变成 $1=0$,矛盾.因此 $x=y=0$,再由球面得 $z=\pm 1$,$\lambda=1/(2z)$.极值点是北极 $(0,0,1)$ 和南极 $(0,0,-1)$.几何上 $\nabla f=(0,0,1)$ 必须平行于 $\nabla c=(2x,2y,2z)$,球面上只有这两点满足.
+\end{solution}
+
+\begin{example}
+单位圆上内接 $N$ 边形的最大面积.
+\end{example}
+\begin{solution}
+顶点 $(x_i,y_i)$ 在单位圆上,$x_i^2+y_i^2=1$,按逆时针编号,并令 $(x_{N+1},y_{N+1})=(x_1,y_1)$.由格林公式,围成的有向面积是
+\begin{equation}
+  2A = \sum_{i=1}^{N}\bigl(x_i y_{i+1}-x_{i+1} y_i\bigr).
+\end{equation}
+写成 $x_i=\cos\theta_i$,$y_i=\sin\theta_i$,每一项是相邻圆心角的正弦,
+\begin{equation}
+  A = \half\sum_{i=1}^{N}\sin(\theta_{i+1}-\theta_i).
+\end{equation}
+对 $\theta_k$ 求导,它只出现在第 $k-1$ 项和第 $k$ 项里,
+\begin{equation}
+  \funcpd{A}{\theta_k}
+  = \half\Bigl[\cos(\theta_k-\theta_{k-1})-\cos(\theta_{k+1}-\theta_k)\Bigr]=0.
+\end{equation}
+记 $\alpha_i=\theta_{i+1}-\theta_i\in(0,\pi)$,则 $\cos\alpha_{k-1}=\cos\alpha_k$,从而各圆心角相等.它们的和是 $2\pi$,所以 $\alpha_i=2\pi/N$.面积最大的是正 $N$ 边形,
+\begin{equation}
+  A_{\max} = \frac{N}{2}\sin\frac{2\pi}{N}.
+\end{equation}
+$N\to\infty$ 时 $A_{\max}\to\pi$,即单位圆的面积.
+
+用 $z_i=x_i+\mathrm{i} y_i$,在单位圆上 $\bar z_i=1/z_i$,同一面积可写成
+\begin{equation}
+  2A = \operatorname{Im}\sum_{i=1}^{N}\bar z_i z_{i+1}.
+\end{equation}
+$z_i=e^{\mathrm{i}\theta_i}$ 时 $\bar z_i z_{i+1}=e^{\mathrm{i}(\theta_{i+1}-\theta_i)}$,虚部就是上面的正弦.
+\end{solution}

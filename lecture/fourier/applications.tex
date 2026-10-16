@@ -20,50 +20,27 @@ $$
 & =\int_0^{\infty} t\left[\sum_{n=1}^{\infty} e^{-n t}\right] d t=\int_0^{\infty} \frac{t}{e^t-1} d t
 \end{aligned}
 $$
-查表可得
+这个积分的值是 $\pi^2/6$,下面用 Parseval 等式核对,不必查表.
+
+在 $[-\pi,\pi]$ 上取 $f(x)=x$,则 $\ell=\pi$,
 \begin{equation}
-    \sum_{n=1} ^{\infty}  \frac{1}{n^2} = \frac{\pi^2}{6}.
+  c_n = \frac{1}{2\pi}\int_{-\pi}^{\pi} x\, e^{-\imath n x}\,\mathrm{d}x.
 \end{equation}
-
-\begin{note}
-    Use Parseval's identity (applied to the function $f(x)=x$ ) to obtain
-
-    $$
-    \sum_{n=-\infty}^{\infty}\left|c_n\right|^2=\frac{1}{2 \pi} \int_{-\pi}^\pi x^2 d x
-    $$
-    
-    where
-    
-    $$
-    \begin{aligned}
-    c_n & =\frac{1}{2 \pi} \int_{-\pi}^\pi x e^{-i n x} d x \\
-    & =\frac{n \pi \cos (n \pi)-\sin (n \pi)}{\pi n^2} i \\
-    & =\frac{\cos (n \pi)}{n} i \\
-    & =\frac{(-1)^n}{n} i
-    \end{aligned}
-    $$
-    
-    for $n \neq 0$, and $c_0=0$. Thus,
-    
-    $$
-    \left|c_n\right|^2= \begin{cases}\frac{1}{n^2}, & \text { for } n \neq 0 \\ 0, & \text { for } n=0\end{cases}
-    $$
-    
-    and
-    
-    $$
-    \sum_{n=-\infty}^{\infty}\left|c_n\right|^2=2 \sum_{n=1}^{\infty} \frac{1}{n^2}=\frac{1}{2 \pi} \int_{-\pi}^\pi x^2 d x
-    $$
-    
-    
-    Therefore,
-    
-    $$
-    \sum_{n=1}^{\infty} \frac{1}{n^2}=\frac{1}{4 \pi} \int_{-\pi}^\pi x^2 d x=\frac{\pi^2}{6}
-    $$
-    
-    as required.
-\end{note}
+$n\neq 0$ 时分部积分.$\int_{-\pi}^{\pi} e^{-\imath n x}\,\mathrm{d}x=0$,只剩边界项.两端 $e^{-\imath n\pi}=e^{\imath n\pi}=(-1)^n$,并且 $1/(-\imath)=\imath$,
+\begin{equation}
+  \left[\frac{x\,e^{-\imath n x}}{-\imath n}\right]_{-\pi}^{\pi}
+  = \frac{2\pi\,\imath}{n}(-1)^n.
+\end{equation}
+再除以 $2\pi$,得到 $c_n = \imath (-1)^n/n$,$|c_n|^2=1/n^2$,而 $c_0=0$.Parseval 等式
+\begin{equation}
+  \sum_{n=-\infty}^{\infty}|c_n|^2
+  = \frac{1}{2\pi}\int_{-\pi}^{\pi} x^2\,\mathrm{d}x.
+\end{equation}
+左边是 $2\sum_{n=1}^{\infty} 1/n^2$.右边是
+\begin{equation}
+  \frac{1}{2\pi}\cdot\frac{2\pi^3}{3} = \frac{\pi^2}{3}.
+\end{equation}
+因此 $\sum_{n=1}^{\infty} 1/n^2=\pi^2/6$.左边的积分是 $\pi^2/3$,再除以 $2$ 才得到 $\pi^2/6$.
 
 \subsubsection{求解定积分}
 如果 $\int_v^{\infty} \bar{f}(q) d q$ 存在, 且当$t\to 0$时, $|f(t)/t|$有界,则
@@ -87,14 +64,18 @@ $$
 $$
 \int_0^{\infty} \frac{\cos a t-\cos b t}{t} d t \quad a>0, b>0
 $$
-使用以上等式可得
-
-$$
-\begin{gathered}
-\int_0^{\infty} \frac{\cos a t-\cos b t}{t} d t \fallingdotseq \int_0^{\infty}\left(\frac{p}{p^2+a^2}-\frac{p}{p^2+b^2}\right) d p \\
-=\left.\frac{1}{2} \ln \frac{p^2+a^2}{p^2+b^2}\right|^{\infty}=\ln b-\ln a .
-\end{gathered}
-$$
+$\mathcal{L}\{\cos at\}=p/(p^2+a^2)$.于是
+\begin{equation}
+  \int_0^{\infty}\frac{\cos(at)-\cos(bt)}{t}\,\mathrm{d}t
+  = \int_0^{\infty}\left(\frac{p}{p^2+a^2}-\frac{p}{p^2+b^2}\right)\mathrm{d}p.
+\end{equation}
+不定积分是 $\half\ln(p^2+a^2)$.定积分
+\begin{equation}
+  \left[\half\ln\frac{p^2+a^2}{p^2+b^2}\right]_0^{\infty}
+  = 0 - \half\ln\frac{a^2}{b^2}
+  = \ln\frac{b}{a}.
+\end{equation}
+上限处分子分母都像 $p^2$,对数趋于 $\ln 1=0$.
 
 \subsubsection{求解微分方程}
 给一个例子,利用拉普拉斯变换求解简谐振子方程的解.
@@ -126,4 +107,14 @@ $$
 $$
 X(t)=X_0 \cos \omega_0 t.
 $$
+初速度为零,解里没有正弦项.
 \end{solution}
+
+若初速度改为 $X'(0)=V_0$,二阶导数定理多一项 $-m V_0$,于是
+\begin{equation}
+    x(p)=X_0\frac{p}{p^2+\omega_0^2}+V_0\frac{1}{p^2+\omega_0^2},
+\end{equation}
+\begin{equation}
+    X(t)=X_0\cos(\omega_0 t)+\frac{V_0}{\omega_0}\sin(\omega_0 t).
+\end{equation}
+正弦项的系数是 $V_0/\omega_0$,因为 $\mathcal{L}\{\sin(\omega_0 t)\}=\omega_0/(p^2+\omega_0^2)$.在 $t=0$ 对解求导,可以核对这个因子.

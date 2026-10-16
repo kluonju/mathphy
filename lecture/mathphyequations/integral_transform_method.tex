@@ -1,0 +1,117 @@
+\section{积分变换法}
+无界或半无界区域上,边界不把谱离散成级数.对那个无限延伸的变量作积分变换,可以把偏微分方程降成常微分方程.这里的傅里叶变换采用性质一节里的对称约定
+\begin{equation}
+  F(\omega)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(x)\,e^{-\imath\omega x}\,\mathrm{d}x,
+  \qquad
+  f(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} F(\omega)\,e^{\imath\omega x}\,\mathrm{d}\omega.
+\end{equation}
+导数定理是 $\mathcal{F}[f']=\imath\omega F$,卷积定理是 $\mathcal{F}[f_1*f_2]=\sqrt{2\pi}\,F_1 F_2$.
+
+\subsection{热传导与高斯核}
+无限长细杆
+\begin{equation}
+  \frac{\partial u}{\partial t}=a^2\frac{\partial^2 u}{\partial x^2},
+  \qquad
+  u(x,0)=\varphi(x),
+\end{equation}
+$a^2$ 是扩散系数.对 $x$ 作傅里叶变换,$\mathcal{F}[u_{xx}]=(\imath\omega)^2 U=-\omega^2 U$,于是
+\begin{equation}
+  \frac{\partial U}{\partial t}=-a^2\omega^2 U,
+  \qquad
+  U(\omega,t)=\Phi(\omega)\,e^{-a^2\omega^2 t}.
+\end{equation}
+设核 $K$ 的像函数满足 $\sqrt{2\pi}\,\widehat K=e^{-a^2\omega^2 t}$,则 $U=\sqrt{2\pi}\,\widehat K\,\Phi$ 正好是卷积定理的右边,$u=K*\varphi$.令 $\beta=a^2 t$,
+\begin{equation}
+  \widehat K(\omega)=\frac{1}{\sqrt{2\pi}}e^{-\beta\omega^2}.
+\end{equation}
+逆变换是高斯积分,
+\begin{equation}
+  K(x,t)
+  =\frac{1}{2\pi}\int_{-\infty}^{\infty} e^{-\beta\omega^2+\imath\omega x}\,\mathrm{d}\omega
+  =\frac{1}{\sqrt{4\pi a^2 t}}
+    \exp\Bigl(-\frac{x^2}{4a^2 t}\Bigr),
+  \qquad t>0.
+  \label{eq:heat-kernel}
+\end{equation}
+因此
+\begin{equation}
+  u(x,t)
+  =\int_{-\infty}^{\infty} K(x-y,t)\,\varphi(y)\,\mathrm{d}y.
+  \label{eq:heat-convolution}
+\end{equation}
+$K$ 对 $x$ 的积分是 $1$,总热量守恒.$t\to 0^+$ 时 $K$ 趋于 $\delta(x)$,回到初值.时间越长,高斯越矮、越宽.
+
+\begin{example}
+初温 $\varphi(x)=e^{-x^2}$.
+\end{example}
+\begin{solution}
+两个高斯的卷积仍是高斯.直接用像函数更快.$\varphi$ 对应上面傅里叶变换例子里的 $\alpha=1$,
+\begin{equation}
+  \Phi(\omega)=\frac{1}{\sqrt{2}}e^{-\omega^2/4},
+\end{equation}
+\begin{equation}
+  U(\omega,t)=\frac{1}{\sqrt{2}}
+  \exp\Bigl(-\frac{\omega^2}{4}(1+4a^2 t)\Bigr).
+\end{equation}
+对照 $e^{-\alpha x^2}$ 的像函数 $e^{-\omega^2/(4\alpha)}/\sqrt{2\alpha}$,这里 $1/(4\alpha)=(1+4a^2 t)/4$,即 $\alpha=1/(1+4a^2 t)$,并且系数 $1/\sqrt{2}$ 比 $1/\sqrt{2\alpha}$ 少一个因子 $\sqrt{\alpha}$.所以
+\begin{equation}
+  u(x,t)=\frac{1}{\sqrt{1+4a^2 t}}
+  \exp\Bigl(-\frac{x^2}{1+4a^2 t}\Bigr).
+\end{equation}
+\end{solution}
+
+\subsection{拉普拉斯变换}
+半无限杆 $x>0$ 的一端温度给定、初温为零时,对时间作拉普拉斯变换更合适.设
+\begin{equation}
+  u_t=a^2 u_{xx},
+  \qquad
+  u(x,0)=0,
+  \qquad
+  u(0,t)=T_0,
+  \qquad
+  u(\infty,t)\ \textrm{有界}.
+\end{equation}
+记 $\bar u(x,p)=\int_0^{\infty} e^{-pt}u(x,t)\,\mathrm{d}t$.零初值使 $u_t$ 的像是 $p\bar u$,
+\begin{equation}
+  a^2\frac{\mathrm{d}^2\bar u}{\mathrm{d}x^2}-p\bar u=0,
+  \qquad
+  \bar u(0,p)=\frac{T_0}{p}.
+\end{equation}
+有界解是
+\begin{equation}
+  \bar u(x,p)=\frac{T_0}{p}\exp\Bigl(-\frac{x}{a}\sqrt{p}\Bigr).
+\end{equation}
+$\mathcal{L}\{\operatorname{erfc}(k/(2\sqrt{t}))\}=e^{-k\sqrt{p}}/p$,因此
+\begin{equation}
+  u(x,t)=T_0\operatorname{erfc}\Bigl(\frac{x}{2a\sqrt{t}}\Bigr).
+\end{equation}
+$t\to 0^+$ 时,只要 $x>0$,自变量趋于无穷,$\operatorname{erfc}$ 趋于 $0$,与零初温一致.$x=0$ 处 $\operatorname{erfc}(0)=1$,端点保持 $T_0$.热量从端面逐渐渗进杆内.
+
+若把条件改成 $u(x,0)=T_0$、$u(0,t)=0$,解是 $T_0\operatorname{erf}\bigl(x/(2a\sqrt{t})\bigr)$.它和上一个解相加等于 $T_0$,因为常值函数是热方程的解,而 $\operatorname{erf}+\operatorname{erfc}=1$.
+
+\subsection{同时变换两个变量}
+对流热传导
+\begin{equation}
+  u_t+b u_x=a^2 u_{xx},
+  \qquad
+  u(x,0)=\varphi(x),
+\end{equation}
+先对 $x$ 作傅里叶变换.$\mathcal{F}[u_x]=\imath\omega U$,
+\begin{equation}
+  U_t+(\imath b\omega+a^2\omega^2)U=0,
+\end{equation}
+\begin{equation}
+  U(\omega,t)=\Phi(\omega)\,e^{-a^2\omega^2 t}\,e^{-\imath b\omega t}.
+\end{equation}
+后一个因子是延迟定理:它把热核的中心从 $x$ 挪到 $x-bt$.解是
+\begin{equation}
+  u(x,t)=\int_{-\infty}^{\infty} K(x-bt-y,t)\,\varphi(y)\,\mathrm{d}y,
+\end{equation}
+$K$ 仍是\eqref{eq:heat-kernel}.扩散在以速度 $b$ 移动的坐标系里进行.
+
+若方程再加一个线性衰减 $-cu$,像函数多一个因子 $e^{-ct}$,温度整体按 $e^{-ct}$ 衰减,空间形状不变.有源项 $f(x,t)$ 则在像函数上变成非齐次一阶方程,解出来是热核关于时间的 Duhamel 积分
+\begin{equation}
+  u(x,t)=\int_0^t\mathrm{d}\tau\int_{-\infty}^{\infty}
+  K(x-y,t-\tau)\,f(y,\tau)\,\mathrm{d}y,
+\end{equation}
+这里写的是 $b=c=0$、零初温的情形.

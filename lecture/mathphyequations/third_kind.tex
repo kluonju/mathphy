@@ -1,0 +1,27 @@
+\section{第三类边界条件的本征值}
+分离变量在第一类、第二类边界下得到的是正弦或余弦,本征值是显式的.一端固定、另一端弹性支承时,边界条件是第三类,本征值改由超越方程决定.
+
+考虑区间 $0<x<l$ 上的问题
+\begin{equation}
+  X''+\lambda X=0,
+  \qquad
+  X(0)=0,
+  \qquad
+  X'(l)+h X(l)=0,
+\end{equation}
+其中 $h>0$.$h$ 就是定解条件里弹性支承的 $\sigma$.$\lambda\leq 0$ 时只有零解:$\lambda=0$ 给出直线,$X(0)=0$ 把它定成 $X=cx$,再由右端条件得 $c(1+hl)=0$.$\lambda=-\mu^2<0$ 给出双曲函数,同样只有零解.因此 $\lambda=\mu^2>0$,
+\begin{equation}
+  X(x)=\sin(\mu x).
+\end{equation}
+右端条件变成
+\begin{equation}
+  \mu\cos(\mu l)+h\sin(\mu l)=0,
+  \qquad
+  \tan(\mu l)=-\frac{\mu}{h}.
+  \label{eq:third-kind-root}
+\end{equation}
+把 $\tan(\mu l)$ 和直线 $-\mu/h$ 画在同一张图上.在每个区间 $\bigl((n-\half)\pi,(n\pi)\bigr)$ 里,$n=1,2,\ldots$,正切从 $-\infty$ 升到 $0$,直线是负的,所以恰好有一个根 $\mu_n$.这些根没有初等表达式,但
+\begin{equation}
+  \bigl(n-\half\bigr)\pi < \mu_n l < n\pi,
+\end{equation}
+$n$ 很大时 $\mu_n$ 靠近 $n\pi/l$ 的左边.相应的本征函数 $\sin(\mu_n x)$ 仍按 Sturm--Liouville 理论在 $[0,l]$ 上正交.初始条件的系数照旧用这个内积来定,只是 $\mu_n$ 要先从\eqref{eq:third-kind-root}解出来.

@@ -54,6 +54,11 @@ $$
 \delta^{\prime}(-x)=-\delta^{\prime}(x) .
 \end{gathered}
 $$
+对光滑的 $f$,分部积分把导数挪到 $f$ 上,
+\begin{equation}
+  \int_{-\infty}^{\infty} f(x)\,\delta'(x-a)\,\mathrm{d}x = -f'(a).
+\end{equation}
+所以 $\delta'$ 挑选的是导数值,并且带一个负号.
 
 对于变量为函数的情况,有
 \begin{equation}
@@ -65,9 +70,25 @@ $\varphi(x)=0$ 的实根.
 \begin{equation}
     \begin{gathered}
     \delta(a x)=\frac{\delta(x)}{|a|}, \\
-    \delta\left(x^2-a^2\right)=\frac{\delta(x+a)+\delta(x-a)}{2|a|}=\frac{\delta(x+a)+\delta(x-a)}{2|x|} .
+    \delta\left(x^2-a^2\right)=\frac{\delta(x-a)+\delta(x+a)}{2|a|} .
     \end{gathered}
 \end{equation}
+计算时分母用 $2|a|$.只在零点上 $2|x|$ 才和 $2|a|$ 相等,不要把 $|x|$ 写进恒等式.
+
+\begin{example}
+计算 $\displaystyle\int_{-\infty}^{\infty}(x^2+1)\,\delta(x^2-4)\,\mathrm{d}x$.
+\end{example}
+\begin{solution}
+零点是 $x=\pm 2$, $|\varphi'(x)|=|2x|=4$.每个零点贡献 $(x_k^2+1)/4=5/4$,所以积分等于 $5/2$.
+\end{solution}
+
+\begin{example}
+电荷 $-e$、$2e$、$-e$ 分别位于 $x=-4$、$0$、$\pi$.
+\end{example}
+\begin{solution}
+线密度为 $\rho(x)=-e\,\delta(x+4)+2e\,\delta(x)-e\,\delta(x-\pi)$.
+总电荷是系数之和,等于 $0$.区间 $(-3,3)$ 只含 $x=0$,这段上的电荷是 $2e$.
+\end{solution}
 
 $\delta$函数是一种广义函数,常常可以看作是以下函数的极限.
 \begin{equation}
@@ -104,11 +125,11 @@ $$
 \begin{equation}
     \delta(\br)=\delta(x) \delta(y) \delta(z),
 \end{equation}
-在柱坐标系中,
-\begin{equation}
-    \delta(\br)=\frac{1}{\rho} \delta(\varphi)\delta(z),
-\end{equation}
-在球坐标系中,
-\begin{equation}
-    \delta(\br)=\frac{1}{r^2\sin{\theta}} \delta(r) \delta(\theta) \delta(\varphi).
-\end{equation}
+场点不在原点、也不在球坐标的极轴上时,分母是体积元的雅可比:
+\begin{align}
+    \delta(\br-\brp)
+    &=\frac{\delta(\rho-\rho')\,\delta(\varphi-\varphi')\,\delta(z-z')}{\rho},\\
+    \delta(\br-\brp)
+    &=\frac{\delta(r-r')\,\delta(\theta-\theta')\,\delta(\varphi-\varphi')}{r^2\sin\theta}.
+\end{align}
+上一行是柱坐标,下一行是球坐标.这样对 $\delta$ 积分才和体积元配成 $1$.原点处的柱坐标表达式不能省掉 $\delta(\rho)$.

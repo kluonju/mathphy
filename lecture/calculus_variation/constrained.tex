@@ -40,6 +40,33 @@ u(x) = \int \frac{t}{\sqrt{1 - t^2}} \frac{dt}{\lambda} = - \frac{\sqrt{1 - t^2}
 而右边正式平面曲线的曲率$\kappa$, 因此在约束条件下, 最短路径的曲率是常数.
 故也可知曲线为圆弧.
 
+\begin{example}
+悬链线.
+\end{example}
+\begin{solution}
+均匀软绳的重力势能是
+\begin{equation}
+  U[u] = \int_{-L/2}^{L/2} \rho g\, u\sqrt{1+u'^2}\,\mathrm{d}x,
+\end{equation}
+绳长另有约束 $\int_{-L/2}^{L/2}\sqrt{1+u'^2}\,\mathrm{d}x=\ell$.
+乘子 $\lambda$ 把被积函数改成 $(\rho g u+\lambda)\sqrt{1+u'^2}$.
+它不显含 $x$,首次积分给出
+\begin{equation}
+  \frac{\rho g u+\lambda}{\sqrt{1+u'^2}} = A .
+\end{equation}
+令 $w=\rho g u+\lambda$,则 $\mathrm{d}w/\mathrm{d}x = (\rho g/A)\sqrt{w^2-A^2}$.
+分离变量并积分,
+\begin{equation}
+  w = A \cosh\Bigl(\frac{\rho g}{A}(x-x_c)\Bigr).
+\end{equation}
+因此
+\begin{equation}
+  u(x) = a\cosh\Bigl(\frac{x-x_c}{a}\Bigr) + u_c,
+  \qquad a=\frac{A}{\rho g}.
+\end{equation}
+平衡曲线是双曲余弦,不是抛物线.顶点附近把余弦展开到二阶,才近似成抛物线.常数由两端位置和绳长决定.
+\end{solution}
+
 
 % \subsection{Euler-Lagrange方程}
 % 上式的求解其实可以归结

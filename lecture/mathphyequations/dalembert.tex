@@ -1,0 +1,131 @@
+\section{行波法与达朗贝尔公式}
+有界区间上的振动用分离变量最直接.无界弦上没有边界把波数离散化,通解是沿特征线传播的两列行波,初值问题的解写成达朗贝尔公式.
+
+\subsection{一维波动方程的通解}
+齐次方程
+\begin{equation}
+  \frac{\partial^2 u}{\partial t^2}-a^2\frac{\partial^2 u}{\partial x^2}=0,
+  \qquad -\infty<x<\infty,
+\end{equation}
+里的 $a>0$ 是波速.引入特征坐标
+\begin{equation}
+  \xi=x-at, \qquad \eta=x+at.
+\end{equation}
+链式法则给出
+\begin{align}
+  u_x &= u_\xi+u_\eta, &
+  u_{xx} &= u_{\xi\xi}+2u_{\xi\eta}+u_{\eta\eta}, \\
+  u_t &= -a u_\xi+a u_\eta, &
+  u_{tt} &= a^2 u_{\xi\xi}-2a^2 u_{\xi\eta}+a^2 u_{\eta\eta}.
+\end{align}
+因此
+\begin{equation}
+  u_{tt}-a^2 u_{xx}=-4a^2 u_{\xi\eta}.
+\end{equation}
+方程等价于 $u_{\xi\eta}=0$.对 $\eta$ 积分,$u_\xi$ 只依赖于 $\xi$;再对 $\xi$ 积分,
+\begin{equation}
+  u(x,t)=f(x-at)+g(x+at).
+  \label{eq:traveling-wave}
+\end{equation}
+$f(x-at)$ 是以速度 $a$ 向右传播的波形,$g(x+at)$ 向左.波形本身在传播中不变形,这是无色散一维波动方程的特点.
+
+\subsection{达朗贝尔公式}
+初值
+\begin{equation}
+  u(x,0)=\varphi(x), \qquad u_t(x,0)=\psi(x)
+\end{equation}
+定出 $f$ 和 $g$.由\eqref{eq:traveling-wave},
+\begin{equation}
+  f(x)+g(x)=\varphi(x),
+  \qquad
+  -a f'(x)+a g'(x)=\psi(x).
+\end{equation}
+把第二式从 $0$ 积到 $x$,
+\begin{equation}
+  -f(x)+g(x)=\frac{1}{a}\int_0^x\psi(s)\,\mathrm{d}s+C,
+\end{equation}
+常数 $C=-f(0)+g(0)$.与 $f+g=\varphi$ 联立,
+\begin{align}
+  f(x)&=\half\varphi(x)-\frac{1}{2a}\int_0^x\psi(s)\,\mathrm{d}s-\half C, \\
+  g(x)&=\half\varphi(x)+\frac{1}{2a}\int_0^x\psi(s)\,\mathrm{d}s+\half C.
+\end{align}
+代回 $u=f(x-at)+g(x+at)$,常数相消,得到达朗贝尔公式
+\begin{equation}
+  u(x,t)
+  =\frac{\varphi(x-at)+\varphi(x+at)}{2}
+  +\frac{1}{2a}\int_{x-at}^{x+at}\psi(s)\,\mathrm{d}s.
+  \label{eq:dalembert}
+\end{equation}
+$t<0$ 时公式仍然成立,积分限自动交换.
+
+点 $(x,t)$ 的位移只依赖区间 $[x-at,x+at]$ 上的初值.扰动的传播速度不超过 $a$.过该点的两条特征线 $x\pm at=\textrm{常数}$ 在 $t=0$ 上切出的这段区间,称为这个点的依赖区间.
+
+\begin{example}
+无限长弦的初位移是 $\varphi(x)=e^{-x^2}$,初速度 $\psi=0$.
+\end{example}
+\begin{solution}
+由\eqref{eq:dalembert},
+\begin{equation}
+  u(x,t)=\half\left[e^{-(x-at)^2}+e^{-(x+at)^2}\right].
+\end{equation}
+$t=0$ 时两包重合,高度为 $1$.之后它分成向左、向右各一个高斯包,每个包的高度是 $\half$,形状不再改变.
+\end{solution}
+
+\begin{example}
+初速度仍为零,初位移是宽度为 $2b$ 的矩形:$\varphi(x)=1$（$|x|<b$）,其余为 $0$.
+\end{example}
+\begin{solution}
+$u(x,t)$ 等于 $\half$,如果 $x-at$ 和 $x+at$ 里恰有一个落在 $(-b,b)$ 内;等于 $1$,如果两个都落在里面;否则为 $0$.间断点沿着 $x=\pm b\pm at$ 四条特征线传播.某个固定的 $x$,在右行间断和左行间断先后经过之后,位移回到 $0$.一维波动方程没有尾巴:波阵面过去以后,该点可以恢复静止.
+\end{solution}
+
+\subsection{半无限弦}
+弦占据 $x\geq 0$,固定端 $u(0,t)=0$.把初值奇延拓到整个直线,
+\begin{equation}
+  \Phi(-x)=-\Phi(x), \qquad \Psi(-x)=-\Psi(x),
+\end{equation}
+再套\eqref{eq:dalembert}.奇函数的组合在 $x=0$ 上自动为零.当 $x\geq at\geq 0$ 时,积分限都在正半轴,公式和无限弦相同,左行波还没有碰到端点.当 $0\leq x<at$ 时,$x-at<0$,奇延拓把它换成反射波,
+\begin{equation}
+  u(x,t)
+  =\frac{-\varphi(at-x)+\varphi(x+at)}{2}
+  +\frac{1}{2a}\int_{at-x}^{x+at}\psi(s)\,\mathrm{d}s.
+\end{equation}
+固定端把入射波变成反相的反射波.
+
+\subsection{非齐次方程}
+外力 $f(x,t)$ 放在右边,
+\begin{equation}
+  u_{tt}-a^2 u_{xx}=f(x,t).
+\end{equation}
+先看零初值.固定 $\tau$,令 $v(x,t;\tau)$ 满足齐次波动方程,并且
+\begin{equation}
+  v(x,\tau;\tau)=0, \qquad v_t(x,\tau;\tau)=f(x,\tau).
+\end{equation}
+这是从时刻 $\tau$ 开始的达朗贝尔问题,时间间隔是 $t-\tau$,
+\begin{equation}
+  v(x,t;\tau)
+  =\frac{1}{2a}\int_{x-a(t-\tau)}^{x+a(t-\tau)} f(s,\tau)\,\mathrm{d}s,
+  \qquad t\geq\tau.
+\end{equation}
+把各时刻的冲量叠加,
+\begin{equation}
+  u(x,t)=\int_0^t v(x,t;\tau)\,\mathrm{d}\tau
+  =\frac{1}{2a}\int_0^t\mathrm{d}\tau
+    \int_{x-a(t-\tau)}^{x+a(t-\tau)} f(s,\tau)\,\mathrm{d}s.
+  \label{eq:duhamel-wave}
+\end{equation}
+$t=0$ 时积分为零,所以 $u(x,0)=0$.对上限和被积函数用莱布尼茨法则,$u_t(x,0)=0$,并且 $u_{tt}-a^2 u_{xx}=f$.一般初值只要把\eqref{eq:dalembert}和\eqref{eq:duhamel-wave}相加.这个叠加称为齐次化原理,也就是波动方程的 Duhamel 原理.
+
+\subsection{三维波动方程}
+三维齐次方程 $u_{tt}=a^2\Delta u$ 的初值解由球面上的平均给出.记
+\begin{equation}
+  M_R[\varphi](\br)
+  =\frac{1}{4\pi R^2}\int_{|\brp-\br|=R}\varphi(\brp)\,\mathrm{d}S'.
+\end{equation}
+泊松公式是
+\begin{equation}
+  u(\br,t)
+  =\funcpd{}{t}\bigl(t\, M_{at}[\varphi]\bigr)
+  +t\, M_{at}[\psi].
+  \label{eq:poisson-wave}
+\end{equation}
+右端只取半径正好等于 $at$ 的球面.三维空间里,波阵面经过之后该点立刻恢复到波前的状态,这是惠更斯原理.二维波动方程的依赖区域是整个圆盘而不只是圆周,波阵面过去以后还有余振.一维公式\eqref{eq:dalembert}里的积分填满整段区间,也有这种尾巴;矩形初位移那个例子里尾巴刚好是零,是因为 $\varphi$ 在波阵面之间取常值.

@@ -119,6 +119,103 @@ $$
 $$ u'' = 0$$
 也就是解为直线方程$ u = k x + b$,$k,b$的值由边界条件确定.
 
+上面从 $\delta J=0$ 推出欧拉--拉格朗日方程,用到的是\textbf{变分法基本引理}:
+若 $M(x)$ 连续,并且对一切在端点为零的光滑变分 $\delta u$ 都有
+\begin{equation}
+  \int_a^b M(x)\,\delta u(x)\,\mathrm{d}x = 0,
+\end{equation}
+则 $M(x)=0$. 泛函取极值只保证积分等于零;引理把这个积分条件变成逐点的微分方程.
+
+若 $L$ 不显含自变量 $x$,欧拉--拉格朗日方程有首次积分
+\begin{equation}
+  L - u' \funcpd{L}{u'} = C .
+  \label{eq:beltrami}
+\end{equation}
+最短路径的 $L=\sqrt{1+u'^2}$ 就不含 $u$,于是 $u'/\sqrt{1+u'^2}$ 为常数,再求导仍得到 $u''=0$.
+下面的最速降线和悬链线都靠这个首次积分,而不必把欧拉--拉格朗日方程展开成二阶方程.
+
+\begin{example}
+最速降线的解是旋轮线.
+\end{example}
+\begin{solution}
+质点从高度 $y_0$ 由静止下滑.令下落距离 $v(x)=y_0-u(x)\ge 0$,则 $u'=-v'$,时间泛函写成
+\begin{equation}
+  T[v] = \int_{x_0}^{x_1} \frac{\sqrt{1+v'^2}}{\sqrt{2gv}}\,\mathrm{d}x .
+\end{equation}
+被积函数不显含 $x$.由\eqref{eq:beltrami},
+\begin{equation}
+  \frac{1}{\sqrt{1+v'^2}\,\sqrt{2gv}} = C ,
+\end{equation}
+即 $v'^2 = (2a-v)/v$,其中正的常数 $2a=1/(2gC^2)$.
+用参数 $v=a(1-\cos\theta)$,$\mathrm{d}v=a\sin\theta\,\mathrm{d}\theta$.
+此时 $\sqrt{v/(2a-v)}=\sin(\theta/2)/\cos(\theta/2)$,而 $\sin\theta=2\sin(\theta/2)\cos(\theta/2)$,所以
+\begin{equation}
+  \mathrm{d}x = \sqrt{\frac{v}{2a-v}}\,\mathrm{d}v = a(1-\cos\theta)\,\mathrm{d}\theta .
+\end{equation}
+积分得
+\begin{equation}
+  x-x_0 = a(\theta-\sin\theta), \qquad v = a(1-\cos\theta).
+\end{equation}
+这是旋轮线,不是直线.直线使路程最短,旋轮线使时间最短;泛函不同,极值曲线就不同.
+常数 $a$ 由终点决定.
+\end{solution}
+
+取终点对应参数从 $0$ 到 $\pi$,两端为 $(x_0,y_0)$ 与 $(x_0+\pi R,\, y_0-2R)$,这里 $R$ 即上面的 $a$.弧长与速度是
+\begin{equation}
+  \mathrm{d}s = 2R\sin\frac{\varphi}{2}\,\mathrm{d}\varphi,
+  \qquad
+  v = 2\sin\frac{\varphi}{2}\,\sqrt{gR},
+\end{equation}
+所以摆线用时是常数被积函数的积分,
+\begin{equation}
+  T_{\textrm{摆线}} = \int_0^{\pi}\sqrt{\frac{R}{g}}\,\mathrm{d}\varphi = \pi\sqrt{\frac{R}{g}}.
+\end{equation}
+连接同一对端点的直线,水平距离 $\pi R$、落差 $2R$,斜率 $-2/\pi$.沿直线积分得到
+\begin{equation}
+  T_{\textrm{直线}} = \sqrt{\pi^2+4}\,\sqrt{\frac{R}{g}}.
+\end{equation}
+二者之比 $\sqrt{\pi^2+4}/\pi\approx 1.185$.摆线用时约为直线的 $84\%$.
+
+\subsection{高阶导数与自然边界条件}
+若拉格朗日量含到 $m$ 阶导数,
+\begin{equation}
+  J[u] = \int_a^b L\bigl(x,u,u',\ldots,u^{(m)}\bigr)\,\mathrm{d}x,
+\end{equation}
+一阶变分是
+\begin{equation}
+  \delta J = \int_a^b \sum_{k=0}^{m} \funcpd{L}{u^{(k)}}\,\delta u^{(k)}\,\mathrm{d}x.
+\end{equation}
+变分与求导可交换,$\delta u^{(k)}=\mathrm{d}^k(\delta u)/\mathrm{d}x^k$.对含 $\delta u^{(k)}$ 的项作 $k$ 次分部积分,内部项变成
+\begin{equation}
+  (-1)^k \int_a^b \frac{\mathrm{d}^k}{\mathrm{d}x^k}\left(\funcpd{L}{u^{(k)}}\right)\delta u\,\mathrm{d}x.
+\end{equation}
+对任意内部变分 $\delta J=0$,就得到高阶欧拉--拉格朗日方程
+\begin{equation}
+  \fnald{J}{u}
+  = \sum_{k=0}^{m}(-1)^k \frac{\mathrm{d}^k}{\mathrm{d}x^k}\left(\funcpd{L}{u^{(k)}}\right)
+  = 0.
+\end{equation}
+$m=1$ 时就是前面的标准形式.
+
+分部积分留下的边界项是 $\delta u,\delta u',\ldots,\delta u^{(m-1)}$ 的线性组合.端点上有三种典型设定.
+\begin{itemize}
+  \item 狄利克雷:$u(a),u(b)$ 给定,则 $\delta u(a)=\delta u(b)=0$,一阶情形的边界项自动消失.
+  \item 诺伊曼:端点的 $u$ 自由,则必须另有
+  \begin{equation}
+    \left.\funcpd{L}{u'}\right|_{a}
+    = \left.\funcpd{L}{u'}\right|_{b} = 0,
+  \end{equation}
+  边界项才为零.
+  \item 混合:有的端点固定函数值,有的端点固定导数,条件按端点分别写.
+\end{itemize}
+$m>1$ 时,每一个自由的高阶导数 $\delta u^{(j)}$ 都再给出一个条件.这些不是另外假定的,而是 $\delta J=0$ 对自由边界变分的要求,称为\textbf{自然边界条件}.
+
+多个因变量 $u_1,\ldots,u_n$ 的变分彼此独立,每个 $u_i$ 各有一个欧拉--拉格朗日方程.场 $u(\bx)$ 的泛函 $J[u]=\int_{\Omega} F(\bx,u,\partial_i u)\,\mathrm{d}^d\bx$ 同样给出
+\begin{equation}
+  \funcpd{F}{u} - \partial_i\left(\funcpd{F}{\partial_i u}\right) = 0,
+\end{equation}
+只是把 $\mathrm{d}/\mathrm{d}x$ 换成了散度.
+
 对最小作用量原理问题,可以得到
 $$
   0 = - \funcd {V(\br)}{\br} - \funcd{}{t} \left[ m \frac{d\br}{dt} \right]
@@ -155,6 +252,69 @@ $$
 $$
 A=1+\left(\frac{\partial u}{\partial x}\right)^2+\left(\frac{\partial u}{\partial y}\right)^2.
 $$
+它表示平衡曲面的平均曲率为零.未知量现在依赖两个自变量,所以变分条件是偏微分方程,不再是常微分方程.
+
+\subsection{泛函导数}
+把变分写成 $u_\epsilon=u+\epsilon\eta$,泛函导数由
+\begin{equation}
+  \left.\funcd{}{\epsilon} J[u+\epsilon\eta]\right|_{\epsilon=0}
+  = \int_a^b \fnald{J}{u(x)}\,\eta(x)\,\mathrm{d}x
+\end{equation}
+定义.固定端点时,一阶导数的拉格朗日量给出
+\begin{equation}
+  \fnald{J}{u}
+  = \funcpd{L}{u} - \funcd{}{x}\left(\funcpd{L}{u'}\right).
+\end{equation}
+欧拉--拉格朗日方程就是这个泛函导数为零.
+
+非局域泛函把不同点的函数值耦在一起.例如
+\begin{equation}
+  J[u] = \half \iint u(x)\,K(x,x')\,u(x')\,\mathrm{d}x\,\mathrm{d}x'.
+\end{equation}
+$K$ 对称时 $\fnald{J}{u(x)}=\int K(x,x')u(x')\,\mathrm{d}x'$;$K$ 不对称时核要换成 $\half\bigl(K(x,x')+K(x',x)\bigr)$.下面的哈特里项就是这种结构.
+
+若能量是密度 $n(\br)$ 的泛函,并且粒子数 $\int n(\br)\,\mathrm{d}^3\br=N$ 固定,引入化学势 $\mu$,
+\begin{equation}
+  \widetilde E[n] = E[n] - \mu\left(\int n\,\mathrm{d}^3\br - N\right).
+\end{equation}
+对 $n$ 变分得到
+\begin{equation}
+  \fnald{E}{n(\br)} = \mu .
+\end{equation}
+$\mu$ 在空间中是常数,尽管外势和密度都可以随地点变化.
+
+\begin{example}
+局域密度泛函 $E[n]=\int\bigl(C n^{5/3}+v(\br)n\bigr)\,\mathrm{d}^3\br$ 的泛函导数.
+\end{example}
+\begin{solution}
+被积函数不含 $n$ 的导数,所以
+\begin{equation}
+  \fnald{E}{n(\br)} = \frac{5}{3} C n(\br)^{2/3} + v(\br).
+\end{equation}
+归一化后的极值条件是 $\tfrac{5}{3}C n^{2/3}+v=\mu$,在每一点都是代数方程,只通过 $\mu$ 和总粒子数发生整体联系.
+\end{solution}
+
+若再加入电子之间的库仑能
+\begin{equation}
+  E_H[n] = \half \iint \frac{n(\br)n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\br\,\mathrm{d}^3\brp,
+\end{equation}
+则
+\begin{equation}
+  \fnald{E_H}{n(\br)} = \int \frac{n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\brp .
+\end{equation}
+局域动能项和外势在同一点取值,哈特里项则把整个空间的密度都记进来.把三项放在一起,
+\begin{equation}
+  E[n] = C\int n^{5/3}\,\mathrm{d}^3\br
+  + \int v_{\mathrm{ext}}(\br)\,n\,\mathrm{d}^3\br
+  + E_H[n],
+\end{equation}
+其中 Thomas--Fermi 系数 $C=\frac{3}{10}(3\pi^2)^{2/3}$.极值条件是
+\begin{equation}
+  \frac{5}{3} C\, n(\br)^{2/3} + v_{\mathrm{ext}}(\br) + v_H(\br) = \mu,
+  \qquad
+  v_H(\br) = \int \frac{n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\brp.
+\end{equation}
+粒子数守恒用来定 $\mu$.
 
 
 

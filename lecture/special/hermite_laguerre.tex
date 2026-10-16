@@ -1,0 +1,127 @@
+\section{厄米多项式与拉盖尔多项式}
+球坐标里的角向方程给出勒让德多项式和球谐函数,那一部分已经在曲面坐标一章里.中心力场的径向方程,以及简谐振子,还会再产生两类多项式.它们都是在无穷区间上带权重正交的 Sturm--Liouville 本征函数.
+
+\subsection{量子谐振子}
+一维谐振子
+\begin{equation}
+  -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2}
+  +\half m\omega^2 x^2\,\psi
+  =E\psi.
+\end{equation}
+用 $\xi=x\sqrt{m\omega/\hbar}$ 和 $\varepsilon=2E/(\hbar\omega)$ 把方程写成
+\begin{equation}
+  -\frac{\mathrm{d}^2\psi}{\mathrm{d}\xi^2}+(\xi^2-\varepsilon)\psi=0.
+\end{equation}
+$\xi\to\infty$ 时势能项主导,可积的解必须像 $e^{-\xi^2/2}$ 那样衰减.令 $\psi(\xi)=v(\xi)\,e^{-\xi^2/2}$,代入后 $v$ 满足
+\begin{equation}
+  v''-2\xi v'+(\varepsilon-1)v=0.
+  \label{eq:hermite-ode}
+\end{equation}
+在 $\xi=0$ 处把 $v$ 写成幂级数.递推每一步把次数提高 $2$,一般项像 $\xi^{2k}/(k!)$ 再乘一个不趋于零的因子,这样 $v$ 会增长得比 $e^{\xi^2/2}$ 还快,$\psi$ 在无穷远处不可积.级数必须在有限项截断.截断条件是
+\begin{equation}
+  \varepsilon-1=2n, \qquad n=0,1,2,\ldots,
+\end{equation}
+因此能级
+\begin{equation}
+  E_n=\hbar\omega\bigl(n+\half\bigr).
+  \label{eq:oscillator-energy}
+\end{equation}
+截断后的多项式就是厄米多项式.罗德里格斯公式
+\begin{equation}
+  H_n(\xi)=(-1)^n e^{\xi^2}\frac{\mathrm{d}^n}{\mathrm{d}\xi^n}e^{-\xi^2}
+\end{equation}
+给出 $H_0=1$,$H_1=2\xi$,$H_2=4\xi^2-2$,$H_3=8\xi^3-12\xi$.它满足
+\begin{equation}
+  H_n''-2\xi H_n'+2n H_n=0,
+\end{equation}
+正是\eqref{eq:hermite-ode}在 $\varepsilon-1=2n$ 时的方程.生成函数
+\begin{equation}
+  e^{2\xi t-t^2}=\sum_{n=0}^{\infty} H_n(\xi)\frac{t^n}{n!}
+\end{equation}
+对 $t$ 求导可以得到递推 $H_{n+1}=2\xi H_n-2n H_{n-1}$.
+
+权重 $e^{-\xi^2}$ 下它们正交,
+\begin{equation}
+  \int_{-\infty}^{\infty} e^{-\xi^2} H_m(\xi) H_n(\xi)\,\mathrm{d}\xi
+  =\sqrt{\pi}\, 2^n n!\, \delta_{mn}.
+\end{equation}
+归一化的束缚态是
+\begin{equation}
+  \psi_n(x)
+  =\bigl(2^n n!\bigr)^{-1/2}
+    \bigl(\tfrac{m\omega}{\pi\hbar}\bigr)^{1/4}
+    H_n(\xi)\, e^{-\xi^2/2},
+\end{equation}
+其中 $\xi=x\sqrt{m\omega/\hbar}$.含时解再乘 $e^{-\imath E_n t/\hbar}$.基态 $n=0$ 没有节点,$H_0=1$,概率密度是一个高斯.
+
+\begin{example}
+用罗德里格斯公式算 $H_2$,并验证它满足厄米方程.
+\end{example}
+\begin{solution}
+\begin{equation}
+  \frac{\mathrm{d}}{\mathrm{d}\xi}e^{-\xi^2}=-2\xi e^{-\xi^2},
+  \qquad
+  \frac{\mathrm{d}^2}{\mathrm{d}\xi^2}e^{-\xi^2}=(4\xi^2-2)e^{-\xi^2}.
+\end{equation}
+因此 $H_2=(-1)^2 e^{\xi^2}(4\xi^2-2)e^{-\xi^2}=4\xi^2-2$.
+\begin{equation}
+  H_2'=8\xi, \qquad H_2''=8,
+  \qquad
+  H_2''-2\xi H_2'+4 H_2=8-2\xi\cdot 8\xi+4(4\xi^2-2)=0.
+\end{equation}
+\end{solution}
+
+\subsection{广义拉盖尔多项式}
+氢原子的库仑场是中心力.波函数写成 $R(r)Y_{\ell m}(\theta,\phi)$ 之后,角向部分就是球谐函数.径向函数 $u(r)=r R(r)$ 满足
+\begin{equation}
+  -\frac{\hbar^2}{2m}u''
+  +\Bigl(-\frac{e^2}{r}+\frac{\hbar^2\ell(\ell+1)}{2m r^2}\Bigr)u
+  =E u.
+\end{equation}
+束缚态 $E<0$.令
+\begin{equation}
+  \kappa=\sqrt{-2mE}/\hbar,
+  \qquad
+  \rho=2\kappa r,
+  \qquad
+  n=\frac{m e^2}{\hbar^2\kappa},
+\end{equation}
+这里的 $n$ 先只是一个参数.在 $\rho\to\infty$ 时 $u\sim e^{-\rho/2}$,在原点 $u\sim\rho^{\ell+1}$.把这两个因子提出去,
+\begin{equation}
+  u(r)=\rho^{\ell+1} e^{-\rho/2} w(\rho),
+\end{equation}
+$w$ 满足广义拉盖尔方程.可积性再次要求级数截断,参数 $n$ 必须是正整数,并且 $n\geq\ell+1$.能级因此是
+\begin{equation}
+  E_n=-\frac{m e^4}{2\hbar^2}\frac{1}{n^2}.
+\end{equation}
+用高斯单位制,数值上大约是 $-13.6\,\mathrm{eV}/n^2$.能量只依赖 $n$,不依赖 $\ell$.这是库仑势 $1/r$ 特有的简并.
+
+截断后的多项式是广义拉盖尔多项式.罗德里格斯公式
+\begin{equation}
+  L_n^{(\alpha)}(x)
+  =\frac{e^{x} x^{-\alpha}}{n!}
+    \frac{\mathrm{d}^n}{\mathrm{d}x^n}\bigl(e^{-x} x^{n+\alpha}\bigr),
+  \qquad \alpha>-1.
+\end{equation}
+$\alpha=0$ 时就是普通拉盖尔多项式 $L_n$.前几个是
+\begin{equation}
+  L_0^{(\alpha)}=1,
+  \qquad
+  L_1^{(\alpha)}=1+\alpha-x,
+  \qquad
+  L_2^{(\alpha)}=\half\bigl[(1+\alpha)(2+\alpha)-2(2+\alpha)x+x^2\bigr].
+\end{equation}
+正交关系是
+\begin{equation}
+  \int_0^{\infty} e^{-x} x^{\alpha} L_n^{(\alpha)}(x) L_m^{(\alpha)}(x)\,\mathrm{d}x
+  =\frac{\Gamma(n+\alpha+1)}{n!}\,\delta_{mn}.
+\end{equation}
+氢原子径向波函数用到的是
+\begin{equation}
+  w(\rho)=L_{n-\ell-1}^{(2\ell+1)}(\rho),
+  \qquad
+  \rho=\frac{2r}{n a_0},
+  \qquad
+  a_0=\frac{\hbar^2}{m e^2}.
+\end{equation}
+$n-\ell-1$ 是节点数.基态 $n=1,\ell=0$ 没有节点,$L_0^{(1)}=1$,径向概率密度 $r^2|R|^2$ 在 $r=a_0$ 取最大.

@@ -80,7 +80,7 @@ $$    \begin{aligned}
 $$
     \begin{aligned}
     \frac{1}{p^3(p+\alpha)} & =\frac{1}{\alpha} \frac{1}{p^3}-\frac{1}{\alpha^2} \frac{1}{p^2}+\frac{1}{\alpha^3} \frac{1}{p}-\frac{1}{\alpha^3} \frac{1}{p+\alpha} \\
-    & \risingdotseq \frac{1}{2 \alpha} t^2+\frac{1}{\alpha^2} t+\frac{1}{\alpha^3}-\frac{1}{\alpha^3} e^{-\alpha t}
+    & \risingdotseq \frac{1}{2 \alpha} t^2-\frac{1}{\alpha^2} t+\frac{1}{\alpha^3}-\frac{1}{\alpha^3} e^{-\alpha t}
     \end{aligned}
 $$
 
@@ -99,7 +99,7 @@ $$
 \frac{e^{-\alpha p}}{p(p+b)} & \risingdotseq \int_0^t \Theta(\tau-\alpha) e^{-b(t-\tau)} d \tau \\
 & =\Theta(t-\alpha) \int_\alpha^t e^{-b(t-\tau)} d \tau \\
 & =\Theta(t-\alpha)\left[\frac{1}{b} e^{-b(t-\tau)}\right]_\alpha^t \\
-& =\frac{1}{b}\left[1-e^{-b(t-\tau)}\right] \Theta(t-\alpha) .
+& =\frac{1}{b}\left[1-e^{-b(t-\alpha)}\right] \Theta(t-\alpha) .
 \end{aligned}
 $$
 读者也可以运用裂项分解分母来求解验证.

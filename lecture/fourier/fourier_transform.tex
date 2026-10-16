@@ -168,8 +168,10 @@ $f(x)$ 和 $F(\omega)$ 分别称为傅里叶变换的\textbf{原函数}和\textb
 
     \item 相似性定理
     \begin{equation}
-        \mathcal{F} [ f(ax) ] = \frac{1}{a} F(\frac{\omega}{a}),
+        \mathcal{F} [ f(ax) ] = \frac{1}{|a|} F\Bigl(\frac{\omega}{a}\Bigr),
+        \qquad a\neq 0.
     \end{equation}
+    绝对值来自雅可比. $a<0$ 时坐标反向,写成 $1/a$ 会丢一个负号.
     \item 延迟定理
     \begin{equation}
         \mathcal{F} [ f(x - x_0 ) ] = e^{-\imath \omega x_0} F(\omega),
@@ -178,17 +180,35 @@ $f(x)$ 和 $F(\omega)$ 分别称为傅里叶变换的\textbf{原函数}和\textb
     \begin{equation}
         \mathcal{F} [ e^{\imath \omega_0 x} f(x) ] = F(\omega - \omega_0),
     \end{equation}
-    \item 卷积定理, 如果
-    \[
-        \mathcal{F} [f_1(x)] =  F_1(\omega), \mathcal{F} [f_2(x)] =  F_2(\omega), 
-    \]
-    有
+    \item 卷积定理. 卷积定义为
     \begin{equation}
-        \mathcal{F} [f_1(x)\star f_2(x) ] = F_1(\omega) F_2(\omega).
+        (f_1 * f_2)(x) = \int_{-\infty}^{\infty} f_1(\alpha)\, f_2(x-\alpha)\, d\alpha .
     \end{equation}
-    其中 $f_1(x) \star f_2(x)=\int_{-\infty}^{\infty} f_1(\alpha) f_2(\alpha-x) d \alpha$ 称为 $f_1(x)$ 与 $f_2(x)$ 的卷积.
+    注意第二个因子的自变量是 $x-\alpha$,不是 $\alpha-x$.在本节的对称约定下,
+    \begin{equation}
+        \mathcal{F}[f_1 * f_2] = \sqrt{2\pi}\, F_1(\omega)\, F_2(\omega).
+    \end{equation}
+    因子 $\sqrt{2\pi}$ 来自归一化.若把 $2\pi$ 全部放在逆变换上,这个常数会换成别的数,乘积结构不变.
 \end{enumerate}
-以上部分定理作为作业由大家完成.
+
+导数定理可以由分部积分直接看出.边界项在无穷远处消失时,
+\begin{equation}
+    \int_{-\infty}^{\infty} f'(x)\, e^{-\imath \omega x}\,\mathrm{d}x
+    = \imath\omega \int_{-\infty}^{\infty} f(x)\, e^{-\imath \omega x}\,\mathrm{d}x,
+\end{equation}
+两边再除以 $\sqrt{2\pi}$ 就是 $\mathcal{F}[f']=\imath\omega F$.延迟定理是换元 $u=x-x_0$:指数多出一个 $e^{-\imath\omega x_0}$,积分变回 $F(\omega)$.
+
+\begin{example}
+求宽度为 $2a$ 的一维狭缝 $f(x)=1$（$|x|\le a$）的傅里叶变换,并由此说明矩孔.
+\end{example}
+\begin{solution}
+\begin{equation}
+    F(\omega)
+    = \frac{1}{\sqrt{2\pi}}\int_{-a}^{a} e^{-\imath\omega x}\,\mathrm{d}x
+    = \sqrt{\frac{2}{\pi}}\, a\, \frac{\sin(a\omega)}{a\omega}.
+\end{equation}
+$\omega=0$ 时商式的极限是 $\sqrt{2/\pi}\,a$.缝越宽,中央峰越窄.二维矩孔是两个这样的因子相乘.
+\end{solution}
 
 \subsection{高维傅里叶变换}
 
@@ -202,8 +222,14 @@ $$
 f(x, y)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F\left(k_1, k_2\right) e^{\imath\left(k_1 x+k_2 y\right)} d k_1 d k_2
 $$
 为 $F\left(k_1, k_2\right)$ 的逆变换.
-$f(x, y)$ 和 $F\left(k_1, k_2\right)$ 称为傅里叶变换对. 注意这里可以取对称的形式,只有一个系数
-$\frac{1}{(2 \pi)^2}$, 结果与上面形式相同.
+这是把 $2\pi$ 全部放在正变换上的写法.与一维例子相同的对称约定是两侧各有一个 $1/(2\pi)$:
+\begin{equation}
+    F(k_1,k_2)=\frac{1}{2\pi}\iint f(x,y)\,e^{-\imath(k_1 x+k_2 y)}\,\mathrm{d}x\,\mathrm{d}y,
+\end{equation}
+\begin{equation}
+    f(x,y)=\frac{1}{2\pi}\iint F(k_1,k_2)\,e^{\imath(k_1 x+k_2 y)}\,\mathrm{d}k_1\,\mathrm{d}k_2.
+\end{equation}
+两种约定不能在同一次计算里混用.下面的矩孔按对称约定计算.
 
 \begin{example}
     求函数 $f(x, y)= \begin{cases}A, & |x| \leq X,|y| \leq Y \\ 0, & |x|>X,|y|>Y\end{cases}$ 的傅里叶变换 (矩孔费琅和夫衍射).
@@ -211,7 +237,7 @@ $\frac{1}{(2 \pi)^2}$, 结果与上面形式相同.
 \begin{solution}
     由傅里叶变换关系
 $$
-F\left(k_1, k_2\right)=\frac{1}{(2 \pi)^2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-i\left(k_1 x+k_2 y\right)} d x d y
+F\left(k_1, k_2\right)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-i\left(k_1 x+k_2 y\right)} d x d y
 $$
 有
 $$
@@ -224,19 +250,11 @@ F\left(k_1, k_2\right) & =\frac{A}{2 \pi} \int_{-X}^X e^{-i k_1 x} d x \int_{-Y}
 $$
 \end{solution}
 
-对于三维情况,$\vec{k}=\left(k_1, k_2, k_3\right), \vec{r}=(x, y, z)$,
+三维时对称约定是两侧各有 $(2\pi)^{-3/2}$:
 \begin{equation}
-    F(\vec{k})=\frac{1}{(2 \pi)^3} \iiint_{-\infty}^{\infty} f(\vec{r}) e^{-\imath  \vec{k} \cdot \vec{r}} d^3 \vec{r} \\
+    F(\vec{k})=\frac{1}{(2 \pi)^{3/2}} \iiint_{-\infty}^{\infty} f(\vec{r}) e^{-\imath  \vec{k} \cdot \vec{r}} d^3 \vec{r},
 \end{equation}
-或者
 \begin{equation}
-    F\left(k_1, k_2, k_3\right)=\frac{1}{(2 \pi)^3} \iiint_{\infty}^{\infty} f(x, y, z) e^{-\imath\left(k_1 x+k_2 y+k_3 z\right)} d x d y d z 
+     f(\vec{r})=\frac{1}{(2 \pi)^{3/2}}\iiint_{-\infty}^{\infty} F(\vec{k}) e^{\imath \vec{k} \cdot \vec{r}} d^3 \vec{k}.
 \end{equation}
-逆变换为
-\begin{equation}
-     f(\vec{r})=\iiint_{-\infty}^{\infty} F(k) e^{\imath \vec{k} \cdot \vec{r}} d^3 \vec{k} 
-\end{equation}  
-或
-\begin{equation}
-f(x, y, z)=\iiint_{-\infty}^{\infty} F\left(k_1, k_2, k_3\right) e^{\imath\left(k_1 x+k_2 y+k_3 z\right)} d k_1 d k_2 d k_3 
-\end{equation} 
+把 $(2\pi)^{-3}$ 只放在一侧是另一种等价约定,不能和上式混用.指数可分离时,积分拆成三个一维积分. 

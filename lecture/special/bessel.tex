@@ -1,0 +1,131 @@
+\section{贝塞尔函数}
+圆膜、圆柱中的热传导和圆截面波导,在柱坐标里分离变量之后,径向方程都是贝塞尔方程.$\Gamma$ 函数已经准备好写非整数阶的系数.整数阶的幂级数在常微分方程一章里用 Frobenius 方法得到过,这里把它写成一般阶,并补上使用时需要的递推、正交性和一个圆膜例子.
+
+\subsection{方程与级数解}
+$\nu$ 阶贝塞尔方程是
+\begin{equation}
+  x^2 y''+x y'+(x^2-\nu^2)y=0.
+  \label{eq:bessel-ode}
+\end{equation}
+$x=0$ 是正则奇点.第一类解取
+\begin{equation}
+  J_\nu(x)
+  =\sum_{k=0}^{\infty}
+    \frac{(-1)^k}{k!\,\Gamma(k+\nu+1)}
+    \left(\frac{x}{2}\right)^{2k+\nu}.
+  \label{eq:bessel-series}
+\end{equation}
+$\nu=n$ 为非负整数时 $\Gamma(k+n+1)=(n+k)!$,就是前面定出的 $J_n$.级数对所有 $x$ 收敛.$J_\nu$ 和 $J_{-\nu}$ 在 $\nu$ 不是整数时线性无关,通解是
+\begin{equation}
+  y=A J_\nu(x)+B J_{-\nu}(x).
+\end{equation}
+$\nu=n$ 为整数时 $J_{-n}=(-1)^n J_n$,第二个解必须另找.它是第二类贝塞尔函数 $Y_n$,在 $x=0$ 附近含 $\ln x$,因此在包含原点的圆域里通常只保留 $J_n$.
+
+把 $x$ 换成 $\imath x$,方程里 $x^2$ 的符号反过来,得到虚宗量方程
+\begin{equation}
+  x^2 y''+x y'-(x^2+\nu^2)y=0.
+\end{equation}
+在原点有限的解是修正贝塞尔函数 $I_\nu(x)=\imath^{-\nu}J_\nu(\imath x)$.圆柱上的拉普拉斯方程,轴向是指数或双曲函数时,径向就是 $I_\nu$ 而不是 $J_\nu$.
+
+\subsection{生成函数与递推}
+整数阶有生成函数
+\begin{equation}
+  \exp\Bigl(\frac{x}{2}\bigl(t-\frac{1}{t}\bigr)\Bigr)
+  =\sum_{n=-\infty}^{\infty} J_n(x)\, t^n,
+  \qquad t\neq 0.
+  \label{eq:bessel-generating}
+\end{equation}
+对 $x$ 求导,左边多一个因子 $\half(t-1/t)$;对 $t$ 求导,左边多一个因子 $(x/2)(1+1/t^2)$.比较 $t^n$ 的系数,得到
+\begin{align}
+  J_{n-1}(x)+J_{n+1}(x)&=\frac{2n}{x}J_n(x),
+  \label{eq:bessel-recurrence} \\
+  J_{n-1}(x)-J_{n+1}(x)&=2 J_n'(x).
+\end{align}
+这两式对非整数阶也成立,把 $n$ 写成 $\nu$ 即可,可以直接用级数\eqref{eq:bessel-series}核对.由它们还能写出
+\begin{equation}
+  \frac{\mathrm{d}}{\mathrm{d}x}\bigl[x^\nu J_\nu(x)\bigr]=x^\nu J_{\nu-1}(x),
+  \qquad
+  \frac{\mathrm{d}}{\mathrm{d}x}\bigl[x^{-\nu} J_\nu(x)\bigr]=-x^{-\nu} J_{\nu+1}(x).
+\end{equation}
+
+\begin{example}
+由生成函数求 $J_0$ 和 $J_1$ 在原点附近的前几项.
+\end{example}
+\begin{solution}
+$t=e^{\imath\theta}$ 时\eqref{eq:bessel-generating}变成
+\begin{equation}
+  e^{\imath x\sin\theta}=\sum_{n=-\infty}^{\infty} J_n(x)\, e^{\imath n\theta}.
+\end{equation}
+取实部并对 $\theta$ 从 $0$ 到 $\pi$ 积分,交叉项消失,
+\begin{equation}
+  J_n(x)=\frac{1}{\pi}\int_0^{\pi}\cos(n\theta-x\sin\theta)\,\mathrm{d}\theta,
+  \qquad n=0,1,2,\ldots.
+\end{equation}
+$x$ 很小、$n=0$ 时被积函数接近 $1$,$J_0(0)=1$.对 $x$ 在积分号下求导,$J_0'=-J_1$,所以 $J_1(0)=0$,$J_1(x)\sim x/2$.这和级数的首项一致.
+\end{solution}
+
+$x$ 很大时,振荡的主项是
+\begin{equation}
+  J_\nu(x)\sim\sqrt{\frac{2}{\pi x}}
+  \cos\Bigl(x-\frac{\nu\pi}{2}-\frac{\pi}{4}\Bigr).
+\end{equation}
+振幅按 $x^{-1/2}$ 衰减,相邻零点的间距趋于 $\pi$.
+
+\subsection{正交性}
+设 $\alpha,\beta$ 使 $J_\nu(\alpha)=J_\nu(\beta)=0$,$\nu\geq 0$.函数 $u(x)=J_\nu(\alpha x)$ 满足
+\begin{equation}
+  (x u')'+\Bigl(\alpha^2 x-\frac{\nu^2}{x}\Bigr)u=0,
+\end{equation}
+$v(x)=J_\nu(\beta x)$ 同样,只是 $\alpha$ 换成 $\beta$.两式分别乘 $v,u$ 后相减,
+\begin{equation}
+  \frac{\mathrm{d}}{\mathrm{d}x}\bigl[x(u v'-v u')\bigr]=(\alpha^2-\beta^2)\, x\, u v.
+\end{equation}
+从 $0$ 积到 $1$.$x=0$ 处 $x$ 把边界项压成零;$x=1$ 处 $u(1)=v(1)=0$.因此 $\alpha\neq\beta$ 时
+\begin{equation}
+  \int_0^1 x\, J_\nu(\alpha x)\, J_\nu(\beta x)\,\mathrm{d}x=0.
+\end{equation}
+权重是 $x$,不是 $1$.令 $\beta\to\alpha$,并用 $J_\nu'(z)=(\nu/z)J_\nu(z)-J_{\nu+1}(z)$,在 $J_\nu(\alpha)=0$ 处 $J_\nu'(\alpha)=-J_{\nu+1}(\alpha)$,得到模
+\begin{equation}
+  \int_0^1 x\, J_\nu(\alpha x)^2\,\mathrm{d}x
+  =\half J_{\nu+1}(\alpha)^2.
+  \label{eq:bessel-norm}
+\end{equation}
+把零点记成 $j_{\nu,m}$,即 $J_\nu(j_{\nu,m})=0$,$m=1,2,\ldots$.函数族 $J_\nu(j_{\nu,m} x)$ 在 $[0,1]$ 上以权重 $x$ 正交.区间改成 $[0,a]$ 时,零点条件变成 $J_\nu(k a)=0$,模是 $(a^2/2)J_{\nu+1}(ka)^2$.
+
+\subsection{圆膜}
+半径为 $a$ 的圆膜,边缘固定,只考虑轴对称振动.位移 $u(\rho,t)$ 满足
+\begin{equation}
+  \frac{\partial^2 u}{\partial t^2}
+  =c^2\Bigl(\frac{\partial^2 u}{\partial\rho^2}+\frac{1}{\rho}\frac{\partial u}{\partial\rho}\Bigr),
+  \qquad
+  u(a,t)=0,
+\end{equation}
+初速度为零,初位移为 $f(\rho)$.分离 $u=R(\rho)T(t)$ 得到 $T''+\omega^2 T=0$,以及
+\begin{equation}
+  \rho^2 R''+\rho R'+k^2\rho^2 R=0,
+  \qquad \omega=ck,\qquad R(a)=0.
+\end{equation}
+这是 $0$ 阶贝塞尔方程,$R=J_0(k\rho)$.边缘固定要求 $J_0(ka)=0$,所以 $k_m=j_{0,m}/a$.叠加
+\begin{equation}
+  u(\rho,t)=\sum_{m=1}^{\infty} A_m J_0(k_m\rho)\cos(c k_m t).
+\end{equation}
+用\eqref{eq:bessel-norm},把区间放回 $[0,a]$,
+\begin{equation}
+  A_m
+  =\frac{2}{a^2 J_1(k_m a)^2}
+    \int_0^a f(\rho)\, J_0(k_m\rho)\, \rho\,\mathrm{d}\rho.
+\end{equation}
+$J_0$ 的零点没有初等表达式,数值上 $j_{0,1}\approx 2.4048$,$j_{0,2}\approx 5.5201$.基频是 $c j_{0,1}/a$.
+
+\subsection{球贝塞尔函数}
+自由粒子的球对称径向方程,或者球坐标里的亥姆霍兹方程,径向因子是球贝塞尔函数
+\begin{equation}
+  j_n(x)=\sqrt{\frac{\pi}{2x}}\, J_{n+1/2}(x).
+\end{equation}
+前两个可以写成初等函数,
+\begin{equation}
+  j_0(x)=\frac{\sin x}{x},
+  \qquad
+  j_1(x)=\frac{\sin x}{x^2}-\frac{\cos x}{x}.
+\end{equation}
+$j_0$ 在原点为 $1$.它和 $J_0$ 一样由边界上的零点把径向波数离散化,只是零点现在就是 $n\pi$,因为 $\sin x=0$.
