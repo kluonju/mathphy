@@ -1,0 +1,50 @@
+泛函的变分要写明哪些端点条件已经给定,哪些端点量仍可变化.乘子题要说明对乘子变分恢复的是哪一条约束.
+
+\begin{problemset}
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\item 对弧长
+\begin{equation*}
+  J[u]=\int_{x_1}^{x_2}\sqrt{1+(u')^2}\,\mathrm{d}x
+\end{equation*}
+写出欧拉--拉格朗日方程,并验证直线是解.端点 $(x_1,y_1)$, $(x_2,y_2)$ 固定.
+
+\item 最速降线的时间是 $T[u]=\int\mathrm{d}s/v$.取适当坐标,使被积函数不显含自变量.写出贝尔特拉米第一积分,并说明解是摆线.
+
+\item 设 $J[u]=\int_{x_1}^{x_2}F(x,u,u',u'')\,\mathrm{d}x$,端点的 $u$ 给定而 $u'$ 自由.导出自然边界条件,并说明它为什么是 $\partial F/\partial u''=0$.
+
+\item 自由粒子 $L=\frac12 m\dot q^2$ 和谐振子 $L=\frac12 m\dot q^2-\frac12 m\omega^2 q^2$.写出哈密顿量,验证沿运动 $\mathrm{d}H/\mathrm{d}t=0$,并指出这个守恒对应 $L$ 的哪一种对称.
+
+\item 用拉格朗日乘子求平面 $x+y+z=1$ 上离原点最近的点.
+
+\item 周长固定的矩形,用乘子求面积的最大值,并核对它是正方形.
+
+\item 悬链线:在长度固定的条件下,使重力势能取极值.写出带乘子的被积函数和欧拉--拉格朗日方程,说明解是双曲余弦.
+
+\item 光线在平面上的速率只依赖高度,$c=c(u)$.旅行时间是 $\int_{x_1}^{x_2}\sqrt{1+(u')^2}/c(u)\,\mathrm{d}x$,两端固定.写出欧拉--拉格朗日方程,并用贝尔特拉米首次积分把它降成一阶方程.说明 $c$ 是常数时解是直线.
+
+\item 膜的能量是面积减去外力做的功,
+\begin{equation*}
+  E=\iint_D\Bigl(k\sqrt{1+u_x^2+u_y^2}-fu\Bigr)\,\mathrm{d}x\,\mathrm{d}y,
+\end{equation*}
+边界上 $u$ 给定.写出欧拉--拉格朗日方程.$f=0$ 时它应当回到平均曲率为零.
+
+\item 牛顿最小阻力问题里,被积函数是 $y(y')^3/(1+(y')^2)$,端点项是 $\half y(a)^2$.算出 $\partial L/\partial y'$,说明光滑自由端条件 $\partial L/\partial y'+y=0$ 没有实数解.再验证 $y'=-1$ 时 $\partial L/\partial y'=y$.
+
+\item 区域 $0<x<2$, $0<y<1$.泛函
+\begin{equation*}
+  \Phi[u]=\iint\bigl(u_x^2+u_x u_y+u_y^2-2uf\bigr)\,\mathrm{d}x\,\mathrm{d}y,
+\end{equation*}
+$u$ 在 $x=0$ 和 $x=2$ 上为零,上下两边自由.写出方程,以及自由边上的自然边界条件.
+
+\item 同一矩形上
+\begin{equation*}
+  \Phi[u]=\iint\bigl(u_x^2-u_x u_y+u_y^2\bigr)\,\mathrm{d}x\,\mathrm{d}y
+  +\int_0^1 2ug(y)\,\mathrm{d}y,
+\end{equation*}
+线积分在 $x=0$ 上.$u$ 在 $y=0$, $y=1$ 和 $x=2$ 上为零.写出方程和 $x=0$ 上的边界条件.
+
+\item $\Phi[u]=\int_0^1\bigl((u'')^2-2(u')^2+2f u\bigr)\,\mathrm{d}x+4u(0)^2$,已知 $u'(1)=u(1)$.写出欧拉--拉格朗日方程和 $x=0$ 处的自然边界条件.$x=1$ 的条件不要再改写成 $u''$ 的条件,它已经给定.
+
+\item 梁的静弯曲能 $\Phi[u]=\int_0^{\ell}(u'')^2\,\mathrm{d}x$,两端的 $u$ 和 $u'$ 都自由.写出欧拉--拉格朗日方程,并由边界项说明自然边界条件是 $u''=u'''=0$.
+\end{problemset}

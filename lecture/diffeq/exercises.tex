@@ -1,0 +1,25 @@
+常微分方程的通解要带回原方程检验.生成函数的题要写明展开到哪一项,以及归一化系数 $c_n$ 是怎样取的.
+
+\begin{problemset}
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\item 解 $y'=2xy$, $y(0)=1$.
+
+\item 用积分因子解 $y'+y=e^{-x}$,并写出满足 $y(0)=1$ 的特解.
+
+\item 解欧拉方程 $x^2 y''+xy'-y=0$, $x>0$.用待定幂 $y=x^r$ 求两个解,并验证它们线性无关.
+
+\item 把勒让德方程
+\begin{equation*}
+  (1-x^2)y''-2xy'+\ell(\ell+1)y=0
+\end{equation*}
+写成自伴形式 $\frac{\mathrm{d}}{\mathrm{d}x}\bigl[p(x)y'\bigr]+qy+\lambda wy=0$,指出 $p$, $q$, $w$ 和 $\lambda$.
+
+\item 生成函数 $g(x,t)=(1-2xt+t^2)^{-1/2}=\sum_{n=0}^{\infty}P_n(x)t^n$.展开到 $t^2$,求出 $P_0,P_1,P_2$,并核对 $P_n(1)=1$ 在这三项上成立.
+
+\item 由围道公式
+\begin{equation*}
+  c_n f_n(x)=\frac{1}{2\pi\mathrm{i}}\oint\frac{g(x,t)}{t^{n+1}}\,\mathrm{d}t
+\end{equation*}
+取 $g(x,t)=e^{xt}$.说明 $c_n=1/n!$, $f_n(x)=x^n$.
+\end{problemset}

@@ -1,0 +1,173 @@
+\section{含时问题的格林函数}
+
+\subsection{波动方程}
+受迫振动
+\begin{equation}
+  u_{tt}-a^2\nabla^2 u=f(\br,t),
+\end{equation}
+边界是\eqref{eq:gf-bc}那种线性条件,初值 $u|_{t=0}=\varphi$, $u_t|_{t=0}=\psi$.连续力是一串冲量,
+\begin{equation}
+  f(\br,t)
+  =\iiint_{T}\int_{-\infty}^{\infty}
+    f(\br_0,\tau)\,\delta(\br-\br_0)\,\delta(t-\tau)
+    \,\mathrm{d}V_0\,\mathrm{d}\tau.
+\end{equation}
+格林函数是 $t_0>0$ 时单位冲量的响应,
+\begin{equation}
+  G_{tt}-a^2\nabla^2 G=\delta(\br-\br_0)\delta(t-t_0),
+\end{equation}
+边界条件齐次,并且 $G|_{t=0}=G_t|_{t=0}=0$.因果性要求 $t<t_0$ 时 $G=0$.
+
+把原方程和 $G$ 的方程相减,在 $T\times[0,t]$ 上积分.时间部分用
+\begin{equation}
+  G u_{t_0 t_0}-u G_{t_0 t_0}
+  =\partial_{t_0}\bigl(G u_{t_0}-u G_{t_0}\bigr),
+\end{equation}
+空间部分用格林第二恒等式,得到
+\begin{equation}
+\begin{aligned}
+  u(\br,t)
+  &=\iiint_{T}\int_0^{t} G\,f\,\mathrm{d}V_0\,\mathrm{d}t_0 \\
+  &\quad+a^2\iint_{\Sigma}\int_0^{t}
+      \Bigl(G\frac{\partial u}{\partial n_0}-u\frac{\partial G}{\partial n_0}\Bigr)
+      \,\mathrm{d}S_0\,\mathrm{d}t_0 \\
+  &\quad+\iiint_{T}\bigl[G u_{t_0}-u G_{t_0}\bigr]_{t_0=0}\,\mathrm{d}V_0.
+\end{aligned}
+\label{eq:gf-wave-rep}
+\end{equation}
+三项依次是外力、边界数据和初值.把 $G$ 的边界条件取得和问题同一类型,未知的边界组合就不再出现.
+
+波动格林函数的互易性带时间反演,
+\begin{equation}
+  G(\br,t;\br_0,t_0)=G(\br_0,-t_0;\br,-t).
+\end{equation}
+原因是波动方程对 $t\to -t$ 不变,而因果性把未来的源变成过去的响应.
+
+\subsection{热传导方程}
+\begin{equation}
+  u_t-a^2\nabla^2 u=f,
+  \qquad
+  u|_{t=0}=\varphi.
+\end{equation}
+热方程对时间是一阶的,同样的手续只留下一个初值项,
+\begin{equation}
+\begin{aligned}
+  u(\br,t)
+  &=\iiint_{T}\int_0^{t} G f\,\mathrm{d}V_0\,\mathrm{d}t_0 \\
+  &\quad+a^2\iint_{\Sigma}\int_0^{t}
+      \Bigl(G\frac{\partial u}{\partial n_0}-u\frac{\partial G}{\partial n_0}\Bigr)
+      \,\mathrm{d}S_0\,\mathrm{d}t_0 \\
+  &\quad+\iiint_{T}\bigl[u G\bigr]_{t_0=0}\,\mathrm{d}V_0.
+\end{aligned}
+\label{eq:gf-heat-rep}
+\end{equation}
+
+\subsection{冲量定理}
+冲量定理把 $\delta(t-\tau)$ 的外力换成 $t=\tau$ 处初值的跳跃,然后去解齐次方程.对波动方程,零初位移和单位冲量意味着
+\begin{equation}
+  G\big|_{t=\tau+0}=0,
+  \qquad
+  G_t\big|_{t=\tau+0}=\delta(x-\xi).
+\end{equation}
+对热方程,跳跃发生在函数值本身,$G|_{t=\tau+0}=\delta(x-\xi)$.
+
+\begin{example}
+无限长弦,$u_{tt}-a^2 u_{xx}=f$,$u|_{t=0}=u_t|_{t=0}=0$.
+\end{example}
+\begin{solution}
+达朗贝尔公式把时间原点挪到 $\tau$.初位移为零、初速度为 $\delta(x-\xi)$ 时,依赖区间里的积分是 $1/(2a)$,区间外是零,
+\begin{equation}
+  G(x,t;\xi,\tau)
+  =
+  \begin{cases}
+    1/(2a), & |x-\xi|<a(t-\tau), \\
+    0, & |x-\xi|>a(t-\tau).
+  \end{cases}
+\end{equation}
+叠加
+\begin{equation}
+  u(x,t)
+  =\int_0^{t}\int_{x-a(t-\tau)}^{x+a(t-\tau)}
+    \frac{1}{2a}\,f(\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
+\end{equation}
+这就是前面齐次化原理里的公式.扰动仍然不超过速度 $a$.
+\end{solution}
+
+\begin{example}
+弦长 $\ell$,两端自由,$u_x|_{x=0}=u_x|_{x=\ell}=0$,初值为零,外力 $A\cos(\pi x/\ell)\sin\omega t$.
+\end{example}
+\begin{solution}
+外力已经是 $n=1$ 的余弦模态.令
+\begin{equation}
+  u(x,t)=q(t)\cos\frac{\pi x}{\ell},
+  \qquad
+  \omega_0=\frac{\pi a}{\ell}.
+\end{equation}
+代入波动方程,
+\begin{equation}
+  q''+\omega_0^2 q=A\sin\omega t,
+  \qquad
+  q(0)=q'(0)=0.
+\end{equation}
+$\omega\neq\omega_0$ 时
+\begin{equation}
+  q(t)
+  =\frac{A}{\omega_0^2-\omega^2}
+    \Bigl(\sin\omega t-\frac{\omega}{\omega_0}\sin\omega_0 t\Bigr).
+\end{equation}
+$\omega=\omega_0$ 时分母为零,改求长期项.特解试 $t\cos\omega_0 t$,配上齐次解以满足初值,
+\begin{equation}
+  q(t)
+  =\frac{A}{2\omega_0^2}
+    \bigl(\sin\omega_0 t-\omega_0 t\cos\omega_0 t\bigr).
+\end{equation}
+振幅随 $t$ 线性增长,这是共振.同一结果也可以把诺伊曼余弦族的冲量格林函数
+\begin{equation}
+  G=\frac{t-\tau}{\ell}
+  +\frac{2}{\pi a}\sum_{n=1}^{\infty}\frac{1}{n}
+    \sin\frac{n\pi a(t-\tau)}{\ell}
+    \cos\frac{n\pi\xi}{\ell}\cos\frac{n\pi x}{\ell}
+\end{equation}
+对 $f$ 积分,正交性只留下 $n=1$.
+\end{solution}
+
+\subsection{热核}
+\idx{热核}{rehe}
+无限长杆 $u_t-a^2 u_{xx}=f$,$u|_{t=0}=0$.冲量问题是齐次热方程,初值 $\delta(x-\xi)$.解是高斯核
+\begin{equation}
+  G(x,t;\xi,\tau)
+  =\frac{1}{2a\sqrt{\pi(t-\tau)}}
+    \exp\Bigl(-\frac{(x-\xi)^2}{4a^2(t-\tau)}\Bigr),
+  \qquad t>\tau.
+  \label{eq:gf-heat-kernel}
+\end{equation}
+因此
+\begin{equation}
+  u(x,t)
+  =\int_0^{t}\int_{-\infty}^{\infty}
+    f(\xi,\tau)\,G(x,t;\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
+\end{equation}
+只要 $t>\tau$,$G$ 在整条直线上都不为零:信号的传播速度是无限的.这是傅里叶热传导定律的后果.时间间隔不是极短时,它仍然是好的近似.
+
+半直线 $x>0$ 用延拓.端点 $u|_{x=0}=0$ 时把 $f$ 奇延拓,热核相减,
+\begin{equation}
+\begin{aligned}
+  G
+  &=\frac{1}{2a\sqrt{\pi(t-\tau)}}
+    \Biggl[
+      \exp\Bigl(-\frac{(x-\xi)^2}{4a^2(t-\tau)}\Bigr) \\
+      &\qquad
+      -\exp\Bigl(-\frac{(x+\xi)^2}{4a^2(t-\tau)}\Bigr)
+    \Biggr].
+\end{aligned}
+\end{equation}
+$x=0$ 时两项相同,$G=0$.端点绝热 $u_x|_{x=0}=0$ 时改成偶延拓,上式的减号换成加号.偶函数的导数在 $x=0$ 为零.
+
+有限杆 $0<x<\ell$、两端为零时,把 $\delta(x-\xi)$ 展成正弦级数,每个模态再乘衰减因子,
+\begin{equation}
+  G
+  =\frac{2}{\ell}\sum_{n=1}^{\infty}
+    \sin\frac{n\pi x}{\ell}\sin\frac{n\pi\xi}{\ell}
+    \exp\Bigl(-a^2\bigl(\tfrac{n\pi}{\ell}\bigr)^2(t-\tau)\Bigr).
+\end{equation}
+$t\to\tau^+$ 时它回到 $\delta(x-\xi)$.这和分离变量写出的解是同一件事.

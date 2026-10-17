@@ -1,0 +1,131 @@
+\section{推广的格林公式}
+
+前面的恒等式针对拉普拉斯算子.一般的二阶线性算子也有伴随算子,使 $v\,Lu-u\,Mv$ 成为散度.下面在两个自变量上写出这个结构,更多自变量的做法相同.
+
+\subsection{伴随算子}
+\begin{equation}
+  L=a_{11}\partial_{xx}+2a_{12}\partial_{xy}+a_{22}\partial_{yy}
+    +b_1\partial_x+b_2\partial_y+c.
+\end{equation}
+伴随算子是
+\begin{equation}
+\begin{aligned}
+  Mv
+  &=\partial_{xx}(a_{11}v)+2\partial_{xy}(a_{12}v)+\partial_{yy}(a_{22}v) \\
+  &\quad-\partial_x(b_1 v)-\partial_y(b_2 v)+c v.
+\end{aligned}
+\end{equation}
+$L=M$ 时称 $L$ 自伴.拉普拉斯算子、波动算子 $\partial_{tt}-a^2\nabla^2$ 都是自伴的.在平面区域 $T$ 上,
+\begin{equation}
+  \iint_{T}\bigl(v\,Lu-u\,Mv\bigr)\,\mathrm{d}S
+  =\int_{\Sigma}\bigl[X\cos(n,x)+Y\cos(n,y)\bigr]\,\mathrm{d}s.
+  \label{eq:gf-general}
+\end{equation}
+$X,Y$ 由分部积分定出,边界上只出现 $u,v$ 及其一阶导数.挖去源点处的小圆,令半径趋于零,就得到和\eqref{eq:gf-fundamental}同一形状的表示.差别只在边界积分里多出低阶项 $b_1,b_2$.
+
+\subsection{椭圆型}
+\begin{equation}
+  Lu=u_{xx}+u_{yy}+b_1 u_x+b_2 u_y+c u=f.
+\end{equation}
+伴随是 $Mv=v_{xx}+v_{yy}-(b_1 v)_x-(b_2 v)_y+c v$.取 $MG=\delta(\br-\br_0)$,则
+\begin{equation}
+\begin{aligned}
+  u(\br_0)
+  &=\iint_{T} G f\,\mathrm{d}S \\
+  &\quad-\int_{\Sigma}\Bigl[
+      G\frac{\partial u}{\partial n}-u\frac{\partial G}{\partial n}
+      +(b_1\cos(n,x)+b_2\cos(n,y))\,u G
+    \Bigr]\,\mathrm{d}s.
+\end{aligned}
+\end{equation}
+第一类边界让 $G|_{\Sigma}=0$,面积分只留下 $u\,\partial G/\partial n$.第二类边界让
+\begin{equation}
+  \Bigl[\frac{\partial G}{\partial n}
+    -b_1\cos(n,x)\,G-b_2\cos(n,y)\,G\Bigr]_{\Sigma}=0,
+\end{equation}
+面积分只留下 $-G\,\partial u/\partial n$.$b_1=b_2=0$ 时回到泊松方程.
+
+\begin{example}
+单色波的基尔霍夫公式.
+\end{example}
+\begin{solution}
+由 $U_{tt}-a^2\nabla^2 U=-f(\br)e^{\imath\omega t}$,令 $U=u e^{\imath\omega t}$,得到亥姆霍兹方程
+\begin{equation}
+  \nabla^2 u+k^2 u=f,
+  \qquad k=\omega/a.
+\end{equation}
+它自伴.自由空间的一个格林函数是出射波
+\begin{equation}
+  G=\frac{1}{4\pi}\frac{e^{\imath k R}}{R},
+  \qquad R=|\br-\br_0|.
+\end{equation}
+注意这里方程是 $(\nabla^2+k^2)u=f$,基本解的符号和 $\nabla^2( -1/(4\pi R) )=\delta$ 在 $k=0$ 时差一个负号: $k\to 0$ 时 $G\to +1/(4\pi R)$,对应的是 $\nabla^2 G=-\delta$.把这个 $G$ 代入第二恒等式,
+\begin{equation}
+\begin{aligned}
+  u(\br)
+  &=\frac{1}{4\pi}\iint_{\Sigma}\Biggl[
+      \frac{e^{\imath k R}}{R}\frac{\partial u}{\partial n}
+      -u\frac{\partial}{\partial n}\Bigl(\frac{e^{\imath k R}}{R}\Bigr)
+    \Biggr]\,\mathrm{d}S \\
+  &\quad-\frac{1}{4\pi}\iiint_{T}\frac{e^{\imath k R}}{R}f\,\mathrm{d}V.
+\end{aligned}
+\label{eq:gf-kirchhoff}
+\end{equation}
+这是基尔霍夫公式,衍射理论里单色波的积分表示.无源、无穷远辐射条件合适时,体积分消失,边界上的 $u$ 和 $\partial u/\partial n$ 决定整个场.
+\end{solution}
+
+\subsection{抛物型}
+令 $y=a^2 t$,一维热算子写成 $Lu=u_{xx}-u_y$.伴随是 $M=\partial_{xx}+\partial_y$,时间导数反向.在矩形 $x\in[x_1,x_2]$, $0\leq y\leq a^2 t_0$ 上,格林公式的底边贡献初值,两条竖边贡献边界,
+\begin{equation}
+\begin{aligned}
+  u(x_0,t_0)
+  &=\int_{x_1}^{x_2}\int_0^{a^2 t_0} G f\,\mathrm{d}x\,\mathrm{d}y \\
+  &\quad-\int_0^{a^2 t_0}
+      \Bigl(G\frac{\partial u}{\partial x}-u\frac{\partial G}{\partial x}\Bigr)
+      \Big|_{x_1}^{x_2}\,\mathrm{d}y \\
+  &\quad-\int_{x_1}^{x_2}(u G)\big|_{y=0}\,\mathrm{d}x.
+\end{aligned}
+\end{equation}
+两端为零时要求 $G|_{x_i}=0$;两端绝热时要求 $G_x|_{x_i}=0$.这就是\eqref{eq:gf-heat-rep}在一维上的样子.
+
+\subsection{双曲型与黎曼函数}
+\idx{黎曼函数}{limanhanshu}
+\begin{equation}
+  Lu=u_{xx}-u_{yy}+b_1 u_x+b_2 u_y+c u=f.
+\end{equation}
+伴随把一阶项改成 $-(b_i v)$ 的导数.柯西数据 $u$ 和 $\partial u/\partial n$ 给在曲线 $l$ 上.从观察点 $M_0(x_0,y_0)$ 作两条特征线 $x\pm y=\textrm{常数}$,交 $l$ 于 $M_1,M_2$,在特征三角形 $M_0M_1M_2$ 上积分.
+
+黎曼函数 $v(x,y;x_0,y_0)$ 满足 $Mv=0$,$v(M_0)=1$,并且沿两条特征线
+\begin{align}
+  M_2M_0&:\quad
+    \frac{\partial v}{\partial s}+\frac{b_2+b_1}{2\sqrt{2}}v=0, \\
+  M_0M_1&:\quad
+    \frac{\partial v}{\partial s}-\frac{b_2-b_1}{2\sqrt{2}}v=0.
+\end{align}
+这样选了以后,特征线上的积分只留下端点,得到
+\begin{equation}
+\begin{aligned}
+  u(x_0,y_0)
+  &=\half\bigl[u(M_1)v(M_1)+u(M_2)v(M_2)\bigr] \\
+  &\quad+\half\int_{M_1M_2}
+      \bigl[X\cos(n,x)+Y\cos(n,y)\bigr]\,\mathrm{d}s \\
+  &\quad-\half\iint_{M_0M_1M_2} v\,f\,\mathrm{d}S.
+\end{aligned}
+\label{eq:gf-riemann}
+\end{equation}
+黎曼函数对称,$v(x,y;x_0,y_0)=v(x_0,y_0;x,y)$.若 $l$ 上的柯西数据为零,并且 $f=-2\delta(x-\xi)\delta(y-\eta)$,则 $u(x_0,y_0)=v(\xi,\eta;x_0,y_0)$.所以黎曼函数就是这个双曲算子的点源影响函数.
+
+\begin{example}
+常系数方程 $u_{xx}-u_{yy}=0$ 的黎曼函数,以及它和达朗贝尔公式的关系.
+\end{example}
+\begin{solution}
+此时 $b_1=b_2=c=0$,伴随和 $L$ 相同.特征线上的传输条件变成 $\partial v/\partial s=0$,再加 $v(M_0)=1$,所以 $v\equiv 1$.
+
+把 $y$ 看成时间,$x$ 看成空间,特征线斜率是 $\pm 1$,对应波速 $a=1$.初值给在 $y=0$:$u(x,0)=\varphi(x)$, $u_y(x,0)=\psi(x)$.过 $(x_0,y_0)$ 的两条特征线交 $y=0$ 于 $x_0-y_0$ 和 $x_0+y_0$.\eqref{eq:gf-riemann}里 $v=1$,$f=0$,底边上的 $X,Y$ 化为初值的积分,结果是
+\begin{equation}
+  u(x_0,y_0)
+  =\frac{\varphi(x_0-y_0)+\varphi(x_0+y_0)}{2}
+  +\half\int_{x_0-y_0}^{x_0+y_0}\psi(s)\,\mathrm{d}s.
+\end{equation}
+这就是 $a=1$ 的达朗贝尔公式.波速为 $a$ 时,把 $y$ 换成 $at$,积分前面的 $1/2$ 变成 $1/(2a)$.
+\end{solution}

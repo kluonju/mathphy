@@ -1,0 +1,391 @@
+\section{梯度、散度与旋度}
+\idx{梯度}{tidu}
+\idx{散度}{sandu}
+\idx{旋度}{xuandu}
+\label{sec:coordinates}
+
+这三个算子由弧长、通量和环量定义.直角坐标的尺度因子都是 $1$.柱坐标和球坐标的弧长不是坐标增量本身,同一套定义要带上尺度因子.矩形边界用直角坐标,圆和圆柱用柱坐标,球用球坐标;后面在这些边界上分离变量时,直接使用本节的公式.
+
+\subsection{尺度因子}
+\idx{尺度因子}{chiduyinzi}
+\idx{正交曲线坐标}{zhengjiaoxianzuobiao}
+
+直角坐标系 $(x,y,z)$、柱坐标系 $(\rho,\phi,z)$ 和球坐标系 $(r,\theta,\phi)$ 都是正交曲线坐标系:三族坐标面彼此正交.一般的曲线坐标记作 $(q_1,q_2,q_3)$,与直角坐标的变换
+\begin{equation}
+  x=x(q_1,q_2,q_3),\qquad
+  y=y(q_1,q_2,q_3),\qquad
+  z=z(q_1,q_2,q_3)
+\end{equation}
+在所讨论的区域里一一对应,雅可比行列式不为零,
+\begin{equation}
+  \frac{\partial(x,y,z)}{\partial(q_1,q_2,q_3)}\neq 0.
+\end{equation}
+
+位置矢量 $\br=\br(q_1,q_2,q_3)$.沿第 $i$ 条坐标线只变动 $q_i$,切向量是 $\partial\br/\partial q_i$.若不同坐标线的切向量互相正交,
+\begin{equation}
+  \frac{\partial\br}{\partial q_i}\cdot\frac{\partial\br}{\partial q_j}=0,
+  \qquad i\neq j,
+\end{equation}
+这个坐标系就是正交的.弧长元没有交叉项,
+\begin{equation}
+  \mathrm{d}s^2
+  =\mathrm{d}\br\cdot\mathrm{d}\br
+  =\sum_{i=1}^{3} h_i^2\,\mathrm{d}q_i^2,
+  \qquad
+  h_i=\left|\frac{\partial\br}{\partial q_i}\right|.
+  \label{eq:scale-factor}
+\end{equation}
+$h_i$ 称为度规系数,或尺度因子.它把坐标增量 $\mathrm{d}q_i$ 换成真正的长度 $h_i\,\mathrm{d}q_i$.直角坐标的三个尺度因子都是 $1$.
+
+第 $i$ 个单位矢量沿坐标线的切线,
+\begin{equation}
+  \mathbf{e}_i=\frac{1}{h_i}\frac{\partial\br}{\partial q_i}.
+  \label{eq:unit-vector}
+\end{equation}
+正交性写成 $\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}$.和直角坐标不同,$\mathbf{e}_i$ 一般随点改变.算散度和旋度时,不能把它们当成常矢量提出求导.
+
+\begin{figure}[htb]
+  \centering
+  \import{curvedcoordinates/tikz/}{bases.tex}
+  \caption{柱坐标和球坐标的局部单位矢量.柱坐标的 $\mathbf{e}_z$ 垂直于纸面;球坐标画的是过极轴的子午面,$\mathbf{e}_{\phi}$ 指向纸外.}
+  \label{fig:curvilinear-bases}
+\end{figure}
+
+\begin{example}
+由位置矢量求柱坐标和球坐标的尺度因子与单位矢量.
+\end{example}
+\begin{solution}
+柱坐标 $\br=\rho\cos\phi\,\mathbf{e}_x+\rho\sin\phi\,\mathbf{e}_y+z\,\mathbf{e}_z$.
+\begin{align}
+  \frac{\partial\br}{\partial\rho}
+  &=\cos\phi\,\mathbf{e}_x+\sin\phi\,\mathbf{e}_y, \\
+  \frac{\partial\br}{\partial\phi}
+  &=-\rho\sin\phi\,\mathbf{e}_x+\rho\cos\phi\,\mathbf{e}_y, \\
+  \frac{\partial\br}{\partial z}
+  &=\mathbf{e}_z.
+\end{align}
+三式两两正交,并且
+\begin{equation}
+  h_{\rho}=1,\qquad h_{\phi}=\rho,\qquad h_z=1.
+\end{equation}
+$\phi$ 增加 $\mathrm{d}\phi$ 时,走过的弧长是 $\rho\,\mathrm{d}\phi$,不是 $\mathrm{d}\phi$.单位矢量是
+\begin{equation}
+  \mathbf{e}_{\rho}=\cos\phi\,\mathbf{e}_x+\sin\phi\,\mathbf{e}_y,
+  \qquad
+  \mathbf{e}_{\phi}=-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y,
+  \qquad
+  \mathbf{e}_z=\mathbf{e}_z.
+\end{equation}
+
+球坐标 $\br=r\sin\theta\cos\phi\,\mathbf{e}_x+r\sin\theta\sin\phi\,\mathbf{e}_y+r\cos\theta\,\mathbf{e}_z$.
+\begin{align}
+  \frac{\partial\br}{\partial r}
+  &=\sin\theta\cos\phi\,\mathbf{e}_x+\sin\theta\sin\phi\,\mathbf{e}_y+\cos\theta\,\mathbf{e}_z, \\
+  \frac{\partial\br}{\partial\theta}
+  &=r(\cos\theta\cos\phi\,\mathbf{e}_x+\cos\theta\sin\phi\,\mathbf{e}_y-\sin\theta\,\mathbf{e}_z), \\
+  \frac{\partial\br}{\partial\phi}
+  &=r\sin\theta(-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y).
+\end{align}
+同样两两正交,
+\begin{equation}
+  h_r=1,\qquad h_{\theta}=r,\qquad h_{\phi}=r\sin\theta.
+\end{equation}
+单位矢量就是上面三个偏导各自除以对应的 $h_i$.纬度圈上的弧长是 $r\sin\theta\,\mathrm{d}\phi$,所以 $\phi$ 方向的尺度因子在两极变为零.
+\end{solution}
+
+\begin{figure}[htb]
+  \centering
+  \import{curvedcoordinates/tikz/}{volume.tex}
+  \caption{正交曲线坐标中的体积元.三条棱长分别是 $h_i\,\mathrm{d}q_i$,体积是三者之积.}
+  \label{fig:volume-element}
+\end{figure}
+
+沿坐标线的长度、坐标面上的面积和体积元是
+\begin{align}
+  \mathrm{d}\ell_i &= h_i\,\mathrm{d}q_i, \\
+  \mathrm{d}S_1 &= h_2 h_3\,\mathrm{d}q_2\,\mathrm{d}q_3, \\
+  \mathrm{d}V &= h_1 h_2 h_3\,\mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3.
+  \label{eq:volume-element}
+\end{align}
+$\mathrm{d}S_1$ 是法向为 $\mathbf{e}_1$ 的那一面.柱坐标 $\mathrm{d}V=\rho\,\mathrm{d}\rho\,\mathrm{d}\phi\,\mathrm{d}z$,球坐标 $\mathrm{d}V=r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\phi$.雅可比行列式的绝对值等于 $h_1 h_2 h_3$.
+
+\subsection{梯度}
+
+标量场 $u$ 沿位移 $\mathrm{d}\boldsymbol{\ell}$ 的变化是 $\mathrm{d}u=\nabla u\cdot\mathrm{d}\boldsymbol{\ell}$.在局部正交归一基上,$\nabla u=\sum f_i\mathbf{e}_i$,方向导数等于沿弧长的变化率,
+\begin{equation}
+  f_i=\mathbf{e}_i\cdot\nabla u
+  =\frac{\partial u}{\partial\ell_i}
+  =\frac{1}{h_i}\frac{\partial u}{\partial q_i}.
+\end{equation}
+因此
+\begin{equation}
+  \nabla u
+  =\sum_{i=1}^{3}\frac{1}{h_i}\frac{\partial u}{\partial q_i}\,\mathbf{e}_i.
+  \label{eq:grad-orthogonal}
+\end{equation}
+直角坐标里 $h_i=1$,$\mathrm{d}\ell_i$ 就是 $\mathrm{d}x,\mathrm{d}y,\mathrm{d}z$,全微分
+\begin{equation}
+  \mathrm{d}u
+  =\frac{\partial u}{\partial x}\,\mathrm{d}x
+  +\frac{\partial u}{\partial y}\,\mathrm{d}y
+  +\frac{\partial u}{\partial z}\,\mathrm{d}z
+\end{equation}
+给出
+\begin{equation}
+  \nabla u
+  =\frac{\partial u}{\partial x}\,\mathbf{e}_x
+  +\frac{\partial u}{\partial y}\,\mathbf{e}_y
+  +\frac{\partial u}{\partial z}\,\mathbf{e}_z.
+\end{equation}
+$\nabla u$ 指向 $u$ 增加最快的方向,它的模是这个方向上的方向导数.等值面 $u=\textrm{常数}$ 的切向位移使 $\mathrm{d}u=0$,所以梯度垂直于等值面.尺度因子一旦不是 $1$,相应的偏导前面就要除以它.
+
+柱坐标和球坐标分别是
+\begin{align}
+  \nabla u
+  &=\frac{\partial u}{\partial\rho}\,\mathbf{e}_{\rho}
+    +\frac{1}{\rho}\frac{\partial u}{\partial\phi}\,\mathbf{e}_{\phi}
+    +\frac{\partial u}{\partial z}\,\mathbf{e}_z,
+  \label{eq:grad-cyl} \\
+  \nabla u
+  &=\frac{\partial u}{\partial r}\,\mathbf{e}_r
+    +\frac{1}{r}\frac{\partial u}{\partial\theta}\,\mathbf{e}_{\theta}
+    +\frac{1}{r\sin\theta}\frac{\partial u}{\partial\phi}\,\mathbf{e}_{\phi}.
+  \label{eq:grad-sph}
+\end{align}
+
+沿路径的功 $\int_L\mathbf{F}\cdot\mathrm{d}\boldsymbol{\ell}$,在 $\mathbf{F}=\nabla u$ 时只依赖端点,
+\begin{equation}
+  \int_A^B\nabla u\cdot\mathrm{d}\boldsymbol{\ell}=u(B)-u(A).
+\end{equation}
+闭路上积分是零.
+
+\begin{figure}[htb]
+  \centering
+  \input{tikz/paths.tex}
+  \caption{从原点到 $P$ 的两条折线.场如果是梯度,两条路径的积分相等.}
+  \label{fig:two-paths}
+\end{figure}
+
+\begin{example}
+$u=x^2 y$,从原点到 $P=(x_0,y_0)$.
+\end{example}
+\begin{solution}
+$\nabla u=2xy\,\mathbf{e}_x+x^2\,\mathbf{e}_y$,端点公式给出 $x_0^2 y_0$.
+
+路径 $L_1$ 先沿 $x$ 轴到 $(x_0,0)$,再竖直到 $P$.第一段 $y=0$,被积函数是零;第二段 $x=x_0$,$\int_0^{y_0} x_0^2\,\mathrm{d}y=x_0^2 y_0$.
+
+路径 $L_2$ 先沿 $y$ 轴到 $(0,y_0)$,再水平到 $P$.第一段 $x=0$,被积函数是零;第二段 $\int_0^{x_0} 2x y_0\,\mathrm{d}x=x_0^2 y_0$.
+
+两条路径结果相同.任何其他路径也给出这个值.
+\end{solution}
+
+\begin{example}
+$u=\rho^2$ 与 $u=\ln\rho$ 的梯度.
+\end{example}
+\begin{solution}
+$u$ 只依赖 $\rho$.由\eqref{eq:grad-cyl},
+\begin{equation}
+  \nabla(\rho^2)=2\rho\,\mathbf{e}_{\rho},
+  \qquad
+  \nabla\ln\rho=\frac{1}{\rho}\,\mathbf{e}_{\rho}
+  \quad(\rho>0).
+\end{equation}
+第二式的长度是 $1/\rho$,方向径向向外.它就是二维点源电场的形状.
+\end{solution}
+
+\subsection{散度}
+
+闭曲面的通量是 $\oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}$,$\mathrm{d}\mathbf{S}$ 取外法向.净通量为正,内部有源.把矢量按同一组单位矢量分解,$\mathbf{A}=\sum A_i\mathbf{e}_i$,$A_i=\mathbf{A}\cdot\mathbf{e}_i$ 是物理分量.散度是体积元表面的净通量除以体积.
+
+考虑图\ref{fig:volume-element} 那个小盒子.法向为 $\mathbf{e}_1$ 的两面,面积是 $h_2 h_3\,\mathrm{d}q_2\,\mathrm{d}q_3$,通量之差是
+\begin{equation}
+  \frac{\partial}{\partial q_1}(A_1 h_2 h_3)\,\mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3.
+\end{equation}
+三个方向相加,再除以 $\mathrm{d}V=h_1 h_2 h_3\,\mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3$,
+\begin{equation}
+  \nabla\cdot\mathbf{A}
+  =\frac{1}{h_1 h_2 h_3}
+    \sum_{i=1}^{3}
+    \frac{\partial}{\partial q_i}
+    \Bigl(\frac{h_1 h_2 h_3}{h_i} A_i\Bigr).
+  \label{eq:div-orthogonal}
+\end{equation}
+尺度因子留在导数里面.如果先把 $h_i$ 提出来,就会丢掉坐标基元本身的变化.直角坐标里 $h_i=1$,上式回到
+\begin{equation}
+  \nabla\cdot\mathbf{A}
+  =\frac{\partial A_x}{\partial x}
+  +\frac{\partial A_y}{\partial y}
+  +\frac{\partial A_z}{\partial z}.
+\end{equation}
+边长 $\Delta x,\Delta y,\Delta z$ 的小长方体上,在 $x$ 与 $x+\Delta x$ 这一对面上的净通量就是 $(\partial A_x/\partial x)\,\Delta V$.
+
+内部小面的通量成对抵消,只留下外表面,这就是散度定理
+\idx{散度定理}{sandudingli}
+\begin{equation}
+  \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+  =\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.
+  \label{eq:div-theorem}
+\end{equation}
+
+柱坐标 $h_{\rho}h_{\phi}h_z=\rho$,
+\begin{equation}
+  \nabla\cdot\mathbf{A}
+  =\frac{1}{\rho}\frac{\partial}{\partial\rho}(\rho A_{\rho})
+   +\frac{1}{\rho}\frac{\partial A_{\phi}}{\partial\phi}
+   +\frac{\partial A_z}{\partial z}.
+  \label{eq:div-cyl}
+\end{equation}
+球坐标 $h_r h_{\theta} h_{\phi}=r^2\sin\theta$,
+\begin{equation}
+  \nabla\cdot\mathbf{A}
+  =\frac{1}{r^2}\frac{\partial}{\partial r}(r^2 A_r)
+   +\frac{1}{r\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta\, A_{\theta})
+   +\frac{1}{r\sin\theta}\frac{\partial A_{\phi}}{\partial\phi}.
+  \label{eq:div-sph}
+\end{equation}
+
+\begin{example}
+$\mathbf{A}=x\mathbf{e}_x+y\mathbf{e}_y+z\mathbf{e}_z$,长方体 $0\leq x\leq a$,$0\leq y\leq b$,$0\leq z\leq c$.
+\end{example}
+\begin{solution}
+$\nabla\cdot\mathbf{A}=3$,体积分是 $3abc$.六个面里,过原点的三个面通量是零,对面分别贡献 $abc$.合计仍是 $3abc$.
+\end{solution}
+
+\begin{example}
+$\mathbf{A}=\mathbf{e}_{\rho}$ 与 $\mathbf{A}=\mathbf{e}_r/r^2$ 的散度.
+\end{example}
+\begin{solution}
+柱坐标里 $A_{\rho}=1$,其余分量为零.\eqref{eq:div-cyl}只留下
+\begin{equation}
+  \nabla\cdot\mathbf{e}_{\rho}=\frac{1}{\rho}\frac{\partial}{\partial\rho}(\rho)=\frac{1}{\rho}.
+\end{equation}
+三个直角分量都是常数的矢量,散度才是零.$\mathbf{e}_{\rho}$ 的方向在空间里转,散度不是零.
+
+球坐标里 $A_r=1/r^2$.\eqref{eq:div-sph}的第一项是
+\begin{equation}
+  \frac{1}{r^2}\frac{\partial}{\partial r}(r^2\cdot r^{-2})=0,
+  \qquad r>0.
+\end{equation}
+所以 $\nabla\cdot(\mathbf{e}_r/r^2)=0$（$r\neq 0$）.原点是奇点,把原点包进去以后通量是 $4\pi$,这就是 $-\Delta(1/r)=4\pi\delta^3(\br)$ 的来源.
+\end{solution}
+
+\subsection{旋度}
+
+闭路环量是 $\oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}$.在法向为 $\mathbf{e}_1$ 的小面片上用斯托克斯定理的局部形式.环量来自两条 $q_2$ 边和两条 $q_3$ 边,切向长度分别是 $h_2\,\mathrm{d}q_2$ 和 $h_3\,\mathrm{d}q_3$.除以面积 $h_2 h_3\,\mathrm{d}q_2\,\mathrm{d}q_3$,
+\begin{equation}
+  (\nabla\times\mathbf{A})_1
+  =\frac{1}{h_2 h_3}
+    \Biggl(
+      \frac{\partial}{\partial q_2}(h_3 A_3)
+      -\frac{\partial}{\partial q_3}(h_2 A_2)
+    \Biggr).
+  \label{eq:curl-orthogonal}
+\end{equation}
+另外两个分量按 $1\to 2\to 3\to 1$ 轮换.导数作用在 $h_i A_i$ 上,而不是只作用在 $A_i$ 上.直角坐标里 $h_i=1$,$xy$ 平面的小矩形给出
+\begin{equation}
+  (\nabla\times\mathbf{A})_z
+  =\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}.
+\end{equation}
+
+\begin{figure}[htb]
+  \centering
+  \input{tikz/curl_loop.tex}
+  \caption{小矩形上的环量.内部公共边方向相反,铺满曲面以后互相抵消.}
+  \label{fig:curl-loop}
+\end{figure}
+
+一般地,法向为 $\hat{\mathbf{n}}$ 的小面元满足
+\begin{equation}
+  (\nabla\times\mathbf{A})\cdot\hat{\mathbf{n}}
+  =\lim_{\Delta S\to 0}\frac{1}{\Delta S}
+    \oint_{\partial(\Delta S)}\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell},
+\end{equation}
+环路与法向由右手定则联系.内部边抵消后就是斯托克斯定理
+\idx{斯托克斯定理}{situokesidingli}
+\begin{equation}
+  \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+  =\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}.
+  \label{eq:stokes}
+\end{equation}
+张在同一条边界上的任何定向曲面,旋度通量相同.
+
+梯度没有环量,旋度没有净源,
+\begin{equation}
+  \nabla\times(\nabla u)=\mathbf{0},
+  \qquad
+  \nabla\cdot(\nabla\times\mathbf{A})=0.
+\end{equation}
+混合偏导可交换时,直角分量可以直接看出.完整的指标证明在后面.
+
+\begin{example}
+$\mathbf{A}=-y\,\mathbf{e}_x+x\,\mathbf{e}_y-z\,\mathbf{e}_z$,$L$ 是 $xy$ 平面上半径为 $R$ 的圆.
+\end{example}
+\begin{solution}
+$\nabla\times\mathbf{A}=2\mathbf{e}_z$.圆上 $x=R\cos\phi$,$y=R\sin\phi$,
+\begin{equation}
+  \mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=R^2\,\mathrm{d}\phi,
+  \qquad
+  \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=2\pi R^2.
+\end{equation}
+圆盘上 $\int_S 2\,\mathrm{d}S=2\cdot\pi R^2$,与线积分一致.
+\end{solution}
+
+\begin{example}
+无限长直导线的磁场 $\mathbf{B}=(\mu_0 I/(2\pi\rho))\,\mathbf{e}_{\phi}$ 在 $\rho>0$ 处无旋.
+\end{example}
+\begin{solution}
+只有 $\phi$ 分量,$h_{\phi} B_{\phi}=\mu_0 I/(2\pi)$,是常数.由\eqref{eq:curl-orthogonal},旋度的每个分量都是这个常数对某个坐标求导,结果是零.环路如果把导线围在里面,环量是 $\mu_0 I$,旋度的奇性集中在 $\rho=0$.
+\end{solution}
+
+\subsection{拉普拉斯算子}
+\idx{拉普拉斯算子}{lapulasisuanzi}
+
+$\nabla^2 u=\nabla\cdot(\nabla u)$.把\eqref{eq:grad-orthogonal}的分量代进\eqref{eq:div-orthogonal},
+\begin{equation}
+  \nabla^2 u
+  =\frac{1}{h_1 h_2 h_3}
+    \sum_{i=1}^{3}
+    \frac{\partial}{\partial q_i}
+    \Biggl(\frac{h_1 h_2 h_3}{h_i^2}\frac{\partial u}{\partial q_i}\Biggr).
+  \label{eq:laplace-orthogonal}
+\end{equation}
+不能把直角坐标的二阶偏导照抄过来,再把 $\mathrm{d}x$ 换成 $h_i\,\mathrm{d}q_i$.那样会漏掉尺度因子的导数.直角坐标里三个尺度因子都是 $1$,上式就是 $\partial^2 u/\partial x^2+\partial^2 u/\partial y^2+\partial^2 u/\partial z^2$.
+
+柱坐标代入 $h_{\rho}=1$, $h_{\phi}=\rho$, $h_z=1$,
+\begin{equation}
+  \nabla^2 u
+  =\frac{1}{\rho}\frac{\partial}{\partial\rho}
+      \Bigl(\rho\frac{\partial u}{\partial\rho}\Bigr)
+   +\frac{1}{\rho^2}\frac{\partial^2 u}{\partial\phi^2}
+   +\frac{\partial^2 u}{\partial z^2}.
+  \label{eq:laplace-cyl}
+\end{equation}
+第一项展开是 $\partial^2 u/\partial\rho^2+(1/\rho)\partial u/\partial\rho$.多出来的 $(1/\rho)\partial u/\partial\rho$ 就是把二阶偏导直接换元时所丢掉的项.
+
+球坐标代入 $h_r=1$, $h_{\theta}=r$, $h_{\phi}=r\sin\theta$,
+\begin{equation}
+  \nabla^2 u
+  =\frac{1}{r^2}\frac{\partial}{\partial r}
+      \Bigl(r^2\frac{\partial u}{\partial r}\Bigr)
+   +\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}
+      \Bigl(\sin\theta\frac{\partial u}{\partial\theta}\Bigr)
+   +\frac{1}{r^2\sin^2\theta}\frac{\partial^2 u}{\partial\phi^2}.
+  \label{eq:laplace-sph}
+\end{equation}
+
+\begin{example}
+检验 $\ln\rho$ 和 $1/r$.
+\end{example}
+\begin{solution}
+$u=\ln\rho$ 只依赖 $\rho$.由\eqref{eq:laplace-cyl},
+\begin{equation}
+  \nabla^2\ln\rho
+  =\frac{1}{\rho}\frac{\partial}{\partial\rho}
+    \Bigl(\rho\cdot\frac{1}{\rho}\Bigr)
+  =0,
+  \qquad\rho>0.
+\end{equation}
+若误用 $\partial^2(\ln\rho)/\partial\rho^2=-1/\rho^2$,结果不是零.二维里这个函数的奇性在原点,$\nabla^2\ln\rho=2\pi\delta^2(\boldsymbol{\rho})$.
+
+$u=1/r$ 只依赖 $r$.$r^2\partial u/\partial r=-1$,再对 $r$ 求导是零,所以 $\nabla^2(1/r)=0$（$r>0$）.它是球外拉普拉斯方程的基本解.
+\end{solution}

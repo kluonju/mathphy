@@ -1,0 +1,39 @@
+傅里叶级数的系数要把积分算完.傅里叶变换按正文取极限后的约定
+\begin{equation*}
+  F(\omega)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-\mathrm{i}\omega x}\,\mathrm{d}x,
+  \qquad
+  f(x)=\int_{-\infty}^{\infty}F(\omega)e^{\mathrm{i}\omega x}\,\mathrm{d}\omega.
+\end{equation*}
+拉普拉斯变换用 $\bar f(p)=\int_0^{\infty}e^{-pt}f(t)\,\mathrm{d}t$.
+
+\begin{problemset}
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\item 对正整数 $m,n\geq 1$,在 $[0,\ell]$ 上验证
+\begin{equation*}
+  \int_0^{\ell}
+  \cos\Bigl(\frac{n\pi x}{\ell}\Bigr)
+  \cos\Bigl(\frac{m\pi x}{\ell}\Bigr)
+  \,\mathrm{d}x
+  =\frac{\ell}{2}\,\delta_{mn},
+\end{equation*}
+并单独计算 $n=0$ 时 $\int_0^{\ell}1\,\mathrm{d}x$.由此说明半幅余弦级数里 $a_0$ 和 $a_n$ 可以共用因子 $2/\ell$,常数项仍然写成 $a_0/2$.
+
+\item 热棒两端保持零度,初始温度 $f(x)=x(\ell-x)$.求出正弦系数,并写出 $T(x,t)$.
+
+\item 正文里 $f(x)=x^2$ 的 Parseval 等式左边是 $\pi^4/5$,右边含 $\sum 1/n^4$.两边各自算完,得到 $\sum_{n=1}^{\infty}1/n^4=\pi^4/90$.
+
+\item 在 $[-\pi,\pi]$ 上把 $f(x)=x$ 展成傅里叶级数.按正文的能量定理,分别计算 $\frac{1}{2\pi}\int_{-\pi}^{\pi}x^2\,\mathrm{d}x$ 和 $\sum b_n^2/2$,从而得到 $\sum_{n=1}^{\infty}1/n^2=\pi^2/6$.两边都要单独算完再比较.
+
+\item 按上面的傅里叶变换约定计算 $\mathcal{F}[e^{-\alpha|x|}]$, $\alpha>0$.再用反演积分在 $x=0$ 处核对 $f(0)=1$.
+
+\item 计算宽度为 $2a$、中心在原点的矩形脉冲的变换,再计算中心移到 $x_0$ 的同一脉冲.哪些 $\omega$ 使中心在原点的变换为零?平移为什么不改变这些零点?
+
+\item 用分部积分证明 $\mathcal{F}[f']=\mathrm{i}\omega F$,并写明边界项为什么必须为零.对全直线上的 $u_t=u_{xx}$, $u$ 在无穷远处趋于零,写出 $\tilde u(\omega,t)$ 满足的方程.
+
+\item 由 $\mathcal{L}\{e^{\mathrm{i}\omega t}\}$ 得到 $\mathcal{L}\{\sin(\omega t)\}$ 和 $\mathcal{L}\{\cos(\omega t)\}$,并写明收敛的半平面.再用位移定理计算 $\mathcal{L}\{e^{-\lambda t}\sin(\omega t)\}$,不要重新积分.
+
+\item 用拉普拉斯变换解 $X''-3X'+2X=e^{t}$, $X(0)=1$, $X'(0)=0$.部分分式反演后,在结果上核对两个初值.
+
+\item 反演 $e^{-2p}/[(p+1)(p+2)]$.分别用卷积和用部分分式加延迟定理,并确认 $0\leq t<2$ 时原函数是零.
+\end{problemset}

@@ -1,4 +1,5 @@
 \section{齐次方程齐次边界条件}
+\idx{分离变量}{fenlibianliang}
 \label{sec:homo}
 本节先讨论齐次方程及齐次边界条件的定解问题,
 
@@ -202,7 +203,7 @@ $$
         这些点在整个振动过程中始终保持不动, 称为驻波 $u_{n}(x, t)$ 的\textbf{波节}. 
         在点 $x=\frac{2 m+1}{2 n} l(m=0,1$, $\cdots, n-1)$ 处, 
         $\sin \frac{n \pi x}{l}= \pm 1$, 这些点的振幅最大,称为驻波的\textbf{波腹}.
-         驻波的\textbf{角频率} $\omega_{n}=\frac{n \pi}{l}$, 
+         驻波的\textbf{角频率} $\omega_{n}=\frac{n \pi a}{l}$, 
          其中 $n=1$ 的项 $u_{1}(x, t)$ 称为\textbf{基波}, 
          而 $n>1$ 的项 $u_{n}(x, t)$ 称为 \textbf{$n$ 次谐波}, 
          这些驻波也称为两端固定弦的本征振动. 
@@ -210,7 +211,80 @@ $$
         
 \end{enumerate}
 
+正弦族来自两端的齐次狄利克雷条件,不是事先指定的基.若两端改成自由端 $u_x(0,t)=u_x(\ell,t)=0$,同一分离常数给出的是余弦族 $\cos(n\pi x/\ell)$,$n=0,1,2,\ldots$,其中 $n=0$ 是整根弦一起平移的模式.
 
+\begin{example}
+核对单个模式 $u=\sin(\pi x/\ell)\cos(\pi a t/\ell)$.
+\end{example}
+\begin{solution}
+端点 $x=0$ 和 $x=\ell$ 上正弦为零,边界条件满足.
+\begin{equation}
+  u_{tt}=-\Bigl(\frac{\pi a}{\ell}\Bigr)^2 u,
+  \qquad
+  u_{xx}=-\Bigl(\frac{\pi}{\ell}\Bigr)^2 u,
+\end{equation}
+所以 $u_{tt}=a^2 u_{xx}$.$t=0$ 时形状是 $\sin(\pi x/\ell)$,速度是零.级数解的每一项都已经是弦的一种运动,系数只决定每种运动占多少.
+\end{solution}
+
+\begin{example}
+弦从静止松开,初位移是抛物线 $\varphi(x)=x(\ell-x)$,$\psi=0$.
+\end{example}
+\begin{solution}
+所有速度系数都是零.令 $k=n\pi/\ell$.$\varphi$ 在两端为零,$\varphi''=-2$.分部积分两次,
+\begin{equation}
+  \int_0^{\ell}x(\ell-x)\sin(kx)\,\mathrm{d}x
+  =\frac{2}{k^3}\bigl(1-(-1)^n\bigr).
+\end{equation}
+因此
+\begin{equation}
+  C_n=\frac{2}{\ell}\cdot\frac{2\ell^3}{n^3\pi^3}\bigl(1-(-1)^n\bigr)
+  =
+  \begin{cases}
+    8\ell^2/(n^3\pi^3), & n\text{ 为奇数},\\
+    0, & n\text{ 为偶数}.
+  \end{cases}
+\end{equation}
+抛物线关于 $x=\ell/2$ 对称,偶数模式关于这一点反对称,系数必须为零.
+\begin{equation}
+  u(x,t)=\sum_{m=0}^{\infty}
+    \frac{8\ell^2}{(2m+1)^3\pi^3}
+    \sin\Bigl(\frac{(2m+1)\pi x}{\ell}\Bigr)
+    \cos\Bigl(\frac{(2m+1)\pi a t}{\ell}\Bigr).
+\end{equation}
+振幅按 $1/n^3$ 下降.初值越光滑,高次谐波越弱.
+\end{solution}
+
+齐次边界上的外力也可以按同一组本征函数展开,
+\begin{equation}
+  u(x,t)=\sum_n T_n(t)X_n(x),
+  \qquad
+  f(x,t)=\sum_n f_n(t)X_n(x).
+\end{equation}
+代入 $u_{tt}-a^2 u_{xx}=f$,正交性把偏微分方程拆成彼此独立的受迫振子
+\begin{equation}
+  T_n''+\omega_n^2 T_n=f_n(t),
+  \qquad
+  \omega_n=\frac{n\pi a}{\ell}.
+\end{equation}
+把连续力看成一串短冲量,时刻 $\tau$ 的冲量给第 $n$ 个模式一个速度增量,之后按齐次方程演化.从 $0$ 到 $t$ 叠加,
+\begin{equation}
+  T_n(t)=T_n^{\mathrm{free}}(t)
+  +\int_0^t\frac{\sin\bigl(\omega_n(t-\tau)\bigr)}{\omega_n}f_n(\tau)\,\mathrm{d}\tau.
+\end{equation}
+只有 $\tau\le t$ 的力能影响时刻 $t$.
+
+\begin{example}
+常力 $f_n=1$、无自由运动、$T(0)=T'(0)=0$ 时,核对上面的积分.
+\end{example}
+\begin{solution}
+直接解 $T''+\omega^2 T=1$ 得到 $T=(1-\cos\omega t)/\omega^2$.积分里令 $s=t-\tau$,
+\begin{equation}
+  \int_0^{t}\frac{\sin\bigl(\omega(t-\tau)\bigr)}{\omega}\,\mathrm{d}\tau
+  =\frac{1}{\omega}\int_0^{t}\sin(\omega s)\,\mathrm{d}s
+  =\frac{1-\cos(\omega t)}{\omega^2}.
+\end{equation}
+两者相同.这个积分就是常数变易法,只是把每一小段冲量 $\mathrm{d}\tau$ 的响应单独写了出来.
+\end{solution}
 
 \setlength\intextsep{5pt}
 下一个例题是平面极坐标系的分离变数法.
@@ -418,7 +492,7 @@ $$
 最后得柱外的静电势为
 
 $$
-u(\rho, \varphi)=\frac{q_{0}}{2 \pi \varepsilon_{0}} \ln \frac{a}{\rho}-E_{0} \rho \cos \varphi+E_{0} \frac{\dot{a}^{2}}{\rho} \cos \varphi
+u(\rho, \varphi)=\frac{q_{0}}{2 \pi \varepsilon_{0}} \ln \frac{a}{\rho}-E_{0} \rho \cos \varphi+E_{0} \frac{a^{2}}{\rho} \cos \varphi
 $$
 
 简单谈谈所得解答的物理含义. 
@@ -436,15 +510,15 @@ $$
 $A$ 点和 $B$ 点的电场强度是
 $$
 E=-\left.\frac{\partial u}{\partial \rho}\right|_{\substack{\rho=a \\ \varphi=0, \pi}}
-=\left.\left(E_{0} \cos \varphi+E_{0} \frac{a_{2}}{\rho} \cos \varphi\right)\right|_{\substack{\rho=a \\ \varphi=0, \pi}}
+=\left.\left(E_{0} \cos \varphi+E_{0} \frac{a^{2}}{\rho^{2}} \cos \varphi\right)\right|_{\substack{\rho=a \\ \varphi=0, \pi}}
 = \pm 2 E_{0}
 $$
 是原来的匀强电场的两倍! 所以在这两处特别容易击穿. 而且不管圆柱的半径多么小, 这个结论总是对的!
 
 在$y$ 轴上的电势是
 $$
-u_{\varphi= \pm \pi / 2}=\left.\left(-E_{0} \rho \cos \varphi+E_{0} \frac{a_{2}}{\rho} \cos \varphi\right)\right|_{\varphi= \pm \pi / 2}=0
+u_{\varphi= \pm \pi / 2}=\left.\left(-E_{0} \rho \cos \varphi+E_{0} \frac{a^{2}}{\rho} \cos \varphi\right)\right|_{\varphi= \pm \pi / 2}=0
 $$
 跟导体圆柱的电势相同. 
 
-非齐次方程齐次边界条件参考教材中的傅里叶级数法和冲量定理法. 非齐次边界条件的处理不做要求.
+非齐次方程在齐次边界上的模态展开已经写在本节前面:每个模式是一个受迫振子,连续力的响应是冲量的叠加.直角坐标系里把这件事写成傅里叶级数和冲量定理的细节见后文.非齐次边界条件的处理不做要求.

@@ -1,0 +1,174 @@
+\section{矢量}
+\idx{矢量}{shiliang}
+
+标量用一个数就够了,坐标旋转时它不变.矢量既有大小也有方向.在三维直角坐标里把它写成
+\begin{equation}
+  \mathbf{A}=A_x\mathbf{e}_x+A_y\mathbf{e}_y+A_z\mathbf{e}_z,
+\end{equation}
+基矢满足 $\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}$.模是
+\begin{equation}
+  |\mathbf{A}|=\sqrt{A_x^2+A_y^2+A_z^2}.
+\end{equation}
+数乘 $c\mathbf{A}$ 把每个分量乘上 $c$.$c>0$ 时方向不变,$c<0$ 时方向反过来.
+
+\subsection{加法与减法}
+分量各自相加.几何上,$\mathbf{A}+\mathbf{B}$ 是以 $\mathbf{A},\mathbf{B}$ 为邻边的平行四边形的对角线;$\mathbf{B}-\mathbf{A}$ 是从 $\mathbf{A}$ 的终点指向 $\mathbf{B}$ 的终点.
+
+\begin{figure}[htb]
+  \centering
+  \input{tikz/sum_diff.tex}
+  \caption{平行四边形给出和;把两个矢量的起点放在一起,终点的连线是差.}
+  \label{fig:sum-diff}
+\end{figure}
+
+\begin{example}
+$\mathbf{A}=4\mathbf{e}_x+4\mathbf{e}_y$,$\mathbf{B}=\mathbf{e}_x+8\mathbf{e}_y$.
+\end{example}
+\begin{solution}
+\begin{equation}
+  \mathbf{A}+\mathbf{B}=5\mathbf{e}_x+12\mathbf{e}_y,
+  \qquad
+  |\mathbf{A}+\mathbf{B}|=\sqrt{5^2+12^2}=13.
+\end{equation}
+\begin{equation}
+  \mathbf{B}-\mathbf{A}=-3\mathbf{e}_x+4\mathbf{e}_y,
+  \qquad
+  |\mathbf{B}-\mathbf{A}|=\sqrt{(-3)^2+4^2}=5.
+\end{equation}
+$5$--$12$--$13$ 和 $3$--$4$--$5$ 两组勾股数正好核对这两个模.
+\end{solution}
+
+\subsection{点积}
+\idx{点积}{dianji}
+\begin{equation}
+  \mathbf{A}\cdot\mathbf{B}=|\mathbf{A}|\,|\mathbf{B}|\cos\theta
+  =A_x B_x+A_y B_y+A_z B_z.
+\end{equation}
+$\theta$ 是夹角.点积为正是锐角,为零是垂直,为负是钝角.特别地 $\mathbf{A}\cdot\mathbf{A}=|\mathbf{A}|^2$.
+
+\begin{example}
+$\mathbf{A}=\sqrt{3}\,\mathbf{e}_x+\mathbf{e}_y$,$\mathbf{B}=2\mathbf{e}_x$.
+\end{example}
+\begin{solution}
+$|\mathbf{A}|=2$,$|\mathbf{B}|=2$,$\mathbf{A}\cdot\mathbf{B}=2\sqrt{3}$.因此 $\cos\theta=\sqrt{3}/2$,$\theta=30^\circ$.$\mathbf{B}$ 沿 $x$ 轴,$\mathbf{A}$ 与它成 $30^\circ$.
+\end{solution}
+
+\begin{example}
+水分子的键角.氧原子在原点,两个氢原子的坐标(单位 \AA)是 $\mathrm{H}_1=(0.757,0,0.586)$,$\mathrm{H}_2=(-0.757,0,0.586)$.
+\end{example}
+\begin{solution}
+键矢量 $\mathbf{u}=(a,0,b)$,$\mathbf{v}=(-a,0,b)$,$a=0.757$,$b=0.586$.
+\begin{equation}
+  \cos\alpha=\frac{\mathbf{u}\cdot\mathbf{v}}{|\mathbf{u}|\,|\mathbf{v}|}
+  =\frac{b^2-a^2}{a^2+b^2}.
+\end{equation}
+$a^2=0.573$,$b^2=0.343$,所以 $\cos\alpha\approx -0.251$,$\alpha\approx 104.5^\circ$.
+\end{solution}
+
+\begin{example}
+$\mathbf{p}=2\mathbf{e}_x-\mathbf{e}_y+2\mathbf{e}_z$ 与 $\mathbf{q}=\mathbf{e}_x+2\mathbf{e}_y$ 是否垂直.
+\end{example}
+\begin{solution}
+$\mathbf{p}\cdot\mathbf{q}=2-2+0=0$,所以垂直.
+\end{solution}
+
+\subsection{叉积}
+\idx{叉积}{chaji}
+\begin{equation}
+  \mathbf{A}\times\mathbf{B}
+  =
+  \begin{vmatrix}
+    \mathbf{e}_x & \mathbf{e}_y & \mathbf{e}_z \\
+    A_x & A_y & A_z \\
+    B_x & B_y & B_z
+  \end{vmatrix}.
+\end{equation}
+它垂直于 $\mathbf{A}$ 和 $\mathbf{B}$,方向由右手定则决定,模 $|\mathbf{A}|\,|\mathbf{B}|\sin\theta$ 是二者张成的平行四边形面积.$\mathbf{A}\times\mathbf{A}=\mathbf{0}$,并且 $\mathbf{B}\times\mathbf{A}=-\mathbf{A}\times\mathbf{B}$.
+
+\begin{example}
+$\mathbf{A}=-\mathbf{e}_x+\mathbf{e}_y+\mathbf{e}_z$,$\mathbf{B}=\mathbf{e}_x-\mathbf{e}_y+\mathbf{e}_z$.
+\end{example}
+\begin{solution}
+按第一行展开,
+\begin{equation}
+  \mathbf{A}\times\mathbf{B}=2\mathbf{e}_x+2\mathbf{e}_y,
+  \qquad
+  |\mathbf{A}\times\mathbf{B}|=2\sqrt{2}.
+\end{equation}
+右手单位法向是 $(\mathbf{e}_x+\mathbf{e}_y)/\sqrt{2}$.同一对矢量的点积是 $-1$,两个模都是 $\sqrt{3}$,所以
+\begin{equation}
+  \cos\theta=-\frac13,
+  \qquad
+  \theta=\cos^{-1}(-1/3)\approx 109.47^\circ.
+\end{equation}
+叉积给出法向,点积给出平面内的夹角.
+\end{solution}
+
+\subsection{三重积}
+\idx{三重积}{sanzhongji}
+标量三重积
+\begin{equation}
+  \mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})
+  =
+  \begin{vmatrix}
+    A_x & A_y & A_z \\
+    B_x & B_y & B_z \\
+    C_x & C_y & C_z
+  \end{vmatrix}
+\end{equation}
+的绝对值是三个矢量所张平行六面体的体积,符号记录定向.把 $(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}$ 展开后与上式相同,所以点与叉可以交换.记 $[\mathbf{A},\mathbf{B},\mathbf{C}]=\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})$,循环换位不变号,交换两个矢量变号.
+
+\begin{example}
+$\mathbf{A}=\mathbf{e}_x+\mathbf{e}_y$,$\mathbf{B}=\mathbf{e}_y+\mathbf{e}_z$,$\mathbf{C}=\mathbf{e}_x+\mathbf{e}_z$.
+\end{example}
+\begin{solution}
+$\mathbf{A}\times\mathbf{B}=\mathbf{e}_x-\mathbf{e}_y+\mathbf{e}_z$,再点乘 $\mathbf{C}$ 得 $2$.行列式
+\begin{equation}
+  \begin{vmatrix}
+    1 & 1 & 0 \\
+    0 & 1 & 1 \\
+    1 & 0 & 1
+  \end{vmatrix}
+  =2
+\end{equation}
+给出同一个有向体积.
+\end{solution}
+
+两个叉积的点积是拉格朗日恒等式
+\begin{equation}
+  (\mathbf{A}\times\mathbf{B})\cdot(\mathbf{C}\times\mathbf{D})
+  =(\mathbf{A}\cdot\mathbf{C})(\mathbf{B}\cdot\mathbf{D})
+  -(\mathbf{A}\cdot\mathbf{D})(\mathbf{B}\cdot\mathbf{C}).
+  \label{eq:lagrange-identity}
+\end{equation}
+用 $\varepsilon_{ijk}\varepsilon_{ilm}=\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}$ 把指标收成点积就得到它.这个缩并放在指标记号一节里证明.$|\mathbf{A}\times\mathbf{B}|^2$ 是 $\mathbf{C}=\mathbf{A}$,$\mathbf{D}=\mathbf{B}$ 的特例.
+
+矢量三重积没有结合律.化简公式是
+\begin{equation}
+\begin{aligned}
+  \mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+  &=(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{A}\cdot\mathbf{B})\mathbf{C}, \\
+  (\mathbf{A}\times\mathbf{B})\times\mathbf{C}
+  &=(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{B}\cdot\mathbf{C})\mathbf{A}.
+\end{aligned}
+\label{eq:bac-cab}
+\end{equation}
+第一条的 $x$ 分量可以直接展开:先算 $(\mathbf{B}\times\mathbf{C})_y$ 和 $(\mathbf{B}\times\mathbf{C})_z$,再与 $A_y,A_z$ 相乘,整理后就是 $(\mathbf{A}\cdot\mathbf{C})B_x-(\mathbf{A}\cdot\mathbf{B})C_x$.另外两个分量相同.把三个矢量循环置换,得到第二条.三条公式相加,$\mathbf{A},\mathbf{B},\mathbf{C}$ 的系数各自抵消,所以
+\begin{equation}
+  \mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+  +\mathbf{B}\times(\mathbf{C}\times\mathbf{A})
+  +\mathbf{C}\times(\mathbf{A}\times\mathbf{B})
+  =\mathbf{0}.
+\end{equation}
+
+\begin{example}
+单位矢量 $\hat{\mathbf{n}}$ 与 $\mathbf{v}=2\mathbf{e}_x-\mathbf{e}_y+3\mathbf{e}_z$,取 $\hat{\mathbf{n}}=\mathbf{e}_z$.
+\end{example}
+\begin{solution}
+由\eqref{eq:bac-cab},
+\begin{equation}
+  \hat{\mathbf{n}}\times(\mathbf{v}\times\hat{\mathbf{n}})
+  =\mathbf{v}-(\mathbf{v}\cdot\hat{\mathbf{n}})\hat{\mathbf{n}}.
+\end{equation}
+这里 $\mathbf{v}\cdot\mathbf{e}_z=3$,垂直分量是 $2\mathbf{e}_x-\mathbf{e}_y$.减去的那一项是沿 $\hat{\mathbf{n}}$ 的投影.
+\end{solution}

@@ -76,3 +76,8 @@
 \def\Arg{{\mathrm{Arg}\;}}
 \def\arg{{\mathrm{arg}\;}}
 \def\Res{{\mathrm{Res}\;}}
+
+% 索引: #1 显示的词条, #2 拼音排序键. 术语首次出现用 \term, 只入索引用 \idx.
+\newcommand{\idx}[2]{\index{#2@#1}}
+\newcommand{\term}[2]{\textbf{#1}\idx{#1}{#2}}
+\renewcommand{\exercisename}{习题}

@@ -1,0 +1,140 @@
+\section{张量}
+\idx{张量}{zhangliang}
+
+\subsection{阶与坐标变换}
+指标的个数叫做阶,也叫秩.标量是 $0$ 阶,矢量是 $1$ 阶,$n$ 维空间里 $r$ 阶张量在计入对称性之前有 $n^r$ 个分量.对称二阶张量 $T_{ij}=T_{ji}$ 的独立分量是 $n(n+1)/2$,反对称张量 $T_{ij}=-T_{ji}$ 的对角元必须为零,独立分量是 $n(n-1)/2$.二者相加正好是 $n^2$.任意二阶张量拆成
+\begin{equation}
+  T_{ij}
+  =\frac12(T_{ij}+T_{ji})
+  +\frac12(T_{ij}-T_{ji}),
+\end{equation}
+第一项对称,第二项反对称.位移梯度 $\partial_i u_j$ 的对称部分是应变,反对称部分是无穷小转动.
+
+二阶张量是把一个矢量送到另一个矢量的线性映射,$u_i=T_{ij}v_j$.三阶张量可以吃进两个矢量,$w_i=C_{ijk}u_j v_k$,对每个矢量分别线性.
+
+直角坐标的旋转 $x'_i=R_{ij}x_j$ 下,矢量分量按
+\begin{equation}
+  v'_i=R_{ij}v_j
+\end{equation}
+变换.$2$ 阶张量的每个指标各乘一个 $R$,
+\begin{equation}
+  T'_{ij}=R_{ik}R_{jl}T_{kl}.
+\end{equation}
+若 $u_i=T_{ij}v_j$,则
+\begin{equation}
+  T'_{ij}v'_j
+  =R_{ik}R_{jl}T_{kl}\,R_{jm}v_m
+  =R_{ik}u_k,
+\end{equation}
+输出仍按矢量变换.$\delta_{ij}$ 在旋转下不变,因为 $R_{ik}R_{jk}=\delta_{ij}$.完全反对称的 $\varepsilon_{ijk}$ 在正常旋转下也不变,反射会多一个 $\det R=-1$.旋转矩阵本身描写的是坐标变换,不按这个规则变成张量.
+
+应力 $\sigma_{ij}$ 把面元法向 $\mathrm{d}S_j$ 变成力 $\mathrm{d}F_i=\sigma_{ij}\,\mathrm{d}S_j$.应变描述位移梯度的对称部分.在线性弹性里,二者由弹性张量联系,$\sigma_{ij}=C_{ijkl}\varepsilon_{kl}$.各向同性时 $C$ 只用两个独立常数,拉梅常数 $\lambda,\mu$,
+\begin{equation}
+  \sigma_{ij}=\lambda\,\delta_{ij}\,\varepsilon_{kk}+2\mu\,\varepsilon_{ij}.
+\end{equation}
+电导张量把电场变成电流,$J_i=\sigma_{ij}E_j$.晶体里 $\sigma_{ij}$ 不必是 $\delta_{ij}$ 的倍数,电流可以不平行于电场.压电张量 $d_{ijk}$ 把应力变成极化,$P_i=d_{ijk}\sigma_{jk}$.
+
+\subsection{各向同性张量}
+\idx{各向同性张量}{gexiangtongxing}
+旋转下形式不变的张量由 $\delta$ 和 $\varepsilon$ 拼出来.$0$ 阶就是常数.$1$ 阶只有零矢量.$2$ 阶是 $\lambda\delta_{ij}$.$3$ 阶是 $\lambda\varepsilon_{ijk}$.$4$ 阶有三项,
+\begin{equation}
+  T_{ijkl}
+  =\alpha\,\delta_{ij}\delta_{kl}
+  +\beta\,\delta_{ik}\delta_{jl}
+  +\gamma\,\delta_{il}\delta_{jk}.
+\end{equation}
+弹性张量还要满足指标对称,所以 $\beta=\gamma$,独立常数减成两个,与上面的 $\lambda,\mu$ 对应.
+
+\subsection{度规、联络与曲率}
+\idx{度规}{dugui}
+\idx{克里斯托费尔符号}{kelisituoer}
+曲线坐标里,坐标差 $\mathrm{d}x^\mu$ 不是弧长.度规把弧长写成
+\begin{equation}
+  \mathrm{d}s^2=g_{\mu\nu}\,\mathrm{d}x^\mu\mathrm{d}x^\nu.
+\end{equation}
+平面极坐标 $x^1=r$,$x^2=\vartheta$,
+\begin{equation}
+  \mathrm{d}s^2=\mathrm{d}r^2+r^2\mathrm{d}\vartheta^2,
+  \qquad
+  g_{rr}=1,\quad g_{\vartheta\vartheta}=r^2,
+\end{equation}
+非对角元是零.$g^{rr}=1$,$g^{\vartheta\vartheta}=1/r^2$.尺度因子就是 $h_r=\sqrt{g_{rr}}=1$,$h_\vartheta=\sqrt{g_{\vartheta\vartheta}}=r$,与第~\ref{sec:coordinates}~节一致.
+
+克里斯托费尔符号
+\begin{equation}
+  \Gamma^\rho{}_{\mu\nu}
+  =\frac12 g^{\rho\sigma}
+    \bigl(
+      \partial_\mu g_{\nu\sigma}
+      +\partial_\nu g_{\mu\sigma}
+      -\partial_\sigma g_{\mu\nu}
+    \bigr)
+  \label{eq:christoffel}
+\end{equation}
+描写坐标基如何逐点变化.协变导数是
+\begin{equation}
+  \nabla_\mu V^\nu
+  =\partial_\mu V^\nu+\Gamma^\nu{}_{\mu\rho}V^\rho,
+  \qquad
+  \nabla_\mu V_\nu
+  =\partial_\mu V_\nu-\Gamma^\rho{}_{\mu\nu}V_\rho.
+\end{equation}
+$\Gamma$ 不是张量:它在直线坐标里可以全部为零,换到极坐标就不是零.曲率张量
+\begin{equation}
+\begin{aligned}
+  R^\rho{}_{\sigma\mu\nu}
+  &=\partial_\mu\Gamma^\rho{}_{\nu\sigma}
+   -\partial_\nu\Gamma^\rho{}_{\mu\sigma} \\
+  &\quad
+   +\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
+   -\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}
+\end{aligned}
+\end{equation}
+才按张量变换.缩并 $R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}$,$R=g^{\mu\nu}R_{\mu\nu}$,爱因斯坦张量 $G_{\mu\nu}=R_{\mu\nu}-\frac12 R g_{\mu\nu}$ 与物质能动张量的关系是 $G_{\mu\nu}+\Lambda g_{\mu\nu}=(8\pi G/c^4)T_{\mu\nu}$.
+
+平面极坐标里非零的只有
+\begin{equation}
+  \Gamma^r{}_{\vartheta\vartheta}=-r,
+  \qquad
+  \Gamma^\vartheta{}_{\,r\vartheta}
+  =\Gamma^\vartheta{}_{\,\vartheta r}=\frac1r.
+  \label{eq:polar-gamma}
+\end{equation}
+例如 $\Gamma^r{}_{rr}=\frac12 g^{rr}(\partial_r g_{rr})=0$.径向测地线方程是
+\begin{equation}
+  \frac{\mathrm{d}^2 r}{\mathrm{d}s^2}
+  +\Gamma^r{}_{\vartheta\vartheta}
+  \Bigl(\frac{\mathrm{d}\vartheta}{\mathrm{d}s}\Bigr)^2=0,
+\end{equation}
+代入\eqref{eq:polar-gamma} 得到 $\mathrm{d}^2 r/\mathrm{d}s^2=r(\mathrm{d}\vartheta/\mathrm{d}s)^2$.这是直线在极坐标里的加速度,不是平面被弯曲.
+
+黎曼曲率的一个分量是
+\begin{equation}
+\begin{aligned}
+  R^r{}_{\vartheta r\vartheta}
+  &=\partial_r\Gamma^r{}_{\vartheta\vartheta}
+   -\partial_\vartheta\Gamma^r{}_{\,r\vartheta} \\
+  &\quad
+   +\Gamma^r{}_{\,r\lambda}\Gamma^\lambda{}_{\vartheta\vartheta}
+   -\Gamma^r{}_{\vartheta\lambda}\Gamma^\lambda{}_{\,r\vartheta}.
+\end{aligned}
+\end{equation}
+第一项 $\partial_r(-r)=-1$.$\Gamma^r{}_{\,r\vartheta}=0$,第二、三项是零.第四项里 $\lambda=\vartheta$ 的贡献是 $(-r)(1/r)=-1$,前面再有一个减号,贡献 $+1$.合计 $-1+1=0$.
+
+二维的曲率张量只有一个独立分量.一般地,先在 $n$ 维里选出一对反对称指标,有 $m=n(n-1)/2$ 种选法;两对之间再对称,独立个数是 $m(m+1)/2$.二维是 $1$,三维是 $6$.上面这一个分量为零,所以平面的曲率张量是零,标量曲率也是零.极坐标里出现的 $\Gamma$ 只是坐标效应.
+
+\subsection{惯量张量}
+\idx{惯量张量}{guanliangzhangliang}
+角速度与角动量由惯量张量联系,$L_i=I_{ij}\omega_j$.质点 $m_a$ 位于 $\mathbf{r}^{(a)}$ 时
+\begin{equation}
+  I_{ij}
+  =\sum_a m_a
+    \bigl(
+      |\mathbf{r}^{(a)}|^2\delta_{ij}
+      -r^{(a)}_i r^{(a)}_j
+    \bigr)
+\end{equation}
+$I_{ij}=I_{ji}$.存在主轴使它对角,$L_i=I_i\omega_i$,三个主转动惯量一般不同,$\mathbf{L}$ 不必平行于 $\boldsymbol{\omega}$.
+
+\subsection{缩并的次序}
+若干张量全部缩并以后得到标量.例如 $A_{ij}B_{jk}C_{ki}$ 可以先缩 $B$ 和 $C$,再与 $A$ 缩,也可以先缩 $A$ 和 $B$.求和只是有限项相加,次序可以交换,两个算法给出同一个数.指标图把每个张量画成一个结点,每条边是一个被缩并的指标;图的连通方式和最后的标量,不依赖于先算哪一个结点.

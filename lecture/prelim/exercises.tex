@@ -1,0 +1,45 @@
+下面的题把本章的恒等式和例题再算一遍.指标题要用求和约定,不能把分量逐个展开以后只检验一个特例.
+
+\begin{problemset}
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\item 证明 $\delta_{ij}a_j=a_i$, $\delta_{ij}\delta_{jk}=\delta_{ik}$, $\delta_{ii}=3$.
+
+\item 由 $\varepsilon_{ijk}$ 的定义说明交换任意两个指标变号,并由此证明 $\mathbf{u}\times\mathbf{u}=\mathbf{0}$.
+
+\item 从 $(\mathbf{u}\times\mathbf{v})_i=\varepsilon_{ijk}u_j v_k$ 推出标量三重积 $\mathbf{u}\cdot(\mathbf{v}\times\mathbf{w})=\varepsilon_{ijk}u_i v_j w_k$.说明循环换位不变号,交换两个矢量变号.
+
+\item 证明 $\varepsilon_{ijk}\varepsilon_{klm}=\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}$,并用它得到
+\begin{equation*}
+  \mathbf{u}\times(\mathbf{v}\times\mathbf{w})
+  =(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{u}\cdot\mathbf{v})\mathbf{w}.
+\end{equation*}
+
+\item 由 $R_{ki}R_{kj}=\delta_{ij}$ 证明正交变换保持内积,从而保持长度和夹角.
+
+\item 用指标证明 $\nabla\times\nabla\varphi=\mathbf{0}$, $\nabla\cdot(\nabla\times\mathbf{u})=0$,以及
+\begin{equation*}
+  \nabla\times(\nabla\times\mathbf{E})
+  =\nabla(\nabla\cdot\mathbf{E})-\nabla^2\mathbf{E}.
+\end{equation*}
+
+\item 把不可压缩流动的纳维--斯托克斯方程和连续性方程写成指标形式,并写出涡量 $\omega_i=\varepsilon_{ijk}\partial_j u_k$.
+
+\item 用余子式求
+\begin{equation*}
+  A=\begin{pmatrix}2&1\\1&2\end{pmatrix}
+\end{equation*}
+的逆,并解 $A\mathbf{x}=(1,0)^{\mathsf T}$.
+
+\item 对称二阶张量有 $n(n+1)/2$ 个独立分量,反对称二阶张量有 $n(n-1)/2$ 个.证明二者之和是 $n^2$,并且任意 $T_{ij}$ 可以唯一地拆成这两部分.
+
+\item 设 $T'_{ij}=R_{ik}R_{jl}T_{kl}$, $v'_j=R_{jm}v_m$.验证 $u_i=T_{ij}v_j$ 仍按矢量变换.
+
+\item 各向同性电导 $\sigma_{ij}=\sigma\delta_{ij}$.由 $J_i=\sigma_{ij}E_j$ 说明 $\mathbf{J}$ 平行于 $\mathbf{E}$.举一个非各向同性的 $2\times 2$ 例子,使电流不平行于电场.
+
+\item 极坐标 $\mathrm{d}s^2=\mathrm{d}r^2+r^2\mathrm{d}\vartheta^2$.算出非零的克里斯托费尔符号,并验证 $R^r{}_{\vartheta r\vartheta}=0$.说明这个例子为什么表明 $\Gamma$ 不是张量.
+
+\item 柱坐标里验证 $h_\rho=1$, $h_\phi=\rho$, $h_z=1$,并计算 $\nabla\cdot\mathbf{e}_\rho$ 和 $\nabla^2\ln\rho$ ($\rho>0$).指出若把拉普拉斯算子写成 $\partial^2/\partial\rho^2$,第二问会错在哪里.
+
+\item 用泡利矩阵的指标乘法计算 $\sigma^x\sigma^y$ 和 $\sigma^y\sigma^x$ 的对角元,以及 $\det\sigma^x$, $\det\sigma^y$ 和 $\det(\sigma^x\sigma^y)$.
+\end{problemset}

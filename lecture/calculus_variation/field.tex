@@ -1,0 +1,128 @@
+\subsection{自由端点}
+到这里为止,端点上的函数值都事先给定,变分在端点为零.若右端点的值也参加变分,作用量还可以带一项只依赖端点值的 $M(u(b))$,
+\begin{equation}
+  J[u]=\int_a^b L(x,u,u')\,\mathrm{d}x+M\bigl(u(b)\bigr),
+\end{equation}
+左端仍然固定,$\delta u(a)=0$.分部积分后多出来的边界项是
+\begin{equation}
+  \Biggl(\funcpd{L}{u'}+\frac{\mathrm{d}M}{\mathrm{d}u}\Biggr)_{x=b}\delta u(b).
+\end{equation}
+$\delta u(b)$ 任意,所以除了欧拉--拉格朗日方程,还要
+\begin{equation}
+  \left.\funcpd{L}{u'}\right|_{b}+\frac{\mathrm{d}M}{\mathrm{d}u}\bigl(u(b)\bigr)=0.
+  \label{eq:free-end}
+\end{equation}
+左端自由时符号相反.两端都自由,就有两个这样的条件.每个端点恰好一条信息:要么给定 $u$,要么给定\eqref{eq:free-end}.
+
+\begin{example}
+牛顿最小阻力问题.旋转体的长度是 $a$,底半径是 $H$,母线 $y(x)$ 从 $y(0)=H$ 画到 $x=a$.在合适的单位下,侧面阻力和前端圆盘的阻力合成
+\begin{equation}
+  S[y]=\int_0^a \frac{y\,(y')^3}{1+(y')^2}\,\mathrm{d}x+\frac12 y(a)^2.
+\end{equation}
+$y'$ 取负,$y$ 向右变细.
+\end{example}
+\begin{solution}
+被积函数不显含 $x$.令 $p=-y'>0$,贝尔特拉米首次积分给出
+\begin{equation}
+  y=C\frac{(1+p^2)^2}{p^3}.
+\end{equation}
+把 $y$ 看成 $p$ 的函数,
+\begin{equation}
+  \mathrm{d}x=-\frac{\mathrm{d}y}{p}
+  =C\Biggl(\frac{3}{p^5}+\frac{2}{p^3}-\frac{1}{p}\Biggr)\mathrm{d}p,
+\end{equation}
+积分后 $x$ 和 $y$ 都由 $p$ 参数表示.经典解的前端不是尖的,而是半径为 $y(a)$ 的圆盘,圆盘边缘处母线斜率取 $-1$,所以 $p$ 从 $x=0$ 处的某个 $p_0\in(0,1)$ 增加到 $1$.这个 $-1$ 不是光滑自由端条件\eqref{eq:free-end}:端点项 $M=\half y^2$ 要求 $\partial L/\partial y'+y=0$,而
+\begin{equation}
+  \funcpd{L}{y'}=y\frac{(y')^2\bigl(3+(y')^2\bigr)}{\bigl(1+(y')^2\bigr)^2}
+\end{equation}
+对一切实斜率都和 $y$ 同号,两者之和不能是零.母线因此不能以有限斜率光滑地自由终止,圆盘是角点,不是\eqref{eq:free-end}的解.
+\end{solution}
+
+多个未知函数 $u_1,\ldots,u_m$ 各自有一条欧拉--拉格朗日方程.若 $L$ 不显含某个 $u_k$,对应的 $\partial L/\partial u_k'$ 是常数.若 $L$ 不显含自变量,则
+\begin{equation}
+  \sum_{k=1}^{m}u_k'\funcpd{L}{u_k'}-L=C.
+\end{equation}
+复值函数看成实部和虚部两个实函数,方程数目加倍.
+
+带矢量势的拉格朗日量 $L=K+\mathbf{A}(\mathbf{q})\cdot\dot{\mathbf{q}}-V$ 比 $K-V$ 多一项.欧拉--拉格朗日方程里多出洛伦兹力,力的分量是 $F_{jk}\dot q_k$,
+\begin{equation}
+  F_{jk}=\partial_j A_k-\partial_k A_j.
+\end{equation}
+三维时 $\mathbf{F}=\nabla\times\mathbf{A}$,这项就是 $\dot{\mathbf{q}}\times\mathbf{B}$.$\mathbf{A}$ 加上任意函数的梯度不改变方程,只把动量移动一个梯度,作用量改变端点上的值.
+
+\subsection{二维自然边界}
+区域 $\Omega$ 上
+\begin{equation}
+  J[u]=\iint_{\Omega}F(x,y,u,u_x,u_y)\,\mathrm{d}x\,\mathrm{d}y.
+\end{equation}
+内部变分给出
+\begin{equation}
+  F_u-\partial_x F_{u_x}-\partial_y F_{u_y}=0.
+\end{equation}
+边界上若 $u$ 没有给定,分部积分留下
+\begin{equation}
+  \int_{\partial\Omega}\bigl(F_{u_x}\nu_x+F_{u_y}\nu_y\bigr)\delta u\,\mathrm{d}s=0,
+\end{equation}
+$\boldsymbol{\nu}$ 是外法向.自然边界条件是 $F_{u_x}\nu_x+F_{u_y}\nu_y=0$.只在边界的一部分上给定 $u$ 时,自然条件写在剩下的那一部分.
+
+\begin{example}
+狄利克雷积分
+\begin{equation}
+  J[u]=\iint_{\Omega}\Bigl(\half|\nabla u|^2-fu\Bigr)\,\mathrm{d}x\,\mathrm{d}y.
+\end{equation}
+\end{example}
+\begin{solution}
+$F_{u_x}=u_x$, $F_{u_y}=u_y$, $F_u=-f$.欧拉--拉格朗日方程是 $-\Delta u=f$.边界项是 $\int(\partial u/\partial\nu)\delta u\,\mathrm{d}s$.边界上 $u$ 给定时这一项是零;边界自由时,自然条件是 $\partial u/\partial\nu=0$.泊松方程的诺伊曼条件就是这个自由边界变分,不是另外加进去的.
+\end{solution}
+
+极小曲面 $z=u(x,y)$ 的面积是 $\iint\sqrt{1+u_x^2+u_y^2}\,\mathrm{d}x\,\mathrm{d}y$,欧拉--拉格朗日方程就是平均曲率为零,前面已经写过.若再减去外力做的功 $\iint f u\,\mathrm{d}x\,\mathrm{d}y$,方程右边多出 $f$,边界上 $u$ 仍按给定的边线固定.
+
+旋转曲面 $z=u(r)$ 的面积化成单积分
+\begin{equation}
+  S[u]=2\pi\int r\sqrt{1+u_r^2}\,\mathrm{d}r.
+\end{equation}
+被积函数不含 $u$,所以 $r u_r/\sqrt{1+u_r^2}=C$,
+\begin{equation}
+  u(r)=C\,\mathrm{acosh}\frac{r}{C}+D.
+\end{equation}
+极小旋转曲面是悬链面.两端的半径给定 $C$ 和 $D$.
+
+\subsection{连续介质的作用量}
+场 $u(\mathbf{x},t)$ 的作用量对时间和空间一起积分.时间两端的 $u$ 固定时,欧拉--拉格朗日方程把 $\partial_t$ 和 $\nabla$ 同等看待.
+
+弦、膜或弹性体的动能减去势能,
+\begin{equation}
+  S=\int_{t_0}^{t_1}\int\Bigl(\half\rho u_t^2-\half K|\nabla u|^2+fu\Bigr)\,\mathrm{d}^n x\,\mathrm{d}t,
+\end{equation}
+给出
+\begin{equation}
+  \rho u_{tt}=\nabla\cdot(K\nabla u)+f.
+\end{equation}
+$\rho,K$ 是常数时这就是波动方程.对 $u_t$ 的动量密度是 $\pi=\rho u_t$,哈密顿量
+\begin{equation}
+  H=\int\Bigl(\half\rho u_t^2+\half K|\nabla u|^2-fu\Bigr)\,\mathrm{d}^n x
+\end{equation}
+在 $\rho,K,f$ 不显含 $t$ 时守恒.
+
+矢量场若动能是 $\half\rho|\mathbf{u}_t|^2$,势能含 $|\nabla\otimes\mathbf{u}|^2$ 和 $(\nabla\cdot\mathbf{u})^2$,方程是弹性波.三维里 $|\nabla\otimes\mathbf{u}|^2=|\nabla\times\mathbf{u}|^2+|\nabla\cdot\mathbf{u}|^2$.取适当系数,作用量只保留 $|\mathbf{u}_t|^2-c^2|\nabla\times\mathbf{u}|^2$,得到无源麦克斯韦方程,$\mathbf{E}=\mathbf{u}_t$, $\mathbf{B}=\nabla\times\mathbf{u}$.
+
+含二阶导数的作用量
+\begin{equation}
+  S=\int\int\Bigl(\half u_t^2-\half K(\Delta u)^2+fu\Bigr)\,\mathrm{d}^n x\,\mathrm{d}t
+\end{equation}
+给出 $u_{tt}+K\Delta^2 u=f$.$n=1$ 是梁,$n=2$ 是板.自由边上,一阶变分对 $\delta u$ 和 $\partial_\nu\delta u$ 都要为零,所以弯矩和等效剪力都是零.一维自由端就是 $u''=0$ 和 $u'''=0$.
+
+复场 $\psi$ 的作用量
+\begin{equation}
+  S=\int_{t_0}^{t_1}\int\Biggl(
+    \frac{\imath\hbar}{2}(\psi^*\psi_t-\psi\psi_t^*)
+    -\frac{\hbar^2}{2m}|\nabla\psi|^2-V|\psi|^2
+  \Biggr)\,\mathrm{d}^n x\,\mathrm{d}t
+\end{equation}
+对 $\psi^*$ 变分,得到
+\begin{equation}
+  \imath\hbar\psi_t=-\frac{\hbar^2}{2m}\Delta\psi+V\psi.
+\end{equation}
+这里 $\psi$ 和 $\psi^*$ 先当成独立的.哈密顿量是动能加势能的积分,不含 $\psi_t$,所以它就是能量.
+
+平衡问题是作用量里没有时间的特例.狄利克雷积分的极小给出泊松方程,面积泛函的极小给出极小曲面,板的弯曲能 $\int(\Delta u)^2$ 的极小给出双调和方程 $\Delta^2 u=0$.边界上没固定的导数,一律由自然边界条件补上.

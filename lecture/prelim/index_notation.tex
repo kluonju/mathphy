@@ -1,0 +1,156 @@
+\section{指标记号}
+\idx{指标记号}{zhibiaojihao}
+\idx{克罗内克符号}{keluoneike}
+\idx{列维-奇维塔符号}{lieweiqiweita}
+
+\subsection{求和约定与两个符号}
+直角坐标里指标 $i,j,k$ 各取 $1,2,3$.同一个单项里重复出现的指标要求和,求和号不再写出.自由指标在等式两边必须相同,并且可以改名;哑指标只出现在求和里,也可以改名.
+
+克罗内克符号 $\delta_{ij}$ 在 $i=j$ 时是 $1$,否则是 $0$.因此 $\delta_{ii}=3$,$A_i\delta_{ij}=A_j$.
+
+列维--奇维塔符号 $\varepsilon_{ijk}$ 在 $(i,j,k)$ 是 $(1,2,3)$ 的偶置换时为 $+1$,奇置换时为 $-1$,有重复指标时为 $0$.它完全反对称.叉积和旋度就是
+\begin{equation}
+  (\mathbf{A}\times\mathbf{B})_i=\varepsilon_{ijk}A_j B_k,
+  \qquad
+  (\nabla\times\mathbf{A})_i=\varepsilon_{ijk}\partial_j A_k.
+\end{equation}
+
+最常用的缩并是
+\begin{equation}
+  \varepsilon_{ijk}\varepsilon_{ilm}
+  =\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}.
+  \label{eq:eps-delta}
+\end{equation}
+两边都对 $j,k$ 和 $l,m$ 反对称,而且在 $(j,k)=(l,m)=(1,2)$ 时两边都是 $1$,所以作为张量相等.再缩并一次,
+\begin{equation}
+  \varepsilon_{ijk}\varepsilon_{ijm}=2\delta_{km},
+  \qquad
+  \varepsilon_{ijk}\varepsilon_{ijk}=6.
+\end{equation}
+
+\begin{example}
+用\eqref{eq:eps-delta} 证明矢量三重积.
+\end{example}
+\begin{solution}
+\begin{align}
+  \bigl(\mathbf{A}\times(\mathbf{B}\times\mathbf{C})\bigr)_i
+  &=\varepsilon_{ijk}A_j(\mathbf{B}\times\mathbf{C})_k
+   =\varepsilon_{ijk}\varepsilon_{klm}A_j B_l C_m \\
+  &=(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})A_j B_l C_m \\
+  &=A_j C_j B_i-A_j B_j C_i.
+\end{align}
+这就是 $(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{A}\cdot\mathbf{B})\mathbf{C}$.拉格朗日恒等式\eqref{eq:lagrange-identity} 是同一缩并再点上另一个叉积.
+\end{solution}
+
+\subsection{导数恒等式}
+偏导与 $\varepsilon,\delta$ 可交换.因此
+\begin{equation}
+  \bigl(\nabla\times(\nabla f)\bigr)_i
+  =\varepsilon_{ijk}\partial_j\partial_k f=0,
+\end{equation}
+因为 $\partial_j\partial_k f$ 对 $j,k$ 对称,而 $\varepsilon_{ijk}$ 反对称.同样
+\begin{equation}
+  \nabla\cdot(\nabla\times\mathbf{A})
+  =\varepsilon_{ijk}\partial_i\partial_j A_k=0.
+\end{equation}
+散度与旋度的复合给出
+\begin{equation}
+  \nabla\times(\nabla\times\mathbf{A})
+  =\nabla(\nabla\cdot\mathbf{A})-\nabla^2\mathbf{A}.
+  \label{eq:curl-curl}
+\end{equation}
+左边的第 $i$ 分量是 $\varepsilon_{ijk}\partial_j(\varepsilon_{klm}\partial_l A_m)$,用\eqref{eq:eps-delta} 拆开就是 $\partial_i(\partial_m A_m)-\partial_m\partial_m A_i$.
+
+乘积法则按分量求导即可:
+\begin{align}
+  \nabla\cdot(f\mathbf{A})
+  &=f\,\nabla\cdot\mathbf{A}+\mathbf{A}\cdot\nabla f, \\
+  \nabla\times(f\mathbf{A})
+  &=f\,\nabla\times\mathbf{A}+\nabla f\times\mathbf{A}, \\
+  \nabla\cdot(\mathbf{A}\times\mathbf{B})
+  &=\mathbf{B}\cdot(\nabla\times\mathbf{A})
+    -\mathbf{A}\cdot(\nabla\times\mathbf{B}).
+\end{align}
+同一缩并还给出
+\begin{equation}
+\begin{aligned}
+  \mathbf{u}\times(\nabla\times\mathbf{u})
+  &=\nabla\Bigl(\frac12|\mathbf{u}|^2\Bigr)
+   -(\mathbf{u}\cdot\nabla)\mathbf{u}, \\
+  \nabla\times(\mathbf{u}\times\mathbf{v})
+  &=(\mathbf{v}\cdot\nabla)\mathbf{u}
+   -(\mathbf{u}\cdot\nabla)\mathbf{v}
+   +\mathbf{u}\,(\nabla\cdot\mathbf{v})
+   -\mathbf{v}\,(\nabla\cdot\mathbf{u}).
+\end{aligned}
+\end{equation}
+反对称与对称相乘是零,所以 $\varepsilon_{ijk}\delta_{jk}=0$.迹可以循环,$\operatorname{tr}(BC)=B_{ij}C_{ji}=\operatorname{tr}(CB)$,这里只用到分量乘法可交换.
+
+不可压缩流动的纳维--斯托克斯方程是
+\begin{equation}
+  \rho\bigl(\partial_t u_i+u_j\partial_j u_i\bigr)
+  =-\partial_i p+\mu\,\partial_j\partial_j u_i,
+  \qquad
+  \partial_t\rho+\partial_i(\rho u_i)=0.
+\end{equation}
+涡量 $\boldsymbol{\omega}=\nabla\times\mathbf{u}$ 的分量是 $\omega_i=\varepsilon_{ijk}\partial_j u_k$.
+
+\begin{example}
+真空中的麦克斯韦方程写成散度和旋度.
+\end{example}
+\begin{solution}
+\begin{equation}
+\begin{aligned}
+  \nabla\cdot\mathbf{E}&=\frac{\rho}{\varepsilon_0}, &
+  \nabla\cdot\mathbf{B}&=0, \\
+  \nabla\times\mathbf{E}&=-\frac{\partial\mathbf{B}}{\partial t}, &
+  \nabla\times\mathbf{B}
+  &=\mu_0\mathbf{J}+\mu_0\varepsilon_0\frac{\partial\mathbf{E}}{\partial t}.
+\end{aligned}
+\end{equation}
+对法拉第定律取散度,左边是零,所以 $\partial_t(\nabla\cdot\mathbf{B})=0$.对安培--麦克斯韦定律取散度,并用 $\nabla\cdot\mathbf{E}=\rho/\varepsilon_0$,得到连续性方程 $\partial_t\rho+\nabla\cdot\mathbf{J}=0$.对法拉第定律再取旋度,用\eqref{eq:curl-curl} 和 $\nabla\cdot\mathbf{B}=0$,在 $\mathbf{J}=\mathbf{0}$、$\rho=0$ 时得到波动方程
+\begin{equation}
+  \nabla^2\mathbf{B}-\mu_0\varepsilon_0\frac{\partial^2\mathbf{B}}{\partial t^2}=\mathbf{0}.
+\end{equation}
+\end{solution}
+
+\subsection{行列式与正交矩阵}
+二维行列式可以写成 $\det M=\varepsilon_{ij}M_{1i}M_{2j}$.三维是 $\det M=\varepsilon_{ijk}M_{1i}M_{2j}M_{3k}$.把 $MN$ 的行代入,括号中的量对三个新指标完全反对称,而且在 $(1,2,3)$ 上等于 $\det N$,所以
+\begin{equation}
+  \varepsilon_{ijk}N_{ai}N_{bj}N_{ck}=(\det N)\,\varepsilon_{abc},
+\end{equation}
+从而 $\det(MN)=\det M\det N$.
+
+定义 $A_{jk}=\varepsilon_{jkl}a_l$.则 $(A\mathbf{b})_j=\varepsilon_{jkl}a_l b_k=(\mathbf{a}\times\mathbf{b})_j$.叉积就是这个反对称矩阵作用在 $\mathbf{b}$ 上.
+
+\begin{example}
+泡利矩阵
+\begin{equation}
+  \sigma^x=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+  \sigma^y=\begin{pmatrix}0&-\mathrm{i}\\\mathrm{i}&0\end{pmatrix},\quad
+  \sigma^z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\end{equation}
+\end{example}
+\begin{solution}
+$(\sigma^x\sigma^y)_{ij}=\sigma^x_{ik}\sigma^y_{kj}$.对角元
+\begin{equation}
+  (\sigma^x\sigma^y)_{11}=\sigma^x_{12}\sigma^y_{21}=\mathrm{i},
+  \qquad
+  (\sigma^x\sigma^y)_{22}=\sigma^x_{21}\sigma^y_{12}=-\mathrm{i}.
+\end{equation}
+非对角元用到 $\sigma^y$ 的对角元,它们是零.所以 $\sigma^x\sigma^y=\mathrm{i}\,\sigma^z$.同样 $\sigma^y\sigma^x=-\mathrm{i}\,\sigma^z$.
+
+迹 $\operatorname{tr}\sigma^x=\sigma^x_{ii}=0$,三条泡利矩阵的迹都是零,$\operatorname{tr}(\sigma^x\sigma^y)=\mathrm{i}-\mathrm{i}=0$.二维行列式
+\begin{equation}
+  \det\sigma^x=\varepsilon_{21}\sigma^x_{12}\sigma^x_{21}=-1,
+  \qquad
+  \det\sigma^y=\varepsilon_{21}\sigma^y_{12}\sigma^y_{21}=-1.
+\end{equation}
+因而 $\det(\sigma^x\sigma^y)=\det\sigma^x\det\sigma^y=1$,与 $\mathrm{i}\,\sigma^z$ 的行列式一致.
+\end{solution}
+
+旋转矩阵 $R^{\mathsf T}R=I$ 写成 $R_{ki}R_{kj}=\delta_{ij}$.两个矢量的点积
+\begin{equation}
+  (R\mathbf{a})\cdot(R\mathbf{b})=R_{ki}a_i\,R_{kj}b_j=\delta_{ij}a_i b_j=\mathbf{a}\cdot\mathbf{b}.
+\end{equation}
+模和夹角都被保持.

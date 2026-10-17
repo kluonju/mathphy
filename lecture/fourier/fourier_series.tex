@@ -1,4 +1,5 @@
 \subsection{正交函数组}
+\idx{正交函数组}{zhengjiaohanshuzu}
 \begin{definition}
   \label{def:orthogonal_function}
   设$f(x), g(x) $为定义在区间$[a,b]$上的函数, 积分
@@ -162,7 +163,7 @@ $$
  (f, g) = \int_0^{2\pi} f^{*}(x) g(x) dx\,,
 \end{equation}
 
-可以验证
+可以验证,积分区间取 $[0,2\pi]$ 时
 $$
 (\sin{ n x }, \sin{m x })  =  (\cos{ n x } \cos {m x })  =  \delta_{mn}\pi  \; (m\neq 0, n\neq 0)
 $$
@@ -170,7 +171,30 @@ $$
 $$
 (\sin{ n x },  \cos{m x })  =  0
 $$
-将上式代入,注意修改积分变量上下限可以得到振幅系数
+
+\begin{example}
+用积化和差核对 $[0,2\pi]$ 上的正交性,再换到热棒的区间 $[0,\ell]$.
+\end{example}
+\begin{solution}
+$\sin A\sin B=\frac12\bigl[\cos(A-B)-\cos(A+B)\bigr]$.$m,n$ 是正整数且 $m\neq n$ 时,两个余弦都在 $[0,2\pi]$ 上积满整数个周期,积分是零.$m=n$ 时
+\begin{equation}
+  \int_0^{2\pi}\frac12\bigl(1-\cos 2nx\bigr)\,\mathrm{d}x=\pi.
+\end{equation}
+余弦与余弦同样.正弦与余弦化成 $\sin(n+m)x$ 和 $\sin(n-m)x$,在整周期上的积分是零.
+
+热棒的区间是 $[0,\ell]$.令 $\theta=\pi x/\ell$,则 $\mathrm{d}x=(\ell/\pi)\,\mathrm{d}\theta$,$x$ 从 $0$ 到 $\ell$ 时 $\theta$ 从 $0$ 到 $\pi$.
+\begin{equation}
+  \int_0^{\ell}
+    \sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+    \sin\Bigl(\frac{m\pi x}{\ell}\Bigr)
+    \,\mathrm{d}x
+  =\frac{\ell}{\pi}\int_0^{\pi}\sin(n\theta)\sin(m\theta)\,\mathrm{d}\theta
+  =\frac{\ell}{2}\,\delta_{mn}.
+\end{equation}
+$[0,\pi]$ 上的积分是 $[0,2\pi]$ 上的一半,所以范数从 $\pi$ 变成 $\ell/2$.用 $\sin(m\pi x/\ell)$ 去乘正弦级数再积分,只留下 $A_m\cdot\ell/2$.
+\end{solution}
+
+因此振幅系数
 \begin{equation}
   A_n = \frac{2}{\ell} \int_0^{\ell} f(x) \sin{ \left( \frac{n\pi}{\ell} x \right) } dx 
 \end{equation}
@@ -193,7 +217,7 @@ $$
   \\
   b_n = \frac{1}{\ell} \int_{-\ell}^{\ell} f(x) \sin {  \left( \frac{n\pi}{\ell} x \right) } dx
 \end{align}
-这里的积分上下限为一个周期$2\ell$,也可以为$[0,2\ell]$.
+这里的积分上下限为一个周期$2\ell$,也可以为$[0,2\ell]$.常数项写成 $a_0/2$,是为了让 $n=0$ 仍用同一个积分.$\int_{-\ell}^{\ell}1\,\mathrm{d}x=2\ell$,而 $n\geq 1$ 时 $\int_{-\ell}^{\ell}\cos^2(n\pi x/\ell)\,\mathrm{d}x=\ell$.展开式乘 $1$ 再积分,左边是 $\int_{-\ell}^{\ell}f\,\mathrm{d}x$,右边是 $(a_0/2)\cdot 2\ell$,所以 $a_0$ 正好等于 $n=0$ 的余弦公式.级数里的常数项 $a_0/2$ 就是 $f$ 在一个周期上的平均值.
 上述傅里叶级数展开的成立条件被称为\textbf{狄里希利条件} (Dirichlet conditions),即$f(x)$在$\left[-\ell, \ell\right]$区间内只有有限个间断点,且每个周期内有有限个极值点.满足
 这两个条件的函数称为\textbf{分段平常}.
 满足狄里希利条件的函数$f(x)$在点$x_0$处间断,那么其傅里叶级数在此点的值为该函数左右值的算术平均
@@ -224,6 +248,62 @@ $$
 \begin{equation}
   a_n = \frac{2}{\ell}\int_0^{\ell} f(x)\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x.
 \end{equation}
+只在 $(0,\ell)$ 上给定、再选一种延拓,得到的正弦级数或余弦级数称为\idx{半幅级数}{banfujishu}.同一定义可以有两个级数,它们在 $(0,\ell)$ 内都等于 $f$,在区间外代表不同的延拓.
+
+\begin{example}
+$f(x)=x$ 定义在 $(0,\ell)$ 上.分别求它的正弦级数和余弦级数.
+\end{example}
+\begin{solution}
+奇延拓后 $b_n=(2/\ell)\int_0^{\ell}x\sin(n\pi x/\ell)\,\mathrm{d}x$.分部积分,$\int_0^{\ell}\cos(n\pi x/\ell)\,\mathrm{d}x=0$,只剩边界项,
+\begin{equation}
+  b_n=\frac{2\ell}{n\pi}(-1)^{n+1},
+  \qquad
+  x=\frac{2\ell}{\pi}\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}\sin\Bigl(\frac{n\pi x}{\ell}\Bigr),
+  \quad 0<x<\ell.
+\end{equation}
+端点 $x=0$ 和 $x=\ell$ 上级数和是 $0$,与 $f$ 在端点的值一致.把这个奇延拓写到 $(-\ell,\ell)$ 上,就是后面的锯齿函数.
+
+偶延拓是 $|x|$.$a_0=(2/\ell)\int_0^{\ell}x\,\mathrm{d}x=\ell$,常数项是 $\ell/2$.$n\geq 1$ 时分部积分,
+\begin{equation}
+  \int_0^{\ell}x\cos\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x
+  =\frac{\ell^2}{n^2\pi^2}\bigl[(-1)^n-1\bigr],
+\end{equation}
+边界上的正弦项是零.因此偶数 $n$ 的 $a_n$ 是零,奇数 $n=2k+1$ 给出 $a_n=-4\ell/(n^2\pi^2)$,
+\begin{equation}
+  x=\frac{\ell}{2}-\frac{4\ell}{\pi^2}\sum_{k=0}^{\infty}
+    \frac{1}{(2k+1)^2}\cos\Bigl(\frac{(2k+1)\pi x}{\ell}\Bigr),
+  \quad 0<x<\ell.
+\end{equation}
+令 $x=0$,左边是 $0$,得到 $\sum_{k=0}^{\infty}1/(2k+1)^2=\pi^2/8$.
+\end{solution}
+
+\begin{example}
+$f(x)=e^{ax}$ ($a\neq 0$) 在 $(-\pi,\pi)$ 上的全级数.周期取 $2\pi$,即 $\ell=\pi$.
+\end{example}
+\begin{solution}
+\begin{equation}
+  a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}e^{ax}\,\mathrm{d}x=\frac{2\sinh(a\pi)}{a\pi},
+\end{equation}
+常数项是 $a_0/2=\sinh(a\pi)/(a\pi)$.对 $n\geq 1$,
+\begin{equation}
+  \int e^{ax}\cos(nx)\,\mathrm{d}x
+  =\frac{e^{ax}\bigl(a\cos(nx)+n\sin(nx)\bigr)}{a^2+n^2}.
+\end{equation}
+$\sin(n\pi)=0$,$\cos(n\pi)=(-1)^n$,从 $-\pi$ 积到 $\pi$ 得到 $2a(-1)^n\sinh(a\pi)/(a^2+n^2)$.除以 $\pi$,
+\begin{equation}
+  a_n=\frac{2a(-1)^n\sinh(a\pi)}{\pi(a^2+n^2)}.
+\end{equation}
+正弦积分
+\begin{equation}
+  \int e^{ax}\sin(nx)\,\mathrm{d}x
+  =\frac{e^{ax}\bigl(a\sin(nx)-n\cos(nx)\bigr)}{a^2+n^2}
+\end{equation}
+同样只留下余弦边界项,
+\begin{equation}
+  b_n=\frac{2n(-1)^{n+1}\sinh(a\pi)}{\pi(a^2+n^2)}.
+\end{equation}
+$a_n$ 和 $b_n$ 都不为零:指数函数既不是奇函数也不是偶函数.系数随 $1/n^2$ 和 $1/n$ 衰减,间断在周期端点 $x=\pm\pi$,那里级数和是两端极限的平均 $\cosh(a\pi)$.
+\end{solution}
 
 对于复指数的展开,不难发现可以写成
 \begin{equation}
@@ -289,6 +369,7 @@ $\int_0^1 \frac{d x}{1+x^2}=\left.\tan ^{-1} x\right|_0 ^1=\frac{\pi}{4}$,和被
 
 
 \subsection{能量定理}
+\idx{帕塞瓦尔等式}{paseiwaer}
 由函数的复数傅里叶级数展开可以得到
 \begin{equation}
   E = \frac{1}{2\ell} \int_{-\ell}^{\ell} dx f(x)^* f(x) 
@@ -301,19 +382,68 @@ $\int_0^1 \frac{d x}{1+x^2}=\left.\tan ^{-1} x\right|_0 ^1=\frac{\pi}{4}$,和被
 \end{equation}
 称为\textbf{Parseval等式}(Parseval's identity).
 其物理意义指的是,一复杂波形分解为许多波幅为$c_n$的正(余)弦波的叠加,该波所携带的总能量为各个成分波强度的求和.
-作为习题,证明对于矩形波,
-$f(x)=\left\{ \begin{array}{ll}-1, & x<0 \\ +1, &  x>0\end{array}\right.$, 其傅里叶级数为
-$$
-f(x)=\frac{4}{\pi} \left[  \sin (\pi x)+\frac{1}{3} \sin (3\pi x)+\frac{1}{5 } \sin (5\pi x)+\cdots \right]
-$$
-可以发现对于矩形波,其对应的能量为$1$,于是我们有
-$$
-|f(x)|^2=1=\frac{16}{\pi^2}\left[\frac{1}{2} \frac{1}{1^2}+\frac{1}{2} \frac{1}{3^2}+\frac{1}{2} \frac{1}{5^2}+\cdots\right]
-$$
-即
-$$
-\sum_{n=0} \frac{1}{(2n+1)^2} = \frac{\pi^2}{8} .
-$$
+
+\begin{example}
+矩形波.取 $\ell=1$,
+\begin{equation}
+  f(x)=\begin{cases}
+    -1, & -1<x<0,\\
+    +1, & 0<x<1,
+  \end{cases}
+\end{equation}
+再以 $2$ 为周期延拓.
+\end{example}
+\begin{solution}
+$f$ 是奇函数,$a_n=0$.
+\begin{equation}
+  b_n=2\int_0^1\sin(n\pi x)\,\mathrm{d}x
+  =\frac{2\bigl(1-(-1)^n\bigr)}{n\pi}.
+\end{equation}
+偶数 $n$ 的系数是零,奇数 $n=2k+1$ 的系数是 $4/(n\pi)$,
+\begin{equation}
+  f(x)=\frac{4}{\pi}\sum_{k=0}^{\infty}
+    \frac{\sin\bigl((2k+1)\pi x\bigr)}{2k+1}.
+\end{equation}
+$x=0$ 是跳跃点,左右极限是 $-1$ 和 $1$,级数和是它们的平均 $0$,每一项在这里确实是零.$x=1/2$ 处 $f=1$,代入得到莱布尼兹级数 $\pi/4=1-1/3+1/5-\cdots$.跳跃附近部分和会冲过阶跃一段固定的比例,再在两侧振荡.项数增加时,这段过冲并不变小,只是挤向间断点.平均平方误差仍然趋于零:逐点图像和平均平方逼近回答的是两件不同的事.
+
+$|f|^2=1$,所以 $E=1/(2\ell)\int_{-\ell}^{\ell}|f|^2\,\mathrm{d}x=1$.Parseval 等式只留下奇数项,
+\begin{equation}
+  1=\sum_{k=0}^{\infty}\frac12\Bigl(\frac{4}{(2k+1)\pi}\Bigr)^2
+  =\frac{8}{\pi^2}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^2}.
+\end{equation}
+因此 $\sum_{k=0}^{\infty}1/(2k+1)^2=\pi^2/8$.这和半幅余弦级数在 $x=0$ 处得到的是同一个和.
+\end{solution}
+
+\begin{example}
+$f(x)=x^2$ 在 $[-\pi,\pi]$ 上,周期 $2\pi$.
+\end{example}
+\begin{solution}
+这是偶函数,$b_n=0$.
+\begin{equation}
+  a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}x^2\,\mathrm{d}x=\frac{2\pi^2}{3},
+\end{equation}
+常数项 $a_0/2=\pi^2/3$.分部积分两次,边界上的 $\sin(nx)$ 是零,
+\begin{equation}
+  \int_0^{\pi}x^2\cos(nx)\,\mathrm{d}x=\frac{2\pi(-1)^n}{n^2},
+  \qquad
+  a_n=\frac{2}{\pi}\cdot\frac{2\pi(-1)^n}{n^2}=\frac{4(-1)^n}{n^2}.
+\end{equation}
+\begin{equation}
+  x^2=\frac{\pi^2}{3}+4\sum_{n=1}^{\infty}\frac{(-1)^n}{n^2}\cos(nx),
+  \qquad -\pi\leq x\leq\pi.
+\end{equation}
+$x=\pi$ 处函数连续,$x^2=\pi^2$,$\cos(n\pi)=(-1)^n$,
+\begin{equation}
+  \pi^2=\frac{\pi^2}{3}+4\sum_{n=1}^{\infty}\frac{1}{n^2},
+\end{equation}
+所以 $\sum_{n=1}^{\infty}1/n^2=\pi^2/6$.
+
+再用 Parseval 等式核对.左边
+\begin{equation}
+  E=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^4\,\mathrm{d}x=\frac{\pi^4}{5}.
+\end{equation}
+右边是 $a_0^2/4+\sum a_n^2/2=(2\pi^2/3)^2/4+\sum_{n=1}^{\infty}\frac12\bigl(4/n^2\bigr)^2=\pi^4/9+8\sum 1/n^4$.这个等式给出的是 $\sum 1/n^4$,不是 $\sum 1/n^2$.$\pi^2/6$ 来自把级数代回 $x=\pi$,两边各自算完再比较.
+\end{solution}
 
 \subsection{三角系的完备性}
 前面把完备说成:平均平方误差可以小于任意正数.这里对分段平常的周期函数把这件事证完.先作换元 $\theta=\pi x/\ell$,把区间 $[-\ell,\ell]$ 化到 $[-\pi,\pi]$.两边的积分只差常数 $\ell/\pi$,所以只要在 $[-\pi,\pi]$ 上证明即可.此时

@@ -1,0 +1,121 @@
+\section{泊松方程的格林函数}
+\idx{格林恒等式}{gelinhengdengshi}
+
+\subsection{格林恒等式}
+设 $u,v$ 在区域 $T$ 上有连续的二阶导数,边界 $\Sigma$ 分段光滑.对 $u\nabla v$ 用散度定理,
+\begin{equation}
+  \iint_{\Sigma} u\,\nabla v\cdot\mathrm{d}\mathbf{S}
+  =\iiint_{T}\bigl(u\nabla^2 v+\nabla u\cdot\nabla v\bigr)\,\mathrm{d}V.
+\end{equation}
+这是格林第一恒等式.把 $u$ 和 $v$ 对调再相减,梯度内积消去,得到格林第二恒等式
+\begin{equation}
+  \iint_{\Sigma}\Bigl(
+    u\frac{\partial v}{\partial n}-v\frac{\partial u}{\partial n}
+  \Bigr)\,\mathrm{d}S
+  =\iiint_{T}\bigl(u\nabla^2 v-v\nabla^2 u\bigr)\,\mathrm{d}V.
+  \label{eq:green2}
+\end{equation}
+$\partial/\partial n$ 是外法向导数.
+
+\subsection{点源与挖去奇点}
+泊松方程 $\nabla^2 u=f$,边界上给定
+\begin{equation}
+  \Bigl[\alpha\frac{\partial u}{\partial n}+\beta u\Bigr]_{\Sigma}=\varphi.
+  \label{eq:gf-bc}
+\end{equation}
+$\alpha=0$ 是第一类(狄利克雷),$\beta=0$ 是第二类(诺伊曼),两者都不为零是第三类(罗宾).
+
+单位点源的场 $v(\br,\br_0)$ 满足 $\nabla^2 v=\delta(\br-\br_0)$.它在 $\br_0$ 处不可导,不能直接把 $u$ 和 $v$ 代入\eqref{eq:green2}.挖去以 $\br_0$ 为心、半径 $\varepsilon$ 的小球 $K_{\varepsilon}$.在剩下的区域上 $v$ 调和,$\nabla^2 u=f$,于是
+\begin{equation}
+\begin{aligned}
+  &\iint_{\Sigma}\Bigl(v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}\Bigr)\,\mathrm{d}S
+  +\iint_{\Sigma_{\varepsilon}}\Bigl(v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}\Bigr)\,\mathrm{d}S \\
+  &\qquad=\iiint_{T\setminus K_{\varepsilon}} v f\,\mathrm{d}V.
+\end{aligned}
+\end{equation}
+小球附近 $v\sim -1/(4\pi|\br-\br_0|)$.外法向在 $\Sigma_{\varepsilon}$ 上指向球心,$\partial/\partial n=-\partial/\partial\varepsilon$.面积是 $4\pi\varepsilon^2$,所以
+\begin{equation}
+  \iint_{\Sigma_{\varepsilon}} v\frac{\partial u}{\partial n}\,\mathrm{d}S\to 0,
+  \qquad
+  \iint_{\Sigma_{\varepsilon}} u\frac{\partial v}{\partial n}\,\mathrm{d}S\to -u(\br_0).
+\end{equation}
+第二式的来源是 $\partial v/\partial\varepsilon\sim 1/(4\pi\varepsilon^2)$,再乘面积 $4\pi\varepsilon^2$ 得到 $1$,法向反向贡献一个负号.令 $\varepsilon\to 0$,
+\begin{equation}
+\begin{aligned}
+  u(\br_0)
+  &=\iiint_{T} v(\br,\br_0)\,f(\br)\,\mathrm{d}V \\
+  &\quad-\iint_{\Sigma}\Bigl[
+      v\frac{\partial u}{\partial n}-u\frac{\partial v}{\partial n}
+    \Bigr]\,\mathrm{d}S.
+\end{aligned}
+\label{eq:gf-fundamental}
+\end{equation}
+这个公式表面上同时要用边界上的 $u$ 和 $\partial u/\partial n$.定解问题只给它们的一个线性组合.把 $v$ 选成满足同样类型的齐次边界条件,未知的那一组边界值就消掉.这样选出的 $v$ 记作格林函数 $G$.
+
+\subsection{三类边界}
+狄利克雷问题要求 $G|_{\Sigma}=0$.\eqref{eq:gf-fundamental}变成
+\begin{equation}
+  u(\br_0)
+  =\iiint_{T} G(\br,\br_0)\,f(\br)\,\mathrm{d}V
+  +\iint_{\Sigma}\phi(\br)\frac{\partial G}{\partial n}\,\mathrm{d}S,
+  \label{eq:gf-dirichlet}
+\end{equation}
+其中 $\phi=u|_{\Sigma}$.
+
+罗宾条件 $\bigl[\alpha\partial u/\partial n+\beta u\bigr]_{\Sigma}=\psi$,并且 $G$ 满足同一系数的齐次条件.边界上 $\partial G/\partial n=-(\beta/\alpha)G$,$\partial u/\partial n=(\psi-\beta u)/\alpha$.代入\eqref{eq:gf-fundamental}后,含 $u$ 的面积分两两抵消,
+\begin{equation}
+  u(\br_0)
+  =\iiint_{T} G f\,\mathrm{d}V
+  -\frac{1}{\alpha}\iint_{\Sigma} G(\br,\br_0)\,\psi(\br)\,\mathrm{d}S.
+  \label{eq:gf-robin}
+\end{equation}
+
+诺伊曼条件不能要求 $\nabla^2 G=\delta$ 并且 $\partial G/\partial n|_{\Sigma}=0$.对方程积分,左边是边界上法向导数的积分,等于零,右边是 $1$.物理上,绝热区域内放一个净热源,温度不会达到稳态.三维里改用
+\begin{equation}
+  \nabla^2 G=\delta(\br-\br_0)-\frac{1}{V_T},
+  \qquad
+  \frac{\partial G}{\partial n}\Big|_{\Sigma}=0,
+\end{equation}
+$V_T$ 是 $T$ 的体积.均匀汇把点源的总量抵消.二维用面积 $A_T$ 代替 $V_T$.原问题本身也要满足相容条件 $\iiint f\,\mathrm{d}V=\iint\partial u/\partial n\,\mathrm{d}S$.
+
+\subsection{互易性}
+\begin{equation}
+  G(\br,\br_0)=G(\br_0,\br).
+  \label{eq:gf-reciprocity}
+\end{equation}
+证明时把两个源点都挖成小球,对 $G(\cdot,\br_1)$ 和 $G(\cdot,\br_2)$ 用第二恒等式.体积内被积函数是零,外边界上齐次条件使面积分为零,两个小球的极限留下 $G(\br_1,\br_2)-G(\br_2,\br_1)=0$.
+
+因此观察点和源点可以换写.\eqref{eq:gf-dirichlet}的常用形式是
+\begin{equation}
+  u(\br)
+  =\iiint_{T} G(\br,\br_0)\,f(\br_0)\,\mathrm{d}V_0
+  +\iint_{\Sigma}\phi(\br_0)\frac{\partial G}{\partial n_0}\,\mathrm{d}S_0.
+  \label{eq:gf-dirichlet-obs}
+\end{equation}
+$f=0$ 时只剩边界积分:调和函数由边界值经 $\partial G/\partial n$ 再生.
+
+\begin{example}
+区间 $0<x<l$ 上 $u''=f$,$u(0)=u(l)=0$.
+\end{example}
+\begin{solution}
+$G''=\delta(x-x_0)$,两端为零.两侧是直线,
+\begin{equation}
+  G=
+  \begin{cases}
+    A x, & 0\leq x\leq x_0, \\
+    C(x-l), & x_0\leq x\leq l.
+  \end{cases}
+\end{equation}
+连续:$A x_0=C(x_0-l)$.越过 $x_0$ 积分,$G'(x_0+)-G'(x_0-)=1$,即 $C-A=1$.解出
+\begin{equation}
+  G(x,x_0)=
+  \begin{cases}
+    (x_0-l)x/l, & x\leq x_0, \\
+    x_0(x-l)/l, & x\geq x_0.
+  \end{cases}
+  \label{eq:gf-1d}
+\end{equation}
+它对称,而且在区间内部为负,和基本解 $-1/(4\pi R)$ 的符号一致.
+
+取 $f=-1$,则 $u(x)=\int_0^l G(x,x_0)(-1)\,\mathrm{d}x_0=x(l-x)/2$.直接积分 $u''=-1$ 得到同一条抛物线.
+\end{solution}

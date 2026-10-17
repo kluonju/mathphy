@@ -1,0 +1,27 @@
+\begin{tikzpicture}[
+    font=\small, >=Stealth,
+    vec/.style={-{Stealth[length=2mm]}, line width=0.8pt},
+  ]
+  \def\s{0.28}
+  \begin{scope}
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (4*\s,4*\s);
+    \coordinate (B) at (1*\s,8*\s);
+    \coordinate (S) at (5*\s,12*\s);
+    \fill[blue!8] (O) -- (A) -- (S) -- (B) -- cycle;
+    \draw[gray!45] (A) -- (S) -- (B);
+    \draw[vec, blue!70!black] (O) -- (A) node[left] {$\mathbf{A}$};
+    \draw[vec, red!70!black] (O) -- (B) node[left] {$\mathbf{B}$};
+    \draw[vec, purple!70!black] (O) -- (S) node[right] {$\mathbf{A}+\mathbf{B}$};
+    \node at (0.7,-0.55) {（a）平行四边形};
+  \end{scope}
+  \begin{scope}[xshift=4.6cm]
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (4*\s,4*\s);
+    \coordinate (B) at (1*\s,8*\s);
+    \draw[vec, blue!70!black] (O) -- (A) node[left] {$\mathbf{A}$};
+    \draw[vec, red!70!black] (O) -- (B) node[right] {$\mathbf{B}$};
+    \draw[vec, purple!70!black] (A) -- (B) node[midway, left] {$\mathbf{B}-\mathbf{A}$};
+    \node at (0.55,-0.55) {（b）$\mathbf{B}-\mathbf{A}$};
+  \end{scope}
+\end{tikzpicture}

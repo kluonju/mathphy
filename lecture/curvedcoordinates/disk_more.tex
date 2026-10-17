@@ -1,0 +1,125 @@
+\section{圆盘的泊松公式}
+\idx{泊松公式}{bosonggongshi}
+圆内拉普拉斯方程的分离已经在柱坐标一节做过:有界解是
+\begin{equation}
+  u(r,\theta)=\frac{A_0}{2}+\sum_{n=1}^{\infty}r^n\bigl(A_n\cos(n\theta)+C_n\sin(n\theta)\bigr),
+  \qquad r<a.
+  \label{eq:disk-interior}
+\end{equation}
+边界 $u(a,\theta)=g(\theta)$ 把系数定成 $g$ 的傅里叶系数再除以 $a^n$.代回去,
+\begin{equation}
+  u(r,\theta)=\int_0^{2\pi}P(r,\theta-\theta')g(\theta')\,\mathrm{d}\theta',
+\end{equation}
+核是几何级数
+\begin{equation}
+  P=\frac{1}{2\pi}\Biggl(1+2\sum_{n=1}^{\infty}\Bigl(\frac{r}{a}\Bigr)^n\cos\bigl(n(\theta-\theta')\bigr)\Biggr).
+\end{equation}
+公比 $z=(r/a)e^{\imath(\theta-\theta')}$ 的模小于 $1$,求和得到
+\begin{equation}
+  P(r,\theta-\theta')
+  =\frac{1}{2\pi}\frac{a^2-r^2}{a^2-2ar\cos(\theta-\theta')+r^2}.
+  \label{eq:poisson-kernel}
+\end{equation}
+这是圆盘的泊松公式.圆心处 $r=0$,核变成 $1/(2\pi)$,所以
+\begin{equation}
+  u(0)=\frac{1}{2\pi}\int_0^{2\pi}g(\theta')\,\mathrm{d}\theta',
+\end{equation}
+圆心的值是边界值的平均.
+
+圆外 $r>a$、无穷远处有界的解丢掉正幂,同一套求和把 $r/a$ 换成 $a/r$,核的分子换成 $r^2-a^2$.$r\to\infty$ 时 $u$ 趋于边界值的同一个平均.
+
+\begin{example}
+边界 $g=\cos\theta$,用泊松核核对 $u=(r/a)\cos\theta$.
+\end{example}
+\begin{solution}
+$\cos\theta'$ 对 $\theta'$ 的积分只留下核里 $n=1$ 的余弦.系数是 $(r/a)$,乘上 $\cos\theta$,就是 $u=(r/a)\cos\theta$.它在 $r=a$ 上等于 $\cos\theta$,并且是 $x/a$,调和.
+\end{solution}
+
+\section{圆盘的诺伊曼问题}
+边界上给定径向导数 $u_r(a,\theta)=h(\theta)$,内部仍然用\eqref{eq:disk-interior}.对 $r$ 求导再令 $r=a$,
+\begin{equation}
+  h(\theta)=\sum_{n=1}^{\infty}n a^{n-1}\bigl(A_n\cos(n\theta)+C_n\sin(n\theta)\bigr).
+\end{equation}
+常数项不出现在 $u_r$ 里,所以 $h$ 的平均值必须是零,否则无解.平均值是零时,$n\geq 1$ 的系数除以 $na^{n-1}$,$A_0$ 仍然任意,对应加上常数.解差一个常数,和诺伊曼问题的一般情形一致.
+
+\section{扇形、圆环和带割缝的圆盘}
+两条射线 $\theta=0$ 和 $\theta=\alpha$ 上也给定齐次条件时,角向不再以 $2\pi$ 为周期.$\Theta(0)=\Theta(\alpha)=0$ 给出 $\Theta=\sin(n\pi\theta/\alpha)$,径向幂次从整数改成
+\begin{equation}
+  R=A r^{n\pi/\alpha}+B r^{-n\pi/\alpha}.
+\end{equation}
+扇形 $r<a$ 丢掉负幂,扇形外部丢掉正幂,环扇形 $a<r<b$ 两项都留.
+
+\begin{example}
+半环 $1<r<2$, $0<\theta<\pi$, $\theta=0,\pi$ 和 $r=1$ 上 $u=0$, $u(2,\theta)=\pi-\theta$.
+\end{example}
+\begin{solution}
+$\alpha=\pi$,角向是 $\sin(n\theta)$,径向是 $A_n r^n+B_n r^{-n}$.$r=1$ 上为零要求 $B_n=-A_n$,
+\begin{equation}
+  u=\sum_{n=1}^{\infty}A_n(r^n-r^{-n})\sin(n\theta).
+\end{equation}
+$r=2$ 上 $\pi-\theta$ 的正弦系数是
+\begin{equation}
+  \frac{2}{\pi}\int_0^{\pi}(\pi-\theta)\sin(n\theta)\,\mathrm{d}\theta=\frac{2}{n}.
+\end{equation}
+因此 $A_n(2^n-2^{-n})=2/n$,
+\begin{equation}
+  u(r,\theta)=\sum_{n=1}^{\infty}
+  \frac{2}{n(2^n-2^{-n})}(r^n-r^{-n})\sin(n\theta).
+\end{equation}
+\end{solution}
+
+割缝上的边界值如果不是零,先找一个满足方程和割缝条件的特解,差满足齐次割缝条件,再分离变量.割缝 $\theta=\pm\pi$ 上 $x=r\cos\theta=-r$.因此 $1+x$ 在两条缝上都等于 $1-r$,它又是调和函数.若还要求 $r=1$ 上 $u=0$,令 $w=u-(1+x)$,则 $w$ 在缝上为零,在 $r=1$ 上等于 $-1-\cos\theta$.角向区间长度是 $2\pi$,两端为零,本征函数是 $\sin\bigl((n/2)(\theta+\pi)\bigr)$,也就是半整数族.$-1-\cos\theta$ 对 $\theta$ 是偶的,只激发其中的余弦型项.
+
+圆环 $a<r<b$ 上两个圆都给边值时,正幂和负幂都留,$n=0$ 还有 $A+B\ln r$.两个圆上的傅里叶系数各给一个线性方程,解出 $A_n,B_n$.
+
+\section{圆盘和圆柱上的亥姆霍兹方程}
+振动膜或定态波满足 $\Delta u+k^2 u=0$.极坐标里分离 $u=R(r)e^{\imath m\phi}$,$m\in\mathbb{Z}$,径向是贝塞尔方程
+\begin{equation}
+  r^2 R''+r R'+(k^2 r^2-m^2)R=0.
+\end{equation}
+圆心有界的解是 $J_m(kr)$.圆周 $r=a$ 上 $u=0$ 要求
+\begin{equation}
+  J_m(ka)=0.
+\end{equation}
+$J_m$ 的正零点 $j_{m,s}$ 给出 $k_{m,s}=j_{m,s}/a$,每个 $m\geq 1$ 的 $\cos(m\phi)$ 和 $\sin(m\phi)$ 共用这个 $k$.时间因子是 $\cos(ckt)$ 和 $\sin(ckt)$.
+
+有限圆柱上若侧面为零、振动与 $\phi$ 无关,径向仍是 $J_0$,轴向是正弦,分离常数拆成 $k^2=\alpha^2+\beta^2$.侧面条件定 $\alpha$,上下条件定 $\beta$.
+
+\section{调和多项式}
+\idx{调和多项式}{tiaoheduoxiangshi}
+球内的调和函数若在球心光滑,径向只能是 $r^{\ell}$,$\ell=0,1,2,\ldots$,对应的角向函数是 $\ell$ 次球谐.把它写成 $x,y,z$ 的函数,就是 $\ell$ 次齐次调和多项式.$\ell$ 次齐次多项式的维数是 $\binom{\ell+2}{2}$.任意 $\ell-2$ 次齐次多项式都是某个 $\ell$ 次齐次多项式的拉普拉斯,这个条件用掉 $\binom{\ell}{2}$ 个系数,剩下
+\begin{equation}
+  \binom{\ell+2}{2}-\binom{\ell}{2}=2\ell+1.
+\end{equation}
+这和 $m=-\ell,\ldots,\ell$ 的个数一致.前几次的一组基是
+\begin{center}
+\begin{tabular}{cl}
+$\ell$ & 基 \\
+$0$ & $1$ \\
+$1$ & $x,\; y,\; z$ \\
+$2$ & $xy,\; xz,\; yz,\; x^2-y^2,\; x^2-z^2$
+\end{tabular}
+\end{center}
+球外、无穷远处衰减的调和函数把 $r^{\ell}$ 换成 $r^{-(\ell+1)}$.同样这 $2\ell+1$ 个函数除以 $r^{2\ell+1}$ 仍然调和,例如 $\ell=1$ 时是 $x/r^3$, $y/r^3$, $z/r^3$.
+
+\section{球内的波动}
+球 $r\leq a$ 内 $u_{tt}=c^2\Delta u$,球面 $u=0$ 或 $u_r=0$.先分离时间,$v_{tt}$ 的角色变成亥姆霍兹方程 $\Delta v+\lambda v=0$,再分离出球谐 $Y_{\ell}^{m}$.径向方程
+\begin{equation}
+  r^2 R''+2r R'+\bigl(\lambda r^2-\ell(\ell+1)\bigr)R=0
+\end{equation}
+的有界解是球贝塞尔函数 $j_{\ell}(\sqrt{\lambda}\,r)$.狄利克雷条件是 $j_{\ell}(\sqrt{\lambda}\,a)=0$,诺伊曼条件是它的导数在 $r=a$ 为零.每个零点给一个频率 $\omega=c\sqrt{\lambda}$,时间因子是 $\cos\omega t$ 和 $\sin\omega t$.同一个 $\ell$ 的 $2\ell+1$ 个 $m$ 共用这些频率.
+
+氢原子的库仑问题也是先分离出 $Y_{\ell}^{m}$,径向再要求级数截断.能级 $E_n\propto -1/n^2$ 和简并度 $n^2$ 在特殊函数一章里.
+
+\section{椭圆坐标和抛物坐标}
+平面上的共形坐标把拉普拉斯方程变成同一个算子的倍数.椭圆坐标和抛物坐标都来自复解析函数,
+\begin{equation}
+  x+\imath y=c\cosh(\sigma+\imath\tau),
+  \qquad
+  x+\imath y=\frac{(\sigma+\imath\tau)^2}{2}.
+\end{equation}
+尺度因子在两个方向上相等,所以
+\begin{equation}
+  \Delta u=\frac{1}{h^2}(u_{\sigma\sigma}+u_{\tau\tau}).
+\end{equation}
+$\Delta u=0$ 就是 $u_{\sigma\sigma}+u_{\tau\tau}=0$,分离变量和直角坐标一样,得到指数或三角函数.亥姆霍兹方程 $\Delta u+k^2 u=0$ 乘上 $h^2$ 之后,分离常数一边是马蒂厄方程,另一边仍是周期的三角方程.把抛物线绕对称轴旋转,或在抛物坐标上再加一个 $z$,就得到三维的抛物坐标和抛物柱坐标,拉普拉斯算子仍然分离.球、圆柱、椭圆、抛物这几族,是三维空间里拉普拉斯算子能够分离的正交坐标.

@@ -1,0 +1,29 @@
+特殊函数的题要写出所用的归一化和权重.贝塞尔函数用正文的幂级数定义.
+
+\begin{problemset}
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\item 由 $\Gamma(z)=\int_0^{\infty}t^{z-1}e^{-t}\,\mathrm{d}t$ 证明 $\Gamma(z+1)=z\Gamma(z)$,并由此得到 $\Gamma(n+1)=n!$.
+
+\item 写出 $J_0(x)$ 和 $J_1(x)$ 级数的前三项.验证 $J_0'(x)=-J_1(x)$.
+
+\item 用生成函数 $\exp[(x/2)(t-1/t)]=\sum_{n=-\infty}^{\infty}J_n(x)t^n$ 推出
+\begin{equation*}
+  J_{n-1}(x)+J_{n+1}(x)=\frac{2n}{x}J_n(x),
+  \qquad
+  J_{n-1}(x)-J_{n+1}(x)=2J_n'(x).
+\end{equation*}
+
+\item 半径为 $a$ 的圆膜,边界固定,径向用 $J_0(k\rho)$, $k_m=j_{0,m}/a$.证明
+\begin{equation*}
+  \int_0^a \rho J_0(k_m\rho)\,\mathrm{d}\rho
+  =\frac{a}{k_m}J_1(k_m a),
+\end{equation*}
+并说明这个积分为什么出现在初值展开的系数里.
+
+\item 一维谐振子写成 $\xi=x\sqrt{m\omega/\hbar}$, $\varepsilon=2E/(\hbar\omega)$.说明波函数在无穷远处可积要求级数截断,并得到 $E_n=\hbar\omega(n+1/2)$.写出 $H_0,H_1,H_2$.
+
+\item 把 $H_2(\xi)=4\xi^2-2$ 代入厄米方程 $v''-2\xi v'+2n v=0$,核对 $n=2$.再说明归一化因子里为什么有 $(2^n n!)^{-1/2}$.
+
+\item 氢原子径向函数在 $\rho=2r/(na_0)$ 处用连带拉盖尔多项式 $L_{n-\ell-1}^{(2\ell+1)}$.对给定的 $n$,列出允许的 $\ell$,并说明能级为什么只依赖 $n$.
+\end{problemset}

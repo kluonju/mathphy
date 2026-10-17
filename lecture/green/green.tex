@@ -1,0 +1,26 @@
+\chapter{格林函数}
+\label{ch:green}
+
+\begin{flushright}
+\textit{“举一隅不以三隅反，则不复也。”——《论语·述而》}
+\footnote{格林函数是那一隅,即单位点源在给定边界下的响应.知道它以后,线性叠加把任意源的场一并还回来.}
+\end{flushright}
+
+分离变量把定解问题拆成本征模态,再逐个定系数.\term{格林函数}{gelinhanshu}走另一条路:先求单位点源在同样边界和初值条件下的场,再由线性叠加得到任意源的场.点源的影响函数称为格林函数.经典文献见~\cite{green1828,duffy,stakgold,jackson}.
+
+这一章的泊松方程写成
+\begin{equation}
+  \nabla^2 u=f.
+  \label{eq:gf-poisson-sign}
+\end{equation}
+因此自由空间的基本解是负的,
+\begin{equation}
+  \nabla^2\Bigl(-\frac{1}{4\pi R}\Bigr)=\delta^3(\br).
+\end{equation}
+若把方程改写成 $-\nabla^2 u=\rho$,格林函数整体差一个负号,下面的公式要一并改号.
+
+\input{poisson.tex}
+\input{images.tex}
+\input{evolution.tex}
+\input{generalized.tex}
+\input{exercises.tex}

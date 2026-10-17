@@ -17,3 +17,5 @@
 *.xml
 *.idx
 *.ind
+lecture/main.ilg
+lecture/zh_CN.ilg

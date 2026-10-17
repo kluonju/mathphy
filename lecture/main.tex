@@ -45,6 +45,9 @@
 % \cover{\input{tikz/cover.tex}}
 % 本文档命令
 \usepackage{array}
+\usepackage{imakeidx}
+\makeindex[noautomatic,columns=2,title={索引},intoc]
+\addbibresource{references.bib}
 \newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
 
 % 修改标题页的橙色带
@@ -83,6 +86,7 @@
 \mainmatter
 
 
+\subimport{prelim/}{prelim.tex}
 \subimport{complex/}{complex.tex}
 % \subimport{integral/}{integral.tex}
 % \subimport{numerical/}{numerical.tex}
@@ -96,15 +100,12 @@
 \subimport{diffeq/}{diffeq.tex}
 % \subimport{separation/}{separation.tex}
 \subimport{curvedcoordinates/}{curvedcoordinates.tex}
+\subimport{green/}{green.tex}
 
 \subimport{appendix/}{appendix.tex}
 
-
-
-% \nocite{*} 
-% \printbibliography[heading=bibintoc, title=\ebibname]
-% \appendix
-
-
+\backmatter
+\printbibliography[heading=bibintoc, title=\ebibname]
+\printindex
 
 \end{document}

@@ -1,0 +1,35 @@
+本章泊松方程是 $\nabla^2 u=f$,自由空间基本解是 $-1/(4\pi R)$.若题目里的方程改成 $-\nabla^2 u=\rho$,格林函数要整体变号.二维基本解是 $(1/(2\pi))\ln R$.
+
+\begin{problemset}
+\renewcommand{\theenumi}{\thechapter.\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\item 用镜像法求圆盘 $\rho<a$ 上的狄利克雷格林函数,边界值 $u|_{\rho=a}=f(\phi)$.由此得到泊松积分.
+
+\item 用镜像法解半平面 $y>0$ 上的 $\nabla^2 u=0$, $u(x,0)=f(x)$.
+
+\item 圆盘 $\rho\leq a$ 上的调和函数,边界分别为 $u|_{\rho=a}=A\cos\phi$ 和 $u|_{\rho=a}=A+B\sin\phi$.分别求盘内的 $u$.
+
+\item 把圆盘泊松核展成傅里叶级数,逐项积分,并与分离变量的结果比较.
+
+\item 区间 $0<x<\ell$ 上 $u''=f$, $u(0)=u(\ell)=0$.求格林函数,并验证它在 $x=x_0$ 处连续、导数跳跃为 $1$,而且在区间内为负.
+
+\item 两端固定的弦受 $\rho f=\rho\Phi(x)\sin\omega t$ 驱动.写出受迫解,讨论共振,并在共振时写出解.
+
+\item 同一根弦在内点 $x_0$ 受到集中谐力.求位移.
+
+\item 解 $u_t-a^2 u_{xx}=0$, $x>0$, $u(0,t)=f(t)$, $u(x,0)=\varphi(x)$.说明狄利克雷端点为什么用奇延拓.
+
+\item 解 $u_t-a^2 u_{xx}=0$, $x>0$, $u_x(0,t)=q(t)$, $u(x,0)=0$.
+
+\item 用推广的格林公式写出
+\begin{equation*}
+  u_{tt}-a^2 u_{xx}=f(x,t),
+  \qquad
+  u(x,0)=\varphi(x),
+  \qquad
+  u_t(x,0)=\psi(x)
+\end{equation*}
+的解,并在 $f=0$ 时核对达朗贝尔公式.
+
+\item 对 $u_{xx}-u_{yy}=0$ 取黎曼函数 $v\equiv 1$,说明它如何回到达朗贝尔公式.
+\end{problemset}

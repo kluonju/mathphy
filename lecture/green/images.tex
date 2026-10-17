@@ -1,0 +1,150 @@
+\section{电像法}
+\idx{电像法}{dianxiangfa}
+\idx{泊松核}{bosonghe}
+
+\subsection{无界空间的基本解}
+把格林函数拆成奇异部分和调和修正,
+\begin{equation}
+  G=G_0+G_1,
+  \qquad
+  \nabla^2 G_0=\delta(\br-\br_0),
+  \qquad
+  \nabla^2 G_1=0.
+\end{equation}
+狄利克雷问题还要求 $G_1|_{\Sigma}=-G_0|_{\Sigma}$.
+
+三维里把源放在原点,$\nabla^2 G_0=0$（$r\neq 0$）的径向解是 $-C_1/r+C_2$.无穷远处趋于零则 $C_2=0$.对小球积分 $\nabla^2 G_0=\delta$,由散度定理
+\begin{equation}
+  \iint \frac{\partial G_0}{\partial r}\,\mathrm{d}S
+  =4\pi C_1=1,
+\end{equation}
+所以 $C_1=1/(4\pi)$.源点移到 $\br_0$,
+\begin{equation}
+  G_0(\br,\br_0)=-\frac{1}{4\pi|\br-\br_0|}.
+  \label{eq:gf-free-3d}
+\end{equation}
+二维同样得到
+\begin{equation}
+  G_0(\br,\br_0)=\frac{1}{2\pi}\ln|\br-\br_0|.
+  \label{eq:gf-free-2d}
+\end{equation}
+静电里它们是自由空间中电荷 $-\varepsilon_0$ 的电位,方程是 $\nabla^2 V=-\rho/\varepsilon_0$ 时电荷要改号.
+
+边界足够简单时,$G_1$ 可以写成区域外面若干像源的基本解.像源不在 $T$ 内,所以 $T$ 里仍然只有原来的点源,边界条件靠像源去配.
+
+\subsection{接地球内}
+球半径 $a$,源在距球心 $r_0<a$ 处,要求球面 $G=0$.像放在同一射线上的反演点
+\begin{equation}
+  \br_1=\frac{a^2}{r_0^2}\br_0,
+  \qquad
+  r_1=\frac{a^2}{r_0}>a.
+\end{equation}
+球面上 $|\br|=a$ 时,余弦定理给出 $|\br-\br_1|=(a/r_0)\,|\br-\br_0|$.像的强度取 $a/r_0$,两项相消,
+\begin{equation}
+  G(\br,\br_0)
+  =-\frac{1}{4\pi|\br-\br_0|}
+   +\frac{a/r_0}{4\pi\bigl|\br-(a^2/r_0^2)\br_0\bigr|}.
+  \label{eq:gf-sphere}
+\end{equation}
+像在球外,球内 $\nabla^2 G$ 只有原来的 $\delta$.
+
+\subsection{圆盘}
+$\rho<a$,二维狄利克雷格林函数用同一个反演点 $\br_1$,
+\begin{equation}
+  G
+  =\frac{1}{2\pi}\ln|\br-\br_0|
+   -\frac{1}{2\pi}\ln|\br-\br_1|
+   +\frac{1}{2\pi}\ln\frac{a}{r_0}.
+  \label{eq:gf-disk}
+\end{equation}
+常数项不破坏调和性.圆周上 $|\br-\br_1|=(a/r_0)\,|\br-\br_0|$,对数相加是零.
+
+\subsection{泊松积分}
+$f=0$ 时,\eqref{eq:gf-dirichlet-obs}只剩 $\partial G/\partial n_0$.下面三个区域都可以把这个法向导数算出来.
+
+\begin{example}
+球内调和,$u|_{r=a}=f(\theta,\phi)$.
+\end{example}
+\begin{solution}
+用\eqref{eq:gf-sphere}.记 $R=|\br-\br_0|$,$R_1=|\br-\br_1|$,夹角为 $\Theta$,$r_1=a^2/r_0$.则
+\begin{equation}
+  G=-\frac{1}{4\pi}\Biggl(\frac{1}{R}-\frac{a}{r_0 R_1}\Biggr).
+\end{equation}
+外法向是 $\partial/\partial r_0$.在 $r_0=a$ 上像点和源点重合,$R_1=R$,但是法向导数不是零.直接求导再令 $r_0=a$,用
+\begin{equation}
+  R^2=r^2+a^2-2ar\cos\Theta
+\end{equation}
+把 $a-r\cos\Theta=(R^2+a^2-r^2)/(2a)$ 代回去,两项里的 $1/(aR)$ 相消,留下
+\begin{equation}
+  \frac{\partial G}{\partial r_0}\Big|_{r_0=a}
+  =\frac{1}{4\pi a}\frac{a^2-r^2}{R^3}.
+\end{equation}
+面积元 $a^2\sin\theta_0\,\mathrm{d}\theta_0\,\mathrm{d}\phi_0$,所以
+\begin{equation}
+  u(r,\theta,\phi)
+  =\frac{a}{4\pi}\int_0^{\pi}\int_0^{2\pi}
+    f(\theta_0,\phi_0)
+    \frac{a^2-r^2}{(a^2-2ar\cos\Theta+r^2)^{3/2}}
+    \sin\theta_0\,\mathrm{d}\theta_0\,\mathrm{d}\phi_0.
+  \label{eq:gf-poisson-sphere}
+\end{equation}
+这是球的泊松积分.$r\to a$ 时核变成球面上的 $\delta$,$u$ 回到 $f$.球心处 $\cos\Theta$ 消失,$u(0)$ 等于 $f$ 在球面上的平均.
+\end{solution}
+
+\begin{example}
+上半空间 $z>0$,$u|_{z=0}=f(x,y)$,无穷远处 $u\to 0$.
+\end{example}
+\begin{solution}
+像电荷与源反号,放在 $(x_0,y_0,-z_0)$,
+\begin{equation}
+  G=-\frac{1}{4\pi|\br-\br_0|}+\frac{1}{4\pi|\br-\br_1|}.
+\end{equation}
+$z=0$ 上两个距离相等,$G=0$.上半空间的外法向是 $-\mathbf{e}_z$,所以 $\partial/\partial n_0=-\partial/\partial z_0$.在平面上
+\begin{equation}
+  \frac{\partial G}{\partial n_0}
+  =\frac{z}{2\pi\bigl[(x-x_0)^2+(y-y_0)^2+z^2\bigr]^{3/2}}.
+\end{equation}
+因此
+\begin{equation}
+  u(x,y,z)
+  =\frac{z}{2\pi}\iint_{\mathbb{R}^2}
+    \frac{f(x_0,y_0)}
+         {\bigl[(x-x_0)^2+(y-y_0)^2+z^2\bigr]^{3/2}}
+    \,\mathrm{d}x_0\,\mathrm{d}y_0.
+  \label{eq:gf-poisson-halfspace}
+\end{equation}
+\end{solution}
+
+\begin{example}
+圆盘 $\rho<a$ 与上半平面 $y>0$.
+\end{example}
+\begin{solution}
+圆盘上对\eqref{eq:gf-disk}求外法向 $\partial/\partial\rho_0$,在 $\rho_0=a$ 处得到
+\begin{equation}
+  u(\rho,\phi)
+  =\frac{a^2-\rho^2}{2\pi}\int_0^{2\pi}
+    \frac{f(\phi_0)}
+         {a^2-2a\rho\cos(\phi-\phi_0)+\rho^2}
+    \,\mathrm{d}\phi_0.
+  \label{eq:gf-poisson-disk}
+\end{equation}
+上半平面用反号像点 $(x_0,-y_0)$,外法向 $-\mathbf{e}_y$,
+\begin{equation}
+  u(x,y)
+  =\frac{y}{\pi}\int_{-\infty}^{\infty}
+    \frac{f(x_0)}{(x-x_0)^2+y^2}\,\mathrm{d}x_0.
+  \label{eq:gf-poisson-halfplane}
+\end{equation}
+$f=1$ 时两个积分都等于 $1$,常值函数是调和的,边界值也是 $1$.
+\end{solution}
+
+\begin{example}
+圆盘边界 $u(a,\phi)=A\cos\phi$.
+\end{example}
+\begin{solution}
+把\eqref{eq:gf-poisson-disk}的核按 $\cos(n(\phi-\phi_0))$ 展开,或者直接用分离变量.内部有限的解是 $\rho^{n}$ 的傅里叶级数,边界只有 $\cos\phi$,
+\begin{equation}
+  u(\rho,\phi)=A\frac{\rho}{a}\cos\phi.
+\end{equation}
+它和柱坐标一章的圆内边值是同一个函数.泊松积分把分离变量的结果包进一个核对边界值的积分里.
+\end{solution}

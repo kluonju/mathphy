@@ -1,58 +1,211 @@
 \section{柱坐标系下的分离变量法}
+\idx{柱坐标}{zhuzuobiao}
 \label{sec:cylindrical}
 
-\subsection*{柱坐标系 $(\rho, \phi, z)$}
+圆形边界在直角坐标里是 $x^2+y^2=a^2$.若试 $V=X(x)Y(y)$,边界上 $X(x)Y(\sqrt{a^2-x^2})=0$ 拆不成只约束 $X$ 的条件和只约束 $Y$ 的条件.改用极坐标以后,同一条边界就是 $\rho=a$,乘积解的两个因子可以各自去满足边界.
 
-由于 $r = \rho \cos \phi e_x + \rho \sin \phi e_y + z e_z$，故有
-\[
-\frac{\partial r}{\partial \rho} = \cos \phi e_x + \sin \phi e_y, \quad (9.8a)
-\]
-\[
-\frac{\partial r}{\partial \phi} = -\rho \sin \phi e_x + \rho \cos \phi e_y, \quad (9.8b)
-\]
-\[
-\frac{\partial r}{\partial z} = e_z. \quad (9.8c)
-\]
+与 $z$ 无关时,\eqref{eq:laplace-cyl}退化为
+\begin{equation}
+  \frac{\partial^2 V}{\partial\rho^2}
+  +\frac{1}{\rho}\frac{\partial V}{\partial\rho}
+  +\frac{1}{\rho^2}\frac{\partial^2 V}{\partial\phi^2}
+  =0.
+  \label{eq:polar-laplace}
+\end{equation}
+设 $V=R(\rho)\Phi(\phi)$,除以 $R\Phi$ 再乘 $\rho^2$,
+\begin{equation}
+  \frac{\rho}{R}\frac{\mathrm{d}}{\mathrm{d}\rho}
+    \Bigl(\rho\frac{\mathrm{d}R}{\mathrm{d}\rho}\Bigr)
+  =-\frac{1}{\Phi}\frac{\mathrm{d}^2\Phi}{\mathrm{d}\phi^2}
+  =m^2.
+\end{equation}
+左右只依赖各自的自变量,所以等于同一个常数.这里写成 $m^2$,是为了让角向方程的周期解取正频率.
 
-由此可以立得正交性，且有
-\[
-h_\rho = 1, \quad h_\phi = \rho, \quad h_z = 1. \quad (9.9)
-\]
+$\phi$ 增加 $2\pi$ 回到同一点,$\Phi(\phi+2\pi)=\Phi(\phi)$.于是
+\begin{equation}
+  \Phi''+m^2\Phi=0,
+\end{equation}
+$m=0,1,2,\ldots$,本征函数是 $1$,以及 $\cos(m\phi)$ 和 $\sin(m\phi)$.$m$ 不是任意实数,单值性把它离散化,作用和固定端把弦的波数离散化相同.
 
-这些度规系数的几何意义是明显的，比如沿着 $\phi$ 坐标线由 $\phi$ 到 $\phi + d\phi$ 的距离（弧长）不是 $d\phi$，而是 $h_\phi d\phi = \rho d\phi$，这正是我们所熟知的。易得柱坐标系的正交归一化矢量为
-\[
-e_\rho = \cos \phi e_x + \sin \phi e_y, \quad (9.10a)
-\]
-\[
-e_\phi = -\sin \phi e_x + \cos \phi e_y, \quad (9.10b)
-\]
-\[
-e_z = e_z. \quad (9.10c)
-\]
+径向方程是欧拉方程
+\begin{equation}
+  \rho^2 R''+\rho R'-m^2 R=0.
+\end{equation}
+令 $\rho=e^{s}$,则 $\rho R_{\rho}=R_s$, $\rho^2 R_{\rho\rho}=R_{ss}-R_s$,代入得 $R_{ss}-m^2 R=0$.
+$m\geq 1$ 时
+\begin{equation}
+  R=A\rho^{m}+C\rho^{-m}.
+\end{equation}
+$m=0$ 时 $R_{ss}=0$,
+\begin{equation}
+  R=C_0+D_0\ln\rho.
+\end{equation}
+$\rho^{m}$ 在无穷远处增长,$\rho^{-m}$ 和 $\ln\rho$ 在原点发散.区域包不包原点、包不包无穷远,决定哪一组系数必须为零.
 
-\subsection*{球坐标系 $(r, \theta, \phi)$}
+外部区域 $\rho>a$ 的一般解是
+\begin{equation}
+\begin{aligned}
+  V={}&C_0+D_0\ln\rho \\
+  &+\sum_{m=1}^{\infty}\Bigl[
+      (A_m\rho^{m}+C_m\rho^{-m})\cos(m\phi)
+      +(B_m\rho^{m}+D_m\rho^{-m})\sin(m\phi)
+    \Bigr].
+\end{aligned}
+\label{eq:polar-general}
+\end{equation}
+内部区域 $\rho<a$ 则丢掉 $\ln\rho$ 和 $\rho^{-m}$.
 
-由于 $r = r \sin \theta \cos \phi e_x + r \sin \theta \sin \phi e_y + r \cos \theta e_z$，故有
-\[
-\frac{\partial r}{\partial r} = \sin \theta \cos \phi e_x + \sin \theta \sin \phi e_y + \cos \theta e_z, \quad (9.11a)
-\]
-\[
-\frac{\partial r}{\partial \theta} = r (\cos \theta \cos \phi e_x + \cos \theta \sin \phi e_y - \sin \theta e_z), \quad (9.11b)
-\]
-\[
-\frac{\partial r}{\partial \phi} = r \sin \theta (-\sin \phi e_x + \cos \phi e_y). \quad (9.11c)
-\]
+\subsection{均匀电场中的导体圆柱}
 
-由此可以立得正交性，且有
-\[
-h_r = 1, \quad h_\theta = r, \quad h_\phi = r \sin \theta. \quad (9.12)
-\]
+\begin{figure}[htb]
+  \centering
+  \input{tikz/cylinder_field.tex}
+  \caption{均匀电场中的中性导体圆柱.远处场恢复为 $\mathbf{E}_0$,表面与外场对齐的两点法向场增强到 $2E_0$.}
+  \label{fig:cylinder-field}
+\end{figure}
 
-这些度规系数的几何意义也是明显的。易得球坐标系的正交归一化矢量为
-\[
-e_r = \sin \theta \cos \phi e_x + \sin \theta \sin \phi e_y + \cos \theta e_z, \quad (9.13a)
-\]
-\[
-e_\theta
-= \cos \theta \cos \phi e_x + \cos \theta \sin \phi e_y - \sin \theta e_z, \quad (9.13b)
-\]
+半径为 $a$ 的无限长导体圆柱放在垂直于轴的均匀电场 $\mathbf{E}_0$ 里.取轴为 $z$,$x$ 轴平行于 $\mathbf{E}_0$.导体以外没有电荷,势满足\eqref{eq:polar-laplace}.导体是等势体,把这个常数选成零,
+\begin{equation}
+  V(a,\phi)=0.
+\end{equation}
+远处 $E_x\to E_0$, $E_y\to 0$,均匀场的势是 $-E_0 x=-E_0\rho\cos\phi$.若圆柱单位长度还带电 $q_0$,远场再加一项对数,
+\begin{equation}
+  V(\rho,\phi)\sim
+  -\frac{q_0}{2\pi\varepsilon_0}\ln\rho
+  -E_0\rho\cos\phi
+  \qquad(\rho\to\infty).
+\end{equation}
+可加常数已经由导体零势定掉.
+
+把\eqref{eq:polar-general}放上 $V(a,\phi)=0$.傅里叶系数各自为零,
+\begin{equation}
+  C_0+D_0\ln a=0,
+  \qquad
+  C_m=-a^{2m}A_m,
+  \qquad
+  D_m=-a^{2m}B_m.
+\end{equation}
+每一个增长的径向幂都配上一个衰减项,使它们在 $\rho=a$ 上抵消.
+
+远场最高只到 $\rho^1$,所以 $m\geq 2$ 的 $A_m,B_m$ 必须是零,连带的 $C_m,D_m$ 也是零.远场没有 $\sin\phi$,故 $B_1=D_1=0$.余弦的一次项要再现 $-E_0\rho\cos\phi$,故 $A_1=-E_0$, $C_1=E_0 a^2$.对数项的系数是 $D_0=-q_0/(2\pi\varepsilon_0)$,于是 $C_0+D_0\ln\rho=D_0\ln(\rho/a)$.合起来
+\begin{equation}
+  V(\rho,\phi)
+  =\frac{q_0}{2\pi\varepsilon_0}\ln\frac{a}{\rho}
+  -E_0\Bigl(\rho-\frac{a^2}{\rho}\Bigr)\cos\phi,
+  \qquad\rho\geq a.
+  \label{eq:cylinder-potential}
+\end{equation}
+
+\begin{example}
+中性圆柱的表面电场.
+\end{example}
+\begin{solution}
+$q_0=0$ 时
+\begin{equation}
+  V=-E_0\Bigl(\rho-\frac{a^2}{\rho}\Bigr)\cos\phi.
+\end{equation}
+在 $\rho=a$ 上,$\rho-a^2/\rho=0$,导体保持零势.$\rho\to\infty$ 时修正项消失,$V\sim -E_0\rho\cos\phi$.径向电场
+\begin{equation}
+  E_{\rho}=-\frac{\partial V}{\partial\rho}
+  =E_0\Bigl(1+\frac{a^2}{\rho^2}\Bigr)\cos\phi.
+\end{equation}
+表面上 $E_{\rho}=2E_0\cos\phi$.$\phi=0$ 和 $\phi=\pi$ 两点,法向场的大小都是背景场的两倍,电击穿首先从这里开始.$\phi=\pm\pi/2$ 时 $\cos\phi=0$,中性圆柱的势在这两条射线上处处等于导体的势.
+\end{solution}
+
+\subsection{圆内的边值}
+
+\begin{example}
+圆盘 $\rho<a$ 的边界上 $V(a,\phi)=V_0\cos\phi$,盘内无电荷,势在圆心有限.
+\end{example}
+\begin{solution}
+内部解丢掉负幂和对数,
+\begin{equation}
+  V=A_0+\sum_{m=1}^{\infty}\rho^{m}(A_m\cos(m\phi)+B_m\sin(m\phi)).
+\end{equation}
+边界只有 $\cos\phi$,所以只留下 $m=1$ 的余弦项,$A_1 a=V_0$,
+\begin{equation}
+  V(\rho,\phi)=V_0\frac{\rho}{a}\cos\phi=V_0\frac{x}{a}.
+\end{equation}
+它是直角坐标里的线性函数,拉普拉斯算子当然是零.圆形边界把这个简单解从傅里叶级数里挑了出来.
+\end{solution}
+
+\subsection{有限圆柱}
+$\rho$ 和 $z$ 都有边界时,分离常数落到贝塞尔方程上.考虑稳态温度:圆柱 $0\leq\rho<a$, $0\leq z\leq L$,侧面和底面保持零度,顶面给定轴对称分布 $f(\rho)$,
+\begin{equation}
+  \nabla^2 T=0,
+  \qquad
+  T(a,z)=0,
+  \qquad
+  T(\rho,0)=0,
+  \qquad
+  T(\rho,L)=f(\rho).
+\end{equation}
+$f$ 与 $\phi$ 无关,解也与 $\phi$ 无关.\eqref{eq:laplace-cyl}变成
+\begin{equation}
+  \frac{1}{\rho}\frac{\partial}{\partial\rho}
+    \Bigl(\rho\frac{\partial T}{\partial\rho}\Bigr)
+  +\frac{\partial^2 T}{\partial z^2}=0.
+\end{equation}
+设 $T=R(\rho)Z(z)$.为了让 $R(a)=0$ 而且 $R$ 在轴上有限,分离常数取正,
+\begin{equation}
+  \frac{1}{\rho R}\frac{\mathrm{d}}{\mathrm{d}\rho}
+    \Bigl(\rho\frac{\mathrm{d}R}{\mathrm{d}\rho}\Bigr)
+  =-k^2
+  =\frac{1}{Z}\frac{\mathrm{d}^2 Z}{\mathrm{d}z^2}.
+\end{equation}
+径向方程是 $0$ 阶贝塞尔方程.令 $\xi=k\rho$,则
+\begin{equation}
+  \xi^2\frac{\mathrm{d}^2 R}{\mathrm{d}\xi^2}
+  +\xi\frac{\mathrm{d}R}{\mathrm{d}\xi}
+  +\xi^2 R=0,
+\end{equation}
+在 $\xi=0$ 有限的解是 $J_0(k\rho)$.侧面 $J_0(ka)=0$,所以
+\begin{equation}
+  k_m=\frac{j_{0,m}}{a},
+  \qquad m=1,2,\ldots,
+\end{equation}
+$j_{0,m}$ 是 $J_0$ 的第 $m$ 个正零点.轴向方程 $Z''-k_m^2 Z=0$,底面 $Z(0)=0$ 选出
+\begin{equation}
+  Z=\sinh(k_m z).
+\end{equation}
+叠加
+\begin{equation}
+  T(\rho,z)
+  =\sum_{m=1}^{\infty} A_m J_0(k_m\rho)\sinh(k_m z).
+\end{equation}
+顶面 $z=L$ 用贝塞尔族的正交性定系数.权重为 $\rho$ 的模是
+\begin{equation}
+  \int_0^{a}\rho\, J_0(k_m\rho)^2\,\mathrm{d}\rho
+  =\frac{a^2}{2}J_1(k_m a)^2,
+\end{equation}
+因此
+\begin{equation}
+  A_m\sinh(k_m L)
+  =\frac{2}{a^2 J_1(k_m a)^2}
+    \int_0^{a} f(\rho)\, J_0(k_m\rho)\,\rho\,\mathrm{d}\rho.
+  \label{eq:cylinder-coeff}
+\end{equation}
+
+\begin{example}
+顶面温度是常数 $T_0$.
+\end{example}
+\begin{solution}
+用 $\mathrm{d}[u J_1(u)]/\mathrm{d}u=u J_0(u)$,
+\begin{equation}
+  \int_0^{a}\rho\, J_0(k_m\rho)\,\mathrm{d}\rho
+  =\frac{a}{k_m}J_1(k_m a).
+\end{equation}
+代入\eqref{eq:cylinder-coeff},
+\begin{equation}
+  A_m
+  =\frac{2T_0}{k_m a\, J_1(k_m a)\,\sinh(k_m L)}.
+\end{equation}
+于是
+\begin{equation}
+  T(\rho,z)
+  =\sum_{m=1}^{\infty}
+    \frac{2T_0}{j_{0,m} J_1(j_{0,m})\, \sinh(k_m L)}
+    \, J_0(k_m\rho)\sinh(k_m z),
+\end{equation}
+其中用了 $k_m a=j_{0,m}$.$z=0$ 时每一项都是零;$z=L$ 时双曲正弦之比变成 $1$,剩下的级数就是常数 $T_0$ 的贝塞尔展开.侧面 $\rho=a$ 上 $J_0(k_m a)=0$.
+\end{solution}
