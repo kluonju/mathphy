@@ -1,0 +1,389 @@
+% Solutions to Homework 5 — Math Physics Methods (数学物理方法)
+
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{ctex}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+
+\theoremstyle{remark}
+\newtheorem{problem}{}
+\theoremstyle{definition}
+\newtheorem{solution}{解}
+
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+\setlength{\headheight}{15.11996pt}
+\setlength{\topmargin}{-3.11996pt}
+
+\newcommand{\duedate}{\zhdate{2026/10/27}}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyhead[L]{数学物理方法}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{课后习题伍 \quad 参考解答}
+
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{截止日期\duedate}
+\fancyfoot[R]{任课教师:罗凯}
+
+\begin{document}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+
+%==========================================================================
+\begin{problem}
+  试推导多目标变量泛函$J\left(u_1, u_2, \cdots, u_n, u_1^{\prime}, u_2^{\prime}, \cdots, u_n^{\prime} \mid x\right)$
+  取极值的欧拉方程是
+  $$
+  \frac{\partial L}{\partial u_i}-\frac{\partial}{\partial x}\left(\frac{\partial L}{\partial u_i^{\prime}}\right)=0 .
+  $$
+\end{problem}
+
+\begin{solution}
+把该泛函写成定积分
+\[
+J[u_1,\ldots,u_n]
+=\int_a^b L\bigl(u_1,\ldots,u_n,u_1',\ldots,u_n'\mid x\bigr)\,\mathrm{d}x.
+\]
+端点上各 $u_i$ 给定，因而容许变分满足
+\[
+\delta u_i(a)=\delta u_i(b)=0,\qquad i=1,\ldots,n.
+\]
+变分与求导可交换，$\delta u_i'=(\delta u_i)'$。把被积函数对全部 $u_i$ 与 $u_i'$ 作一阶展开，
+\begin{align*}
+\delta J
+&=\int_a^b\sum_{i=1}^n
+\Biggl(
+\frac{\partial L}{\partial u_i}\,\delta u_i
++\frac{\partial L}{\partial u_i'}\,\delta u_i'
+\Biggr)\mathrm{d}x.
+\end{align*}
+对含 $\delta u_i'$ 的每一项分部积分。令
+\[
+\frac{\partial L}{\partial u_i'}\,\delta u_i'
+=\frac{\mathrm{d}}{\mathrm{d}x}\Biggl(\frac{\partial L}{\partial u_i'}\,\delta u_i\Biggr)
+-\frac{\mathrm{d}}{\mathrm{d}x}\Biggl(\frac{\partial L}{\partial u_i'}\Biggr)\delta u_i,
+\]
+则
+\begin{align*}
+\delta J
+&=\sum_{i=1}^n
+\Biggl[
+\frac{\partial L}{\partial u_i'}\,\delta u_i
+\Biggr]_a^b
++\int_a^b\sum_{i=1}^n
+\Biggl(
+\frac{\partial L}{\partial u_i}
+-\frac{\mathrm{d}}{\mathrm{d}x}\frac{\partial L}{\partial u_i'}
+\Biggr)\delta u_i\,\mathrm{d}x.
+\end{align*}
+边界项因 $\delta u_i(a)=\delta u_i(b)=0$ 而消失。各 $\delta u_i$ 彼此独立，并且在 $(a,b)$ 内可任意选取。由变分法基本引理，积分对一切这样的变分为零，当且仅当每个被积系数逐点为零：
+\[
+\frac{\partial L}{\partial u_i}
+-\frac{\mathrm{d}}{\mathrm{d}x}\Biggl(\frac{\partial L}{\partial u_i'}\Biggr)
+=0,
+\qquad i=1,\ldots,n.
+\]
+这就是所求的欧拉方程。$n=1$ 时它退化为单个因变量的欧拉--拉格朗日方程。
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  过二已知点 $\left(x_1, y_1\right),\left(x_2, y_2\right)$ 作一曲线, 使此曲线绕 $x$ 轴旋转所得曲面面积最小, 求曲线满足的微分方程.
+\end{problem}
+
+\begin{solution}
+设曲线为 $y=y(x)$，且 $y(x_1)=y_1$，$y(x_2)=y_2$。取 $y>0$。绕 $x$ 轴旋转一周，弧长元 $\mathrm{d}s=\sqrt{1+y'^2}\,\mathrm{d}x$ 扫出的面积元是半径为 $y$ 的圆周，故面积泛函为
+\[
+S[y]=2\pi\int_{x_1}^{x_2} y\sqrt{1+y'^2}\,\mathrm{d}x.
+\]
+常数因子 $2\pi$ 不影响极值曲线。取
+\[
+L(y,y')=y\sqrt{1+y'^2}.
+\]
+它不显含 $x$。计算
+\[
+\frac{\partial L}{\partial y}=\sqrt{1+y'^2},
+\qquad
+\frac{\partial L}{\partial y'}=\frac{y\,y'}{\sqrt{1+y'^2}}.
+\]
+欧拉方程
+\[
+\frac{\partial L}{\partial y}-\frac{\mathrm{d}}{\mathrm{d}x}\frac{\partial L}{\partial y'}=0
+\]
+就是
+\begin{equation}
+\sqrt{1+y'^2}
+-\frac{\mathrm{d}}{\mathrm{d}x}\Biggl(\frac{y\,y'}{\sqrt{1+y'^2}}\Biggr)=0.
+\label{eq:surf-el}
+\end{equation}
+由于 $L$ 不显含自变量，贝尔特拉米首次积分
+\[
+L-y'\frac{\partial L}{\partial y'}=C
+\]
+把 \eqref{eq:surf-el} 降成一阶方程：
+\begin{align*}
+L-y'\frac{\partial L}{\partial y'}
+&=y\sqrt{1+y'^2}-\frac{y\,y'^2}{\sqrt{1+y'^2}}
+=\frac{y}{\sqrt{1+y'^2}}=C.
+\end{align*}
+于是曲线满足
+\begin{equation}
+\frac{y}{\sqrt{1+(y')^2}}=C,
+\label{eq:surf-first}
+\end{equation}
+其中常数 $C$ 由两端点决定。对 \eqref{eq:surf-first} 再求导，可写成不含积分常数的二阶形式。由
+\[
+y'= \frac{\sqrt{y^2-C^2}}{C}
+\]
+（取使曲线能连接两端的符号），两边对 $x$ 求导并代回 $C=y/\sqrt{1+y'^2}$，得到
+\begin{equation}
+y\,y''-(y')^2-1=0.
+\label{eq:surf-second}
+\end{equation}
+\eqref{eq:surf-el}、\eqref{eq:surf-first} 与 \eqref{eq:surf-second} 等价（在 $y>0$ 且 $y'^2$ 使根式有意义的区间上）。其解是悬链线
+\[
+y=C\cosh\frac{x-b}{C},
+\]
+$C$ 与 $b$ 由 $(x_1,y_1)$、$(x_2,y_2)$ 确定。题目所求的微分方程即 \eqref{eq:surf-second}，或等价的 \eqref{eq:surf-first}。
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  请结合讲义内容，求解最速降线的解，给出该解对应的时间和直线对应的时间之比.该问题对应的泛函表示为
+  $$
+  T[u] = \int_{x_0}^{x_1} \frac{\sqrt{1+u^{\prime 2}}}{\sqrt{2 g\left(y_0-u\right)}} d x .
+  $$
+\end{problem}
+
+\begin{solution}
+$y$ 轴竖直向上。质点从 $(x_0,y_0)$ 由静止下滑，$u(x_0)=y_0$，终点为 $(x_1,y_1)$，且 $u\le y_0$。被积函数
+\[
+L=\frac{\sqrt{1+u'^2}}{\sqrt{2g(y_0-u)}}
+\]
+不显含 $x$。贝尔特拉米恒等式给出
+\[
+L-u'\frac{\partial L}{\partial u'}=C.
+\]
+其中
+\[
+\frac{\partial L}{\partial u'}
+=\frac{u'}{\sqrt{1+u'^2}\,\sqrt{2g(y_0-u)}},
+\]
+因而
+\begin{align*}
+L-u'\frac{\partial L}{\partial u'}
+&=\frac{1}{\sqrt{2g(y_0-u)}}
+\Biggl(\sqrt{1+u'^2}-\frac{u'^2}{\sqrt{1+u'^2}}\Biggr)
+=\frac{1}{\sqrt{2g(y_0-u)}\,\sqrt{1+u'^2}}
+=C.
+\end{align*}
+令正的常数 $a$ 满足 $1/C^2=2ga$，则
+\begin{equation}
+\bigl(1+u'^2\bigr)\,(y_0-u)=a,
+\qquad
+1+u'^2=\frac{a}{y_0-u}.
+\label{eq:brach-first}
+\end{equation}
+左边不小于 $1$，故下降高度落在 $0<y_0-u\le a$。用参数 $t\in(0,\pi)$ 表示这段高度，
+\begin{equation}
+y_0-u=a\sin^2 t.
+\label{eq:brach-height}
+\end{equation}
+代入 \eqref{eq:brach-first} 得 $u'^2=\cot^2 t$。质点向下运动，$u$ 随 $x$ 减小，取
+\begin{equation}
+u'=-\cot t.
+\label{eq:brach-slope}
+\end{equation}
+由 \eqref{eq:brach-height}，
+\[
+u(t)=y_0-a\sin^2 t=y_0-\frac{a}{2}(1-\cos 2t),
+\qquad
+\frac{\mathrm{d}u}{\mathrm{d}t}=-a\sin 2t.
+\]
+再由 \eqref{eq:brach-slope}，
+\begin{align*}
+\frac{\mathrm{d}x}{\mathrm{d}t}
+=\frac{\mathrm{d}u/\mathrm{d}t}{\mathrm{d}u/\mathrm{d}x}
+=\frac{-a\sin 2t}{-\cot t}
+=2a\sin^2 t
+=a(1-\cos 2t).
+\end{align*}
+$t=0$ 对应起点 $x=x_0$、$u=y_0$，积分得
+\[
+x(t)=a\Bigl(t-\frac12\sin 2t\Bigr)+x_0.
+\]
+令 $\varphi=2t$、$R=a/2$，即得半径为 $R$ 的摆线
+\begin{equation}
+\begin{aligned}
+x&=R\,(\varphi-\sin\varphi)+x_0,\\
+u&=y_0-R\,(1-\cos\varphi).
+\end{aligned}
+\label{eq:cycloid}
+\end{equation}
+这就是最速降线。
+
+按讲义取一拱的终点 $\varphi=\pi$，两端为
+\[
+(x_0,y_0)
+\quad\text{与}\quad
+(x_0+\pi R,\, y_0-2R).
+\]
+由 \eqref{eq:cycloid}，
+\begin{align*}
+\mathrm{d}s
+&=R\sqrt{(1-\cos\varphi)^2+\sin^2\varphi}\,\mathrm{d}\varphi
+=2R\sin\frac{\varphi}{2}\,\mathrm{d}\varphi,\\
+v
+&=\sqrt{2g\cdot R(1-\cos\varphi)}
+=2\sin\frac{\varphi}{2}\,\sqrt{gR}.
+\end{align*}
+于是
+\[
+T_{\text{摆线}}
+=\int_0^{\pi}\frac{\mathrm{d}s}{v}
+=\int_0^{\pi}\sqrt{\frac{R}{g}}\,\mathrm{d}\varphi
+=\pi\sqrt{\frac{R}{g}}.
+\]
+
+连接同一对端点的直线：水平距离 $\pi R$，落差 $2R$，曲线长
+\[
+L=R\sqrt{\pi^2+4}.
+\]
+沿该直线，下降高度与弧长成正比。以弧长 $s$ 为参数，$s=0$ 在起点，则下降高度为
+\[
+y_0-u=\frac{2R}{L}s=\frac{2s}{\sqrt{\pi^2+4}}.
+\]
+速度 $v=\sqrt{2g(y_0-u)}$，故
+\begin{align*}
+T_{\text{直线}}
+&=\int_0^{L}\frac{\mathrm{d}s}{\sqrt{4gs/\sqrt{\pi^2+4}}}
+=\frac{(\pi^2+4)^{1/4}}{2\sqrt{g}}\int_0^{L}s^{-1/2}\,\mathrm{d}s
+=\frac{(\pi^2+4)^{1/4}}{\sqrt{g}}\sqrt{L}.
+\end{align*}
+代入 $\sqrt{L}=\sqrt{R}\,(\pi^2+4)^{1/4}$，得到
+\[
+T_{\text{直线}}=\sqrt{\pi^2+4}\,\sqrt{\frac{R}{g}}.
+\]
+摆线用时与直线用时之比为
+\[
+\frac{T_{\text{摆线}}}{T_{\text{直线}}}
+=\frac{\pi}{\sqrt{\pi^2+4}}\approx 0.843.
+\]
+直线用时约为摆线的 $\sqrt{\pi^2+4}/\pi\approx 1.185$ 倍，摆线用时约为直线的 $84\%$。
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+实标量场 $u(\mathbf{x},t)$ 的拉格朗日密度为
+$$
+\mathcal{L}
+=\frac12\rho\,(\partial_t u)^2
+-\frac12 K|\nabla u|^2
+-\frac12 m^2 u^2,
+$$
+其中 $\rho$、$K$、$m$ 为常数.求该场满足的运动方程.当$\rho=K=1$时，该方程就是著名的Klein-Gordon方程.
+\end{problem}
+
+\begin{solution}
+作用量是拉格朗日密度对时间和空间的积分
+\[
+S[u]=\int_{t_0}^{t_1}\int \mathcal{L}\,\mathrm{d}^3x\,\mathrm{d}t.
+\]
+时间端面上的 $u$ 固定，空间边界上的变分不贡献内部方程。多个自变量 $t,x_1,x_2,x_3$ 的欧拉--拉格朗日方程为
+\[
+\frac{\partial\mathcal{L}}{\partial u}
+-\partial_t\Biggl(\frac{\partial\mathcal{L}}{\partial(\partial_t u)}\Biggr)
+-\sum_{i=1}^{3}\partial_i\Biggl(\frac{\partial\mathcal{L}}{\partial(\partial_i u)}\Biggr)
+=0.
+\]
+逐项计算。$\mathcal{L}$ 对 $u$ 只通过质量项依赖，
+\[
+\frac{\partial\mathcal{L}}{\partial u}=-m^2 u.
+\]
+对时间导数，
+\[
+\frac{\partial\mathcal{L}}{\partial(\partial_t u)}=\rho\,\partial_t u,
+\qquad
+\partial_t\Biggl(\frac{\partial\mathcal{L}}{\partial(\partial_t u)}\Biggr)=\rho\,\partial_t^2 u.
+\]
+对空间导数，$|\nabla u|^2=\sum_i(\partial_i u)^2$，故
+\[
+\frac{\partial\mathcal{L}}{\partial(\partial_i u)}=-K\,\partial_i u,
+\qquad
+\sum_{i=1}^{3}\partial_i\Biggl(\frac{\partial\mathcal{L}}{\partial(\partial_i u)}\Biggr)
+=-K\nabla^2 u.
+\]
+代入欧拉方程，
+\[
+-m^2 u-\rho\,\partial_t^2 u-(-K\nabla^2 u)=0,
+\]
+即场的运动方程
+\begin{equation}
+\rho\,\partial_t^2 u-K\nabla^2 u+m^2 u=0.
+\label{eq:kg}
+\end{equation}
+令 $\rho=K=1$，\eqref{eq:kg} 成为 Klein--Gordon 方程
+\[
+\partial_t^2 u-\nabla^2 u+m^2 u=0.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  求泛函
+  $$
+  J[y] = \int_0^1 \left[ \left(\frac{dy}{dx}\right)^2 + y^2 \right] dx
+  $$
+  在边界条件为$y(0) = 0, y(1) = 1$下的最小值.
+\end{problem}
+
+\begin{solution}
+记 $L=(y')^2+y^2$。则
+\[
+\frac{\partial L}{\partial y}=2y,
+\qquad
+\frac{\partial L}{\partial y'}=2y'.
+\]
+欧拉--拉格朗日方程给出常系数方程
+\[
+y''-y=0.
+\]
+通解为 $y=A\cosh x+B\sinh x$。由 $y(0)=0$ 得 $A=0$，由 $y(1)=1$ 得 $B=1/\sinh 1$，故极值曲线为
+\[
+y=\frac{\sinh x}{\sinh 1}.
+\]
+利用 $y''=y$，
+\[
+(y')^2+y^2=(y')^2+y\,y''=\frac{\mathrm{d}}{\mathrm{d}x}(yy').
+\]
+因此
+\[
+J[y]=\bigl[yy'\bigr]_0^1=y'(1)=\frac{\cosh 1}{\sinh 1}=\coth 1.
+\]
+这就是所求的最小值。
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  请用大模型帮助你，需要写出你使用的模型名称，使用的提示词.
+  \begin{enumerate}
+    \item 请证明 Beltrami 恒等式.该等式和哈密顿量守恒是什么关系？
+    \item 学习诺特定理，并给出该定理的证明.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+略.
+\end{solution}
+
+\end{document}

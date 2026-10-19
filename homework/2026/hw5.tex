@@ -9,9 +9,9 @@
 \usepackage{fourier-orns} % 
 
 % http://kuing.infinityfreeapp.com/forum.php?mod=viewthread&tid=527&i=1
-% \let\oldjuhao=。
-% \catcode`\。=\active
-% \newcommand{。}{\ifmmode\text{\oldjuhao}\else\oldjuhao\fi}
+% \let\oldjuhao=.
+% \catcode`\.=\active
+% \newcommand{.}{\ifmmode\text{\oldjuhao}\else\oldjuhao\fi}
 
 % \let\olddouhao=，
 % \catcode`\，=\active
@@ -108,34 +108,62 @@
   \frac{\partial L}{\partial u_i}-\frac{\partial}{\partial x}\left(\frac{\partial L}{\partial u_i^{\prime}}\right)=0 .
   $$
   \end{problem}
-  
-  
+
+\vspace{2em}
+
 \begin{problem}
   过二已知点 $\left(x_1, y_1\right),\left(x_2, y_2\right)$ 作一曲线, 使此曲线绕 $x$ 轴旋转所得曲面面积最小, 求曲线满足的微分方程.
 \end{problem}
-    
+
+\vspace{2em}
 
 \begin{problem}
-求泛函
-$$
-J[y] = \int_0^1 \left[ \left(x \frac{dy}{dx} \right)^2 + 2 y^2 \right] dx
-$$
-在边界条件为$y(0) = 0, y(1) = 1$下的最小值.
-\end{problem}
-
-\begin{problem}
-  请求解最速降线的解, 它对应的泛函表示为
+  请结合讲义内容，求解最速降线的解，给出该解对应的时间和直线对应的时间之比.该问题对应的泛函表示为
   $$
   T[u] = \int_{x_0}^{x_1} \frac{\sqrt{1+u^{\prime 2}}}{\sqrt{2 g\left(y_0-u\right)}} d x .
   $$
 \end{problem}
 
+\vspace{2em}
+
 \begin{problem}
-证明对于矩形波,
-$f(x)=\left\{ \begin{array}{ll}-1, & x<0 \\ +1, &  x>0\end{array}\right.$, 其傅里叶级数为
+实标量场 $u(\mathbf{x},t)$ 的拉格朗日密度为
 $$
-f(x)=\frac{4}{\pi} \left[  \sin \pi x+\frac{1}{3} \sin 3 \pi+\frac{1}{5 } \sin 5 x+\cdots \right].
+\mathcal{L}
+=\frac12\rho\,(\partial_t u)^2
+-\frac12 K|\nabla u|^2
+-\frac12 m^2 u^2,
 $$
+其中 $\rho$、$K$、$m$ 为常数.求该场满足的运动方程.当$\rho=K=1$时，该方程就是著名的Klein-Gordon方程.
 \end{problem}
+
+\vspace{2em}
+
+\begin{problem}
+  求泛函
+  $$
+  J[y] = \int_0^1 \left[ \left(\frac{dy}{dx}\right)^2 + y^2 \right] dx
+  $$
+  在边界条件为$y(0) = 0, y(1) = 1$下的最小值.
+\end{problem}
+
+\vspace{2em}
+
+% \begin{problem}
+% 证明对于矩形波,
+% $f(x)=\left\{ \begin{array}{ll}-1, & x<0 \\ +1, &  x>0\end{array}\right.$, 其傅里叶级数为
+% $$
+% f(x)=\frac{4}{\pi} \left[  \sin \pi x+\frac{1}{3} \sin 3 \pi+\frac{1}{5 } \sin 5 x+\cdots \right].
+% $$
+% \end{problem}
+
+\begin{problem}
+  请用大模型帮助你，需要写出你使用的模型名称，使用的提示词.
+  \begin{enumerate}
+    \item 请证明 Beltrami 恒等式.该等式和哈密顿量守恒是什么关系？
+    \item 学习诺特定理，并给出该定理的证明.
+  \end{enumerate}
+\end{problem}
+
 
 \end{document}
