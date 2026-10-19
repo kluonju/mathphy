@@ -2,6 +2,8 @@
 % 语言与顺序按 lecture/fourier/fourier_series.tex，并补出其中略去的演算
 \documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
 \input{preamble}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 \title{傅里叶分析}
 \subtitle{第一讲：傅里叶级数}
@@ -17,7 +19,7 @@
     \item 正交函数组：内积、施密特正交化、展开系数、贝塞尔不等式与完备性；
     \item 傅里叶级数的引入：均匀棒的热传播、分离变量、正弦叠加；
     \item 傅里叶定理：周期展开、狄里希利条件、有限区间上的延拓、复指数，以及锯齿函数；
-    \item 能量定理：Parseval 等式，矩形波给出 $\pi^2/8$。三角系的完备性证明见附录。
+    \item 能量定理：Parseval 等式，矩形波给出 $\pi^2/8$。
   \end{enumerate}
 \end{frame}
 
@@ -186,25 +188,7 @@
   \begin{equation*}
     \sum_{i=1}^{\infty} c_i^2=Nf,
   \end{equation*}
-  这个关系称为\textbf{完备性关系}。三角函数族满足这一关系，证明放在附录。
-\end{frame}
-
-\begin{frame}{两个函数的完备性关系}
-  更一般的形式为：若 $c_i=(f,\varphi_i)$，$d_i=(g,\varphi_i)$，则
-  \begin{equation*}
-    \sum_{i=1}^{\infty} c_i d_i=(f,g).
-  \end{equation*}
-  对 $f+g$ 应用完备性关系，
-  \begin{align*}
-    N(f+g)
-      &=Nf+Ng+2(f,g)\\
-      &=\sum_{i=1}^{\infty}(c_i+d_i)^2
-       =\sum_i c_i^2+\sum_i d_i^2+2\sum_i c_i d_i.
-  \end{align*}
-  再减去 $f$ 和 $g$ 各自的完备性关系 $\sum c_i^2=Nf$、$\sum d_i^2=Ng$，两边的范数消掉，剩下
-  \begin{equation*}
-    (f,g)=\sum_{i=1}^{\infty} c_i d_i.
-  \end{equation*}
+  这个关系称为\textbf{完备性关系}。三角函数族满足这一关系。
 \end{frame}
 
 % =============================================================
@@ -316,7 +300,31 @@
     &=\frac{\ell}{\pi}\int_0^{\pi}\sin(n\theta)\sin(m\theta)\,\mathrm{d}\theta \\
     &=\frac{\ell}{2}\,\delta_{mn}.
   \end{align*}
-  这里用了 $\displaystyle\int_0^{\pi}\sin(n\theta)\sin(m\theta)\,\mathrm{d}\theta=\tfrac{\pi}{2}\delta_{mn}$。
+  这里用了半周期上的正交性：正整数 $n,m$ 满足
+  $\displaystyle\int_0^{\pi}\sin(n\theta)\sin(m\theta)\,\mathrm{d}\theta=\tfrac{\pi}{2}\delta_{mn}$。
+\end{frame}
+
+\begin{frame}{半周期上仍正交}
+  正整数 $n,m$ 在 $[0,\pi]$ 上仍正交。积化和差
+  \begin{equation*}
+    \sin(n\theta)\sin(m\theta)
+    =\frac12\Bigl[
+      \cos\bigl((n-m)\theta\bigr)
+      -\cos\bigl((n+m)\theta\bigr)
+    \Bigr].
+  \end{equation*}
+  $n\neq m$ 时，$n-m$ 与 $n+m$ 都是非零整数，
+  \begin{equation*}
+    \int_0^{\pi}\cos(k\theta)\,\mathrm{d}\theta
+    =\frac{\sin(k\pi)}{k}=0.
+  \end{equation*}
+  $n=m$ 时
+  \begin{equation*}
+    \int_0^{\pi}\frac12\bigl(1-\cos(2n\theta)\bigr)\,\mathrm{d}\theta
+    =\frac{\pi}{2}.
+  \end{equation*}
+  因此 $\displaystyle\int_0^{\pi}\sin(n\theta)\sin(m\theta)\,\mathrm{d}\theta=\tfrac{\pi}{2}\delta_{mn}$，
+  热棒上的范数是 $\ell/2$。
 \end{frame}
 
 \begin{frame}{振幅系数}
@@ -387,6 +395,59 @@
   \end{equation*}
 \end{frame}
 
+\begin{frame}{分段平常的例子}
+  一个周期内只有有限个间断点，也只有有限个极值点。空心点表示该点不取曲线上的值。
+  \vspace{0.7em}
+  \begin{columns}[t]
+    \begin{column}{0.33\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.38cm,y=0.62cm,>=Stealth]
+        \draw[->] (-3.7,0) -- (3.9,0) node[right] {$x$};
+        \draw[->] (0,-1.8) -- (0,2.15) node[above] {$f$};
+        \draw[thick] (-3.14,-1) -- (-0.12,-1);
+        \draw[thick] (0.12,1) -- (3.14,1);
+        \draw[fill=white] (-3.14,-1) circle (1.5pt);
+        \draw[fill=white] (0,-1) circle (1.5pt);
+        \draw[fill=white] (0,1) circle (1.5pt);
+        \draw[fill=white] (3.14,1) circle (1.5pt);
+        \node[below] at (-3.14,0) {$-\pi$};
+        \node[below] at (3.14,0) {$\pi$};
+        \node[left] at (0,1) {$1$};
+        \node[left] at (0,-1) {$-1$};
+      \end{tikzpicture}\\[0.45em]
+      {\small 矩形波：两个跳跃}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.38cm,y=0.48cm,>=Stealth]
+        \draw[->] (-3.7,0) -- (3.9,0) node[right] {$x$};
+        \draw[->] (0,-0.6) -- (0,3.5) node[above] {$f$};
+        \draw[thick] (-3.14,3.14) -- (0,0) -- (3.14,3.14);
+        \fill (-3.14,3.14) circle (1.5pt);
+        \fill (3.14,3.14) circle (1.5pt);
+        \node[below] at (-3.14,0) {$-\pi$};
+        \node[below] at (3.14,0) {$\pi$};
+        \node[below right] at (0,0) {$0$};
+      \end{tikzpicture}\\[0.45em]
+      {\small 绝对值：连续，一个极小}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.38cm,y=0.42cm,>=Stealth]
+        \draw[->] (-3.7,0) -- (3.9,0) node[right] {$x$};
+        \draw[->] (0,-3.5) -- (0,3.6) node[above] {$f$};
+        \draw[thick] (-3.02,-3.02) -- (3.02,3.02);
+        \draw[fill=white] (-3.14,-3.14) circle (1.5pt);
+        \draw[fill=white] (3.14,3.14) circle (1.5pt);
+        \node[below] at (-3.14,0) {$-\pi$};
+        \node[below] at (3.14,0) {$\pi$};
+        \node[below right] at (0,0) {$0$};
+      \end{tikzpicture}\\[0.45em]
+      {\small 锯齿 $f(x)=x$：端点一个跳跃}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \begin{frame}{正弦级数与余弦级数}
   对于奇函数和偶函数，不难发现：奇函数的 $a_n$ 全为零，展开为
   \begin{equation*}
@@ -433,19 +494,19 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame}{为什么是 $f(0)=f(\ell)=0$}
-  由周期性，$g(\ell+\epsilon)=g(-\ell+\epsilon)$。再由奇性，$g(-\ell+\epsilon)=-g(\ell-\epsilon)$。因此
-  \begin{equation*}
-    g(\ell+\epsilon)=-g(\ell-\epsilon).
-  \end{equation*}
-  $g$ 关于 $x=\ell$ 也是奇的。连续延拓时左右极限相等，只能是
-  \begin{equation*}
-    g(0)=0,
-    \qquad
-    g(\ell)=0.
-  \end{equation*}
-  正弦级数在端点自动为零，与 $f(0)=f(\ell)=0$ 一致。热棒两端保持零度，用的就是这个延拓。
-\end{frame}
+% \begin{frame}{为什么是 $f(0)=f(\ell)=0$}
+%   由周期性，$g(\ell+\epsilon)=g(-\ell+\epsilon)$。再由奇性，$g(-\ell+\epsilon)=-g(\ell-\epsilon)$。因此
+%   \begin{equation*}
+%     g(\ell+\epsilon)=-g(\ell-\epsilon).
+%   \end{equation*}
+%   $g$ 关于 $x=\ell$ 也是奇的。连续延拓时左右极限相等，只能是
+%   \begin{equation*}
+%     g(0)=0,
+%     \qquad
+%     g(\ell)=0.
+%   \end{equation*}
+%   正弦级数在端点自动为零，与 $f(0)=f(\ell)=0$ 一致。热棒两端保持零度，用的就是这个延拓。
+% \end{frame}
 
 \begin{frame}{偶延拓}
   要求 $f'(0)=f'(\ell)=0$ 时，延拓成以 $2\ell$ 为周期的偶函数：
@@ -462,16 +523,63 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame}{为什么是 $f'(0)=f'(\ell)=0$}
-  偶函数的导数是奇函数。$x>0$ 时 $g'(x)=f'(x)$；$x<0$ 时
-  \begin{equation*}
-    g'(x)=\frac{\mathrm{d}}{\mathrm{d}x}f(-x)=-f'(-x).
-  \end{equation*}
-  左右导数在 $x=0$ 处相等，当且仅当 $f'(0)=0$，此时 $g'(0)=0$。
-  \vspace{0.4em}
-
-  与奇延拓同样的移轴可知，$g$ 关于 $x=\ell$ 是偶的，导数关于 $x=\ell$ 是奇的。导数在 $x=\ell$ 处存在，就要求 $f'(\ell)=0$。余弦级数的导数是正弦级数，在 $x=0$ 和 $x=\ell$ 自动为零。
+\begin{frame}{延拓的图例}
+  取 $(0,\ell)$ 上的 $f(x)=x$。\blue{蓝线}是给定的一段，\orange{橙线}是延拓，周期为 $2\ell$。空心点表示跳跃处不取曲线上的值。
+  \vspace{0.55em}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.58cm,y=0.42cm,>=Stealth]
+        \draw[->] (-2.55,0) -- (4.75,0) node[right] {$x$};
+        \draw[->] (0,-2.55) -- (0,2.75) node[above] {$g$};
+        \draw[orange,thick] (-2,-2) -- (0,0);
+        \draw[blue,thick] (0,0) -- (2,2);
+        \draw[orange,thick] (2,-2) -- (4,0);
+        \draw[fill=white] (-2,-2) circle (1.5pt);
+        \draw[fill=white] (2,2) circle (1.5pt);
+        \draw[fill=white] (2,-2) circle (1.5pt);
+        \fill (4,0) circle (1.3pt);
+        \node[below] at (-2,0) {$-\ell$};
+        \node[below] at (2,0) {$\ell$};
+        \node[below] at (4,0) {$2\ell$};
+        \node[below left] at (0,0) {$0$};
+      \end{tikzpicture}\\[0.4em]
+      {\small 奇延拓：$g(-x)=-g(x)$，正弦级数\\
+      在 $x=\ell$ 处跳跃}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.58cm,y=0.42cm,>=Stealth]
+        \draw[->] (-2.55,0) -- (4.75,0) node[right] {$x$};
+        \draw[->] (0,-0.7) -- (0,2.75) node[above] {$g$};
+        \draw[orange,thick] (-2,2) -- (0,0);
+        \draw[blue,thick] (0,0) -- (2,2);
+        \draw[orange,thick] (2,2) -- (4,0);
+        \fill (-2,2) circle (1.3pt);
+        \fill (0,0) circle (1.3pt);
+        \fill (2,2) circle (1.3pt);
+        \fill (4,0) circle (1.3pt);
+        \node[below] at (-2,0) {$-\ell$};
+        \node[below] at (2,0) {$\ell$};
+        \node[below] at (4,0) {$2\ell$};
+        \node[below left] at (0,0) {$0$};
+      \end{tikzpicture}\\[0.4em]
+      {\small 偶延拓：$g(-x)=g(x)$，余弦级数\\
+      在 $x=0,\ell$ 处连续}
+    \end{column}
+  \end{columns}
 \end{frame}
+
+% \begin{frame}{为什么是 $f'(0)=f'(\ell)=0$}
+%   偶函数的导数是奇函数。$x>0$ 时 $g'(x)=f'(x)$；$x<0$ 时
+%   \begin{equation*}
+%     g'(x)=\frac{\mathrm{d}}{\mathrm{d}x}f(-x)=-f'(-x).
+%   \end{equation*}
+%   左右导数在 $x=0$ 处相等，当且仅当 $f'(0)=0$，此时 $g'(0)=0$。
+%   \vspace{0.4em}
+%
+%   与奇延拓同样的移轴可知，$g$ 关于 $x=\ell$ 是偶的，导数关于 $x=\ell$ 是奇的。导数在 $x=\ell$ 处存在，就要求 $f'(\ell)=0$。余弦级数的导数是正弦级数，在 $x=0$ 和 $x=\ell$ 自动为零。
+% \end{frame}
 
 \begin{frame}{复指数形式}
   由欧拉公式
@@ -517,21 +625,43 @@
 \end{frame}
 
 \begin{frame}{例：锯齿函数}
-  \begin{equation*}
-    f(x)=\begin{cases}
-      x, & 0<x\leq\ell,\\
-      x-2\ell, & \ell<x\leq 2\ell.
-    \end{cases}
-  \end{equation*}
-  求其傅里叶级数。
-  \vspace{0.4em}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{equation*}
+        f(x)=\begin{cases}
+          x, & 0<x\leq\ell,\\
+          x-2\ell, & \ell<x\leq 2\ell.
+        \end{cases}
+      \end{equation*}
+      求其傅里叶级数。它是奇函数，余弦系数为零。
+      \vspace{0.35em}
 
-  通过解析延拓，该函数为奇函数，余弦系数为零。按 $[0,2\ell]$ 上的正弦公式，
-  \begin{equation*}
-    b_n=\frac{1}{\ell}\int_0^{\ell} x\sin(kx)\,\mathrm{d}x
-        +\frac{1}{\ell}\int_{\ell}^{2\ell}(x-2\ell)\sin(kx)\,\mathrm{d}x,
-  \end{equation*}
-  其中 $k=n\pi/\ell$。
+      按 $[0,2\ell]$ 上的正弦公式，$k=n\pi/\ell$，
+      \begin{equation*}
+        \begin{aligned}
+          b_n
+          &=\frac{1}{\ell}\int_0^{\ell} x\sin(kx)\,\mathrm{d}x\\
+          &\quad+\frac{1}{\ell}\int_{\ell}^{2\ell}(x-2\ell)\sin(kx)\,\mathrm{d}x.
+        \end{aligned}
+      \end{equation*}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.62cm,y=0.40cm,>=Stealth]
+        \draw[->] (-0.45,0) -- (4.9,0) node[right] {$x$};
+        \draw[->] (0,-2.55) -- (0,2.75) node[above] {$f$};
+        \draw[thick] (0,0) -- (2,2);
+        \draw[thick] (2,-2) -- (4,0);
+        \fill (0,0) circle (1.4pt);
+        \fill (2,2) circle (1.4pt);
+        \draw[fill=white] (2,-2) circle (1.6pt);
+        \fill (4,0) circle (1.4pt);
+        \node[below left] at (0,0) {$0$};
+        \node[below] at (2,0) {$\ell$};
+        \node[below] at (4,0) {$2\ell$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{锯齿函数：第一段}
@@ -592,6 +722,78 @@
   其实，这个锯齿函数可以直接用 $f(x)=x$（$-\ell<x<\ell$）来表示，相应的间断点则被移到 $\pm\ell$ 处。奇函数的系数公式 $b_n=(2/\ell)\int_0^{\ell} x\sin(kx)\,\mathrm{d}x$ 给出同一个结果。
 \end{frame}
 
+\begin{frame}{部分和逼近锯齿函数}
+  前 $N$ 项部分和
+  \begin{equation*}
+    s_N(x)=\frac{2\ell}{\pi}\sum_{n=1}^{N}
+      \frac{(-1)^{n+1}}{n}
+      \sin\Bigl(\frac{n\pi x}{\ell}\Bigr).
+  \end{equation*}
+  $N$ 增大时，$s_N$ 在连续处贴近 $f$，间断点 $x=\ell$ 附近仍有过冲。
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.86\textwidth,
+      height=4.15cm,
+      scale only axis,
+      xmin=0, xmax=2,
+      ymin=-1.45, ymax=1.45,
+      xtick={0,1,2},
+      xticklabels={$0$,$\ell$,$2\ell$},
+      ytick={-1,0,1},
+      yticklabels={$-\ell$,$0$,$\ell$},
+      xlabel={$x$},
+      ylabel={$f$},
+      tick label style={font=\small},
+      label style={font=\small},
+      legend style={font=\scriptsize, cells={anchor=west}, at={(0.98,0.98)}, anchor=north east},
+      every axis plot/.append style={no markers},
+      samples=240,
+      domain=0.02:1.98,
+    ]
+      \addplot[blue] {(2/pi)*sin(deg(pi*x))};
+      \addlegendentry{$s_1$}
+      \addplot[orange] {(2/pi)*(
+        sin(deg(pi*x))
+        -sin(deg(2*pi*x))/2
+        +sin(deg(3*pi*x))/3
+      )};
+      \addlegendentry{$s_3$}
+      \addplot[teal] {(2/pi)*(
+        sin(deg(pi*x))
+        -sin(deg(2*pi*x))/2
+        +sin(deg(3*pi*x))/3
+        -sin(deg(4*pi*x))/4
+        +sin(deg(5*pi*x))/5
+        -sin(deg(6*pi*x))/6
+        +sin(deg(7*pi*x))/7
+        -sin(deg(8*pi*x))/8
+        +sin(deg(9*pi*x))/9
+        -sin(deg(10*pi*x))/10
+      )};
+      \addlegendentry{$s_{10}$}
+      \addplot[black, very thick, forget plot, domain=0:1, samples=2] {x};
+      \addplot[black, very thick, domain=1:2, samples=2] {x-2};
+      \addlegendentry{$f$}
+    \end{axis}
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Gibbs 现象}
+  间断点附近的过冲称为\textbf{Gibbs 现象}。它不是级数和的错误：无穷级数在 $x=\ell$ 仍等于左右极限的算术平均 $0$。过冲出现在部分和 $s_N$ 里。
+  \vspace{0.45em}
+
+  跳跃高度是左右极限之差。锯齿函数在 $x=\ell$ 从 $\ell$ 跳到 $-\ell$，高度为 $2\ell$。$N$ 很大时，部分和在跳跃两侧各冲出跳跃高度的固定比例
+  \begin{equation*}
+    \frac{1}{\pi}\int_0^{\pi}\frac{\sin t}{t}\,\mathrm{d}t-\frac12
+    \approx 0.089,
+  \end{equation*}
+  约 $9\%$。第一峰因此趋于约 $1.18\ell$，而不是 $\ell$。
+  \vspace{0.45em}
+
+  $N$ 增大时，这个比例几乎不变，振荡只是挤向间断点，宽度大约按 $1/N$ 缩小。过冲占的区间越来越窄，平均平方误差仍然趋于零。
+\end{frame}
+
 \begin{frame}{莱布尼兹等式}
   容易验证：$f(0)=0$。在间断点 $x=\ell$，左极限为 $\ell$，右极限为 $-\ell$，算术平均为 $0$，级数和也是 $0$。
   \vspace{0.4em}
@@ -638,7 +840,7 @@
     =\frac{a_0^2}{4}
      +\sum_{n=1}^{\infty}\Biggl(\frac{a_n^2}{2}+\frac{b_n^2}{2}\Biggr).
   \end{equation*}
-  这就是完备性关系。下一节的 Parseval 等式是它的复指数写法。证明见附录。
+  这就是完备性关系。下一节的 Parseval 等式是它的复指数写法。
 \end{frame}
 
 % =============================================================
@@ -716,7 +918,7 @@
 \end{frame}
 
 \begin{frame}{取极限}
-  附录里已经证明三角系完备，平均平方误差趋于零：
+  三角系完备时，平均平方误差趋于零：
   \begin{equation*}
     \int_{-\ell}^{\ell}|f-s_N|^2\,\mathrm{d}x\to 0
     \qquad(N\to\infty).
@@ -750,22 +952,42 @@
 \end{frame}
 
 \begin{frame}{矩形波的系数}
-  取周期为 $2$，即 $\ell=1$，
-  \begin{equation*}
-    f(x)=\begin{cases}
-      -1, & -\ell<x<0,\\
-      +1, & 0<x<\ell.
-    \end{cases}
-  \end{equation*}
-  这是奇函数，$a_n=0$。
-  \begin{align*}
-    b_n
-    &=\frac{2}{\ell}\int_0^{\ell}\sin\Bigl(\frac{n\pi x}{\ell}\Bigr)\,\mathrm{d}x
-     =2\int_0^1\sin(n\pi x)\,\mathrm{d}x \\
-    &=2\Bigl[-\frac{\cos(n\pi x)}{n\pi}\Bigr]_0^1
-     =\frac{2\bigl(1-(-1)^n\bigr)}{n\pi}.
-  \end{align*}
-  $n$ 为偶数时 $b_n=0$；$n$ 为奇数时 $b_n=4/(n\pi)$。
+  \begin{columns}[c]
+    \begin{column}{0.58\textwidth}
+      取周期为 $2$，即 $\ell=1$，
+      \begin{equation*}
+        f(x)=\begin{cases}
+          -1, & -\ell<x<0,\\
+          +1, & 0<x<\ell.
+        \end{cases}
+      \end{equation*}
+      这是奇函数，$a_n=0$。
+      \begin{align*}
+        b_n
+        &=2\int_0^1\sin(n\pi x)\,\mathrm{d}x \\
+        &=2\Bigl[-\frac{\cos(n\pi x)}{n\pi}\Bigr]_0^1
+         =\frac{2\bigl(1-(-1)^n\bigr)}{n\pi}.
+      \end{align*}
+      $n$ 为偶数时 $b_n=0$；$n$ 为奇数时 $b_n=4/(n\pi)$。
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[x=1.05cm,y=0.78cm,>=Stealth]
+        \draw[->] (-1.45,0) -- (1.75,0) node[right] {$x$};
+        \draw[->] (0,-1.7) -- (0,1.9) node[above] {$f$};
+        \draw[thick] (-1,-1) -- (-0.08,-1);
+        \draw[thick] (0.08,1) -- (1,1);
+        \draw[fill=white] (-1,-1) circle (1.6pt);
+        \draw[fill=white] (0,-1) circle (1.6pt);
+        \draw[fill=white] (0,1) circle (1.6pt);
+        \draw[fill=white] (1,1) circle (1.6pt);
+        \node[below] at (-1,-1) {$-\ell$};
+        \node[below] at (1,-1.15) {$\ell$};
+        \node[above] at (-0.55,-1) {$-1$};
+        \node[below] at (0.55,1) {$1$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{矩形波与 $\pi^2/8$}
@@ -792,12 +1014,13 @@
 
 \begin{frame}{本讲小结}
   \begin{itemize}
-    \item 内积 $(f,g)=\int f g\,\mathrm{d}x$。贝塞尔不等式在完备时成为 $\sum c_i^2=Nf$。三角系的完备性证明见附录。
+    \item 内积 $(f,g)=\int f g\,\mathrm{d}x$。贝塞尔不等式在完备时成为 $\sum c_i^2=Nf$。
     \item 只在 $(0,\ell)$ 上有定义的函数先作周期延拓。$f(0)=f(\ell)=0$ 时用奇延拓，$f'(0)=f'(\ell)=0$ 时用偶延拓。
     \item 间断点处级数和为左右值的算术平均。锯齿函数给出 $\pi/4$，矩形波给出 $\pi^2/8$。
   \end{itemize}
 \end{frame}
 
+\iffalse
 \appendix
 % =============================================================
 \section{补充}
@@ -994,5 +1217,6 @@
   这就是完备性关系。正文中的 Parseval 等式是它的复指数写法。
   狄里希利条件还保证间断点处级数和等于左右值的算术平均；上面证明的是平均平方意义下的完备。
 \end{frame}
+\fi
 
 \end{document}
