@@ -256,73 +256,7 @@ $$
 $$
 A=1+\left(\frac{\partial u}{\partial x}\right)^2+\left(\frac{\partial u}{\partial y}\right)^2.
 $$
-它表示平衡曲面的平均曲率为零.未知量现在依赖两个自变量,所以变分条件是偏微分方程,不再是常微分方程.
-
-\subsection{泛函导数}
-把变分写成 $u_\epsilon=u+\epsilon\eta$,泛函导数由
-\begin{equation}
-  \left.\funcd{}{\epsilon} J[u+\epsilon\eta]\right|_{\epsilon=0}
-  = \int_a^b \fnald{J}{u(x)}\,\eta(x)\,\mathrm{d}x
-\end{equation}
-定义.固定端点时,一阶导数的拉格朗日量给出
-\begin{equation}
-  \fnald{J}{u}
-  = \funcpd{L}{u} - \funcd{}{x}\left(\funcpd{L}{u'}\right).
-\end{equation}
-欧拉--拉格朗日方程就是这个泛函导数为零.
-
-非局域泛函把不同点的函数值耦在一起.例如
-\begin{equation}
-  J[u] = \half \iint u(x)\,K(x,x')\,u(x')\,\mathrm{d}x\,\mathrm{d}x'.
-\end{equation}
-$K$ 对称时 $\fnald{J}{u(x)}=\int K(x,x')u(x')\,\mathrm{d}x'$;$K$ 不对称时核要换成 $\half\bigl(K(x,x')+K(x',x)\bigr)$.下面的哈特里项就是这种结构.
-
-若能量是密度 $n(\br)$ 的泛函,并且粒子数 $\int n(\br)\,\mathrm{d}^3\br=N$ 固定,引入化学势 $\mu$,
-\begin{equation}
-  \widetilde E[n] = E[n] - \mu\left(\int n\,\mathrm{d}^3\br - N\right).
-\end{equation}
-对 $n$ 变分得到
-\begin{equation}
-  \fnald{E}{n(\br)} = \mu .
-\end{equation}
-$\mu$ 在空间中是常数,尽管外势和密度都可以随地点变化.
-
-\begin{example}
-局域密度泛函 $E[n]=\int\bigl(C n^{5/3}+v(\br)n\bigr)\,\mathrm{d}^3\br$ 的泛函导数.
-\end{example}
-\begin{solution}
-被积函数不含 $n$ 的导数,所以
-\begin{equation}
-  \fnald{E}{n(\br)} = \frac{5}{3} C n(\br)^{2/3} + v(\br).
-\end{equation}
-归一化后的极值条件是 $\tfrac{5}{3}C n^{2/3}+v=\mu$,在每一点都是代数方程,只通过 $\mu$ 和总粒子数发生整体联系.
-\end{solution}
-
-若再加入电子之间的库仑能
-\begin{equation}
-  E_H[n] = \half \iint \frac{n(\br)n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\br\,\mathrm{d}^3\brp,
-\end{equation}
-则
-\begin{equation}
-  \fnald{E_H}{n(\br)} = \int \frac{n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\brp .
-\end{equation}
-局域动能项和外势在同一点取值,哈特里项则把整个空间的密度都记进来.把三项放在一起,
-\begin{equation}
-  E[n] = C\int n^{5/3}\,\mathrm{d}^3\br
-  + \int v_{\mathrm{ext}}(\br)\,n\,\mathrm{d}^3\br
-  + E_H[n],
-\end{equation}
-其中 Thomas--Fermi 系数 $C=\frac{3}{10}(3\pi^2)^{2/3}$.极值条件是
-\begin{equation}
-  \frac{5}{3} C\, n(\br)^{2/3} + v_{\mathrm{ext}}(\br) + v_H(\br) = \mu,
-  \qquad
-  v_H(\br) = \int \frac{n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\brp.
-\end{equation}
-粒子数守恒用来定 $\mu$.
-
-
-
-
+它表示平衡曲面的平均曲率为零.未知量现在依赖两个自变量,所以变分条件是偏微分方程,不再是常微分方程.泛函导数的系统算法见第~\ref{sec:functional-derivative}~节.
 
 
 

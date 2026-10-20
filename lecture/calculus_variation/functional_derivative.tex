@@ -1,0 +1,261 @@
+\section{泛函求导}
+\idx{泛函导数}{fanhandaoshu}
+\label{sec:functional-derivative}
+欧拉--拉格朗日方程可以写成 $\fnald{J}{u}=0$.这一节把 $\fnald{J}{u}$ 本身当作运算对象,归纳定义、运算法则和几种典型泛函的求导步骤.$\fnald{J}{u(x)}$ 表示对自变量 $x$ 处函数值的泛函导数.
+
+\subsection{定义与两种写法}
+设 $J[u]$ 是区间 $[a,b]$ 上函数 $u$ 的泛函.对任意允许的试探变分 $\eta$,定义
+\begin{equation}
+  \delta J[u;\eta]
+  :=\left.\funcd{}{\epsilon}J[u+\epsilon\eta]\right|_{\epsilon=0}.
+  \label{eq:fd-gateaux}
+\end{equation}
+若存在函数 $G(x)$ 使得对一切 $\eta$ 都有
+\begin{equation}
+  \delta J[u;\eta]=\int_a^b G(x)\,\eta(x)\,\mathrm{d}x,
+  \label{eq:fd-def}
+\end{equation}
+则称 $G$ 为 $J$ 对 $u$ 的\textbf{泛函导数},并记
+\begin{equation}
+  \fnald{J}{u(x)}=G(x).
+\end{equation}
+\eqref{eq:fd-gateaux} 是 Gateaux 导数;\eqref{eq:fd-def} 只在 $\delta J$ 对 $\eta$ 是连续线性泛函时才成立.下面处理的都是后一种情形.
+
+另一种等价写法用 $\delta$ 函数挑出一点.令 $\eta(x')=\delta(x'-x)$,形式上
+\begin{equation}
+  \fnald{J}{u(x)}
+  =\left.\funcd{}{\epsilon}J\bigl[u+\epsilon\delta(\,\cdot\,-x)\bigr]\right|_{\epsilon=0}.
+  \label{eq:fd-delta}
+\end{equation}
+实际计算时仍按\eqref{eq:fd-gateaux}展开,再把 $\eta$ 前面的系数读出来;不必真的把 $\delta$ 函数代进积分.
+
+固定端点、一阶导数的局域拉格朗日量给出
+\begin{equation}
+  \fnald{J}{u}
+  =\funcpd{L}{u}-\funcd{}{x}\Biggl(\funcpd{L}{u'}\Biggr).
+\end{equation}
+欧拉--拉格朗日方程就是这个泛函导数为零.
+
+\begin{example}
+$J[u]=\int_a^b u(x)^2\,\mathrm{d}x$.
+\end{example}
+\begin{solution}
+$J[u+\epsilon\eta]=\int(u+\epsilon\eta)^2=\int u^2+2\epsilon\int u\eta+O(\epsilon^2)$,因此
+\begin{equation}
+  \delta J=\int_a^b 2u(x)\,\eta(x)\,\mathrm{d}x,
+  \qquad
+  \fnald{J}{u(x)}=2u(x).
+\end{equation}
+普通导数 $\mathrm{d}(u^2)/\mathrm{d}u=2u$ 在积分号下逐点出现,因为被积函数在每一点只依赖该点的 $u$.
+\end{solution}
+
+\subsection{基本运算法则}
+设 $J,K$ 是同一类函数上的泛函,$\alpha,\beta$ 是常数.$u,v$ 是同一自变量的两个函数.
+
+\begin{enumerate}
+  \item \textbf{线性}
+  \begin{equation}
+    \fnald{}{u}\bigl(\alpha J+\beta K\bigr)
+    =\alpha\fnald{J}{u}+\beta\fnald{K}{u}.
+  \end{equation}
+
+  \item \textbf{乘积}若 $J,K$ 都是数,
+  \begin{equation}
+    \fnald{}{u}\bigl(JK\bigr)
+    =J\fnald{K}{u}+K\fnald{J}{u}.
+  \end{equation}
+
+  \item \textbf{复合}若外层是普通函数 $f:\mathbb{R}\to\mathbb{R}$,内层是泛函 $J[u]$,
+  \begin{equation}
+    \fnald{}{u}f\bigl(J[u]\bigr)
+    =f'\bigl(J[u]\bigr)\,\fnald{J}{u}.
+  \end{equation}
+
+  \item \textbf{链式法则}若 $v=v[u]$ 是函数到函数的映射,而 $J=J[v]$,则
+  \begin{equation}
+    \fnald{J}{u(x)}
+    =\int\fnald{J}{v(y)}\,\fnald{v(y)}{u(x)}\,\mathrm{d}y.
+    \label{eq:fd-chain}
+  \end{equation}
+  $\fnald{v(y)}{u(x)}$ 是核.特别地 $v=u$ 时核是 $\delta(y-x)$.
+
+  \item \textbf{对自变量的依赖}若被积函数显含 $x$,泛函导数只对 $u$ 及其导数取,不对 $x$ 取.$\partial/\partial x$ 与 $\delta/\delta u$ 一般不对易.
+\end{enumerate}
+
+\begin{example}
+$J[u]=\bigl(\int_a^b u\,\mathrm{d}x\bigr)^2$.
+\end{example}
+\begin{solution}
+令 $I[u]=\int u\,\mathrm{d}x$,则 $J=I^2$.$\fnald{I}{u(x)}=1$,于是
+\begin{equation}
+  \fnald{J}{u(x)}=2I[u]\cdot 1=2\int_a^b u(y)\,\mathrm{d}y.
+\end{equation}
+结果与 $x$ 无关:整体积分的平方对每一点的变分贡献相同.
+\end{solution}
+
+\subsection{局域泛函}
+若
+\begin{equation}
+  J[u]=\int_a^b L\bigl(x,u(x),u'(x),\ldots,u^{(m)}(x)\bigr)\,\mathrm{d}x,
+\end{equation}
+被积函数在 $x$ 处只依赖该点的 $u$ 及其导数,称为\textbf{局域泛函}.固定端点变分下,
+\begin{equation}
+  \fnald{J}{u}
+  =\sum_{k=0}^{m}(-1)^k\frac{\mathrm{d}^k}{\mathrm{d}x^k}
+    \Biggl(\funcpd{L}{u^{(k)}}\Biggr).
+  \label{eq:fd-local}
+\end{equation}
+这就是欧拉--拉格朗日表达式.常用特例:
+\begin{align}
+  L=L(x,u)
+  &\quad\Rightarrow\quad
+  \fnald{J}{u}=\funcpd{L}{u},
+  \\
+  L=L(x,u,u')
+  &\quad\Rightarrow\quad
+  \fnald{J}{u}=\funcpd{L}{u}-\funcd{}{x}\funcpd{L}{u'},
+  \\
+  L=L(x,u,u',u'')
+  &\quad\Rightarrow\quad
+  \fnald{J}{u}
+  =\funcpd{L}{u}
+  -\funcd{}{x}\funcpd{L}{u'}
+  +\funcd{^2}{x^2}\funcpd{L}{u''}.
+\end{align}
+
+多维区域 $\Omega$ 上 $J[u]=\int_{\Omega}F(x,u,\nabla u)\,\mathrm{d}^dx$ 时,同样有
+\begin{equation}
+  \fnald{J}{u}
+  =\funcpd{F}{u}-\nabla\cdot\Biggl(\funcpd{F}{\nabla u}\Biggr).
+\end{equation}
+
+\begin{example}
+动能型泛函 $J[u]=\frac12\int_a^b\bigl(u'\bigr)^2\,\mathrm{d}x$.
+\end{example}
+\begin{solution}
+$L=\frac12(u')^2$,$\partial L/\partial u=0$,$\partial L/\partial u'=u'$.故
+\begin{equation}
+  \fnald{J}{u}=-u''.
+\end{equation}
+对 $\eta$ 直接验证:$\delta J=\int u'\eta'\,\mathrm{d}x=-\int u''\eta\,\mathrm{d}x$(端点 $\eta=0$).
+\end{solution}
+
+\begin{example}
+狄利克雷积分 $J[u]=\frac12\iint_{\Omega}|\nabla u|^2\,\mathrm{d}x\,\mathrm{d}y$.
+\end{example}
+\begin{solution}
+$F=\frac12|\nabla u|^2$,$\partial F/\partial u=0$,$\partial F/\partial\nabla u=\nabla u$.因此
+\begin{equation}
+  \fnald{J}{u}=-\Delta u.
+\end{equation}
+\end{solution}
+
+\subsection{非局域泛函}
+被积函数依赖不同点的函数值时,\eqref{eq:fd-local}不够用.典型形式是二次型
+\begin{equation}
+  J[u]=\frac12\iint u(x)K(x,x')u(x')\,\mathrm{d}x\,\mathrm{d}x'.
+\end{equation}
+对称核 $K(x,x')=K(x',x)$ 时,
+\begin{equation}
+  \fnald{J}{u(x)}=\int K(x,x')u(x')\,\mathrm{d}x'.
+\end{equation}
+不对称时把核换成 $\frac12\bigl(K(x,x')+K(x',x)\bigr)$.推导:$J[u+\epsilon\eta]$ 对 $\epsilon$ 求导后出现两项,交换哑标使它们合并.
+
+更一般的积分型
+\begin{equation}
+  J[u]=\int f\Biggl(x,\int K(x,y)u(y)\,\mathrm{d}y\Biggr)\mathrm{d}x
+\end{equation}
+先令 $v(x)=\int K(x,y)u(y)\,\mathrm{d}y$,则 $\fnald{J}{v(x)}=f_v(x,v(x))$,再用链式法则\eqref{eq:fd-chain},
+\begin{equation}
+  \fnald{J}{u(y)}=\int f_v\bigl(x,v(x)\bigr)\,K(x,y)\,\mathrm{d}x.
+\end{equation}
+
+\begin{example}
+库仑能 $E_H[n]=\frac12\iint\frac{n(\br)n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\br\,\mathrm{d}^3\brp$.
+\end{example}
+\begin{solution}
+核 $1/|\br-\brp|$ 对称,因此
+\begin{equation}
+  \fnald{E_H}{n(\br)}=\int\frac{n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\brp.
+\end{equation}
+前面的 $\frac12$ 被对称化吃掉,结果里没有 $\frac12$.
+\end{solution}
+
+\subsection{约束与乘子}
+若还要求 $C[u]=0$,极值条件对 $J-\lambda C$ 取泛函导数,
+\begin{equation}
+  \fnald{J}{u}-\lambda\fnald{C}{u}=0,
+\end{equation}
+再与约束方程联立定 $\lambda$.粒子数约束 $C[n]=\int n\,\mathrm{d}^3\br-N$ 给出 $\fnald{C}{n}=1$,所以 $\fnald{E}{n}=\mu$ 在空间中是常数.
+
+等周型约束 $C[u]=\int g(x,u,u')\,\mathrm{d}x-\ell$ 时,$\fnald{C}{u}$ 仍用局域公式\eqref{eq:fd-local}计算,只是把拉格朗日量换成 $g$.
+
+\subsection{第二变分与二阶泛函导数}
+一阶变分之后还可以对 $\eta$ 再变一次.定义
+\begin{equation}
+  \delta^2 J[u;\eta,\zeta]
+  :=\left.\frac{\partial^2}{\partial\epsilon\,\partial\sigma}
+    J[u+\epsilon\eta+\sigma\zeta]\right|_{\epsilon=\sigma=0}.
+\end{equation}
+若
+\begin{equation}
+  \delta^2 J=\iint\eta(x)\,H(x,x')\,\zeta(x')\,\mathrm{d}x\,\mathrm{d}x',
+\end{equation}
+则核 $H$ 称为二阶泛函导数,记作
+\begin{equation}
+  \fnald{^2 J}{u(x)\,\delta u(x')}=H(x,x').
+\end{equation}
+局域二次型 $J=\frac12\int(u')^2$ 给出 $H=-\delta''(x-x')$(在端点为零的试探函数空间里).二阶导数用来判断驻点是极小还是鞍点,也是密度泛函里响应函数的出发点.
+
+\subsection{计算步骤}
+对一个具体的 $J[u]$,按下面顺序通常最快.
+\begin{enumerate}
+  \item 写出 $J[u+\epsilon\eta]$,对 $\epsilon$ 在 $0$ 处求导,得到 $\delta J$.
+  \item 若出现 $\eta',\eta'',\nabla\eta$ 等,分部积分(或用散度定理),把导数全部挪到已知函数上,并丢掉边界项(或单独写出自然边界条件).
+  \item 把结果整理成 $\int G\eta$,则 $G=\fnald{J}{u}$.
+  \item 若 $J$ 是复合或非局域的,先对中间量求导,再套链式法则.
+  \item 有约束时对 $J-\lambda C$ 重复以上步骤.
+\end{enumerate}
+
+\begin{example}
+$J[u]=\int_0^1\bigl(\frac12(u')^2+\frac14 u^4-fu\bigr)\,\mathrm{d}x$,端点固定.
+\end{example}
+\begin{solution}
+三项分别贡献 $-u''$,$u^3$,$-f$.故
+\begin{equation}
+  \fnald{J}{u}=-u''+u^3-f.
+\end{equation}
+驻点条件 $\fnald{J}{u}=0$ 即 $-u''+u^3=f$.
+\end{solution}
+
+\subsection{密度泛函中的例子}
+若能量是密度 $n(\br)$ 的泛函,并且粒子数 $\int n(\br)\,\mathrm{d}^3\br=N$ 固定,引入化学势 $\mu$,
+\begin{equation}
+  \widetilde E[n] = E[n] - \mu\left(\int n\,\mathrm{d}^3\br - N\right).
+\end{equation}
+对 $n$ 变分得到 $\fnald{E}{n(\br)}=\mu$.$\mu$ 在空间中是常数,尽管外势和密度都可以随地点变化.
+
+\begin{example}
+局域密度泛函 $E[n]=\int\bigl(C n^{5/3}+v(\br)n\bigr)\,\mathrm{d}^3\br$ 的泛函导数.
+\end{example}
+\begin{solution}
+被积函数不含 $n$ 的导数,所以
+\begin{equation}
+  \fnald{E}{n(\br)} = \frac{5}{3} C n(\br)^{2/3} + v(\br).
+\end{equation}
+归一化后的极值条件是 $\tfrac{5}{3}C n^{2/3}+v=\mu$,在每一点都是代数方程,只通过 $\mu$ 和总粒子数发生整体联系.
+\end{solution}
+
+把局域动能、外势和库仑能放在一起,
+\begin{equation}
+  E[n] = C\int n^{5/3}\,\mathrm{d}^3\br
+  + \int v_{\mathrm{ext}}(\br)\,n\,\mathrm{d}^3\br
+  + E_H[n],
+\end{equation}
+其中 Thomas--Fermi 系数 $C=\frac{3}{10}(3\pi^2)^{2/3}$.极值条件是
+\begin{equation}
+  \frac{5}{3} C\, n(\br)^{2/3} + v_{\mathrm{ext}}(\br) + v_H(\br) = \mu,
+  \qquad
+  v_H(\br) = \int \frac{n(\brp)}{|\br-\brp|}\,\mathrm{d}^3\brp.
+\end{equation}
+粒子数守恒用来定 $\mu$.局域动能项和外势在同一点取值,哈特里项则把整个空间的密度都记进来.
