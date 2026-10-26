@@ -381,6 +381,7 @@ $\int_0^1 \frac{d x}{1+x^2}=\left.\tan ^{-1} x\right|_0 ^1=\frac{\pi}{4}$,和被
   E = \frac{a_0^2}{4}+\sum_{n=1}^{\infty}\left(\frac{a_n^2}{2}+\frac{b_n^2}{2}\right) .
 \end{equation}
 称为\textbf{Parseval等式}(Parseval's identity).
+三角系完备时贝塞尔不等式成为这个等式;推导见本节末的补充.
 其物理意义指的是,一复杂波形分解为许多波幅为$c_n$的正(余)弦波的叠加,该波所携带的总能量为各个成分波强度的求和.
 
 \begin{example}
@@ -445,60 +446,76 @@ $x=\pi$ 处函数连续,$x^2=\pi^2$,$\cos(n\pi)=(-1)^n$,
 右边是 $a_0^2/4+\sum a_n^2/2=(2\pi^2/3)^2/4+\sum_{n=1}^{\infty}\frac12\bigl(4/n^2\bigr)^2=\pi^4/9+8\sum 1/n^4$.这个等式给出的是 $\sum 1/n^4$,不是 $\sum 1/n^2$.$\pi^2/6$ 来自把级数代回 $x=\pi$,两边各自算完再比较.
 \end{solution}
 
-\subsection{三角系的完备性}
-前面把完备说成:平均平方误差可以小于任意正数.这里对分段平常的周期函数把这件事证完.先作换元 $\theta=\pi x/\ell$,把区间 $[-\ell,\ell]$ 化到 $[-\pi,\pi]$.两边的积分只差常数 $\ell/\pi$,所以只要在 $[-\pi,\pi]$ 上证明即可.此时
+\subsection*{补充：三角系的完备性}
+用次数不超过 $n$ 的三角多项式
 \begin{equation}
-  a_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos(nx)\,\mathrm{d}x,
+  s(x)
+  =\frac{a_0}{2}
+  +\sum_{k=1}^{n}
+    \Biggl(
+      a_k\cos\frac{k\pi x}{\ell}
+      +b_k\sin\frac{k\pi x}{\ell}
+    \Biggr)
+\end{equation}
+去逼近周期为 $2\ell$ 的 $f$,平均平方误差
+\begin{equation}
+  \overline{\varepsilon^2}
+  =\frac{1}{2\ell}\int_{-\ell}^{\ell}\bigl(f(x)-s(x)\bigr)^2\,\mathrm{d}x
+  \geq 0.
+\end{equation}
+展开成 $(f-s)^2=f^2-2fs+s^2$.在 $[-\ell,\ell]$ 上用正交关系
+\begin{equation}
+  \int_{-\ell}^{\ell}1\,\mathrm{d}x=2\ell,
   \qquad
-  b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin(nx)\,\mathrm{d}x.
+  \int_{-\ell}^{\ell}\cos\frac{k\pi x}{\ell}\cos\frac{m\pi x}{\ell}\,\mathrm{d}x
+  =\ell\,\delta_{km}
+  \quad(k,m\geq 1),
 \end{equation}
+正弦与正弦同样,正弦与余弦积分为零.于是 $\int fs$ 和 $\int s^2$ 只留下对角项.记
+\begin{equation}
+  A_0=\frac{1}{\ell}\int_{-\ell}^{\ell}f\,\mathrm{d}x,
+  \quad
+  A_k=\frac{1}{\ell}\int_{-\ell}^{\ell}f\cos\frac{k\pi x}{\ell}\,\mathrm{d}x,
+  \quad
+  B_k=\frac{1}{\ell}\int_{-\ell}^{\ell}f\sin\frac{k\pi x}{\ell}\,\mathrm{d}x,
+\end{equation}
+则
+\begin{equation}
+  \overline{\varepsilon^2}
+  =\frac{1}{2\ell}\int f^2
+   -\frac{a_0 A_0}{2}
+   -\sum_{k=1}^{n}(a_k A_k+b_k B_k)
+   +\frac{a_0^2}{4}
+   +\sum_{k=1}^{n}\Biggl(\frac{a_k^2}{2}+\frac{b_k^2}{2}\Biggr).
+\end{equation}
+这是系数的二次式.令偏导为零,
+\begin{equation}
+  \frac{\partial\overline{\varepsilon^2}}{\partial a_0}=0
+  \ \Rightarrow\ a_0=A_0,
+  \qquad
+  \frac{\partial\overline{\varepsilon^2}}{\partial a_k}=0
+  \ \Rightarrow\ a_k=A_k,
+  \qquad
+  \frac{\partial\overline{\varepsilon^2}}{\partial b_k}=0
+  \ \Rightarrow\ b_k=B_k.
+\end{equation}
+使均方误差最小的系数正好是傅里叶系数.代回去,
+\begin{equation}
+  \overline{\varepsilon^2}
+  =\frac{1}{2\ell}\int_{-\ell}^{\ell} f(x)^2\,\mathrm{d}x
+   -\Biggl[
+     \frac{a_0^2}{4}
+     +\sum_{k=1}^{n}
+       \Biggl(\frac{a_k^2}{2}+\frac{b_k^2}{2}\Biggr)
+   \Biggr]
+  \geq 0.
+\end{equation}
+左边非负,所以有限和不超过 $\frac{1}{2\ell}\int f^2$.令 $n\to\infty$,得到贝塞尔不等式.
 
-设 $s_n$ 是 $f$ 的 $n$ 阶傅里叶部分和,$T$ 是次数不超过 $n$ 的三角多项式,$r=T-s_n$.由系数定义,$\int_{-\pi}^{\pi}(f-s_n)\cos(kx)\,\mathrm{d}x=0$,正弦同样,所以 $\int(f-s_n)r\,\mathrm{d}x=0$.于是
+三角函数族完备:对分段平常的 $f$,当 $n\to\infty$ 时 $\overline{\varepsilon^2}\to 0$.于是贝塞尔不等式成为等式
 \begin{equation}
-  \int_{-\pi}^{\pi}(f-T)^2\,\mathrm{d}x
-  = \int_{-\pi}^{\pi}(f-s_n)^2\,\mathrm{d}x + \int_{-\pi}^{\pi} r^2\,\mathrm{d}x.
+  \frac{1}{2\ell}\int_{-\ell}^{\ell} f(x)^2\,\mathrm{d}x
+  =\frac{a_0^2}{4}
+   +\sum_{n=1}^{\infty}\Biggl(\frac{a_n^2}{2}+\frac{b_n^2}{2}\Biggr).
 \end{equation}
-第二项非负,因此在这个次数之内,$s_n$ 的平均平方误差最小.把平方展开,并用 $\int_{-\pi}^{\pi}\cos^2(kx)\,\mathrm{d}x=\pi$($k\geq 1$)和 $\int_{-\pi}^{\pi}1\,\mathrm{d}x=2\pi$,得到
-\begin{equation}
-  \int_{-\pi}^{\pi}(f-s_n)^2\,\mathrm{d}x
-  = \int_{-\pi}^{\pi} f^2\,\mathrm{d}x
-    - \pi\Biggl(\frac{a_0^2}{2}+\sum_{k=1}^{n}(a_k^2+b_k^2)\Biggr).
-\end{equation}
-左边非负,这就是三角系上的贝塞尔不等式.要证明完备,还要造出一组三角多项式,把这个差压到任意小.
-
-部分和可以写成卷积.记\textbf{狄里希利核}
-\begin{equation}
-  D_n(\theta) = \half + \sum_{k=1}^{n}\cos(k\theta)
-  = \frac{\sin\bigl((n+\half)\theta\bigr)}{2\sin(\theta/2)}.
-\end{equation}
-第二个等号用 $2\sin(\theta/2)$ 去乘求和式,积化和差后中间项相消.于是
-\begin{equation}
-  s_n(x) = \frac{1}{\pi}\int_{-\pi}^{\pi} f(t)\,D_n(t-x)\,\mathrm{d}t,
-\end{equation}
-并且 $\int_{-\pi}^{\pi} D_n(\theta)\,\mathrm{d}\theta=\pi$.
-
-把前 $n+1$ 个狄里希利核取平均,得到\textbf{费耶核}
-\begin{equation}
-  F_n(\theta)
-  = \frac{1}{n+1}\sum_{m=0}^{n} D_m(\theta)
-  = \frac{1}{2(n+1)}
-    \Biggl(\frac{\sin((n+1)\theta/2)}{\sin(\theta/2)}\Biggr)^2.
-\end{equation}
-它非负,积分仍是 $\pi$.对应的\textbf{费耶平均} $\sigma_n=(s_0+\cdots+s_n)/(n+1)$ 仍是次数不超过 $n$ 的三角多项式,并且
-\begin{equation}
-  \sigma_n(x)-f(x)
-  = \frac{1}{\pi}\int_{-\pi}^{\pi}\bigl[f(x-t)-f(x)\bigr] F_n(t)\,\mathrm{d}t.
-\end{equation}
-
-先设 $f$ 连续,并且 $f(-\pi)=f(\pi)$,从而在圆周上一致连续.给定 $\epsilon>0$,取 $\delta$ 使 $|t|<\delta$ 时 $|f(x-t)-f(x)|<\epsilon$.积分拆成 $|t|<\delta$ 和 $|t|\geq\delta$.$F_n\geq 0$,峰内的贡献小于 $\epsilon$.峰外 $|\sin(t/2)|\geq\sin(\delta/2)$,所以 $F_n$ 不超过 $1/\bigl(2(n+1)\sin^2(\delta/2)\bigr)$,$n$ 大时峰外的贡献可以小于 $\epsilon$.因此 $\sigma_n$ 一致收敛到 $f$,
-\begin{equation}
-  \int_{-\pi}^{\pi}(f-\sigma_n)^2\,\mathrm{d}x
-\end{equation}
-可以任意小.$s_n$ 的平均平方误差不超过 $\sigma_n$ 的,所以连续且周期闭合的函数已经可以用三角多项式在均方意义下逼近.
-
-若 $f$ 只是分段平常,一个周期里只有有限个跳跃.在每个跳跃处用一段宽度为 $\eta$ 的直线把左右值接上,端点 $f(-\pi)$ 与 $f(\pi)$ 同样接上,得到连续的周期函数 $h$.这些小区间上 $|f-h|$ 有界,$\eta$ 足够小时 $\int(f-h)^2$ 可以任意小.再对 $h$ 取三角多项式 $T$,使 $\int(h-T)^2$ 任意小.由 $(A+B)^2\leq 2A^2+2B^2$,
-\begin{equation}
-  \int(f-T)^2\,\mathrm{d}x
-  \leq 2\int(f-h)^2\,\mathrm{d}x + 2\int(h-T)^2\,\mathrm{d}x
-\end{equation}
-也可以任意小.$n$ 不小于 $T$ 的次数时,$\int(f-s_n)^2\leq\int(f-T)^2$.平均平方误差可以任意小,三角函数族完备.回到 $[-\ell,\ell]$,贝塞尔不等式里的余项趋于零,就得到正文中的 Parseval 等式.狄里希利条件另外保证间断点处级数和等于左右值的平均;这里证明的是平均平方意义下的完备.
+这称为\textbf{完备性方程},也就是上一小节的 Parseval 等式.均方收敛不等于逐点收敛;逐点收敛还要狄里希利条件,间断点处级数和是左右值的算术平均.

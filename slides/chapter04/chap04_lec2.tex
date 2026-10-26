@@ -15,8 +15,8 @@
 \begin{frame}{本讲提纲}
   \begin{enumerate}
     \item 傅里叶变换：周期 $2\ell$ 延拓到无穷，傅里叶积分与对称形式；
+    % \item 三个像函数：$e^{-\alpha|x|}$、$\delta(x)$、高斯函数；
     \item $\delta$ 函数：线密度的极限、挑选性、复合自变量；
-    \item 三个像函数：$e^{-\alpha|x|}$、$\delta(x)$、高斯函数；
     \item 基本性质，以及二维、三维傅里叶变换。
   \end{enumerate}
 \end{frame}
@@ -98,20 +98,77 @@
   \end{equation*}
 \end{frame}
 
+\begin{frame}{对称形式}
+  复数形式的傅里叶积分可以写成对称的形式
+  \begin{equation*}
+    \begin{aligned}
+      f(x)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+        F(\omega)\,e^{\mathrm{i}\omega x}\,\mathrm{d}\omega,\\
+      F(\omega)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+        f(x)\bigl[e^{\mathrm{i}\omega x}\bigr]^*\,\mathrm{d}x.
+    \end{aligned}
+  \end{equation*}
+  并常用符号简写为
+  \begin{equation*}
+    F(\omega)=\mathcal{F}[f(x)],
+    \qquad
+    f(x)=\mathcal{F}^{-1}[F(\omega)].
+  \end{equation*}
+  $f(x)$ 和 $F(\omega)$ 分别称为傅里叶变换的\textbf{原函数}和\textbf{像函数}。
+  本讲下面的例子都用这个对称形式。
+\end{frame}
+
+\begin{frame}{正余弦形式：$c_n$ 与 $a_n$、$b_n$}
+  上一讲已有（$n>0$）
+  \begin{equation*}
+    c_n=\tfrac12(a_n-\mathrm{i}b_n),
+    \qquad
+    c_{-n}=\tfrac12(a_n+\mathrm{i}b_n),
+  \end{equation*}
+  亦即
+  \begin{equation*}
+    a_n=c_n+c_{-n},
+    \qquad
+    b_n=\mathrm{i}(c_n-c_{-n}).
+  \end{equation*}
+  把 $\pm n$ 两项合并，
+  \begin{equation*}
+    c_n e^{\mathrm{i}\omega_n x}+c_{-n}e^{-\mathrm{i}\omega_n x}
+    =a_n\cos(\omega_n x)+b_n\sin(\omega_n x).
+  \end{equation*}
+  又 $F(\omega)=\displaystyle\lim\frac{2\ell\,c_n}{2\pi}=\lim\frac{c_n}{\Delta\omega}$，
+  相应定义
+  \begin{equation*}
+    A(\omega)=\lim\frac{a_n}{\Delta\omega}=F(\omega)+F(-\omega),
+    \quad
+    B(\omega)=\lim\frac{b_n}{\Delta\omega}
+      =\mathrm{i}\bigl[F(\omega)-F(-\omega)\bigr].
+  \end{equation*}
+  等价地，$F(\omega)=\tfrac12\bigl[A(\omega)-\mathrm{i}B(\omega)\bigr]$。
+\end{frame}
+
 \begin{frame}{正余弦形式}
-  若采用正余弦展开，
+  由 $a_n=(1/\ell)\int_{-\ell}^{\ell}f\cos$，$1/\ell=\Delta\omega/\pi$，得
+  \begin{equation*}
+    A(\omega)=\frac{1}{\pi}\int_{-\infty}^{\infty} f(t)\cos(\omega t)\,\mathrm{d}t,
+    \quad
+    B(\omega)=\frac{1}{\pi}\int_{-\infty}^{\infty} f(t)\sin(\omega t)\,\mathrm{d}t.
+  \end{equation*}
+  级数中 $\pm n$ 合并后再取 $\ell\to\infty$，
+  \begin{equation*}
+    \sum_{n=1}^{\infty}
+      \bigl[a_n\cos(\omega_n x)+b_n\sin(\omega_n x)\bigr]
+    \longrightarrow
+    \int_0^{\infty}
+      \bigl[A(\omega)\cos(\omega x)+B(\omega)\sin(\omega x)\bigr]
+      \,\mathrm{d}\omega,
+  \end{equation*}
+  即
   \begin{equation*}
     f(x)=\int_0^{\infty} A(\omega)\cos(\omega x)\,\mathrm{d}\omega
-        +\int_0^{\infty} B(\omega)\sin(\omega x)\,\mathrm{d}\omega,
+        +\int_0^{\infty} B(\omega)\sin(\omega x)\,\mathrm{d}\omega.
   \end{equation*}
-  其中
-  \begin{equation*}
-    A(\omega)=\frac{1}{\pi}\int_{-\infty}^{\infty} f(x)\cos(\omega x)\,\mathrm{d}x,
-    \quad
-    B(\omega)=\frac{1}{\pi}\int_{-\infty}^{\infty} f(x)\sin(\omega x)\,\mathrm{d}x.
-  \end{equation*}
-  如果 $f(x)$ 是偶函数，则 $B=0$，对应的积分称为\textbf{傅里叶余弦积分}；
-  如果 $f(x)$ 是奇函数，则 $A=0$，对应的积分称为\textbf{傅里叶正弦积分}。
+  偶函数时 $B=0$（\textbf{傅里叶余弦积分}）；奇函数时 $A=0$（\textbf{傅里叶正弦积分}）.
 \end{frame}
 
 \begin{frame}{振幅谱与相位谱}
@@ -132,25 +189,200 @@
   $C(\omega)$ 称为 $f(x)$ 的\textbf{振幅谱}，$\varphi(\omega)$ 称为 $f(x)$ 的\textbf{相位谱}。
 \end{frame}
 
-\begin{frame}{对称形式}
-  复数形式的傅里叶积分可以写成对称的形式
+
+
+
+% =============================================================
+% \section{三个像函数}
+
+\begin{frame}{例：$e^{-\alpha|x|}$}
+  $\alpha>0$。对 $x$ 分段，利用对称形式。
+  $x>0$ 时 $|x|=x$，
   \begin{equation*}
-    \begin{aligned}
-      f(x)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
-        F(\omega)\,e^{\mathrm{i}\omega x}\,\mathrm{d}\omega,\\
-      F(\omega)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
-        f(x)\bigl[e^{\mathrm{i}\omega x}\bigr]^*\,\mathrm{d}x.
-    \end{aligned}
+    \int_0^{\infty} e^{-\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+    =\int_0^{\infty} e^{-(\alpha+\mathrm{i}\omega)x}\,\mathrm{d}x
+    =\frac{1}{\alpha+\mathrm{i}\omega}.
   \end{equation*}
-  并常用符号简写为
+  $x<0$ 时 $|x|=-x$，
   \begin{equation*}
-    F(\omega)=\mathcal{F}[f(x)],
-    \qquad
-    f(x)=\mathcal{F}^{-1}[F(\omega)].
+    \int_{-\infty}^{0} e^{\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+    =\int_{-\infty}^{0} e^{(\alpha-\mathrm{i}\omega)x}\,\mathrm{d}x
+    =\frac{1}{\alpha-\mathrm{i}\omega}.
   \end{equation*}
-  $f(x)$ 和 $F(\omega)$ 分别称为傅里叶变换的\textbf{原函数}和\textbf{像函数}。
-  本讲下面的例子都用这个对称形式。
+  两段之和
+  \begin{equation*}
+    \frac{1}{\alpha+\mathrm{i}\omega}+\frac{1}{\alpha-\mathrm{i}\omega}
+    =\frac{2\alpha}{\alpha^2+\omega^2}.
+  \end{equation*}
 \end{frame}
+
+\begin{frame}{例：$e^{-\alpha|x|}$ 的像函数}
+  再乘上对称形式的系数，
+  \begin{equation*}
+    F(\omega)
+    =\sqrt{\frac{1}{2\pi}}\,
+      \frac{2\alpha}{\alpha^2+\omega^2}.
+  \end{equation*}
+  越大的 $\alpha$，则 $f(x)$ 越窄，集中在 $x=0$ 附近，也就是越局域，而其傅里叶变换则越弥散。
+  当 $f(x)$ 是偶函数时，傅里叶变换的像函数为实函数。
+\end{frame}
+
+
+
+\begin{frame}{高斯函数的傅里叶变换}
+  $f(x)=e^{-\alpha x^2}$，$\alpha>0$。对称形式下
+  \begin{equation*}
+    F(\omega)
+    =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+      e^{-\alpha x^2}e^{-\mathrm{i}\omega x}\,\mathrm{d}x.
+  \end{equation*}
+  指数配平方：
+  \begin{align*}
+    -\alpha x^2-\mathrm{i}\omega x
+    &=-\alpha\Biggl[
+        x^2+\frac{\mathrm{i}\omega}{\alpha}x
+      \Biggr] \\
+    &=-\alpha\Biggl(
+        x+\frac{\mathrm{i}\omega}{2\alpha}
+      \Biggr)^2
+      -\frac{\omega^2}{4\alpha}.
+  \end{align*}
+  因此
+  \begin{equation*}
+    F(\omega)
+    =\frac{e^{-\omega^2/(4\alpha)}}{\sqrt{2\pi}}
+     \int_{-\infty}^{\infty}
+       e^{-\alpha\bigl(x+\mathrm{i}\omega/(2\alpha)\bigr)^2}
+       \,\mathrm{d}x.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：高斯函数，平移积分路径}
+  令 $t=x+\mathrm{i}\omega/(2\alpha)$。积分路径从实轴平移到平行直线，用竖边连成矩形。
+  \vspace{0.6em}
+
+  \centering
+  \begin{tikzpicture}[x=1.05cm,y=1.25cm,>=Stealth]
+    \def\R{3.4}
+    \def\H{1.7}
+    \draw[->] (-\R-0.6,0) -- (\R+0.85,0) node[right] {$\mathrm{Re}\,t$};
+    \draw[->] (0,-0.4) -- (0,\H+0.65) node[above] {$\mathrm{Im}\,t$};
+    \draw[thick,blue!70!black]
+      (-\R,0) -- (\R,0) -- (\R,\H) -- (-\R,\H) -- cycle;
+    \draw[thick,blue!70!black,->] (-0.7,0) -- (0.7,0);
+    \draw[thick,blue!70!black,->] (0.7,\H) -- (-0.7,\H);
+    \draw[thick,blue!70!black,->] (\R,0.5) -- (\R,1.15);
+    \draw[thick,blue!70!black,->] (-\R,1.15) -- (-\R,0.5);
+    \node[below] at (-\R,0) {$-R$};
+    \node[below] at (\R,0) {$R$};
+    \node[right] at (0.15,\H) {$\omega/(2\alpha)$};
+    \node[blue!70!black,below] at (1.5,0) {实轴};
+    \node[blue!70!black,above] at (1.7,\H) {平移路径};
+    \node[blue!70!black,right] at (\R,0.85) {竖边};
+    \node[blue!70!black,left] at (-\R,0.85) {竖边};
+    \node[gray!45!black] at (0,0.85) {围道内解析};
+  \end{tikzpicture}
+
+  \vspace{0.5em}
+  \raggedright
+  $R\to\infty$ 时竖边上 $e^{-\alpha(\mathrm{Re}\,t)^2}$ 把积分压到零。
+\end{frame}
+
+\begin{frame}{例：高斯函数，结果}
+  因此平移后的积分等于实轴上的高斯积分：
+  \begin{equation*}
+    \int_{-\infty}^{\infty}
+      e^{-\alpha\bigl(x+\mathrm{i}\omega/(2\alpha)\bigr)^2}\,\mathrm{d}x
+    =\int_{-\infty}^{\infty} e^{-\alpha t^2}\,\mathrm{d}t
+    =\sqrt{\frac{\pi}{\alpha}}.
+  \end{equation*}
+  代回配平方的结果，
+  \begin{equation*}
+    F(\omega)
+    =\frac{e^{-\omega^2/(4\alpha)}}{\sqrt{2\pi}}
+      \sqrt{\frac{\pi}{\alpha}}
+    =\frac{1}{\sqrt{2\alpha}}\,e^{-\omega^2/(4\alpha)}.
+  \end{equation*}
+  高斯函数的像函数还是高斯函数。原函数越窄，像函数越宽。
+\end{frame}
+
+% =============================================================
+\section{基本性质}
+
+\begin{frame}{基本性质}
+  假定 $\mathcal{F}[f]=F$。在对称形式下：
+  \begin{align*}
+    \mathcal{F}[f']&=\mathrm{i}\omega\,F(\omega),\\
+    \mathcal{F}\Bigl[\int^{x} f\Bigr]
+      &=\frac{1}{\mathrm{i}\omega}F(\omega),\\
+    \mathcal{F}[f(ax)]
+      &=\frac{1}{|a|}F\Bigl(\frac{\omega}{a}\Bigr),\\
+    \mathcal{F}[f(x-x_0)]
+      &=e^{-\mathrm{i}\omega x_0}F(\omega),\\
+    \mathcal{F}[e^{\mathrm{i}\omega_0 x}f]
+      &=F(\omega-\omega_0).
+  \end{align*}
+  \textbf{卷积定理}放在后面单独演算。$a>0$ 时\textbf{相似定理}的分母就是 $a$。
+\end{frame}
+
+\begin{frame}{导数定理}
+  \textbf{导数定理}由分部积分得到。
+  \begin{align*}
+    &\int_{-\infty}^{\infty} f'(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x \\
+    &\quad=\Bigl[f\,e^{-\mathrm{i}\omega x}\Bigr]_{-\infty}^{\infty}
+      +\mathrm{i}\omega\int_{-\infty}^{\infty}
+        f\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x.
+  \end{align*}
+  绝对可积且在无穷远处消失时，边界项为零。两边除以 $\sqrt{2\pi}$，
+  \begin{equation*}
+    \mathcal{F}[f']=\mathrm{i}\omega\,F(\omega).
+  \end{equation*}
+  \textbf{积分定理}是它的逆运算：记 $g(x)=\int^{x} f$，则 $g'=f$，
+  $\mathrm{i}\omega\,\mathcal{F}[g]=F$，所以 $\mathcal{F}[g]=F/(\mathrm{i}\omega)$。
+\end{frame}
+
+\begin{frame}{相似、延迟、位移}
+  $a>0$ 时令 $u=ax$，$\mathrm{d}x=\mathrm{d}u/a$，
+  \begin{equation*}
+    \mathcal{F}[f(ax)]
+    =\frac{1}{\sqrt{2\pi}}\int f(u)\,
+      e^{-\mathrm{i}(\omega/a)u}\,\frac{\mathrm{d}u}{a}
+    =\frac{1}{a}F\Bigl(\frac{\omega}{a}\Bigr).
+  \end{equation*}
+  $a<0$ 时上下限对调，分母换成 $|a|$。
+  \vspace{0.3em}
+
+  \textbf{延迟定理}：令 $u=x-x_0$，指数多出 $e^{-\mathrm{i}\omega x_0}$。
+  \textbf{位移定理}：
+  \begin{equation*}
+    \frac{1}{\sqrt{2\pi}}\int
+      e^{\mathrm{i}\omega_0 x}f(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+    =F(\omega-\omega_0).
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{卷积定理}
+  \begin{equation*}
+    (f_1*f_2)(x)
+    =\int_{-\infty}^{\infty}
+      f_1(\alpha)\,f_2(x-\alpha)\,\mathrm{d}\alpha
+  \end{equation*}
+  称为 $f_1$ 与 $f_2$ 的\textbf{卷积}。代入对称形式，
+  \begin{align*}
+    &\mathcal{F}[f_1*f_2]
+    =\frac{1}{\sqrt{2\pi}}\int\mathrm{d}x\,e^{-\mathrm{i}\omega x}
+      \int\mathrm{d}\alpha\,f_1(\alpha)\,f_2(x-\alpha).
+  \end{align*}
+  令 $u=x-\alpha$，则 $\mathrm{d}x=\mathrm{d}u$，
+  \begin{align*}
+    &=\frac{1}{\sqrt{2\pi}}
+      \int f_1(\alpha)\,e^{-\mathrm{i}\omega\alpha}\,\mathrm{d}\alpha
+      \int f_2(u)\,e^{-\mathrm{i}\omega u}\,\mathrm{d}u \\
+    &=\sqrt{2\pi}\,F_1(\omega)\,F_2(\omega).
+  \end{align*}
+  $\sqrt{2\pi}$ 来自对称形式两侧各有一个 $1/\sqrt{2\pi}$。
+\end{frame}
+
 
 % =============================================================
 \section{$\delta$ 函数}
@@ -311,183 +543,44 @@
   再令 $K\to\infty$，回到上一张片子的第二个极限。
 \end{frame}
 
-% =============================================================
-\section{三个像函数}
 
-\begin{frame}{例：$e^{-\alpha|x|}$}
-  $\alpha>0$。对 $x$ 分段，利用对称形式。
-  $x>0$ 时 $|x|=x$，
+\begin{frame}{多维 $\delta$ 函数}
+  $\displaystyle\iiint\delta(\mathbf{r})\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z=1$，
+  且 $\mathbf{r}\neq 0$ 时函数值为 $0$。
+  直角坐标系中用三个一维 $\delta$ 函数的乘积，
   \begin{equation*}
-    \int_0^{\infty} e^{-\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
-    =\int_0^{\infty} e^{-(\alpha+\mathrm{i}\omega)x}\,\mathrm{d}x
-    =\frac{1}{\alpha+\mathrm{i}\omega}.
+    \delta(\mathbf{r})=\delta(x)\,\delta(y)\,\delta(z).
   \end{equation*}
-  $x<0$ 时 $|x|=-x$，
+  柱坐标的体积元是 $\rho\,\mathrm{d}\rho\,\mathrm{d}\varphi\,\mathrm{d}z$。要保持积分为 $1$，
   \begin{equation*}
-    \int_{-\infty}^{0} e^{\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
-    =\int_{-\infty}^{0} e^{(\alpha-\mathrm{i}\omega)x}\,\mathrm{d}x
-    =\frac{1}{\alpha-\mathrm{i}\omega}.
+    \delta(\mathbf{r})
+    =\frac{1}{\rho}\,\delta(\rho)\,\delta(\varphi)\,\delta(z).
   \end{equation*}
-  两段之和
+  球坐标的体积元是 $r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\varphi$，
   \begin{equation*}
-    \frac{1}{\alpha+\mathrm{i}\omega}+\frac{1}{\alpha-\mathrm{i}\omega}
-    =\frac{2\alpha}{\alpha^2+\omega^2}.
+    \delta(\mathbf{r})
+    =\frac{\delta(r)\,\delta(\theta)\,\delta(\varphi)}{r^2\sin\theta}.
   \end{equation*}
 \end{frame}
 
-\begin{frame}{例：$e^{-\alpha|x|}$ 的像函数}
-  再乘上对称形式的系数，
-  \begin{equation*}
-    F(\omega)
-    =\sqrt{\frac{1}{2\pi}}\,
-      \frac{2\alpha}{\alpha^2+\omega^2}.
-  \end{equation*}
-  越大的 $\alpha$，则 $f(x)$ 越窄，集中在 $x=0$ 附近，也就是越局域，而其傅里叶变换则越弥散。
-  当 $f(x)$ 是偶函数时，傅里叶变换的像函数为实函数。
-\end{frame}
+% \begin{frame}{例：$\delta(x)$}
+%   代入对称形式，
+%   \begin{equation*}
+%     F(\omega)
+%     =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+%       \delta(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+%     =\frac{1}{\sqrt{2\pi}}.
+%   \end{equation*}
+%   $f(x)$ 无限局域，对应的傅里叶变换为无限弥散。
+%   \vspace{0.4em}
 
-\begin{frame}{例：$\delta(x)$}
-  代入对称形式，
-  \begin{equation*}
-    F(\omega)
-    =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
-      \delta(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x
-    =\frac{1}{\sqrt{2\pi}}.
-  \end{equation*}
-  $f(x)$ 无限局域，对应的傅里叶变换为无限弥散。
-  \vspace{0.4em}
-
-  代回逆变换，两侧的 $1/\sqrt{2\pi}$ 合成 $1/(2\pi)$，
-  \begin{equation*}
-    \delta(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}
-      e^{\mathrm{i}\omega x}\,\mathrm{d}\omega,
-  \end{equation*}
-  与前面由傅里叶积分写出的表示一致。
-\end{frame}
-
-\begin{frame}{例：高斯函数，配平方}
-  $f(x)=e^{-\alpha x^2}$，$\alpha>0$。对称形式下
-  \begin{equation*}
-    F(\omega)
-    =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
-      e^{-\alpha x^2}e^{-\mathrm{i}\omega x}\,\mathrm{d}x.
-  \end{equation*}
-  指数配平方：
-  \begin{align*}
-    -\alpha x^2-\mathrm{i}\omega x
-    &=-\alpha\Biggl[
-        x^2+\frac{\mathrm{i}\omega}{\alpha}x
-      \Biggr] \\
-    &=-\alpha\Biggl(
-        x+\frac{\mathrm{i}\omega}{2\alpha}
-      \Biggr)^2
-      -\frac{\omega^2}{4\alpha}.
-  \end{align*}
-  因此
-  \begin{equation*}
-    F(\omega)
-    =\frac{e^{-\omega^2/(4\alpha)}}{\sqrt{2\pi}}
-     \int_{-\infty}^{\infty}
-       e^{-\alpha\bigl(x+\mathrm{i}\omega/(2\alpha)\bigr)^2}
-       \,\mathrm{d}x.
-  \end{equation*}
-\end{frame}
-
-\begin{frame}{例：高斯函数，平移积分路径}
-  令 $t=x+\mathrm{i}\omega/(2\alpha)$。积分路径从实轴平移到与实轴平行的直线。
-  用竖边把这条直线和实轴连成矩形。竖直边上 $|\mathrm{Re}\,t|\to\infty$ 时，$e^{-\alpha(\mathrm{Re}\,t)^2}$ 把积分压到零；围道内解析，故
-  \begin{equation*}
-    \int_{-\infty}^{\infty}
-      e^{-\alpha\bigl(x+\mathrm{i}\omega/(2\alpha)\bigr)^2}\,\mathrm{d}x
-    =\int_{-\infty}^{\infty} e^{-\alpha t^2}\,\mathrm{d}t
-    =\sqrt{\frac{\pi}{\alpha}}.
-  \end{equation*}
-  于是
-  \begin{equation*}
-    F(\omega)
-    =\frac{e^{-\omega^2/(4\alpha)}}{\sqrt{2\pi}}
-      \sqrt{\frac{\pi}{\alpha}}
-    =\frac{1}{\sqrt{2\alpha}}\,e^{-\omega^2/(4\alpha)}.
-  \end{equation*}
-  高斯函数的像函数还是高斯函数。原函数越窄，像函数越宽。
-\end{frame}
-
-% =============================================================
-\section{基本性质}
-
-\begin{frame}{基本性质}
-  假定 $\mathcal{F}[f]=F$。在对称形式下：
-  \begin{align*}
-    \mathcal{F}[f']&=\mathrm{i}\omega\,F(\omega),\\
-    \mathcal{F}\Bigl[\int^{x} f\Bigr]
-      &=\frac{1}{\mathrm{i}\omega}F(\omega),\\
-    \mathcal{F}[f(ax)]
-      &=\frac{1}{|a|}F\Bigl(\frac{\omega}{a}\Bigr),\\
-    \mathcal{F}[f(x-x_0)]
-      &=e^{-\mathrm{i}\omega x_0}F(\omega),\\
-    \mathcal{F}[e^{\mathrm{i}\omega_0 x}f]
-      &=F(\omega-\omega_0).
-  \end{align*}
-  \textbf{卷积定理}放在后面单独演算。$a>0$ 时\textbf{相似定理}的分母就是 $a$。
-\end{frame}
-
-\begin{frame}{导数定理}
-  \textbf{导数定理}由分部积分得到。
-  \begin{align*}
-    &\int_{-\infty}^{\infty} f'(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x \\
-    &\quad=\Bigl[f\,e^{-\mathrm{i}\omega x}\Bigr]_{-\infty}^{\infty}
-      +\mathrm{i}\omega\int_{-\infty}^{\infty}
-        f\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x.
-  \end{align*}
-  绝对可积且在无穷远处消失时，边界项为零。两边除以 $\sqrt{2\pi}$，
-  \begin{equation*}
-    \mathcal{F}[f']=\mathrm{i}\omega\,F(\omega).
-  \end{equation*}
-  \textbf{积分定理}是它的逆运算：记 $g(x)=\int^{x} f$，则 $g'=f$，
-  $\mathrm{i}\omega\,\mathcal{F}[g]=F$，所以 $\mathcal{F}[g]=F/(\mathrm{i}\omega)$。
-\end{frame}
-
-\begin{frame}{相似、延迟、位移}
-  $a>0$ 时令 $u=ax$，$\mathrm{d}x=\mathrm{d}u/a$，
-  \begin{equation*}
-    \mathcal{F}[f(ax)]
-    =\frac{1}{\sqrt{2\pi}}\int f(u)\,
-      e^{-\mathrm{i}(\omega/a)u}\,\frac{\mathrm{d}u}{a}
-    =\frac{1}{a}F\Bigl(\frac{\omega}{a}\Bigr).
-  \end{equation*}
-  $a<0$ 时上下限对调，分母换成 $|a|$。
-  \vspace{0.3em}
-
-  \textbf{延迟定理}：令 $u=x-x_0$，指数多出 $e^{-\mathrm{i}\omega x_0}$。
-  \textbf{位移定理}：
-  \begin{equation*}
-    \frac{1}{\sqrt{2\pi}}\int
-      e^{\mathrm{i}\omega_0 x}f(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x
-    =F(\omega-\omega_0).
-  \end{equation*}
-\end{frame}
-
-\begin{frame}{卷积定理}
-  \begin{equation*}
-    (f_1*f_2)(x)
-    =\int_{-\infty}^{\infty}
-      f_1(\alpha)\,f_2(x-\alpha)\,\mathrm{d}\alpha
-  \end{equation*}
-  称为 $f_1$ 与 $f_2$ 的\textbf{卷积}。代入对称形式，
-  \begin{align*}
-    &\mathcal{F}[f_1*f_2]
-    =\frac{1}{\sqrt{2\pi}}\int\mathrm{d}x\,e^{-\mathrm{i}\omega x}
-      \int\mathrm{d}\alpha\,f_1(\alpha)\,f_2(x-\alpha).
-  \end{align*}
-  令 $u=x-\alpha$，则 $\mathrm{d}x=\mathrm{d}u$，
-  \begin{align*}
-    &=\frac{1}{\sqrt{2\pi}}
-      \int f_1(\alpha)\,e^{-\mathrm{i}\omega\alpha}\,\mathrm{d}\alpha
-      \int f_2(u)\,e^{-\mathrm{i}\omega u}\,\mathrm{d}u \\
-    &=\sqrt{2\pi}\,F_1(\omega)\,F_2(\omega).
-  \end{align*}
-  $\sqrt{2\pi}$ 来自对称形式两侧各有一个 $1/\sqrt{2\pi}$。
-\end{frame}
+%   代回逆变换，两侧的 $1/\sqrt{2\pi}$ 合成 $1/(2\pi)$，
+%   \begin{equation*}
+%     \delta(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}
+%       e^{\mathrm{i}\omega x}\,\mathrm{d}\omega,
+%   \end{equation*}
+%   与前面由傅里叶积分写出的表示一致。
+% \end{frame}
 
 % =============================================================
 \section{高维傅里叶变换}
@@ -511,7 +604,7 @@
   也可以把系数收成单独的 $1/(2\pi)^2$，结果与上面的形式相应。
 \end{frame}
 
-\begin{frame}{例：矩孔，分开两个方向}
+\begin{frame}{矩孔的傅里叶变换}
   求
   \begin{equation*}
     f(x,y)=\begin{cases}
@@ -546,7 +639,53 @@
       \frac{\sin(k_1 X)}{k_1 X}
       \frac{\sin(k_2 Y)}{k_2 Y}.
   \end{align*}
-  $\sin(kX)/(kX)$ 在 $kX=n\pi$（$n\neq 0$）处为零。孔越窄，中央峰越宽。
+\end{frame}
+
+\begin{frame}{矩孔的物理意义}
+  $f(x,y)$ 是孔径面上的复振幅透过率：矩形开口内均匀照明取常值 $A$，挡光处为零。
+  \vspace{0.5em}
+
+  \centering
+  \begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Stealth,font=\small]
+    % aperture plane
+    \fill[gray!25] (-2.2,-1.4) rectangle (2.2,1.4);
+    \fill[white] (-0.85,-0.55) rectangle (0.85,0.55);
+    \draw[thick] (-2.2,-1.4) rectangle (2.2,1.4);
+    \draw[thick,blue!70!black] (-0.85,-0.55) rectangle (0.85,0.55);
+    \node[below] at (0,-1.55) {孔径平面 $f(x,y)$};
+    \node[blue!70!black] at (0,0) {$A$};
+    \draw[<->] (-0.85,-0.75) -- (0.85,-0.75);
+    \node[below] at (0,-0.75) {$2X$};
+    \draw[<->] (1.05,-0.55) -- (1.05,0.55);
+    \node[right] at (1.05,0) {$2Y$};
+    % rays
+    \draw[->,gray!60!black] (2.5,0.35) -- (4.3,1.1);
+    \draw[->,gray!60!black] (2.5,0) -- (4.3,0);
+    \draw[->,gray!60!black] (2.5,-0.35) -- (4.3,-1.1);
+    \node[above,gray!50!black] at (3.4,0.85) {远场};
+    % screen
+    \draw[thick] (4.6,-1.5) -- (4.6,1.5);
+    \node[right] at (4.75,0) {观察屏};
+    \node[right,font=\footnotesize] at (4.75,-0.55) {$|F|^2$};
+  \end{tikzpicture}
+
+  \vspace{0.4em}
+  \raggedright
+  费琅和夫（远场）衍射振幅正是孔径函数的傅里叶变换 $F(k_1,k_2)$；
+  屏上光强正比于 $|F|^2$。波矢分量 $k_1,k_2$ 对应衍射角方向。
+\end{frame}
+
+\begin{frame}{矩孔衍射图样读什么}
+  \begin{itemize}
+    \item \textbf{中央亮斑}：$k_1=k_2=0$ 时两个 $\sin u/u$ 都取 $1$，
+      $F(0,0)=2AXY/\pi$，与孔径面积成正比。
+    \item \textbf{暗线}：$k_1 X=n\pi$ 或 $k_2 Y=m\pi$（$n,m=\pm 1,\pm 2,\ldots$）处振幅为零，
+      屏上出现互相垂直的暗纹网格。
+    \item \textbf{宽窄互换}：孔越窄（$X$ 或 $Y$ 越小），中央峰在对应方向越宽——
+      与一维狭缝、高斯函数同一条不确定性。
+    \item \textbf{可分离}：$F$ 是 $x$ 方向与 $y$ 方向两个一维狭缝因子的乘积，
+      矩孔图样等于两条互相垂直的单缝衍射的叠加结构。
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{三维}
@@ -564,23 +703,41 @@
   指数可分离时，三重积分拆成三个一维积分。
 \end{frame}
 
-\begin{frame}{多维 $\delta$ 函数}
-  $\displaystyle\iiint\delta(\mathbf{r})\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z=1$，
-  且 $\mathbf{r}\neq 0$ 时函数值为 $0$。
-  直角坐标系中用三个一维 $\delta$ 函数的乘积，
+\begin{frame}{球对称：化为正弦积分}
+  若 $f(\mathbf{r})=f(r)$，$r=|\mathbf{r}|$，则 $F$ 只依赖 $k=|\mathbf{k}|$。
+  取极轴沿 $\mathbf{k}$，$\mathbf{k}\cdot\mathbf{r}=kr\cos\theta$，
   \begin{equation*}
-    \delta(\mathbf{r})=\delta(x)\,\delta(y)\,\delta(z).
+    \int_0^{2\pi}\!\mathrm{d}\varphi
+    \int_0^{\pi} e^{-\mathrm{i}kr\cos\theta}\sin\theta\,\mathrm{d}\theta
+    =\frac{4\pi\sin(kr)}{kr}.
   \end{equation*}
-  柱坐标的体积元是 $\rho\,\mathrm{d}\rho\,\mathrm{d}\varphi\,\mathrm{d}z$。要保持积分为 $1$，
+  于是
   \begin{equation*}
-    \delta(\mathbf{r})
-    =\frac{1}{\rho}\,\delta(\rho)\,\delta(\varphi)\,\delta(z).
+    F(k)
+    =\frac{1}{2\pi^2 k}
+      \int_0^{\infty} r\,f(r)\sin(kr)\,\mathrm{d}r.
   \end{equation*}
-  球坐标的体积元是 $r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\varphi$，
+  三维球对称傅里叶变换化成一维正弦变换。
+\end{frame}
+
+\begin{frame}{例：汤川势（散射常用）}
+  取屏蔽库仑（汤川）势
   \begin{equation*}
-    \delta(\mathbf{r})
-    =\frac{\delta(r)\,\delta(\theta)\,\delta(\varphi)}{r^2\sin\theta}.
+    f(r)=\frac{e^{-\mu r}}{r},
+    \qquad \mu>0.
   \end{equation*}
+  用 $\displaystyle\int_0^{\infty}e^{-\mu r}\sin(kr)\,\mathrm{d}r
+    =k/(k^2+\mu^2)$，得
+  \begin{equation*}
+    F(k)=\frac{1}{2\pi^2(k^2+\mu^2)}.
+  \end{equation*}
+  散射里更常写\textbf{不带} $(2\pi)^{-3}$ 的动量空间矩阵元
+  （玻恩近似，$\mathbf{q}=\mathbf{k}'-\mathbf{k}$）：
+  \begin{equation*}
+    \int\frac{e^{-\mu r}}{r}\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\,\mathrm{d}^3\mathbf{r}
+    =\frac{4\pi}{q^2+\mu^2}.
+  \end{equation*}
+  $\mu\to 0$ 给出库仑势的 $4\pi/q^2$，对应卢瑟福散射振幅的动量依赖。
 \end{frame}
 
 \begin{frame}{本讲小结}
@@ -588,7 +745,7 @@
     \item 周期 $2\ell$ 延拓到无穷后，$\sum c_n e^{\mathrm{i}\omega_n x}$ 成为傅里叶积分。对称形式两侧各有 $1/\sqrt{2\pi}$。
     \item $\delta$ 函数由线密度先积分、再令 $l\to 0$ 得到。它具有挑选性；$\delta[\varphi(x)]$ 按实根拆开。
     \item $e^{-\alpha|x|}$ 的像函数是 $2\alpha/(\alpha^2+\omega^2)$ 乘上 $1/\sqrt{2\pi}$。高斯函数的像函数仍是高斯函数。
-    \item 求导变成乘 $\mathrm{i}\omega$，延迟变成乘 $e^{-\mathrm{i}\omega x_0}$，卷积变成像函数相乘。矩孔的像函数是两个 $\sin(kX)/(kX)$。
+    \item 矩孔费琅和夫衍射像函数是两个 $\sin(kX)/(kX)$。球对称化为正弦积分；汤川势给出 $1/(q^2+\mu^2)$。
   \end{itemize}
 \end{frame}
 

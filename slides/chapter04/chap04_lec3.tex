@@ -120,19 +120,19 @@
   $\bar f(p)$ 在 $\mathrm{Re}\,p>\sigma_0$ 的半平面是解析的。
 \end{frame}
 
-\begin{frame}{为什么积分收敛}
-  设 $|f(t)|\le M e^{\sigma t}$，$\mathrm{Re}\,p>\sigma$。绝对收敛由指数上界看出：
-  \begin{align*}
-    \Biggl|\int_0^{\infty} f(t)\,e^{-pt}\,\mathrm{d}t\Biggr|
-    &\le\int_0^{\infty} M\,e^{-(\mathrm{Re}\,p-\sigma)t}\,\mathrm{d}t \\
-    &=\frac{M}{\mathrm{Re}\,p-\sigma}.
-  \end{align*}
-  右端有限，拉普拉斯积分收敛。有限个间断点只把积分拆成几段，每一段同样有界。
-  \vspace{0.45em}
+% \begin{frame}{为什么积分收敛}
+%   设 $|f(t)|\le M e^{\sigma t}$，$\mathrm{Re}\,p>\sigma$。绝对收敛由指数上界看出：
+%   \begin{align*}
+%     \Biggl|\int_0^{\infty} f(t)\,e^{-pt}\,\mathrm{d}t\Biggr|
+%     &\le\int_0^{\infty} M\,e^{-(\mathrm{Re}\,p-\sigma)t}\,\mathrm{d}t \\
+%     &=\frac{M}{\mathrm{Re}\,p-\sigma}.
+%   \end{align*}
+%   右端有限，拉普拉斯积分收敛。有限个间断点只把积分拆成几段，每一段同样有界。
+%   \vspace{0.45em}
 
-  这是充分条件，不是必要条件。$t^{-1/2}$ 在 $t=0$ 无界，仍有
-  $\mathcal{L}\{t^{-1/2}\}=\sqrt{\pi/p}$。反演放在后面的支点计算里。
-\end{frame}
+%   这是充分条件，不是必要条件。$t^{-1/2}$ 在 $t=0$ 无界，仍有
+%   $\mathcal{L}\{t^{-1/2}\}=\sqrt{\pi/p}$。反演放在后面的支点计算里。
+% \end{frame}
 
 \begin{frame}{线性，以及 $\delta$ 函数}
   不难看出拉普拉斯变换为\textbf{线性变换}，
@@ -710,20 +710,20 @@
   所以 $y(t)=1+t^2/2$。
 \end{frame}
 
-\begin{frame}{$\lambda$ 的三种情形}
-  $x''+\lambda x=0$，$x(0)=\phi$，$\dot x(0)=\psi$。导数定理给出
-  \begin{equation*}
-    X(p)=\phi\frac{p}{p^2+\lambda}+\psi\frac{1}{p^2+\lambda}.
-  \end{equation*}
-  \begin{itemize}
-    \item $\lambda=a^2>0$：
-      $x=\phi\cos(at)+(\psi/a)\sin(at)$。
-    \item $\lambda=0$：
-      $X=\phi/p+\psi/p^2$，故 $x=\phi+\psi t$。
-    \item $\lambda=-b^2<0$：
-      $x=\phi\cosh(bt)+(\psi/b)\sinh(bt)$。
-  \end{itemize}
-\end{frame}
+% \begin{frame}{$\lambda$ 的三种情形}
+%   $x''+\lambda x=0$，$x(0)=\phi$，$\dot x(0)=\psi$。导数定理给出
+%   \begin{equation*}
+%     X(p)=\phi\frac{p}{p^2+\lambda}+\psi\frac{1}{p^2+\lambda}.
+%   \end{equation*}
+%   \begin{itemize}
+%     \item $\lambda=a^2>0$：
+%       $x=\phi\cos(at)+(\psi/a)\sin(at)$。
+%     \item $\lambda=0$：
+%       $X=\phi/p+\psi/p^2$，故 $x=\phi+\psi t$。
+%     \item $\lambda=-b^2<0$：
+%       $x=\phi\cosh(bt)+(\psi/b)\sinh(bt)$。
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}{例：非齐次方程}
   $y''+y=2$，$y(0)=0$，$y'(0)=1$。变换后
@@ -742,44 +742,44 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame}{矩形脉冲驱动力}
-  $y''+4y=1-u(t-1)$，$y(0)=1$，$y'(0)=0$。
-  $\mathcal{L}\{u(t-1)\}=e^{-p}/p$，故
-  \begin{equation*}
-    (p^2+4)Y-p=\frac{1-e^{-p}}{p}.
-  \end{equation*}
-  \begin{equation*}
-    \frac{1}{p(p^2+4)}=\frac14\Biggl(\frac{1}{p}-\frac{p}{p^2+4}\Biggr),
-  \end{equation*}
-  反演并用延迟定理，
-  \begin{equation*}
-    y(t)=\cos 2t+\frac14\bigl(1-\cos 2t\bigr)
-      -\frac14 u(t-1)\bigl[1-\cos 2(t-1)\bigr].
-  \end{equation*}
-  $t=1$ 撤去外力后，$y$ 与 $y'$ 仍连续，$y''$ 跳一个单位。
-\end{frame}
+% \begin{frame}{矩形脉冲驱动力}
+%   $y''+4y=1-u(t-1)$，$y(0)=1$，$y'(0)=0$。
+%   $\mathcal{L}\{u(t-1)\}=e^{-p}/p$，故
+%   \begin{equation*}
+%     (p^2+4)Y-p=\frac{1-e^{-p}}{p}.
+%   \end{equation*}
+%   \begin{equation*}
+%     \frac{1}{p(p^2+4)}=\frac14\Biggl(\frac{1}{p}-\frac{p}{p^2+4}\Biggr),
+%   \end{equation*}
+%   反演并用延迟定理，
+%   \begin{equation*}
+%     y(t)=\cos 2t+\frac14\bigl(1-\cos 2t\bigr)
+%       -\frac14 u(t-1)\bigl[1-\cos 2(t-1)\bigr].
+%   \end{equation*}
+%   $t=1$ 撤去外力后，$y$ 与 $y'$ 仍连续，$y''$ 跳一个单位。
+% \end{frame}
 
-\begin{frame}{阻尼受迫振子}
-  $x''+2\gamma x'+\omega_0^2 x=f(t)$，$x(0)=\phi$，$\dot x(0)=\psi$。像函数是
-  \begin{equation*}
-    X(p)=\frac{(p+2\gamma)\phi+\psi+F(p)}{p^2+2\gamma p+\omega_0^2}.
-  \end{equation*}
-  令 $R=\omega_0^2-\gamma^2$。自由运动由 $R$ 的符号决定，强迫项是对应核与 $f$ 的卷积。
-  \begin{itemize}
-    \item $R=a^2>0$：核是 $e^{-\gamma t}\sin(at)$，自由运动为
-      $e^{-\gamma t}\bigl[\phi\cos(at)+(\gamma\phi+\psi)\sin(at)/a\bigr]$。
-    \item $R=0$：自由运动为 $e^{-\gamma t}\bigl[\phi+(\gamma\phi+\psi)t\bigr]$。
-    \item $R=-b^2<0$：把 $\sin$、$\cos$ 换成 $\sinh$、$\cosh$。
-  \end{itemize}
-\end{frame}
+% \begin{frame}{阻尼受迫振子}
+%   $x''+2\gamma x'+\omega_0^2 x=f(t)$，$x(0)=\phi$，$\dot x(0)=\psi$。像函数是
+%   \begin{equation*}
+%     X(p)=\frac{(p+2\gamma)\phi+\psi+F(p)}{p^2+2\gamma p+\omega_0^2}.
+%   \end{equation*}
+%   令 $R=\omega_0^2-\gamma^2$。自由运动由 $R$ 的符号决定，强迫项是对应核与 $f$ 的卷积。
+%   \begin{itemize}
+%     \item $R=a^2>0$：核是 $e^{-\gamma t}\sin(at)$，自由运动为
+%       $e^{-\gamma t}\bigl[\phi\cos(at)+(\gamma\phi+\psi)\sin(at)/a\bigr]$。
+%     \item $R=0$：自由运动为 $e^{-\gamma t}\bigl[\phi+(\gamma\phi+\psi)t\bigr]$。
+%     \item $R=-b^2<0$：把 $\sin$、$\cos$ 换成 $\sinh$、$\cosh$。
+%   \end{itemize}
+% \end{frame}
 
-\begin{frame}{本讲小结}
-  \begin{itemize}
-    \item 令 $g(t)=e^{-\sigma t}f(t)$，再作傅里叶变换，得到拉普拉斯积分 $\bar f(p)=\int_0^{\infty} e^{-pt}f(t)\,\mathrm{d}t$。逆变换是 Bromwich 积分。
-    \item $f'\fallingdotseq p\bar f-f(0)$。初值进入像函数，常系数线性方程化成代数方程。
-    \item 有理像函数用待定系数裂项。$1/\sqrt{p}$ 沿负实轴切开，两侧的积分给出 $1/\sqrt{\pi t}$。
-    \item $\sum 1/n^2=\pi^2/6$；$\int_0^{\infty}(\sin t)/t\,\mathrm{d}t=\pi/2$。常系数方程按 $\lambda$ 或阻尼分成振荡、直线和双曲三种；脉冲驱动力用延迟定理。
-  \end{itemize}
-\end{frame}
+% \begin{frame}{本讲小结}
+%   \begin{itemize}
+%     % \item 令 $g(t)=e^{-\sigma t}f(t)$，再作傅里叶变换，得到拉普拉斯积分 $\bar f(p)=\int_0^{\infty} e^{-pt}f(t)\,\mathrm{d}t$。逆变换是 Bromwich 积分。
+%     % \item $f'\fallingdotseq p\bar f-f(0)$。初值进入像函数，常系数线性方程化成代数方程。
+%     % \item 有理像函数用待定系数裂项。$1/\sqrt{p}$ 沿负实轴切开，两侧的积分给出 $1/\sqrt{\pi t}$。
+%     % \item $\sum 1/n^2=\pi^2/6$；$\int_0^{\infty}(\sin t)/t\,\mathrm{d}t=\pi/2$。常系数方程按 $\lambda$ 或阻尼分成振荡、直线和双曲三种；脉冲驱动力用延迟定理。
+%   \end{itemize}
+% \end{frame}
 
 \end{document}

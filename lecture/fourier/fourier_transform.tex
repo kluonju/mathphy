@@ -53,17 +53,36 @@ $$
 %     b_n = \frac{1}{\ell} \int_{-\ell}^{\ell} f(x) \sin {   \omega_n x } dx
 % \end{align}
 
-若采用正余弦展开,
-
-\begin{equation}
-    f(x) =\int_{0}^{\infty} A(\omega) \cos {\omega x} d\omega + \int_{0}^{\infty} B(\omega) \sin {\omega x} d\omega
-\end{equation}
-其中
+正余弦形式利用 $c_n$ 与 $a_n$、$b_n$ 的关系得到.
+上一节已有 ($n>0$)
+\[
+  c_n=\half(a_n-\imath b_n),
+  \qquad
+  c_{-n}=\half(a_n+\imath b_n),
+\]
+亦即 $a_n=c_n+c_{-n}$, $b_n=\imath(c_n-c_{-n})$.
+把 $\pm n$ 两项合并:
+\[
+  c_n e^{\imath\omega_n x}+c_{-n}e^{-\imath\omega_n x}
+  =a_n\cos(\omega_n x)+b_n\sin(\omega_n x).
+\]
+又 $F(\omega)=\lim(2\ell c_n)/(2\pi)=\lim c_n/\Delta\omega$, 相应定义
+\[
+  A(\omega)=\lim\frac{a_n}{\Delta\omega}=F(\omega)+F(-\omega),
+  \quad
+  B(\omega)=\lim\frac{b_n}{\Delta\omega}=\imath\bigl[F(\omega)-F(-\omega)\bigr],
+\]
+或等价地 $F(\omega)=\half\bigl[A(\omega)-\imath B(\omega)\bigr]$.
+由 $a_n=(1/\ell)\int f\cos$ 与 $1/\ell=\Delta\omega/\pi$, 取 $\ell\to\infty$ 得
 \begin{equation}
     \left\{\begin{array}{l}
-    A(\omega)=\frac{1}{\pi} \int_{-\infty}^{\infty} f(x) \cos \omega x d x, \\
-    B(\omega)=\frac{1}{\pi} \int_{-\infty}^{\infty} f(x) \sin \omega x d x .
+    A(\omega)=\frac{1}{\pi} \int_{-\infty}^{\infty} f(t) \cos \omega t\, d t, \\
+    B(\omega)=\frac{1}{\pi} \int_{-\infty}^{\infty} f(t) \sin \omega t\, d t .
     \end{array}\right.
+\end{equation}
+级数中 $\pm n$ 合并后再取极限, 得到正余弦形式
+\begin{equation}
+    f(x) =\int_{0}^{\infty} A(\omega) \cos {\omega x} d\omega + \int_{0}^{\infty} B(\omega) \sin {\omega x} d\omega.
 \end{equation}
 
 上式还可以写成
@@ -251,6 +270,14 @@ F\left(k_1, k_2\right) & =\frac{A}{2 \pi} \int_{-X}^X e^{-i k_1 x} d x \int_{-Y}
 $$
 \end{solution}
 
+物理上,$f(x,y)$ 是孔径面上的复振幅透过率:矩形开口内均匀照明取常值 $A$,挡光处为零.
+费琅和夫(远场)衍射振幅正是孔径函数的傅里叶变换 $F(k_1,k_2)$,观察屏上的光强正比于 $|F|^2$;
+$k_1,k_2$ 对应衍射角方向.
+轴上 $F(0,0)=2AXY/\pi$,与孔径面积成正比.
+$k_1 X=n\pi$ 或 $k_2 Y=m\pi$($n,m=\pm 1,\pm 2,\ldots$) 处振幅为零,屏上出现互相垂直的暗纹.
+孔越窄,中央峰在对应方向越宽,与一维狭缝同一条宽窄互换.
+$F$ 又是两个一维狭缝因子的乘积,故矩孔图样是互相垂直的两条单缝衍射结构.
+
 三维时对称约定是两侧各有 $(2\pi)^{-3/2}$:
 \begin{equation}
     F(\vec{k})=\frac{1}{(2 \pi)^{3/2}} \iiint_{-\infty}^{\infty} f(\vec{r}) e^{-\imath  \vec{k} \cdot \vec{r}} d^3 \vec{r},
@@ -258,4 +285,30 @@ $$
 \begin{equation}
      f(\vec{r})=\frac{1}{(2 \pi)^{3/2}}\iiint_{-\infty}^{\infty} F(\vec{k}) e^{\imath \vec{k} \cdot \vec{r}} d^3 \vec{k}.
 \end{equation}
-把 $(2\pi)^{-3}$ 只放在一侧是另一种等价约定,不能和上式混用.指数可分离时,积分拆成三个一维积分. 
+把 $(2\pi)^{-3}$ 只放在一侧是另一种等价约定,不能和上式混用.指数可分离时,积分拆成三个一维积分.
+
+若 $f(\vec{r})=f(r)$ 球对称,则 $F$ 只依赖 $k=|\vec{k}|$.
+取极轴沿 $\vec{k}$,角积分给出 $4\pi\sin(kr)/(kr)$,对称约定下
+\begin{equation}
+    F(k)
+    =\sqrt{\frac{2}{\pi}}\,\frac{1}{k}
+      \int_0^{\infty} r\,f(r)\sin(kr)\,\mathrm{d}r.
+\end{equation}
+三维球对称傅里叶变换化成一维正弦变换.
+
+\begin{example}
+求汤川势 $f(r)=e^{-\mu r}/r$($\mu>0$) 的三维傅里叶变换,并说明它在散射中的用法.
+\end{example}
+\begin{solution}
+用 $\int_0^{\infty}e^{-\mu r}\sin(kr)\,\mathrm{d}r=k/(k^2+\mu^2)$,得
+\begin{equation}
+    F(k)=\sqrt{\frac{2}{\pi}}\,\frac{1}{k^2+\mu^2}.
+\end{equation}
+散射计算里动量空间矩阵元常不带 $(2\pi)^{-3/2}$,直接写
+\begin{equation}
+    \int\frac{e^{-\mu r}}{r}\,e^{-\imath\vec{q}\cdot\vec{r}}\,\mathrm{d}^3\vec{r}
+    =\frac{4\pi}{q^2+\mu^2},
+    \qquad \vec{q}=\vec{k}'-\vec{k}.
+\end{equation}
+这是玻恩近似下一阶散射振幅的势因子.$\mu\to 0$ 给出库仑势的 $4\pi/q^2$,对应卢瑟福公式的动量依赖.
+\end{solution}

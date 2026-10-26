@@ -81,3 +81,13 @@
 \newcommand{\idx}[2]{\index{#2@#1}}
 \newcommand{\term}[2]{\textbf{#1}\idx{#1}{#2}}
 \renewcommand{\exercisename}{习题}
+% 习题标题与目录只写“习题”,不写“第 n 章 习题”.
+\renewenvironment{problemset}[1][\exercisename]{%
+  \vspace*{10pt}%
+  \begin{center}%
+    \phantomsection\addcontentsline{toc}{section}{\exercisename}%
+    \markright{#1}%
+    \textcolor{structurecolor}{\Large\bfseries\adftripleflourishleft~#1~\adftripleflourishright}%
+  \end{center}%
+  \begin{enumerate}}{%
+  \end{enumerate}}
