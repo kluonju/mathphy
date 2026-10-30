@@ -17,9 +17,9 @@
 \begin{frame}{本讲提纲}
   \begin{enumerate}
     \item 傅里叶变换：周期 $2\ell$ 延拓到无穷，傅里叶积分与对称形式；
-    % \item 三个像函数：$e^{-\alpha|x|}$、$\delta(x)$、高斯函数；
+    \item 基本性质与卷积：方波卷积、高斯卷积，以及二维、三维傅里叶变换；
     \item $\delta$ 函数：线密度的极限、挑选性、复合自变量；
-    \item 基本性质与卷积：方波卷积、高斯卷积，以及二维、三维傅里叶变换。
+    \item 应用：线性常微分方程的格林函数；一维 $\delta$ 势薛定谔方程。
   \end{enumerate}
 \end{frame}
 
@@ -193,6 +193,56 @@
 
 
 
+
+\begin{frame}{例：$e^{-\alpha|x|}$}
+  取 $f(x)=e^{-\alpha|x|}$，$\alpha>0$。对称形式下在原点处拆开积分，
+  \begin{align*}
+    F(\omega)
+    &=\frac{1}{\sqrt{2\pi}}
+      \Biggl(
+        \int_{-\infty}^{0}
+          e^{\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+        +\int_0^{\infty}
+          e^{-\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+      \Biggr)
+    \\
+    &=\frac{1}{\sqrt{2\pi}}
+      \Biggl(
+        \int_{-\infty}^{0}
+          e^{(\alpha-\mathrm{i}\omega)x}\,\mathrm{d}x
+        +\int_0^{\infty}
+          e^{-(\alpha+\mathrm{i}\omega)x}\,\mathrm{d}x
+      \Biggr).
+  \end{align*}
+\end{frame}
+
+\begin{frame}{例：$e^{-\alpha|x|}$（续）}
+  两段都是指数积分：
+  \begin{align*}
+    \int_{-\infty}^{0} e^{(\alpha-\mathrm{i}\omega)x}\,\mathrm{d}x
+    &=\Biggl[
+      \frac{e^{(\alpha-\mathrm{i}\omega)x}}{\alpha-\mathrm{i}\omega}
+    \Biggr]_{-\infty}^{0}
+    =\frac{1}{\alpha-\mathrm{i}\omega},
+    \\
+    \int_0^{\infty} e^{-(\alpha+\mathrm{i}\omega)x}\,\mathrm{d}x
+    &=\Biggl[
+      -\frac{e^{-(\alpha+\mathrm{i}\omega)x}}{\alpha+\mathrm{i}\omega}
+    \Biggr]_0^{\infty}
+    =\frac{1}{\alpha+\mathrm{i}\omega}.
+  \end{align*}
+  （$\mathrm{Re}\,\alpha>0$ 保证上限／下限收敛。）相加，
+  \begin{equation*}
+    F(\omega)
+    =\frac{1}{\sqrt{2\pi}}
+      \Biggl(
+        \frac{1}{\alpha-\mathrm{i}\omega}
+        +\frac{1}{\alpha+\mathrm{i}\omega}
+      \Biggr)
+    =\sqrt{\frac{1}{2\pi}}\,\frac{2\alpha}{\alpha^2+\omega^2}.
+  \end{equation*}
+  $F$ 实且偶，与实偶的 $f$ 一致。
+\end{frame}
 
 \begin{frame}{$e^{-\alpha|x|}$ 的图像}
   左图是原函数，右图是像函数。$\alpha$ 增大时 $f$ 变窄，$F$ 变宽。
@@ -700,7 +750,7 @@
 \end{frame}
 
 
-\begin{frame}{}
+\begin{frame}{矩孔的费琅和夫衍射图样}
   \centering
   \includegraphics[width=0.78\textwidth,keepaspectratio]{ft_figure.jpg}
 \end{frame}
@@ -1005,6 +1055,319 @@
   \end{equation*}
 \end{frame}
 
+% % =============================================================
+% \section{应用：格林函数与薛定谔方程}
+
+% \begin{frame}{格林函数：定义}
+%   线性微分算符 $L$ 的\textbf{格林函数} $G(x,y)$ 满足
+%   \begin{equation*}
+%     L_x\,G(x,y)=\delta(x-y).
+%   \end{equation*}
+%   右端是放在 $y$ 处的单位脉冲源；$G(\,\cdot\,,y)$ 是系统的响应。
+%   \vspace{0.35em}
+
+%   若平移不变，$G$ 只依赖差 $x-y$，写成 $G(x-y)$。此时
+%   \begin{equation*}
+%     L\,G=\delta.
+%   \end{equation*}
+% \end{frame}
+
+% \begin{frame}{为什么 $u=G*f$}
+%   设 $Lu=f$。把源写成脉冲的叠加，
+%   \begin{equation*}
+%     f(x)=\int_{-\infty}^{\infty} f(y)\,\delta(x-y)\,\mathrm{d}y.
+%   \end{equation*}
+%   对每个固定的 $y$，$L_x G(x-y)=\delta(x-y)$。两边乘 $f(y)$ 再对 $y$ 积分，
+%   并交换 $L$ 与积分（$L$ 线性），
+%   \begin{equation*}
+%     L_x\int_{-\infty}^{\infty} G(x-y)f(y)\,\mathrm{d}y
+%     =\int_{-\infty}^{\infty} f(y)\,\delta(x-y)\,\mathrm{d}y
+%     =f(x).
+%   \end{equation*}
+%   因此
+%   \begin{equation*}
+%     u(x)=(G*f)(x)
+%     =\int_{-\infty}^{\infty} G(x-y)f(y)\,\mathrm{d}y
+%   \end{equation*}
+%   是 $Lu=f$ 的一个特解。
+% \end{frame}
+
+% \begin{frame}{例：一阶方程，先作傅里叶变换}
+%   取 $u'+\gamma u=f$，其中 $\gamma>0$。对称形式下
+%   $\mathcal{F}[u']=\mathrm{i}k\,\widehat U$，
+%   $\mathcal{F}[u]=\widehat U$，
+%   $\mathcal{F}[f]=\widehat F$。方程变成
+%   \begin{equation*}
+%     (\mathrm{i}k+\gamma)\,\widehat U(k)=\widehat F(k),
+%   \end{equation*}
+%   于是
+%   \begin{equation*}
+%     \widehat U(k)
+%     =\frac{1}{\mathrm{i}k+\gamma}\,\widehat F(k)
+%     =\sqrt{2\pi}\,\widehat G(k)\,\widehat F(k),
+%   \end{equation*}
+%   其中第二步用了卷积定理 $\mathcal{F}[G*f]=\sqrt{2\pi}\,\widehat G\,\widehat F$。
+%   比较两边，
+%   \begin{equation*}
+%     \widehat G(k)=\frac{1}{\sqrt{2\pi}\,(\mathrm{i}k+\gamma)}.
+%   \end{equation*}
+% \end{frame}
+
+% \begin{frame}{逆变换：认出已知像对}
+%   前面已算过 $e^{-\alpha|x|}$ 的像是
+%   $\sqrt{1/(2\pi)}\,2\alpha/(\alpha^2+\omega^2)$。
+%   这里需要的是单侧指数。直接算
+%   \begin{equation*}
+%     \mathcal{F}\bigl[e^{-\gamma x}\Theta(x)\bigr]
+%     =\frac{1}{\sqrt{2\pi}}
+%       \int_0^{\infty} e^{-\gamma x}e^{-\mathrm{i}kx}\,\mathrm{d}x
+%     =\frac{1}{\sqrt{2\pi}\,(\gamma+\mathrm{i}k)}.
+%   \end{equation*}
+%   与上一张的 $\widehat G$ 完全相同。因此
+%   \begin{equation*}
+%     G(x)=e^{-\gamma x}\Theta(x)
+%     =\begin{cases}
+%       e^{-\gamma x}, & x>0,\\
+%       0, & x<0.
+%     \end{cases}
+%   \end{equation*}
+% \end{frame}
+
+% \begin{frame}{解与直接验证}
+%   卷积给出
+%   \begin{equation*}
+%     u(x)
+%     =\int_{-\infty}^{\infty} G(x-y)f(y)\,\mathrm{d}y
+%     =\int_{-\infty}^{x} e^{-\gamma(x-y)}f(y)\,\mathrm{d}y.
+%   \end{equation*}
+%   上限是 $x$，因为 $x-y<0$ 时 $G=0$。
+%   \vspace{0.35em}
+
+%   验证 $G'+\gamma G=\delta$。对 $x\neq 0$，$G$ 光滑：
+%   $x>0$ 时 $G'= -\gamma e^{-\gamma x}$，故 $G'+\gamma G=0$；
+%   $x<0$ 时 $G\equiv 0$。跨过原点，$G$ 从 $0$ 跳到 $1$，
+%   故 $G'$ 含 $\delta(x)$，即 $G'+\gamma G=\delta(x)$。
+% \end{frame}
+
+% \begin{frame}{例：阻尼振子，代数化}
+%   方程 $u''+2\gamma u'+\omega_0^2 u=f(t)$，$\gamma>0$。
+%   用 $\mathcal{F}[u'']=-\omega^2\widehat U$、
+%   $\mathcal{F}[u']= \mathrm{i}\omega\,\widehat U$，
+%   \begin{equation*}
+%     \bigl(-\omega^2+2\mathrm{i}\gamma\omega+\omega_0^2\bigr)
+%     \widehat U(\omega)
+%     =\widehat F(\omega).
+%   \end{equation*}
+%   与卷积定理比较，
+%   \begin{equation*}
+%     \widehat G(\omega)
+%     =\frac{1}{\sqrt{2\pi}\,
+%       (-\omega^2+2\mathrm{i}\gamma\omega+\omega_0^2)}.
+%   \end{equation*}
+%   分母配方：
+%   \begin{equation*}
+%     -\omega^2+2\mathrm{i}\gamma\omega+\omega_0^2
+%     =-(\omega-\mathrm{i}\gamma)^2+\Omega^2,
+%     \qquad
+%     \Omega=\sqrt{\omega_0^2-\gamma^2}
+%   \end{equation*}
+%   （欠阻尼 $\omega_0>\gamma$）。
+% \end{frame}
+
+% \begin{frame}{阻尼振子：先算无阻尼核}
+%   先取 $\gamma=0$，则
+%   $\widehat G(\omega)=1/[\sqrt{2\pi}\,(\omega_0^2-\omega^2)]$。
+%   直接算因果振荡的像：
+%   \begin{align*}
+%     &\mathcal{F}\bigl[\sin(\omega_0 t)\,\Theta(t)\bigr]
+%     =\frac{1}{\sqrt{2\pi}}
+%       \int_0^{\infty}\sin(\omega_0 t)\,e^{-\mathrm{i}\omega t}\,\mathrm{d}t \\
+%     &=\frac{1}{\sqrt{2\pi}}
+%       \int_0^{\infty}
+%         \frac{e^{\mathrm{i}\omega_0 t}-e^{-\mathrm{i}\omega_0 t}}{2\mathrm{i}}
+%         e^{-\mathrm{i}\omega t}\,\mathrm{d}t
+%     =\frac{\omega_0}{\sqrt{2\pi}\,(\omega_0^2-\omega^2)}.
+%   \end{align*}
+%   （积分时给 $\omega$ 加上 $\mathrm{i}0^+$ 以保证收敛。）因此
+%   \begin{equation*}
+%     \mathcal{F}\Bigl[\frac{\sin(\omega_0 t)}{\omega_0}\Theta(t)\Bigr]
+%     =\frac{1}{\sqrt{2\pi}\,(\omega_0^2-\omega^2)}
+%     =\widehat G\Big|_{\gamma=0}.
+%   \end{equation*}
+% \end{frame}
+
+% \begin{frame}{阻尼振子：加上衰减}
+%   $\gamma>0$ 时，分母是
+%   $-(\omega-\mathrm{i}\gamma)^2+\Omega^2
+%   =\Omega^2-(\omega-\mathrm{i}\gamma)^2$。
+%   与无阻尼情形比较，只是把频率变量平移了 $\mathrm{i}\gamma$。
+%   \vspace{0.3em}
+
+%   调制／位移：$\mathcal{F}[e^{-\gamma t}g(t)]=\widehat G_0(\omega-\mathrm{i}\gamma)$。
+%   取 $g(t)=\sin(\Omega t)\,\Theta(t)/\Omega$，则
+%   \begin{equation*}
+%     \widehat G(\omega)
+%     =\frac{1}{\sqrt{2\pi}\,[\Omega^2-(\omega-\mathrm{i}\gamma)^2]},
+%   \end{equation*}
+%   对应
+%   \begin{equation*}
+%     G(t)
+%     =\frac{e^{-\gamma t}}{\Omega}\sin(\Omega t)\,\Theta(t).
+%   \end{equation*}
+%   于是
+%   $u=G*f$，即
+%   \begin{equation*}
+%     u(t)=\int_{-\infty}^{t}
+%       \frac{e^{-\gamma(t-\tau)}}{\Omega}
+%       \sin\bigl(\Omega(t-\tau)\bigr)\,f(\tau)\,\mathrm{d}\tau.
+%   \end{equation*}
+% \end{frame}
+
+% \begin{frame}{例：$\delta$ 势，从方程出发}
+%   吸引 $\delta$ 势的定态薛定谔方程
+%   \begin{equation*}
+%     -\frac{\hbar^2}{2m}\Psi''(x)
+%     -\lambda\delta(x)\Psi(x)
+%     =E\Psi(x),
+%     \qquad \lambda>0.
+%   \end{equation*}
+%   束缚态：$E<0$。令
+%   \begin{equation*}
+%     E=-\frac{\hbar^2 Q^2}{2m},
+%     \qquad Q>0.
+%   \end{equation*}
+%   两边乘 $2m/\hbar^2$，并记
+%   $\tilde\lambda=2m\lambda/\hbar^2$，得到
+%   \begin{equation*}
+%     -\Psi''-\tilde\lambda\,\delta(x)\Psi
+%     =-Q^2\Psi,
+%   \end{equation*}
+%   即
+%   \begin{equation*}
+%     \Psi''-Q^2\Psi
+%     =-\tilde\lambda\,\delta(x)\Psi.
+%   \end{equation*}
+% \end{frame}
+
+% \begin{frame}{$\delta$ 势：作傅里叶变换}
+%   对称形式下 $\mathcal{F}[\Psi'']=-k^2\widehat\Psi$。
+%   右端用挑选性：
+%   \begin{equation*}
+%     \mathcal{F}\bigl[\delta(x)\Psi(x)\bigr]
+%     =\frac{1}{\sqrt{2\pi}}
+%       \int_{-\infty}^{\infty}
+%         \delta(x)\Psi(x)\,e^{-\mathrm{i}kx}\,\mathrm{d}x
+%     =\frac{\Psi(0)}{\sqrt{2\pi}}.
+%   \end{equation*}
+%   因此
+%   \begin{equation*}
+%     -k^2\widehat\Psi-Q^2\widehat\Psi
+%     =-\tilde\lambda\,\frac{\Psi(0)}{\sqrt{2\pi}},
+%   \end{equation*}
+%   整理得
+%   \begin{equation*}
+%     \widehat\Psi(k)
+%     =\frac{\tilde\lambda\,\Psi(0)}{\sqrt{2\pi}\,(Q^2+k^2)}.
+%   \end{equation*}
+% \end{frame}
+
+% \begin{frame}{逆变换：用双边指数的像}
+%   前面算过
+%   \begin{equation*}
+%     \mathcal{F}\bigl[e^{-Q|x|}\bigr]
+%     =\sqrt{\frac{1}{2\pi}}\,\frac{2Q}{Q^2+k^2}
+%     =\frac{2Q}{\sqrt{2\pi}\,(Q^2+k^2)}.
+%   \end{equation*}
+%   两边乘 $\sqrt{2\pi}/(2Q)$，解出
+%   \begin{equation*}
+%     \frac{1}{Q^2+k^2}
+%     =\frac{\sqrt{2\pi}}{2Q}\,
+%       \mathcal{F}\bigl[e^{-Q|x|}\bigr].
+%   \end{equation*}
+%   再作逆变换：右端系数不变，原函数是 $e^{-Q|x|}$，
+%   \begin{equation*}
+%     \mathcal{F}^{-1}\Bigl[\frac{1}{Q^2+k^2}\Bigr]
+%     =\frac{\sqrt{2\pi}}{2Q}\,e^{-Q|x|}.
+%   \end{equation*}
+%   化简系数：
+%   $\sqrt{2\pi}/(2Q)=\sqrt{2\pi/(4Q^2)}=\sqrt{\pi/(2Q^2)}$。
+% \end{frame}
+
+% \begin{frame}{波函数与自洽条件}
+%   代回 $\widehat\Psi$，
+%   \begin{align*}
+%     \Psi(x)
+%     &=\frac{\tilde\lambda\,\Psi(0)}{\sqrt{2\pi}}
+%       \cdot
+%       \mathcal{F}^{-1}\Bigl[\frac{1}{Q^2+k^2}\Bigr]
+%     \\
+%     &=\frac{\tilde\lambda\,\Psi(0)}{\sqrt{2\pi}}
+%       \cdot\frac{\sqrt{2\pi}}{2Q}\,e^{-Q|x|}
+%     =\frac{\tilde\lambda\,\Psi(0)}{2Q}\,e^{-Q|x|}.
+%   \end{align*}
+%   令 $x=0$：$\Psi(0)=\tilde\lambda\Psi(0)/(2Q)$。
+%   若 $\Psi(0)\neq 0$，则 $\tilde\lambda=2Q$。
+%   代回 $\tilde\lambda=2m\lambda/\hbar^2$，
+%   \begin{equation*}
+%     Q=\frac{m\lambda}{\hbar^2},
+%     \qquad
+%     E=-\frac{\hbar^2 Q^2}{2m}
+%     =-\frac{m\lambda^2}{2\hbar^2}.
+%   \end{equation*}
+%   任意 $\lambda>0$ 恰好一个束缚态；波函数两侧指数衰减。
+% \end{frame}
+
+% \begin{frame}{例：$\cos(qx)$ 的像，第一步}
+%   目标：对称形式下求 $\mathcal{F}[\cos(qx)]$。
+%   先写
+%   \begin{equation*}
+%     \cos(qx)
+%     =\frac{e^{\mathrm{i}qx}+e^{-\mathrm{i}qx}}{2}.
+%   \end{equation*}
+%   于是
+%   \begin{equation*}
+%     F(k)
+%     =\frac{1}{\sqrt{2\pi}}
+%       \int_{-\infty}^{\infty}
+%         \cos(qx)\,e^{-\mathrm{i}kx}\,\mathrm{d}x
+%     =\frac{1}{2\sqrt{2\pi}}
+%       \bigl(I_{+}+I_{-}\bigr),
+%   \end{equation*}
+%   其中
+%   \begin{equation*}
+%     I_{\pm}
+%     =\int_{-\infty}^{\infty}
+%       e^{-\mathrm{i}(k\mp q)x}\,\mathrm{d}x.
+%   \end{equation*}
+% \end{frame}
+
+% \begin{frame}{用 $\delta$ 的傅里叶积分}
+%   前面有
+%   \begin{equation*}
+%     \delta(\xi)
+%     =\frac{1}{2\pi}
+%       \int_{-\infty}^{\infty}
+%         e^{\mathrm{i}\xi x}\,\mathrm{d}x
+%     =\frac{1}{2\pi}
+%       \int_{-\infty}^{\infty}
+%         e^{-\mathrm{i}\xi x}\,\mathrm{d}x
+%   \end{equation*}
+%   （偶性）。因此
+%   \begin{equation*}
+%     I_{\pm}
+%     =2\pi\,\delta(k\mp q).
+%   \end{equation*}
+%   代回
+%   \begin{equation*}
+%     F(k)
+%     =\frac{1}{2\sqrt{2\pi}}
+%       \bigl(2\pi\delta(k-q)+2\pi\delta(k+q)\bigr)
+%     =\sqrt{\frac{\pi}{2}}
+%       \bigl(\delta(k-q)+\delta(k+q)\bigr).
+%   \end{equation*}
+%   单色余弦 $=$ 频率 $\pm q$ 处的两个点源。
+% \end{frame}
+
 
 \begin{frame}{本讲小结：傅里叶变换}
   对称形式
@@ -1058,5 +1421,17 @@
       柱、球坐标要除以雅可比因子。
   \end{itemize}
 \end{frame}
+
+% \begin{frame}{本讲小结：格林函数与 $\delta$ 势}
+%   \begin{itemize}
+%     \item $LG=\delta$；$f=\int f(y)\delta(x-y)\,\mathrm{d}y$ $\Rightarrow$ $u=G*f$。
+%     \item 一阶：$\widehat G=1/[\sqrt{2\pi}(\mathrm{i}k+\gamma)]$，
+%       $G=e^{-\gamma x}\Theta(x)$。
+%     \item 阻尼振子：$G(t)=e^{-\gamma t}\sin(\Omega t)\,\Theta(t)/\Omega$。
+%     \item $\delta$ 势：$Q=m\lambda/\hbar^2$，
+%       $E=-m\lambda^2/(2\hbar^2)$，一个束缚态。
+%     \item $\mathcal{F}[\cos(qx)]=\sqrt{\pi/2}\,(\delta(k-q)+\delta(k+q))$。
+%   \end{itemize}
+% \end{frame}
 
 \end{document}

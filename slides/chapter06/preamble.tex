@@ -1,0 +1,30 @@
+% Shared preamble for the chapter 06 standalone lectures.
+% Each lecture sets \title and \subtitle after this file is read.
+
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xeCJK}
+\usepackage{zhnumber}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+
+\usetheme{metropolis}
+\usepackage{beamercolorthemeHistNanjing}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}
+
+\input{macro}
+
+\author{罗凯}
+\institute{南京理工大学物理学院}
+\date{\zhdigits{\the\year},\zhganzhinian{\the\year}年秋}
+
+\usebackgroundtemplate{%
+\begin{tikzpicture}[remember picture,overlay]
+  \node[opacity=0.05, at=(current page.center)] {
+    \includegraphics[width=0.6\paperwidth]{njust-logo.jpeg}
+  };
+\end{tikzpicture}}

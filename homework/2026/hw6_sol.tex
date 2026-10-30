@@ -1,0 +1,430 @@
+% Solutions to Homework 6 — Math Physics Methods (数学物理方法)
+
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{ctex}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+
+\theoremstyle{remark}
+\newtheorem{problem}{}
+\theoremstyle{definition}
+\newtheorem{solution}{解}
+
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+\setlength{\headheight}{15.11996pt}
+\setlength{\topmargin}{-3.11996pt}
+
+\newcommand{\duedate}{\zhdate{2026/11/06}}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyhead[L]{数学物理方法}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{课后习题陆 \quad 参考解答}
+
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{截止日期\duedate}
+\fancyfoot[R]{任课教师:罗凯}
+
+\begin{document}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+
+%==========================================================================
+\begin{problem}
+  请用大模型帮助你，需要写出你使用的模型名称，使用的提示词.
+  \begin{enumerate}
+    \item 简述Gibbs现象及其产生原因;
+    \item 对于离散傅里叶变换, 频谱的分辨率与哪些因素有关?
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+略.
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+计算矩形波
+\[
+\begin{aligned}
+& f(x)=0, \quad-\pi<x<0, \\
+& f(x)=h, \quad 0<x<\pi .
+\end{aligned}
+\]
+的傅里叶级数展开.注意观察级数展开在间断点的取值是否为预期.
+\end{problem}
+
+\begin{solution}
+周期 $2\ell=2\pi$，故 $\ell=\pi$。实形式
+\[
+f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}
+\bigl(a_n\cos(nx)+b_n\sin(nx)\bigr),
+\]
+其中
+\begin{align*}
+a_n
+&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)\,\mathrm{d}x
+=\frac{1}{\pi}\int_0^{\pi}h\cos(nx)\,\mathrm{d}x,\\
+b_n
+&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,\mathrm{d}x
+=\frac{1}{\pi}\int_0^{\pi}h\sin(nx)\,\mathrm{d}x.
+\end{align*}
+先算余弦系数。$n=0$ 时
+\[
+a_0=\frac{1}{\pi}\int_0^{\pi}h\,\mathrm{d}x=h.
+\]
+$n\geq 1$ 时
+\[
+a_n
+=\frac{h}{\pi}\Biggl[\frac{\sin(nx)}{n}\Biggr]_0^{\pi}=0.
+\]
+再算正弦系数。$n\geq 1$ 时
+\[
+b_n
+=\frac{h}{\pi}\Biggl[-\frac{\cos(nx)}{n}\Biggr]_0^{\pi}
+=\frac{h}{n\pi}\bigl(1-(-1)^n\bigr)
+=\frac{h}{n\pi}\bigl[1+(-1)^{n+1}\bigr].
+\]
+因此
+\[
+f(x)
+=\frac{h}{2}
++\frac{h}{\pi}\sum_{n=1}^{\infty}
+\frac{1+(-1)^{n+1}}{n}\sin(nx).
+\]
+奇数 $n=2m+1$ 时系数非零，$b_{2m+1}=2h/[(2m+1)\pi]$；偶数项全为零。也可写成
+\[
+f(x)
+=\frac{h}{2}
++\frac{2h}{\pi}\sum_{m=0}^{\infty}
+\frac{\sin\bigl((2m+1)x\bigr)}{2m+1}.
+\]
+
+在间断点 $x=0$（以及 $x=\pm\pi$ 的周期延拓点），级数收敛到两端极限的算术平均：
+\[
+\frac{f(0^-)+f(0^+)}{2}=\frac{0+h}{2}=\frac{h}{2},
+\]
+与常项 $a_0/2=h/2$、正弦项在 $x=0$ 全为零一致。这正是 Dirichlet 定理所预期的取值。
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  证明傅里叶变换 $\mathcal{F}[f(x)]=F(\omega)$ 满足以下定理.
+  \begin{enumerate}
+    \item 积分定理
+    \[
+      \mathcal{F}\Bigl[\int^{x} f(x)\,\mathrm{d}x\Bigr]
+      =\frac{1}{\mathrm{i}\omega}F(\omega),
+    \]
+    \item 位移定理
+    \[
+      \mathcal{F}\bigl[e^{\mathrm{i}\omega_0 x}f(x)\bigr]
+      =F(\omega-\omega_0),
+    \]
+    \item 卷积定理（定义见书本）
+    \[
+      \mathcal{F}[f_1\star f_2]=F_1(\omega)F_2(\omega).
+    \]
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+本题的卷积定理写成 $F_1 F_2$（无额外常数），采用与之配套的约定
+\begin{equation}
+F(\omega)
+=\int_{-\infty}^{\infty}f(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x,
+\qquad
+f(x)
+=\frac{1}{2\pi}
+\int_{-\infty}^{\infty}F(\omega)\,e^{\mathrm{i}\omega x}\,\mathrm{d}\omega,
+\label{eq:hw6-ft-asym}
+\end{equation}
+以及卷积
+\[
+(f_1\star f_2)(x)
+=\int_{-\infty}^{\infty}f_1(\xi)f_2(x-\xi)\,\mathrm{d}\xi.
+\]
+（若改用对称约定 $\mathcal{F}[f_1*f_2]=\sqrt{2\pi}\,F_1 F_2$，证明步骤相同，只是多出一个 $\sqrt{2\pi}$。）
+
+\medskip
+\noindent\textbf{(1) 积分定理.}
+令
+\[
+g(x)=\int_{-\infty}^{x}f(t)\,\mathrm{d}t,
+\]
+并假定 $g(\pm\infty)=0$（等价于 $F(0)=\int f=0$，从而使 $g$ 在无穷远处可积）。则 $g'=f$，且
+\[
+\mathcal{F}[g']=\mathrm{i}\omega\,G(\omega).
+\]
+左边就是 $F(\omega)$，故
+\[
+G(\omega)=\frac{F(\omega)}{\mathrm{i}\omega}
+\qquad(\omega\neq 0).
+\]
+这就是积分定理。也可用分部积分直接验证：对 $G$ 的定义式分部，边界项因 $g(\pm\infty)=0$ 消失，剩下 $F/(\mathrm{i}\omega)$。
+
+\medskip
+\noindent\textbf{(2) 位移定理.}
+\begin{align*}
+\mathcal{F}\bigl[e^{\mathrm{i}\omega_0 x}f(x)\bigr]
+&=\int_{-\infty}^{\infty}
+  e^{\mathrm{i}\omega_0 x}f(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+=\int_{-\infty}^{\infty}
+  f(x)\,e^{-\mathrm{i}(\omega-\omega_0)x}\,\mathrm{d}x
+=F(\omega-\omega_0).
+\end{align*}
+
+\medskip
+\noindent\textbf{(3) 卷积定理.}
+把 $f_2$ 写成逆变换，再交换积分次序：
+\begin{align*}
+\mathcal{F}[f_1\star f_2]
+&=\int_{-\infty}^{\infty}\mathrm{d}x\,e^{-\mathrm{i}\omega x}
+  \int_{-\infty}^{\infty}\mathrm{d}\xi\,
+  f_1(\xi)f_2(x-\xi)\\
+&=\int_{-\infty}^{\infty}\mathrm{d}\xi\,f_1(\xi)
+  \Biggl(
+    \int_{-\infty}^{\infty}\mathrm{d}x\,
+    f_2(x-\xi)\,e^{-\mathrm{i}\omega x}
+  \Biggr).
+\end{align*}
+内层令 $u=x-\xi$，得 $e^{-\mathrm{i}\omega\xi}F_2(\omega)$。于是
+\begin{align*}
+\mathcal{F}[f_1\star f_2]
+&=\Biggl(\int_{-\infty}^{\infty}f_1(\xi)\,e^{-\mathrm{i}\omega\xi}\,\mathrm{d}\xi\Biggr)
+  F_2(\omega)
+=F_1(\omega)F_2(\omega).
+\end{align*}
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  \begin{enumerate}
+    \item 验证 $f(x)=x^{-1/2}$ 在 Fourier 余弦和正弦变换下互易；即
+    \[
+    \begin{aligned}
+    &\sqrt{\frac{2}{\pi}}
+      \int_0^{\infty}x^{-1/2}\cos(xt)\,\mathrm{d}x
+      =t^{-1/2},\\
+    &\sqrt{\frac{2}{\pi}}
+      \int_0^{\infty}x^{-1/2}\sin(xt)\,\mathrm{d}x
+      =t^{-1/2}.
+    \end{aligned}
+    \]
+    \item 使用上述结果计算菲涅耳积分
+    \[
+    \int_0^{\infty}\cos(y^2)\,\mathrm{d}y,\qquad
+    \int_0^{\infty}\sin(y^2)\,\mathrm{d}y.
+    \]
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\noindent\textbf{(1)}
+设 $t>0$，并记
+\begin{align*}
+I_c(t)
+&=\sqrt{\frac{2}{\pi}}
+  \int_0^{\infty}x^{-1/2}\cos(xt)\,\mathrm{d}x,\\
+I_s(t)
+&=\sqrt{\frac{2}{\pi}}
+  \int_0^{\infty}x^{-1/2}\sin(xt)\,\mathrm{d}x.
+\end{align*}
+考虑复组合
+\[
+I(t)=I_c(t)+\mathrm{i}\,I_s(t)
+=\sqrt{\frac{2}{\pi}}
+  \int_0^{\infty}x^{-1/2}e^{\mathrm{i}xt}\,\mathrm{d}x.
+\]
+令 $y=xt$，则 $\mathrm{d}x=\mathrm{d}y/t$，
+\[
+I(t)
+=\sqrt{\frac{2}{\pi}}\,t^{-1/2}
+  \int_0^{\infty}y^{-1/2}e^{\mathrm{i}y}\,\mathrm{d}y.
+\]
+计算
+\[
+J=\int_0^{\infty}y^{-1/2}e^{\mathrm{i}y}\,\mathrm{d}y.
+\]
+被积函数在原点奇异。取第一象限扇形围道：正实轴、大圆弧、沿正虚轴向下、绕原点的小圆弧。大圆弧与小圆弧上的贡献趋于零（约当引理；小圆上弧长 $\sim\varepsilon$ 乘 $|y^{-1/2}|\sim\varepsilon^{-1/2}$）。闭路内解析，围道积分为零。虚轴段取 $y=\mathrm{i}\rho=\rho e^{\mathrm{i}\pi/2}$（$\rho$ 从 $\infty$ 到 $0$），
+\begin{align*}
+y^{-1/2}
+&=\rho^{-1/2}e^{-\mathrm{i}\pi/4},
+\qquad
+e^{\mathrm{i}y}=e^{-\rho},
+\qquad
+\mathrm{d}y=\mathrm{i}\,\mathrm{d}\rho.
+\end{align*}
+虚轴贡献为
+\[
+\int_{\infty}^{0}
+\rho^{-1/2}e^{-\mathrm{i}\pi/4}e^{-\rho}\,\mathrm{i}\,\mathrm{d}\rho
+=-\mathrm{i}\,e^{-\mathrm{i}\pi/4}\,\Gamma\Bigl(\tfrac12\Bigr).
+\]
+由围道积分为零得 $J-\mathrm{i}\,e^{-\mathrm{i}\pi/4}\sqrt{\pi}=0$，故
+\[
+J=\mathrm{i}\,e^{-\mathrm{i}\pi/4}\sqrt{\pi}
+=e^{\mathrm{i}\pi/4}\sqrt{\pi}.
+\]
+因此
+\[
+I(t)
+=\sqrt{\frac{2}{\pi}}\,t^{-1/2}\cdot\sqrt{\pi}\,e^{\mathrm{i}\pi/4}
+=\sqrt{2}\,t^{-1/2}\cdot\frac{1+\mathrm{i}}{\sqrt{2}}
+=t^{-1/2}(1+\mathrm{i}).
+\]
+比较实部、虚部，$I_c(t)=I_s(t)=t^{-1/2}$。这就是所求的余弦／正弦变换互易。
+
+\medskip
+\noindent\textbf{(2)}
+令 $u=y^2$，则 $y=\sqrt{u}$，$\mathrm{d}y=\mathrm{d}u/(2\sqrt{u})$，
+\begin{align*}
+\int_0^{\infty}\cos(y^2)\,\mathrm{d}y
+&=\int_0^{\infty}\cos u\cdot\frac{\mathrm{d}u}{2\sqrt{u}}
+=\frac12\int_0^{\infty}u^{-1/2}\cos u\,\mathrm{d}u.
+\end{align*}
+由 (1) 取 $t=1$，
+\[
+\sqrt{\frac{2}{\pi}}
+\int_0^{\infty}u^{-1/2}\cos u\,\mathrm{d}u=1
+\qquad\Longrightarrow\qquad
+\int_0^{\infty}u^{-1/2}\cos u\,\mathrm{d}u
+=\sqrt{\frac{\pi}{2}}.
+\]
+故
+\[
+\int_0^{\infty}\cos(y^2)\,\mathrm{d}y
+=\frac12\sqrt{\frac{\pi}{2}}
+=\sqrt{\frac{\pi}{8}}.
+\]
+同理
+\[
+\int_0^{\infty}\sin(y^2)\,\mathrm{d}y
+=\frac12\sqrt{\frac{\pi}{2}}
+=\sqrt{\frac{\pi}{8}}.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  对于屏蔽效应的描述可以使用 Yukawa 势
+  \[
+  V(\mathbf{r})=\frac{e^{-\alpha r}}{r},
+  \]
+  其中 $\alpha$ 描述屏蔽的强弱.
+  \begin{enumerate}
+    \item 试在球坐标系下求出三维傅里叶变换;
+    \item 当 $\alpha=Z$ 时，函数 $e^{-Zr}$ 可描述类氢原子的 $1s$ 轨道，对其傅里叶变换关于 $Z$ 求偏导
+    $-\dfrac{\partial}{\partial Z}\mathcal{F}\!\left[\dfrac{e^{-Zr}}{r}\right]$;
+    \item 若是三维高斯形式 $V(\mathbf{r})=e^{-\alpha r^2}$，求其傅里叶变换.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+采用三维对称约定
+\begin{equation}
+\mathcal{F}[V](\mathbf{q})
+=\frac{1}{(2\pi)^{3/2}}
+\int_{\mathbb{R}^3}
+V(\mathbf{r})\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\,\mathrm{d}^3\mathbf{r}.
+\label{eq:hw6-ft3}
+\end{equation}
+
+\medskip
+\noindent\textbf{(1)}
+$V$ 只依赖 $r=|\mathbf{r}|$。不失一般性取 $\mathbf{q}$ 沿 $z$ 轴正向，球坐标中
+$\mathbf{q}\cdot\mathbf{r}=qr\cos\theta$，体积元
+$\mathrm{d}^3\mathbf{r}=r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\varphi$。于是
+\begin{align*}
+\mathcal{F}[V]
+&=\frac{1}{(2\pi)^{3/2}}
+\int_0^{\infty}\mathrm{d}r\,r^2\cdot\frac{e^{-\alpha r}}{r}
+\int_0^{\pi}\mathrm{d}\theta\,\sin\theta\,e^{-\mathrm{i}qr\cos\theta}
+\int_0^{2\pi}\mathrm{d}\varphi\\
+&=\frac{1}{(2\pi)^{3/2}}\cdot 2\pi
+\int_0^{\infty}\mathrm{d}r\,r\,e^{-\alpha r}
+\int_0^{\pi}\mathrm{d}\theta\,\sin\theta\,e^{-\mathrm{i}qr\cos\theta}.
+\end{align*}
+内层令 $u=\cos\theta$，$\mathrm{d}u=-\sin\theta\,\mathrm{d}\theta$，
+\begin{align*}
+\int_0^{\pi}\sin\theta\,e^{-\mathrm{i}qr\cos\theta}\,\mathrm{d}\theta
+&=\int_{-1}^{1}e^{-\mathrm{i}qr u}\,\mathrm{d}u
+=\frac{e^{\mathrm{i}qr}-e^{-\mathrm{i}qr}}{\mathrm{i}qr}
+=\frac{2\sin(qr)}{qr}.
+\end{align*}
+因此
+\begin{align*}
+\mathcal{F}[V]
+&=\frac{1}{(2\pi)^{3/2}}\cdot\frac{4\pi}{q}
+\int_0^{\infty}e^{-\alpha r}\sin(qr)\,\mathrm{d}r
+=\frac{1}{(2\pi)^{3/2}}\cdot\frac{4\pi}{q}
+\,\mathrm{Im}
+\int_0^{\infty}e^{-(\alpha-\mathrm{i}q)r}\,\mathrm{d}r\\
+&=\frac{1}{(2\pi)^{3/2}}\cdot\frac{4\pi}{q}
+\,\mathrm{Im}\frac{1}{\alpha-\mathrm{i}q}
+=\frac{1}{(2\pi)^{3/2}}\cdot\frac{4\pi}{\alpha^2+q^2}
+=\sqrt{\frac{2}{\pi}}\,\frac{1}{\alpha^2+q^2}.
+\end{align*}
+
+\medskip
+\noindent\textbf{(2)}
+取 $\alpha=Z$。对参数求导可与积分交换（在 $\mathrm{Re}\,Z>0$ 时合法），
+\begin{align*}
+-\frac{\partial}{\partial Z}
+\mathcal{F}\!\left[\frac{e^{-Zr}}{r}\right]
+&=-\frac{1}{(2\pi)^{3/2}}
+\frac{\partial}{\partial Z}
+\frac{4\pi}{Z^2+q^2}
+=\frac{1}{(2\pi)^{3/2}}
+\frac{8\pi Z}{(Z^2+q^2)^2}.
+\end{align*}
+这正是 $\mathcal{F}[e^{-Zr}]$：因为
+$\partial_Z(e^{-Zr}/r)=-e^{-Zr}$，故
+$-\partial_Z\mathcal{F}[e^{-Zr}/r]=\mathcal{F}[e^{-Zr}]$。
+
+\medskip
+\noindent\textbf{(3)}
+同样取 $\mathbf{q}$ 沿 $z$ 轴，
+\begin{align*}
+\mathcal{F}\bigl[e^{-\alpha r^2}\bigr]
+&=\frac{1}{(2\pi)^{3/2}}
+\int_0^{\infty}\mathrm{d}r\,r^2 e^{-\alpha r^2}
+\int_0^{\pi}\mathrm{d}\theta\,\sin\theta\,e^{-\mathrm{i}qr\cos\theta}
+\int_0^{2\pi}\mathrm{d}\varphi\\
+&=\frac{1}{(2\pi)^{3/2}}\cdot\frac{4\pi}{q}
+\int_0^{\infty}r\,e^{-\alpha r^2}\sin(qr)\,\mathrm{d}r.
+\end{align*}
+写成虚部，
+\[
+\int_0^{\infty}r e^{-\alpha r^2}\sin(qr)\,\mathrm{d}r
+=\mathrm{Im}
+\int_0^{\infty}r e^{-\alpha r^2+\mathrm{i}qr}\,\mathrm{d}r.
+\]
+指数配方：
+\[
+-\alpha r^2+\mathrm{i}qr
+=-\alpha\Bigl(r-\frac{\mathrm{i}q}{2\alpha}\Bigr)^2-\frac{q^2}{4\alpha}.
+\]
+把积分延拓到整条实轴（被积函数偶部），再用高斯积分
+$\int_{-\infty}^{\infty}e^{-\alpha s^2}\,\mathrm{d}s=\sqrt{\pi/\alpha}$，得到
+\begin{align*}
+\mathcal{F}\bigl[e^{-\alpha r^2}\bigr]
+&=\frac{1}{(2\pi)^{3/2}}
+\Bigl(\frac{\pi}{\alpha}\Bigr)^{3/2}
+e^{-q^2/(4\alpha)}
+=\frac{1}{(2\alpha)^{3/2}}\,e^{-q^2/(4\alpha)}.
+\end{align*}
+（三维高斯在动量空间仍是高斯，宽度与 $\alpha^{-1/2}$ 成反比。）
+\end{solution}
+
+\end{document}
