@@ -2,6 +2,8 @@
 % 语言与顺序按 lecture/fourier/fourier_transform.tex 与 delta_function.tex
 \documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
 \input{preamble}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 \title{傅里叶分析}
 \subtitle{第二讲：傅里叶变换}
@@ -17,7 +19,7 @@
     \item 傅里叶变换：周期 $2\ell$ 延拓到无穷，傅里叶积分与对称形式；
     % \item 三个像函数：$e^{-\alpha|x|}$、$\delta(x)$、高斯函数；
     \item $\delta$ 函数：线密度的极限、挑选性、复合自变量；
-    \item 基本性质，以及二维、三维傅里叶变换。
+    \item 基本性质与卷积：方波卷积、高斯卷积，以及二维、三维傅里叶变换。
   \end{enumerate}
 \end{frame}
 
@@ -192,42 +194,52 @@
 
 
 
-% =============================================================
-% \section{三个像函数}
-
-\begin{frame}{例：$e^{-\alpha|x|}$}
-  $\alpha>0$。对 $x$ 分段，利用对称形式。
-  $x>0$ 时 $|x|=x$，
-  \begin{equation*}
-    \int_0^{\infty} e^{-\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
-    =\int_0^{\infty} e^{-(\alpha+\mathrm{i}\omega)x}\,\mathrm{d}x
-    =\frac{1}{\alpha+\mathrm{i}\omega}.
-  \end{equation*}
-  $x<0$ 时 $|x|=-x$，
-  \begin{equation*}
-    \int_{-\infty}^{0} e^{\alpha x}e^{-\mathrm{i}\omega x}\,\mathrm{d}x
-    =\int_{-\infty}^{0} e^{(\alpha-\mathrm{i}\omega)x}\,\mathrm{d}x
-    =\frac{1}{\alpha-\mathrm{i}\omega}.
-  \end{equation*}
-  两段之和
-  \begin{equation*}
-    \frac{1}{\alpha+\mathrm{i}\omega}+\frac{1}{\alpha-\mathrm{i}\omega}
-    =\frac{2\alpha}{\alpha^2+\omega^2}.
-  \end{equation*}
+\begin{frame}{$e^{-\alpha|x|}$ 的图像}
+  左图是原函数，右图是像函数。$\alpha$ 增大时 $f$ 变窄，$F$ 变宽。
+  \vspace{0.05em}
+  \begin{columns}[c,onlytextwidth]\setlength{\columnsep}{0pt}
+    \begin{column}{0.495\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth, height=3.55cm,
+          xmin=-4, xmax=4, ymin=0, ymax=1.15,
+          xlabel={$x$}, ylabel={$f(x)$},
+          tick label style={font=\scriptsize},
+          label style={font=\small},
+          legend style={font=\scriptsize, at={(0.5,-0.18)}, anchor=north, legend columns=-1},
+          every axis plot/.append style={no markers, samples=160},
+          domain=-4:4,
+        ]
+          \addplot[blue, thick] {exp(-abs(x))};
+          \addlegendentry{$\alpha=1$}
+          \addplot[orange, thick] {exp(-2*abs(x))};
+          \addlegendentry{$\alpha=2$}
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.495\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth, height=3.55cm,
+          xmin=-8, xmax=8, ymin=0, ymax=1.05,
+          xlabel={$\omega$}, ylabel={$F(\omega)$},
+          tick label style={font=\scriptsize},
+          label style={font=\small},
+          legend style={font=\scriptsize, at={(0.5,-0.18)}, anchor=north, legend columns=-1},
+          every axis plot/.append style={no markers, samples=200},
+          domain=-8:8,
+        ]
+          \addplot[blue, thick] {sqrt(1/(2*pi))*2*1/(1+x^2)};
+          \addlegendentry{$\alpha=1$}
+          \addplot[orange, thick] {sqrt(1/(2*pi))*4/(4+x^2)};
+          \addlegendentry{$\alpha=2$}
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
 \end{frame}
-
-\begin{frame}{例：$e^{-\alpha|x|}$ 的像函数}
-  再乘上对称形式的系数，
-  \begin{equation*}
-    F(\omega)
-    =\sqrt{\frac{1}{2\pi}}\,
-      \frac{2\alpha}{\alpha^2+\omega^2}.
-  \end{equation*}
-  越大的 $\alpha$，则 $f(x)$ 越窄，集中在 $x=0$ 附近，也就是越局域，而其傅里叶变换则越弥散。
-  当 $f(x)$ 是偶函数时，傅里叶变换的像函数为实函数。
-\end{frame}
-
-
 
 \begin{frame}{高斯函数的傅里叶变换}
   $f(x)=e^{-\alpha x^2}$，$\alpha>0$。对称形式下
@@ -288,7 +300,7 @@
   $R\to\infty$ 时竖边上 $e^{-\alpha(\mathrm{Re}\,t)^2}$ 把积分压到零。
 \end{frame}
 
-\begin{frame}{例：高斯函数，结果}
+\begin{frame}{高斯函数}
   因此平移后的积分等于实轴上的高斯积分：
   \begin{equation*}
     \int_{-\infty}^{\infty}
@@ -305,6 +317,57 @@
   \end{equation*}
   高斯函数的像函数还是高斯函数。原函数越窄，像函数越宽。
 \end{frame}
+
+\begin{frame}{高斯函数的图像}
+  $f(x)=e^{-\alpha x^2}$，
+  $F(\omega)=(2\alpha)^{-1/2}e^{-\omega^2/(4\alpha)}$。
+  $\alpha$ 增大时峰变窄，频谱变宽。
+  \vspace{0.05em}
+  \begin{columns}[c,onlytextwidth]\setlength{\columnsep}{0pt}
+    \begin{column}{0.495\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth, height=3.55cm,
+          xmin=-3, xmax=3, ymin=0, ymax=1.15,
+          xlabel={$x$}, ylabel={$f(x)$},
+          tick label style={font=\scriptsize},
+          label style={font=\small},
+          legend style={font=\scriptsize, at={(0.5,-0.18)}, anchor=north, legend columns=-1},
+          every axis plot/.append style={no markers, samples=160},
+          domain=-3:3,
+        ]
+          \addplot[blue, thick] {exp(-0.5*x^2)};
+          \addlegendentry{$\alpha=1/2$}
+          \addplot[orange, thick] {exp(-2*x^2)};
+          \addlegendentry{$\alpha=2$}
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.495\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth, height=3.55cm,
+          xmin=-6, xmax=6, ymin=0, ymax=1.15,
+          xlabel={$\omega$}, ylabel={$F(\omega)$},
+          tick label style={font=\scriptsize},
+          label style={font=\small},
+          legend style={font=\scriptsize, at={(0.5,-0.18)}, anchor=north, legend columns=-1},
+          every axis plot/.append style={no markers, samples=200},
+          domain=-6:6,
+        ]
+          \addplot[blue, thick] {1/sqrt(1)*exp(-x^2/(4*0.5))};
+          \addlegendentry{$\alpha=1/2$}
+          \addplot[orange, thick] {1/sqrt(4)*exp(-x^2/(4*2))};
+          \addlegendentry{$\alpha=2$}
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
 
 % =============================================================
 \section{基本性质}
@@ -381,6 +444,331 @@
     &=\sqrt{2\pi}\,F_1(\omega)\,F_2(\omega).
   \end{align*}
   $\sqrt{2\pi}$ 来自对称形式两侧各有一个 $1/\sqrt{2\pi}$。
+\end{frame}
+
+\begin{frame}{卷积的对称性}
+  卷积对两个函数对称：
+  \begin{equation*}
+    (f*g)(x)=(g*f)(x).
+  \end{equation*}
+  令 $t=x-\alpha$，则 $\mathrm{d}\alpha=-\mathrm{d}t$，上下限对调后
+  \begin{align*}
+    (f*g)(x)
+    &=\int_{-\infty}^{\infty} f(\alpha)\,g(x-\alpha)\,\mathrm{d}\alpha \\
+    &=\int_{-\infty}^{\infty} f(x-t)\,g(t)\,\mathrm{d}t
+    =(g*f)(x).
+  \end{align*}
+  卷积定理也可以写成：卷积的逆变换是像函数之积。对称形式下多出一个 $\sqrt{2\pi}$。
+\end{frame}
+
+\begin{frame}{例：两个方波的卷积}
+  取两个矩形函数，$a,b>0$，
+  \begin{equation*}
+    f(x)=\begin{cases}1,&|x|<a,\\0,&\text{其他},\end{cases}
+    \qquad
+    g(x)=\begin{cases}1,&|x|<b,\\0,&\text{其他}.\end{cases}
+  \end{equation*}
+  $(f*g)(x)$ 等于区间 $[x-b,x+b]$ 与 $[-a,a]$ 的重叠长度。重叠为空时结果为零，否则
+  \begin{equation*}
+    (f*g)(x)=
+    \begin{cases}
+      0, & |x|>a+b,\\
+      a+b-|x|, & |a-b|<|x|\le a+b,\\
+      \min\{2a,2b\}, & |x|\le |a-b|.
+    \end{cases}
+  \end{equation*}
+  两段斜坡夹一段平台：梯形。若 $a=b$，平台缩成一点，结果是三角波。
+\end{frame}
+
+\begin{frame}{两个方波卷积的图像}
+  取 $a=2$、$b=1$。左图是两个方波，右图是卷积。
+  \vspace{0.05em}
+  \begin{columns}[c,onlytextwidth]\setlength{\columnsep}{0pt}
+    \begin{column}{0.495\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth, height=3.45cm,
+          xmin=-4, xmax=4, ymin=-0.15, ymax=1.35,
+          xlabel={$x$},
+          tick label style={font=\scriptsize},
+          label style={font=\small},
+          legend style={font=\scriptsize, at={(0.5,-0.18)}, anchor=north, legend columns=-1},
+          every axis plot/.append style={no markers},
+        ]
+          \addplot[blue, thick, const plot]
+            coordinates {(-4,0) (-2,0) (-2,1) (2,1) (2,0) (4,0)};
+          \addlegendentry{$f$（$a=2$）}
+          \addplot[orange, thick, const plot]
+            coordinates {(-4,0) (-1,0) (-1,1) (1,1) (1,0) (4,0)};
+          \addlegendentry{$g$（$b=1$）}
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.495\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth, height=3.45cm,
+          xmin=-4, xmax=4, ymin=-0.2, ymax=2.4,
+          xlabel={$x$}, ylabel={$f*g$},
+          tick label style={font=\scriptsize},
+          label style={font=\small},
+          every axis plot/.append style={no markers},
+        ]
+          \addplot[teal, very thick]
+            coordinates {
+              (-4,0) (-3,0) (-1,2) (1,2) (3,0) (4,0)
+            };
+          \node[font=\scriptsize] at (axis cs:0,2.15) {$\min\{2a,2b\}=2$};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：两个高斯的卷积}
+  取归一化高斯
+  \begin{equation*}
+    f(x)=\frac{1}{\sqrt{2\pi\sigma_1^2}}
+      e^{-(x-x_0)^2/(2\sigma_1^2)},
+    \quad
+    g(x)=\frac{1}{\sqrt{2\pi\sigma_2^2}}
+      e^{-x^2/(2\sigma_2^2)}.
+  \end{equation*}
+  对称形式下它们的像函数是
+  \begin{equation*}
+    F(\omega)=\frac{e^{-\mathrm{i}\omega x_0}}{\sqrt{2\pi}}
+      e^{-\sigma_1^2\omega^2/2},
+    \quad
+    G(\omega)=\frac{1}{\sqrt{2\pi}}
+      e^{-\sigma_2^2\omega^2/2}.
+  \end{equation*}
+  卷积定理给出
+  \begin{equation*}
+    \mathcal{F}[f*g]
+    =\sqrt{2\pi}\,FG
+    =\frac{e^{-\mathrm{i}\omega x_0}}{\sqrt{2\pi}}
+      e^{-(\sigma_1^2+\sigma_2^2)\omega^2/2}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{高斯卷积仍是高斯}
+  上式正是中心在 $x_0$、宽度为 $\sqrt{\sigma_1^2+\sigma_2^2}$ 的归一化高斯的像函数。因此
+  \begin{equation*}
+    (f*g)(x)
+    =\frac{1}{\sqrt{2\pi(\sigma_1^2+\sigma_2^2)}}
+      \exp\Biggl(
+        -\frac{(x-x_0)^2}{2(\sigma_1^2+\sigma_2^2)}
+      \Biggr).
+  \end{equation*}
+  两个高斯卷积后还是高斯；方差相加，峰变宽、高度变矮。
+  \vspace{0.1em}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.88\textwidth, height=3.3cm,
+      xmin=-4.5, xmax=5.5, ymin=0, ymax=0.72,
+      xlabel={$x$},
+      tick label style={font=\scriptsize},
+      label style={font=\small},
+      legend style={font=\scriptsize, at={(0.98,0.96)}, anchor=north east},
+      every axis plot/.append style={no markers, samples=200},
+      domain=-4.5:5.5,
+      clip=true,
+    ]
+      \addplot[blue, thick] {1/sqrt(2*pi*0.6)*exp(-(x-1.2)^2/(2*0.6))};
+      \addlegendentry{$f$}
+      \addplot[orange, thick] {1/sqrt(2*pi*0.4)*exp(-x^2/(2*0.4))};
+      \addlegendentry{$g$}
+      \addplot[teal, very thick] {1/sqrt(2*pi*1.0)*exp(-(x-1.2)^2/(2*1.0))};
+      \addlegendentry{$f*g$}
+    \end{axis}
+  \end{tikzpicture}
+\end{frame}
+
+% \begin{frame}{例：$\delta(x)$}
+%   代入对称形式，
+%   \begin{equation*}
+%     F(\omega)
+%     =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+%       \delta(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x
+%     =\frac{1}{\sqrt{2\pi}}.
+%   \end{equation*}
+%   $f(x)$ 无限局域，对应的傅里叶变换为无限弥散。
+%   \vspace{0.4em}
+
+%   代回逆变换，两侧的 $1/\sqrt{2\pi}$ 合成 $1/(2\pi)$，
+%   \begin{equation*}
+%     \delta(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}
+%       e^{\mathrm{i}\omega x}\,\mathrm{d}\omega,
+%   \end{equation*}
+%   与前面由傅里叶积分写出的表示一致。
+% \end{frame}
+
+% =============================================================
+\section{高维傅里叶变换}
+
+\begin{frame}{二维}
+  设 $f(x,y)$ 在 $\pm\infty$ 上绝对可积。定义
+  \begin{equation*}
+    F(k_1,k_2)
+    =\frac{1}{2\pi}\iint
+      f(x,y)\,e^{-\mathrm{i}(k_1 x+k_2 y)}
+      \,\mathrm{d}x\,\mathrm{d}y
+  \end{equation*}
+  为二维傅里叶变换，并定义
+  \begin{equation*}
+    f(x,y)
+    =\iint
+      F(k_1,k_2)\,e^{\mathrm{i}(k_1 x+k_2 y)}
+      \,\mathrm{d}k_1\,\mathrm{d}k_2
+  \end{equation*}
+  为其\textbf{逆变换}。$f$ 与 $F$ 称为\textbf{傅里叶变换对}。
+  也可以把系数收成单独的 $1/(2\pi)^2$，结果与上面的形式相应。
+\end{frame}
+
+\begin{frame}{矩孔的傅里叶变换}
+  求
+  \begin{equation*}
+    f(x,y)=\begin{cases}
+      A, & |x|\leq X,\ |y|\leq Y,\\
+      0, & \text{其他}
+    \end{cases}
+  \end{equation*}
+  的傅里叶变换（\textbf{矩孔费琅和夫衍射}）。由上面的定义，
+  \begin{equation*}
+    F=\frac{A}{2\pi}
+      \int_{-X}^{X} e^{-\mathrm{i} k_1 x}\,\mathrm{d}x
+      \int_{-Y}^{Y} e^{-\mathrm{i} k_2 y}\,\mathrm{d}y.
+  \end{equation*}
+  第一个积分
+  \begin{align*}
+    \int_{-X}^{X} e^{-\mathrm{i} k_1 x}\,\mathrm{d}x
+    &=\Bigl[\frac{e^{-\mathrm{i} k_1 x}}{-\mathrm{i} k_1}\Bigr]_{-X}^{X}
+     =\frac{e^{\mathrm{i} k_1 X}-e^{-\mathrm{i} k_1 X}}{\mathrm{i} k_1}
+     =\frac{2\sin(k_1 X)}{k_1}.
+  \end{align*}
+  $y$ 方向同样得到 $2\sin(k_2 Y)/k_2$。
+\end{frame}
+
+\begin{frame}{例：矩孔的像函数}
+  代回，
+  \begin{align*}
+    F(k_1,k_2)
+    &=\frac{A}{2\pi}
+      \cdot\frac{2\sin(k_1 X)}{k_1}
+      \cdot\frac{2\sin(k_2 Y)}{k_2} \\
+    &=\frac{2AXY}{\pi}
+      \frac{\sin(k_1 X)}{k_1 X}
+      \frac{\sin(k_2 Y)}{k_2 Y}.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{矩孔的物理意义}
+  $f(x,y)$ 是孔径面上的复振幅透过率：矩形开口内均匀照明取常值 $A$，挡光处为零。
+  \vspace{0.5em}
+
+  \centering
+  \begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Stealth,font=\small]
+    % aperture plane
+    \fill[gray!25] (-2.2,-1.4) rectangle (2.2,1.4);
+    \fill[white] (-0.85,-0.55) rectangle (0.85,0.55);
+    \draw[thick] (-2.2,-1.4) rectangle (2.2,1.4);
+    \draw[thick,blue!70!black] (-0.85,-0.55) rectangle (0.85,0.55);
+    \node[below] at (0,-1.55) {孔径平面 $f(x,y)$};
+    \node[blue!70!black] at (0,0) {$A$};
+    \draw[<->] (-0.85,-0.75) -- (0.85,-0.75);
+    \node[below] at (0,-0.75) {$2X$};
+    \draw[<->] (1.05,-0.55) -- (1.05,0.55);
+    \node[right] at (1.05,0) {$2Y$};
+    % rays
+    \draw[->,gray!60!black] (2.5,0.35) -- (4.3,1.1);
+    \draw[->,gray!60!black] (2.5,0) -- (4.3,0);
+    \draw[->,gray!60!black] (2.5,-0.35) -- (4.3,-1.1);
+    \node[above,gray!50!black] at (3.4,0.85) {远场};
+    % screen
+    \draw[thick] (4.6,-1.5) -- (4.6,1.5);
+    \node[right] at (4.75,0) {观察屏};
+    \node[right,font=\footnotesize] at (4.75,-0.55) {$|F|^2$};
+  \end{tikzpicture}
+
+  \vspace{0.4em}
+  \raggedright
+  费琅和夫（远场）衍射振幅正是孔径函数的傅里叶变换 $F(k_1,k_2)$；
+  屏上光强正比于 $|F|^2$。波矢分量 $k_1,k_2$ 对应衍射角方向。
+\end{frame}
+
+
+\begin{frame}{}
+  \centering
+  \includegraphics[width=0.78\textwidth,keepaspectratio]{ft_figure.jpg}
+\end{frame}
+
+
+\begin{frame}{矩孔衍射图样读什么}
+  \begin{itemize}
+    \item \textbf{中央亮斑}：$k_1=k_2=0$ 时两个 $\sin u/u$ 都取 $1$，
+      $F(0,0)=2AXY/\pi$，与孔径面积成正比。
+    \item \textbf{暗线}：$k_1 X=n\pi$ 或 $k_2 Y=m\pi$（$n,m=\pm 1,\pm 2,\ldots$）处振幅为零，
+      屏上出现互相垂直的暗纹网格。
+    \item \textbf{宽窄互换}：孔越窄（$X$ 或 $Y$ 越小），中央峰在对应方向越宽——
+      与一维狭缝、高斯函数同一条不确定性。
+    \item \textbf{可分离}：$F$ 是 $x$ 方向与 $y$ 方向两个一维狭缝因子的乘积，
+      矩孔图样等于两条互相垂直的单缝衍射的叠加结构。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{三维}
+  $\mathbf{k}=(k_1,k_2,k_3)$，$\mathbf{r}=(x,y,z)$，
+  \begin{align*}
+    F(\mathbf{k})
+      &=\frac{1}{(2\pi)^3}\iiint
+        f(\mathbf{r})\,e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
+        \,\mathrm{d}^3\mathbf{r},\\
+    f(\mathbf{r})
+      &=\iiint
+        F(\mathbf{k})\,e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
+        \,\mathrm{d}^3\mathbf{k}.
+  \end{align*}
+  指数可分离时，三重积分拆成三个一维积分。
+\end{frame}
+
+\begin{frame}{球对称：化为正弦积分}
+  若 $f(\mathbf{r})=f(r)$，$r=|\mathbf{r}|$，则 $F$ 只依赖 $k=|\mathbf{k}|$。
+  取极轴沿 $\mathbf{k}$，$\mathbf{k}\cdot\mathbf{r}=kr\cos\theta$，
+  \begin{equation*}
+    \int_0^{2\pi}\!\mathrm{d}\varphi
+    \int_0^{\pi} e^{-\mathrm{i}kr\cos\theta}\sin\theta\,\mathrm{d}\theta
+    =\frac{4\pi\sin(kr)}{kr}.
+  \end{equation*}
+  于是
+  \begin{equation*}
+    F(k)
+    =\frac{1}{2\pi^2 k}
+      \int_0^{\infty} r\,f(r)\sin(kr)\,\mathrm{d}r.
+  \end{equation*}
+  三维球对称傅里叶变换化成一维正弦变换。
+\end{frame}
+
+\begin{frame}{例：汤川势（散射常用）}
+  取屏蔽库仑（汤川）势
+  \begin{equation*}
+    f(r)=\frac{e^{-\mu r}}{r},
+    \qquad \mu>0.
+  \end{equation*}
+  用 $\displaystyle\int_0^{\infty}e^{-\mu r}\sin(kr)\,\mathrm{d}r
+    =k/(k^2+\mu^2)$，得
+  \begin{equation*}
+    F(k)=\frac{1}{2\pi^2(k^2+\mu^2)}.
+  \end{equation*}
+  散射里更常写\textbf{不带} $(2\pi)^{-3}$ 的动量空间矩阵元
+  （玻恩近似，$\mathbf{q}=\mathbf{k}'-\mathbf{k}$）：
+  \begin{equation*}
+    \int\frac{e^{-\mu r}}{r}\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\,\mathrm{d}^3\mathbf{r}
+    =\frac{4\pi}{q^2+\mu^2}.
+  \end{equation*}
+  $\mu\to 0$ 给出库仑势的 $4\pi/q^2$，对应卢瑟福散射振幅的动量依赖。
 \end{frame}
 
 
@@ -543,6 +931,60 @@
   再令 $K\to\infty$，回到上一张片子的第二个极限。
 \end{frame}
 
+\begin{frame}{$\delta$ 函数与其像}
+  对称形式下 $F(\omega)=1/\sqrt{2\pi}$ 是常数。峰越窄，频谱越平。
+  \vspace{0.05em}
+  \begin{columns}[c,onlytextwidth]\setlength{\columnsep}{0pt}
+    \begin{column}{0.495\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth, height=3.55cm,
+          xmin=-4, xmax=4, ymin=0, ymax=1.35,
+          xlabel={$x$}, ylabel={},
+          tick label style={font=\scriptsize},
+          label style={font=\small},
+          legend style={font=\tiny, at={(0.5,-0.18)}, anchor=north, legend columns=3},
+          every axis plot/.append style={no markers, samples=220},
+          domain=-4:4,
+        ]
+          \addplot[blue, thick] {(1/pi)*0.6/(0.6^2+x^2)};
+          \addlegendentry{$\varepsilon=0.6$}
+          \addplot[orange, thick] {(1/pi)*0.2/(0.2^2+x^2)};
+          \addlegendentry{$\varepsilon=0.2$}
+          \addplot[teal, thick] {(1/pi)*0.06/(0.06^2+x^2)};
+          \addlegendentry{$\varepsilon=0.06$}
+        \end{axis}
+      \end{tikzpicture}\\[-0.1em]
+      {\scriptsize 用 $\dfrac{1}{\pi}\dfrac{\varepsilon}{\varepsilon^2+x^2}\to\delta(x)$}
+    \end{column}
+    \begin{column}{0.495\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=\linewidth, height=3.55cm,
+          xmin=-6, xmax=6, ymin=0, ymax=0.55,
+          xlabel={$\omega$}, ylabel={$F(\omega)$},
+          tick label style={font=\scriptsize},
+          label style={font=\small},
+          legend style={font=\tiny, at={(0.5,-0.18)}, anchor=north, legend columns=3},
+          every axis plot/.append style={no markers, samples=240},
+          domain=-6:6,
+        ]
+          \addplot[blue, thick] {sqrt(1/(2*pi))*exp(-0.6*abs(x))};
+          \addlegendentry{$\varepsilon=0.6$}
+          \addplot[orange, thick] {sqrt(1/(2*pi))*exp(-0.2*abs(x))};
+          \addlegendentry{$\varepsilon=0.2$}
+          \addplot[teal, thick] {sqrt(1/(2*pi))*exp(-0.06*abs(x))};
+          \addlegendentry{$\varepsilon=0.06$}
+          \addplot[black, dashed, forget plot, domain=-6:6, samples=2]
+            {sqrt(1/(2*pi))};
+        \end{axis}
+      \end{tikzpicture}\\[-0.1em]
+      {\scriptsize 极限是水平线 $1/\sqrt{2\pi}$}
+    \end{column}
+  \end{columns}
+\end{frame}
 
 \begin{frame}{多维 $\delta$ 函数}
   $\displaystyle\iiint\delta(\mathbf{r})\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z=1$，
@@ -563,189 +1005,57 @@
   \end{equation*}
 \end{frame}
 
-% \begin{frame}{例：$\delta(x)$}
-%   代入对称形式，
-%   \begin{equation*}
-%     F(\omega)
-%     =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
-%       \delta(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x
-%     =\frac{1}{\sqrt{2\pi}}.
-%   \end{equation*}
-%   $f(x)$ 无限局域，对应的傅里叶变换为无限弥散。
-%   \vspace{0.4em}
 
-%   代回逆变换，两侧的 $1/\sqrt{2\pi}$ 合成 $1/(2\pi)$，
-%   \begin{equation*}
-%     \delta(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}
-%       e^{\mathrm{i}\omega x}\,\mathrm{d}\omega,
-%   \end{equation*}
-%   与前面由傅里叶积分写出的表示一致。
-% \end{frame}
-
-% =============================================================
-\section{高维傅里叶变换}
-
-\begin{frame}{二维}
-  设 $f(x,y)$ 在 $\pm\infty$ 上绝对可积。定义
+\begin{frame}{本讲小结：傅里叶变换}
+  对称形式
   \begin{equation*}
-    F(k_1,k_2)
-    =\frac{1}{2\pi}\iint
-      f(x,y)\,e^{-\mathrm{i}(k_1 x+k_2 y)}
-      \,\mathrm{d}x\,\mathrm{d}y
+    F(\omega)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+      f(x)\,e^{-\mathrm{i}\omega x}\,\mathrm{d}x,
+    \qquad
+    f(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+      F(\omega)\,e^{\mathrm{i}\omega x}\,\mathrm{d}\omega.
   \end{equation*}
-  为二维傅里叶变换，并定义
-  \begin{equation*}
-    f(x,y)
-    =\iint
-      F(k_1,k_2)\,e^{\mathrm{i}(k_1 x+k_2 y)}
-      \,\mathrm{d}k_1\,\mathrm{d}k_2
-  \end{equation*}
-  为其\textbf{逆变换}。$f$ 与 $F$ 称为\textbf{傅里叶变换对}。
-  也可以把系数收成单独的 $1/(2\pi)^2$，结果与上面的形式相应。
+  正余弦形式：$f(x)=\displaystyle\int_0^{\infty}
+  \bigl[A(\omega)\cos(\omega x)+B(\omega)\sin(\omega x)\bigr]\,\mathrm{d}\omega$。
+  偶函数只有余弦积分，奇函数只有正弦积分。
+  \vspace{0.25em}
+
+  典型像函数：
+  $e^{-\alpha|x|}\mapsto\sqrt{1/(2\pi)}\,2\alpha/(\alpha^2+\omega^2)$；
+  $e^{-\alpha x^2}\mapsto(2\alpha)^{-1/2}e^{-\omega^2/(4\alpha)}$。
+  原函数越窄，像函数越宽。
 \end{frame}
 
-\begin{frame}{矩孔的傅里叶变换}
-  求
-  \begin{equation*}
-    f(x,y)=\begin{cases}
-      A, & |x|\leq X,\ |y|\leq Y,\\
-      0, & \text{其他}
-    \end{cases}
-  \end{equation*}
-  的傅里叶变换（\textbf{矩孔费琅和夫衍射}）。由上面的定义，
-  \begin{equation*}
-    F=\frac{A}{2\pi}
-      \int_{-X}^{X} e^{-\mathrm{i} k_1 x}\,\mathrm{d}x
-      \int_{-Y}^{Y} e^{-\mathrm{i} k_2 y}\,\mathrm{d}y.
-  \end{equation*}
-  第一个积分
+\begin{frame}{本讲小结：基本定理}
+  记 $\mathcal{F}[f]=F$。对称形式下
   \begin{align*}
-    \int_{-X}^{X} e^{-\mathrm{i} k_1 x}\,\mathrm{d}x
-    &=\Bigl[\frac{e^{-\mathrm{i} k_1 x}}{-\mathrm{i} k_1}\Bigr]_{-X}^{X}
-     =\frac{e^{\mathrm{i} k_1 X}-e^{-\mathrm{i} k_1 X}}{\mathrm{i} k_1}
-     =\frac{2\sin(k_1 X)}{k_1}.
+    \mathcal{F}[f']&=\mathrm{i}\omega\,F,\\
+    \mathcal{F}\Bigl[\textstyle\int^{x}f\Bigr]
+      &=F/(\mathrm{i}\omega),\\
+    \mathcal{F}[f(ax)]
+      &=\frac{1}{|a|}F(\omega/a),\\
+    \mathcal{F}[f(x-x_0)]
+      &=e^{-\mathrm{i}\omega x_0}F,\\
+    \mathcal{F}[e^{\mathrm{i}\omega_0 x}f]
+      &=F(\omega-\omega_0),\\
+    \mathcal{F}[f_1*f_2]
+      &=\sqrt{2\pi}\,F_1 F_2.
   \end{align*}
-  $y$ 方向同样得到 $2\sin(k_2 Y)/k_2$。
+  卷积对称：$f_1*f_2=f_2*f_1$。两方波卷积得梯形；两高斯卷积仍是高斯，方差相加。
 \end{frame}
 
-\begin{frame}{例：矩孔的像函数}
-  代回，
-  \begin{align*}
-    F(k_1,k_2)
-    &=\frac{A}{2\pi}
-      \cdot\frac{2\sin(k_1 X)}{k_1}
-      \cdot\frac{2\sin(k_2 Y)}{k_2} \\
-    &=\frac{2AXY}{\pi}
-      \frac{\sin(k_1 X)}{k_1 X}
-      \frac{\sin(k_2 Y)}{k_2 Y}.
-  \end{align*}
-\end{frame}
-
-\begin{frame}{矩孔的物理意义}
-  $f(x,y)$ 是孔径面上的复振幅透过率：矩形开口内均匀照明取常值 $A$，挡光处为零。
-  \vspace{0.5em}
-
-  \centering
-  \begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Stealth,font=\small]
-    % aperture plane
-    \fill[gray!25] (-2.2,-1.4) rectangle (2.2,1.4);
-    \fill[white] (-0.85,-0.55) rectangle (0.85,0.55);
-    \draw[thick] (-2.2,-1.4) rectangle (2.2,1.4);
-    \draw[thick,blue!70!black] (-0.85,-0.55) rectangle (0.85,0.55);
-    \node[below] at (0,-1.55) {孔径平面 $f(x,y)$};
-    \node[blue!70!black] at (0,0) {$A$};
-    \draw[<->] (-0.85,-0.75) -- (0.85,-0.75);
-    \node[below] at (0,-0.75) {$2X$};
-    \draw[<->] (1.05,-0.55) -- (1.05,0.55);
-    \node[right] at (1.05,0) {$2Y$};
-    % rays
-    \draw[->,gray!60!black] (2.5,0.35) -- (4.3,1.1);
-    \draw[->,gray!60!black] (2.5,0) -- (4.3,0);
-    \draw[->,gray!60!black] (2.5,-0.35) -- (4.3,-1.1);
-    \node[above,gray!50!black] at (3.4,0.85) {远场};
-    % screen
-    \draw[thick] (4.6,-1.5) -- (4.6,1.5);
-    \node[right] at (4.75,0) {观察屏};
-    \node[right,font=\footnotesize] at (4.75,-0.55) {$|F|^2$};
-  \end{tikzpicture}
-
-  \vspace{0.4em}
-  \raggedright
-  费琅和夫（远场）衍射振幅正是孔径函数的傅里叶变换 $F(k_1,k_2)$；
-  屏上光强正比于 $|F|^2$。波矢分量 $k_1,k_2$ 对应衍射角方向。
-\end{frame}
-
-\begin{frame}{矩孔衍射图样读什么}
+\begin{frame}{本讲小结：$\delta$ 函数}
   \begin{itemize}
-    \item \textbf{中央亮斑}：$k_1=k_2=0$ 时两个 $\sin u/u$ 都取 $1$，
-      $F(0,0)=2AXY/\pi$，与孔径面积成正比。
-    \item \textbf{暗线}：$k_1 X=n\pi$ 或 $k_2 Y=m\pi$（$n,m=\pm 1,\pm 2,\ldots$）处振幅为零，
-      屏上出现互相垂直的暗纹网格。
-    \item \textbf{宽窄互换}：孔越窄（$X$ 或 $Y$ 越小），中央峰在对应方向越宽——
-      与一维狭缝、高斯函数同一条不确定性。
-    \item \textbf{可分离}：$F$ 是 $x$ 方向与 $y$ 方向两个一维狭缝因子的乘积，
-      矩孔图样等于两条互相垂直的单缝衍射的叠加结构。
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{三维}
-  $\mathbf{k}=(k_1,k_2,k_3)$，$\mathbf{r}=(x,y,z)$，
-  \begin{align*}
-    F(\mathbf{k})
-      &=\frac{1}{(2\pi)^3}\iiint
-        f(\mathbf{r})\,e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
-        \,\mathrm{d}^3\mathbf{r},\\
-    f(\mathbf{r})
-      &=\iiint
-        F(\mathbf{k})\,e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
-        \,\mathrm{d}^3\mathbf{k}.
-  \end{align*}
-  指数可分离时，三重积分拆成三个一维积分。
-\end{frame}
-
-\begin{frame}{球对称：化为正弦积分}
-  若 $f(\mathbf{r})=f(r)$，$r=|\mathbf{r}|$，则 $F$ 只依赖 $k=|\mathbf{k}|$。
-  取极轴沿 $\mathbf{k}$，$\mathbf{k}\cdot\mathbf{r}=kr\cos\theta$，
-  \begin{equation*}
-    \int_0^{2\pi}\!\mathrm{d}\varphi
-    \int_0^{\pi} e^{-\mathrm{i}kr\cos\theta}\sin\theta\,\mathrm{d}\theta
-    =\frac{4\pi\sin(kr)}{kr}.
-  \end{equation*}
-  于是
-  \begin{equation*}
-    F(k)
-    =\frac{1}{2\pi^2 k}
-      \int_0^{\infty} r\,f(r)\sin(kr)\,\mathrm{d}r.
-  \end{equation*}
-  三维球对称傅里叶变换化成一维正弦变换。
-\end{frame}
-
-\begin{frame}{例：汤川势（散射常用）}
-  取屏蔽库仑（汤川）势
-  \begin{equation*}
-    f(r)=\frac{e^{-\mu r}}{r},
-    \qquad \mu>0.
-  \end{equation*}
-  用 $\displaystyle\int_0^{\infty}e^{-\mu r}\sin(kr)\,\mathrm{d}r
-    =k/(k^2+\mu^2)$，得
-  \begin{equation*}
-    F(k)=\frac{1}{2\pi^2(k^2+\mu^2)}.
-  \end{equation*}
-  散射里更常写\textbf{不带} $(2\pi)^{-3}$ 的动量空间矩阵元
-  （玻恩近似，$\mathbf{q}=\mathbf{k}'-\mathbf{k}$）：
-  \begin{equation*}
-    \int\frac{e^{-\mu r}}{r}\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\,\mathrm{d}^3\mathbf{r}
-    =\frac{4\pi}{q^2+\mu^2}.
-  \end{equation*}
-  $\mu\to 0$ 给出库仑势的 $4\pi/q^2$，对应卢瑟福散射振幅的动量依赖。
-\end{frame}
-
-\begin{frame}{本讲小结}
-  \begin{itemize}
-    \item 周期 $2\ell$ 延拓到无穷后，$\sum c_n e^{\mathrm{i}\omega_n x}$ 成为傅里叶积分。对称形式两侧各有 $1/\sqrt{2\pi}$。
-    \item $\delta$ 函数由线密度先积分、再令 $l\to 0$ 得到。它具有挑选性；$\delta[\varphi(x)]$ 按实根拆开。
-    \item $e^{-\alpha|x|}$ 的像函数是 $2\alpha/(\alpha^2+\omega^2)$ 乘上 $1/\sqrt{2\pi}$。高斯函数的像函数仍是高斯函数。
-    \item 矩孔费琅和夫衍射像函数是两个 $\sin(kX)/(kX)$。球对称化为正弦积分；汤川势给出 $1/(q^2+\mu^2)$。
+    \item 由线密度先积分、再 $l\to 0$ 得到。$x\neq 0$ 时为零，积分为 $1$。
+    \item \textbf{挑选性}：$\displaystyle\int f(x)\delta(x-x_0)\,\mathrm{d}x=f(x_0)$。
+    \item $\delta(ax)=\delta(x)/|a|$；
+      $\displaystyle\delta[\varphi(x)]
+      =\sum_i\delta(x-x_i)/|\varphi'(x_i)|$。
+    \item 极限表示：方脉冲、$\sin(Kx)/(\pi x)$、
+      $\varepsilon/[\pi(\varepsilon^2+x^2)]$。
+    \item 对称形式下像函数为常数 $1/\sqrt{2\pi}$：无限局域对应无限平坦的频谱。
+    \item 多维：直角坐标 $\delta(\mathbf{r})=\delta(x)\delta(y)\delta(z)$；
+      柱、球坐标要除以雅可比因子。
   \end{itemize}
 \end{frame}
 
