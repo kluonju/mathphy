@@ -179,6 +179,8 @@
   $p=-\alpha$ 给出 $D(-\alpha)^3=1$，故 $D=-1/\alpha^3$。
   $p^3$ 的系数 $C+D=0$，故 $C=1/\alpha^3$。
   $p^2$ 的系数 $B+C\alpha=0$，故 $B=-1/\alpha^2$。
+
+  也可以根据我们前面讲的留数方法得到。
 \end{frame}
 
 \begin{frame}{裂项之后逐项反演}
@@ -198,15 +200,41 @@
   $1/p^2$ 前面的系数是负的，所以 $t$ 的系数是 $-1/\alpha^2$。
 \end{frame}
 
-\begin{frame}{支点：$1/\sqrt{p}$}
-  被积函数 $e^{pt}/\sqrt{p}$ 的唯一奇点是 $p=0$，这是极点型支点。
-  自 $p=0$ 沿负实轴把平面切开，再在一个单值分支上积分。
-  大圆弧 $C_R$ 和小圆 $C_\varepsilon$ 都以原点为圆心。
-  \vspace{0.3em}
+\begin{frame}{求$1/\sqrt{p}$的原函数}
+  $e^{pt}/\sqrt{p}$ 在 $p=0$ 是支点。沿负实轴切开，在单值分支上作回路。
+  \vspace{0.25em}
 
-  令 $R\to\infty$，由推广的约当引理，$\displaystyle\int_{C_R}\to 0$。
-  小圆上 $|e^{pt}/\sqrt{p}|$ 乘上弧长 $2\pi\varepsilon$，在 $\varepsilon\to 0$ 时也趋于零。
-  闭路内无奇点，竖直线上的积分等于割线两侧积分的相反数。
+  \centering
+  \begin{tikzpicture}[x=0.78cm,y=0.78cm,>=Stealth,font=\small]
+    \draw[->] (-3.4,0) -- (3.6,0) node[right] {$\mathrm{Re}\,p$};
+    \draw[->] (0,-2.5) -- (0,2.7) node[above] {$\mathrm{Im}\,p$};
+    % cut
+    \draw[thick,gray!55!black,dashed] (-3.15,0.08) -- (-0.28,0.08);
+    \draw[thick,gray!55!black,dashed] (-3.15,-0.08) -- (-0.28,-0.08);
+    \node[gray!50!black,above] at (-2.2,0.15) {\footnotesize 割线};
+    % Bromwich
+    \draw[thick,blue!70!black] (2.0,-2.15) -- (2.0,2.15);
+    \draw[thick,blue!70!black,->] (2.0,-0.35) -- (2.0,0.45);
+    \node[blue!70!black,right] at (2.1,1.85) {\footnotesize Bromwich};
+    % large arc (left)
+    \draw[thick,blue!70!black]
+      (2.0,2.15) arc[start angle=47,end angle=313,radius=2.9];
+    \node[blue!70!black] at (-1.9,2.15) {\footnotesize $C_R$};
+    % small circle
+    \draw[thick,red!65!black] (0,0) circle (0.28);
+    \node[red!65!black,below right] at (0.2,-0.35) {\footnotesize $C_\varepsilon$};
+    % cut sides arrows
+    \draw[thick,blue!70!black,->] (-2.4,0.18) -- (-1.2,0.18);
+    \draw[thick,blue!70!black,->] (-1.2,-0.18) -- (-2.4,-0.18);
+    \node[blue!70!black,above] at (-1.7,0.18) {\footnotesize $l_2$};
+    \node[blue!70!black,below] at (-1.7,-0.18) {\footnotesize $l_1$};
+    \node[below] at (2.0,-2.25) {$\sigma$};
+  \end{tikzpicture}
+
+  \vspace{0.2em}
+  \raggedright
+  $R\to\infty$ 时 $\int_{C_R}\to 0$；$\varepsilon\to 0$ 时 $\int_{C_\varepsilon}\to 0$。
+  闭路内解析，故 Bromwich 积分等于 $-(\int_{l_1}+\int_{l_2})$。
 \end{frame}
 
 \begin{frame}{沿割线的辐角}
@@ -225,7 +253,7 @@
         +\int_{-\infty}^{0}\frac{e^{pt}}{\mathrm{i}\sqrt{|p|}}\,\mathrm{d}p
       \Biggr).
   \end{equation*}
-  $1/(-\mathrm{i})=\mathrm{i}$，$1/\mathrm{i}=-\mathrm{i}$。两项化简后同号，
+ 两项化简后同号，
   \begin{equation*}
     f(t)=\frac{1}{\pi}\int_{-\infty}^{0}
       \frac{e^{pt}}{\sqrt{|p|}}\,\mathrm{d}p.
@@ -293,44 +321,44 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame}{用 Parseval 等式核对}
-  在 $[-\pi,\pi]$ 上取 $f(x)=x$，则 $\ell=\pi$，
-  \begin{equation*}
-    c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi} x\,e^{-\mathrm{i} nx}\,\mathrm{d}x.
-  \end{equation*}
-  分部：$u=x$，$v=e^{-\mathrm{i} nx}/(-\mathrm{i} n)$（$n\neq 0$）。
-  $\displaystyle\int e^{-\mathrm{i} nx}\,\mathrm{d}x$ 在整周期上为零，只剩边界。
-  $e^{-\mathrm{i} n\pi}=e^{\mathrm{i} n\pi}=(-1)^n$，
-  \begin{align*}
-    \Biggl[\frac{x\,e^{-\mathrm{i} nx}}{-\mathrm{i} n}\Biggr]_{-\pi}^{\pi}
-    &=\frac{\pi(-1)^n}{-\mathrm{i} n}
-      -\frac{(-\pi)(-1)^n}{-\mathrm{i} n}
-     =\frac{2\pi\,\mathrm{i}}{n}(-1)^n.
-  \end{align*}
-  这里用了 $1/(-\mathrm{i})=\mathrm{i}$。再除以 $2\pi$，
-  \begin{equation*}
-    c_n=\frac{(-1)^n}{n}\,\mathrm{i},
-    \qquad |c_n|^2=\frac{1}{n^2},
-    \qquad c_0=0.
-  \end{equation*}
-\end{frame}
+% \begin{frame}{用 Parseval 等式核对}
+%   在 $[-\pi,\pi]$ 上取 $f(x)=x$，则 $\ell=\pi$，
+%   \begin{equation*}
+%     c_n=\frac{1}{2\pi}\int_{-\pi}^{\pi} x\,e^{-\mathrm{i} nx}\,\mathrm{d}x.
+%   \end{equation*}
+%   分部：$u=x$，$v=e^{-\mathrm{i} nx}/(-\mathrm{i} n)$（$n\neq 0$）。
+%   $\displaystyle\int e^{-\mathrm{i} nx}\,\mathrm{d}x$ 在整周期上为零，只剩边界。
+%   $e^{-\mathrm{i} n\pi}=e^{\mathrm{i} n\pi}=(-1)^n$，
+%   \begin{align*}
+%     \Biggl[\frac{x\,e^{-\mathrm{i} nx}}{-\mathrm{i} n}\Biggr]_{-\pi}^{\pi}
+%     &=\frac{\pi(-1)^n}{-\mathrm{i} n}
+%       -\frac{(-\pi)(-1)^n}{-\mathrm{i} n}
+%      =\frac{2\pi\,\mathrm{i}}{n}(-1)^n.
+%   \end{align*}
+%   这里用了 $1/(-\mathrm{i})=\mathrm{i}$。再除以 $2\pi$，
+%   \begin{equation*}
+%     c_n=\frac{(-1)^n}{n}\,\mathrm{i},
+%     \qquad |c_n|^2=\frac{1}{n^2},
+%     \qquad c_0=0.
+%   \end{equation*}
+% \end{frame}
 
-\begin{frame}{核对的后一半}
-  Parseval 等式
-  \begin{equation*}
-    \sum_{n=-\infty}^{\infty}|c_n|^2
-    =\frac{1}{2\pi}\int_{-\pi}^{\pi} x^2\,\mathrm{d}x.
-  \end{equation*}
-  左边是 $2\sum_{n=1}^{\infty} 1/n^2$。右边
-  \begin{equation*}
-    \frac{1}{2\pi}\cdot\frac{2\pi^3}{3}=\frac{\pi^2}{3}.
-  \end{equation*}
-  所以
-  \begin{equation*}
-    \sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
-  \end{equation*}
-  与拉普拉斯变换把级数改成 $\displaystyle\int_0^{\infty} t/(e^t-1)\,\mathrm{d}t$ 的结果一致。
-\end{frame}
+% \begin{frame}{核对的后一半}
+%   Parseval 等式
+%   \begin{equation*}
+%     \sum_{n=-\infty}^{\infty}|c_n|^2
+%     =\frac{1}{2\pi}\int_{-\pi}^{\pi} x^2\,\mathrm{d}x.
+%   \end{equation*}
+%   左边是 $2\sum_{n=1}^{\infty} 1/n^2$。右边
+%   \begin{equation*}
+%     \frac{1}{2\pi}\cdot\frac{2\pi^3}{3}=\frac{\pi^2}{3}.
+%   \end{equation*}
+%   所以
+%   \begin{equation*}
+%     \sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+%   \end{equation*}
+%   与拉普拉斯变换把级数改成 $\displaystyle\int_0^{\infty} t/(e^t-1)\,\mathrm{d}t$ 的结果一致。
+% \end{frame}
 
 \begin{frame}{含 $1/t$ 的像}
   若 $\displaystyle\int_p^{\infty}\bar f(q)\,\mathrm{d}q$ 存在，且 $t\to 0$ 时 $|f(t)/t|$ 有界，则
@@ -447,21 +475,21 @@
   所以 $y(t)=1+t^2/2$。
 \end{frame}
 
-\begin{frame}{例：$\lambda$ 的三种情形}
-  $x''+\lambda x=0$，$x(0)=\phi$，$\dot x(0)=\psi$。导数定理给出
-  \begin{equation*}
-    X(p)=\phi\frac{p}{p^2+\lambda}+\psi\frac{1}{p^2+\lambda}.
-  \end{equation*}
-  \begin{itemize}
-    \item $\lambda=a^2>0$：
-      $x=\phi\cos(at)+(\psi/a)\sin(at)$。
-    \item $\lambda=0$：
-      $X=\phi/p+\psi/p^2$，故 $x=\phi+\psi t$。
-    \item $\lambda=-b^2<0$：
-      $x=\phi\cosh(bt)+(\psi/b)\sinh(bt)$。
-  \end{itemize}
-  三种情形都不必另配齐次通解：初值已在运算规则里用完。
-\end{frame}
+% \begin{frame}{例：$\lambda$ 的三种情形}
+%   $x''+\lambda x=0$，$x(0)=\phi$，$\dot x(0)=\psi$。导数定理给出
+%   \begin{equation*}
+%     X(p)=\phi\frac{p}{p^2+\lambda}+\psi\frac{1}{p^2+\lambda}.
+%   \end{equation*}
+%   \begin{itemize}
+%     \item $\lambda=a^2>0$：
+%       $x=\phi\cos(at)+(\psi/a)\sin(at)$。
+%     \item $\lambda=0$：
+%       $X=\phi/p+\psi/p^2$，故 $x=\phi+\psi t$。
+%     \item $\lambda=-b^2<0$：
+%       $x=\phi\cosh(bt)+(\psi/b)\sinh(bt)$。
+%   \end{itemize}
+%   三种情形都不必另配齐次通解：初值已在运算规则里用完。
+% \end{frame}
 
 \begin{frame}{例：非齐次方程}
   $y''+y=2$，$y(0)=0$，$y'(0)=1$。变换后
@@ -481,35 +509,35 @@
   也可用留数：极点 $p=0,\pm\mathrm{i}$，对 $Y(p)e^{pt}$ 求和，结果相同。
 \end{frame}
 
-\begin{frame}{例：矩形脉冲驱动力}
-  $y''+4y=1-u(t-1)$，$y(0)=1$，$y'(0)=0$。
-  $\mathcal{L}\{u(t-1)\}=e^{-p}/p$，故
-  \begin{equation*}
-    (p^2+4)Y-p=\frac{1-e^{-p}}{p}.
-  \end{equation*}
-  裂项
-  $\displaystyle\frac{1}{p(p^2+4)}=\frac14\Bigl(\frac{1}{p}-\frac{p}{p^2+4}\Bigr)$，
-  反演并用延迟定理，
-  \begin{equation*}
-    y(t)=\cos 2t+\frac14\bigl(1-\cos 2t\bigr)
-      -\frac14 u(t-1)\bigl[1-\cos 2(t-1)\bigr].
-  \end{equation*}
-  $t=1$ 撤去外力后，$y$ 与 $y'$ 仍连续，$y''$ 跳一个单位。
-\end{frame}
+% \begin{frame}{例：矩形脉冲驱动力}
+%   $y''+4y=1-u(t-1)$，$y(0)=1$，$y'(0)=0$。
+%   $\mathcal{L}\{u(t-1)\}=e^{-p}/p$，故
+%   \begin{equation*}
+%     (p^2+4)Y-p=\frac{1-e^{-p}}{p}.
+%   \end{equation*}
+%   裂项
+%   $\displaystyle\frac{1}{p(p^2+4)}=\frac14\Bigl(\frac{1}{p}-\frac{p}{p^2+4}\Bigr)$，
+%   反演并用延迟定理，
+%   \begin{equation*}
+%     y(t)=\cos 2t+\frac14\bigl(1-\cos 2t\bigr)
+%       -\frac14 u(t-1)\bigl[1-\cos 2(t-1)\bigr].
+%   \end{equation*}
+%   $t=1$ 撤去外力后，$y$ 与 $y'$ 仍连续，$y''$ 跳一个单位。
+% \end{frame}
 
-\begin{frame}{例：阻尼受迫振子}
-  $x''+2\gamma x'+\omega_0^2 x=f(t)$，$x(0)=\phi$，$\dot x(0)=\psi$。像函数是
-  \begin{equation*}
-    X(p)=\frac{(p+2\gamma)\phi+\psi+F(p)}{p^2+2\gamma p+\omega_0^2}.
-  \end{equation*}
-  令 $R=\omega_0^2-\gamma^2$。自由运动由 $R$ 的符号决定，强迫项是对应核与 $f$ 的卷积。
-  \begin{itemize}
-    \item $R=a^2>0$：核是 $e^{-\gamma t}\sin(at)$，自由运动为
-      $e^{-\gamma t}\bigl[\phi\cos(at)+(\gamma\phi+\psi)\sin(at)/a\bigr]$。
-    \item $R=0$：自由运动为 $e^{-\gamma t}\bigl[\phi+(\gamma\phi+\psi)t\bigr]$。
-    \item $R=-b^2<0$：把 $\sin$、$\cos$ 换成 $\sinh$、$\cosh$。
-  \end{itemize}
-\end{frame}
+% \begin{frame}{例：阻尼受迫振子}
+%   $x''+2\gamma x'+\omega_0^2 x=f(t)$，$x(0)=\phi$，$\dot x(0)=\psi$。像函数是
+%   \begin{equation*}
+%     X(p)=\frac{(p+2\gamma)\phi+\psi+F(p)}{p^2+2\gamma p+\omega_0^2}.
+%   \end{equation*}
+%   令 $R=\omega_0^2-\gamma^2$。自由运动由 $R$ 的符号决定，强迫项是对应核与 $f$ 的卷积。
+%   \begin{itemize}
+%     \item $R=a^2>0$：核是 $e^{-\gamma t}\sin(at)$，自由运动为
+%       $e^{-\gamma t}\bigl[\phi\cos(at)+(\gamma\phi+\psi)\sin(at)/a\bigr]$。
+%     \item $R=0$：自由运动为 $e^{-\gamma t}\bigl[\phi+(\gamma\phi+\psi)t\bigr]$。
+%     \item $R=-b^2<0$：把 $\sin$、$\cos$ 换成 $\sinh$、$\cosh$。
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}{本讲小结}
   \begin{itemize}
@@ -517,7 +545,7 @@
     \item 例：$\omega/(p^2+\omega^2)\to\sin\omega t$；
       $1/[p(p+a)]\to(1-e^{-at})/a$；$1/(p+\alpha)^2\to t e^{-\alpha t}$。
     \item 裂项与支点：$1/\sqrt{p}\to 1/\sqrt{\pi t}$。
-    \item 应用：级数和、Dirichlet 积分、初值问题、脉冲驱动、阻尼振子。
+    % \item 应用：级数和、Dirichlet 积分、初值问题、脉冲驱动、阻尼振子。
   \end{itemize}
 \end{frame}
 

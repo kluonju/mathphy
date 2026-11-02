@@ -660,7 +660,7 @@
 \section{高维傅里叶变换}
 
 \begin{frame}{二维}
-  设 $f(x,y)$ 在 $\pm\infty$ 上绝对可积。定义
+  设 $f(x,y)$ 在 $\pm\infty$ 上绝对可积。按照对称形式，定义
   \begin{equation*}
     F(k_1,k_2)
     =\frac{1}{2\pi}\iint
@@ -675,7 +675,24 @@
       \,\mathrm{d}k_1\,\mathrm{d}k_2
   \end{equation*}
   为其\textbf{逆变换}。$f$ 与 $F$ 称为\textbf{傅里叶变换对}。
-  也可以把系数收成单独的 $1/(2\pi)^2$，结果与上面的形式相应。
+  % 也可以把系数收成单独的 $1/(2\pi)^2$，结果与上面的形式相应。
+\end{frame}
+
+\begin{frame}{三维}
+  与上类似，
+  $\mathbf{k}=(k_1,k_2,k_3)$，$\mathbf{r}=(x,y,z)$，
+  定义三维傅里叶变换为
+  \begin{align*}
+    F(\mathbf{k})
+      &=\frac{1}{(2\pi)^{3/2}}\iiint
+        f(\mathbf{r})\,e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
+        \,\mathrm{d}^3\mathbf{r},\\
+    f(\mathbf{r})
+      &=\frac{1}{(2\pi)^{3/2}} \iiint
+        F(\mathbf{k})\,e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
+        \,\mathrm{d}^3\mathbf{k}.
+  \end{align*}
+  % 指数可分离时，三重积分拆成三个一维积分。
 \end{frame}
 
 \begin{frame}{矩孔的傅里叶变换}
@@ -769,22 +786,9 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{三维}
-  $\mathbf{k}=(k_1,k_2,k_3)$，$\mathbf{r}=(x,y,z)$，
-  \begin{align*}
-    F(\mathbf{k})
-      &=\frac{1}{(2\pi)^3}\iiint
-        f(\mathbf{r})\,e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
-        \,\mathrm{d}^3\mathbf{r},\\
-    f(\mathbf{r})
-      &=\iiint
-        F(\mathbf{k})\,e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
-        \,\mathrm{d}^3\mathbf{k}.
-  \end{align*}
-  指数可分离时，三重积分拆成三个一维积分。
-\end{frame}
 
-\begin{frame}{球对称：化为正弦积分}
+
+\begin{frame}{球对称函数的傅里叶变换}
   若 $f(\mathbf{r})=f(r)$，$r=|\mathbf{r}|$，则 $F$ 只依赖 $k=|\mathbf{k}|$。
   取极轴沿 $\mathbf{k}$，$\mathbf{k}\cdot\mathbf{r}=kr\cos\theta$，
   \begin{equation*}
@@ -792,33 +796,30 @@
     \int_0^{\pi} e^{-\mathrm{i}kr\cos\theta}\sin\theta\,\mathrm{d}\theta
     =\frac{4\pi\sin(kr)}{kr}.
   \end{equation*}
-  于是
+  代入前面的对称定义 $F=(2\pi)^{-3/2}\iiint f\,e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}^3\mathbf{r}$，
   \begin{equation*}
     F(k)
-    =\frac{1}{2\pi^2 k}
+    =\sqrt{\frac{2}{\pi}}\,\frac{1}{k}
       \int_0^{\infty} r\,f(r)\sin(kr)\,\mathrm{d}r.
   \end{equation*}
   三维球对称傅里叶变换化成一维正弦变换。
 \end{frame}
 
 \begin{frame}{例：汤川势（散射常用）}
-  取屏蔽库仑（汤川）势
-  \begin{equation*}
-    f(r)=\frac{e^{-\mu r}}{r},
-    \qquad \mu>0.
-  \end{equation*}
+  取屏蔽库仑（汤川）势 $f(r)=e^{-\mu r}/r$（$\mu>0$）。
   用 $\displaystyle\int_0^{\infty}e^{-\mu r}\sin(kr)\,\mathrm{d}r
     =k/(k^2+\mu^2)$，得
   \begin{equation*}
-    F(k)=\frac{1}{2\pi^2(k^2+\mu^2)}.
+    F(k)=\sqrt{\frac{2}{\pi}}\,\frac{1}{k^2+\mu^2}.
   \end{equation*}
-  散射里更常写\textbf{不带} $(2\pi)^{-3}$ 的动量空间矩阵元
-  （玻恩近似，$\mathbf{q}=\mathbf{k}'-\mathbf{k}$）：
+  玻恩近似里常用的是不加前因子的积分（$\mathbf{q}=\mathbf{k}'-\mathbf{k}$）。
+  由定义 $F=(2\pi)^{-3/2}\int f\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\,\mathrm{d}^3\mathbf{r}$，
   \begin{equation*}
     \int\frac{e^{-\mu r}}{r}\,e^{-\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\,\mathrm{d}^3\mathbf{r}
+    =(2\pi)^{3/2}F(q)
     =\frac{4\pi}{q^2+\mu^2}.
   \end{equation*}
-  $\mu\to 0$ 给出库仑势的 $4\pi/q^2$，对应卢瑟福散射振幅的动量依赖。
+  $\mu\to 0$ 给出库仑势的 $4\pi/q^2$，对应卢瑟福振幅的动量依赖。
 \end{frame}
 
 

@@ -90,10 +90,9 @@
 
 \begin{frame}{Bromwich 积分}
   由 $p=\sigma+\mathrm{i}\omega$，有 $\mathrm{d}p=\mathrm{i}\,\mathrm{d}\omega$，即
-  \begin{equation*}
-    \mathrm{d}\omega=\frac{1}{\mathrm{i}}\,\mathrm{d}p.
-  \end{equation*}
-  $\omega$ 从 $-\infty$ 到 $\infty$ 时，$p$ 沿直线 $\mathrm{Re}\,p=\sigma$ 从 $\sigma-\mathrm{i}\infty$ 走到 $\sigma+\mathrm{i}\infty$。因此
+  $\mathrm{d}\omega=\mathrm{d}p/\mathrm{i}$。
+  $\omega$ 从 $-\infty$ 到 $\infty$ 时，$p$ 沿直线 $\mathrm{Re}\,p=\sigma$
+  从 $\sigma-\mathrm{i}\infty$ 走到 $\sigma+\mathrm{i}\infty$。因此
   \begin{equation*}
     f(t)
     =\frac{1}{2\pi\mathrm{i}}
@@ -101,6 +100,69 @@
       \bar f(p)\,e^{pt}\,\mathrm{d}p.
   \end{equation*}
   这是 \textbf{Bromwich 积分}，也叫做 \textbf{Riemann--Mellin 积分}。
+  $\sigma$ 须取在所有奇点之右（$\sigma>\sigma_0$）。
+\end{frame}
+
+\begin{frame}{Riemann--Mellin 积分路径}
+  \centering
+  \begin{tikzpicture}[x=0.88cm,y=0.88cm,>=Stealth,font=\small]
+    % analytic half-plane (right of sigma0)
+    \fill[blue!6] (1.15,-2.2) rectangle (3.35,2.2);
+    % axes
+    \draw[->] (-2.9,0) -- (3.5,0) node[right] {$\mathrm{Re}\,p$};
+    \draw[->] (0,-2.35) -- (0,2.5) node[above] {$\mathrm{Im}\,p$};
+    % sigma0 dashed
+    \draw[dashed,gray!70!black] (1.15,-2.2) -- (1.15,2.2);
+    \node[below,gray!50!black] at (1.15,-2.2) {$\sigma_0$};
+    % Bromwich line
+    \draw[thick,blue!70!black]
+      (2.15,-2.1) -- (2.15,2.1);
+    \draw[thick,blue!70!black,->]
+      (2.15,-0.45) -- (2.15,0.55);
+    \node[blue!70!black,right] at (2.25,1.85)
+      {$\mathrm{Re}\,p=\sigma$};
+    \node[blue!70!black,right,align=left] at (2.25,1.2)
+      {\footnotesize Bromwich 线\\[-0.1em]
+       \footnotesize (Riemann--Mellin)};
+    \node[blue!70!black,below] at (2.15,-2.2) {$\sigma$};
+    % poles to the left
+    \foreach \P in {
+      (-1.55,1.0),
+      (-0.55,-0.75),
+      (-2.05,-0.15),
+      (0.35,1.35)
+    }{
+      \node[red!70!black] at \P {$\times$};
+    }
+    \node[red!70!black,below left] at (-1.55,1.0) {\footnotesize 奇点};
+    % region label
+    \node[blue!40!black,font=\footnotesize] at (2.75,0.25)
+      {$\bar f$ 解析};
+    % direction note
+    \node[font=\footnotesize,gray!45!black] at (-1.7,2.05)
+      {$\sigma-\mathrm{i}\infty\to\sigma+\mathrm{i}\infty$};
+  \end{tikzpicture}
+
+  \vspace{0.35em}
+  \raggedright
+  积分沿竖直 Bromwich 线上行。阴影侧 $\mathrm{Re}\,p>\sigma_0$ 无奇点；
+  留数计算时对 $t>0$ 向左闭合。
+\end{frame}
+
+\begin{frame}{Riemann--Mellin 反演}
+  $t>0$ 且约当引理成立时，把 Bromwich 线向左闭上，
+  \begin{equation*}
+    f(t)=\sum_j\mathrm{Res}\bigl[\bar f(p)\,e^{pt},\,p_j\bigr].
+  \end{equation*}
+  下一讲具体做：极点留数（$\sin$、$\cos$、有理式）、对 $p$ 求导与裂项，
+  以及支点例子
+  \begin{equation*}
+    \mathcal{L}^{-1}\Bigl\{\frac{1}{\sqrt{p}}\Bigr\}
+    =\frac{1}{\sqrt{\pi t}},
+    \qquad
+    \mathcal{L}^{-1}\Bigl\{\frac{e^{-\alpha p}}{p(p+b)}\Bigr\}
+    =\frac{1-e^{-b(t-\alpha)}}{b}\,\Theta(t-\alpha).
+  \end{equation*}
 \end{frame}
 
 \begin{frame}{存在的充分条件}
@@ -113,7 +175,7 @@
   \vspace{0.3em}
 
   一个反例是 $e^{t^2}$。对任何 $\sigma$，$t^2-\sigma t\to\infty$，指数增长的上界盖不住它。
-  对于满足存在条件的函数，$\lim_{p\to\infty}\bar f(p)=0$。
+  对于满足存在条件的函数，可以证明$\lim_{p\to\infty}\bar f(p)=0$。
   若像函数在 $p\to\infty$ 时像 $p$ 的正幂次那样变大，逆变换就不存在。
   $\bar f(p)$ 在 $\mathrm{Re}\,p>\sigma_0$ 的半平面是解析的。
 \end{frame}
@@ -336,6 +398,7 @@
 \end{frame}
 
 \begin{frame}{卷积定理}
+  回顾卷积定义
   \begin{equation*}
     (f_1*f_2)(t)
     \equiv\int_0^t f_1(\tau)\,f_2(t-\tau)\,\mathrm{d}\tau

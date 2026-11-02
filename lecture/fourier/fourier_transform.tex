@@ -304,11 +304,13 @@ $F$ 又是两个一维狭缝因子的乘积,故矩孔图样是互相垂直的两
 \begin{equation}
     F(k)=\sqrt{\frac{2}{\pi}}\,\frac{1}{k^2+\mu^2}.
 \end{equation}
-散射计算里动量空间矩阵元常不带 $(2\pi)^{-3/2}$,直接写
+玻恩近似里常用不加前因子的积分.由对称定义
+$F=(2\pi)^{-3/2}\int f\,e^{-\imath\vec{q}\cdot\vec{r}}\,\mathrm{d}^3\vec{r}$ 立刻得到
 \begin{equation}
     \int\frac{e^{-\mu r}}{r}\,e^{-\imath\vec{q}\cdot\vec{r}}\,\mathrm{d}^3\vec{r}
+    =(2\pi)^{3/2}F(q)
     =\frac{4\pi}{q^2+\mu^2},
     \qquad \vec{q}=\vec{k}'-\vec{k}.
 \end{equation}
-这是玻恩近似下一阶散射振幅的势因子.$\mu\to 0$ 给出库仑势的 $4\pi/q^2$,对应卢瑟福公式的动量依赖.
+这是一阶散射振幅的势因子.$\mu\to 0$ 给出库仑势的 $4\pi/q^2$,对应卢瑟福公式的动量依赖.
 \end{solution}
