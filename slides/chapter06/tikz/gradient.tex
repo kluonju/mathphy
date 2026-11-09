@@ -1,0 +1,18 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=1.7mm]}, line width=0.8pt},
+  ]
+  % Level sets of f=x^2+y^2 (circles) with radial gradient arrows.
+  \foreach \r in {0.70,1.20,1.70} {
+    \draw[gray!55] (0,0) circle (\r);
+  }
+  \node[gray, font=\scriptsize] at (1.28,1.28) {$f=\mathrm{const}$};
+
+  \foreach \ang in {20,80,140,200,260,320} {
+    \draw[vec, MidnightBlue]
+      ({\ang}:0.95) -- ({\ang}:1.55);
+  }
+  \fill (0,0) circle (1.15pt);
+  \node[MidnightBlue] at (2.15,0.15) {$\nabla f$};
+\end{tikzpicture}

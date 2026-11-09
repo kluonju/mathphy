@@ -21,11 +21,12 @@
   =\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}.
   \label{eq:eps-delta}
 \end{equation}
-两边都对 $j,k$ 和 $l,m$ 反对称,而且在 $(j,k)=(l,m)=(1,2)$ 时两边都是 $1$,所以作为张量相等.再缩并一次,
+证明.令 $S_{jklm}=\varepsilon_{ijk}\varepsilon_{ilm}$,右边记作 $D_{jklm}$.若 $j=k$ 或 $l=m$,两边都是零.$S$ 与 $D$ 都对 $(j,k)$、$(l,m)$ 反对称.三维里,$j\neq k$ 时与 $\{j,k\}$ 互补的指标唯一;此时 $S$ 只在 $\{l,m\}=\{j,k\}$ 时非零,故独立分量由一个常数 $\lambda$ 决定,$S=\lambda D$.取 $(j,k,l,m)=(1,2,1,2)$:左边只有 $i=3$ 贡献,$\varepsilon_{312}^2=1$,右边也是 $1$,于是 $\lambda=1$.
+
+在\eqref{eq:eps-delta} 中令 $l=j$ 并对 $j$ 求和,得 $\varepsilon_{ijk}\varepsilon_{ijm}=\delta_{jj}\delta_{km}-\delta_{jm}\delta_{kj}=3\delta_{km}-\delta_{km}=2\delta_{km}$.再令 $m=k$ 求和,得 $\varepsilon_{ijk}\varepsilon_{ijk}=2\delta_{kk}=6$.把哑指标改名还给出
 \begin{equation}
-  \varepsilon_{ijk}\varepsilon_{ijm}=2\delta_{km},
-  \qquad
-  \varepsilon_{ijk}\varepsilon_{ijk}=6.
+  \varepsilon_{ijk}\varepsilon_{klm}
+  =\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}.
 \end{equation}
 
 \begin{example}

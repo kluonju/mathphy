@@ -1,0 +1,35 @@
+\begin{tikzpicture}[font=\scriptsize, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.4mm]}, line width=0.65pt}]
+  % curved surface suggested by a grid of patches
+  \foreach \i in {0,1,2} {
+    \foreach \j in {0,1} {
+      \coordinate (A\i\j) at ({0.95*\i+0.12*\j},{0.85*\j+0.08*\i*\i});
+    }
+  }
+  \foreach \i in {0,1,2} {
+    \coordinate (A\i2) at ({0.95*\i+0.24},{1.70+0.08*\i*\i});
+  }
+  % fill patches
+  \fill[MidnightBlue!7] (A00) -- (A10) -- (A11) -- (A01) -- cycle;
+  \fill[MidnightBlue!10] (A10) -- (A20) -- (A21) -- (A11) -- cycle;
+  \fill[MidnightBlue!7] (A01) -- (A11) -- (A12) -- (A02) -- cycle;
+  \fill[MidnightBlue!10] (A11) -- (A21) -- (A22) -- (A12) -- cycle;
+  % grid
+  \draw[gray!55] (A00) -- (A10) -- (A20);
+  \draw[gray!55] (A01) -- (A11) -- (A21);
+  \draw[gray!55] (A02) -- (A12) -- (A22);
+  \draw[gray!55] (A00) -- (A01) -- (A02);
+  \draw[gray!55] (A10) -- (A11) -- (A12);
+  \draw[gray!55] (A20) -- (A21) -- (A22);
+  % outer boundary emphasized
+  \draw[MidnightBlue, line width=1.05pt]
+    (A00) -- (A10) -- (A20) -- (A21) -- (A22) -- (A12) -- (A02) -- (A01) -- cycle;
+  % canceling interior edge (shared, opposite arrows)
+  \draw[vec, BrickRed] ($(A11)!0.15!(A12)$) -- ($(A11)!0.45!(A12)$);
+  \draw[vec, BrickRed] ($(A11)!0.85!(A12)$) -- ($(A11)!0.55!(A12)$);
+  \node[BrickRed] at ($(A11)!0.5!(A12)+(0.55,0.05)$) {内部边抵消};
+  % outer circulation
+  \draw[vec, ForestGreen] ($(A20)!0.2!(A21)$) -- ($(A20)!0.75!(A21)$);
+  \node[ForestGreen] at ($(A20)!0.5!(A21)+(0.55,0)$) {$L$};
+  \node[MidnightBlue] at (0.95,-0.45) {$S=\bigcup \Delta S_\alpha$};
+\end{tikzpicture}

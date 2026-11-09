@@ -1,10 +1,11 @@
 % !TEX program = xelatex
-% 第一讲：examples.tex + equations.tex
+% 第一讲：写方程所需的算子与记号
+% （内容取自讲义预备章中的梯度、指标与张量，作为本章工具）
 \documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
 \input{preamble}
 
 \title{数学物理方程}
-\subtitle{第一讲：典型方程及其物理来源}
+\subtitle{第一讲：写方程的算子与记号}
 
 \begin{document}
 
@@ -17,744 +18,1354 @@
     致知在格物。\\
     \hfill ——《大学》
   \end{quote}
-  格物，是认真观察现象，并追问支配它们的道理。
-  数学物理沿这条路走：把观测、对称性和守恒定律写成方程。
+  后面要写波动、扩散和势的方程。方程里到处是 $\nabla$、$\nabla\cdot$、$\nabla^2$，曲线坐标里还会多出尺度因子。
   \vspace{0.4em}
 
-  本章要做三件事：推出波动、扩散和势的标准方程；说明怎样的数据才能定出一个物理的解；再用分离变量处理典型的边值问题。
-\end{frame}
-
-\begin{frame}{三讲安排}
-  \begin{enumerate}
-    \item \textbf{本讲}：偏微分方程的例子，以及弦振动、热传导、拉普拉斯与泊松方程的推导。
-    \item 第二讲：初始条件、边界条件、稳态问题，以及二阶方程的分类与标准形。
-    \item 第三讲：分离变量法。两端固定的弦，以及均匀电场中的长直圆柱。
-  \end{enumerate}
-  \vspace{0.6em}
-  同一条方程可以出现在很不一样的场合；同一类现象，换一组物理假定，也会得到不同的方程。
-\end{frame}
-
-\begin{frame}{本讲要回答的三个问题}
-  \begin{enumerate}
-    \item 琴弦被拨动以后，位移 $u(x,t)$ 怎样运动？
-    \item 一根细杆两端维持不同温度，杆内的温度怎样变化，又怎样达到稳定？
-    \item 两块导体板之间没有电荷时，电势和电场是什么样子？
-  \end{enumerate}
-  \vspace{0.5em}
-  三条问题分别引出波动、热传导和拉普拉斯方程。先弄清什么叫“解”，再从平衡律把方程推出来，每推完一条就代一个具体的函数检验。更广的方程目录放在最后，用来辨认它们像这三条中的哪一条。
+  这一讲先把这些算子写清楚，再用指标把恒等式算一遍，最后看一眼张量怎么变换。弦振动和热传导放到下一讲再推。
 \end{frame}
 
 % =============================================================
-\section{方程举例}
+\section{梯度、散度与旋度}
 
-\subsection{什么是偏微分方程}
+\subsection{尺度因子}
 
-\begin{frame}{偏微分方程}
-  \textbf{偏微分方程}（partial differential equation, PDE）把多个自变量的未知函数和它的偏导数联系起来。
+\begin{frame}{为什么要引入曲线坐标}
+  分离变量时，边界最好落在某个坐标等于常数的面上，否则齐次边条件拆不成单变量条件。
   \begin{itemize}
-    \item 自变量常常是位置 $\mathbf{x}$ 和时间 $t$，也可以是动量或参数。
-    \item 未知量可以是一个标量场 $u$，也可以是向量场或张量场。
-    \item 不含时间的方程称为\textbf{稳态}方程；含时间导数的方程描述\textbf{演化}。
+    \item 矩形边界用直角坐标；
+    \item 圆柱、圆盘用柱坐标；
+    \item 球面用球坐标。
   \end{itemize}
-  “解”不是一个数，而是一个函数：把它代进方程，方程变成恒等式。下面用输运方程把这件事做一遍。
+  简单说：边界形状决定坐标系。
+  方程里有 $\nabla^2$，所以柱坐标和球坐标里的 $\nabla$、$\nabla\cdot$、$\nabla\times$、$\nabla^2$ 都要先写出来。
 \end{frame}
 
-\subsection{输运与守恒}
-
-\begin{frame}{一阶输运方程}
-  一阶输运方程
-  \begin{equation*}
-    u_t+c\,u_x=0
-  \end{equation*}
-  描述以常速 $c$ 传播、形状不变的剖面。它的解是
-  \begin{equation*}
-    u(x,t)=g(x-ct).
-  \end{equation*}
-  把 $g(\xi)$ 代入即得 $u_t=-cg'$，$u_x=g'$，两者相加为零。
-  \vspace{0.3em}
-
-  它可以表示一维均匀流动所携带的示踪物浓度：波形整体平移，不摊平，也不来回振荡。
-\end{frame}
-
-\begin{frame}{例：一个鼓包在移动}
-  取 $c=2$，初始鼓包 $g(\xi)=e^{-\xi^2}$。则
-  \begin{equation*}
-    u(x,t)=e^{-(x-2t)^2}.
-  \end{equation*}
+\begin{frame}{坐标面与坐标线}
   \begin{columns}[c]
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.54\textwidth}
+      一般\textbf{曲线坐标}（curvilinear coordinates）$(q_1,q_2,q_3)$ 与直角坐标一一对应，雅可比不为零。
       \begin{itemize}
-        \item $t=0$ 时峰在 $x=0$。
-        \item $t=1$ 时峰在 $x=2$，$t=3$ 时峰在 $x=6$。
-        \item 高度和宽度都不变。
+        \item \textbf{坐标面}（coordinate surface）：$q_i=\textrm{常数}$；
+        \item \textbf{坐标线}（coordinate curve）：只让一个 $q_i$ 变。
       \end{itemize}
-      若误写成 $e^{-(x+2t)^2}$，峰向左跑，满足的是 $u_t-2u_x=0$，不是原方程。符号决定方向。
+      三族坐标面两两正交时，称为\textbf{正交曲线坐标系}（orthogonal curvilinear coordinates）。
+      直角、柱、球都是。
     \end{column}
-    \begin{column}{0.48\textwidth}
+    \begin{column}{0.42\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.82]
-        \draw[->] (0,0) -- (5.6,0) node[right] {$x$};
-        \draw[gray,dashed,thick] (0.3,0)
-          .. controls (0.7,1.15) and (1.3,1.15) .. (1.7,0);
-        \draw[blue,thick] (2.5,0)
-          .. controls (2.9,1.15) and (3.5,1.15) .. (3.9,0);
-        \node[gray] at (1.0,1.35) {$t=0$};
-        \node[blue] at (3.2,1.35) {$t>0$};
-        \draw[->] (1.85,0.45) -- (2.45,0.45);
-      \end{tikzpicture}
+      \scalebox{0.92}{\input{tikz/coord_lines.tex}}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{连续性方程}
-  更一般地，守恒密度 $\rho(\mathbf{x},t)$ 与通量 $\mathbf{J}$ 满足\textbf{连续性方程}
+\begin{frame}{正交曲线坐标与拉梅系数}
+  位置矢量 $\br=\br(q_1,q_2,q_3)$。沿第 $i$ 条坐标线的切向量是 $\partial\br/\partial q_i$。
+  正交时
   \begin{equation*}
-    \rho_t+\nabla\cdot\mathbf{J}=s,
+    \frac{\partial\br}{\partial q_i}\cdot\frac{\partial\br}{\partial q_j}=0,
+    \qquad i\neq j,
   \end{equation*}
-  其中 $s$ 是源或汇。对速度为 $\mathbf{v}$ 的流体，$\mathbf{J}=\rho\mathbf{v}$，质量守恒写成
+  弧长元没有交叉项：
   \begin{equation*}
-    \rho_t+\nabla\cdot(\rho\mathbf{v})=0.
+    \mathrm{d}s^2=\sum_{i=1}^{3} h_i^2\,\mathrm{d}q_i^2,
+    \qquad
+    h_i=\Bigl|\frac{\partial\br}{\partial q_i}\Bigr|.
   \end{equation*}
-  散度项量度小体积上的净流出。热传导和电荷守恒也是同一种平衡律，只是通量由不同的本构关系给出。弦的推导就是对横向动量写这条平衡。
+  $h_i$ 叫\textbf{尺度因子}（scale factor），也叫\textbf{拉梅系数}（Lamé coefficients）：把 $\mathrm{d}q_i$ 换成长度 $h_i\,\mathrm{d}q_i$。直角坐标里三个都是 $1$。
 \end{frame}
 
-\begin{frame}{从这里进入推导}
-  输运方程的通量是 $c u$，事先给定。弦和热传导不同：通量或力由未知函数自己的斜率决定，平衡律因此含有二阶导数。
-  \vspace{0.5em}
+\begin{frame}{为什么先有 $\partial\br/\partial q_i$}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      只动 $q_i$，切向量是 $\partial\br/\partial q_i$。
+      方向对了，长度却常常不对。柱坐标里 $|\partial\br/\partial\phi|=\rho$，不是 $1$。
+      \vspace{0.3em}
 
-  顺序是：弦的动量平衡，热的能量平衡，再令时间导数为零得到稳态。每条方程推出后，立刻代一个显式的函数，确认它确实是解。
+      $\mathrm{d}q_i$ 本身也不是长度。走过的弧长是
+      \begin{equation*}
+        \mathrm{d}\ell_i
+        =\Bigl|\frac{\partial\br}{\partial q_i}\Bigr|\,\mathrm{d}q_i
+        =h_i\,\mathrm{d}q_i.
+      \end{equation*}
+      所以要先写出 $h_i=|\partial\br/\partial q_i|$。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \scalebox{0.88}{\input{tikz/scale_arc.tex}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-% The wider catalogue is postponed until the three equations can be recognized.
-% =============================================================
-\section{弦振动方程}
+\begin{frame}{单位矢量：沿坐标线的 $\mathrm{d}\br/\mathrm{d}s$}
+  沿第 $i$ 条坐标线走，$\mathrm{d}\br=(\partial\br/\partial q_i)\,\mathrm{d}q_i$，弧长 $\mathrm{d}s=h_i\,\mathrm{d}q_i$。\textbf{单位矢量}（unit vector）就是
+  \begin{equation*}
+    \boxed{\displaystyle
+      \mathbf{e}_i
+      =\frac{\mathrm{d}\br}{\mathrm{d}s}
+      =\frac{1}{h_i}\frac{\partial\br}{\partial q_i}.}
+  \end{equation*}
+  这样 $|\mathbf{e}_i|=1$；正交时还有 $\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}$。
+  方向导数应按弧长算，$\partial u/\partial\ell_i$，不是 $\partial u/\partial q_i$；
+  梯度里的 $1/h_i$，就是这一步换元。若不除以 $h_i$，切向量长度不对，后面公式会整段错位。
+\end{frame}
 
-\subsection{模型与小段受力}
-
-\begin{frame}{弦的物理图像}
-  弦振动方程在十八世纪由达朗贝尔等人系统研究，是一大类偏微分方程的原型。
+\begin{frame}{位移怎样用单位基写出}
+  长度放在 $h_i\,\mathrm{d}q_i$ 里，基矢只管方向：
+  \begin{equation*}
+    \mathrm{d}\boldsymbol{\ell}
+    =\sum_{i=1}^{3} h_i\,\mathrm{d}q_i\,\mathbf{e}_i.
+  \end{equation*}
+  右手系取 $\mathbf{e}_1\times\mathbf{e}_2=\mathbf{e}_3$（柱、球坐标常用排序满足这一点）。
+  矢量写成 $\mathbf{A}=\sum A_i\mathbf{e}_i$，\textbf{物理分量}（physical component）$A_i=\mathbf{A}\cdot\mathbf{e}_i$
+  才是沿单位方向的投影；不归一化时点积还带着 $h_i$。
   \vspace{0.3em}
 
-  考虑长为 $\ell$、两端固定、张紧的均匀柔软弦，求它在平衡位置附近的小横振动。
-  \begin{center}
-  \begin{tikzpicture}[scale=0.95]
-    \draw[->] (-0.2,0) -- (5.4,0) node[right] {$x$};
-    \draw[->] (0,-0.2) -- (0,1.7) node[above] {$u$};
-    \draw[thick,blue] (0,0) node[below left] {$0$}
-      .. controls (1.2,1.15) and (2.4,1.15) .. (3.4,0.35)
-      .. controls (4.0,0.05) .. (4.8,0) node[below] {$\ell$};
-    \draw[dashed] (1.7,0) -- (1.7,0.95);
-    \draw[dashed] (2.7,0) -- (2.7,0.72);
-    \node[below] at (1.7,0) {$x$};
-    \node[below] at (2.7,0) {$x{+}\Delta x$};
-  \end{tikzpicture}
-  \end{center}
-  固定时刻 $t$ 的图像 $u(x,t)$ 就是弦在该时刻的形状。
+  这里的 $\mathbf{e}_i$ 会随位置转。算散度、旋度时，不能当成常矢量提出求导。
 \end{frame}
 
-\begin{frame}{三条理想化}
-  把物理问题写成数学模型时，保留主导效应：
-  \begin{enumerate}
-    \item 弦是均匀的，直径远小于长度，可用线密度为常数 $\rho$ 的曲线表示。
-    \item 运动限制在一个平面内，并且是横向的：每个质点垂直于平衡的 $x$ 轴作小位移。
-    \item 弦完全柔软，不抵抗弯曲。张力沿变形后的弦的切向，伸长服从胡克定律。
-  \end{enumerate}
-  先不考虑外力。端点放在 $x=0$ 和 $x=\ell$。
+\begin{frame}{面积元与体积元}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      三条棱长分别是 $h_i\,\mathrm{d}q_i$。正交时，
+      \textbf{面积元}（area element）与\textbf{体积元}（volume element）为
+      \begin{equation*}
+        \mathrm{d}S_1=h_2 h_3\,\mathrm{d}q_2\,\mathrm{d}q_3,
+        \quad
+        \mathrm{d}V=h_1 h_2 h_3\,\mathrm{d}q_1\mathrm{d}q_2\mathrm{d}q_3.
+      \end{equation*}
+      $\mathrm{d}S_1$ 是法向为 $\mathbf{e}_1$ 的那一面。
+      柱：$\mathrm{d}V=\rho\,\mathrm{d}\rho\,\mathrm{d}\phi\,\mathrm{d}z$；
+      球：$\mathrm{d}V=r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\phi$。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \scalebox{0.92}{\input{tikz/volume.tex}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{小段的弧长}
-  取 $x$ 到 $x+\Delta x$ 的一小段，弧长为
-  \begin{equation*}
-    \Delta s=\int_x^{x+\Delta x}\sqrt{1+u_x(\xi,t)^2}\,\mathrm{d}\xi.
-  \end{equation*}
-  振动很小，$u_x^2$ 相对 $1$ 可以忽略，于是 $\Delta s\approx\Delta x$。
-  \vspace{0.4em}
-
-  这一小段几乎没有额外伸长。张力因此不随时间变化；下面的水平力平衡还会说明，它的大小也不随 $x$ 变化。
+\begin{frame}{柱坐标与球坐标的局部基}
+  \centering
+  \resizebox{0.88\linewidth}{!}{\input{tikz/bases.tex}}
 \end{frame}
 
-\begin{frame}{张力的分量}
-  设左端张力大小为 $T(x)$，$\alpha_1,\alpha_2$ 分别是 $x$ 与 $x+\Delta x$ 处切线和 $x$ 轴的夹角。作用在小段上的张力分量为
-  \begin{equation*}
-    \begin{array}{c|cc}
-      & x\text{ 分量} & u\text{ 分量}\\ \hline
-      x & -T(x)\cos\alpha_1 & -T(x)\sin\alpha_1\\
-      x+\Delta x & T(x+\Delta x)\cos\alpha_2 & T(x+\Delta x)\sin\alpha_2.
-    \end{array}
-  \end{equation*}
-  水平方向没有加速度，所以水平合力为零。
+\begin{frame}{例：柱坐标——先求三个偏导}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      {\small
+      $\br=\rho\cos\phi\,\mathbf{e}_x+\rho\sin\phi\,\mathbf{e}_y+z\,\mathbf{e}_z$。
+      \begin{align*}
+        \partial_\rho\br&=\cos\phi\,\mathbf{e}_x+\sin\phi\,\mathbf{e}_y,\\
+        \partial_\phi\br&=-\rho\sin\phi\,\mathbf{e}_x+\rho\cos\phi\,\mathbf{e}_y,\\
+        \partial_z\br&=\mathbf{e}_z.
+      \end{align*}
+      模长给出
+      $\boxed{h_{\rho}=1,\ h_{\phi}=\rho,\ h_z=1.}$
+      单位矢量要把切向量除以模：$\mathbf{e}_{\phi}=(1/\rho)\partial_\phi\br$。}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \scalebox{0.88}{\input{tikz/cyl_basis.tex}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{小斜率：张力为常数}
-  小振动时
+\begin{frame}{例：柱坐标——核对正交与单位矢量}
+  $\partial_\rho\br\cdot\partial_\phi\br
+  =-\rho\cos\phi\sin\phi+\rho\sin\phi\cos\phi=0$，
+  其余两对点积同样为零。因此
   \begin{equation*}
-    \cos\alpha_1=\frac{1}{\sqrt{1+u_x(x,t)^2}}\approx 1,
-    \qquad \cos\alpha_2\approx 1,
-  \end{equation*}
-  水平平衡给出 $T(x+\Delta x)=T(x)=T$。同样，
-  \begin{equation*}
-    \sin\alpha_1\approx\tan\alpha_1=u_x(x,t),
+    \mathrm{d}s^2=\mathrm{d}\rho^2+\rho^2\,\mathrm{d}\phi^2+\mathrm{d}z^2,
     \qquad
-    \sin\alpha_2\approx u_x(x+\Delta x,t).
+    \mathrm{d}V=\rho\,\mathrm{d}\rho\,\mathrm{d}\phi\,\mathrm{d}z.
   \end{equation*}
-  净横向力因此是
-  \begin{equation*}
-    T\bigl[u_x(x+\Delta x,t)-u_x(x,t)\bigr].
-  \end{equation*}
-\end{frame}
-
-\subsection{从冲量到波动方程}
-
-\begin{frame}{冲量写成二重积分}
-  在短时间 $[t,t+\Delta t]$ 上使用冲量--动量定理。张力的冲量为
-  \begin{equation*}
-    \int_t^{t+\Delta t}
-      T\bigl[u_x(x+\Delta x,\tau)-u_x(x,\tau)\bigr]\,\mathrm{d}\tau.
-  \end{equation*}
-  对 $x$ 用牛顿--莱布尼茨公式，$u_x(x+\Delta x)-u_x(x)=\int_x^{x+\Delta x}u_{xx}\,\mathrm{d}\xi$，故冲量等于
-  \begin{equation*}
-    \int_t^{t+\Delta t}\int_x^{x+\Delta x} T u_{xx}(\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
-  \end{equation*}
-\end{frame}
-
-\begin{frame}{动量变化}
-  小段的横向动量是 $\displaystyle\int_x^{x+\Delta x}\rho u_t(\xi,t)\,\mathrm{d}\xi$。它在 $\Delta t$ 内的变化为
-  \begin{equation*}
-    \int_x^{x+\Delta x}\rho\bigl[u_t(\xi,t+\Delta t)-u_t(\xi,t)\bigr]\,\mathrm{d}\xi
-    =\int_t^{t+\Delta t}\int_x^{x+\Delta x}\rho u_{tt}\,\mathrm{d}\xi\,\mathrm{d}\tau.
-  \end{equation*}
-  冲量等于动量变化，移项后
-  \begin{equation*}
-    \int_t^{t+\Delta t}\int_x^{x+\Delta x}
-      \bigl(T u_{xx}-\rho u_{tt}\bigr)\,\mathrm{d}\xi\,\mathrm{d}\tau=0.
-  \end{equation*}
-\end{frame}
-
-\begin{frame}{自由振动方程}
-  空间间隔和时间间隔都是任意的。被积函数连续时，积分在每个小矩形上都为零，只能是被积函数本身为零：
-  \begin{equation*}
-    \rho u_{tt}=T u_{xx}.
-  \end{equation*}
-  记 $a^2=T/\rho$，得到自由振动方程
-  \begin{equation*}
-    \boxed{u_{tt}-a^2 u_{xx}=0.}
-  \end{equation*}
-  $a=\sqrt{T/\rho}$ 是波速。张力越大、弦越轻，波跑得越快。
-\end{frame}
-
-\begin{frame}{例：右行波是解}
-  在整条直线上设 $u(x,t)=g(x-at)$，记 $\xi=x-at$。则
+  显式单位矢量：
   \begin{align*}
-    u_t&=-a g'(\xi), & u_{tt}&=a^2 g''(\xi),\\
-    u_x&=g'(\xi), & u_{xx}&=g''(\xi).
+    \mathbf{e}_{\rho}&=\cos\phi\,\mathbf{e}_x+\sin\phi\,\mathbf{e}_y,\\
+    \mathbf{e}_{\phi}&=-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y,\\
+    \mathbf{e}_z&=\mathbf{e}_z.
   \end{align*}
-  因此 $u_{tt}-a^2 u_{xx}=0$。$g(x+at)$ 是左行波，同样是解。
-  \vspace{0.4em}
-
-  固定端点还没放进来。$g(x-at)$ 一般不能在 $x=0$ 和 $x=\ell$ 同时为零，所以它还不是两端固定那根弦的运动。方程的解很多，边界把它们挑掉一批。这是第二讲的起点。
+  它们随 $\phi$ 转动：$\partial_\phi\mathbf{e}_{\rho}=\mathbf{e}_{\phi}$，$\partial_\phi\mathbf{e}_{\phi}=-\mathbf{e}_{\rho}$。
 \end{frame}
 
-\begin{frame}{例：波速的一个数字}
-  线密度 $\rho=0.01\,\mathrm{kg/m}$，张力 $T=100\,\mathrm{N}$。
-  \begin{equation*}
-    a=\sqrt{T/\rho}=\sqrt{100/0.01}=100\,\mathrm{m/s}.
-  \end{equation*}
-  右行鼓包的峰若在 $t=0$ 时位于 $x=0.2\,\mathrm{m}$，则在 $t=0.01\,\mathrm{s}$ 时位于
-  \begin{equation*}
-    x=0.2+at=0.2+1=1.2\,\mathrm{m}.
-  \end{equation*}
-  把张力提高四倍，$a$ 只提高两倍。波速看的是 $T/\rho$ 的平方根，不是张力本身。
+\begin{frame}{例：球坐标——偏导与尺度因子}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      {\small
+      $\br=r\sin\theta\cos\phi\,\mathbf{e}_x+r\sin\theta\sin\phi\,\mathbf{e}_y+r\cos\theta\,\mathbf{e}_z$。
+      \begin{align*}
+        \partial_r\br
+        &=\sin\theta\cos\phi\,\mathbf{e}_x+\sin\theta\sin\phi\,\mathbf{e}_y+\cos\theta\,\mathbf{e}_z,\\
+        \partial_\theta\br
+        &=r(\cos\theta\cos\phi\,\mathbf{e}_x+\cos\theta\sin\phi\,\mathbf{e}_y-\sin\theta\,\mathbf{e}_z),\\
+        \partial_\phi\br
+        &=r\sin\theta(-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y).
+      \end{align*}
+      $\boxed{h_r=1,\ h_{\theta}=r,\ h_{\phi}=r\sin\theta.}$
+      体积元 $\mathrm{d}V=r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\phi$。}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/sph_basis.tex}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{这个方程用在哪里}
-  推导只用了：均匀、柔软、张紧，以及小横向振动。
-  \begin{itemize}
-    \item 振幅很大时，$u_x^2$ 不能丢掉，张力也不再是常数，方程变成非线性的。
-    \item 弦若抵抗弯曲，恢复力不再只来自张力的横向分量，方程里会出现 $u_{xxxx}$。本讲末尾的梁方程就是这种模型。
-  \end{itemize}
-  模型的用处和限度都由这些假定决定。
+\begin{frame}{例：球坐标的单位矢量}
+  把三个偏导各自除以对应的 $h_i$：
+  \begin{align*}
+    \mathbf{e}_r
+    &=\sin\theta\cos\phi\,\mathbf{e}_x+\sin\theta\sin\phi\,\mathbf{e}_y+\cos\theta\,\mathbf{e}_z,\\
+    \mathbf{e}_{\theta}
+    &=\cos\theta\cos\phi\,\mathbf{e}_x+\cos\theta\sin\phi\,\mathbf{e}_y-\sin\theta\,\mathbf{e}_z,\\
+    \mathbf{e}_{\phi}
+    &=-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y.
+  \end{align*}
+  纬度圈弧长是 $r\sin\theta\,\mathrm{d}\phi$，故 $h_{\phi}$ 在两极为零；
+  $\mathbf{e}_r,\mathbf{e}_{\theta},\mathbf{e}_{\phi}$ 构成右手正交标架。
 \end{frame}
 
-\begin{frame}{外力与受迫振动}
-  设横向外力密度为 $F(x,t)$。它在 $[t,t+\Delta t]$ 内对小段的冲量是
+\subsection{梯度}
+
+\begin{frame}{从全微分到梯度}
+  标量场沿位移的变化定义为
   \begin{equation*}
-    \int_t^{t+\Delta t}\int_x^{x+\Delta x} F(\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
+    \mathrm{d}u=\nabla u\cdot\mathrm{d}\boldsymbol{\ell}.
   \end{equation*}
-  加到前面的平衡里，
+  正交曲线坐标中
+  $\mathrm{d}\boldsymbol{\ell}=\sum_i h_i\,\mathrm{d}q_i\,\mathbf{e}_i$。
+  把\textbf{梯度}（gradient）也按同一组基展开，$\nabla u=\sum_i f_i\mathbf{e}_i$，则
   \begin{equation*}
-    \int_t^{t+\Delta t}\int_x^{x+\Delta x}
-      \bigl(T u_{xx}-\rho u_{tt}+F\bigr)\,\mathrm{d}\xi\,\mathrm{d}\tau=0.
+    \mathrm{d}u
+    =\sum_i f_i\,h_i\,\mathrm{d}q_i.
   \end{equation*}
-  再由区间的任意性，并令 $f=F/\rho$，得到
+  另一方面，把 $u$ 看成 $(q_1,q_2,q_3)$ 的函数，
+  $\mathrm{d}u=\sum_i(\partial u/\partial q_i)\,\mathrm{d}q_i$。
+  比较系数：
   \begin{equation*}
-    \boxed{u_{tt}-a^2 u_{xx}=f(x,t),\qquad f=\dfrac{F}{\rho}.}
+    f_i h_i=\frac{\partial u}{\partial q_i}
+    \quad\Rightarrow\quad
+    f_i=\frac{1}{h_i}\frac{\partial u}{\partial q_i}.
   \end{equation*}
-  变化以有限速度 $a$ 传播。只知道方程、不知道弦在 $t=0$ 的位置和速度，运动还不能确定。
 \end{frame}
 
-% =============================================================
-\section{热传导方程}
-
-\subsection{傅里叶定律与能量平衡}
-
-\begin{frame}{傅里叶定律}
-  设物体 $G$ 在位置 $(x,y,z)$、时刻 $t$ 的温度为 $u(x,y,z,t)$。热流与温度的局部关系是傅里叶实验定律：在 $\mathrm{d}t$ 内，沿外法向 $\mathbf{n}$ 穿过有向面元 $\mathrm{d}S$ 的热量为
+\begin{frame}{正交曲线坐标中的梯度}
   \begin{equation*}
-    \mathrm{d}Q=-k(x,y,z)\frac{\partial u}{\partial n}\,\mathrm{d}S\,\mathrm{d}t.
+    \boxed{\displaystyle
+      \nabla u
+      =\sum_{i=1}^{3}\frac{1}{h_i}\frac{\partial u}{\partial q_i}\,\mathbf{e}_i.}
   \end{equation*}
-  $k>0$ 是热传导系数。负号是实质内容：\textbf{热从高温流向低温}，与 $u$ 增加的方向相反。
+  直角坐标 $h_i=1$ 时，回到
+  $\nabla u=\partial_x u\,\mathbf{e}_x+\partial_y u\,\mathbf{e}_y+\partial_z u\,\mathbf{e}_z$。
+  \vspace{0.3em}
+
+  热方程 $u_t=\kappa\nabla^2 u$、势方程 $\nabla^2 u=0$ 里的 $\nabla^2$，以及电场 $\mathbf{E}=-\nabla V$，都从这里出发。
 \end{frame}
 
-\begin{frame}{流入的热量}
-  在物体内部任取闭曲面 $\Gamma$，它围出区域 $\Omega$。从 $t_1$ 到 $t_2$ \emph{流入} $\Omega$ 的热量为
-  \begin{equation*}
-    Q=\int_{t_1}^{t_2}\iint_{\Gamma} k\frac{\partial u}{\partial n}\,\mathrm{d}S\,\mathrm{d}t.
-  \end{equation*}
-  符号相对傅里叶定律反了一次：$\partial u/\partial n$ 用的是外法向，而正的 $Q$ 定义为进入区域的热。
+\begin{frame}{最陡上升与等值面}
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      $\mathrm{d}u=|\nabla u|\,|\mathrm{d}\boldsymbol{\ell}|\cos\theta$。
+      步长固定时，$\cos\theta=1$ 使 $\mathrm{d}u$ 最大，所以 $\nabla u$ 指向 $u$ 增加最快的方向。
+      \vspace{0.3em}
+
+      \textbf{等值面}（level surface）$u=\textrm{常数}$ 上 $\mathrm{d}u=0$，故梯度垂直于等值面。
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \input{tikz/gradient.tex}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{内能的增加}
-  设比热为 $c(x,y,z)$，质量密度为 $\rho(x,y,z)$。同一时间间隔内，内能的增加是
+\begin{frame}{代入尺度因子：柱坐标}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      $h_{\rho}=1$，$h_{\phi}=\rho$，$h_z=1$：
+      \begin{equation*}
+        \nabla u
+        =\frac{\partial u}{\partial\rho}\,\mathbf{e}_{\rho}
+          +\frac{1}{\rho}\frac{\partial u}{\partial\phi}\,\mathbf{e}_{\phi}
+          +\frac{\partial u}{\partial z}\,\mathbf{e}_z.
+      \end{equation*}
+      角分量里的 $1/\rho$ 就是 $1/h_{\phi}$。漏掉它，量纲就不对。
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \scalebox{0.85}{\input{tikz/cyl_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{代入尺度因子：球坐标}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      $h_r=1$，$h_{\theta}=r$，$h_{\phi}=r\sin\theta$：
+      \begin{equation*}
+        \nabla u
+        =\frac{\partial u}{\partial r}\,\mathbf{e}_r
+          +\frac{1}{r}\frac{\partial u}{\partial\theta}\,\mathbf{e}_{\theta}
+          +\frac{1}{r\sin\theta}\frac{\partial u}{\partial\phi}\,\mathbf{e}_{\phi}.
+      \end{equation*}
+      圆、球边界上的问题用这一条，不要硬套直角坐标的三项偏导。
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/sph_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：$\rho^2$ 与 $\ln\rho$——逐步代入}
+  $u$ 只依赖 $\rho$，故 $\partial_\phi u=\partial_z u=0$。柱坐标梯度只剩第一项：
+  \begin{align*}
+    \nabla(\rho^2)
+    &=\frac{\partial}{\partial\rho}(\rho^2)\,\mathbf{e}_{\rho}
+     =2\rho\,\mathbf{e}_{\rho},\\
+    \nabla\ln\rho
+    &=\frac{\partial}{\partial\rho}(\ln\rho)\,\mathbf{e}_{\rho}
+     =\frac{1}{\rho}\,\mathbf{e}_{\rho}
+     \quad(\rho>0).
+  \end{align*}
+  第二式长度是 $1/\rho$，径向向外，形状和二维点源电场一样。后面算 $\nabla\cdot\mathbf{E}$ 还会用到它。
+\end{frame}
+
+\begin{frame}{梯度场的线积分只看端点}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      若 $\mathbf{F}=\nabla u$，则 $\nabla u\cdot\mathrm{d}\boldsymbol{\ell}=\mathrm{d}u$，于是
+      \begin{equation*}
+        \int_A^B\nabla u\cdot\mathrm{d}\boldsymbol{\ell}
+        =u(B)-u(A).
+      \end{equation*}
+      闭路上 $A=B$，积分是零。保守场 $\mathbf{E}=-\nabla V$ 的环量为零，就是这一条。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \scalebox{0.88}{\input{tikz/path_independence.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：$u=x^2 y$，先算梯度}
   \begin{equation*}
-    \iiint_{\Omega}\rho c\,
-      \bigl[u(x,y,z,t_2)-u(x,y,z,t_1)\bigr]\,\mathrm{d}V.
+    \frac{\partial u}{\partial x}=2xy,\quad
+    \frac{\partial u}{\partial y}=x^2,\quad
+    \frac{\partial u}{\partial z}=0,
   \end{equation*}
-  能量守恒要求它等于流入的热量 $Q$。假定 $u$ 的二阶空间导数和一阶时间导数都连续。
+  故 $\nabla u=2xy\,\mathbf{e}_x+x^2\,\mathbf{e}_y$。
+  从原点到 $P=(x_0,y_0)$，端点公式直接给出
+  \begin{equation*}
+    \int_O^P\nabla u\cdot\mathrm{d}\boldsymbol{\ell}
+    =u(P)-u(O)=x_0^2 y_0.
+  \end{equation*}
+  下面用两条折线核对，确认它确实只依赖端点。
+\end{frame}
+
+\begin{frame}{例：两条折线逐步积分}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      {\small
+      $L_1$：先沿 $x$ 轴到 $(x_0,0)$，再竖直到 $P$。\\
+      第一段 $y=0$，$\mathrm{d}y=0$，被积函数 $2xy\,\mathrm{d}x=0$。\\
+      第二段 $x=x_0$，$\mathrm{d}x=0$，
+      $\displaystyle\int_0^{y_0}x_0^2\,\mathrm{d}y=x_0^2 y_0$。
+      \vspace{0.3em}
+
+      $L_2$：先沿 $y$ 轴到 $(0,y_0)$，再水平到 $P$。\\
+      第一段 $x=0$，被积函数为零；第二段
+      $\displaystyle\int_0^{x_0}2x y_0\,\mathrm{d}x=x_0^2 y_0$。}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \input{tikz/paths.tex}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{散度}
+
+\begin{frame}{通量与物理分量}
+  闭曲面\textbf{通量}（flux）$\oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}$，外法向。净通量为正，内部有源。
+  把矢量按局部基分解，$\mathbf{A}=\sum A_i\mathbf{e}_i$，其中 $A_i=\mathbf{A}\cdot\mathbf{e}_i$ 是物理分量。
+  \vspace{0.3em}
+
+  \textbf{散度}（divergence）的定义：体积元表面的净通量除以体积。守恒律
+  \begin{equation*}
+    \rho_t+\nabla\cdot\mathbf{J}=s
+  \end{equation*}
+  \textbf{连续性方程}（continuity equation）、热流、电荷守恒里的 $\nabla\cdot$ 就是它。下一讲推热方程时会再用到。
+\end{frame}
+
+\begin{frame}{一对面的通量差}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      法向为 $\mathbf{e}_1$ 的两面，面积 $h_2 h_3\,\mathrm{d}q_2\,\mathrm{d}q_3$。
+      在 $q_1$ 与 $q_1+\mathrm{d}q_1$ 处通量差为
+      \begin{equation*}
+        \frac{\partial}{\partial q_1}(A_1 h_2 h_3)\,
+        \mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3.
+      \end{equation*}
+      被求导的是 $A_1 h_2 h_3$，不是单独的 $A_1$——尺度因子本身可以随坐标变。
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \scalebox{0.78}{\input{tikz/flux_pair.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{三个方向相加再除以体积}
+  $q_2$、$q_3$ 两对面给出类似的两项。净通量合计
+  \begin{equation*}
+    \sum_{i=1}^{3}
+      \frac{\partial}{\partial q_i}
+      \Bigl(\frac{h_1 h_2 h_3}{h_i} A_i\Bigr)
+      \,\mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3.
+  \end{equation*}
+  除以 $\mathrm{d}V=h_1 h_2 h_3\,\mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3$，得到
+  \begin{equation*}
+    \boxed{\displaystyle
+      \nabla\cdot\mathbf{A}
+      =\frac{1}{h_1 h_2 h_3}
+        \sum_{i=1}^{3}
+        \frac{\partial}{\partial q_i}
+        \Bigl(\frac{h_1 h_2 h_3}{h_i} A_i\Bigr).}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{直角坐标是特例}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      $h_i=1$ 时，$h_1 h_2 h_3/h_i=1$，上式化为
+      \begin{equation*}
+        \nabla\cdot\mathbf{A}
+        =\partial_x A_x+\partial_y A_y+\partial_z A_z.
+      \end{equation*}
+      小长方体上，$x$ 与 $x+\Delta x$ 这一对面的净通量就是 $(\partial A_x/\partial x)\,\Delta V$。
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/divergence.tex}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{散度定理}
-  散度定理把曲面积分改成体积分：
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      \textbf{散度定理}（divergence theorem）：内部小面的通量成对抵消，只留下外表面
+      \begin{equation*}
+        \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+        =\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.
+      \end{equation*}
+      推热方程时，用它把曲面积分改成体积分。
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \scalebox{0.85}{\input{tikz/divergence.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{柱坐标：把 $h_i$ 代进去}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      $h_{\rho}h_{\phi}h_z=\rho$。合起来
+      \begin{equation*}
+        \boxed{\displaystyle
+          \nabla\cdot\mathbf{A}
+          =\frac{1}{\rho}\frac{\partial}{\partial\rho}(\rho A_{\rho})
+            +\frac{1}{\rho}\frac{\partial A_{\phi}}{\partial\phi}
+            +\frac{\partial A_z}{\partial z}.}
+      \end{equation*}
+      第一项里的 $\rho A_{\rho}$：面积因子 $h_{\phi}h_z=\rho$ 跟着进了导数。
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \scalebox{0.85}{\input{tikz/cyl_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{球坐标：把 $h_i$ 代进去}
+  \begin{columns}[c]
+    \begin{column}{0.60\textwidth}
+      {\small
+      $h_r h_{\theta}h_{\phi}=r^2\sin\theta$。
+      \par\smallskip
+      \resizebox{\linewidth}{!}{$\displaystyle
+        \boxed{
+          \nabla\cdot\mathbf{A}
+          =\dfrac{1}{r^2}\partial_r(r^2 A_r)
+            +\dfrac{1}{r\sin\theta}\partial_{\theta}(\sin\theta\, A_{\theta})
+            +\dfrac{1}{r\sin\theta}\partial_{\phi}A_{\phi}.
+        }$}
+      \par\smallskip
+      点电荷场 $\mathbf{E}\propto\mathbf{e}_r/r^2$ 的散度要用这一条。}
+    \end{column}
+    \begin{column}{0.36\textwidth}
+      \centering
+      \scalebox{0.72}{\input{tikz/sph_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：长方体上的 $\mathbf{A}=\br$}
+  $\mathbf{A}=x\mathbf{e}_x+y\mathbf{e}_y+z\mathbf{e}_z$，直角坐标散度
   \begin{equation*}
-    \int_{t_1}^{t_2}\iiint_{\Omega}\nabla\cdot(k\nabla u)\,\mathrm{d}V\,\mathrm{d}t
-    =\iiint_{\Omega}\rho c\left(\int_{t_1}^{t_2}u_t\,\mathrm{d}t\right)\mathrm{d}V.
+    \nabla\cdot\mathbf{A}
+    =\partial_x x+\partial_y y+\partial_z z=3.
   \end{equation*}
-  交换积分次序，得到
+  区域 $0\leq x\leq a$，$0\leq y\leq b$，$0\leq z\leq c$：
   \begin{equation*}
-    \int_{t_1}^{t_2}\iiint_{\Omega}
-      \bigl[\rho c\,u_t-\nabla\cdot(k\nabla u)\bigr]\,\mathrm{d}V\,\mathrm{d}t=0.
+    \int_V\nabla\cdot\mathbf{A}\,\mathrm{d}V=3abc.
+  \end{equation*}
+  六个面：过原点的三个面通量为零；对面 $x=a$、$y=b$、$z=c$ 各贡献 $abc$，合计仍是 $3abc$，与散度定理一致。
+\end{frame}
+
+\begin{frame}{例：$\nabla\cdot\mathbf{e}_{\rho}$——逐步代入}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      柱坐标公式中只留 $A_{\rho}=1$：
+      \begin{equation*}
+        \nabla\cdot\mathbf{e}_{\rho}
+        =\frac{1}{\rho}\frac{\partial}{\partial\rho}(\rho\cdot 1)
+        =\frac{1}{\rho}.
+      \end{equation*}
+      $\mathbf{e}_{\rho}$ 的方向在转，散度不是零。直角坐标里“常矢量散度为零”这句话，到曲线基上不能照搬。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \scalebox{0.85}{\input{tikz/radial_field.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：$\nabla\cdot(\mathbf{e}_r/r^2)$}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      球坐标公式第一项：
+      \begin{equation*}
+        \frac{1}{r^2}\frac{\partial}{\partial r}(1)=0,
+        \qquad r>0.
+      \end{equation*}
+      故 $\nabla\cdot(\mathbf{e}_r/r^2)=0$（$r\neq 0$）。原点是奇点；包住原点后通量是 $4\pi$，这就是
+      $-\nabla^2(1/r)=4\pi\delta^3(\br)$
+      的来源——\textbf{泊松方程}（Poisson equation）的基本解。
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \scalebox{0.88}{\input{tikz/point_source.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{旋度}
+
+\begin{frame}{环量与局部定义}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      闭路\textbf{环量}（circulation）$\oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}$。
+      \textbf{旋度}（curl）衡量单位面积上的环量：
+      \begin{equation*}
+        (\nabla\times\mathbf{A})\cdot\hat{\mathbf{n}}
+        =\lim_{\Delta S\to 0}\frac{1}{\Delta S}
+          \oint_{\partial(\Delta S)}\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}.
+      \end{equation*}
+      \textbf{法拉第定律}、\textbf{安培--麦克斯韦定律}里的 $\nabla\times$，用的就是这个定义。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/curl_loop.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{小面片上的环量——逐步写出}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      {\small
+      法向 $\mathbf{e}_1$ 的小面片：两条 $q_2$ 边、两条 $q_3$ 边。
+      切向长度 $h_2\,\mathrm{d}q_2$、$h_3\,\mathrm{d}q_3$。
+      除以面积 $h_2 h_3\,\mathrm{d}q_2\,\mathrm{d}q_3$，
+      \begin{equation*}
+        \boxed{\displaystyle
+          (\nabla\times\mathbf{A})_1
+          =\frac{1}{h_2 h_3}
+            \bigl(
+              \partial_{q_2}(h_3 A_3)
+              -\partial_{q_3}(h_2 A_2)
+            \bigr).}
+      \end{equation*}
+      另两个分量按 $1\to 2\to 3\to 1$ 轮换。导数作用在 $h_i A_i$ 上。}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \resizebox{\linewidth}{!}{\input{tikz/curl_patch.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{旋度的行列式写法}
+  三个分量可以合成一个行列式（展开时对第二行求导）：
+  \begin{equation*}
+    \boxed{\displaystyle
+      \nabla\times\mathbf{A}
+      =\frac{1}{h_1 h_2 h_3}
+        \begin{vmatrix}
+          h_1\mathbf{e}_1 & h_2\mathbf{e}_2 & h_3\mathbf{e}_3 \\
+          \partial_{q_1} & \partial_{q_2} & \partial_{q_3} \\
+          h_1 A_1 & h_2 A_2 & h_3 A_3
+        \end{vmatrix}.}
+  \end{equation*}
+  直角坐标 $h_i=1$ 时回到熟悉的
+  $\nabla\times\mathbf{A}=
+  \begin{vmatrix}
+  \mathbf{e}_x&\mathbf{e}_y&\mathbf{e}_z\\
+  \partial_x&\partial_y&\partial_z\\
+  A_x&A_y&A_z
+  \end{vmatrix}$。
+\end{frame}
+
+\begin{frame}{直角坐标：四条边逐步相加}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      $h_i=1$，$xy$ 平面小矩形逆时针：
+      \begin{align*}
+        &\text{底：}A_x\Delta x,\\
+        &\text{顶：}-A_x(x,y+\Delta y)\Delta x,\\
+        &\text{右：}A_y(x+\Delta x)\Delta y,\\
+        &\text{左：}-A_y\Delta y.
+      \end{align*}
+      合起来
+      $\bigl(\partial_x A_y-\partial_y A_x\bigr)\Delta x\Delta y$，
+      故 $(\nabla\times\mathbf{A})_z=\partial_x A_y-\partial_y A_x$。
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \input{tikz/curl_loop.tex}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{斯托克斯定理：从局部定义出发}
+  由旋度的局部定义，每个定向小面元 $\Delta S_\alpha$ 上
+  \begin{equation*}
+    \oint_{\partial(\Delta S_\alpha)}\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+    =(\nabla\times\mathbf{A})\cdot\hat{\mathbf{n}}_\alpha\,\Delta S_\alpha
+      +o(\Delta S_\alpha).
+  \end{equation*}
+  把定向曲面 $S$ 剖成许多小面元，边界定向与法向满足右手定则。
+  对 $\alpha$ 求和：
+  \begin{equation*}
+    \sum_\alpha\oint_{\partial(\Delta S_\alpha)}\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+    =\sum_\alpha(\nabla\times\mathbf{A})\cdot\hat{\mathbf{n}}_\alpha\,\Delta S_\alpha
+      +o(1).
+  \end{equation*}
+  右边在剖分变细时就是曲面积分
+  $\displaystyle\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}$。
+\end{frame}
+
+\begin{frame}{斯托克斯定理：内部边抵消}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      左边：相邻小面元的公共边方向相反，
+      $\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}$ 成对抵消。
+      \vspace{0.3em}
+
+      留下的只有 $S$ 的外边界 $L=\partial S$。于是
+      \begin{equation*}
+        \sum_\alpha\oint_{\partial(\Delta S_\alpha)}
+        \longrightarrow
+        \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}.
+      \end{equation*}
+      这就是把局部环量拼成整体环量的一步。
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \scalebox{0.88}{\input{tikz/stokes_tile.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{斯托克斯定理}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      合起来得到\textbf{斯托克斯定理}（Stokes' theorem）
+      \begin{equation*}
+        \boxed{\displaystyle
+          \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+          =\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}.}
+      \end{equation*}
+      环路 $L$ 与曲面法向用右手定则约定。
+      张在同一条边界上的任何定向曲面，右边相同，故左边只依赖边界。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/stokes.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{两个基本恒等式}
+  梯度没有环量，旋度没有净源：
+  \begin{equation*}
+    \nabla\times(\nabla u)=\mathbf{0},
+    \qquad
+    \nabla\cdot(\nabla\times\mathbf{A})=0.
+  \end{equation*}
+  所以 $\mathbf{E}=-\nabla V$ 无旋，$\mathbf{B}=\nabla\times\mathbf{A}$ 无散。
+  直角分量靠混合偏导可交换就能看出来。下一节用指标再证一遍，并得到
+  $\nabla\times(\nabla\times\mathbf{A})=\nabla(\nabla\cdot\mathbf{A})-\nabla^2\mathbf{A}$。
+\end{frame}
+
+\begin{frame}{例：先算旋度的三个分量}
+  $\mathbf{A}=-y\,\mathbf{e}_x+x\,\mathbf{e}_y-z\,\mathbf{e}_z$。
+  \begin{align*}
+    (\nabla\times\mathbf{A})_x
+    &=\partial_y A_z-\partial_z A_y=0,\\
+    (\nabla\times\mathbf{A})_y
+    &=\partial_z A_x-\partial_x A_z=0,\\
+    (\nabla\times\mathbf{A})_z
+    &=\partial_x A_y-\partial_y A_x
+     =\partial_x(x)-\partial_y(-y)=2.
+  \end{align*}
+  故 $\nabla\times\mathbf{A}=2\mathbf{e}_z$。下面用斯托克斯定理核对。
+\end{frame}
+
+\begin{frame}{例：圆上的线积分}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      {\small
+      $xy$ 平面半径 $R$ 的圆：
+      $x=R\cos\phi$，$y=R\sin\phi$。
+      \begin{align*}
+        \mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+        &=-y\,\mathrm{d}x+x\,\mathrm{d}y
+         =R^2\,\mathrm{d}\phi.
+      \end{align*}
+      故 $\oint_L=2\pi R^2$。圆盘上
+      $\int_S 2\,\mathrm{d}S=2\pi R^2$，一致。}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \scalebox{0.85}{\input{tikz/stokes.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：直导线的磁场}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      $\mathbf{B}=(\mu_0 I/(2\pi\rho))\,\mathbf{e}_{\phi}$（$\rho>0$）。
+      \begin{equation*}
+        h_{\phi} B_{\phi}
+        =\rho\cdot\frac{\mu_0 I}{2\pi\rho}
+        =\frac{\mu_0 I}{2\pi},
+      \end{equation*}
+      对 $\rho$、$z$ 的偏导都是零，故旋度为零。
+      若环路围住导线，环量是 $\mu_0 I$，奇性在 $\rho=0$。
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \scalebox{0.92}{\input{tikz/wire_b.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{柱坐标中的旋度}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      {\small
+      \begin{align*}
+        (\nabla\times\mathbf{A})_{\rho}
+        &=\tfrac{1}{\rho}\partial_{\phi}A_z-\partial_z A_{\phi},\\
+        (\nabla\times\mathbf{A})_{\phi}
+        &=\partial_z A_{\rho}-\partial_{\rho}A_z,\\
+        (\nabla\times\mathbf{A})_z
+        &=\tfrac{1}{\rho}\bigl(
+            \partial_{\rho}(\rho A_{\phi})-\partial_{\phi}A_{\rho}
+          \bigr).
+      \end{align*}
+      直导线例子：仅 $A_{\phi}\neq 0$ 且 $\rho A_{\phi}$ 为常数时，$z$ 分量里 $\partial_{\rho}(\rho A_{\phi})=0$。}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/cyl_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{球坐标中的旋度}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      {\footnotesize
+      \begin{align*}
+        (\nabla\times\mathbf{A})_r
+        &=\tfrac{1}{r\sin\theta}
+          \bigl(
+            \partial_{\theta}(\sin\theta\, A_{\phi})-\partial_{\phi}A_{\theta}
+          \bigr),\\
+        (\nabla\times\mathbf{A})_{\theta}
+        &=\tfrac{1}{r\sin\theta}\partial_{\phi}A_r
+          -\tfrac{1}{r}\partial_r(r A_{\phi}),\\
+        (\nabla\times\mathbf{A})_{\phi}
+        &=\tfrac{1}{r}\partial_r(r A_{\theta})
+          -\tfrac{1}{r}\partial_{\theta}A_r.
+      \end{align*}}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \scalebox{0.80}{\input{tikz/sph_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{拉普拉斯算子}
+
+\begin{frame}{定义：散度作用在梯度上}
+  \textbf{拉普拉斯算子}（Laplacian）就是
+  \begin{equation*}
+    \nabla^2 u=\nabla\cdot(\nabla u).
+  \end{equation*}
+  热方程 $u_t=\kappa\nabla^2 u$、势方程 $\nabla^2 u=0$ 或 $\nabla^2 u=f$ 用的都是它。
+  把梯度分量 $A_i=(1/h_i)\partial u/\partial q_i$ 代进散度，被求导的组合变成
+  \begin{equation*}
+    \frac{h_1 h_2 h_3}{h_i}A_i
+    =\frac{h_1 h_2 h_3}{h_i^2}\frac{\partial u}{\partial q_i}.
   \end{equation*}
 \end{frame}
 
-\begin{frame}{一般的热传导方程}
-  时间间隔和区域 $\Omega$ 都是任意的，被积函数必须为零。非均匀各向同性物体的热传导方程是
-  \begin{equation*}
-    \boxed{\rho c\,u_t=\nabla\cdot(k\nabla u).}
-  \end{equation*}
-  若 $k$ 不是常数，右边不是 $k\nabla^2u$，而是
-  \(\nabla\cdot(k\nabla u)=k\nabla^2u+\nabla k\cdot\nabla u\)。
-  传导系数的空间变化本身会贡献一项。
+\begin{frame}{正交曲线坐标中的 $\nabla^2$}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \begin{equation*}
+        \boxed{\displaystyle
+          \nabla^2 u
+          =\frac{1}{h_1 h_2 h_3}
+            \sum_{i=1}^{3}
+            \partial_{q_i}
+            \Biggl(\frac{h_1 h_2 h_3}{h_i^2}\partial_{q_i}u\Biggr).}
+      \end{equation*}
+      不要把直角坐标的 $\partial_{xx}+\partial_{yy}+\partial_{zz}$ 换元照抄：尺度因子的导数会漏掉。
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \scalebox{0.88}{\input{tikz/volume.tex}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{均匀介质}
-  物体均匀时，$k,c,\rho$ 都是常数。令 $\kappa=k/(\rho c)$，
-  \begin{equation*}
-    \nabla^2=\partial_{xx}+\partial_{yy}+\partial_{zz},
-  \end{equation*}
-  方程化为齐次\textbf{热方程}
-  \begin{equation*}
-    \boxed{u_t=\kappa\nabla^2u.}
-  \end{equation*}
-  扩散把温差抹平，而不是把一个尖锐扰动以固定速度送出去。
+\begin{frame}{柱坐标：逐步代入}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      $h_1 h_2 h_3=\rho$。合起来
+      \begin{equation*}
+        \boxed{\displaystyle
+          \nabla^2 u
+          =\frac{1}{\rho}\partial_{\rho}(\rho\partial_{\rho}u)
+            +\frac{1}{\rho^2}\partial_{\phi\phi}u
+            +\partial_{zz}u.}
+      \end{equation*}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \scalebox{0.85}{\input{tikz/cyl_basis.tex}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{例：峰顶降温，谷底升温}
-  先看一根细杆上的 $u_t=\kappa u_{xx}$，$\kappa>0$。
-  \begin{itemize}
-    \item 在温度的局部极大处，$u_{xx}<0$，于是 $u_t<0$：峰顶变凉。
-    \item 在局部极小处，$u_{xx}>0$，于是 $u_t>0$：谷底变暖。
-  \end{itemize}
-  同一条曲率，在波动方程里作用不同。$u_{tt}=a^2 u_{xx}$ 在峰顶给出向下的加速度，弦冲过平衡位置，所以会振荡；热方程没有二阶时间导数，峰顶只是下降，不会冲到另一侧。
+\begin{frame}{柱坐标第一项的展开}
+  \begin{equation*}
+    \frac{1}{\rho}\frac{\partial}{\partial\rho}
+      \Bigl(\rho\frac{\partial u}{\partial\rho}\Bigr)
+    =\frac{\partial^2 u}{\partial\rho^2}
+      +\frac{1}{\rho}\frac{\partial u}{\partial\rho}.
+  \end{equation*}
+  多出来的 $(1/\rho)\partial_{\rho}u$，就是“直接换元二阶偏导”时丢掉的那一项。
+  圆膜、圆柱导热的径向方程从这里来。
 \end{frame}
 
-\begin{frame}{有热源的情形}
-  设热源在单位体积内的产热率为 $F(x,y,z,t)$。它在能量平衡中的贡献是
-  \begin{equation*}
-    \int_{t_1}^{t_2}\iiint_{\Omega} F\,\mathrm{d}V\,\mathrm{d}t.
-  \end{equation*}
-  加进去以后，
-  \begin{equation*}
-    \rho c\,u_t=\nabla\cdot(k\nabla u)+F.
-  \end{equation*}
-  均匀介质中就是非齐次热方程
-  \begin{equation*}
-    \boxed{u_t=\kappa\nabla^2u+f,\qquad f=\frac{F}{\rho c}.}
-  \end{equation*}
+\begin{frame}{球坐标：逐步代入}
+  \begin{columns}[c]
+    \begin{column}{0.62\textwidth}
+      {\small
+      $h_1 h_2 h_3=r^2\sin\theta$，得到
+      \par\smallskip
+      \resizebox{\linewidth}{!}{$\displaystyle
+        \boxed{
+          \nabla^2 u
+          =\dfrac{1}{r^2}\partial_r(r^2\partial_r u)
+            +\dfrac{1}{r^2\sin\theta}\partial_{\theta}(\sin\theta\,\partial_{\theta}u)
+            +\dfrac{1}{r^2\sin^2\theta}\partial_{\phi\phi}u.
+        }$}
+      \par\smallskip
+      球对称势和球坐标分离变量都用它。}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \scalebox{0.70}{\input{tikz/sph_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：$\nabla^2\ln\rho$——逐步计算}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      $u=\ln\rho$，$\partial_{\rho}u=1/\rho$。柱坐标只留第一项：
+      \begin{equation*}
+        \nabla^2\ln\rho
+        =\frac{1}{\rho}\partial_{\rho}(1)=0,
+        \qquad\rho>0.
+      \end{equation*}
+      若误用 $\partial_{\rho\rho}(\ln\rho)=-1/\rho^2$，结果不是零。
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/radial_field.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：$\nabla^2(1/r)$}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      $u=1/r$，$r^2\partial_r u=-1$。球坐标第一项
+      \begin{equation*}
+        \frac{1}{r^2}\partial_r(-1)=0,
+        \qquad r>0.
+      \end{equation*}
+      故 $\nabla^2(1/r)=0$（$r>0$）。它是球外\textbf{拉普拉斯方程}的基本解；有源时回到泊松方程。
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \scalebox{0.88}{\input{tikz/point_source.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{常用坐标：拉梅系数}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{lccc}
+    & $h_1$ & $h_2$ & $h_3$ \\ \hline
+    直角 $(x,y,z)$ & $1$ & $1$ & $1$ \\
+    柱 $(\rho,\phi,z)$ & $1$ & $\rho$ & $1$ \\
+    球 $(r,\theta,\phi)$ & $1$ & $r$ & $r\sin\theta$
+  \end{tabular}
+  \end{center}
+  \vspace{0.4em}
+  这张表够用了。$\nabla$、$\nabla\cdot$、$\nabla\times$、$\nabla^2$ 都是把 $h_i$ 代进一般公式。
 \end{frame}
 
 % =============================================================
-\section{拉普拉斯方程与泊松方程}
+\section{指标记号}
 
-\subsection{从演化到平衡}
+\subsection{求和约定与两个符号}
 
-\begin{frame}{稳态留下椭圆型方程}
-  许多系统演化到力、通量或源彼此平衡为止。稳态下时间导数消失，留下椭圆型方程。三维中两个中心的稳态场方程是
-  \begin{equation*}
-    \boxed{\nabla^2u=0}
-    \qquad\text{与}\qquad
-    \boxed{\nabla^2u=f.}
-  \end{equation*}
-  第一个是\textbf{拉普拉斯方程}，它的解称为\textbf{调和函数}。第二个是\textbf{泊松方程}，$f$ 表示源。
-  直角坐标中 $\nabla^2u=u_{xx}+u_{yy}+u_{zz}$。
-\end{frame}
-
-\begin{frame}{源项的符号}
-  $f$ 的符号和物理含义依赖所选的模型。结构上的区别是：
+\begin{frame}{爱因斯坦求和约定}
+  直角坐标里指标 $i,j,k$ 各取 $1,2,3$。\textbf{爱因斯坦求和约定}（Einstein summation convention）：同一个单项里重复出现的指标要求和，求和号不再写出。
   \begin{itemize}
-    \item 无源区域用拉普拉斯方程；
-    \item 有分布源时用泊松方程。
+    \item \textbf{哑指标}（dummy index）被求和，可以改名。
+    \item \textbf{自由指标}（free index）在等式两边必须相同，并且可以改名。
   \end{itemize}
-  下面三个例子里，$f$ 分别是 $-F/T$、$-F/k$ 和 $-\rho_e/\varepsilon_0$。负号来自恢复力、傅里叶定律或电场的定义，不是拉普拉斯算子本身的约定。
+  一项之中，任何一个指标不得出现两次以上。
 \end{frame}
 
-\subsection{膜与稳态热流}
-
-\begin{frame}{薄膜的平衡}
-  均匀张力为 $T$、面密度为 $\rho$ 的薄膜，横向位移 $u(x,y,t)$，横向力密度 $F(x,y,t)$。小振动方程是
-  \begin{equation*}
-    \rho u_{tt}=T(u_{xx}+u_{yy})+F.
-  \end{equation*}
-  这是二维的受迫波动方程，推导与弦相同：张力的净横向分量给出 $T\nabla^2u$。
-  \vspace{0.4em}
-
-  外力不随时间变化，膜又已经到达平衡，$u_{tt}=0$，形状满足
-  \begin{equation*}
-    u_{xx}+u_{yy}=-\frac{F(x,y)}{T}.
-  \end{equation*}
-  这是二维泊松方程。没有横向载荷时，平衡膜满足拉普拉斯方程。
-\end{frame}
-
-\begin{frame}{稳态温度}
-  同一划分也来自热传导。稳态时 $u_t=0$。均匀材料、内部有稳定热源 $F$ 时，
-  \begin{equation*}
-    \nabla^2u=-\frac{F}{k}.
-  \end{equation*}
-  内部不产热时，稳态温度是调和函数。
-  \vspace{0.4em}
-
-  因此同一组数学方程既描述平衡形状，也描述平衡温度。物理不同，平衡条件的数学形式相同。
-\end{frame}
-
-\begin{frame}{例：均匀加热的平板}
-  平板占据 $0\leq x\leq L$，热传导系数为常数，单位体积产热率 $F>0$ 为常数。两面温度保持为零：
-  \begin{equation*}
-    u''(x)=-\frac{F}{k},
-    \qquad u(0)=u(L)=0.
-  \end{equation*}
-  积分一次，$u'=-(F/k)x+A$；再积分，
-  \begin{equation*}
-    u(x)=-\frac{F}{2k}x^2+Ax+B.
-  \end{equation*}
-\end{frame}
-
-\begin{frame}{例：均匀加热的平板（定常数）}
-  $u(0)=0$ 给出 $B=0$。$u(L)=0$ 给出
-  \begin{equation*}
-    A=\frac{F}{2k}L,
-    \qquad
-    \boxed{u(x)=\dfrac{F}{2k}\,x(L-x).}
-  \end{equation*}
-  这是开口向下的抛物线，最大值在板的中心 $x=L/2$，最大值为 $FL^2/(8k)$。
-  中心处 $u''=-F/k<0$，和“峰顶曲率为负”一致。
+\begin{frame}{克罗内克符号与列维--奇维塔符号}
+  \textbf{克罗内克符号}（Kronecker delta）$\delta_{ij}$：$i=j$ 时为 $1$，否则为 $0$。因此 $\delta_{ii}=3$，$A_i\delta_{ij}=A_j$。
   \vspace{0.3em}
 
-  热在内部各处产生，再由传导送到较冷的边界。没有源时，同样的两端为零只允许 $u\equiv 0$：没有热可送。
-\end{frame}
-
-\subsection{静电势}
-
-\begin{frame}{高斯定理}
-  静电场的电场线起于正电荷、止于负电荷，在静电场中不形成闭圈。国际单位制下，对包围体积 $\Omega$ 的任意闭曲面 $\Sigma$，
+  \textbf{列维--奇维塔符号}（Levi-Civita symbol）$\varepsilon_{ijk}$：$(i,j,k)$ 是 $(1,2,3)$ 的偶置换时为 $+1$，奇置换时为 $-1$，有重复时为 $0$。
+  叉积和旋度就是
   \begin{equation*}
-    \oint_{\Sigma}\mathbf{E}\cdot\mathrm{d}\mathbf{S}
-    =\frac{1}{\varepsilon_0}\iiint_{\Omega}\rho_e\,\mathrm{d}V.
-  \end{equation*}
-  用散度定理，并利用 $\Omega$ 的任意性，得到局部形式。再加上静电场旋度为零：
-  \begin{equation*}
-    \nabla\cdot\mathbf{E}=\frac{\rho_e}{\varepsilon_0},
-    \qquad \nabla\times\mathbf{E}=0.
+    (\mathbf{A}\times\mathbf{B})_i=\varepsilon_{ijk}A_j B_k,
+    \qquad
+    (\nabla\times\mathbf{A})_i=\varepsilon_{ijk}\partial_j A_k.
   \end{equation*}
 \end{frame}
 
-\begin{frame}{用标量势代替向量场}
-  旋度为零，线积分与路径无关，因此存在标量势 $V$，使
+\begin{frame}{最常用的缩并}
+  最常用的\textbf{缩并}（contraction）恒等式：
   \begin{equation*}
-    \mathbf{E}=-\nabla V.
+    \boxed{\varepsilon_{ijk}\varepsilon_{ilm}
+    =\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}.}
+    \tag{*}
   \end{equation*}
-  代入高斯定理，
+  右边记作 $D_{jklm}$。下面先证 $(*)$，再由此推出
   \begin{equation*}
-    \boxed{\nabla^2 V=-\dfrac{\rho_e}{\varepsilon_0}.}
+    \varepsilon_{ijk}\varepsilon_{ijm}=2\delta_{km},
+    \qquad
+    \varepsilon_{ijk}\varepsilon_{ijk}=6.
   \end{equation*}
-  有电荷处 $V$ 满足泊松方程，无电荷处满足拉普拉斯方程。
+\end{frame}
+
+\begin{frame}{证明 $(*)$：两边同型}
+  令 $S_{jklm}=\varepsilon_{ijk}\varepsilon_{ilm}$。对固定的 $j,k,l,m$，左边对 $i$ 求和。
   \vspace{0.3em}
 
-  用标量势代替向量场往往是决定性的简化：知道 $V$ 之后，物理场由 $\mathbf{E}=-\nabla V$ 给出。
-\end{frame}
-
-\begin{frame}{例：两块平行导电板}
-  两块大平行导电板之间没有电荷，势只依赖垂直于板面的坐标 $x$。设 $V(0)=0$，$V(d)=V_0$，拉普拉斯方程化为
-  \begin{equation*}
-    V''(x)=0.
-  \end{equation*}
-  因此 $V(x)=Ax+B$。由 $V(0)=0$ 得 $B=0$，由 $V(d)=V_0$ 得 $A=V_0/d$，
-  \begin{equation*}
-    \boxed{V(x)=\dfrac{V_0}{d}x,
-    \qquad
-    \mathbf{E}=-\dfrac{V_0}{d}\,\mathbf{e}_x.}
-  \end{equation*}
-  若 $V_0>0$，右板电势更高，电场指向 $-x$，从高电势指向低电势。负号来自 $\mathbf{E}=-\nabla V$，不是额外假定。
-\end{frame}
-
-\begin{frame}{平行板与加热板对照}
-  电势线性变化，电场均匀。这是加热板问题的无源对应：
-  \begin{itemize}
-    \item 无源时，内部场由边界值单独决定，一维稳态解是直线；
-    \item 有均匀源时，内部多一次积分，解是抛物线。
-  \end{itemize}
-  二维和三维里同样的原则仍在，但直线和抛物线要换成级数或格林函数。那是第三讲和后面格林函数一章的内容。
-\end{frame}
-
-
-\section{辨认同一类方程}
-
-\begin{frame}{先辨认，再看新方程}
-  三条方程已经从平衡律里推出来，并且各配了一个能代回去的解。
-  后面的例子不再推导。读每条方程时只问：
   \begin{enumerate}
-    \item 它把一个剖面\textbf{原样送走}，还是\textbf{抹平}，还是描述\textbf{平衡}？
-    \item 未知量是一个标量，还是向量、张量或一组联立的量？
-    \item 最高阶导数是几阶？弦是二阶；梁和板因为抵抗弯曲，升到四阶。
+    \item 若 $j=k$，则 $\varepsilon_{ijk}=0$，故 $S=0$；同时
+      $D_{jjlm}=\delta_{jl}\delta_{jm}-\delta_{jm}\delta_{jl}=0$。
+      $l=m$ 时同理，两边都是零。
+    \item $j\leftrightarrow k$：$S$ 变号（第一个 $\varepsilon$ 变号），$D$ 也变号。
+      $l\leftrightarrow m$ 同样。因此两边都对 $(j,k)$、$(l,m)$ 反对称。
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{标量波动方程}
-  $d$ 维空间中的标量\textbf{波动方程}是
+\begin{frame}{证明 $(*)$：三维里只剩一个自由度}
+  在三维中，对 $(j,k)$ 反对称、对 $(l,m)$ 反对称的张量，必有形式
   \begin{equation*}
-    u_{tt}-c^2\nabla^2u=0.
+    T_{jklm}
+    =\lambda\,(\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl})
+    =\lambda\,D_{jklm}.
   \end{equation*}
-  它描述以速度 $c$ 传播的小扰动，包括均匀介质中的声波，以及弹性运动中适合用标量描述的部分。
-  \vspace{0.4em}
-
-  一维形式就是前面推出的弦振动方程，波速 $c=a=\sqrt{T/\rho}$。多出来的空间维数不改变“以有限速度传播”这件事。
+  理由：先取 $j\neq k$。与 $\{j,k\}$ 互补的指标唯一，记为 $n$。
+  此时 $S_{jklm}$ 只可能在 $\{l,m\}=\{j,k\}$ 时非零
+  （否则第二个 $\varepsilon$ 必含重复指标 $n$，为 $0$）。
+  于是独立分量只剩 $S_{jkjk}$（及由反对称定出的 $S_{jkkj}=-S_{jkjk}$ 等），
+  全部由一个数 $\lambda$ 确定，且 $S=\lambda D$。
 \end{frame}
 
-\begin{frame}{均匀各向同性弹性体}
-  位移 $\mathbf{u}(\mathbf{x},t)$ 是向量。线性化模型为
+\begin{frame}{证明 $(*)$：定出 $\lambda=1$}
+  取 $(j,k,l,m)=(1,2,1,2)$。对 $i$ 求和时只有 $i=3$ 存活：
   \begin{equation*}
-    \rho\mathbf{u}_{tt}
-    =(\lambda+\mu)\nabla(\nabla\cdot\mathbf{u})+\mu\nabla^2\mathbf{u},
+    S_{1212}
+    =\varepsilon_{312}\varepsilon_{312}
+    =(1)(1)=1.
   \end{equation*}
-  其中 $\lambda,\mu$ 是拉梅参数。
-  \begin{itemize}
-    \item $\nabla\cdot\mathbf{u}$ 描述体积变化，对应压缩波。
-    \item 其余部分描述形状变化，对应剪切波。
-  \end{itemize}
-  两种变形模式的传播速度不同，所以弹性波一般不能收成一个标量波动方程。
+  右边
+  \begin{equation*}
+    D_{1212}
+    =\delta_{11}\delta_{22}-\delta_{12}\delta_{21}
+    =1.
+  \end{equation*}
+  故 $\lambda=1$，即
+  \begin{equation*}
+    \varepsilon_{ijk}\varepsilon_{ilm}
+    =\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}.
+  \end{equation*}
 \end{frame}
 
-\begin{frame}{梁与薄板：四阶导数}
-  弯曲需要更高阶的空间导数。理想细梁可以满足
-  \begin{equation*}
-    u_{tt}+K u_{xxxx}=0,
-  \end{equation*}
-  理想薄板可以满足
-  \begin{equation*}
-    u_{tt}+K\nabla^4u=0,
-    \qquad \nabla^4=(\nabla^2)^2.
-  \end{equation*}
-  张紧的弦不抵抗弯曲，恢复力来自张力的横向分量，所以是二阶方程。梁和板抵抗弯曲，弯矩与曲率有关，方程升到四阶。
-\end{frame}
-
-\subsection{扩散、色散与量子演化}
-
-\begin{frame}{热方程与对流--扩散}
-  热方程
-  \begin{equation*}
-    u_t=\kappa\nabla^2u
-  \end{equation*}
-  就是前面推出的方程。$u$ 也可以是浓度或概率密度，形式不变。
-  \vspace{0.4em}
-
-  再加上定向输运，就得到对流--扩散方程
-  \begin{equation*}
-    u_t+\mathbf{v}\cdot\nabla u=\kappa\nabla^2u.
-  \end{equation*}
-  左边第二项把剖面带走，右边把尖峰摊平。
-\end{frame}
-
-\begin{frame}{含时薛定谔方程}
-  含时薛定谔方程的空间算子看起来相近，含义不同：
-  \begin{equation*}
-    \mathrm{i}\hbar\psi_t
-    =\left(-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x})\right)\psi.
-  \end{equation*}
-  $\psi$ 是复波函数，$m$ 是质量，$V$ 是势能。
-  \begin{itemize}
-    \item 扩散削弱梯度，并且在通常的时间方向上不可逆。
-    \item 哈密顿量不显含时间时，薛定谔演化保持概率，并且可逆。
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{定态薛定谔方程}
-  势能不随时间变化时，具有确定能量的解可写成
-  \begin{equation*}
-    \psi(\mathbf{x},t)=\phi(\mathbf{x})\,e^{-\mathrm{i}Et/\hbar}.
-  \end{equation*}
-  代入后得到空间波函数的本征值问题
-  \begin{equation*}
-    \left(-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x})\right)\phi=E\phi.
-  \end{equation*}
-  边界条件，以及 $\phi$ 可以归一化的要求，选出允许的能级 $E$。一个含时偏微分方程由此变成稳态的谱问题。
-\end{frame}
-
-\begin{frame}{狄拉克方程}
-  相对论量子力学用四分量复旋量 $\Psi$ 的狄拉克方程
-  \begin{equation*}
-    \bigl(\mathrm{i}\hbar\gamma^\mu\partial_\mu-mc\bigr)\Psi=0.
-  \end{equation*}
-  矩阵 $\gamma^\mu$ 把自旋和时空耦合在一起。这是时空中的一阶线性方程组。再作用一次共轭的狄拉克算子，就和二阶相对论波动方程联系起来。
-\end{frame}
-
-\begin{frame}{色散波}
-  一个简单的线性色散模型是
-  \begin{equation*}
-    u_t+\gamma u_{xxx}=0.
-  \end{equation*}
-  不同波长的传播速度不同，所以即使介质是线性的，一开始集中的脉冲也会变形。
-  \vspace{0.4em}
-
-  这和输运方程 $u_t+cu_x=0$ 不同：后者的每一个剖面都以同一个速度 $c$ 移动，形状保持不变。
-\end{frame}
-
-\subsection{电磁场}
-
-\begin{frame}{真空中的麦克斯韦方程组}
-  电场和磁场满足
+\begin{frame}{再缩并：$\varepsilon_{ijk}\varepsilon_{ijm}=2\delta_{km}$}
+  在 $(*)$ 中令 $l=j$（对 $j$ 求和）：
   \begin{align*}
-    \nabla\cdot\mathbf{E}&=\frac{\rho_e}{\varepsilon_0},
-    &\nabla\cdot\mathbf{B}&=0,\\
-    \nabla\times\mathbf{E}&=-\mathbf{B}_t,
-    &\nabla\times\mathbf{B}&=\mu_0\mathbf{J}+\mu_0\varepsilon_0\mathbf{E}_t.
+    \varepsilon_{ijk}\varepsilon_{ijm}
+    &=\delta_{jj}\delta_{km}-\delta_{jm}\delta_{kj} \\
+    &=3\,\delta_{km}-\delta_{km}
+    =2\delta_{km},
   \end{align*}
-  两个散度方程限制哪些场是允许的，两个旋度方程给出它们的时间演化。
-\end{frame}
-
-\begin{frame}{无源区域中的电磁波}
-  在无电荷、无电流区域，对旋度方程再取一次旋度，并用第 2 章的向量恒等式，可得 $\mathbf{E}$ 和 $\mathbf{B}$ 都满足波动方程，波速为
-  \begin{equation*}
-    c=\frac{1}{\sqrt{\mu_0\varepsilon_0}}.
-  \end{equation*}
-  因此麦克斯韦方程组在这个区域里蕴含标准的二阶波动方程，而不是另外一种传播机制。
-\end{frame}
-
-\begin{frame}{杨--米尔斯方程}
-  杨--米尔斯理论把麦克斯韦理论推广到取值于非对易李代数的规范势 $A_\mu$。协变导数 $D_\mu=\partial_\mu+gA_\mu$，曲率为
-  \begin{equation*}
-    F_{\mu\nu}
-    =\partial_\mu A_\nu-\partial_\nu A_\mu+g[A_\mu,A_\nu],
-  \end{equation*}
-  无源方程是
-  \begin{equation*}
-    D_\mu F^{\mu\nu}=0.
-  \end{equation*}
-  场分量彼此对易时，$[A_\mu,A_\nu]=0$，方程形式上回到真空麦克斯韦方程。非阿贝尔规范理论的经典场方程就是这个非线性组。
-\end{frame}
-
-\subsection{流体与非线性方程}
-
-\begin{frame}{纳维--斯托克斯方程}
-  密度 $\rho$ 为常数的不可压粘性流体，速度 $\mathbf{v}$、压强 $p$、动力粘度 $\mu$ 满足
-  \begin{equation*}
-    \rho\bigl(\mathbf{v}_t+(\mathbf{v}\cdot\nabla)\mathbf{v}\bigr)
-    =-\nabla p+\mu\nabla^2\mathbf{v},
-    \qquad \nabla\cdot\mathbf{v}=0.
-  \end{equation*}
-  \begin{itemize}
-    \item $(\mathbf{v}\cdot\nabla)\mathbf{v}$ 是跟着流体一起运动时感受到的加速度。
-    \item 压强用来维持不可压，而不是单独再满足一个标量演化方程。
-    \item 略去粘性，就得到理想流体的欧拉方程。
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{无粘伯格斯方程}
-  更简单的非线性守恒律是
-  \begin{equation*}
-    u_t+u u_x=0.
-  \end{equation*}
-  特征速度就是解本身 $u$。剖面里较快的部分会追上较慢的部分，光滑的经典解可以在有限时间内失效。
-  \vspace{0.4em}
-
-  因此需要弱解，以及连接间断两侧的激波条件。本讲只指出这个机制；激波条件不在本章展开。
-\end{frame}
-
-\subsection{时空几何与方程的另一处来源}
-
-\begin{frame}{爱因斯坦场方程}
-  广义相对论用洛伦兹时空度规 $g_{\mu\nu}$ 描述引力：
-  \begin{equation*}
-    G_{\mu\nu}+\Lambda g_{\mu\nu}
-    =\frac{8\pi G}{c^4}T_{\mu\nu},
-  \end{equation*}
-  其中 $G_{\mu\nu}=R_{\mu\nu}-\tfrac12 R g_{\mu\nu}$ 是爱因斯坦张量，$T_{\mu\nu}$ 是能动张量，$G$ 是牛顿引力常数，$\Lambda$ 是宇宙学常数。
+  其中用了 $\delta_{jj}=3$，以及 $\delta_{jm}\delta_{kj}=\delta_{km}$。
   \vspace{0.3em}
 
-  里奇张量 $R_{\mu\nu}$ 含有 $g_{\mu\nu}$ 的二阶导数，也含有一阶导数的二次项。
-\end{frame}
-
-\begin{frame}{坐标自由与引力波}
-  度规同时决定坐标几何，所以场方程具有坐标自由，不是一组彼此独立的标量偏微分方程。
-  \begin{itemize}
-    \item 选定坐标或规范条件之后，在适当情形下，其演化形式是双曲型的。
-    \item 真空引力波来自无源方程 $G_{\mu\nu}=0$，是度规上的小幅传播扰动。
-  \end{itemize}
-  “双曲型”这个词下一讲再定义。这里先看到：真空引力波仍然是有限速度的传播。
-\end{frame}
-
-\begin{frame}{物理学之外：布莱克--斯科尔斯方程}
-  在一组理想化假定下，欧式衍生品的价格 $V(S,t)$ 满足
+  再令 $m=k$ 并对 $k$ 求和：
   \begin{equation*}
-    V_t+\frac12\sigma^2 S^2 V_{SS}+r S V_S-rV=0.
+    \varepsilon_{ijk}\varepsilon_{ijk}
+    =2\delta_{kk}
+    =2\cdot 3
+    =6.
   \end{equation*}
-  $S$ 是标的资产价格，$r$ 是无风险利率，$\sigma$ 是波动率。
-  \begin{itemize}
-    \item 这是变系数的抛物型方程。
-    \item 到期时的收益起着类似初始数据的作用，但通常从到期时刻向回解。
-  \end{itemize}
+  也可以直接数：$\varepsilon_{ijk}=\pm 1$ 的三元组有 $3!=6$ 个，平方和为 $6$。
 \end{frame}
 
-\begin{frame}{目录回答了什么}
-  \begin{itemize}
-    \item 声波、电磁波、真空引力波，都回到有限速度的传播。
-    \item 浓度、概率和期权价格，都含有抹平尖峰的二阶项；薛定谔方程看起来相近，却保持概率、并且可逆。
-    \item 伯格斯方程说明：最高阶导数一旦乘上未知函数自己，光滑解可以在有限时间内撞坏。
-  \end{itemize}
-  第二讲把前两种行为和平衡问题分成双曲、抛物、椭圆，并说明每一种该配什么数据。
+\begin{frame}{缩并改名：$\varepsilon_{ijk}\varepsilon_{klm}$}
+  三重积里出现的是缩并第三与第一指标。把 $(*)$ 中的哑指标改名即可：
+  令 $(*)$ 里的 $(i,j,k,l,m)\mapsto(k,i,j,l,m)$，得到
+  \begin{equation*}
+    \boxed{\varepsilon_{ijk}\varepsilon_{klm}
+    =\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}.}
+  \end{equation*}
+  检验：取 $(i,j,l,m)=(1,2,1,2)$，左边
+  $\varepsilon_{k12}\varepsilon_{k12}=\varepsilon_{312}^2=1$，
+  右边 $\delta_{11}\delta_{22}-\delta_{12}\delta_{21}=1$。
 \end{frame}
 
-\section{本讲小结}
+\begin{frame}{例：矢量三重积——第一步}
+  目标：$(\mathbf{A}\times(\mathbf{B}\times\mathbf{C}))_i$。
+  先写内层叉积 $(\mathbf{B}\times\mathbf{C})_k=\varepsilon_{klm}B_l C_m$，再写外层：
+  \begin{equation*}
+    \bigl(\mathbf{A}\times(\mathbf{B}\times\mathbf{C})\bigr)_i
+    =\varepsilon_{ijk}A_j(\mathbf{B}\times\mathbf{C})_k
+    =\varepsilon_{ijk}\varepsilon_{klm}A_j B_l C_m.
+  \end{equation*}
+  下一步用刚证过的
+  $\varepsilon_{ijk}\varepsilon_{klm}=\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}$。
+\end{frame}
 
-\begin{frame}{本讲的四条方程}
+\begin{frame}{例：矢量三重积——完成缩并}
   \begin{align*}
-    u_{tt}-a^2u_{xx}&=f,
-    & a^2&=T/\rho,
-    & f&=F/\rho,\\[4pt]
-    u_t&=\kappa\nabla^2u+f,
-    & \kappa&=k/(\rho c),
-    & f&=F/(\rho c),\\[4pt]
-    \nabla^2u&=0,
-    &&\text{无源稳态},\\
-    \nabla^2u&=f,
-    &&\text{有源稳态}.
+    \varepsilon_{ijk}\varepsilon_{klm}A_j B_l C_m
+    &=(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})A_j B_l C_m \\
+    &=A_j C_j B_i-A_j B_j C_i.
   \end{align*}
-  它们分别来自动量平衡、能量平衡，以及稳态下通量和源的平衡。
+  写回矢量：
+  \begin{equation*}
+    \boxed{\mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+    =(\mathbf{A}\cdot\mathbf{C})\mathbf{B}
+    -(\mathbf{A}\cdot\mathbf{B})\mathbf{C}.}
+  \end{equation*}
+  分解纵波与横波时常用。
 \end{frame}
 
-\begin{frame}{下一讲}
-  方程本身通常有无穷多个解。第二讲补上三样东西：
-  \begin{enumerate}
-    \item 初始条件和三类边界条件，怎样合成一个定解问题；
-    \item 线性、齐次与叠加，以及稳态问题的解题步骤；
-    \item 二阶方程的判别式、特征线和标准形。
-  \end{enumerate}
+\subsection{导数恒等式}
+
+\begin{frame}{梯度无环量}
+  $(\nabla\times\nabla f)_i=\varepsilon_{ijk}\partial_j\partial_k f$。
+  把哑指标 $j\leftrightarrow k$：
+  \begin{equation*}
+    \varepsilon_{ijk}\partial_j\partial_k f
+    =\varepsilon_{ikj}\partial_k\partial_j f
+    =-\varepsilon_{ijk}\partial_j\partial_k f,
+  \end{equation*}
+  其中用了 $\varepsilon_{ikj}=-\varepsilon_{ijk}$ 与混合偏导可交换。
+  一项等于自己的相反数，故为零：
+  \begin{equation*}
+    \boxed{\nabla\times(\nabla f)=\mathbf{0}.}
+  \end{equation*}
+  所以 $\mathbf{E}=-\nabla V$ 时自动有 $\nabla\times\mathbf{E}=\mathbf{0}$。
+\end{frame}
+
+\begin{frame}{旋度无源}
+  同样，
+  \begin{equation*}
+    \nabla\cdot(\nabla\times\mathbf{A})
+    =\varepsilon_{ijk}\partial_i\partial_j A_k.
+  \end{equation*}
+  $\partial_i\partial_j$ 对 $(i,j)$ 对称，$\varepsilon_{ijk}$ 对 $(i,j)$ 反对称，缩并为零：
+  \begin{equation*}
+    \boxed{\nabla\cdot(\nabla\times\mathbf{A})=0.}
+  \end{equation*}
+  所以 $\mathbf{B}=\nabla\times\mathbf{A}$ 时自动有 $\nabla\cdot\mathbf{B}=0$。
+\end{frame}
+
+\begin{frame}{旋度的旋度——代入指标}
+  \begin{align*}
+    \bigl[\nabla\times(\nabla\times\mathbf{A})\bigr]_i
+    &=\varepsilon_{ijk}\partial_j(\varepsilon_{klm}\partial_l A_m) \\
+    &=\varepsilon_{ijk}\varepsilon_{klm}\,\partial_j\partial_l A_m.
+  \end{align*}
+  再用 $\varepsilon_{ijk}\varepsilon_{klm}=\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}$：
+  \begin{equation*}
+    (\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})\partial_j\partial_l A_m
+    =\partial_i(\partial_m A_m)-\partial_j\partial_j A_i.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{旋度的旋度——写回矢量}
+  所以
+  \begin{equation*}
+    \boxed{\nabla\times(\nabla\times\mathbf{A})
+    =\nabla(\nabla\cdot\mathbf{A})-\nabla^2\mathbf{A}.}
+  \end{equation*}
+  真空中 $\nabla\cdot\mathbf{E}=0$ 时，对法拉第和安培定律再取旋度，得到
+  $\nabla^2\mathbf{E}-c^{-2}\partial_{tt}\mathbf{E}=\mathbf{0}$，主部是 $-\nabla^2$。
+\end{frame}
+
+\begin{frame}{乘积法则（指标版）}
+  \begin{align*}
+    \nabla\cdot(f\mathbf{A})
+    &=f\,\nabla\cdot\mathbf{A}+\mathbf{A}\cdot\nabla f,\\
+    \nabla\times(f\mathbf{A})
+    &=f\,\nabla\times\mathbf{A}+\nabla f\times\mathbf{A},\\
+    \nabla\cdot(\mathbf{A}\times\mathbf{B})
+    &=\mathbf{B}\cdot(\nabla\times\mathbf{A})
+      -\mathbf{A}\cdot(\nabla\times\mathbf{B}).
+  \end{align*}
+  同一缩并还给出
+  \begin{equation*}
+    \mathbf{u}\times(\nabla\times\mathbf{u})
+    =\nabla\Bigl(\tfrac12|\mathbf{u}|^2\Bigr)
+    -(\mathbf{u}\cdot\nabla)\mathbf{u}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：真空麦克斯韦方程}
+  真空中的\textbf{麦克斯韦方程}（Maxwell's equations）：
+  \begin{equation*}
+  \begin{aligned}
+    \nabla\cdot\mathbf{E}&=\rho/\varepsilon_0, &
+    \nabla\cdot\mathbf{B}&=0,\\
+    \nabla\times\mathbf{E}&=-\partial_t\mathbf{B}, &
+    \nabla\times\mathbf{B}
+    &=\mu_0\mathbf{J}+\mu_0\varepsilon_0\partial_t\mathbf{E}.
+  \end{aligned}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：从麦克斯韦方程推出守恒与波动}
+  对法拉第定律取散度：左边 $\nabla\cdot(\nabla\times\mathbf{E})=0$，故
+  $\partial_t(\nabla\cdot\mathbf{B})=0$，与 $\nabla\cdot\mathbf{B}=0$ 相容。
+  \vspace{0.3em}
+
+  对安培--麦克斯韦定律取散度，并用 $\nabla\cdot\mathbf{E}=\rho/\varepsilon_0$，得到连续性方程
+  $\partial_t\rho+\nabla\cdot\mathbf{J}=0$。
+  \vspace{0.3em}
+
+  对法拉第定律再取旋度，用
+  $\nabla\times(\nabla\times\mathbf{E})=\nabla(\nabla\cdot\mathbf{E})-\nabla^2\mathbf{E}$，
+  无源时得到 $\nabla^2\mathbf{E}-c^{-2}\partial_{tt}\mathbf{E}=\mathbf{0}$。
+\end{frame}
+
+\begin{frame}{行列式与正交矩阵}
+  三维 $\det M=\varepsilon_{ijk}M_{1i}M_{2j}M_{3k}$。由此
+  \begin{equation*}
+    \varepsilon_{ijk}N_{ai}N_{bj}N_{ck}=(\det N)\,\varepsilon_{abc},
+  \end{equation*}
+  从而 $\det(MN)=\det M\det N$。
+  \vspace{0.3em}
+
+  \textbf{正交矩阵}（orthogonal matrix）满足 $R^{\mathsf T}R=I$，写成 $R_{ki}R_{kj}=\delta_{ij}$，因此
+  \begin{equation*}
+    (R\mathbf{a})\cdot(R\mathbf{b})=\mathbf{a}\cdot\mathbf{b}:
+  \end{equation*}
+  模和夹角都被保持。
+\end{frame}
+
+\begin{frame}{例：泡利矩阵}
+  \textbf{泡利矩阵}（Pauli matrices）$\sigma^x,\sigma^y,\sigma^z$ 满足 $(\sigma^x\sigma^y)_{ij}=\sigma^x_{ik}\sigma^y_{kj}$。
+  对角元给出 $\mathrm{i}$ 与 $-\mathrm{i}$，非对角元为零，故
+  \begin{equation*}
+    \sigma^x\sigma^y=\mathrm{i}\,\sigma^z.
+  \end{equation*}
+  迹 $\operatorname{tr}\sigma^x=\sigma^x_{ii}=0$；二维行列式 $\det\sigma^x=-1$，与 $\det(\sigma^x\sigma^y)=1$ 一致。
+\end{frame}
+
+% =============================================================
+\section{张量}
+
+\subsection{阶与坐标变换}
+
+\begin{frame}{阶与独立分量}
+  指标的个数叫做\textbf{阶}（order / rank）。标量 $0$ 阶，矢量 $1$ 阶；$n$ 维里 $r$ 阶\textbf{张量}（tensor）在计入对称性前有 $n^r$ 个分量。
+  \vspace{0.3em}
+
+  对称二阶：$n(n+1)/2$ 个独立分量；反对称：$n(n-1)/2$ 个。任意二阶张量拆成
+  \begin{equation*}
+    T_{ij}
+    =\tfrac12(T_{ij}+T_{ji})
+    +\tfrac12(T_{ij}-T_{ji}).
+  \end{equation*}
+  位移梯度 $\partial_i u_j$ 的对称部分是\textbf{应变}（strain），反对称部分是无穷小转动。
+\end{frame}
+
+\begin{frame}{作为线性映射}
+  二阶张量把矢量送到矢量：$u_i=T_{ij}v_j$。
+  三阶张量可以吃进两个矢量：$w_i=C_{ijk}u_j v_k$。
+  \vspace{0.3em}
+
+  直角坐标旋转 $x'_i=R_{ij}x_j$ 下，
+  \begin{equation*}
+    v'_i=R_{ij}v_j,
+    \qquad
+    T'_{ij}=R_{ik}R_{jl}T_{kl}.
+  \end{equation*}
+  每个指标各乘一个 $R$。$\delta_{ij}$ 在旋转下不变；$\varepsilon_{ijk}$ 在正常旋转下也不变，反射会多一个 $\det R=-1$。
+\end{frame}
+
+\begin{frame}{物理中的二阶与更高阶}
+  \begin{itemize}
+    \item \textbf{应力}（stress）：$\mathrm{d}F_i=\sigma_{ij}\,\mathrm{d}S_j$。
+    \item 线性弹性：$\sigma_{ij}=C_{ijkl}\varepsilon_{kl}$；\textbf{各向同性}（isotropic）时
+      $\sigma_{ij}=\lambda\,\delta_{ij}\varepsilon_{kk}+2\mu\,\varepsilon_{ij}$。
+    \item \textbf{电导}（conductivity）：$J_i=\sigma_{ij}E_j$（晶体里 $\mathbf{J}$ 不必平行于 $\mathbf{E}$）。
+    \item \textbf{压电}（piezoelectricity）：$P_i=d_{ijk}\sigma_{jk}$。
+  \end{itemize}
+\end{frame}
+
+\subsection{各向同性张量}
+
+\begin{frame}{由 $\delta$ 与 $\varepsilon$ 拼出来}
+  旋转下形式不变的张量：
+  \begin{itemize}
+    \item $0$ 阶：常数；
+    \item $1$ 阶：只有零矢量；
+    \item $2$ 阶：$\lambda\delta_{ij}$；
+    \item $3$ 阶：$\lambda\varepsilon_{ijk}$；
+    \item $4$ 阶：
+      $T_{ijkl}=\alpha\,\delta_{ij}\delta_{kl}+\beta\,\delta_{ik}\delta_{jl}+\gamma\,\delta_{il}\delta_{jk}$。
+  \end{itemize}
+  弹性张量还要满足指标对称，所以 $\beta=\gamma$，独立常数减成两个，对应\textbf{拉梅常数}（Lamé constants）$\lambda,\mu$。
+\end{frame}
+
+\subsection{度规、联络与曲率}
+
+\begin{frame}{度规与尺度因子}
+  曲线坐标里，坐标差 $\mathrm{d}x^\mu$ 不是弧长。\textbf{度规}（metric）把弧长写成
+  \begin{equation*}
+    \mathrm{d}s^2=g_{\mu\nu}\,\mathrm{d}x^\mu\mathrm{d}x^\nu.
+  \end{equation*}
+  平面极坐标：$g_{rr}=1$，$g_{\vartheta\vartheta}=r^2$，
+  \begin{equation*}
+    h_r=\sqrt{g_{rr}}=1,
+    \qquad
+    h_{\vartheta}=\sqrt{g_{\vartheta\vartheta}}=r,
+  \end{equation*}
+  与前面尺度因子的定义一致。
+\end{frame}
+
+\begin{frame}{克里斯托费尔符号}
+  \textbf{克里斯托费尔符号}（Christoffel symbols）
+  \begin{equation*}
+    \Gamma^\rho{}_{\mu\nu}
+    =\tfrac12 g^{\rho\sigma}
+      \bigl(
+        \partial_\mu g_{\nu\sigma}
+        +\partial_\nu g_{\mu\sigma}
+        -\partial_\sigma g_{\mu\nu}
+      \bigr).
+  \end{equation*}
+  它描写坐标基如何逐点变化，不是张量：直线坐标里可以全为零，换到极坐标就不是零。
+  \vspace{0.3em}
+
+  平面极坐标非零的只有
+  \begin{equation*}
+    \Gamma^r{}_{\vartheta\vartheta}=-r,
+    \qquad
+    \Gamma^\vartheta{}_{\,r\vartheta}
+    =\Gamma^\vartheta{}_{\,\vartheta r}=1/r.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{曲率才按张量变换}
+  \textbf{黎曼曲率}（Riemann curvature）
+  \begin{equation*}
+    R^\rho{}_{\sigma\mu\nu}
+    =\partial_\mu\Gamma^\rho{}_{\nu\sigma}
+    -\partial_\nu\Gamma^\rho{}_{\mu\sigma}
+    +\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
+    -\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}.
+  \end{equation*}
+  平面极坐标里 $R^r{}_{\vartheta r\vartheta}=-1+1=0$：平面的曲率张量是零，$\Gamma$ 的出现只是坐标效应。
+\end{frame}
+
+\subsection{惯量张量}
+
+\begin{frame}{惯量张量}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \textbf{惯量张量}（inertia tensor）$L_i=I_{ij}\omega_j$，其中
+      \begin{equation*}
+        I_{ij}
+        =\sum_a m_a
+          \bigl(
+            |\mathbf{r}^{(a)}|^2\delta_{ij}
+            -r^{(a)}_i r^{(a)}_j
+          \bigr).
+      \end{equation*}
+      $I_{ij}=I_{ji}$。存在\textbf{主轴}（principal axes）使它对角；三个主转动惯量一般不同，故 $\mathbf{L}$ 不必平行于 $\boldsymbol{\omega}$。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \input{tikz/inertia.tex}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{缩并的次序}
+  若干张量全部缩并以后得到标量。例如 $A_{ij}B_{jk}C_{ki}$：
+  可以先缩 $B$ 与 $C$，再与 $A$ 缩，也可以先缩 $A$ 与 $B$。
+  求和只是有限项相加，次序可交换，两个算法给出同一个数。
 \end{frame}
 
 \end{document}

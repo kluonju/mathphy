@@ -1,0 +1,20 @@
+\begin{tikzpicture}[font=\small, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=2mm]}, line width=0.7pt}]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (2.15,0.15);
+  \coordinate (B) at (2.55,1.35);
+  \coordinate (C) at (0.4,1.2);
+  \coordinate (D) at (0.55,0.72);
+  \coordinate (E) at (2.7,0.87);
+  \coordinate (F) at (3.1,2.07);
+  \coordinate (G) at (0.95,1.92);
+  \draw[gray!40] (O) -- (D) -- (G);
+  \draw[gray!40] (D) -- (E);
+  \draw (O) -- (A) -- (B) -- (C) -- cycle;
+  \draw (A) -- (E) -- (F) -- (B);
+  \draw (C) -- (G) -- (F);
+  \draw[vec, blue!70!black] (O) -- (A) node[midway, below] {$h_1\,\mathrm{d}q_1$};
+  \draw[vec, red!70!black] (O) -- (C) node[midway, left] {$h_2\,\mathrm{d}q_2$};
+  \draw[vec, green!50!black] (O) -- (D) node[midway, right] {$h_3\,\mathrm{d}q_3$};
+  \fill (O) circle (1.1pt);
+\end{tikzpicture}

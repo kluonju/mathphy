@@ -1,0 +1,35 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=1.7mm]}, line width=0.8pt},
+  ]
+  \coordinate (O) at (0,0);
+  \coordinate (X) at (2.10,0);
+  \coordinate (Y) at (-0.65,0.40);
+  \coordinate (Z) at (0,1.25);
+  \coordinate (XY) at (1.45,0.40);
+  \coordinate (XZ) at (2.10,1.25);
+  \coordinate (YZ) at (-0.65,1.65);
+  \coordinate (XYZ) at (1.45,1.65);
+
+  \fill[gray!8] (O) -- (X) -- (XY) -- (Y) -- cycle;
+  \fill[MidnightBlue!10] (X) -- (XZ) -- (XYZ) -- (XY) -- cycle;
+  \fill[BrickRed!8] (Y) -- (XY) -- (XYZ) -- (YZ) -- cycle;
+  \draw[gray!60] (O) -- (X) -- (XY) -- (Y) -- cycle;
+  \draw[gray!60] (O) -- (Z) -- (XZ) -- (X);
+  \draw[gray!60] (Z) -- (YZ) -- (Y);
+  \draw[gray!60] (XZ) -- (XYZ) -- (YZ);
+  \draw[gray!60] (XY) -- (XYZ);
+
+  \coordinate (Fx) at ($ (X)!0.5!(XYZ) $);
+  \draw[vec, MidnightBlue] (Fx) -- ++(0.55,0.08);
+  \node[MidnightBlue, font=\scriptsize, right] at ($(Fx)+(0.58,0.10)$)
+    {$A_x(x+\Delta x)$};
+
+  \coordinate (Fy) at ($ (Y)!0.5!(XYZ) $);
+  \draw[vec, BrickRed] (Fy) -- ++(-0.10,0.48);
+  \node[BrickRed, font=\scriptsize, above] at ($(Fy)+(-0.02,0.52)$)
+    {$A_y(y+\Delta y)$};
+
+  \node[font=\scriptsize, gray] at ($(O)!0.55!(XY)$) {$\Delta V$};
+\end{tikzpicture}

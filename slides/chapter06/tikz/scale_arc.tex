@@ -1,0 +1,20 @@
+\begin{tikzpicture}[font=\small, >=Stealth, line cap=round]
+  \draw[gray!55, thin] (-0.15,0) -- (2.55,0) node[right] {$x$};
+  \draw[gray!55, thin] (0,-0.15) -- (0,2.35) node[above] {$y$};
+  \draw[gray!40, dashed] (0,0) circle (1.55);
+  \coordinate (A) at ({1.55*0.866},{1.55*0.5});
+  \coordinate (B) at ({1.55*0.643},{1.55*0.766});
+  \fill (A) circle (1.2pt);
+  \fill (B) circle (1.2pt);
+  \draw[gray] (0,0) -- (A);
+  \draw[gray] (0,0) -- (B);
+  \draw[blue!70!black, line width=1.1pt]
+    (A) arc (30:50:1.55);
+  \draw[red!70!black, -{Stealth[length=1.7mm]}, line width=0.75pt]
+    (A) -- ++({0.55*(-0.5)},{0.55*0.866});
+  \node[blue!70!black, font=\scriptsize] at (1.95,1.55) {$h_\phi\,\mathrm{d}\phi=\rho\,\mathrm{d}\phi$};
+  \node[font=\scriptsize, gray] at (0.72,0.28) {$\rho$};
+  \draw[gray!70] (0.45,0) arc (0:30:0.45);
+  \node[gray, font=\scriptsize] at (0.62,0.18) {$\phi$};
+  \node[font=\scriptsize] at (A) [below right] {$P$};
+\end{tikzpicture}

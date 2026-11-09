@@ -4,10 +4,11 @@
 \idx{旋度}{xuandu}
 \label{sec:coordinates}
 
-这三个算子由弧长、通量和环量定义.直角坐标的尺度因子都是 $1$.柱坐标和球坐标的弧长不是坐标增量本身,同一套定义要带上尺度因子.矩形边界用直角坐标,圆和圆柱用柱坐标,球用球坐标;后面在这些边界上分离变量时,直接使用本节的公式.
+这三个算子由弧长、通量和环量定义.直角坐标的尺度因子都是 $1$.柱坐标和球坐标里,弧长不是坐标增量本身,要把尺度因子写进去.分离变量时边界最好落在某个坐标等于常数的面上,所以矩形用直角坐标,圆和圆柱用柱坐标,球用球坐标.后面分离变量直接用本节公式.
 
 \subsection{尺度因子}
 \idx{尺度因子}{chiduyinzi}
+\idx{拉梅系数}{lamexishu}
 \idx{正交曲线坐标}{zhengjiaoxianzuobiao}
 
 直角坐标系 $(x,y,z)$、柱坐标系 $(\rho,\phi,z)$ 和球坐标系 $(r,\theta,\phi)$ 都是正交曲线坐标系:三族坐标面彼此正交.一般的曲线坐标记作 $(q_1,q_2,q_3)$,与直角坐标的变换
@@ -20,6 +21,7 @@
 \begin{equation}
   \frac{\partial(x,y,z)}{\partial(q_1,q_2,q_3)}\neq 0.
 \end{equation}
+$q_i=\textrm{常数}$ 的曲面叫坐标面;只让一个 $q_i$ 变、其余固定走出的曲线叫坐标线.
 
 位置矢量 $\br=\br(q_1,q_2,q_3)$.沿第 $i$ 条坐标线只变动 $q_i$,切向量是 $\partial\br/\partial q_i$.若不同坐标线的切向量互相正交,
 \begin{equation}
@@ -35,14 +37,14 @@
   h_i=\left|\frac{\partial\br}{\partial q_i}\right|.
   \label{eq:scale-factor}
 \end{equation}
-$h_i$ 称为度规系数,或尺度因子.它把坐标增量 $\mathrm{d}q_i$ 换成真正的长度 $h_i\,\mathrm{d}q_i$.直角坐标的三个尺度因子都是 $1$.
+$h_i$ 称为尺度因子,也称拉梅系数或度规系数.它把坐标增量 $\mathrm{d}q_i$ 换成真正的长度 $h_i\,\mathrm{d}q_i$.直角坐标的三个尺度因子都是 $1$;柱坐标 $(1,\rho,1)$,球坐标 $(1,r,r\sin\theta)$.
 
-第 $i$ 个单位矢量沿坐标线的切线,
+第 $i$ 个单位矢量是沿坐标线的弧长导数.只动 $q_i$ 时 $\mathrm{d}\br=(\partial\br/\partial q_i)\,\mathrm{d}q_i$,$\mathrm{d}s=h_i\,\mathrm{d}q_i$,故
 \begin{equation}
-  \mathbf{e}_i=\frac{1}{h_i}\frac{\partial\br}{\partial q_i}.
+  \mathbf{e}_i=\frac{\mathrm{d}\br}{\mathrm{d}s}=\frac{1}{h_i}\frac{\partial\br}{\partial q_i}.
   \label{eq:unit-vector}
 \end{equation}
-正交性写成 $\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}$.和直角坐标不同,$\mathbf{e}_i$ 一般随点改变.算散度和旋度时,不能把它们当成常矢量提出求导.
+正交性写成 $\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}$.约定右手系 $\mathbf{e}_1\times\mathbf{e}_2=\mathbf{e}_3$.位移 $\mathrm{d}\boldsymbol{\ell}=\sum_i h_i\,\mathrm{d}q_i\,\mathbf{e}_i$.矢量按物理分量展开 $\mathbf{A}=\sum A_i\mathbf{e}_i$,$A_i=\mathbf{A}\cdot\mathbf{e}_i$.和直角坐标不同,$\mathbf{e}_i$ 一般随点改变.算散度和旋度时,不能把它们当成常矢量提出求导.
 
 \begin{figure}[htb]
   \centering
@@ -281,11 +283,41 @@ $\mathbf{A}=\mathbf{e}_{\rho}$ 与 $\mathbf{A}=\mathbf{e}_r/r^2$ 的散度.
     \Biggr).
   \label{eq:curl-orthogonal}
 \end{equation}
-另外两个分量按 $1\to 2\to 3\to 1$ 轮换.导数作用在 $h_i A_i$ 上,而不是只作用在 $A_i$ 上.直角坐标里 $h_i=1$,$xy$ 平面的小矩形给出
+另外两个分量按 $1\to 2\to 3\to 1$ 轮换.导数作用在 $h_i A_i$ 上,而不是只作用在 $A_i$ 上.合写成分量的行列式形式,
+\begin{equation}
+  \nabla\times\mathbf{A}
+  =\frac{1}{h_1 h_2 h_3}
+    \begin{vmatrix}
+      h_1\mathbf{e}_1 & h_2\mathbf{e}_2 & h_3\mathbf{e}_3 \\
+      \partial_{q_1} & \partial_{q_2} & \partial_{q_3} \\
+      h_1 A_1 & h_2 A_2 & h_3 A_3
+    \end{vmatrix}.
+  \label{eq:curl-det}
+\end{equation}
+直角坐标里 $h_i=1$,$xy$ 平面的小矩形给出
 \begin{equation}
   (\nabla\times\mathbf{A})_z
   =\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}.
 \end{equation}
+柱坐标与球坐标由\eqref{eq:curl-orthogonal}或\eqref{eq:curl-det}代入 $h_i$ 得到.柱坐标:
+\begin{align}
+  (\nabla\times\mathbf{A})_{\rho}
+  &=\frac{1}{\rho}\partial_{\phi}A_z-\partial_z A_{\phi},\\
+  (\nabla\times\mathbf{A})_{\phi}
+  &=\partial_z A_{\rho}-\partial_{\rho}A_z,\\
+  (\nabla\times\mathbf{A})_z
+  &=\frac{1}{\rho}\bigl(\partial_{\rho}(\rho A_{\phi})-\partial_{\phi}A_{\rho}\bigr).
+\end{align}
+球坐标:
+\begin{align}
+  (\nabla\times\mathbf{A})_r
+  &=\frac{1}{r\sin\theta}
+    \bigl(\partial_{\theta}(\sin\theta\, A_{\phi})-\partial_{\phi}A_{\theta}\bigr),\\
+  (\nabla\times\mathbf{A})_{\theta}
+  &=\frac{1}{r\sin\theta}\partial_{\phi}A_r-\frac{1}{r}\partial_r(r A_{\phi}),\\
+  (\nabla\times\mathbf{A})_{\phi}
+  &=\frac{1}{r}\partial_r(r A_{\theta})-\frac{1}{r}\partial_{\theta}A_r.
+\end{align}
 
 \begin{figure}[htb]
   \centering
@@ -300,14 +332,20 @@ $\mathbf{A}=\mathbf{e}_{\rho}$ 与 $\mathbf{A}=\mathbf{e}_r/r^2$ 的散度.
   =\lim_{\Delta S\to 0}\frac{1}{\Delta S}
     \oint_{\partial(\Delta S)}\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell},
 \end{equation}
-环路与法向由右手定则联系.内部边抵消后就是斯托克斯定理
+环路与法向由右手定则联系.把定向曲面 $S$ 剖成许多小面元 $\Delta S_\alpha$,局部定义给出
+\begin{equation}
+  \oint_{\partial(\Delta S_\alpha)}\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+  =(\nabla\times\mathbf{A})\cdot\hat{\mathbf{n}}_\alpha\,\Delta S_\alpha
+    +o(\Delta S_\alpha).
+\end{equation}
+对 $\alpha$ 求和:右边变成 $\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}$;左边相邻面元的公共边方向相反、成对抵消,只留下外边界 $L=\partial S$ 上的环量.这就是斯托克斯定理
 \idx{斯托克斯定理}{situokesidingli}
 \begin{equation}
   \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
   =\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}.
   \label{eq:stokes}
 \end{equation}
-张在同一条边界上的任何定向曲面,旋度通量相同.
+张在同一条边界上的任何定向曲面,旋度通量相同,故左边只依赖边界.
 
 梯度没有环量,旋度没有净源,
 \begin{equation}

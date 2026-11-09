@@ -1,0 +1,25 @@
+\begin{tikzpicture}[font=\scriptsize, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.6mm]}, line width=0.7pt}]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (2.0,0.12);
+  \coordinate (B) at (2.35,1.25);
+  \coordinate (C) at (0.35,1.13);
+  \coordinate (D) at (0.55,0.68);
+  \coordinate (E) at (2.55,0.80);
+  \coordinate (F) at (2.90,1.93);
+  \coordinate (G) at (0.90,1.81);
+  \fill[blue!8] (A) -- (E) -- (F) -- (B) -- cycle;
+  \fill[red!6] (O) -- (C) -- (G) -- (D) -- cycle;
+  \draw[gray!55] (O) -- (A) -- (B) -- (C) -- cycle;
+  \draw[gray!55] (A) -- (E) -- (F) -- (B);
+  \draw[gray!55] (C) -- (G) -- (F);
+  \draw[gray!40] (O) -- (D) -- (G);
+  \draw[gray!40] (D) -- (E);
+  \draw[vec, blue!70!black] ($(A)!0.5!(F)$) -- ++(0.55,0.12);
+  \node[blue!70!black] at ($(A)!0.5!(F)+(0.72,0.28)$)
+    {$+A_1 h_2 h_3$};
+  \draw[vec, red!70!black] ($(O)!0.5!(G)+(0.05,0)$) -- ++(-0.45,0.08);
+  \node[red!70!black] at ($(O)!0.5!(G)+(-0.05,0.48)$)
+    {$-A_1 h_2 h_3$};
+  \draw[vec, gray] (O) -- (A) node[midway, below] {$h_1\mathrm{d}q_1$};
+\end{tikzpicture}

@@ -1,0 +1,12 @@
+\begin{tikzpicture}[font=\small, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.5mm]}, line width=0.65pt}]
+  \fill (0,0) circle (1.3pt);
+  \foreach \ang in {0,45,...,315} {
+    \draw[vec, blue!70!black]
+      ({0.45*cos(\ang)},{0.45*sin(\ang)})
+      -- ({1.55*cos(\ang)},{1.55*sin(\ang)});
+  }
+  \draw[gray!45, dashed] (0,0) circle (1.0);
+  \node[font=\scriptsize, gray] at (1.35,-0.15) {$\rho$};
+  \node[font=\scriptsize] at (0,-1.95) {$\mathbf{e}_{\rho}$（方向随点转动）};
+\end{tikzpicture}

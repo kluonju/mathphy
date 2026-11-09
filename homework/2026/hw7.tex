@@ -23,7 +23,7 @@
 \raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
 
 
-\newcommand{\duedate}{\zhdate{2024/11/26}}
+\newcommand{\duedate}{\zhdate{2026/11/17}}
 \pagestyle{fancy}
 
 % \fancyhf{}
@@ -64,6 +64,23 @@
 \begin{document}
 \renewcommand{\labelenumi}{(\arabic{enumi})}
 \renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+
+
+\begin{problem}
+  将 $\delta(x)$ 展为实数形式的傅里叶积分.
+\end{problem}
+
+\begin{problem}
+  设 $g(x)$ 在实轴上连续，$a\neq 0$ 为常数. 计算
+  $$
+  \int_{-\infty}^{\infty} g(x)\,\delta\!\left(x^3+ax\right)\,\mathrm{d}x.
+  $$
+  （提示：按 $a>0$ 与 $a<0$ 分别讨论零点，并用
+  $\displaystyle\delta\!\bigl(f(x)\bigr)
+  =\sum_i\frac{\delta(x-x_i)}{|f'(x_i)|}$，
+  其中 $f(x_i)=0$ 且 $f'(x_i)\neq 0$.）
+\end{problem}
+
 
 \begin{problem}
     计算下列表达式的拉普拉斯变换的像函数
@@ -114,26 +131,23 @@ $$
 \end{problem}
   
 
-\begin{problem}
-    将 $\delta(x)$ 展为实数形式的傅里叶积分.
-\end{problem}
 
-\begin{problem}
-    用$\Gamma$函数求积分
-    $$
-    \int_0^\infty x^{\alpha -1 } e^{-x \cos{\theta}} \cos\left( x \sin{\theta} \right) dx,
-    $$
-    其中$\alpha > 0, -\frac{\pi}{2} < \theta < \frac{\pi}{2}$.  
-\end{problem}
+% \begin{problem}
+%     用$\Gamma$函数求积分
+%     $$
+%     \int_0^\infty x^{\alpha -1 } e^{-x \cos{\theta}} \cos\left( x \sin{\theta} \right) dx,
+%     $$
+%     其中$\alpha > 0, -\frac{\pi}{2} < \theta < \frac{\pi}{2}$.  
+% \end{problem}
 
   
   
-\begin{problem}
-用$B$函数求积分
-$$
-\int_0^{\frac{\pi}{2}} \tan^\alpha{\theta} \,  d\theta, \quad  -1 < \alpha < 1.
-$$
-\end{problem}
+% \begin{problem}
+% 用$B$函数求积分
+% $$
+% \int_0^{\frac{\pi}{2}} \tan^\alpha{\theta} \,  d\theta, \quad  -1 < \alpha < 1.
+% $$
+% \end{problem}
     
 
 % \begin{problem}

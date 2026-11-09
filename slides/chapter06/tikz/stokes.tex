@@ -1,0 +1,26 @@
+\begin{tikzpicture}[
+    font=\small,
+    >=Stealth,
+    vec/.style={-{Stealth[length=1.6mm]}, line width=0.75pt},
+  ]
+  % Stokes example: circle in the xy-plane, swirl field -y e_x + x e_y.
+  \def\R{1.55}
+  \fill[MidnightBlue!6] (0,0) circle (\R);
+  \draw[MidnightBlue, line width=1.0pt] (0,0) circle (\R);
+
+  % tangent arrows on the circle (counterclockwise)
+  \foreach \ang in {20,110,200,290} {
+    \draw[vec, BrickRed]
+      ({\ang}:\R) -- ++({90+\ang}:0.55);
+  }
+
+  % curl out of the page
+  \draw[Plum, line width=0.9pt] (0,0) circle (0.16);
+  \fill[Plum] (0,0) circle (1.15pt);
+  \node[Plum, font=\scriptsize, below] at (0,-0.28) {$\nabla\times\mathbf{A}$};
+
+  \node[MidnightBlue] at (1.05,-1.85) {$L$};
+  \node[gray, font=\scriptsize] at (0.55,0.55) {$S$};
+  \draw[gray!50, thin] (-2.05,0) -- (2.05,0);
+  \draw[gray!50, thin] (0,-2.05) -- (0,2.05);
+\end{tikzpicture}

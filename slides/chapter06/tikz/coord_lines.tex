@@ -1,0 +1,18 @@
+\begin{tikzpicture}[font=\small, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.6mm]}, line width=0.7pt}]
+  % three coordinate curves through a point
+  \draw[blue!65!black, thick]
+    (0.1,0.35) .. controls (0.9,0.55) and (1.7,0.95) .. (2.6,1.55);
+  \draw[red!65!black, thick]
+    (0.35,2.0) .. controls (0.85,1.35) and (1.5,0.85) .. (2.45,0.25);
+  \draw[green!45!black, thick]
+    (0.2,1.15) .. controls (1.0,1.05) and (1.85,1.15) .. (2.7,1.0);
+  \coordinate (P) at (1.35,1.05);
+  \fill (P) circle (1.3pt);
+  \draw[vec, blue!70!black] (P) -- ++(0.55,0.28) node[above right, font=\scriptsize] {$\mathbf{e}_1$};
+  \draw[vec, red!70!black] (P) -- ++(0.35,-0.45) node[below right, font=\scriptsize] {$\mathbf{e}_2$};
+  \draw[vec, green!50!black] (P) -- ++(0.55,-0.05) node[right, font=\scriptsize] {$\mathbf{e}_3$};
+  \node[blue!70!black, font=\scriptsize] at (2.35,1.75) {$q_1$ 线};
+  \node[red!70!black, font=\scriptsize] at (2.55,0.15) {$q_2$ 线};
+  \node[green!45!black, font=\scriptsize] at (2.85,1.05) {$q_3$ 线};
+\end{tikzpicture}

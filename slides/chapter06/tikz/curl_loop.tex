@@ -1,0 +1,12 @@
+\begin{tikzpicture}[font=\small, >=Stealth,
+    vec/.style={-{Stealth[length=1.6mm]}, line width=0.7pt}]
+  \coordinate (O) at (0,0);
+  \coordinate (X) at (2.2,0);
+  \coordinate (Y) at (0,1.5);
+  \coordinate (P) at (2.2,1.5);
+  \draw[vec, blue!70!black] (O) -- (X) node[midway, below] {$A_x\Delta x$};
+  \draw[vec, blue!70!black] (P) -- (Y) node[midway, above] {$-A_x\Delta x$};
+  \draw[vec, red!70!black] (X) -- (P) node[midway, right] {$A_y\Delta y$};
+  \draw[vec, red!70!black] (Y) -- (O) node[midway, left] {$-A_y\Delta y$};
+  \node at (1.1,0.75) {$(\nabla\times\mathbf{A})_z$};
+\end{tikzpicture}

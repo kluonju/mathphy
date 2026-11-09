@@ -1,0 +1,12 @@
+\begin{tikzpicture}[font=\small, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.5mm]}, line width=0.7pt}]
+  \fill[gray!70] (0,0) circle (0.12);
+  \node[font=\scriptsize, above] at (0,0.12) {$I\otimes$};
+  \draw[gray!40, dashed] (0,0) circle (0.85);
+  \draw[gray!40, dashed] (0,0) circle (1.45);
+  \draw[vec, blue!70!black] (0.85,0) arc (0:70:0.85);
+  \draw[vec, blue!70!black] (1.45,0) arc (0:55:1.45);
+  \node[blue!70!black, font=\scriptsize] at (1.75,0.85) {$\mathbf{B}\propto\mathbf{e}_{\phi}/\rho$};
+  \draw[gray] (0,0) -- (1.45,0);
+  \node[font=\scriptsize, gray] at (0.75,-0.22) {$\rho$};
+\end{tikzpicture}

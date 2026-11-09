@@ -1,0 +1,15 @@
+\begin{tikzpicture}[font=\small, >=Stealth,
+    vec/.style={-{Stealth[length=1.8mm]}, line width=0.7pt}]
+  \coordinate (O) at (0,0);
+  \coordinate (P) at (2.6,1.7);
+  \coordinate (X) at (2.6,0);
+  \coordinate (Y) at (0,1.7);
+  \draw[gray!50] (-0.2,0) -- (3.1,0) node[right] {$x$};
+  \draw[gray!50] (0,-0.2) -- (0,2.15) node[above] {$y$};
+  \draw[vec, blue!70!black] (O) -- (X) -- (P);
+  \draw[vec, red!70!black] (O) -- (Y) -- (P);
+  \fill (O) circle (1.1pt) node[below left] {$O$};
+  \fill (P) circle (1.1pt) node[above right] {$P$};
+  \node[blue!70!black, font=\scriptsize] at (1.5,-0.35) {$L_1$};
+  \node[red!70!black, font=\scriptsize] at (-0.35,0.85) {$L_2$};
+\end{tikzpicture}

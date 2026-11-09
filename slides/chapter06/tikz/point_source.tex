@@ -1,0 +1,13 @@
+\begin{tikzpicture}[font=\small, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.5mm]}, line width=0.65pt}]
+  \fill (0,0) circle (1.4pt);
+  \node[font=\scriptsize, below] at (0,-0.15) {$O$};
+  \draw[gray!45, dashed] (0,0) circle (0.7);
+  \draw[gray!45, dashed] (0,0) circle (1.35);
+  \foreach \ang in {20,70,120,170,220,270,320} {
+    \draw[vec, blue!70!black]
+      ({0.35*cos(\ang)},{0.35*sin(\ang)})
+      -- ({1.55*cos(\ang)},{1.55*sin(\ang)});
+  }
+  \node[font=\scriptsize] at (0,-1.85) {$\mathbf{e}_r/r^2$};
+\end{tikzpicture}

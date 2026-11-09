@@ -1,0 +1,18 @@
+\begin{tikzpicture}[font=\scriptsize, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.5mm]}, line width=0.7pt}]
+  \coordinate (O) at (0,0);
+  \coordinate (R) at (2.35,0.15);
+  \coordinate (U) at (0.25,1.55);
+  \coordinate (UR) at (2.60,1.70);
+  \fill[gray!6] (O) -- (R) -- (UR) -- (U) -- cycle;
+  \draw[gray!60] (O) -- (R) -- (UR) -- (U) -- cycle;
+  \draw[vec, blue!70!black] (O) -- (R)
+    node[midway, below] {$A_2 h_2\mathrm{d}q_2$};
+  \draw[vec, blue!70!black] (UR) -- (U)
+    node[midway, above] {$-A_2 h_2\mathrm{d}q_2$};
+  \draw[vec, red!70!black] (R) -- (UR)
+    node[midway, right] {$A_3 h_3\mathrm{d}q_3$};
+  \draw[vec, red!70!black] (U) -- (O)
+    node[midway, left] {$-A_3 h_3\mathrm{d}q_3$};
+  \node at ($(O)!0.5!(UR)$) {$(\nabla\times\mathbf{A})_1$};
+\end{tikzpicture}
