@@ -1,35 +1,80 @@
 \begin{tikzpicture}[font=\scriptsize, >=Stealth, line cap=round,
-    vec/.style={-{Stealth[length=1.4mm]}, line width=0.65pt}]
-  % curved surface suggested by a grid of patches
-  \foreach \i in {0,1,2} {
-    \foreach \j in {0,1} {
-      \coordinate (A\i\j) at ({0.95*\i+0.12*\j},{0.85*\j+0.08*\i*\i});
+    vec/.style={-{Stealth[length=1.15mm]}, line width=0.55pt}]
+  % denser curved surface: 5 x 3 patches (6 x 4 nodes)
+  \foreach \i in {0,...,5} {
+    \foreach \j in {0,...,3} {
+      \coordinate (A\i\j) at
+        ({0.70*\i+0.11*\j},
+         {0.58*\j+0.05*\i*\i});
     }
   }
-  \foreach \i in {0,1,2} {
-    \coordinate (A\i2) at ({0.95*\i+0.24},{1.70+0.08*\i*\i});
+  % checker fill
+  \foreach \i in {0,...,4} {
+    \foreach \j in {0,...,2} {
+      \pgfmathtruncatemacro{\ip}{\i+1}
+      \pgfmathtruncatemacro{\jp}{\j+1}
+      \ifodd\numexpr\i+\j\relax
+        \fill[MidnightBlue!10]
+          (A\i\j) -- (A\ip\j) -- (A\ip\jp) -- (A\i\jp) -- cycle;
+      \else
+        \fill[MidnightBlue!4]
+          (A\i\j) -- (A\ip\j) -- (A\ip\jp) -- (A\i\jp) -- cycle;
+      \fi
+    }
   }
-  % fill patches
-  \fill[MidnightBlue!7] (A00) -- (A10) -- (A11) -- (A01) -- cycle;
-  \fill[MidnightBlue!10] (A10) -- (A20) -- (A21) -- (A11) -- cycle;
-  \fill[MidnightBlue!7] (A01) -- (A11) -- (A12) -- (A02) -- cycle;
-  \fill[MidnightBlue!10] (A11) -- (A21) -- (A22) -- (A12) -- cycle;
-  % grid
-  \draw[gray!55] (A00) -- (A10) -- (A20);
-  \draw[gray!55] (A01) -- (A11) -- (A21);
-  \draw[gray!55] (A02) -- (A12) -- (A22);
-  \draw[gray!55] (A00) -- (A01) -- (A02);
-  \draw[gray!55] (A10) -- (A11) -- (A12);
-  \draw[gray!55] (A20) -- (A21) -- (A22);
-  % outer boundary emphasized
+  % highlight one checker whose shared edges cancel
+  \fill[BrickRed!18]
+    (A21) -- (A31) -- (A32) -- (A22) -- cycle;
+  % outer boundary only (no interior grey grid)
   \draw[MidnightBlue, line width=1.05pt]
-    (A00) -- (A10) -- (A20) -- (A21) -- (A22) -- (A12) -- (A02) -- (A01) -- cycle;
-  % canceling interior edge (shared, opposite arrows)
-  \draw[vec, BrickRed] ($(A11)!0.15!(A12)$) -- ($(A11)!0.45!(A12)$);
-  \draw[vec, BrickRed] ($(A11)!0.85!(A12)$) -- ($(A11)!0.55!(A12)$);
-  \node[BrickRed] at ($(A11)!0.5!(A12)+(0.55,0.05)$) {内部边抵消};
-  % outer circulation
-  \draw[vec, ForestGreen] ($(A20)!0.2!(A21)$) -- ($(A20)!0.75!(A21)$);
-  \node[ForestGreen] at ($(A20)!0.5!(A21)+(0.55,0)$) {$L$};
-  \node[MidnightBlue] at (0.95,-0.45) {$S=\bigcup \Delta S_\alpha$};
+    (A00) -- (A10) -- (A20) -- (A30) -- (A40) -- (A50)
+          -- (A51) -- (A52) -- (A53)
+          -- (A43) -- (A33) -- (A23) -- (A13) -- (A03)
+          -- (A02) -- (A01) -- cycle;
+
+  % almost-circle circulation in each patch (ccw)
+  \foreach \i in {0,...,4} {
+    \foreach \j in {0,...,2} {
+      \pgfmathtruncatemacro{\ip}{\i+1}
+      \pgfmathtruncatemacro{\jp}{\j+1}
+      \path
+        ($(A\i\j)!0.5!(A\ip\jp)$) coordinate (C\i\j);
+      \draw[BrickRed!80!black, line width=0.55pt, -{Stealth[length=1.1mm]}]
+        (C\i\j) ++(0.15,0) arc (0:320:0.15);
+    }
+  }
+
+  % opposite arrows on all four edges of the highlighted checker
+  % bottom A21--A31
+  \draw[vec, BrickRed, line width=0.7pt]
+    ($(A21)!0.20!(A31)!0.18!(A22)$) -- ($(A21)!0.80!(A31)!0.18!(A22)$);
+  \draw[vec, black!70, line width=0.7pt]
+    ($(A21)!0.80!(A31)!0.18!(A20)$) -- ($(A21)!0.20!(A31)!0.18!(A20)$);
+  % right A31--A32
+  \draw[vec, BrickRed, line width=0.7pt]
+    ($(A31)!0.20!(A32)!0.18!(A21)$) -- ($(A31)!0.80!(A32)!0.18!(A21)$);
+  \draw[vec, black!70, line width=0.7pt]
+    ($(A31)!0.80!(A32)!0.18!(A41)$) -- ($(A31)!0.20!(A32)!0.18!(A41)$);
+  % top A32--A22
+  \draw[vec, BrickRed, line width=0.7pt]
+    ($(A32)!0.20!(A22)!0.18!(A31)$) -- ($(A32)!0.80!(A22)!0.18!(A31)$);
+  \draw[vec, black!70, line width=0.7pt]
+    ($(A32)!0.80!(A22)!0.18!(A23)$) -- ($(A32)!0.20!(A22)!0.18!(A23)$);
+  % left A22--A21
+  \draw[vec, BrickRed, line width=0.7pt]
+    ($(A22)!0.20!(A21)!0.18!(A32)$) -- ($(A22)!0.80!(A21)!0.18!(A32)$);
+  \draw[vec, black!70, line width=0.7pt]
+    ($(A22)!0.80!(A21)!0.18!(A12)$) -- ($(A22)!0.20!(A21)!0.18!(A12)$);
+
+  % label completely outside, below-right
+  \coordinate (Hint) at ($(A31)!0.5!(A32)$);
+  \draw[BrickRed!80!black, line width=0.45pt]
+    (Hint) -- ++(0.85,-0.95) coordinate (Lab);
+  \node[BrickRed, anchor=north west, inner sep=1pt] at (Lab)
+    {内部边抵消};
+
+  \draw[vec, ForestGreen, line width=0.75pt]
+    ($(A50)!0.12!(A53)$) -- ($(A50)!0.88!(A53)$);
+  \node[ForestGreen] at ($(A50)!0.5!(A53)+(0.55,0.15)$) {$L$};
+  \node[MidnightBlue] at (1.2,-0.55) {$S=\bigcup\Delta S_\alpha$};
 \end{tikzpicture}

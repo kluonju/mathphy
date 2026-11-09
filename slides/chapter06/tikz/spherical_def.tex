@@ -1,0 +1,65 @@
+% Spherical coordinates (r,θ,φ).
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=1.12,
+    font=\scriptsize,
+    >=Stealth,
+    line join=round, line cap=round]
+  \def\R{2.40}
+  \def\th{50}
+  \def\ph{42}
+  \pgfmathsetmacro{\Px}{\R*sin(\th)*cos(\ph)}
+  \pgfmathsetmacro{\Py}{\R*sin(\th)*sin(\ph)}
+  \pgfmathsetmacro{\Pz}{\R*cos(\th)}
+
+  \draw[black!60, line width=0.55pt, tdplot_screen_coords] (0,0) circle (\R);
+  \draw[gray!35, densely dotted, line width=0.35pt]
+    plot[domain=130:310, samples=48, variable=\t]
+      ({\R*cos(\t)},{\R*sin(\t)},0);
+  \draw[black!65, line width=0.5pt]
+    plot[domain=-50:130, samples=48, variable=\t]
+      ({\R*cos(\t)},{\R*sin(\t)},0);
+
+  \draw[-{Stealth[length=1.7mm]}, black!80, line width=0.55pt]
+    (0,0,-\R*0.1) -- (0,0,\R+0.4) node[above] {$z$};
+  \draw[-{Stealth[length=1.7mm]}, black!80, line width=0.55pt]
+    (-\R*0.1,0,0) -- (\R+0.55,0,0) node[below left] {$x$};
+  \draw[-{Stealth[length=1.7mm]}, black!80, line width=0.55pt]
+    (0,-\R*0.1,0) -- (0,\R+0.6,0) node[right] {$y$};
+  \node[xshift=-8pt, yshift=3pt] at (0,0,0) {$O$};
+
+  \coordinate (O) at (0,0,0);
+  \coordinate (P) at (\Px,\Py,\Pz);
+  \coordinate (B) at (\Px,\Py,0);
+  \coordinate (A) at (0,0,\Pz);
+  \coordinate (C) at (\Px,0,0);
+  \coordinate (D) at (0,\Py,0);
+
+  % purple: OB, BP, PA
+  \draw[violet!75!black, line width=0.7pt] (O) -- (B)
+    node[pos=0.55, yshift=-1pt] {$r\sin\theta$};
+  \draw[violet!75!black, line width=0.7pt] (B) -- (P);
+  \draw[violet!75!black, line width=0.7pt] (P) -- (A);
+  \path (O) -- (A) node[pos=0.60, xshift=-15pt] {$r\cos\theta$};
+
+  % blue: OC, OD — labels on outer half, outside the φ wedge
+  \draw[blue!65!black, line width=0.7pt] (O) -- (C)
+    node[pos=0.82, below=0.5pt, shift={(-15pt,10pt)}, inner sep=0.5pt] {$r\sin\theta\cos\phi$};
+  \draw[blue!65!black, line width=0.7pt] (O) -- (D)
+    node[pos=0.82, above=1.5pt,  shift={(5pt,5pt)}, inner sep=0.5pt] {$r\sin\theta\sin\phi$};
+  \draw[blue!65!black, line width=0.7pt] (C) -- (B) -- (D);
+
+  \draw[red!70!black, line width=1.05pt] (O) -- (P)
+    node[pos=0.50, xshift=3pt, yshift=1pt] {$r$};
+  \fill[red!70!black] (P) circle (1.2pt) node[above right=2pt] {$P$};
+
+  \draw[black!70, line width=0.5pt]
+    plot[domain=0:\th, samples=18, variable=\a]
+      ({0.55*sin(\a)*cos(\ph)},{0.55*sin(\a)*sin(\ph)},{0.55*cos(\a)});
+  \node[xshift=1pt, yshift=2pt] at
+    ({0.78*sin(\th/2)*cos(\ph)},
+     {0.78*sin(\th/2)*sin(\ph)},
+     {0.78*cos(\th/2)}) {$\theta$};
+
+  \draw[black!70, line width=0.5pt] (0.72,0,0) arc (0:\ph:0.72);
+  \node[yshift=-2pt] at ({0.92*cos(\ph/2)},{0.92*sin(\ph/2)},0) {$\phi$};
+\end{tikzpicture}

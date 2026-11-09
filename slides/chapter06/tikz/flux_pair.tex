@@ -16,10 +16,10 @@
   \draw[gray!40] (O) -- (D) -- (G);
   \draw[gray!40] (D) -- (E);
   \draw[vec, blue!70!black] ($(A)!0.5!(F)$) -- ++(0.55,0.12);
-  \node[blue!70!black] at ($(A)!0.5!(F)+(0.72,0.28)$)
-    {$+A_1 h_2 h_3$};
+  \node[blue!70!black, align=center] at ($(A)!0.5!(F)+(0.85,0.42)$)
+    {$+(A_1 h_2 h_3)|_{q_1+\Delta q_1}$};
   \draw[vec, red!70!black] ($(O)!0.5!(G)+(0.05,0)$) -- ++(-0.45,0.08);
-  \node[red!70!black] at ($(O)!0.5!(G)+(-0.05,0.48)$)
-    {$-A_1 h_2 h_3$};
-  \draw[vec, gray] (O) -- (A) node[midway, below] {$h_1\mathrm{d}q_1$};
+  \node[red!70!black, align=center] at ($(O)!0.5!(G)+(-0.15,0.55)$)
+    {$-(A_1 h_2 h_3)|_{q_1}$};
+  \draw[vec, gray] (O) -- (A) node[midway, below] {$h_1\Delta q_1$};
 \end{tikzpicture}

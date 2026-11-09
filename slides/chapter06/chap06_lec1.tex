@@ -5,7 +5,7 @@
 \input{preamble}
 
 \title{数学物理方程}
-\subtitle{第一讲：写方程的算子与记号}
+\subtitle{第一讲：算子与记号}
 
 \begin{document}
 
@@ -13,15 +13,15 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{本章从哪里开始}
+\begin{frame}{引言}
   \begin{quote}
     致知在格物。\\
     \hfill ——《大学》
   \end{quote}
-  后面要写波动、扩散和势的方程。方程里到处是 $\nabla$、$\nabla\cdot$、$\nabla^2$，曲线坐标里还会多出尺度因子。
-  \vspace{0.4em}
+  % 后面要写波动、扩散和势的方程。方程里到处是 $\nabla$、$\nabla\cdot$、$\nabla^2$，曲线坐标里还会多出尺度因子。
+  % \vspace{0.4em}
 
-  这一讲先把这些算子写清楚，再用指标把恒等式算一遍，最后看一眼张量怎么变换。弦振动和热传导放到下一讲再推。
+  % 这一讲先把这些算子写清楚，再用指标把恒等式算一遍，最后看一眼张量怎么变换。弦振动和热传导放到下一讲再推。
 \end{frame}
 
 % =============================================================
@@ -29,27 +29,38 @@
 
 \subsection{尺度因子}
 
-\begin{frame}{为什么要引入曲线坐标}
-  分离变量时，边界最好落在某个坐标等于常数的面上，否则齐次边条件拆不成单变量条件。
-  \begin{itemize}
-    \item 矩形边界用直角坐标；
-    \item 圆柱、圆盘用柱坐标；
-    \item 球面用球坐标。
-  \end{itemize}
-  简单说：边界形状决定坐标系。
-  方程里有 $\nabla^2$，所以柱坐标和球坐标里的 $\nabla$、$\nabla\cdot$、$\nabla\times$、$\nabla^2$ 都要先写出来。
+\begin{frame}{柱坐标系}
+  \textbf{柱坐标系}（cylindrical coordinates）$(\rho,\phi,z)$：
+  $x=\rho\cos\phi$，$y=\rho\sin\phi$，$z=z$
+  （$\rho\geq 0$，$0\leq\phi<2\pi$）。
+  坐标面：圆柱面、半平面、水平面。
+  \vspace{-0.2em}
+  \begin{center}
+    \scalebox{0.95}{\input{tikz/cylindrical_def.tex}}
+  \end{center}
 \end{frame}
 
-\begin{frame}{坐标面与坐标线}
+\begin{frame}{球坐标系}
+  \textbf{球坐标系}（spherical coordinates）$(r,\theta,\phi)$：
+  $x=r\sin\theta\cos\phi$，$y=r\sin\theta\sin\phi$，$z=r\cos\theta$
+  （$r\geq 0$，$0\leq\theta\leq\pi$，$0\leq\phi<2\pi$）。
+  坐标面：球面、圆锥面、子午面。
+  \vspace{-0.2em}
+  \begin{center}
+    \scalebox{0.95}{\input{tikz/spherical_def.tex}}
+  \end{center}
+\end{frame}
+
+\begin{frame}{一般曲线坐标}
   \begin{columns}[c]
     \begin{column}{0.54\textwidth}
-      一般\textbf{曲线坐标}（curvilinear coordinates）$(q_1,q_2,q_3)$ 与直角坐标一一对应，雅可比不为零。
+      柱、球只是特例。一般\textbf{曲线坐标}（curvilinear coordinates）$(q_1,q_2,q_3)$ 与直角坐标一一对应，雅可比不为零。
       \begin{itemize}
         \item \textbf{坐标面}（coordinate surface）：$q_i=\textrm{常数}$；
         \item \textbf{坐标线}（coordinate curve）：只让一个 $q_i$ 变。
       \end{itemize}
       三族坐标面两两正交时，称为\textbf{正交曲线坐标系}（orthogonal curvilinear coordinates）。
-      直角、柱、球都是。
+      直角、柱、球都是；后面椭球坐标也是。
     \end{column}
     \begin{column}{0.42\textwidth}
       \centering
@@ -60,14 +71,21 @@
 
 \begin{frame}{正交曲线坐标与拉梅系数}
   位置矢量 $\br=\br(q_1,q_2,q_3)$。沿第 $i$ 条坐标线的切向量是 $\partial\br/\partial q_i$。
+  无限小位移
+  \begin{equation*}
+    \mathrm{d}\br
+    =\sum_{i=1}^{3}\frac{\partial\br}{\partial q_i}\,\mathrm{d}q_i.
+  \end{equation*}
   正交时
   \begin{equation*}
     \frac{\partial\br}{\partial q_i}\cdot\frac{\partial\br}{\partial q_j}=0,
     \qquad i\neq j,
   \end{equation*}
-  弧长元没有交叉项：
+  于是弧长元没有交叉项：
   \begin{equation*}
-    \mathrm{d}s^2=\sum_{i=1}^{3} h_i^2\,\mathrm{d}q_i^2,
+    \mathrm{d}s^2
+    =\mathrm{d}\br\cdot\mathrm{d}\br
+    =\sum_{i=1}^{3} h_i^2\,\mathrm{d}q_i^2,
     \qquad
     h_i=\Bigl|\frac{\partial\br}{\partial q_i}\Bigr|.
   \end{equation*}
@@ -109,18 +127,123 @@
   梯度里的 $1/h_i$，就是这一步换元。若不除以 $h_i$，切向量长度不对，后面公式会整段错位。
 \end{frame}
 
-\begin{frame}{位移怎样用单位基写出}
-  长度放在 $h_i\,\mathrm{d}q_i$ 里，基矢只管方向：
-  \begin{equation*}
-    \mathrm{d}\boldsymbol{\ell}
-    =\sum_{i=1}^{3} h_i\,\mathrm{d}q_i\,\mathbf{e}_i.
-  \end{equation*}
-  右手系取 $\mathbf{e}_1\times\mathbf{e}_2=\mathbf{e}_3$（柱、球坐标常用排序满足这一点）。
-  矢量写成 $\mathbf{A}=\sum A_i\mathbf{e}_i$，\textbf{物理分量}（physical component）$A_i=\mathbf{A}\cdot\mathbf{e}_i$
-  才是沿单位方向的投影；不归一化时点积还带着 $h_i$。
-  \vspace{0.3em}
+% \begin{frame}{位移怎样用单位基写出}
+%   长度放在 $h_i\,\mathrm{d}q_i$ 里，基矢只管方向：
+%   \begin{equation*}
+%     \mathrm{d}\boldsymbol{\ell}
+%     =\sum_{i=1}^{3} h_i\,\mathrm{d}q_i\,\mathbf{e}_i.
+%   \end{equation*}
+%   右手系取 $\mathbf{e}_1\times\mathbf{e}_2=\mathbf{e}_3$（柱、球坐标常用排序满足这一点）。
+%   矢量写成 $\mathbf{A}=\sum A_i\mathbf{e}_i$，\textbf{物理分量}（physical component）$A_i=\mathbf{A}\cdot\mathbf{e}_i$
+%   才是沿单位方向的投影；不归一化时点积还带着 $h_i$。
+%   \vspace{0.3em}
 
-  这里的 $\mathbf{e}_i$ 会随位置转。算散度、旋度时，不能当成常矢量提出求导。
+%   这里的 $\mathbf{e}_i$ 会随位置转。算散度、旋度时，不能当成常矢量提出求导。
+% \end{frame}
+
+\begin{frame}{位置矢量怎样写成柱、球形式}
+  直角基底下，位置矢量总是分量形式
+  \begin{equation*}
+    \br=x\,\mathbf{e}_x+y\,\mathbf{e}_y+z\,\mathbf{e}_z.
+  \end{equation*}
+  柱、球只是把 $(x,y,z)$ 换成前面定义的关系式。
+
+  \medskip
+  \textbf{柱坐标}：到 $z$ 轴的距离为 $\rho$，方位角为 $\phi$，故
+  $x=\rho\cos\phi$，$y=\rho\sin\phi$，高度仍是 $z$。代入得
+  \begin{equation*}
+    \br=\rho\cos\phi\,\mathbf{e}_x+\rho\sin\phi\,\mathbf{e}_y+z\,\mathbf{e}_z.
+  \end{equation*}
+
+  \medskip
+  \textbf{球坐标}：到原点距离为 $r$，与 $z$ 轴夹角为 $\theta$，故
+  $z=r\cos\theta$，水平投影长为 $r\sin\theta$；
+  再在 $xy$ 平面用方位角 $\phi$ 分解，
+  $x=r\sin\theta\cos\phi$，$y=r\sin\theta\sin\phi$。代入得
+  \begin{equation*}
+    \br=r\sin\theta\cos\phi\,\mathbf{e}_x
+    +r\sin\theta\sin\phi\,\mathbf{e}_y
+    +r\cos\theta\,\mathbf{e}_z.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：柱坐标——尺度因子}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      {\small
+      如前：
+      $\br=\rho\cos\phi\,\mathbf{e}_x+\rho\sin\phi\,\mathbf{e}_y+z\,\mathbf{e}_z$。
+      \begin{align*}
+        \partial_\rho\br&=\cos\phi\,\mathbf{e}_x+\sin\phi\,\mathbf{e}_y,\\
+        \partial_\phi\br&=-\rho\sin\phi\,\mathbf{e}_x+\rho\cos\phi\,\mathbf{e}_y,\\
+        \partial_z\br&=\mathbf{e}_z.
+      \end{align*}
+      模长给出
+      $\boxed{h_{\rho}=1,\ h_{\phi}=\rho,\ h_z=1.}$}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \scalebox{0.88}{\input{tikz/cyl_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：柱坐标——单位矢量}
+  单位矢量 $\mathbf{e}_i=(1/h_i)\,\partial_{q_i}\br$：
+  \begin{align*}
+    \mathbf{e}_{\rho}
+    &=\partial_\rho\br
+    =\cos\phi\,\mathbf{e}_x+\sin\phi\,\mathbf{e}_y,\\
+    \mathbf{e}_{\phi}
+    &=\frac{1}{\rho}\partial_\phi\br
+    =-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y,\\
+    \mathbf{e}_z
+    &=\partial_z\br
+    =\mathbf{e}_z.
+  \end{align*}
+  三者两两正交且右手。随 $\phi$ 转动：
+  $\partial_\phi\mathbf{e}_{\rho}=\mathbf{e}_{\phi}$，
+  $\partial_\phi\mathbf{e}_{\phi}=-\mathbf{e}_{\rho}$。
+\end{frame}
+
+\begin{frame}{例：球坐标——尺度因子}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      {\small
+      如前：
+      $\br=r\sin\theta\cos\phi\,\mathbf{e}_x+r\sin\theta\sin\phi\,\mathbf{e}_y+r\cos\theta\,\mathbf{e}_z$。
+      \begin{align*}
+        \partial_r\br
+        &=\sin\theta\cos\phi\,\mathbf{e}_x+\sin\theta\sin\phi\,\mathbf{e}_y+\cos\theta\,\mathbf{e}_z,\\
+        \partial_\theta\br
+        &=r(\cos\theta\cos\phi\,\mathbf{e}_x+\cos\theta\sin\phi\,\mathbf{e}_y-\sin\theta\,\mathbf{e}_z),\\
+        \partial_\phi\br
+        &=r\sin\theta(-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y).
+      \end{align*}
+      $\boxed{h_r=1,\ h_{\theta}=r,\ h_{\phi}=r\sin\theta.}$}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/sph_basis.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{例：球坐标——单位矢量}
+  同样 $\mathbf{e}_i=(1/h_i)\,\partial_{q_i}\br$：
+  \begin{align*}
+    \mathbf{e}_r
+    &=\partial_r\br
+    =\sin\theta\cos\phi\,\mathbf{e}_x+\sin\theta\sin\phi\,\mathbf{e}_y+\cos\theta\,\mathbf{e}_z,\\
+    \mathbf{e}_{\theta}
+    &=\frac{1}{r}\partial_\theta\br
+    =\cos\theta\cos\phi\,\mathbf{e}_x+\cos\theta\sin\phi\,\mathbf{e}_y-\sin\theta\,\mathbf{e}_z,\\
+    \mathbf{e}_{\phi}
+    &=\frac{1}{r\sin\theta}\partial_\phi\br
+    =-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y.
+  \end{align*}
+  纬度圈弧长是 $r\sin\theta\,\mathrm{d}\phi$，故 $h_{\phi}$ 在两极为零；
+  $\mathbf{e}_r,\mathbf{e}_{\theta},\mathbf{e}_{\phi}$ 构成右手正交标架。
 \end{frame}
 
 \begin{frame}{面积元与体积元}
@@ -134,95 +257,69 @@
         \mathrm{d}V=h_1 h_2 h_3\,\mathrm{d}q_1\mathrm{d}q_2\mathrm{d}q_3.
       \end{equation*}
       $\mathrm{d}S_1$ 是法向为 $\mathbf{e}_1$ 的那一面。
-      柱：$\mathrm{d}V=\rho\,\mathrm{d}\rho\,\mathrm{d}\phi\,\mathrm{d}z$；
-      球：$\mathrm{d}V=r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\phi$。
+      把刚求出的尺度因子乘起来：
+      \begin{itemize}
+        \item 柱：$h_{\rho}h_{\phi}h_z=1\cdot\rho\cdot 1=\rho$，故
+          $\mathrm{d}V=\rho\,\mathrm{d}\rho\,\mathrm{d}\phi\,\mathrm{d}z$；
+        \item 球：$h_r h_{\theta}h_{\phi}=1\cdot r\cdot r\sin\theta=r^2\sin\theta$，故
+          $\mathrm{d}V=r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\phi$。
+      \end{itemize}
     \end{column}
     \begin{column}{0.44\textwidth}
       \centering
-      \scalebox{0.92}{\input{tikz/volume.tex}}
+      \scalebox{0.85}{\input{tikz/volume.tex}}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{柱坐标与球坐标的局部基}
-  \centering
-  \resizebox{0.88\linewidth}{!}{\input{tikz/bases.tex}}
-\end{frame}
-
-\begin{frame}{例：柱坐标——先求三个偏导}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
-      {\small
-      $\br=\rho\cos\phi\,\mathbf{e}_x+\rho\sin\phi\,\mathbf{e}_y+z\,\mathbf{e}_z$。
-      \begin{align*}
-        \partial_\rho\br&=\cos\phi\,\mathbf{e}_x+\sin\phi\,\mathbf{e}_y,\\
-        \partial_\phi\br&=-\rho\sin\phi\,\mathbf{e}_x+\rho\cos\phi\,\mathbf{e}_y,\\
-        \partial_z\br&=\mathbf{e}_z.
-      \end{align*}
-      模长给出
-      $\boxed{h_{\rho}=1,\ h_{\phi}=\rho,\ h_z=1.}$
-      单位矢量要把切向量除以模：$\mathbf{e}_{\phi}=(1/\rho)\partial_\phi\br$。}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \centering
-      \scalebox{0.88}{\input{tikz/cyl_basis.tex}}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{例：柱坐标——核对正交与单位矢量}
+\begin{frame}{例：柱坐标——核对正交}
   $\partial_\rho\br\cdot\partial_\phi\br
   =-\rho\cos\phi\sin\phi+\rho\sin\phi\cos\phi=0$，
   其余两对点积同样为零。因此
   \begin{equation*}
-    \mathrm{d}s^2=\mathrm{d}\rho^2+\rho^2\,\mathrm{d}\phi^2+\mathrm{d}z^2,
-    \qquad
-    \mathrm{d}V=\rho\,\mathrm{d}\rho\,\mathrm{d}\phi\,\mathrm{d}z.
+    \mathrm{d}s^2=\mathrm{d}\rho^2+\rho^2\,\mathrm{d}\phi^2+\mathrm{d}z^2.
   \end{equation*}
-  显式单位矢量：
-  \begin{align*}
-    \mathbf{e}_{\rho}&=\cos\phi\,\mathbf{e}_x+\sin\phi\,\mathbf{e}_y,\\
-    \mathbf{e}_{\phi}&=-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y,\\
-    \mathbf{e}_z&=\mathbf{e}_z.
-  \end{align*}
-  它们随 $\phi$ 转动：$\partial_\phi\mathbf{e}_{\rho}=\mathbf{e}_{\phi}$，$\partial_\phi\mathbf{e}_{\phi}=-\mathbf{e}_{\rho}$。
 \end{frame}
 
-\begin{frame}{例：球坐标——偏导与尺度因子}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
+\begin{frame}{例：椭球坐标（长旋转）}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
       {\small
-      $\br=r\sin\theta\cos\phi\,\mathbf{e}_x+r\sin\theta\sin\phi\,\mathbf{e}_y+r\cos\theta\,\mathbf{e}_z$。
+      \textbf{长旋转椭球坐标}（prolate spheroidal coordinates）$(\xi,\eta,\phi)$：
       \begin{align*}
-        \partial_r\br
-        &=\sin\theta\cos\phi\,\mathbf{e}_x+\sin\theta\sin\phi\,\mathbf{e}_y+\cos\theta\,\mathbf{e}_z,\\
-        \partial_\theta\br
-        &=r(\cos\theta\cos\phi\,\mathbf{e}_x+\cos\theta\sin\phi\,\mathbf{e}_y-\sin\theta\,\mathbf{e}_z),\\
-        \partial_\phi\br
-        &=r\sin\theta(-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y).
+        x&=a\sqrt{(\xi^2-1)(1-\eta^2)}\cos\phi,\\
+        y&=a\sqrt{(\xi^2-1)(1-\eta^2)}\sin\phi,\\
+        z&=a\xi\eta,
       \end{align*}
-      $\boxed{h_r=1,\ h_{\theta}=r,\ h_{\phi}=r\sin\theta.}$
-      体积元 $\mathrm{d}V=r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\phi$。}
+      其中 $\xi\geq 1$，$-1\leq\eta\leq 1$，$0\leq\phi<2\pi$，$a>0$ 是焦距参数。
+
+      坐标面：$\xi=\mathrm{const}$ 为长旋转椭球面，
+      $\eta=\mathrm{const}$ 为双叶双曲面，$\phi=\mathrm{const}$ 为子午面。
+      三族彼此正交。}
     \end{column}
-    \begin{column}{0.38\textwidth}
+    \begin{column}{0.48\textwidth}
       \centering
-      \scalebox{0.82}{\input{tikz/sph_basis.tex}}
+      \resizebox{\linewidth}{!}{\input{tikz/ellipsoid.tex}}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{例：球坐标的单位矢量}
-  把三个偏导各自除以对应的 $h_i$：
-  \begin{align*}
-    \mathbf{e}_r
-    &=\sin\theta\cos\phi\,\mathbf{e}_x+\sin\theta\sin\phi\,\mathbf{e}_y+\cos\theta\,\mathbf{e}_z,\\
-    \mathbf{e}_{\theta}
-    &=\cos\theta\cos\phi\,\mathbf{e}_x+\cos\theta\sin\phi\,\mathbf{e}_y-\sin\theta\,\mathbf{e}_z,\\
-    \mathbf{e}_{\phi}
-    &=-\sin\phi\,\mathbf{e}_x+\cos\phi\,\mathbf{e}_y.
-  \end{align*}
-  纬度圈弧长是 $r\sin\theta\,\mathrm{d}\phi$，故 $h_{\phi}$ 在两极为零；
-  $\mathbf{e}_r,\mathbf{e}_{\theta},\mathbf{e}_{\phi}$ 构成右手正交标架。
+\begin{frame}{例：椭球坐标的尺度因子}
+  与柱、球相同：先算 $\partial\br/\partial\xi$ 等，再取模。结果是
+  \begin{equation*}
+    \boxed{\displaystyle
+      h_{\xi}=a\sqrt{\frac{\xi^2-\eta^2}{\xi^2-1}},
+      \quad
+      h_{\eta}=a\sqrt{\frac{\xi^2-\eta^2}{1-\eta^2}},
+      \quad
+      h_{\phi}=a\sqrt{(\xi^2-1)(1-\eta^2)}.
+    }
+  \end{equation*}
+  体积元 $\mathrm{d}V=h_{\xi}h_{\eta}h_{\phi}\,\mathrm{d}\xi\,\mathrm{d}\eta\,\mathrm{d}\phi$。
+  \vspace{0.3em}
+
+  要点：一般公式不改，只换 $h_i$。扁旋转椭球、共焦椭球坐标同样处理；
+  边界是椭球面时，就把 $\xi=\mathrm{const}$ 当作边界。
 \end{frame}
 
 \subsection{梯度}
@@ -278,7 +375,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{代入尺度因子：柱坐标}
+\begin{frame}{柱坐标梯度}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       $h_{\rho}=1$，$h_{\phi}=\rho$，$h_z=1$：
@@ -297,7 +394,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{代入尺度因子：球坐标}
+\begin{frame}{球坐标梯度}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       $h_r=1$，$h_{\theta}=r$，$h_{\phi}=r\sin\theta$：
@@ -307,7 +404,7 @@
           +\frac{1}{r}\frac{\partial u}{\partial\theta}\,\mathbf{e}_{\theta}
           +\frac{1}{r\sin\theta}\frac{\partial u}{\partial\phi}\,\mathbf{e}_{\phi}.
       \end{equation*}
-      圆、球边界上的问题用这一条，不要硬套直角坐标的三项偏导。
+      % 圆、球边界上的问题用这一条，不要硬套直角坐标的三项偏导。
     \end{column}
     \begin{column}{0.40\textwidth}
       \centering
@@ -316,7 +413,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{例：$\rho^2$ 与 $\ln\rho$——逐步代入}
+\begin{frame}{例}
   $u$ 只依赖 $\rho$，故 $\partial_\phi u=\partial_z u=0$。柱坐标梯度只剩第一项：
   \begin{align*}
     \nabla(\rho^2)
@@ -374,7 +471,20 @@
 
       $L_2$：先沿 $y$ 轴到 $(0,y_0)$，再水平到 $P$。\\
       第一段 $x=0$，被积函数为零；第二段
-      $\displaystyle\int_0^{x_0}2x y_0\,\mathrm{d}x=x_0^2 y_0$。}
+      $\displaystyle\int_0^{x_0}2x y_0\,\mathrm{d}x=x_0^2 y_0$。
+      }
+
+      \vspace{0.35em}
+      两条路径同得 $x_0^2 y_0$，与端点公式一致。
+      % 但这只说明 $\nabla u$ 是保守场；
+      % \textbf{拉普拉斯方程}还要另算：
+      % \begin{equation*}
+      %   \nabla^2 u
+      %   =u_{xx}+u_{yy}+u_{zz}
+      %   =2y+0+0=2y\not\equiv 0.
+      % \end{equation*}
+      % 故 $u=x^2 y$ \textbf{不}满足 $\nabla^2 u=0$。
+      % 梯度场不必是调和函数。}
     \end{column}
     \begin{column}{0.44\textwidth}
       \centering
@@ -397,33 +507,70 @@
   \textbf{连续性方程}（continuity equation）、热流、电荷守恒里的 $\nabla\cdot$ 就是它。下一讲推热方程时会再用到。
 \end{frame}
 
-\begin{frame}{一对面的通量差}
-  \begin{columns}[c]
-    \begin{column}{0.50\textwidth}
-      法向为 $\mathbf{e}_1$ 的两面，面积 $h_2 h_3\,\mathrm{d}q_2\,\mathrm{d}q_3$。
-      在 $q_1$ 与 $q_1+\mathrm{d}q_1$ 处通量差为
+\begin{frame}{一对面的通量差：有限差分}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      {\small
+      取 $q_1$ 方向棱长 $\Delta q_1$ 的小体元。
+      法向为 $\mathbf{e}_1$ 的两对面，面积元为 $h_2 h_3\,\Delta q_2\,\Delta q_3$。
+
+      外法向通量：
+      \begin{align*}
+        \Phi\big|_{q_1+\Delta q_1}
+        &= \bigl(A_1 h_2 h_3\bigr)\big|_{q_1+\Delta q_1}
+          \,\Delta q_2\,\Delta q_3,\\
+        \Phi\big|_{q_1}
+        &= -\bigl(A_1 h_2 h_3\bigr)\big|_{q_1}
+          \,\Delta q_2\,\Delta q_3.
+      \end{align*}
+      这一对的净通量（有限差分）
       \begin{equation*}
-        \frac{\partial}{\partial q_1}(A_1 h_2 h_3)\,
-        \mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3.
+        \Delta\Phi_1
+        =\Bigl[
+          \bigl(A_1 h_2 h_3\bigr)\big|_{q_1+\Delta q_1}
+          -\bigl(A_1 h_2 h_3\bigr)\big|_{q_1}
+        \Bigr]
+        \Delta q_2\,\Delta q_3.
       \end{equation*}
-      被求导的是 $A_1 h_2 h_3$，不是单独的 $A_1$——尺度因子本身可以随坐标变。
+      除以 $\Delta q_1$ 再令 $\Delta q_1\to 0$：
+      \begin{equation*}
+        \Delta\Phi_1
+        \to
+        \frac{\partial}{\partial q_1}(A_1 h_2 h_3)\,
+        \Delta q_1\,\Delta q_2\,\Delta q_3.
+      \end{equation*}
+      被差分的是 $A_1 h_2 h_3$，不是单独的 $A_1$。}
     \end{column}
-    \begin{column}{0.46\textwidth}
+    \begin{column}{0.42\textwidth}
       \centering
-      \scalebox{0.78}{\input{tikz/flux_pair.tex}}
+      \scalebox{0.72}{\input{tikz/flux_pair.tex}}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{三个方向相加再除以体积}
-  $q_2$、$q_3$ 两对面给出类似的两项。净通量合计
+\begin{frame}{三个方向：同样差分，再除以体积}
+  $q_2$、$q_3$ 两对面同理。记
+  $H_i A_i=(h_1 h_2 h_3/h_i)A_i$（$i$ 方向的面积因子乘分量），则
   \begin{equation*}
-    \sum_{i=1}^{3}
-      \frac{\partial}{\partial q_i}
-      \Bigl(\frac{h_1 h_2 h_3}{h_i} A_i\Bigr)
-      \,\mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3.
+    \Delta\Phi_i
+    =\bigl[(H_i A_i)\vert_{q_i+\Delta q_i}
+          -(H_i A_i)\vert_{q_i}\bigr]
+    \frac{\Delta q_1\Delta q_2\Delta q_3}{\Delta q_i}.
   \end{equation*}
-  除以 $\mathrm{d}V=h_1 h_2 h_3\,\mathrm{d}q_1\,\mathrm{d}q_2\,\mathrm{d}q_3$，得到
+  令 $\Delta q_i\to 0$，三项相加得净通量
+  \begin{equation*}
+    \Delta\Phi
+    =\sum_{i=1}^{3}
+      \partial_{q_i}(H_i A_i)\,
+      \Delta q_1\Delta q_2\Delta q_3.
+  \end{equation*}
+  除以体积 $\Delta V=h_1 h_2 h_3\,\Delta q_1\Delta q_2\Delta q_3$，得
+  \begin{equation*}
+    \frac{\Delta\Phi}{\Delta V}
+    =\frac{1}{h_1 h_2 h_3}
+      \sum_{i=1}^{3}\partial_{q_i}(H_i A_i).
+  \end{equation*}
+  再令体元趋于零，即
   \begin{equation*}
     \boxed{\displaystyle
       \nabla\cdot\mathbf{A}
@@ -434,36 +581,32 @@
   \end{equation*}
 \end{frame}
 
-\begin{frame}{直角坐标是特例}
+\begin{frame}{直角坐标：有限差分特例}
   \begin{columns}[c]
-    \begin{column}{0.50\textwidth}
-      $h_i=1$ 时，$h_1 h_2 h_3/h_i=1$，上式化为
+    \begin{column}{0.52\textwidth}
+      {\small
+      $h_i=1$。小长方体 $\Delta x\times\Delta y\times\Delta z$：
+      \begin{equation*}
+        \Delta\Phi_x
+        =\bigl[A_x(x+\Delta x)-A_x(x)\bigr]
+        \,\Delta y\,\Delta z.
+      \end{equation*}
+      除以 $\Delta V=\Delta x\,\Delta y\,\Delta z$：
+      \begin{equation*}
+        \frac{\Delta\Phi_x}{\Delta V}
+        =\frac{A_x(x+\Delta x)-A_x(x)}{\Delta x}
+        \to\frac{\partial A_x}{\partial x}.
+      \end{equation*}
+      $y$、$z$ 同理，故
       \begin{equation*}
         \nabla\cdot\mathbf{A}
         =\partial_x A_x+\partial_y A_y+\partial_z A_z.
       \end{equation*}
-      小长方体上，$x$ 与 $x+\Delta x$ 这一对面的净通量就是 $(\partial A_x/\partial x)\,\Delta V$。
+      }
     \end{column}
-    \begin{column}{0.46\textwidth}
+    \begin{column}{0.44\textwidth}
       \centering
       \scalebox{0.82}{\input{tikz/divergence.tex}}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{散度定理}
-  \begin{columns}[c]
-    \begin{column}{0.48\textwidth}
-      \textbf{散度定理}（divergence theorem）：内部小面的通量成对抵消，只留下外表面
-      \begin{equation*}
-        \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
-        =\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.
-      \end{equation*}
-      推热方程时，用它把曲面积分改成体积分。
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \centering
-      \scalebox{0.85}{\input{tikz/divergence.tex}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -521,7 +664,7 @@
   \begin{equation*}
     \int_V\nabla\cdot\mathbf{A}\,\mathrm{d}V=3abc.
   \end{equation*}
-  六个面：过原点的三个面通量为零；对面 $x=a$、$y=b$、$z=c$ 各贡献 $abc$，合计仍是 $3abc$，与散度定理一致。
+  六个面：过原点的三个面通量为零；对面 $x=a$、$y=b$、$z=c$ 各贡献 $abc$，合计仍是 $3abc$，体积分与面积分一致。
 \end{frame}
 
 \begin{frame}{例：$\nabla\cdot\mathbf{e}_{\rho}$——逐步代入}
@@ -557,6 +700,63 @@
     \begin{column}{0.42\textwidth}
       \centering
       \scalebox{0.88}{\input{tikz/point_source.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{散度定理：从局部定义出发}
+  由散度的定义，每个小体元 $\Delta V_\alpha$ 上
+  \begin{equation*}
+    \oint_{\partial(\Delta V_\alpha)}\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+    =(\nabla\cdot\mathbf{A})\,\Delta V_\alpha.
+  \end{equation*}
+  把区域 $V$ 剖成许多小体元，对 $\alpha$ 求和：
+  \begin{equation*}
+    \sum_\alpha
+      \oint_{\partial(\Delta V_\alpha)}\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+    =\sum_\alpha(\nabla\cdot\mathbf{A})\,\Delta V_\alpha.
+  \end{equation*}
+  右边就是体积分
+  $\displaystyle\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V$。
+\end{frame}
+
+\begin{frame}{散度定理：内部面抵消}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      左边：相邻体元的公共面法向相反，
+      $\mathbf{A}\cdot\mathrm{d}\mathbf{S}$ 成对抵消。
+      \vspace{0.3em}
+
+      留下的只有 $V$ 的外表面 $S=\partial V$。于是
+      \begin{equation*}
+        \sum_\alpha\oint_{\partial(\Delta V_\alpha)}
+        \longrightarrow
+        \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}.
+      \end{equation*}
+      这就是把局部净通量拼成整体通量的一步。
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \scalebox{0.82}{\input{tikz/div_tile.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{散度定理}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      合起来得到\textbf{散度定理}（divergence theorem）
+      \begin{equation*}
+        \boxed{\displaystyle
+          \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+          =\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.}
+      \end{equation*}
+      外法向约定。前面长方体例子两边都是 $3abc$，就是它的特例。
+      推热方程时，用它把曲面积分改成体积分。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \scalebox{0.85}{\input{tikz/divergence.tex}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -607,8 +807,14 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{旋度的行列式写法}
-  三个分量可以合成一个行列式（展开时对第二行求导）：
+\begin{frame}{一般正交曲线坐标中的旋度}
+  分量形式（$i,j,k$ 轮换）：
+  \begin{equation*}
+    (\nabla\times\mathbf{A})_i
+    =\frac{1}{h_j h_k}
+      \bigl(\partial_{q_j}(h_k A_k)-\partial_{q_k}(h_j A_j)\bigr).
+  \end{equation*}
+  合起来写成行列式（展开时对第二行求导）：
   \begin{equation*}
     \boxed{\displaystyle
       \nabla\times\mathbf{A}
@@ -619,9 +825,9 @@
           h_1 A_1 & h_2 A_2 & h_3 A_3
         \end{vmatrix}.}
   \end{equation*}
-  直角坐标 $h_i=1$ 时回到熟悉的
-  $\nabla\times\mathbf{A}=
-  \begin{vmatrix}
+  直角坐标 $h_i=1$ 时回到
+  $\nabla\times\mathbf{A}
+  =\begin{vmatrix}
   \mathbf{e}_x&\mathbf{e}_y&\mathbf{e}_z\\
   \partial_x&\partial_y&\partial_z\\
   A_x&A_y&A_z
@@ -647,6 +853,53 @@
       \input{tikz/curl_loop.tex}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}{柱坐标：由一般公式代入}
+  一般式第 $1$ 分量
+  $(\nabla\times\mathbf{A})_1
+  =\frac{1}{h_2 h_3}\bigl(\partial_{q_2}(h_3 A_3)-\partial_{q_3}(h_2 A_2)\bigr)$，
+  另两分量轮换。柱坐标 $h_{\rho}=1$，$h_{\phi}=\rho$，$h_z=1$，
+  $(q_1,q_2,q_3)=(\rho,\phi,z)$：
+  \begin{align*}
+    (\nabla\times\mathbf{A})_{\rho}
+    &=\frac{1}{h_{\phi}h_z}
+      \bigl(\partial_{\phi}(h_z A_z)-\partial_z(h_{\phi} A_{\phi})\bigr)
+    =\frac{1}{\rho}\partial_{\phi}A_z-\partial_z A_{\phi},\\
+    (\nabla\times\mathbf{A})_{\phi}
+    &=\frac{1}{h_z h_{\rho}}
+      \bigl(\partial_z(h_{\rho} A_{\rho})-\partial_{\rho}(h_z A_z)\bigr)
+    =\partial_z A_{\rho}-\partial_{\rho}A_z,\\
+    (\nabla\times\mathbf{A})_z
+    &=\frac{1}{h_{\rho}h_{\phi}}
+      \bigl(\partial_{\rho}(h_{\phi} A_{\phi})-\partial_{\phi}(h_{\rho} A_{\rho})\bigr)
+    =\frac{1}{\rho}\bigl(\partial_{\rho}(\rho A_{\phi})-\partial_{\phi}A_{\rho}\bigr).
+  \end{align*}
+\end{frame}
+
+\begin{frame}{球坐标：由一般公式代入}
+  球坐标 $h_r=1$，$h_{\theta}=r$，$h_{\phi}=r\sin\theta$，
+  $(q_1,q_2,q_3)=(r,\theta,\phi)$。同样代入
+  $(\nabla\times\mathbf{A})_i
+  =\frac{1}{h_j h_k}\bigl(\partial_{q_j}(h_k A_k)-\partial_{q_k}(h_j A_j)\bigr)$：
+  {\footnotesize
+  \begin{align*}
+    (\nabla\times\mathbf{A})_r
+    &=\frac{1}{h_{\theta}h_{\phi}}
+      \bigl(\partial_{\theta}(h_{\phi} A_{\phi})-\partial_{\phi}(h_{\theta} A_{\theta})\bigr)
+    =\frac{1}{r\sin\theta}
+      \bigl(\partial_{\theta}(\sin\theta\, A_{\phi})-\partial_{\phi}A_{\theta}\bigr),\\
+    (\nabla\times\mathbf{A})_{\theta}
+    &=\frac{1}{h_{\phi}h_r}
+      \bigl(\partial_{\phi}(h_r A_r)-\partial_r(h_{\phi} A_{\phi})\bigr)
+    =\frac{1}{r\sin\theta}\partial_{\phi}A_r
+      -\frac{1}{r}\partial_r(r A_{\phi}),\\
+    (\nabla\times\mathbf{A})_{\phi}
+    &=\frac{1}{h_r h_{\theta}}
+      \bigl(\partial_r(h_{\theta} A_{\theta})-\partial_{\theta}(h_r A_r)\bigr)
+    =\frac{1}{r}\partial_r(r A_{\theta})
+      -\frac{1}{r}\partial_{\theta}A_r.
+  \end{align*}}
 \end{frame}
 
 \begin{frame}{斯托克斯定理：从局部定义出发}
@@ -682,9 +935,9 @@
       \end{equation*}
       这就是把局部环量拼成整体环量的一步。
     \end{column}
-    \begin{column}{0.46\textwidth}
+    \begin{column}{0.48\textwidth}
       \centering
-      \scalebox{0.88}{\input{tikz/stokes_tile.tex}}
+      \resizebox{\linewidth}{!}{\input{tikz/stokes_tile.tex}}
     \end{column}
   \end{columns}
 \end{frame}
@@ -758,14 +1011,20 @@
 \begin{frame}{例：直导线的磁场}
   \begin{columns}[c]
     \begin{column}{0.54\textwidth}
-      $\mathbf{B}=(\mu_0 I/(2\pi\rho))\,\mathbf{e}_{\phi}$（$\rho>0$）。
+      {\small
+      无限长直导线，稳恒电流 $I$。由\textbf{毕奥--萨伐尔定律}
+      （Biot--Savart law）得
+      $\mathbf{B}=(\mu_0 I/(2\pi\rho))\,\mathbf{e}_{\phi}$（$\rho>0$）；
+      环量则由\textbf{安培环路定律}（Ampère's law）
+      $\oint\mathbf{B}\cdot\mathrm{d}\boldsymbol{\ell}=\mu_0 I_{\mathrm{enc}}$ 约束。
       \begin{equation*}
         h_{\phi} B_{\phi}
         =\rho\cdot\frac{\mu_0 I}{2\pi\rho}
         =\frac{\mu_0 I}{2\pi},
       \end{equation*}
-      对 $\rho$、$z$ 的偏导都是零，故旋度为零。
-      若环路围住导线，环量是 $\mu_0 I$，奇性在 $\rho=0$。
+      代入柱坐标旋度：$A_{\phi}=\mu_0 I/(2\pi\rho)$ 时
+      $\partial_{\rho}(\rho A_{\phi})=0$，故 $\rho>0$ 处 $\nabla\times\mathbf{B}=\mathbf{0}$。
+      环路围住导线则环量为 $\mu_0 I$，奇性在 $\rho=0$。}
     \end{column}
     \begin{column}{0.42\textwidth}
       \centering
@@ -774,106 +1033,82 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{柱坐标中的旋度}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
-      {\small
-      \begin{align*}
-        (\nabla\times\mathbf{A})_{\rho}
-        &=\tfrac{1}{\rho}\partial_{\phi}A_z-\partial_z A_{\phi},\\
-        (\nabla\times\mathbf{A})_{\phi}
-        &=\partial_z A_{\rho}-\partial_{\rho}A_z,\\
-        (\nabla\times\mathbf{A})_z
-        &=\tfrac{1}{\rho}\bigl(
-            \partial_{\rho}(\rho A_{\phi})-\partial_{\phi}A_{\rho}
-          \bigr).
-      \end{align*}
-      直导线例子：仅 $A_{\phi}\neq 0$ 且 $\rho A_{\phi}$ 为常数时，$z$ 分量里 $\partial_{\rho}(\rho A_{\phi})=0$。}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \centering
-      \scalebox{0.82}{\input{tikz/cyl_basis.tex}}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{球坐标中的旋度}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
-      {\footnotesize
-      \begin{align*}
-        (\nabla\times\mathbf{A})_r
-        &=\tfrac{1}{r\sin\theta}
-          \bigl(
-            \partial_{\theta}(\sin\theta\, A_{\phi})-\partial_{\phi}A_{\theta}
-          \bigr),\\
-        (\nabla\times\mathbf{A})_{\theta}
-        &=\tfrac{1}{r\sin\theta}\partial_{\phi}A_r
-          -\tfrac{1}{r}\partial_r(r A_{\phi}),\\
-        (\nabla\times\mathbf{A})_{\phi}
-        &=\tfrac{1}{r}\partial_r(r A_{\theta})
-          -\tfrac{1}{r}\partial_{\theta}A_r.
-      \end{align*}}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \centering
-      \scalebox{0.80}{\input{tikz/sph_basis.tex}}
-    \end{column}
-  \end{columns}
-\end{frame}
-
 \subsection{拉普拉斯算子}
 
-\begin{frame}{定义：散度作用在梯度上}
-  \textbf{拉普拉斯算子}（Laplacian）就是
+\begin{frame}{定义：$\nabla^2 u=\nabla\cdot(\nabla u)$}
+  \textbf{拉普拉斯算子}（Laplacian）定义为散度作用在梯度上：
   \begin{equation*}
     \nabla^2 u=\nabla\cdot(\nabla u).
   \end{equation*}
   热方程 $u_t=\kappa\nabla^2 u$、势方程 $\nabla^2 u=0$ 或 $\nabla^2 u=f$ 用的都是它。
-  把梯度分量 $A_i=(1/h_i)\partial u/\partial q_i$ 代进散度，被求导的组合变成
+  推导路线：先写 $\mathbf{A}=\nabla u$ 的分量，再代入散度公式。
+\end{frame}
+
+\begin{frame}{第一步：梯度分量}
+  正交曲线坐标中
+  \begin{equation*}
+    \nabla u
+    =\sum_{i=1}^{3}
+      \frac{1}{h_i}\frac{\partial u}{\partial q_i}\,\mathbf{e}_i,
+  \end{equation*}
+  故物理分量
+  \begin{equation*}
+    A_i
+    =(\nabla u)_i
+    =\frac{1}{h_i}\frac{\partial u}{\partial q_i}.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{第二步：代入散度公式}
+  散度
+  \begin{equation*}
+    \nabla\cdot\mathbf{A}
+    =\frac{1}{h_1 h_2 h_3}
+      \sum_{i=1}^{3}
+      \partial_{q_i}
+      \Bigl(\frac{h_1 h_2 h_3}{h_i}A_i\Bigr).
+  \end{equation*}
+  把 $A_i=(1/h_i)\partial_{q_i}u$ 代入：
   \begin{equation*}
     \frac{h_1 h_2 h_3}{h_i}A_i
     =\frac{h_1 h_2 h_3}{h_i^2}\frac{\partial u}{\partial q_i}.
   \end{equation*}
+  于是得到一般表达式
+  \begin{equation*}
+    \boxed{\displaystyle
+      \nabla^2 u
+      =\frac{1}{h_1 h_2 h_3}
+        \sum_{i=1}^{3}
+        \partial_{q_i}
+        \Biggl(\frac{h_1 h_2 h_3}{h_i^2}\partial_{q_i}u\Biggr).}
+  \end{equation*}
+  不要把直角坐标的 $\partial_{xx}+\partial_{yy}+\partial_{zz}$ 换元照抄：尺度因子的导数会漏掉。
 \end{frame}
 
-\begin{frame}{正交曲线坐标中的 $\nabla^2$}
-  \begin{columns}[c]
-    \begin{column}{0.56\textwidth}
-      \begin{equation*}
-        \boxed{\displaystyle
-          \nabla^2 u
-          =\frac{1}{h_1 h_2 h_3}
-            \sum_{i=1}^{3}
-            \partial_{q_i}
-            \Biggl(\frac{h_1 h_2 h_3}{h_i^2}\partial_{q_i}u\Biggr).}
-      \end{equation*}
-      不要把直角坐标的 $\partial_{xx}+\partial_{yy}+\partial_{zz}$ 换元照抄：尺度因子的导数会漏掉。
-    \end{column}
-    \begin{column}{0.40\textwidth}
-      \centering
-      \scalebox{0.88}{\input{tikz/volume.tex}}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{柱坐标：逐步代入}
-  \begin{columns}[c]
-    \begin{column}{0.56\textwidth}
-      $h_1 h_2 h_3=\rho$。合起来
-      \begin{equation*}
-        \boxed{\displaystyle
-          \nabla^2 u
-          =\frac{1}{\rho}\partial_{\rho}(\rho\partial_{\rho}u)
-            +\frac{1}{\rho^2}\partial_{\phi\phi}u
-            +\partial_{zz}u.}
-      \end{equation*}
-    \end{column}
-    \begin{column}{0.40\textwidth}
-      \centering
-      \scalebox{0.85}{\input{tikz/cyl_basis.tex}}
-    \end{column}
-  \end{columns}
+\begin{frame}{柱坐标：代入尺度因子}
+  $h_{\rho}=1$，$h_{\phi}=\rho$，$h_z=1$，故 $h_1 h_2 h_3=\rho$。三项分别是
+  \begin{align*}
+    i=\rho &\colon\
+      \frac{1}{\rho}\partial_{\rho}
+      \Bigl(\frac{\rho}{1}\partial_{\rho}u\Bigr)
+      =\frac{1}{\rho}\partial_{\rho}(\rho\partial_{\rho}u),\\
+    i=\phi &\colon\
+      \frac{1}{\rho}\partial_{\phi}
+      \Bigl(\frac{\rho}{\rho^2}\partial_{\phi}u\Bigr)
+      =\frac{1}{\rho^2}\partial_{\phi\phi}u,\\
+    i=z &\colon\
+      \frac{1}{\rho}\partial_z
+      \Bigl(\frac{\rho}{1}\partial_z u\Bigr)
+      =\partial_{zz}u.
+  \end{align*}
+  合起来
+  \begin{equation*}
+    \boxed{\displaystyle
+      \nabla^2 u
+      =\frac{1}{\rho}\partial_{\rho}(\rho\partial_{\rho}u)
+        +\frac{1}{\rho^2}\partial_{\phi\phi}u
+        +\partial_{zz}u.}
+  \end{equation*}
 \end{frame}
 
 \begin{frame}{柱坐标第一项的展开}
@@ -887,27 +1122,31 @@
   圆膜、圆柱导热的径向方程从这里来。
 \end{frame}
 
-\begin{frame}{球坐标：逐步代入}
-  \begin{columns}[c]
-    \begin{column}{0.62\textwidth}
-      {\small
-      $h_1 h_2 h_3=r^2\sin\theta$，得到
-      \par\smallskip
-      \resizebox{\linewidth}{!}{$\displaystyle
-        \boxed{
-          \nabla^2 u
-          =\dfrac{1}{r^2}\partial_r(r^2\partial_r u)
-            +\dfrac{1}{r^2\sin\theta}\partial_{\theta}(\sin\theta\,\partial_{\theta}u)
-            +\dfrac{1}{r^2\sin^2\theta}\partial_{\phi\phi}u.
-        }$}
-      \par\smallskip
-      球对称势和球坐标分离变量都用它。}
-    \end{column}
-    \begin{column}{0.34\textwidth}
-      \centering
-      \scalebox{0.70}{\input{tikz/sph_basis.tex}}
-    \end{column}
-  \end{columns}
+\begin{frame}{球坐标：代入尺度因子}
+  $h_r=1$，$h_{\theta}=r$，$h_{\phi}=r\sin\theta$，故
+  $h_1 h_2 h_3=r^2\sin\theta$。三项：
+  {\small
+  \begin{align*}
+    i=r &\colon\
+      \frac{1}{r^2\sin\theta}\partial_r
+      \bigl(r^2\sin\theta\,\partial_r u\bigr)
+      =\frac{1}{r^2}\partial_r(r^2\partial_r u),\\
+    i=\theta &\colon\
+      \frac{1}{r^2\sin\theta}\partial_{\theta}
+      \bigl(\sin\theta\,\partial_{\theta}u\bigr),\\
+    i=\phi &\colon\
+      \frac{1}{r^2\sin\theta}\partial_{\phi}
+      \Bigl(\frac{1}{\sin\theta}\partial_{\phi}u\Bigr)
+      =\frac{1}{r^2\sin^2\theta}\partial_{\phi\phi}u.
+  \end{align*}}
+  合起来
+  \begin{equation*}
+    \boxed{\displaystyle
+      \nabla^2 u
+      =\frac{1}{r^2}\partial_r(r^2\partial_r u)
+        +\frac{1}{r^2\sin\theta}\partial_{\theta}(\sin\theta\,\partial_{\theta}u)
+        +\frac{1}{r^2\sin^2\theta}\partial_{\phi\phi}u.}
+  \end{equation*}
 \end{frame}
 
 \begin{frame}{例：$\nabla^2\ln\rho$——逐步计算}
@@ -1207,28 +1446,62 @@
   无源时得到 $\nabla^2\mathbf{E}-c^{-2}\partial_{tt}\mathbf{E}=\mathbf{0}$。
 \end{frame}
 
-\begin{frame}{行列式与正交矩阵}
-  三维 $\det M=\varepsilon_{ijk}M_{1i}M_{2j}M_{3k}$。由此
+\begin{frame}{行列式的 $\varepsilon$ 写法}
+  三维
   \begin{equation*}
-    \varepsilon_{ijk}N_{ai}N_{bj}N_{ck}=(\det N)\,\varepsilon_{abc},
+    \det N=\varepsilon_{ijk}N_{1i}N_{2j}N_{3k}.
   \end{equation*}
-  从而 $\det(MN)=\det M\det N$。
-  \vspace{0.3em}
-
-  \textbf{正交矩阵}（orthogonal matrix）满足 $R^{\mathsf T}R=I$，写成 $R_{ki}R_{kj}=\delta_{ij}$，因此
+  令 $T_{abc}=\varepsilon_{ijk}N_{ai}N_{bj}N_{ck}$。
+  交换任意两个下标 $a,b,c$ 只改变 $\varepsilon_{ijk}$ 的符号，故 $T_{abc}$ 全反对称，
+  因而 $T_{abc}=\lambda\varepsilon_{abc}$。
+  取 $a=1,b=2,c=3$ 得 $\lambda=\det N$，于是
   \begin{equation*}
-    (R\mathbf{a})\cdot(R\mathbf{b})=\mathbf{a}\cdot\mathbf{b}:
+    \varepsilon_{ijk}N_{ai}N_{bj}N_{ck}=(\det N)\,\varepsilon_{abc}.
   \end{equation*}
-  模和夹角都被保持。
 \end{frame}
 
-\begin{frame}{例：泡利矩阵}
-  \textbf{泡利矩阵}（Pauli matrices）$\sigma^x,\sigma^y,\sigma^z$ 满足 $(\sigma^x\sigma^y)_{ij}=\sigma^x_{ik}\sigma^y_{kj}$。
-  对角元给出 $\mathrm{i}$ 与 $-\mathrm{i}$，非对角元为零，故
+\begin{frame}{乘积法则与正交矩阵}
+  用上式算 $\det(MN)$：
+  \begin{equation*}
+    \det(MN)
+    =\varepsilon_{ijk}(MN)_{1i}(MN)_{2j}(MN)_{3k}
+    =\varepsilon_{ijk}M_{1a}N_{ai}M_{2b}N_{bj}M_{3c}N_{ck}.
+  \end{equation*}
+  提出 $M$ 的因子并用上页恒等式，
+  \begin{equation*}
+    \det(MN)
+    =M_{1a}M_{2b}M_{3c}\,(\det N)\,\varepsilon_{abc}
+    =(\det M)(\det N).
+  \end{equation*}
+
+  \textbf{正交矩阵}（orthogonal matrix）满足 $R^{\mathsf T}R=I$，即 $R_{ki}R_{kj}=\delta_{ij}$，因此
+  $(R\mathbf{a})\cdot(R\mathbf{b})=\mathbf{a}\cdot\mathbf{b}$：模和夹角都被保持。
+\end{frame}
+
+\begin{frame}{泡利矩阵}
+  \textbf{泡利矩阵}（Pauli matrices）是三个 $2\times 2$ 厄米矩阵，描述自旋 $1/2$：
+  \begin{equation*}
+    \sigma^x
+    =\begin{pmatrix}0&1\\1&0\end{pmatrix},
+    \quad
+    \sigma^y
+    =\begin{pmatrix}0&-\mathrm{i}\\\mathrm{i}&0\end{pmatrix},
+    \quad
+    \sigma^z
+    =\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+  \end{equation*}
+  它们迹为零、平方等于单位矩阵：
+  $\operatorname{tr}\sigma^a=0$，$(\sigma^a)^2=I$。
+\end{frame}
+
+\begin{frame}{例：用指标算 $\sigma^x\sigma^y$}
+  矩阵乘积 $(\sigma^x\sigma^y)_{ij}=\sigma^x_{ik}\sigma^y_{kj}$。
+  直接代入上页的矩阵元：对角元得到 $\mathrm{i}$ 与 $-\mathrm{i}$，非对角元为零，故
   \begin{equation*}
     \sigma^x\sigma^y=\mathrm{i}\,\sigma^z.
   \end{equation*}
-  迹 $\operatorname{tr}\sigma^x=\sigma^x_{ii}=0$；二维行列式 $\det\sigma^x=-1$，与 $\det(\sigma^x\sigma^y)=1$ 一致。
+  也可核对：$\operatorname{tr}\sigma^x=\sigma^x_{ii}=0$，
+  $\det\sigma^x=-1$，且 $\det(\sigma^x\sigma^y)=\det(\mathrm{i}\sigma^z)=1$。
 \end{frame}
 
 % =============================================================
@@ -1249,28 +1522,53 @@
   位移梯度 $\partial_i u_j$ 的对称部分是\textbf{应变}（strain），反对称部分是无穷小转动。
 \end{frame}
 
-\begin{frame}{作为线性映射}
-  二阶张量把矢量送到矢量：$u_i=T_{ij}v_j$。
-  三阶张量可以吃进两个矢量：$w_i=C_{ijk}u_j v_k$。
-  \vspace{0.3em}
-
-  直角坐标旋转 $x'_i=R_{ij}x_j$ 下，
+\begin{frame}{怎么判断是不是张量}
+  有一排带指标的数，不等于张量。判据是\textbf{变换律}：
+  坐标旋转 $x'_i=R_{ij}x_j$ 下，分量必须按每个指标各乘一个 $R$ 变过去，例如
   \begin{equation*}
     v'_i=R_{ij}v_j,
     \qquad
     T'_{ij}=R_{ik}R_{jl}T_{kl}.
   \end{equation*}
-  每个指标各乘一个 $R$。$\delta_{ij}$ 在旋转下不变；$\varepsilon_{ijk}$ 在正常旋转下也不变，反射会多一个 $\det R=-1$。
+  满足这个律，换坐标系后物理关系形式不变，才叫张量。
+
+  \medskip
+  实用检验（商法则）：若对任意矢量 $v_j$，量 $u_i=T_{ij}v_j$ 都是矢量，则 $T_{ij}$ 是二阶张量。
+\end{frame}
+
+\begin{frame}{作为线性映射}
+  二阶张量把矢量送到矢量：$u_i=T_{ij}v_j$。
+  三阶张量可以吃进两个矢量：$w_i=C_{ijk}u_j v_k$。
+  \vspace{0.3em}
+
+  直角坐标旋转下，$\delta_{ij}$ 不变；$\varepsilon_{ijk}$ 在正常旋转下也不变，反射会多一个 $\det R=-1$。
+  后面克里斯托费尔符号 $\Gamma^{i}{}_{jk}$ 有三个指标，但变换律多出一项，故\textbf{不是}张量。
 \end{frame}
 
 \begin{frame}{物理中的二阶与更高阶}
-  \begin{itemize}
-    \item \textbf{应力}（stress）：$\mathrm{d}F_i=\sigma_{ij}\,\mathrm{d}S_j$。
-    \item 线性弹性：$\sigma_{ij}=C_{ijkl}\varepsilon_{kl}$；\textbf{各向同性}（isotropic）时
-      $\sigma_{ij}=\lambda\,\delta_{ij}\varepsilon_{kk}+2\mu\,\varepsilon_{ij}$。
-    \item \textbf{电导}（conductivity）：$J_i=\sigma_{ij}E_j$（晶体里 $\mathbf{J}$ 不必平行于 $\mathbf{E}$）。
-    \item \textbf{压电}（piezoelectricity）：$P_i=d_{ijk}\sigma_{jk}$。
-  \end{itemize}
+  \textbf{应力}（stress）$\sigma_{ij}$：
+  面元上的力 $\mathrm{d}F_i=\sigma_{ij}\,\mathrm{d}S_j$。
+  $\sigma_{ij}$ 表示法向沿 $j$、力沿 $i$ 的面力密度。
+
+  \medskip
+  \textbf{应变}（strain）$\varepsilon_{kl}$：
+  位移场的对称梯度，描写局部形变。
+  线性弹性用四阶\textbf{刚度张量}（stiffness）联结二者：
+  $\sigma_{ij}=C_{ijkl}\varepsilon_{kl}$。
+  \textbf{各向同性}（isotropic）时
+  $\sigma_{ij}=\lambda\,\delta_{ij}\varepsilon_{kk}+2\mu\,\varepsilon_{ij}$。
+\end{frame}
+
+\begin{frame}{电导与压电}
+  \textbf{电导率}（conductivity）$\sigma_{ij}$：
+  电场驱动电流，$J_i=\sigma_{ij}E_j$。
+  各向同性时 $\mathbf{J}=\sigma\mathbf{E}$；
+  晶体中 $\sigma_{ij}$ 可不对角，故 $\mathbf{J}$ 不必平行于 $\mathbf{E}$。
+
+  \medskip
+  \textbf{压电}（piezoelectricity）：
+  应力引起电极化，$P_i=d_{ijk}\sigma_{jk}$。
+  三阶张量 $d_{ijk}$ 把二阶应力映到极化矢量 $\mathbf{P}$。
 \end{frame}
 
 \subsection{各向同性张量}
@@ -1304,40 +1602,57 @@
   与前面尺度因子的定义一致。
 \end{frame}
 
-\begin{frame}{克里斯托费尔符号}
-  \textbf{克里斯托费尔符号}（Christoffel symbols）
-  \begin{equation*}
-    \Gamma^\rho{}_{\mu\nu}
-    =\tfrac12 g^{\rho\sigma}
-      \bigl(
-        \partial_\mu g_{\nu\sigma}
-        +\partial_\nu g_{\mu\sigma}
-        -\partial_\sigma g_{\mu\nu}
-      \bigr).
-  \end{equation*}
-  它描写坐标基如何逐点变化，不是张量：直线坐标里可以全为零，换到极坐标就不是零。
-  \vspace{0.3em}
+% \begin{frame}{克里斯托费尔符号}
+%   \textbf{克里斯托费尔符号}（Christoffel symbols）
+%   \begin{equation*}
+%     \Gamma^\rho{}_{\mu\nu}
+%     =\tfrac12 g^{\rho\sigma}
+%       \bigl(
+%         \partial_\mu g_{\nu\sigma}
+%         +\partial_\nu g_{\mu\sigma}
+%         -\partial_\sigma g_{\mu\nu}
+%       \bigr).
+%   \end{equation*}
+%   它描写坐标基随位置如何转动，用来写协变导数。
+%   平面极坐标非零的只有
+%   \begin{equation*}
+%     \Gamma^r{}_{\vartheta\vartheta}=-r,
+%     \qquad
+%     \Gamma^\vartheta{}_{\,r\vartheta}
+%     =\Gamma^\vartheta{}_{\,\vartheta r}=1/r.
+%   \end{equation*}
+% \end{frame}
 
-  平面极坐标非零的只有
-  \begin{equation*}
-    \Gamma^r{}_{\vartheta\vartheta}=-r,
-    \qquad
-    \Gamma^\vartheta{}_{\,r\vartheta}
-    =\Gamma^\vartheta{}_{\,\vartheta r}=1/r.
-  \end{equation*}
-\end{frame}
+% \begin{frame}{为什么 $\Gamma$ 不是张量}
+%   若 $\Gamma^\rho{}_{\mu\nu}$ 是三阶张量，直角坐标里它全为零，则\textbf{一切}坐标系里都必须为零。
+%   但换到极坐标立刻出现 $\Gamma^r{}_{\vartheta\vartheta}=-r\neq 0$。
+%   所以它不满足张量变换律。
 
-\begin{frame}{曲率才按张量变换}
-  \textbf{黎曼曲率}（Riemann curvature）
-  \begin{equation*}
-    R^\rho{}_{\sigma\mu\nu}
-    =\partial_\mu\Gamma^\rho{}_{\nu\sigma}
-    -\partial_\nu\Gamma^\rho{}_{\mu\sigma}
-    +\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
-    -\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}.
-  \end{equation*}
-  平面极坐标里 $R^r{}_{\vartheta r\vartheta}=-1+1=0$：平面的曲率张量是零，$\Gamma$ 的出现只是坐标效应。
-\end{frame}
+%   \medskip
+%   一般坐标变换 $x\to x'$ 下，真正的变换式多出一项：
+%   \begin{equation*}
+%     \Gamma'^{\rho}{}_{\mu\nu}
+%     =\frac{\partial x'^{\rho}}{\partial x^{\alpha}}
+%       \frac{\partial x^{\beta}}{\partial x'^{\mu}}
+%       \frac{\partial x^{\gamma}}{\partial x'^{\nu}}
+%       \Gamma^{\alpha}{}_{\beta\gamma}
+%       +\frac{\partial x'^{\rho}}{\partial x^{\alpha}}
+%         \frac{\partial^2 x^{\alpha}}{\partial x'^{\mu}\partial x'^{\nu}}.
+%   \end{equation*}
+%   第二项含二阶导数，不是三个雅可比的齐一次式；张量不容许这种非齐次项。
+% \end{frame}
+
+% \begin{frame}{曲率才按张量变换}
+%   \textbf{黎曼曲率}（Riemann curvature）
+%   \begin{equation*}
+%     R^\rho{}_{\sigma\mu\nu}
+%     =\partial_\mu\Gamma^\rho{}_{\nu\sigma}
+%     -\partial_\nu\Gamma^\rho{}_{\mu\sigma}
+%     +\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
+%     -\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}.
+%   \end{equation*}
+%   平面极坐标里 $R^r{}_{\vartheta r\vartheta}=-1+1=0$：平面的曲率张量是零，$\Gamma$ 的出现只是坐标效应。
+% \end{frame}
 
 \subsection{惯量张量}
 
@@ -1362,10 +1677,54 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{缩并的次序}
-  若干张量全部缩并以后得到标量。例如 $A_{ij}B_{jk}C_{ki}$：
-  可以先缩 $B$ 与 $C$，再与 $A$ 缩，也可以先缩 $A$ 与 $B$。
-  求和只是有限项相加，次序可交换，两个算法给出同一个数。
+\begin{frame}{运算量怎么数}
+  约定：一次乘法（或乘加）算一次运算。指标每个取 $n$ 个值。
+
+  \medskip
+  矩阵--矢量 $w_j=B_{jk}v_k$：固定 $j$，对 $k$ 求和要 $n$ 次；
+  $j$ 有 $n$ 个，故共 $n\cdot n=n^2$。
+
+  \medskip
+  矩阵--矩阵 $M_{ik}=A_{ij}B_{jk}$：固定 $(i,k)$，对 $j$ 求和要 $n$ 次；
+  $(i,k)$ 有 $n^2$ 对，故共 $n^2\cdot n=n^3$。
+
+  \medskip
+  点积 $s=u_i z_i$：对 $i$ 求和，$n$ 次。
+\end{frame}
+
+\begin{frame}{缩并的次序与计算量}
+  标量 $s=u_i A_{ij}B_{jk}v_k$，结果与次序无关，运算量不同。
+
+  \medskip
+  \textbf{先乘矢量：}
+  $w_j=B_{jk}v_k$（$n^2$）$\to$
+  $z_i=A_{ij}w_j$（$n^2$）$\to$
+  $s=u_i z_i$（$n$），合计 $2n^2+n$。
+
+  \medskip
+  \textbf{先乘矩阵：}
+  $M_{ik}=A_{ij}B_{jk}$（$n^3$）$\to$
+  $y_i=M_{ik}v_k$（$n^2$）$\to$
+  $s=u_i y_i$（$n$），合计 $n^3+n^2+n$。
+
+  $n=10^3$ 时约为 $2\times 10^6$ 对 $10^9$。
+\end{frame}
+
+\begin{frame}{一般三指标缩并}
+  $A_{ij}B_{jk}C_{ki}$，设 $i\leq n$，$j\leq m$，$k\leq p$。
+
+  \medskip
+  先 $(BC)_{ji}=B_{jk}C_{ki}$：固定 $(j,i)$ 对 $k$ 求和，
+  运算量 $nm\cdot p=nmp$；
+  再 $A_{ij}(BC)_{ji}$：固定 $(i,j)$ 一次乘加，运算量 $nm$。
+  合计 $nmp+nm$。
+
+  \medskip
+  先 $(AB)_{ik}=A_{ij}B_{jk}$：运算量 $np\cdot m=nmp$；
+  再 $(AB)_{ik}C_{ki}$：运算量 $np$。
+  合计 $nmp+np$。
+
+  先消掉取值范围大的指标，第二步更省。
 \end{frame}
 
 \end{document}

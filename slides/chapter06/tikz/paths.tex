@@ -8,8 +8,10 @@
   \draw[gray!50] (0,-0.2) -- (0,2.15) node[above] {$y$};
   \draw[vec, blue!70!black] (O) -- (X) -- (P);
   \draw[vec, red!70!black] (O) -- (Y) -- (P);
-  \fill (O) circle (1.1pt) node[below left] {$O$};
-  \fill (P) circle (1.1pt) node[above right] {$P$};
-  \node[blue!70!black, font=\scriptsize] at (1.5,-0.35) {$L_1$};
-  \node[red!70!black, font=\scriptsize] at (-0.35,0.85) {$L_2$};
+  \fill (O) circle (1.1pt) node[below left, font=\scriptsize] {$O\,(0,0)$};
+  \fill (X) circle (1.1pt) node[below, font=\scriptsize] {$(x_0,0)$};
+  \fill (Y) circle (1.1pt) node[left, font=\scriptsize] {$(0,y_0)$};
+  \fill (P) circle (1.1pt) node[above right, font=\scriptsize] {$P\,(x_0,y_0)$};
+  \node[blue!70!black, font=\scriptsize] at (1.5,-0.55) {$L_1$};
+  \node[red!70!black, font=\scriptsize] at (-0.55,0.85) {$L_2$};
 \end{tikzpicture}

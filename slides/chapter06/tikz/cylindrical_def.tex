@@ -1,0 +1,68 @@
+% Cylindrical coordinates (ρ,φ,z).
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=1.12,
+    font=\scriptsize,
+    >=Stealth,
+    line join=round, line cap=round]
+  \def\Rho{2.10}
+  \def\Ph{42}
+  \def\Zz{2.05}
+  \def\H{2.70}
+  \pgfmathsetmacro{\Px}{\Rho*cos(\Ph)}
+  \pgfmathsetmacro{\Py}{\Rho*sin(\Ph)}
+
+  \draw[gray!40, densely dotted, line width=0.35pt]
+    plot[domain=130:310, samples=45, variable=\t]
+      ({\Rho*cos(\t)},{\Rho*sin(\t)},0);
+  \draw[black!65, line width=0.5pt]
+    plot[domain=-50:130, samples=45, variable=\t]
+      ({\Rho*cos(\t)},{\Rho*sin(\t)},0);
+  \draw[gray!30, densely dotted, line width=0.3pt]
+    plot[domain=130:310, samples=45, variable=\t]
+      ({\Rho*cos(\t)},{\Rho*sin(\t)},\H);
+  \draw[black!55, line width=0.45pt]
+    plot[domain=-50:130, samples=45, variable=\t]
+      ({\Rho*cos(\t)},{\Rho*sin(\t)},\H);
+  \foreach \t in {-30,20,75,115} {
+    \draw[gray!35, line width=0.28pt]
+      ({\Rho*cos(\t)},{\Rho*sin(\t)},0)
+      -- ({\Rho*cos(\t)},{\Rho*sin(\t)},\H);
+  }
+
+  \draw[-{Stealth[length=1.7mm]}, black!80, line width=0.55pt]
+    (0,0,0) -- (0,0,\H+0.35) node[above] {$z$};
+  \draw[-{Stealth[length=1.7mm]}, black!80, line width=0.55pt]
+    (0,0,0) -- (\Rho+0.6,0,0) node[below left] {$x$};
+  \draw[-{Stealth[length=1.7mm]}, black!80, line width=0.55pt]
+    (0,0,0) -- (0,\Rho+0.7,0) node[right] {$y$};
+  \node[xshift=-5pt, yshift=3pt] at (0,0,0) {$O$};
+
+  \coordinate (O) at (0,0,0);
+  \coordinate (P) at (\Px,\Py,\Zz);
+  \coordinate (B) at (\Px,\Py,0);
+  \coordinate (A) at (0,0,\Zz);
+  \coordinate (C) at (\Px,0,0);
+  \coordinate (D) at (0,\Py,0);
+
+  \draw[violet!75!black, line width=0.7pt] (O) -- (B)
+    node[pos=0.55,xshift=-3pt, yshift=-1pt] {$\rho$};
+  \draw[violet!75!black, line width=0.7pt] (B) -- (P)
+    node[pos=0.55, xshift=9pt] {$z$};
+  \draw[violet!75!black, line width=0.7pt] (P) -- (A);
+  \draw[violet!50!black, densely dashed, line width=0.35pt] (A) -- (P);
+
+  % OC, OD — labels on outer half, outside the φ wedge
+  \draw[blue!65!black, line width=0.7pt] (O) -- (C)
+    node[pos=0.82, below=1.5pt, shift={(-10pt,10pt)}, inner sep=0.5pt] {$\rho\cos\phi$};
+  \draw[blue!65!black, line width=0.7pt] (O) -- (D)
+    node[pos=0.82, above=1.5pt, inner sep=0.5pt] {$\rho\sin\phi$};
+  \draw[blue!65!black, line width=0.7pt] (C) -- (B) -- (D);
+
+  \draw[red!70!black, line width=0.95pt] (O) -- (P);
+  \fill[red!70!black] (P) circle (1.15pt) node[above right=2pt] {$P$};
+  \draw[black!30, densely dashed, line width=0.28pt]
+    (B) -- (\Px,\Py,\H);
+
+  \draw[black!70, line width=0.5pt] (0.72,0,0) arc (0:\Ph:0.72);
+  \node[yshift=-2pt] at ({0.92*cos(\Ph/2)},{0.92*sin(\Ph/2)},0) {$\phi$};
+\end{tikzpicture}

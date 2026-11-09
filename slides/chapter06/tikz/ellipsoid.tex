@@ -1,0 +1,28 @@
+\begin{tikzpicture}[font=\scriptsize, >=Stealth, line cap=round,
+    scale=0.95]
+  % Meridian (xz): prolate spheroidal — foci on z, ellipse elongated along z
+  \draw[gray!50, thin] (-1.95,0) -- (1.95,0) node[right] {$x$};
+  \draw[gray!50, thin] (0,-2.15) -- (0,2.25) node[above] {$z$};
+  % foci on z-axis
+  \fill (0,1.05) circle (1.1pt) node[right] {$F$};
+  \fill (0,-1.05) circle (1.1pt) node[right] {$F'$};
+  % ξ=const: ellipse, semi-axes (b,c)=(1.35,1.75), c>b so elongated along z
+  \draw[blue!70!black, thick] (0,0) ellipse (1.35 and 1.75);
+  \node[blue!70!black] at (1.05,1.35) {$\xi=\mathrm{const}$};
+  % η=const: east-west hyperbola, foci at (0,±1.05)
+  % (x/a)^2 - (z/b)^2 = 1 with a=0.70, asymptote-ish; keep inside frame
+  \draw[red!65!black, thick]
+    plot[domain=0.70:1.55, samples=32]
+      ({\x}, {1.05/0.70*sqrt((\x)^2-0.70^2)});
+  \draw[red!65!black, thick]
+    plot[domain=0.70:1.55, samples=32]
+      ({\x}, {-1.05/0.70*sqrt((\x)^2-0.70^2)});
+  \draw[red!65!black, thick]
+    plot[domain=0.70:1.55, samples=32]
+      ({-\x}, {1.05/0.70*sqrt((\x)^2-0.70^2)});
+  \draw[red!65!black, thick]
+    plot[domain=0.70:1.55, samples=32]
+      ({-\x}, {-1.05/0.70*sqrt((\x)^2-0.70^2)});
+  \node[red!65!black] at (1.55,0.55) {$\eta=\mathrm{const}$};
+  \node[gray] at (0,-2.35) {子午面示意（绕 $z$ 轴旋转）};
+\end{tikzpicture}

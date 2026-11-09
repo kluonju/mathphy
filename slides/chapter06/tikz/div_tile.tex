@@ -1,0 +1,66 @@
+\begin{tikzpicture}[font=\scriptsize, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.2mm]}, line width=0.55pt}]
+  % 4 x 3 x 3 stack of cells
+  \def\dx{0.68}
+  \def\dy{0.34}
+  \def\dz{0.52}
+  \foreach \i in {0,...,4} {
+    \foreach \j in {0,...,3} {
+      \foreach \k in {0,...,3} {
+        \coordinate (P\i\j\k) at
+          ({\i*\dx-\j*\dy},{0.40*\j*\dy+\k*\dz});
+      }
+    }
+  }
+  % bottom-layer cell fills (checker)
+  \foreach \i in {0,...,3} {
+    \foreach \j in {0,...,2} {
+      \pgfmathtruncatemacro{\ip}{\i+1}
+      \pgfmathtruncatemacro{\jp}{\j+1}
+      \ifodd\numexpr\i+\j\relax
+        \fill[MidnightBlue!10]
+          (P\i\j0) -- (P\ip\j0) -- (P\ip\jp0) -- (P\i\jp0) -- cycle;
+      \else
+        \fill[MidnightBlue!5]
+          (P\i\j0) -- (P\ip\j0) -- (P\ip\jp0) -- (P\i\jp0) -- cycle;
+      \fi
+    }
+  }
+  % all horizontal grids at each level
+  \foreach \k in {0,...,3} {
+    \foreach \j in {0,...,3} {
+      \draw[gray!50, line width=0.28pt] (P0\j\k) -- (P4\j\k);
+    }
+    \foreach \i in {0,...,4} {
+      \draw[gray!50, line width=0.28pt] (P\i0\k) -- (P\i3\k);
+    }
+  }
+  % vertical edges
+  \foreach \i in {0,...,4} {
+    \foreach \j in {0,...,3} {
+      \draw[gray!42, line width=0.28pt] (P\i\j0) -- (P\i\j3);
+    }
+  }
+  % outer boundary
+  \draw[MidnightBlue, line width=0.95pt]
+    (P000) -- (P400) -- (P430) -- (P030) -- cycle;
+  \draw[MidnightBlue, line width=0.95pt]
+    (P003) -- (P403) -- (P433) -- (P033) -- cycle;
+  \draw[MidnightBlue, line width=0.95pt] (P000) -- (P003);
+  \draw[MidnightBlue, line width=0.95pt] (P400) -- (P403);
+  \draw[MidnightBlue, line width=0.95pt] (P430) -- (P433);
+  \draw[MidnightBlue, line width=0.95pt] (P030) -- (P033);
+  % interior face cancellations (horizontal neighbors, mid height)
+  \draw[vec, BrickRed] ($(P201)!0.2!(P211)+(0,0.10)$) -- ++(0.24,0.05);
+  \draw[vec, BrickRed] ($(P201)!0.8!(P211)+(0.36,0.18)$) -- ++(-0.24,-0.05);
+  \draw[vec, BrickRed] ($(P111)!0.2!(P121)+(0,0.10)$) -- ++(0.24,0.05);
+  \draw[vec, BrickRed] ($(P111)!0.8!(P121)+(0.36,0.18)$) -- ++(-0.24,-0.05);
+  \draw[vec, BrickRed] ($(P311)!0.2!(P321)+(0,0.10)$) -- ++(0.24,0.05);
+  \draw[vec, BrickRed] ($(P311)!0.8!(P321)+(0.36,0.18)$) -- ++(-0.24,-0.05);
+  % vertical neighbor cancellation
+  \draw[vec, BrickRed] ($(P210)!0.35!(P211)+(-0.08,0)$) -- ++(0,0.22);
+  \draw[vec, BrickRed] ($(P210)!0.35!(P211)+(0.10,0.48)$) -- ++(0,-0.22);
+  \node[BrickRed] at ($(P302)!0.5!(P323)+(0.95,0.35)$) {内部面抵消};
+  \node[MidnightBlue] at (1.05,-0.42) {$V=\bigcup\Delta V_\alpha$};
+  \node[ForestGreen] at (3.25,2.05) {$S=\partial V$};
+\end{tikzpicture}

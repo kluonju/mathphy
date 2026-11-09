@@ -1,35 +1,54 @@
 \begin{tikzpicture}[
-    font=\small,
+    font=\scriptsize,
     >=Stealth,
-    vec/.style={-{Stealth[length=1.7mm]}, line width=0.8pt},
+    vec/.style={-{Stealth[length=1.5mm]}, line width=0.7pt},
   ]
   \coordinate (O) at (0,0);
-  \coordinate (X) at (2.10,0);
-  \coordinate (Y) at (-0.65,0.40);
-  \coordinate (Z) at (0,1.25);
-  \coordinate (XY) at (1.45,0.40);
-  \coordinate (XZ) at (2.10,1.25);
-  \coordinate (YZ) at (-0.65,1.65);
-  \coordinate (XYZ) at (1.45,1.65);
+  \coordinate (X) at (2.20,0);
+  \coordinate (Y) at (-0.70,0.42);
+  \coordinate (Z) at (0,1.35);
+  \coordinate (XY) at (1.50,0.42);
+  \coordinate (XZ) at (2.20,1.35);
+  \coordinate (YZ) at (-0.70,1.77);
+  \coordinate (XYZ) at (1.50,1.77);
 
-  \fill[gray!8] (O) -- (X) -- (XY) -- (Y) -- cycle;
-  \fill[MidnightBlue!10] (X) -- (XZ) -- (XYZ) -- (XY) -- cycle;
-  \fill[BrickRed!8] (Y) -- (XY) -- (XYZ) -- (YZ) -- cycle;
+  \fill[gray!7] (O) -- (X) -- (XY) -- (Y) -- cycle;
+  \fill[MidnightBlue!12] (X) -- (XZ) -- (XYZ) -- (XY) -- cycle;
+  \fill[BrickRed!9] (Y) -- (XY) -- (XYZ) -- (YZ) -- cycle;
+  \fill[ForestGreen!8] (Z) -- (XZ) -- (XYZ) -- (YZ) -- cycle;
+
   \draw[gray!60] (O) -- (X) -- (XY) -- (Y) -- cycle;
   \draw[gray!60] (O) -- (Z) -- (XZ) -- (X);
   \draw[gray!60] (Z) -- (YZ) -- (Y);
   \draw[gray!60] (XZ) -- (XYZ) -- (YZ);
   \draw[gray!60] (XY) -- (XYZ);
 
-  \coordinate (Fx) at ($ (X)!0.5!(XYZ) $);
-  \draw[vec, MidnightBlue] (Fx) -- ++(0.55,0.08);
-  \node[MidnightBlue, font=\scriptsize, right] at ($(Fx)+(0.58,0.10)$)
-    {$A_x(x+\Delta x)$};
+  % edge lengths
+  \node[gray!70!black] at ($(O)!0.5!(X)+(0,-0.22)$) {$\Delta x$};
+  \node[gray!70!black] at ($(O)!0.5!(Y)+(-0.28,0.02)$) {$\Delta y$};
+  \node[gray!70!black] at ($(O)!0.5!(Z)+(-0.22,0)$) {$\Delta z$};
 
-  \coordinate (Fy) at ($ (Y)!0.5!(XYZ) $);
-  \draw[vec, BrickRed] (Fy) -- ++(-0.10,0.48);
-  \node[BrickRed, font=\scriptsize, above] at ($(Fy)+(-0.02,0.52)$)
-    {$A_y(y+\Delta y)$};
+  % +x face (outward)
+  \coordinate (Fx) at ($(X)!0.5!(XYZ)$);
+  \draw[vec, MidnightBlue] (Fx) -- ++(0.52,0.08);
+  \node[MidnightBlue, align=left] at ($(Fx)+(0.95,0.22)$)
+    {$+A_x(x+\Delta x)$};
 
-  \node[font=\scriptsize, gray] at ($(O)!0.55!(XY)$) {$\Delta V$};
+  % -x face (inward contribution uses -A_x(x); arrow outward from left)
+  \coordinate (Fxm) at ($(O)!0.5!(YZ)$);
+  \draw[vec, MidnightBlue!70!black] (Fxm) -- ++(-0.42,0.06);
+  \node[MidnightBlue!70!black, align=right] at ($(Fxm)+(-0.55,0.28)$)
+    {$-A_x(x)$};
+
+  % +y face
+  \coordinate (Fy) at ($(Y)!0.55!(XYZ)$);
+  \draw[vec, BrickRed] (Fy) -- ++(-0.12,0.42);
+  \node[BrickRed] at ($(Fy)+(-0.05,0.58)$) {$+A_y(y+\Delta y)$};
+
+  % +z face
+  \coordinate (Fz) at ($(Z)!0.55!(XYZ)$);
+  \draw[vec, ForestGreen!70!black] (Fz) -- ++(0.08,0.40);
+  \node[ForestGreen!70!black] at ($(Fz)+(0.15,0.55)$) {$+A_z(z+\Delta z)$};
+
+  \node[gray] at ($(O)!0.55!(XY)+(0.05,0.15)$) {$\Delta V$};
 \end{tikzpicture}
