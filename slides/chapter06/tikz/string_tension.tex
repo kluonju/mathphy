@@ -1,0 +1,44 @@
+\begin{tikzpicture}[font=\scriptsize, >=Stealth, line cap=round,
+    vec/.style={-{Stealth[length=1.5mm]}, line width=0.7pt},
+    comp/.style={-{Stealth[length=1.3mm]}, line width=0.55pt}]
+  \draw[gray!45,->] (-0.2,0) -- (4.7,0) node[right] {$x$};
+  \draw[gray!45,->] (0,-0.55) -- (0,2.55) node[above] {$u$};
+
+  \coordinate (L) at (1.35,0.85);
+  \coordinate (R) at (2.95,1.55);
+  \draw[thick, blue!70!black] (L) -- (R);
+
+  \draw[gray, dashed] (1.35,0) -- (L);
+  \draw[gray, dashed] (2.95,0) -- (R);
+  \node[below] at (1.35,0) {$x$};
+  \node[below] at (2.95,0) {$x{+}\Delta x$};
+
+  % angles
+  \pgfmathsetmacro{\ang}{atan2(0.7,1.6)}
+  \draw[gray!70] (L) -- ++(0.75,0);
+  \draw[gray!70] (R) -- ++(0.75,0);
+  \draw (L) ++(0.48,0) arc (0:\ang:0.48);
+  \node at ($(L)+(0.62,0.16)$) {$\alpha_1$};
+  \draw (R) ++(0.48,0) arc (0:\ang:0.48);
+  \node at ($(R)+(0.62,0.16)$) {$\alpha_2$};
+
+  % left: tension and components (outward = down-left)
+  \draw[vec, red!70!black] (L) -- ++(-1.05,-0.44)
+    node[midway, above left, xshift=-1pt] {$T(x)$};
+  \draw[comp, orange!75!black] (L) -- ++(-1.05,0)
+    node[below] {$-T\cos\alpha_1$};
+  \draw[comp, ForestGreen!65!black] (L) -- ++(0,-0.44)
+    node[left] {$-T\sin\alpha_1$};
+  \draw[gray!50, densely dashed] ($(L)+(-1.05,0)$) -- ++(0,-0.44)
+    -- ($(L)+(0,-0.44)$);
+
+  % right: tension and components (outward = up-right)
+  \draw[vec, red!70!black] (R) -- ++(1.05,0.44)
+    node[midway, above right, xshift=1pt] {$T(x{+}\Delta x)$};
+  \draw[comp, orange!75!black] (R) -- ++(1.05,0)
+    node[below] {$T\cos\alpha_2$};
+  \draw[comp, ForestGreen!65!black] (R) -- ++(0,0.44)
+    node[right] {$T\sin\alpha_2$};
+  \draw[gray!50, densely dashed] ($(R)+(1.05,0)$) -- ++(0,0.44)
+    -- ($(R)+(0,0.44)$);
+\end{tikzpicture}

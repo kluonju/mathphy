@@ -11,11 +11,11 @@
     \coordinate (P) at (1.05,0.68);
     \fill[MidnightBlue] (P) circle (1.3pt);
     \draw[gray] (0,0) -- (P);
-    \draw[vec, MidnightBlue] (P) -- ++(0.52,0.34) node[right] {$\mathbf{e}_r$};
-    \draw[vec, BrickRed] (P) -- ++(-0.34,0.52) node[above] {$\mathbf{e}_\phi$};
+    \draw[vec, MidnightBlue] (P) -- ++(0.52,0.34) node[right] {$\ue_r$};
+    \draw[vec, BrickRed] (P) -- ++(-0.34,0.52) node[above] {$\ue_\phi$};
     \draw[ForestGreen, line width=0.8pt] (P) circle (0.14);
     \fill[ForestGreen] (P) circle (0.9pt);
-    \node[ForestGreen, font=\scriptsize, below left] at (P) {$\mathbf{e}_z$};
+    \node[ForestGreen, font=\scriptsize, below left] at (P) {$\ue_z$};
     \node at (1.0,-0.55) {(a) cylindrical};
   \end{scope}
 
@@ -27,9 +27,9 @@
     \coordinate (Q) at ({1.45*0.766},{1.45*0.643}); % θ≈50° from z
     \fill[MidnightBlue] (Q) circle (1.3pt);
     \draw[gray] (0,0) -- (Q);
-    \draw[vec, MidnightBlue] (Q) -- ++(0.42,0.35) node[right] {$\mathbf{e}_r$};
-    \draw[vec, BrickRed] (Q) -- ++(0.35,-0.42) node[right] {$\mathbf{e}_\theta$};
-    \draw[vec, ForestGreen] (Q) -- ++(-0.52,0.12) node[left] {$\mathbf{e}_\phi$};
+    \draw[vec, MidnightBlue] (Q) -- ++(0.42,0.35) node[right] {$\ue_r$};
+    \draw[vec, BrickRed] (Q) -- ++(0.35,-0.42) node[right] {$\ue_\theta$};
+    \draw[vec, ForestGreen] (Q) -- ++(-0.52,0.12) node[left] {$\ue_\phi$};
     \node at (1.0,-0.55) {(b) spherical};
   \end{scope}
 \end{tikzpicture}

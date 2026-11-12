@@ -12,113 +12,6 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{承接上一讲}
-  上一讲把 $\nabla$、$\nabla\cdot$、$\nabla\times$ 和 $\nabla^2$ 的几何含义钉牢，并准备了指标与张量语言。
-  \vspace{0.4em}
-
-  本讲用这些算子写出三条标准方程，再说明它们为什么分属双曲、抛物、椭圆三类。
-\end{frame}
-
-\begin{frame}{本讲提纲}
-  \begin{enumerate}
-    \item 由小段弦的动量平衡推出弦振动方程；
-    \item 由傅里叶定律和能量守恒推出热传导方程；
-    \item 在稳态下得到拉普拉斯方程与泊松方程；
-    \item 用判别式 $\Delta=B^2-AC$ 给二阶线性方程分类，并化成标准形。
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}{本讲要回答的三个问题}
-  \begin{enumerate}
-    \item 琴弦被拨动以后，位移 $u(x,t)$ 怎样运动？
-    \item 一根细杆两端维持不同温度，杆内的温度怎样变化，又怎样达到稳定？
-    \item 两块导体板之间没有电荷时，电势和电场是什么样子？
-  \end{enumerate}
-  \vspace{0.5em}
-  三条问题分别引出波动、热传导和拉普拉斯方程。每推完一条就代一个具体的函数检验。推完以后，用主部的判别式说明三类方程为何行为不同。
-\end{frame}
-
-\section{方程举例}
-
-\subsection{什么是偏微分方程}
-
-\begin{frame}{偏微分方程}
-  \textbf{偏微分方程}（partial differential equation, PDE）把多个自变量的未知函数和它的偏导数联系起来。
-  \begin{itemize}
-    \item 自变量常常是位置 $\mathbf{x}$ 和时间 $t$，也可以是动量或参数。
-    \item 未知量可以是一个标量场 $u$，也可以是向量场或张量场。
-    \item 不含时间的方程称为\textbf{稳态}方程；含时间导数的方程描述\textbf{演化}。
-  \end{itemize}
-  “解”不是一个数，而是一个函数：把它代进方程，方程变成恒等式。下面用输运方程把这件事做一遍。
-\end{frame}
-
-\subsection{输运与守恒}
-
-\begin{frame}{一阶输运方程}
-  一阶输运方程
-  \begin{equation*}
-    u_t+c\,u_x=0
-  \end{equation*}
-  描述以常速 $c$ 传播、形状不变的剖面。它的解是
-  \begin{equation*}
-    u(x,t)=g(x-ct).
-  \end{equation*}
-  把 $g(\xi)$ 代入即得 $u_t=-cg'$，$u_x=g'$，两者相加为零。
-  \vspace{0.3em}
-
-  它可以表示一维均匀流动所携带的示踪物浓度：波形整体平移，不摊平，也不来回振荡。
-\end{frame}
-
-\begin{frame}{例：一个鼓包在移动}
-  取 $c=2$，初始鼓包 $g(\xi)=e^{-\xi^2}$。则
-  \begin{equation*}
-    u(x,t)=e^{-(x-2t)^2}.
-  \end{equation*}
-  \begin{columns}[c]
-    \begin{column}{0.48\textwidth}
-      \begin{itemize}
-        \item $t=0$ 时峰在 $x=0$。
-        \item $t=1$ 时峰在 $x=2$，$t=3$ 时峰在 $x=6$。
-        \item 高度和宽度都不变。
-      \end{itemize}
-      若误写成 $e^{-(x+2t)^2}$，峰向左跑，满足的是 $u_t-2u_x=0$，不是原方程。符号决定方向。
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.82]
-        \draw[->] (0,0) -- (5.6,0) node[right] {$x$};
-        \draw[gray,dashed,thick] (0.3,0)
-          .. controls (0.7,1.15) and (1.3,1.15) .. (1.7,0);
-        \draw[blue,thick] (2.5,0)
-          .. controls (2.9,1.15) and (3.5,1.15) .. (3.9,0);
-        \node[gray] at (1.0,1.35) {$t=0$};
-        \node[blue] at (3.2,1.35) {$t>0$};
-        \draw[->] (1.85,0.45) -- (2.45,0.45);
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{连续性方程}
-  更一般地，守恒密度 $\rho(\mathbf{x},t)$ 与通量 $\mathbf{J}$ 满足\textbf{连续性方程}
-  \begin{equation*}
-    \rho_t+\nabla\cdot\mathbf{J}=s,
-  \end{equation*}
-  其中 $s$ 是源或汇。对速度为 $\mathbf{v}$ 的流体，$\mathbf{J}=\rho\mathbf{v}$，质量守恒写成
-  \begin{equation*}
-    \rho_t+\nabla\cdot(\rho\mathbf{v})=0.
-  \end{equation*}
-  散度项量度小体积上的净流出。热传导和电荷守恒也是同一种平衡律，只是通量由不同的本构关系给出。弦的推导就是对横向动量写这条平衡。
-\end{frame}
-
-\begin{frame}{从这里进入推导}
-  输运方程的通量是 $c u$，事先给定。弦和热传导不同：通量或力由未知函数自己的斜率决定，平衡律因此含有二阶导数。
-  \vspace{0.5em}
-
-  顺序是：弦的动量平衡，热的能量平衡，再令时间导数为零得到稳态。每条方程推出后，立刻代一个显式的函数，确认它确实是解。
-\end{frame}
-
-% The wider catalogue is postponed until the three equations can be recognized.
 % =============================================================
 \section{弦振动方程}
 
@@ -167,15 +60,27 @@
 \end{frame}
 
 \begin{frame}{张力的分量}
-  设左端张力大小为 $T(x)$，$\alpha_1,\alpha_2$ 分别是 $x$ 与 $x+\Delta x$ 处切线和 $x$ 轴的夹角。作用在小段上的张力分量为
-  \begin{equation*}
-    \begin{array}{c|cc}
-      & x\text{ 分量} & u\text{ 分量}\\ \hline
-      x & -T(x)\cos\alpha_1 & -T(x)\sin\alpha_1\\
-      x+\Delta x & T(x+\Delta x)\cos\alpha_2 & T(x+\Delta x)\sin\alpha_2.
-    \end{array}
-  \end{equation*}
-  水平方向没有加速度，所以水平合力为零。
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      左端张力大小 $T(x)$，$\alpha_1,\alpha_2$ 分别是
+      $x$ 与 $x+\Delta x$ 处切线与 $x$ 轴的夹角。
+      作用在小段上的张力分量：
+      \begin{equation*}
+        \begin{array}{c|cc}
+          & x\text{ 分量} & u\text{ 分量}\\ \hline
+          x & -T\cos\alpha_1 & -T\sin\alpha_1\\
+          x+\Delta x & T\cos\alpha_2 & T\sin\alpha_2.
+        \end{array}
+      \end{equation*}
+      右端写 $T(x+\Delta x)$。水平方向无加速度，水平合力为零。
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \centering
+      \vspace{0.2em}
+      \scalebox{0.95}{\input{tikz/string_tension.tex}}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{小斜率：张力为常数}
@@ -512,177 +417,200 @@
 
 \subsection{一般二阶线性方程}
 
-\begin{frame}{为什么要分类}
-  刚才推出的三个方程，解的行为明显不同：波动把信号以有限速度送出去，热传导把差异抹平，拉普拉斯方程描述平衡。
-  \vspace{0.4em}
-
-  差别编码在最高阶导数那一部分，也就是方程的\textbf{主部}。低阶项可以改变衰减和源，但不决定类型。
-  \vspace{0.4em}
-
-  顺序是：先写出判别式，并对波动、热传导、拉普拉斯三个方程各算一次；再说明特征线；最后用换元证明类型与坐标无关，并化成标准形。
-\end{frame}
-
-\begin{frame}{两个自变量}
-  两个自变量的线性二阶方程写成
+\begin{frame}{先看已经推出的三个方程}
+  本讲前面得到
   \begin{equation*}
-    A u_{xx}+2B u_{xy}+C u_{yy}
-    +D u_x+E u_y+Fu=G.
+    u_{tt}-a^2u_{xx}=0,
+    \qquad
+    u_t=\kappa u_{xx},
+    \qquad
+    u_{xx}+u_{yy}=0.
   \end{equation*}
-  系数 $A,B,C,D,E,F,G$ 是 $x,y$ 的已知实函数。这里的 $x,y$ 是一对自变量的名字：可以都是空间坐标，也可以一个是时间。
-  \vspace{0.3em}
+  解的表现不同：波动以有限速度传播，热传导抹平差异，拉普拉斯描述稳态。
+  \vspace{0.35em}
 
-  方程和数据都是线性的，所以方程与数据分别叠加时，解也叠加。
+  差别出在\textbf{最高阶导数}那一部分，称为方程的\textbf{主部}。
+  低阶项可以改衰减或加源，但不决定下面要说的类型。
 \end{frame}
 
-\begin{frame}{多个自变量}
-  对自变量 $x_1,\ldots,x_n$，二阶线性方程是
+\begin{frame}{多个自变量的一般形式}
+  对自变量 $x_1,\ldots,x_n$，二阶线性方程可写成
   \begin{equation*}
     \sum_{i,j=1}^n a_{ij}(\mathbf{x})\,u_{x_ix_j}
     +\sum_{i=1}^n b_i(\mathbf{x})\,u_{x_i}
     +c(\mathbf{x})\,u+f(\mathbf{x})=0.
   \end{equation*}
-  两个自变量时，分类和化成标准形都可以直接写出来。下面只做这一情形。
+  第一项是主部。下面把自变量个数限制为 $2$，
+  以便写出判别式、特征线，并化成标准形。
 \end{frame}
 
-\begin{frame}{判别式}
-  对 $A u_{xx}+2B u_{xy}+C u_{yy}+\cdots=0$，定义
+\begin{frame}{两个自变量}
+  取自变量为 $x,y$，一般形式写成
   \begin{equation*}
-    \Delta=B^2-AC.
+    a u_{xx}+2b u_{xy}+c u_{yy}
+    +d u_x+e u_y+fu=g.
   \end{equation*}
-  在主部系数不同时为零的点，
+  系数 $a,b,c,d,e,f,g$ 是 $x,y$ 的已知实函数；
+  $x,y$ 可以都是空间，也可以一个是时间。
+  \vspace{0.3em}
+
+  主部是 $a u_{xx}+2b u_{xy}+c u_{yy}$。后文的分类都针对这一写法。
+\end{frame}
+
+\begin{frame}{判别式与三种类型}
+  定义\textbf{判别式}
+  \begin{equation*}
+    \Delta=b^2-ac.
+  \end{equation*}
+  在主部系数不全为零的点，按 $\Delta$ 的符号把方程分成三类：
   \begin{center}
-  \begin{tabular}{lll}
-    $\Delta>0$ & 双曲型 & 波动式传播\\
-    $\Delta=0$ & 抛物型 & 扩散式演化\\
-    $\Delta<0$ & 椭圆型 & 平衡或势场
+  \begin{tabular}{ll}
+    $\Delta>0$ & \textbf{双曲型}（hyperbolic）\\
+    $\Delta=0$ & \textbf{抛物型}（parabolic）\\
+    $\Delta<0$ & \textbf{椭圆型}（elliptic）
   \end{tabular}
   \end{center}
-  \vspace{0.4em}
-  系数变化时，类型可以随区域改变。判断类型不用先换坐标。
+  系数随点变化时，同一方程在不同区域可以属于不同类型。
 \end{frame}
 
-\begin{frame}{三个标准例子的判别式}
-  写明哪个变量充当一般形式里的 $x,y$。
+\begin{frame}{用判别式核对三个方程}
+  先固定一般形式里哪个变量叫 $x$、哪个叫 $y$（波速仍记为 $a$）。
   \begin{itemize}
-    \item 波动 $u_{tt}-a^2u_{xx}=0$：第一变量取 $t$，则 $A=1$，$B=0$，$C=-a^2$，$\Delta=a^2>0$，双曲。
-    \item 热传导 $u_t-\kappa u_{xx}=0$：没有 $u_{tt}$。若第一变量取 $x$，则 $A=-\kappa$，$B=C=0$，$\Delta=0$，抛物。
-    \item 拉普拉斯 $u_{xx}+u_{yy}=0$：$A=C=1$，$B=0$，$\Delta=-1<0$，椭圆。
+    \item $u_{tt}-a^2u_{xx}=0$：取 $(x,y)=(t,x)$，
+      主部系数为 $1,0,-a^2$，$\Delta=a^2>0$，双曲型。
+    \item $u_t-\kappa u_{xx}=0$：取 $(x,y)=(x,t)$，
+      主部系数为 $-\kappa,0,0$，$\Delta=0$，抛物型。
+    \item $u_{xx}+u_{yy}=0$：
+      主部系数为 $1,0,1$，$\Delta=-1<0$，椭圆型。
   \end{itemize}
-  本讲前面推出的三个行为——振荡传播、抹平、平衡——正好是这三种符号。
+  三种符号正好对应前面看到的三种行为。
 \end{frame}
 
-\subsection{换元与特征线}
+\subsection{坐标变换与特征线}
 
-\begin{frame}{非奇异的自变量替换}
-  作非奇异变换
+\begin{frame}{为什么要作坐标变换}
+  分类只看主部。若能换一组新自变量 $\xi,\eta$，
+  把主部化成更简单的标准写法，讨论和解方程都会方便。
+  \vspace{0.35em}
+
+  要求变换\textbf{非奇异}：
   \begin{equation*}
     \xi=\xi(x,y),\qquad \eta=\eta(x,y),
     \qquad
-    \frac{\partial(\xi,\eta)}{\partial(x,y)}\neq 0.
+    J=\xi_x\eta_y-\xi_y\eta_x\neq 0,
   \end{equation*}
-  链式法则先给出
+  这样局部可逆，新旧变量互为光滑函数。
+\end{frame}
+
+\begin{frame}{一阶导数的链式法则}
   \begin{align*}
     u_x&=u_\xi\xi_x+u_\eta\eta_x,\\
     u_y&=u_\xi\xi_y+u_\eta\eta_y.
   \end{align*}
-  雅可比不为零，保证新坐标在局部真的是一组坐标，类型不会被退化的换元弄假。
+  再对 $x,y$ 求一次导，就得到 $u_{xx},u_{xy},u_{yy}$
+  用 $u_{\xi\xi},u_{\xi\eta},u_{\eta\eta}$ 以及低阶项表示的展开式。
 \end{frame}
 
-\begin{frame}{二阶导数}
-  再求一次导数：
+\begin{frame}{二阶导数的展开}
+  \footnotesize
   \begin{align*}
     u_{xx}={}&u_{\xi\xi}\xi_x^2+2u_{\xi\eta}\xi_x\eta_x
       +u_{\eta\eta}\eta_x^2
-      +u_\xi\xi_{xx}+u_\eta\eta_{xx},\\[4pt]
+      +u_\xi\xi_{xx}+u_\eta\eta_{xx},\\
     u_{yy}={}&u_{\xi\xi}\xi_y^2+2u_{\xi\eta}\xi_y\eta_y
       +u_{\eta\eta}\eta_y^2
-      +u_\xi\xi_{yy}+u_\eta\eta_{yy}.
-  \end{align*}
-  $u_{xy}$ 同样展开后含有 $u_{\xi\xi}$、$u_{\xi\eta}$、$u_{\eta\eta}$，以及 $u_\xi,u_\eta$ 乘坐标二阶导数的低阶项。
-\end{frame}
-
-\begin{frame}{混合导数与变换后的方程}
-  \begin{align*}
+      +u_\xi\xi_{yy}+u_\eta\eta_{yy},\\
     u_{xy}={}&u_{\xi\xi}\xi_x\xi_y
       +u_{\xi\eta}(\xi_x\eta_y+\xi_y\eta_x)
-      +u_{\eta\eta}\eta_x\eta_y\\
-      &+u_\xi\xi_{xy}+u_\eta\eta_{xy}.
+      +u_{\eta\eta}\eta_x\eta_y
+      +u_\xi\xi_{xy}+u_\eta\eta_{xy}.
   \end{align*}
-  代入原方程后仍是线性的：
+\end{frame}
+
+\begin{frame}{变换后的方程}
+  代入原方程，仍得到关于 $u(\xi,\eta)$ 的线性二阶方程。
+  新系数用大写：
   \begin{equation*}
     A_{11}u_{\xi\xi}+2A_{12}u_{\xi\eta}+A_{22}u_{\eta\eta}
-    +B_1u_\xi+B_2u_\eta+\widetilde C u+\widetilde F=0.
+    +B_1u_\xi+B_2u_\eta+Cu=G.
   \end{equation*}
-\end{frame}
-
-\begin{frame}{新的主部系数}
+  其中主部系数为
   \begin{align*}
-    A_{11}&=A\xi_x^2+2B\xi_x\xi_y+C\xi_y^2,\\
-    A_{12}&=A\xi_x\eta_x+B(\xi_x\eta_y+\xi_y\eta_x)+C\xi_y\eta_y,\\
-    A_{22}&=A\eta_x^2+2B\eta_x\eta_y+C\eta_y^2.
+    A_{11}&=a\xi_x^2+2b\xi_x\xi_y+c\xi_y^2,\\
+    A_{12}&=a\xi_x\eta_x+b(\xi_x\eta_y+\xi_y\eta_x)+c\xi_y\eta_y,\\
+    A_{22}&=a\eta_x^2+2b\eta_x\eta_y+c\eta_y^2,
   \end{align*}
-  主部系数是旧系数 $(A,B,C)$ 的二次型，作用在新坐标的梯度上。分类只看它们。
+  且 $C=f$，$G=g$；低阶系数 $B_1,B_2$ 还含 $\xi,\eta$ 的二阶导数。
 \end{frame}
 
-\begin{frame}{低阶系数}
-  化成完整的新方程时还需要
-  \begin{align*}
-    B_1&=A\xi_{xx}+2B\xi_{xy}+C\xi_{yy}+D\xi_x+E\xi_y,\\
-    B_2&=A\eta_{xx}+2B\eta_{xy}+C\eta_{yy}+D\eta_x+E\eta_y,\\
-    \widetilde C&=F,\qquad \widetilde F=-G.
-  \end{align*}
-  这些项不影响类型。坐标二阶导数出现在 $B_1,B_2$ 里，是因为链式法则作用在一阶导数上。
+\begin{frame}{类型在非奇异变换下不变}
+  直接计算可得
+  \begin{equation*}
+    A_{12}^2-A_{11}A_{22}
+    =(b^2-ac)\,J^2
+    =\Delta\,J^2.
+  \end{equation*}
+  因为 $J\neq 0$，有 $J^2>0$，故新判别式与原判别式 $\Delta$ 同号。
+  \vspace{0.35em}
+
+  因此双曲、抛物、椭圆是方程本身的性质，与坐标选取无关。
+  所谓化成\textbf{标准形}，只是换一种更干净的主部写法。
 \end{frame}
 
-\begin{frame}{怎样消去 $u_{\xi\xi}$}
-  希望 $A_{11}=0$。对一个函数 $z(x,y)$，这就是
+\begin{frame}{怎样消掉 $u_{\xi\xi}$：特征方程}
+  若选取 $\xi(x,y)$ 使 $A_{11}=0$，则主部里不再出现 $u_{\xi\xi}$。
+  这要求
   \begin{equation*}
-    A z_x^2+2B z_x z_y+C z_y^2=0.
+    a\xi_x^2+2b\xi_x\xi_y+c\xi_y^2=0.
   \end{equation*}
-  等值线 $z(x,y)=\text{常数}$ 满足 $\mathrm{d}y/\mathrm{d}x=-z_x/z_y$。令 $p=\mathrm{d}y/\mathrm{d}x$，则 $z_x/z_y=-p$。用 $z_y^2$ 去除上面的二次式，
+  沿等值线 $\xi=\mathrm{const}$ 有
+  $p=\mathrm{d}y/\mathrm{d}x=-\xi_x/\xi_y$。
+  代入并整理，得到\textbf{特征方程}
   \begin{equation*}
-    A p^2-2B p+C=0.
+    a p^2-2b p+c=0.
   \end{equation*}
-  这就是\textbf{特征方程}。
 \end{frame}
 
-\begin{frame}{特征方程的根}
+\begin{frame}{特征方程的根与类型}
+  设 $a\neq 0$，则
   \begin{equation*}
-    \frac{\mathrm{d}y}{\mathrm{d}x}
-    =\frac{B\pm\sqrt{B^2-AC}}{A}
-    =\frac{B\pm\sqrt{\Delta}}{A},
+    p=\frac{b\pm\sqrt{\Delta}}{a}.
   \end{equation*}
-  这里设 $A\neq 0$。若 $A=0$ 而 $C\neq 0$，交换两个自变量即可；热方程若把空间变量放在前面，含 $u_{xx}$ 的系数就不是零。
+  （若 $a=0$ 而 $c\neq 0$，交换 $x,y$ 即可。）
   \begin{itemize}
-    \item $\Delta>0$：两族不同的实特征线。
-    \item $\Delta=0$：一族重合的实特征线。
-    \item $\Delta<0$：没有实特征曲线。
+    \item $\Delta>0$：两个不同实根 $\Rightarrow$ 两族实\textbf{特征曲线}；
+    \item $\Delta=0$：一个实重根 $\Rightarrow$ 一族实特征曲线；
+    \item $\Delta<0$：无实根 $\Rightarrow$ 无实特征曲线。
   \end{itemize}
+  特征曲线就是用来选取新坐标 $\xi,\eta$ 的几何对象。
 \end{frame}
 
-\begin{frame}{例：右行波骑在一条特征线上}
-  前面的右行波 $u=g(x-at)$ 沿直线 $x-at=\text{常数}$ 取值不变。这就是波动方程的一族特征线。
-  \vspace{0.4em}
-
-  因此扰动不能比这些直线跑得更快。在 $x=0$ 处于 $t=0$ 拨动弦，影响要到
+\begin{frame}{例：波动方程的特征线}
+  对 $u_{tt}-a^2u_{xx}=0$，特征方程给出
+  $\mathrm{d}x/\mathrm{d}t=\pm a$，即
   \begin{equation*}
-    t=\frac{\ell}{a}
+    x-at=\mathrm{const},
+    \qquad
+    x+at=\mathrm{const}.
   \end{equation*}
-  才到达 $x=\ell$。热方程没有这样的一对斜线：理想模型里，曲率项会立刻改变整条杆上的温度变化率。
+  前面的右行波 $u=g(x-at)$ 正好沿第一条特征线为常数。
+  \vspace{0.3em}
+
+  扰动沿特征线传播，速度不超过 $a$。
 \end{frame}
 
-\begin{frame}{特征线长什么样}
+\begin{frame}{三类方程的特征线示意}
   \begin{columns}[c]
     \begin{column}{0.33\textwidth}
       \centering
-      双曲，$a=1$\\
+      双曲\\
       \begin{tikzpicture}[scale=0.42]
         \draw[->] (0,0) -- (3.4,0) node[right] {$x$};
         \draw[->] (0,0) -- (0,3.4) node[above] {$t$};
         \draw[blue] (0,0.2) -- (2.8,3.0);
         \draw[blue] (0,3.0) -- (2.8,0.2);
       \end{tikzpicture}\\
-      {\small $x\pm at=$ 常数}
+      {\small $x\pm at=\mathrm{const}$}
     \end{column}
     \begin{column}{0.33\textwidth}
       \centering
@@ -694,7 +622,7 @@
         \draw[blue] (0,1.8) -- (3.0,1.8);
         \draw[blue] (0,2.8) -- (3.0,2.8);
       \end{tikzpicture}\\
-      {\small 热方程：$t=$ 常数}
+      {\small 热方程：$t=\mathrm{const}$}
     \end{column}
     \begin{column}{0.32\textwidth}
       \centering
@@ -705,141 +633,53 @@
         \draw[gray] (1.6,1.6) circle (1.05);
         \node at (1.6,1.6) {\small 无实特征};
       \end{tikzpicture}\\
-      {\small 边界数据包围区域}
+      {\small 数据落在边界上}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}{类型在换元下不变}
-  直接计算得到
-  \begin{equation*}
-    A_{12}^2-A_{11}A_{22}
-    =(B^2-AC)\,(\xi_x\eta_y-\xi_y\eta_x)^2.
-  \end{equation*}
-  雅可比的平方不为零，也不能为负，所以新判别式和 $\Delta$ 同号。
-  \vspace{0.4em}
-
-  因此双曲、抛物、椭圆是方程的性质，不是坐标系的偶然结果。标准形只是把这种性质写成最干净的主部。
-\end{frame}
-
 \subsection{三种标准形}
 
-\begin{frame}{双曲型：沿两族特征线}
-  双曲方程取两族独立的实特征线作为 $\xi$ 和 $\eta$。于是 $A_{11}=A_{22}=0$，变换后的方程变成
-  \begin{equation*}
-    u_{\xi\eta}
-    =-\frac{1}{2A_{12}}
-      \bigl(B_1u_\xi+B_2u_\eta+\widetilde C u+\widetilde F\bigr).
-  \end{equation*}
-  主部只剩混合导数。这是第一种标准形。
-\end{frame}
-
-\begin{frame}{双曲型：差的平方}
-  再作
-  \begin{equation*}
-    \xi=\alpha+\beta,\qquad \eta=\alpha-\beta,
-    \qquad
-    \alpha=\frac{\xi+\eta}{2},\quad
-    \beta=\frac{\xi-\eta}{2}.
-  \end{equation*}
-  链式法则给出
-  \begin{align*}
-    u_{\xi\eta}&=\frac14\bigl(u_{\alpha\alpha}-u_{\beta\beta}\bigr),\\
-    u_\xi&=\frac12(u_\alpha+u_\beta),
-    \qquad
-    u_\eta=\frac12(u_\alpha-u_\beta).
-  \end{align*}
-\end{frame}
-
 \begin{frame}{双曲型标准形}
-  代入以后，
+  $\Delta>0$ 时取两族实特征曲线为 $\xi=\mathrm{const}$、$\eta=\mathrm{const}$，
+  则 $A_{11}=A_{22}=0$，方程化为
   \begin{equation*}
-    \begin{aligned}
-    u_{\alpha\alpha}-u_{\beta\beta}
-    =-\frac{1}{A_{12}}\Big[&(B_1+B_2)u_\alpha
-      +(B_1-B_2)u_\beta\\
-      &+2\widetilde C u+2\widetilde F\Big].
-    \end{aligned}
+    2A_{12}u_{\xi\eta}+B_1u_\xi+B_2u_\eta+Cu=G.
   \end{equation*}
-  主部是两个纯二阶导数之差。一维波动方程已经是这个形式。
-  \vspace{0.3em}
-
-  例如 $u_{tt}-a^2u_{xx}=0$，令 $\xi=x$、$\eta=at$，则 $u_{tt}=a^2u_{\eta\eta}$，方程化为 $u_{\eta\eta}-u_{\xi\xi}=0$。
-\end{frame}
-
-\begin{frame}{抛物型：只剩一个二阶导数}
-  $\Delta=B^2-AC=0$ 时，特征方程只有一个根 $\mathrm{d}y/\mathrm{d}x=B/A$。用这族特征线作 $\xi$，再选一个\textbf{不是}特征线的第二坐标 $\eta$。
-  \vspace{0.3em}
-
-  由 $\xi_x/\xi_y=-B/A$，
-  \begin{align*}
-    A_{11}&=\xi_y^2\left[
-      A\Bigl(\frac{\xi_x}{\xi_y}\Bigr)^2
-      +2B\frac{\xi_x}{\xi_y}+C\right]=0,\\
-    A_{12}&=-\frac{\xi_y\eta_y}{A}(B^2-AC)=0.
-  \end{align*}
-  $A_{12}$ 里明确出现 $\Delta$，所以抛物型时混合项也消失。
+  再令 $\alpha=(\xi+\eta)/2$，$\beta=(\xi-\eta)/2$，主部可写成
+  \begin{equation*}
+    u_{\alpha\alpha}-u_{\beta\beta}.
+  \end{equation*}
+  一维波动方程 $u_{tt}-a^2u_{xx}=0$ 已经是这种差的形式。
 \end{frame}
 
 \begin{frame}{抛物型标准形}
-  剩下的系数是
+  $\Delta=0$ 时只有一族实特征曲线。取它为 $\xi=\mathrm{const}$，
+  另取与之独立的 $\eta$（保证 $J\neq 0$），则
+  $A_{11}=A_{12}=0$，方程化为
   \begin{equation*}
-    A_{22}=\eta_y^2\left[
-      \sqrt{A}\,\frac{\eta_x}{\eta_y}\pm\sqrt{C}
-    \right]^2.
+    A_{22}u_{\eta\eta}+B_1u_\xi+B_2u_\eta+Cu=G.
   \end{equation*}
-  $\Delta=0$ 时主部是一个完全平方，所以只留下一个二阶方向。只要 $\eta$ 不满足特征方程，就有 $A_{22}\neq 0$。标准主部是单独一个二阶导数：
-  \begin{equation*}
-    u_{\eta\eta}
-    =-\frac{1}{A_{22}}
-      \bigl(B_1u_\xi+B_2u_\eta+\widetilde C u+\widetilde F\bigr).
-  \end{equation*}
-  热方程是标准的物理例子：时间导数是一阶的，空间导数是二阶的。
-\end{frame}
-
-\begin{frame}{椭圆型：复特征线}
-  椭圆方程的特征坐标是共轭复数，$\eta=\xi^{*}$。写成
-  \begin{equation*}
-    \xi=\alpha+\mathrm{i}\beta,\qquad
-    \eta=\alpha-\mathrm{i}\beta,
-  \end{equation*}
-  即
-  \begin{equation*}
-    \alpha=\frac{\xi+\eta}{2},\qquad
-    \beta=\frac{\xi-\eta}{2\mathrm{i}}.
-  \end{equation*}
-  $\alpha,\beta$ 是实坐标。中间恒等式为
-  \begin{align*}
-    u_{\xi\eta}&=\frac14\bigl(u_{\alpha\alpha}+u_{\beta\beta}\bigr),\\
-    u_\xi&=\frac12(u_\alpha-\mathrm{i}u_\beta),
-    \qquad
-    u_\eta=\frac12(u_\alpha+\mathrm{i}u_\beta).
-  \end{align*}
+  主部只剩一个二阶导数。热传导方程是典型例子：
+  时间方向一阶，空间方向二阶。
 \end{frame}
 
 \begin{frame}{椭圆型标准形}
-  混合导数形式因此变成
+  $\Delta<0$ 时无实特征曲线。取共轭复特征作中间变量，
+  再回到实坐标 $\alpha,\beta$，主部化为
   \begin{equation*}
-    \begin{aligned}
-    u_{\alpha\alpha}+u_{\beta\beta}
-    =-\frac{1}{A_{12}}\Big[&(B_1+B_2)u_\alpha
-      +\mathrm{i}(B_2-B_1)u_\beta\\
-      &+2\widetilde C u+2\widetilde F\Big].
-    \end{aligned}
+    u_{\alpha\alpha}+u_{\beta\beta}.
   \end{equation*}
-  主部是两个纯二阶导数之和，而不是差。
-  \vspace{0.3em}
-
-  稳态温度、静电势、稳态浓度，以及无旋稳态流动，都落到这一类。
+  拉普拉斯方程 $u_{xx}+u_{yy}=0$ 已经是这种和的形式。
 \end{frame}
 
-\begin{frame}{分类告诉你该给什么数据}
+\begin{frame}{类型与定解条件}
   \begin{itemize}
-    \item 一维波动方程 $u_{tt}-a^2u_{xx}=0$：双曲。要初始位移和初始速度，扰动沿特征线传播。
-    \item 热方程 $u_t-\kappa u_{xx}=0$：抛物。通常给初始温度；时间的负方向上问题会不稳定。
-    \item 拉普拉斯方程 $u_{xx}+u_{yy}=0$：椭圆。没有初始时刻，边界数据决定内部的场。
+    \item 双曲型：通常给初值 $u$、$u_t$；扰动沿特征线传播。
+    \item 抛物型：通常给初值 $u$；时间反演一般不适定。
+    \item 椭圆型：无时间初值，由边界条件确定解。
   \end{itemize}
-  类型选错数据，问题会没有解、解不唯一，或解不连续地依赖数据。
+  定解条件须与类型匹配，否则问题可能不适定。
 \end{frame}
 
 
