@@ -1,0 +1,407 @@
+% Solutions to Homework 7 — Math Physics Methods (数学物理方法)
+
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{ctex}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+
+\theoremstyle{remark}
+\newtheorem{problem}{}
+\theoremstyle{definition}
+\newtheorem{solution}{解}
+
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+\setlength{\headheight}{15.11996pt}
+\setlength{\topmargin}{-3.11996pt}
+
+\newcommand{\duedate}{\zhdate{2026/11/17}}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyhead[L]{数学物理方法}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{课后习题柒 \quad 参考解答}
+
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{截止日期\duedate}
+\fancyfoot[R]{任课教师:罗凯}
+
+\begin{document}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+
+%==========================================================================
+\begin{problem}
+  将 $\delta(x)$ 展为实数形式的傅里叶积分.
+\end{problem}
+
+\begin{solution}
+$\delta$ 函数的复数傅里叶积分是
+\[
+\delta(x)
+=\frac{1}{2\pi}\int_{-\infty}^{\infty} e^{\mathrm{i}\omega x}\,\mathrm{d}\omega.
+\]
+由欧拉公式 $e^{\mathrm{i}\omega x}=\cos(\omega x)+\mathrm{i}\sin(\omega x)$，
+\begin{equation*}
+\delta(x)
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\cos(\omega x)\,\mathrm{d}\omega
++\frac{\mathrm{i}}{2\pi}\int_{-\infty}^{\infty}\sin(\omega x)\,\mathrm{d}\omega.
+\end{equation*}
+$\delta(x)$ 是实偶函数，$\sin(\omega x)$ 对 $\omega$ 为奇，故虚部积分为零。于是实数形式为
+\[
+\delta(x)
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\cos(\omega x)\,\mathrm{d}\omega
+=\frac{1}{\pi}\int_0^{\infty}\cos(\omega x)\,\mathrm{d}\omega.
+\]
+（第二式用了被积函数对 $\omega$ 偶。）
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  设 $g(x)$ 在实轴上连续，$a\neq 0$ 为常数. 计算
+  \[
+  \int_{-\infty}^{\infty} g(x)\,\delta\!\left(x^3+ax\right)\,\mathrm{d}x.
+  \]
+\end{problem}
+
+\begin{solution}
+令 $f(x)=x^3+ax=x(x^2+a)$，则 $f'(x)=3x^2+a$。用复合公式
+\[
+\delta\bigl(f(x)\bigr)
+=\sum_{i}\frac{\delta(x-x_i)}{|f'(x_i)|},
+\]
+其中求和遍及全部简单实零点。
+
+\medskip
+\noindent\textbf{情形 $a>0$。}
+$x^2+a>0$ 恒成立，唯一实根 $x=0$。且 $f'(0)=a\neq 0$，故
+\[
+\delta(x^3+ax)=\frac{\delta(x)}{|a|}=\frac{\delta(x)}{a}.
+\]
+因此
+\[
+\int_{-\infty}^{\infty} g(x)\,\delta(x^3+ax)\,\mathrm{d}x
+=\frac{g(0)}{a}.
+\]
+
+\medskip
+\noindent\textbf{情形 $a<0$。}
+三个简单实根
+\[
+x_0=0,\qquad
+x_{\pm}=\pm\sqrt{-a}.
+\]
+各点导数值
+\begin{align*}
+f'(0)&=a,
+\qquad |f'(0)|=-a=|a|,\\
+f'(x_{\pm})
+&=3(-a)+a=-2a=2|a|.
+\end{align*}
+于是
+\[
+\delta(x^3+ax)
+=\frac{\delta(x)}{|a|}
++\frac{\delta\bigl(x-\sqrt{-a}\bigr)}{2|a|}
++\frac{\delta\bigl(x+\sqrt{-a}\bigr)}{2|a|}.
+\]
+积分给出
+\[
+\int_{-\infty}^{\infty} g(x)\,\delta(x^3+ax)\,\mathrm{d}x
+=\frac{g(0)}{|a|}
++\frac{g\bigl(\sqrt{-a}\bigr)+g\bigl(-\sqrt{-a}\bigr)}{2|a|}.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+请阅读 Robin Chapman 写的关于巴塞尔问题的文章《Evaluating $\zeta(2)$》，给出一种其积分表示.
+\end{problem}
+
+\begin{solution}
+Chapman 文中给出的一种标准积分表示是双重几何级数
+\[
+\frac{1}{1-xy}
+=\sum_{n=0}^{\infty}(xy)^n,
+\qquad 0\leq x,y<1.
+\]
+在单位正方形上积分，
+\begin{align*}
+\int_0^1\int_0^1\frac{\mathrm{d}x\,\mathrm{d}y}{1-xy}
+&=\sum_{n=0}^{\infty}
+  \int_0^1\int_0^1 (xy)^n\,\mathrm{d}x\,\mathrm{d}y
+=\sum_{n=0}^{\infty}\frac{1}{(n+1)^2}
+=\zeta(2).
+\end{align*}
+因此
+\[
+\zeta(2)=\int_0^1\int_0^1\frac{\mathrm{d}x\,\mathrm{d}y}{1-xy}.
+\]
+（与课程中由 $\mathcal{L}\{t\}=1/p^2$ 推出的
+$\zeta(2)=\displaystyle\int_0^{\infty}t/(e^t-1)\,\mathrm{d}t$
+是同一常数的另一积分写法；二者都等于 $\pi^2/6$。）
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  计算下列表达式的拉普拉斯变换的像函数
+  \begin{enumerate}
+    \item $\dfrac{1}{t}\bigl(e^{\beta t}-e^{\alpha t}\bigr)$;
+    \item $\displaystyle\int_0^t\dfrac{\sin u}{u}\,\mathrm{d}u$;
+    \item $\dfrac{1}{\sqrt{\pi t}}$.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\noindent\textbf{(1)}
+由参数积分规则：若 $f(t)\longleftrightarrow\bar f(p)$，且 $f(t)/t$ 在 $t\to 0$ 附近有界，则
+\[
+\frac{f(t)}{t}
+\longleftrightarrow
+\int_p^{\infty}\bar f(q)\,\mathrm{d}q.
+\]
+取 $f(t)=e^{\beta t}-e^{\alpha t}$，则
+$\bar f(p)=1/(p-\beta)-1/(p-\alpha)$（在 $\mathrm{Re}\,p$ 足够大时）。因此
+\begin{align*}
+\mathcal{L}\Biggl\{\frac{e^{\beta t}-e^{\alpha t}}{t}\Biggr\}
+&=\int_p^{\infty}
+  \Biggl(\frac{1}{q-\beta}-\frac{1}{q-\alpha}\Biggr)\mathrm{d}q
+=\Biggl[\ln\frac{q-\beta}{q-\alpha}\Biggr]_p^{\infty}
+=\ln\frac{p-\alpha}{p-\beta}.
+\end{align*}
+（也可用费曼技巧：令 $I(\lambda)=\int_0^{\infty}e^{-\lambda t}/t\,\mathrm{d}t$ 在差商意义下理解，
+对 $\lambda$ 求导得 $-1/\lambda$，再积分并作差。）
+
+\medskip
+\noindent\textbf{(2)}
+积分定理：$\mathcal{L}\{\int_0^t\psi\}=\mathcal{L}\{\psi\}/p$。取 $\psi(t)=(\sin t)/t$。
+由 (1) 的同类计算，或直接
+\[
+\mathcal{L}\{\sin t\}=\frac{1}{p^2+1}
+\qquad\Longrightarrow\qquad
+\mathcal{L}\Biggl\{\frac{\sin t}{t}\Biggr\}
+=\int_p^{\infty}\frac{\mathrm{d}q}{q^2+1}
+=\frac{\pi}{2}-\arctan p.
+\]
+再除以 $p$，
+\[
+\mathcal{L}\Biggl\{\int_0^t\frac{\sin u}{u}\,\mathrm{d}u\Biggr\}
+=\frac{1}{p}\Biggl(\frac{\pi}{2}-\arctan p\Biggr)
+=\frac{\operatorname{arccot} p}{p}.
+\]
+
+\medskip
+\noindent\textbf{(3)}
+先由 $\Gamma$ 函数：
+\[
+\mathcal{L}\{t^{-1/2}\}
+=\int_0^{\infty}t^{-1/2}e^{-pt}\,\mathrm{d}t
+=p^{-1/2}\Gamma\Bigl(\tfrac12\Bigr)
+=\sqrt{\frac{\pi}{p}}.
+\]
+因此
+\[
+\mathcal{L}\Biggl\{\frac{1}{\sqrt{\pi t}}\Biggr\}
+=\frac{1}{\sqrt{\pi}}\cdot\sqrt{\frac{\pi}{p}}
+=\frac{1}{\sqrt{p}}.
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  计算下列表达式的拉普拉斯变换的原函数
+  \begin{enumerate}
+    \item $\bar f(p)=\dfrac{3p}{p^2-1}$;
+    \item $\bar f(p)=\dfrac{4p-1}{(p^2+p)(4p^2-1)}$.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\noindent\textbf{(1)}
+裂项
+\[
+\frac{3p}{p^2-1}
+=\frac{3p}{(p-1)(p+1)}
+=\frac{3}{2}\Biggl(\frac{1}{p-1}+\frac{1}{p+1}\Biggr).
+\]
+逐项反演，
+\[
+f(t)
+=\frac{3}{2}\bigl(e^{t}+e^{-t}\bigr)
+=3\cosh t.
+\]
+
+\medskip
+\noindent\textbf{(2)}
+分母 $p(p+1)(2p-1)(2p+1)$。设
+\[
+\frac{4p-1}{p(p+1)(2p-1)(2p+1)}
+=\frac{A}{p}+\frac{B}{p+1}+\frac{C}{p-\tfrac12}+\frac{D}{p+\tfrac12}.
+\]
+留数／待定系数：
+\begin{align*}
+A
+&=\frac{4\cdot 0-1}{(0+1)(0-1)}=\frac{-1}{-1}=1,\\
+B
+&=\frac{4(-1)-1}{(-1)\bigl(4(-1)^2-1\bigr)}
+=\frac{-5}{(-1)\cdot 3}=\frac{5}{3},\\
+C
+&=\frac{4\cdot\tfrac12-1}{\tfrac12\cdot\tfrac32\cdot 2}
+=\frac{1}{\tfrac12\cdot\tfrac32\cdot 2}=\frac{1}{3},\\
+D
+&=\frac{4\cdot\bigl(-\tfrac12\bigr)-1}{\bigl(-\tfrac12\bigr)\cdot\tfrac12\cdot(-2)}
+=\frac{-3}{1}=-3.
+\end{align*}
+（$C$、$D$ 处把 $(2p\mp 1)$ 的导数因子 $2$ 计入分母。）因此
+\[
+\bar f(p)
+=\frac{1}{p}+\frac{5/3}{p+1}+\frac{1/3}{p-\tfrac12}+\frac{-3}{p+\tfrac12},
+\]
+原函数
+\[
+f(t)
+=\Theta(t)
++\frac{5}{3}e^{-t}
++\frac{1}{3}e^{t/2}
+-3e^{-t/2}.
+\]
+（$t>0$ 时 $\Theta(t)=1$。）
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  利用拉普拉斯变换计算
+  $\displaystyle\int_0^{\infty}\frac{\sin(xt)}{t}\,\mathrm{d}t$.
+\end{problem}
+
+\begin{solution}
+对参数 $x$ 讨论。先设 $x>0$。利用
+\[
+\frac{1}{t}=\int_0^{\infty}e^{-st}\,\mathrm{d}s
+\qquad(t>0),
+\]
+交换积分次序（$t>0$ 时合法），
+\begin{align*}
+\int_0^{\infty}\frac{\sin(xt)}{t}\,\mathrm{d}t
+&=\int_0^{\infty}\sin(xt)
+  \Biggl(\int_0^{\infty}e^{-st}\,\mathrm{d}s\Biggr)\mathrm{d}t
+=\int_0^{\infty}\mathrm{d}s
+  \int_0^{\infty}\sin(xt)\,e^{-st}\,\mathrm{d}t
+\\
+&=\int_0^{\infty}\frac{x}{s^2+x^2}\,\mathrm{d}s
+=\Biggl[\arctan\frac{s}{x}\Biggr]_0^{\infty}
+=\frac{\pi}{2}.
+\end{align*}
+当 $x=0$ 时被积函数恒为零，积分为 $0$。
+当 $x<0$ 时令 $x=-|x|$，
+\[
+\int_0^{\infty}\frac{\sin(xt)}{t}\,\mathrm{d}t
+=-\int_0^{\infty}\frac{\sin(|x|t)}{t}\,\mathrm{d}t
+=-\frac{\pi}{2}.
+\]
+合并即
+\[
+\int_0^{\infty}\frac{\sin(xt)}{t}\,\mathrm{d}t
+=\frac{\pi}{2}\operatorname{sgn}(x)
+=
+\begin{cases}
+\pi/2, & x>0,\\
+0, & x=0,\\
+-\pi/2, & x<0.
+\end{cases}
+\]
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+用拉普拉斯反变换中的 Bromwich（又称黎曼--梅林）积分求
+\[
+\frac{p}{p^2-\omega^2}
+\]
+的原函数.
+\end{problem}
+
+\begin{solution}
+设 $\omega$ 为实常数，$\omega\neq 0$。Bromwich 积分
+\[
+f(t)
+=\frac{1}{2\pi\mathrm{i}}
+\int_{\sigma-\mathrm{i}\infty}^{\sigma+\mathrm{i}\infty}
+\frac{p\,e^{pt}}{p^2-\omega^2}\,\mathrm{d}p,
+\qquad t>0,
+\]
+其中 $\sigma>|\omega|$，使竖直线位于全部极点右侧。被积函数在
+$p=\pm\omega$ 有简单极点。对 $t>0$ 向左半平面闭上（约当引理），
+\begin{align*}
+f(t)
+&=\mathrm{Res}_{p=\omega}
+  \Biggl[\frac{p\,e^{pt}}{(p-\omega)(p+\omega)}\Biggr]
++\mathrm{Res}_{p=-\omega}
+  \Biggl[\frac{p\,e^{pt}}{(p-\omega)(p+\omega)}\Biggr]
+\\
+&=\frac{\omega\,e^{\omega t}}{2\omega}
++\frac{(-\omega)\,e^{-\omega t}}{-2\omega}
+=\frac{e^{\omega t}+e^{-\omega t}}{2}
+=\cosh(\omega t).
+\end{align*}
+与查表 $\mathcal{L}\{\cosh(\omega t)\}=p/(p^2-\omega^2)$ 一致。
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  利用拉普拉斯变换求解微分方程
+  \[
+  \frac{\mathrm{d}^3 y}{\mathrm{d}t^3}
+  +3\frac{\mathrm{d}^2 y}{\mathrm{d}t^2}
+  +3\frac{\mathrm{d} y}{\mathrm{d}t}
+  +y
+  =6e^{-t},
+  \qquad
+  y(0)=y'(0)=y''(0)=0.
+  \]
+\end{problem}
+
+\begin{solution}
+记 $Y(p)=\mathcal{L}\{y\}$。初值全为零，故
+\[
+\mathcal{L}\{y^{(n)}\}=p^n Y(p),\qquad n=1,2,3.
+\]
+右边 $\mathcal{L}\{6e^{-t}\}=6/(p+1)$。变换后的方程是
+\[
+\bigl(p^3+3p^2+3p+1\bigr)Y(p)=\frac{6}{p+1}.
+\]
+左边括号正是 $(p+1)^3$，因此
+\[
+Y(p)
+=\frac{6}{(p+1)\,(p+1)^3}
+=\frac{6}{(p+1)^4}.
+\]
+由公式
+\[
+\mathcal{L}\bigl\{t^n e^{at}\bigr\}
+=\frac{n!}{(p-a)^{n+1}}
+\qquad\Longrightarrow\qquad
+\mathcal{L}^{-1}\Biggl\{\frac{1}{(p-a)^{n+1}}\Biggr\}
+=\frac{t^n e^{at}}{n!},
+\]
+取 $a=-1$、$n=3$，
+\[
+\mathcal{L}^{-1}\Biggl\{\frac{1}{(p+1)^4}\Biggr\}
+=\frac{t^3 e^{-t}}{3!}=\frac{t^3 e^{-t}}{6}.
+\]
+故
+\[
+y(t)=6\cdot\frac{t^3 e^{-t}}{6}=t^3 e^{-t}.
+\]
+\end{solution}
+
+\end{document}

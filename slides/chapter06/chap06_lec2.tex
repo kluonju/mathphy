@@ -12,16 +12,24 @@
   \titlepage
 \end{frame}
 
+\begin{frame}{本讲提纲}
+  \begin{enumerate}
+    \item 弦振动：取一小段，由冲量--动量得到波动方程；
+    \item 热传导：傅里叶定律加上能量守恒，得到热方程；
+    \item 稳态：膜、温度、静电势 $\to$ 拉普拉斯／泊松方程；
+    \item 二阶线性方程怎么分类：判别式 $\Delta=b^2-ac$，特征线与标准形。
+  \end{enumerate}
+  目标：会从物理推出这三类方程，并能用 $\Delta$ 判断类型。
+\end{frame}
+
 % =============================================================
 \section{弦振动方程}
 
 \subsection{模型与小段受力}
 
 \begin{frame}{弦的物理图像}
-  弦振动方程在十八世纪由达朗贝尔等人系统研究，是一大类偏微分方程的原型。
-  \vspace{0.3em}
-
-  考虑长为 $\ell$、两端固定、张紧的均匀柔软弦，求它在平衡位置附近的小横振动。
+  一根长为 $\ell$、两端固定、已经张紧的均匀软弦。
+  我们关心它在平衡位置附近的小横振动。
   \begin{center}
   \begin{tikzpicture}[scale=0.95]
     \draw[->] (-0.2,0) -- (5.4,0) node[right] {$x$};
@@ -35,37 +43,38 @@
     \node[below] at (2.7,0) {$x{+}\Delta x$};
   \end{tikzpicture}
   \end{center}
-  固定时刻 $t$ 的图像 $u(x,t)$ 就是弦在该时刻的形状。
+  固定时刻 $t$，曲线 $u(x,t)$ 就是弦当时的形状。
 \end{frame}
 
-\begin{frame}{三条理想化}
-  把物理问题写成数学模型时，保留主导效应：
+\begin{frame}{三条假定}
+  推方程之前先把问题简化：
   \begin{enumerate}
-    \item 弦是均匀的，直径远小于长度，可用线密度为常数 $\rho$ 的曲线表示。
-    \item 运动限制在一个平面内，并且是横向的：每个质点垂直于平衡的 $x$ 轴作小位移。
-    \item 弦完全柔软，不抵抗弯曲。张力沿变形后的弦的切向，伸长服从胡克定律。
+    \item 弦均匀，线密度 $\rho$ 为常数；直径远小于长度，可以当成一条曲线。
+    \item 运动在一个平面内，而且是横向的：每个质点只沿垂直于 $x$ 轴的方向动，位移很小。
+    \item 弦完全柔软，不抗弯。张力沿切向；伸长服从胡克定律。
   \end{enumerate}
-  先不考虑外力。端点放在 $x=0$ 和 $x=\ell$。
+  先不加外力。两端固定在 $x=0$ 与 $x=\ell$。
 \end{frame}
 
 \begin{frame}{小段的弧长}
-  取 $x$ 到 $x+\Delta x$ 的一小段，弧长为
+  取出 $x$ 到 $x+\Delta x$ 这一小段。弧长是
   \begin{equation*}
     \Delta s=\int_x^{x+\Delta x}\sqrt{1+u_x(\xi,t)^2}\,\mathrm{d}\xi.
   \end{equation*}
-  振动很小，$u_x^2$ 相对 $1$ 可以忽略，于是 $\Delta s\approx\Delta x$。
+  振动很小，$u_x^2$ 比起 $1$ 可以丢掉，于是 $\Delta s\approx\Delta x$。
   \vspace{0.4em}
 
-  这一小段几乎没有额外伸长。张力因此不随时间变化；下面的水平力平衡还会说明，它的大小也不随 $x$ 变化。
+  这一小段几乎没有被多拉长，所以张力不随时间变。
+  下面水平方向还要平衡，会推出张力也不随 $x$ 变。
 \end{frame}
 
 \begin{frame}{张力的分量}
   \begin{columns}[T]
     \begin{column}{0.46\textwidth}
       \footnotesize
-      左端张力大小 $T(x)$，$\alpha_1,\alpha_2$ 分别是
-      $x$ 与 $x+\Delta x$ 处切线与 $x$ 轴的夹角。
-      作用在小段上的张力分量：
+      左端张力大小记为 $T(x)$。
+      $\alpha_1$、$\alpha_2$ 分别是 $x$ 与 $x+\Delta x$ 处切线与 $x$ 轴的夹角。
+      作用在小段上的分量：
       \begin{equation*}
         \begin{array}{c|cc}
           & x\text{ 分量} & u\text{ 分量}\\ \hline
@@ -73,7 +82,8 @@
           x+\Delta x & T\cos\alpha_2 & T\sin\alpha_2.
         \end{array}
       \end{equation*}
-      右端写 $T(x+\Delta x)$。水平方向无加速度，水平合力为零。
+      右端张力写成 $T(x+\Delta x)$。
+      水平方向没有加速度，水平合力为零。
     \end{column}
     \begin{column}{0.52\textwidth}
       \centering
@@ -89,13 +99,13 @@
     \cos\alpha_1=\frac{1}{\sqrt{1+u_x(x,t)^2}}\approx 1,
     \qquad \cos\alpha_2\approx 1,
   \end{equation*}
-  水平平衡给出 $T(x+\Delta x)=T(x)=T$。同样，
+  水平平衡给出 $T(x+\Delta x)=T(x)=T$。同样有
   \begin{equation*}
     \sin\alpha_1\approx\tan\alpha_1=u_x(x,t),
     \qquad
     \sin\alpha_2\approx u_x(x+\Delta x,t).
   \end{equation*}
-  净横向力因此是
+  净横向力就是
   \begin{equation*}
     T\bigl[u_x(x+\Delta x,t)-u_x(x,t)\bigr].
   \end{equation*}
@@ -104,24 +114,27 @@
 \subsection{从冲量到波动方程}
 
 \begin{frame}{冲量写成二重积分}
-  在短时间 $[t,t+\Delta t]$ 上使用冲量--动量定理。张力的冲量为
+  在短时间 $[t,t+\Delta t]$ 上用冲量--动量定理。张力的冲量是
   \begin{equation*}
     \int_t^{t+\Delta t}
       T\bigl[u_x(x+\Delta x,\tau)-u_x(x,\tau)\bigr]\,\mathrm{d}\tau.
   \end{equation*}
-  对 $x$ 用牛顿--莱布尼茨公式，$u_x(x+\Delta x)-u_x(x)=\int_x^{x+\Delta x}u_{xx}\,\mathrm{d}\xi$，故冲量等于
+  对 $x$ 用牛顿--莱布尼茨公式：
+  $u_x(x+\Delta x)-u_x(x)=\int_x^{x+\Delta x}u_{xx}\,\mathrm{d}\xi$，
+  冲量等于
   \begin{equation*}
     \int_t^{t+\Delta t}\int_x^{x+\Delta x} T u_{xx}(\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
   \end{equation*}
 \end{frame}
 
 \begin{frame}{动量变化}
-  小段的横向动量是 $\displaystyle\int_x^{x+\Delta x}\rho u_t(\xi,t)\,\mathrm{d}\xi$。它在 $\Delta t$ 内的变化为
+  小段的横向动量是 $\displaystyle\int_x^{x+\Delta x}\rho u_t(\xi,t)\,\mathrm{d}\xi$。
+  它在 $\Delta t$ 内的改变量是
   \begin{equation*}
     \int_x^{x+\Delta x}\rho\bigl[u_t(\xi,t+\Delta t)-u_t(\xi,t)\bigr]\,\mathrm{d}\xi
     =\int_t^{t+\Delta t}\int_x^{x+\Delta x}\rho u_{tt}\,\mathrm{d}\xi\,\mathrm{d}\tau.
   \end{equation*}
-  冲量等于动量变化，移项后
+  冲量等于动量变化，移项得到
   \begin{equation*}
     \int_t^{t+\Delta t}\int_x^{x+\Delta x}
       \bigl(T u_{xx}-\rho u_{tt}\bigr)\,\mathrm{d}\xi\,\mathrm{d}\tau=0.
@@ -129,15 +142,15 @@
 \end{frame}
 
 \begin{frame}{自由振动方程}
-  空间间隔和时间间隔都是任意的。被积函数连续时，积分在每个小矩形上都为零，只能是被积函数本身为零：
+  $\Delta x$、$\Delta t$ 都是任意的。被积函数连续时，每个小矩形上的积分都为零，只能是被积函数本身为零：
   \begin{equation*}
     \rho u_{tt}=T u_{xx}.
   \end{equation*}
-  记 $a^2=T/\rho$，得到自由振动方程
+  记 $a^2=T/\rho$，得到
   \begin{equation*}
     \boxed{u_{tt}-a^2 u_{xx}=0.}
   \end{equation*}
-  $a=\sqrt{T/\rho}$ 是波速。张力越大、弦越轻，波跑得越快。
+  $a=\sqrt{T/\rho}$ 就是波速：张力越大、弦越轻，波跑得越快。
 \end{frame}
 
 \begin{frame}{例：右行波是解}
@@ -146,10 +159,12 @@
     u_t&=-a g'(\xi), & u_{tt}&=a^2 g''(\xi),\\
     u_x&=g'(\xi), & u_{xx}&=g''(\xi).
   \end{align*}
-  因此 $u_{tt}-a^2 u_{xx}=0$。$g(x+at)$ 是左行波，同样是解。
+  所以 $u_{tt}-a^2 u_{xx}=0$。左行波 $g(x+at)$ 同样是解。
   \vspace{0.4em}
 
-  固定端点还没放进来。$g(x-at)$ 一般不能在 $x=0$ 和 $x=\ell$ 同时为零，所以它还不是两端固定那根弦的运动。方程的解很多，边界把它们挑掉一批。定解数据在分离变量一讲再系统处理。
+  两端固定还没放进去。一般的 $g(x-at)$ 很难同时在 $x=0$ 和 $x=\ell$ 为零，
+  所以它还不是那根有限弦的运动。边界条件会从许多解里挑出合用的；
+  定解问题放到分离变量那一讲再系统做。
 \end{frame}
 
 \begin{frame}{例：波速的一个数字}
@@ -161,16 +176,15 @@
   \begin{equation*}
     x=0.2+at=0.2+1=1.2\,\mathrm{m}.
   \end{equation*}
-  把张力提高四倍，$a$ 只提高两倍。波速看的是 $T/\rho$ 的平方根，不是张力本身。
+  张力提高四倍，$a$ 只提高两倍：波速看的是 $\sqrt{T/\rho}$。
 \end{frame}
 
-\begin{frame}{这个方程用在哪里}
+\begin{frame}{这个方程什么时候还能用}
   推导只用了：均匀、柔软、张紧，以及小横向振动。
   \begin{itemize}
-    \item 振幅很大时，$u_x^2$ 不能丢掉，张力也不再是常数，方程变成非线性的。
-    \item 弦若抵抗弯曲，恢复力不再只来自张力的横向分量，方程里会出现 $u_{xxxx}$。本讲末尾的梁方程就是这种模型。
+    \item 振幅很大时，$u_x^2$ 不能丢掉，张力也不再是常数，方程变成非线性。
+    \item 弦若抗弯，恢复力不只来自张力的横向分量，方程里会出现 $u_{xxxx}$（梁方程）。
   \end{itemize}
-  模型的用处和限度都由这些假定决定。
 \end{frame}
 
 \begin{frame}{外力与受迫振动}
@@ -183,11 +197,11 @@
     \int_t^{t+\Delta t}\int_x^{x+\Delta x}
       \bigl(T u_{xx}-\rho u_{tt}+F\bigr)\,\mathrm{d}\xi\,\mathrm{d}\tau=0.
   \end{equation*}
-  再由区间的任意性，并令 $f=F/\rho$，得到
+  再由区间任意性，并令 $f=F/\rho$，得到
   \begin{equation*}
     \boxed{u_{tt}-a^2 u_{xx}=f(x,t),\qquad f=\dfrac{F}{\rho}.}
   \end{equation*}
-  变化以有限速度 $a$ 传播。只知道方程、不知道弦在 $t=0$ 的位置和速度，运动还不能确定。
+  扰动以有限速度 $a$ 传播。还要知道 $t=0$ 时的位置和速度，运动才定下来。
 \end{frame}
 
 % =============================================================
@@ -196,32 +210,34 @@
 \subsection{傅里叶定律与能量平衡}
 
 \begin{frame}{傅里叶定律}
-  设物体 $G$ 在位置 $(x,y,z)$、时刻 $t$ 的温度为 $u(x,y,z,t)$。热流与温度的局部关系是傅里叶实验定律：在 $\mathrm{d}t$ 内，沿外法向 $\mathbf{n}$ 穿过有向面元 $\mathrm{d}S$ 的热量为
+  物体 $G$ 在 $(x,y,z)$、时刻 $t$ 的温度记为 $u(x,y,z,t)$。
+  热流与温度的局部关系是傅里叶定律：$\mathrm{d}t$ 内沿外法向 $\mathbf{n}$ 穿过面元 $\mathrm{d}S$ 的热量为
   \begin{equation*}
     \mathrm{d}Q=-k(x,y,z)\frac{\partial u}{\partial n}\,\mathrm{d}S\,\mathrm{d}t.
   \end{equation*}
-  $k>0$ 是热传导系数。负号是实质内容：\textbf{热从高温流向低温}，与 $u$ 增加的方向相反。
+  $k>0$ 是热传导系数。负号的意思很具体：\textbf{热从高温流向低温}，和 $u$ 增大的方向相反。
 \end{frame}
 
 \begin{frame}{流入的热量}
-  在物体内部任取闭曲面 $\Gamma$，它围出区域 $\Omega$。从 $t_1$ 到 $t_2$ \emph{流入} $\Omega$ 的热量为
+  在物体内部任取闭曲面 $\Gamma$，它围出区域 $\Omega$。从 $t_1$ 到 $t_2$ \emph{流入} $\Omega$ 的热量是
   \begin{equation*}
     Q=\int_{t_1}^{t_2}\iint_{\Gamma} k\frac{\partial u}{\partial n}\,\mathrm{d}S\,\mathrm{d}t.
   \end{equation*}
-  符号相对傅里叶定律反了一次：$\partial u/\partial n$ 用的是外法向，而正的 $Q$ 定义为进入区域的热。
+  这里相对傅里叶定律多反了一次符号：$\partial u/\partial n$ 用外法向，而正的 $Q$ 表示进入区域的热。
 \end{frame}
 
 \begin{frame}{内能的增加}
-  设比热为 $c(x,y,z)$，质量密度为 $\rho(x,y,z)$。同一时间间隔内，内能的增加是
+  设比热为 $c(x,y,z)$，质量密度为 $\rho(x,y,z)$。同一时间间隔内，内能增加
   \begin{equation*}
     \iiint_{\Omega}\rho c\,
       \bigl[u(x,y,z,t_2)-u(x,y,z,t_1)\bigr]\,\mathrm{d}V.
   \end{equation*}
-  能量守恒要求它等于流入的热量 $Q$。假定 $u$ 的二阶空间导数和一阶时间导数都连续。
+  能量守恒要求它等于流入的热量 $Q$。
+  下面假定 $u$ 的二阶空间导数和一阶时间导数都连续。
 \end{frame}
 
 \begin{frame}{散度定理}
-  散度定理把曲面积分改成体积分：
+  用散度定理把曲面积分改成体积分：
   \begin{equation*}
     \int_{t_1}^{t_2}\iiint_{\Omega}\nabla\cdot(k\nabla u)\,\mathrm{d}V\,\mathrm{d}t
     =\iiint_{\Omega}\rho c\left(\int_{t_1}^{t_2}u_t\,\mathrm{d}t\right)\mathrm{d}V.
@@ -234,42 +250,45 @@
 \end{frame}
 
 \begin{frame}{一般的热传导方程}
-  时间间隔和区域 $\Omega$ 都是任意的，被积函数必须为零。非均匀各向同性物体的热传导方程是
+  时间间隔和区域 $\Omega$ 都任意，被积函数必须为零：
   \begin{equation*}
     \boxed{\rho c\,u_t=\nabla\cdot(k\nabla u).}
   \end{equation*}
-  若 $k$ 不是常数，右边不是 $k\nabla^2u$，而是
-  \(\nabla\cdot(k\nabla u)=k\nabla^2u+\nabla k\cdot\nabla u\)。
-  传导系数的空间变化本身会贡献一项。
+  若 $k$ 不是常数，右边不是简单的 $k\nabla^2u$，而是
+  \[
+  \nabla\cdot(k\nabla u)=k\nabla^2u+\nabla k\cdot\nabla u.
+  \]
+  传导系数随位置变化时，会多出后一项。
 \end{frame}
 
 \begin{frame}{均匀介质}
-  物体均匀时，$k,c,\rho$ 都是常数。令 $\kappa=k/(\rho c)$，
+  物体均匀时，$k,c,\rho$ 都是常数。令 $\kappa=k/(\rho c)$，并写
   \begin{equation*}
     \nabla^2=\partial_{xx}+\partial_{yy}+\partial_{zz},
   \end{equation*}
-  方程化为齐次\textbf{热方程}
+  方程化成齐次热方程
   \begin{equation*}
     \boxed{u_t=\kappa\nabla^2u.}
   \end{equation*}
-  扩散把温差抹平，而不是把一个尖锐扰动以固定速度送出去。
+  热扩散会抹平温差；它不会像波动那样把一个尖峰原样送到远处。
 \end{frame}
 
 \begin{frame}{例：峰顶降温，谷底升温}
-  先看一根细杆上的 $u_t=\kappa u_{xx}$，$\kappa>0$。
+  先看细杆上的 $u_t=\kappa u_{xx}$，$\kappa>0$。
   \begin{itemize}
-    \item 在温度的局部极大处，$u_{xx}<0$，于是 $u_t<0$：峰顶变凉。
-    \item 在局部极小处，$u_{xx}>0$，于是 $u_t>0$：谷底变暖。
+    \item 局部极大处 $u_{xx}<0$，故 $u_t<0$：峰顶变凉。
+    \item 局部极小处 $u_{xx}>0$，故 $u_t>0$：谷底变暖。
   \end{itemize}
-  同一条曲率，在波动方程里作用不同。$u_{tt}=a^2 u_{xx}$ 在峰顶给出向下的加速度，弦冲过平衡位置，所以会振荡；热方程没有二阶时间导数，峰顶只是下降，不会冲到另一侧。
+  波动方程 $u_{tt}=a^2 u_{xx}$ 在峰顶给出向下的加速度，弦会冲过平衡位置并振荡。
+  热方程没有二阶时间导数，峰顶只是下降，不会冲到另一侧。
 \end{frame}
 
 \begin{frame}{有热源的情形}
-  设热源在单位体积内的产热率为 $F(x,y,z,t)$。它在能量平衡中的贡献是
+  设热源在单位体积内的产热率为 $F(x,y,z,t)$。能量平衡里多一项
   \begin{equation*}
     \int_{t_1}^{t_2}\iiint_{\Omega} F\,\mathrm{d}V\,\mathrm{d}t.
   \end{equation*}
-  加进去以后，
+  于是
   \begin{equation*}
     \rho c\,u_t=\nabla\cdot(k\nabla u)+F.
   \end{equation*}
@@ -285,36 +304,39 @@
 \subsection{从演化到平衡}
 
 \begin{frame}{稳态留下椭圆型方程}
-  许多系统演化到力、通量或源彼此平衡为止。稳态下时间导数消失，留下椭圆型方程。三维中两个中心的稳态场方程是
+  系统演化到力、通量或源彼此抵消时，时间导数消失，留下椭圆型方程。三维里最常见的两个是
   \begin{equation*}
     \boxed{\nabla^2u=0}
     \qquad\text{与}\qquad
     \boxed{\nabla^2u=f.}
   \end{equation*}
-  第一个是\textbf{拉普拉斯方程}，它的解称为\textbf{调和函数}。第二个是\textbf{泊松方程}，$f$ 表示源。
+  第一个叫\textbf{拉普拉斯方程}，解叫\textbf{调和函数}。
+  第二个叫\textbf{泊松方程}，$f$ 表示源。
   直角坐标中 $\nabla^2u=u_{xx}+u_{yy}+u_{zz}$。
 \end{frame}
 
 \begin{frame}{源项的符号}
-  $f$ 的符号和物理含义依赖所选的模型。结构上的区别是：
+  $f$ 的符号要看具体物理模型怎么写。结构上只记住：
   \begin{itemize}
     \item 无源区域用拉普拉斯方程；
     \item 有分布源时用泊松方程。
   \end{itemize}
-  下面三个例子里，$f$ 分别是 $-F/T$、$-F/k$ 和 $-\rho_e/\varepsilon_0$。负号来自恢复力、傅里叶定律或电场的定义，不是拉普拉斯算子本身的约定。
+  下面三个例子里，$f$ 分别是 $-F/T$、$-F/k$ 和 $-\rho_e/\varepsilon_0$。
+  负号来自恢复力、傅里叶定律或 $\mathbf{E}=-\nabla V$，不是拉普拉斯算子自己规定的。
 \end{frame}
 
 \subsection{膜与稳态热流}
 
 \begin{frame}{薄膜的平衡}
-  均匀张力为 $T$、面密度为 $\rho$ 的薄膜，横向位移 $u(x,y,t)$，横向力密度 $F(x,y,t)$。小振动方程是
+  均匀张力 $T$、面密度 $\rho$ 的薄膜，横向位移 $u(x,y,t)$，横向力密度 $F(x,y,t)$。
+  小振动时
   \begin{equation*}
     \rho u_{tt}=T(u_{xx}+u_{yy})+F.
   \end{equation*}
-  这是二维的受迫波动方程，推导与弦相同：张力的净横向分量给出 $T\nabla^2u$。
+  这是二维受迫波动方程：张力的净横向分量给出 $T\nabla^2u$，推法和弦一样。
   \vspace{0.4em}
 
-  外力不随时间变化，膜又已经到达平衡，$u_{tt}=0$，形状满足
+  外力不随时间变，膜又已经平衡，$u_{tt}=0$，形状满足
   \begin{equation*}
     u_{xx}+u_{yy}=-\frac{F(x,y)}{T}.
   \end{equation*}
@@ -322,18 +344,19 @@
 \end{frame}
 
 \begin{frame}{稳态温度}
-  同一划分也来自热传导。稳态时 $u_t=0$。均匀材料、内部有稳定热源 $F$ 时，
+  热传导也可以走到同样的方程。稳态时 $u_t=0$。
+  均匀材料、内部有稳定热源 $F$ 时，
   \begin{equation*}
     \nabla^2u=-\frac{F}{k}.
   \end{equation*}
   内部不产热时，稳态温度是调和函数。
   \vspace{0.4em}
 
-  因此同一组数学方程既描述平衡形状，也描述平衡温度。物理不同，平衡条件的数学形式相同。
+  所以同一组数学方程既能写平衡形状，也能写平衡温度。
 \end{frame}
 
 \begin{frame}{例：均匀加热的平板}
-  平板占据 $0\leq x\leq L$，热传导系数为常数，单位体积产热率 $F>0$ 为常数。两面温度保持为零：
+  平板在 $0\leq x\leq L$，热传导系数为常数，单位体积产热率 $F>0$ 为常数。两面温度保持为零：
   \begin{equation*}
     u''(x)=-\frac{F}{k},
     \qquad u(0)=u(L)=0.
@@ -351,22 +374,22 @@
     \qquad
     \boxed{u(x)=\dfrac{F}{2k}\,x(L-x).}
   \end{equation*}
-  这是开口向下的抛物线，最大值在板的中心 $x=L/2$，最大值为 $FL^2/(8k)$。
-  中心处 $u''=-F/k<0$，和“峰顶曲率为负”一致。
+  开口向下的抛物线，最大值在中心 $x=L/2$，最大值是 $FL^2/(8k)$。
+  中心处 $u''=-F/k<0$，和“峰顶曲率为负”对得上。
   \vspace{0.3em}
 
-  热在内部各处产生，再由传导送到较冷的边界。没有源时，同样的两端为零只允许 $u\equiv 0$：没有热可送。
+  热在内部各处产生，再传到较冷的边界。没有源时，同样的两端为零只允许 $u\equiv 0$。
 \end{frame}
 
 \subsection{静电势}
 
 \begin{frame}{高斯定理}
-  静电场的电场线起于正电荷、止于负电荷，在静电场中不形成闭圈。国际单位制下，对包围体积 $\Omega$ 的任意闭曲面 $\Sigma$，
+  静电场的电场线起于正电荷、止于负电荷，不形成闭圈。国际单位制下，对包围体积 $\Omega$ 的任意闭曲面 $\Sigma$，
   \begin{equation*}
     \oint_{\Sigma}\mathbf{E}\cdot\mathrm{d}\mathbf{S}
     =\frac{1}{\varepsilon_0}\iiint_{\Omega}\rho_e\,\mathrm{d}V.
   \end{equation*}
-  用散度定理，并利用 $\Omega$ 的任意性，得到局部形式。再加上静电场旋度为零：
+  用散度定理，并利用 $\Omega$ 任意，得到局部形式；再加 $\nabla\times\mathbf{E}=0$：
   \begin{equation*}
     \nabla\cdot\mathbf{E}=\frac{\rho_e}{\varepsilon_0},
     \qquad \nabla\times\mathbf{E}=0.
@@ -374,22 +397,23 @@
 \end{frame}
 
 \begin{frame}{用标量势代替向量场}
-  旋度为零，线积分与路径无关，因此存在标量势 $V$，使
+  旋度为零，线积分与路径无关，所以存在标量势 $V$，使
   \begin{equation*}
     \mathbf{E}=-\nabla V.
   \end{equation*}
-  代入高斯定理，
+  代回高斯定理，
   \begin{equation*}
     \boxed{\nabla^2 V=-\dfrac{\rho_e}{\varepsilon_0}.}
   \end{equation*}
   有电荷处 $V$ 满足泊松方程，无电荷处满足拉普拉斯方程。
   \vspace{0.3em}
 
-  用标量势代替向量场往往是决定性的简化：知道 $V$ 之后，物理场由 $\mathbf{E}=-\nabla V$ 给出。
+  先求 $V$，再由 $\mathbf{E}=-\nabla V$ 得到电场，通常比直接解向量场省事。
 \end{frame}
 
 \begin{frame}{例：两块平行导电板}
-  两块大平行导电板之间没有电荷，势只依赖垂直于板面的坐标 $x$。设 $V(0)=0$，$V(d)=V_0$，拉普拉斯方程化为
+  两块大平行导电板之间没有电荷，势只依赖垂直于板面的坐标 $x$。
+  设 $V(0)=0$，$V(d)=V_0$，拉普拉斯方程化为
   \begin{equation*}
     V''(x)=0.
   \end{equation*}
@@ -399,16 +423,18 @@
     \qquad
     \mathbf{E}=-\dfrac{V_0}{d}\,\mathbf{e}_x.}
   \end{equation*}
-  若 $V_0>0$，右板电势更高，电场指向 $-x$，从高电势指向低电势。负号来自 $\mathbf{E}=-\nabla V$，不是额外假定。
+  若 $V_0>0$，右板电势更高，电场指向 $-x$，从高电势指向低电势。
+  负号来自 $\mathbf{E}=-\nabla V$。
 \end{frame}
 
 \begin{frame}{平行板与加热板对照}
-  电势线性变化，电场均匀。这是加热板问题的无源对应：
+  电势线性变化，电场均匀。对照前面的加热板：
   \begin{itemize}
     \item 无源时，内部场由边界值单独决定，一维稳态解是直线；
-    \item 有均匀源时，内部多一次积分，解是抛物线。
+    \item 有均匀源时，多积一次分，解是抛物线。
   \end{itemize}
-  二维和三维里同样的原则仍在，但直线和抛物线要换成级数或格林函数。级数解是下一讲分离变量的内容。
+  二维、三维里原则一样，只是直线和抛物线要换成级数或格林函数。
+  级数解是下一讲分离变量的内容。
 \end{frame}
 
 
@@ -426,10 +452,10 @@
     \qquad
     u_{xx}+u_{yy}=0.
   \end{equation*}
-  解的表现不同：波动以有限速度传播，热传导抹平差异，拉普拉斯描述稳态。
+  它们的解表现不同：波动以有限速度传播，热传导抹平差异，拉普拉斯描述稳态。
   \vspace{0.35em}
 
-  差别出在\textbf{最高阶导数}那一部分，称为方程的\textbf{主部}。
+  差别出在\textbf{最高阶导数}那一块，叫方程的\textbf{主部}。
   低阶项可以改衰减或加源，但不决定下面要说的类型。
 \end{frame}
 
@@ -440,8 +466,8 @@
     +\sum_{i=1}^n b_i(\mathbf{x})\,u_{x_i}
     +c(\mathbf{x})\,u+f(\mathbf{x})=0.
   \end{equation*}
-  第一项是主部。下面把自变量个数限制为 $2$，
-  以便写出判别式、特征线，并化成标准形。
+  第一项是主部。下面先把自变量个数限制为 $2$，
+  好写出判别式、特征线，并化到标准形。
 \end{frame}
 
 \begin{frame}{两个自变量}
@@ -454,7 +480,7 @@
   $x,y$ 可以都是空间，也可以一个是时间。
   \vspace{0.3em}
 
-  主部是 $a u_{xx}+2b u_{xy}+c u_{yy}$。后文的分类都针对这一写法。
+  主部是 $a u_{xx}+2b u_{xy}+c u_{yy}$。后面分类都针对这一写法。
 \end{frame}
 
 \begin{frame}{判别式与三种类型}
@@ -462,7 +488,7 @@
   \begin{equation*}
     \Delta=b^2-ac.
   \end{equation*}
-  在主部系数不全为零的点，按 $\Delta$ 的符号把方程分成三类：
+  在主部系数不全为零的点，按 $\Delta$ 的符号分成三类：
   \begin{center}
   \begin{tabular}{ll}
     $\Delta>0$ & \textbf{双曲型}（hyperbolic）\\
@@ -477,20 +503,20 @@
   先固定一般形式里哪个变量叫 $x$、哪个叫 $y$（波速仍记为 $a$）。
   \begin{itemize}
     \item $u_{tt}-a^2u_{xx}=0$：取 $(x,y)=(t,x)$，
-      主部系数为 $1,0,-a^2$，$\Delta=a^2>0$，双曲型。
+      主部系数 $1,0,-a^2$，$\Delta=a^2>0$，双曲型。
     \item $u_t-\kappa u_{xx}=0$：取 $(x,y)=(x,t)$，
-      主部系数为 $-\kappa,0,0$，$\Delta=0$，抛物型。
+      主部系数 $-\kappa,0,0$，$\Delta=0$，抛物型。
     \item $u_{xx}+u_{yy}=0$：
-      主部系数为 $1,0,1$，$\Delta=-1<0$，椭圆型。
+      主部系数 $1,0,1$，$\Delta=-1<0$，椭圆型。
   \end{itemize}
-  三种符号正好对应前面看到的三种行为。
+  三种符号正好对上前面看到的三种行为。
 \end{frame}
 
 \subsection{坐标变换与特征线}
 
 \begin{frame}{为什么要作坐标变换}
   分类只看主部。若能换一组新自变量 $\xi,\eta$，
-  把主部化成更简单的标准写法，讨论和解方程都会方便。
+  把主部化成更简单的标准写法，讨论和解都会方便。
   \vspace{0.35em}
 
   要求变换\textbf{非奇异}：
@@ -553,8 +579,8 @@
   因为 $J\neq 0$，有 $J^2>0$，故新判别式与原判别式 $\Delta$ 同号。
   \vspace{0.35em}
 
-  因此双曲、抛物、椭圆是方程本身的性质，与坐标选取无关。
-  所谓化成\textbf{标准形}，只是换一种更干净的主部写法。
+  所以双曲、抛物、椭圆是方程本身的性质，与坐标选取无关。
+  化成\textbf{标准形}，只是换一种更干净的主部写法。
 \end{frame}
 
 \begin{frame}{怎样消掉 $u_{\xi\xi}$：特征方程}
@@ -582,7 +608,7 @@
     \item $\Delta=0$：一个实重根 $\Rightarrow$ 一族实特征曲线；
     \item $\Delta<0$：无实根 $\Rightarrow$ 无实特征曲线。
   \end{itemize}
-  特征曲线就是用来选取新坐标 $\xi,\eta$ 的几何对象。
+  新坐标 $\xi,\eta$ 就沿着这些特征曲线来取。
 \end{frame}
 
 \begin{frame}{例：波动方程的特征线}
@@ -596,7 +622,7 @@
   前面的右行波 $u=g(x-at)$ 正好沿第一条特征线为常数。
   \vspace{0.3em}
 
-  扰动沿特征线传播，速度不超过 $a$。
+  扰动沿特征线走，速度不超过 $a$。
 \end{frame}
 
 \begin{frame}{三类方程的特征线示意}
@@ -674,18 +700,19 @@
 \end{frame}
 
 \begin{frame}{类型与定解条件}
+  类型定了，常见的定解提法也就跟着定了：
   \begin{itemize}
     \item 双曲型：通常给初值 $u$、$u_t$；扰动沿特征线传播。
     \item 抛物型：通常给初值 $u$；时间反演一般不适定。
-    \item 椭圆型：无时间初值，由边界条件确定解。
+    \item 椭圆型：没有“初始时刻”，由边界条件确定解。
   \end{itemize}
-  定解条件须与类型匹配，否则问题可能不适定。
+  定解条件要和类型对上，否则问题可能没有合理解。
 \end{frame}
 
 
 \section{本讲小结}
 
-\begin{frame}{本讲的四条方程与三类}
+\begin{frame}{本讲小结}
   \begin{align*}
     u_{tt}-a^2u_{xx}&=f,
     && \Delta>0, && \text{双曲型},\\[4pt]
@@ -694,11 +721,16 @@
     \nabla^2u&=0\ \text{或}\ f,
     && \Delta<0, && \text{椭圆型}.
   \end{align*}
-  它们分别来自动量平衡、能量平衡，以及稳态下通量和源的平衡；类型由主部的判别式决定。
+  \begin{itemize}
+    \item 弦：冲量 $=$ 动量变化 $\to$ 波动方程；
+    \item 热：傅里叶定律 $+$ 能量守恒 $\to$ 热方程；
+    \item 稳态：膜／温度／电势 $\to$ 拉普拉斯或泊松；
+    \item 类型由主部判别式 $\Delta=b^2-ac$ 决定。
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{下一讲}
-  第三讲用分离变量法解典型的定解问题：
+  第三讲用分离变量法解典型定解问题：
   \begin{enumerate}
     \item 两端固定的弦：本征值和傅里叶正弦级数；
     \item 外力按同一组模态展开，每个模态是一个受迫振子；
