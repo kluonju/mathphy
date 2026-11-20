@@ -1314,7 +1314,39 @@
   \vspace{0.3em}
 
   \textbf{列维--奇维塔符号}（Levi-Civita symbol）$\varepsilon_{ijk}$：$(i,j,k)$ 是 $(1,2,3)$ 的偶置换时为 $+1$，奇置换时为 $-1$，有重复时为 $0$。
-  全反对称，三个指标里有重复就为零。下面看几个直接应用。
+  全反对称，三个指标里有重复就为零。
+\end{frame}
+
+\begin{frame}{$(\mathbf{A}\times\mathbf{B})_i=\varepsilon_{ijk}A_j B_k$}
+  叉积的分量定义本来是行列式：
+  \begin{equation*}
+    \mathbf{A}\times\mathbf{B}
+    =
+    \begin{vmatrix}
+      \mathbf{e}_1 & \mathbf{e}_2 & \mathbf{e}_3 \\
+      A_1 & A_2 & A_3 \\
+      B_1 & B_2 & B_3
+    \end{vmatrix}
+    =
+    \begin{pmatrix}
+      A_2 B_3-A_3 B_2 \\
+      A_3 B_1-A_1 B_3 \\
+      A_1 B_2-A_2 B_1
+    \end{pmatrix}.
+  \end{equation*}
+  看第一分量：$A_2 B_3-A_3 B_2$。
+  对固定的 $i=1$，把 $\varepsilon_{1jk}A_j B_k$ 按 $j,k$ 展开，
+  只有 $(j,k)=(2,3)$ 与 $(3,2)$ 非零：
+  \begin{equation*}
+    \varepsilon_{123}A_2 B_3+\varepsilon_{132}A_3 B_2
+    =(+1)A_2 B_3+(-1)A_3 B_2
+    =A_2 B_3-A_3 B_2.
+  \end{equation*}
+  $i=2,3$ 同样对得上。因此
+  \begin{equation*}
+    \boxed{(\mathbf{A}\times\mathbf{B})_i=\varepsilon_{ijk}A_j B_k.}
+  \end{equation*}
+  $\varepsilon_{ijk}$ 正好把行列式展开里的符号记下来了。
 \end{frame}
 
 \begin{frame}{列维--奇维塔符号的应用}
@@ -1349,11 +1381,36 @@
   一般规则：对某一对指标求和时，若一个因子对该对\textbf{对称}、另一个\textbf{反对称}，缩并结果为零。
   例如 $\partial_i\partial_j$ 对称、$\varepsilon_{ijk}$ 对 $(i,j)$ 反对称，故
   $\varepsilon_{ijk}\partial_i\partial_j A_k=0$，即 $\nabla\cdot(\nabla\times\mathbf{A})=0$。
+\end{frame}
 
-  \medskip
-  只保留同型部分：若 $A_{ij}$ 反对称，则
-  $T_{ij}A_{ij}=T_{[ij]}A_{ij}$，其中
-  $T_{[ij]}=\tfrac12(T_{ij}-T_{ji})$；对称同理用 $T_{(ij)}$。
+\begin{frame}{对称化与反对称化}
+  任意二指标量 $T_{ij}$ 可拆成对称部分与反对称部分：
+  \begin{align*}
+    T_{(ij)}
+    &=\frac12\bigl(T_{ij}+T_{ji}\bigr)
+    &&\text{（对称化）},\\
+    T_{[ij]}
+    &=\frac12\bigl(T_{ij}-T_{ji}\bigr)
+    &&\text{（反对称化）}.
+  \end{align*}
+  二者满足
+  \begin{equation*}
+    T_{ij}=T_{(ij)}+T_{[ij]},
+    \qquad
+    T_{(ij)}=T_{(ji)},
+    \qquad
+    T_{[ij]}=-T_{[ji]}.
+  \end{equation*}
+  与反对称量缩并时只留下反对称部分：
+  若 $A_{ij}=-A_{ji}$，则 $T_{(ij)}A_{ij}=0$，故
+  \[
+  T_{ij}A_{ij}=T_{[ij]}A_{ij}.
+  \]
+  与对称量缩并时只留下对称部分：
+  若 $S_{ij}=S_{ji}$，则 $T_{[ij]}S_{ij}=0$，故
+  \[
+  T_{ij}S_{ij}=T_{(ij)}S_{ij}.
+  \]
 \end{frame}
 
 \begin{frame}{列维--奇维塔：常见等式}

@@ -153,39 +153,39 @@
   $a=\sqrt{T/\rho}$ 就是波速：张力越大、弦越轻，波跑得越快。
 \end{frame}
 
-\begin{frame}{例：右行波是解}
-  在整条直线上设 $u(x,t)=g(x-at)$，记 $\xi=x-at$。则
-  \begin{align*}
-    u_t&=-a g'(\xi), & u_{tt}&=a^2 g''(\xi),\\
-    u_x&=g'(\xi), & u_{xx}&=g''(\xi).
-  \end{align*}
-  所以 $u_{tt}-a^2 u_{xx}=0$。左行波 $g(x+at)$ 同样是解。
-  \vspace{0.4em}
+% \begin{frame}{例：右行波是解}
+%   在整条直线上设 $u(x,t)=g(x-at)$，记 $\xi=x-at$。则
+%   \begin{align*}
+%     u_t&=-a g'(\xi), & u_{tt}&=a^2 g''(\xi),\\
+%     u_x&=g'(\xi), & u_{xx}&=g''(\xi).
+%   \end{align*}
+%   所以 $u_{tt}-a^2 u_{xx}=0$。左行波 $g(x+at)$ 同样是解。
+%   \vspace{0.4em}
 
-  两端固定还没放进去。一般的 $g(x-at)$ 很难同时在 $x=0$ 和 $x=\ell$ 为零，
-  所以它还不是那根有限弦的运动。边界条件会从许多解里挑出合用的；
-  定解问题放到分离变量那一讲再系统做。
-\end{frame}
+%   两端固定还没放进去。一般的 $g(x-at)$ 很难同时在 $x=0$ 和 $x=\ell$ 为零，
+%   所以它还不是那根有限弦的运动。边界条件会从许多解里挑出合用的；
+%   定解问题放到分离变量那一讲再系统做。
+% \end{frame}
 
-\begin{frame}{例：波速的一个数字}
-  线密度 $\rho=0.01\,\mathrm{kg/m}$，张力 $T=100\,\mathrm{N}$。
-  \begin{equation*}
-    a=\sqrt{T/\rho}=\sqrt{100/0.01}=100\,\mathrm{m/s}.
-  \end{equation*}
-  右行鼓包的峰若在 $t=0$ 时位于 $x=0.2\,\mathrm{m}$，则在 $t=0.01\,\mathrm{s}$ 时位于
-  \begin{equation*}
-    x=0.2+at=0.2+1=1.2\,\mathrm{m}.
-  \end{equation*}
-  张力提高四倍，$a$ 只提高两倍：波速看的是 $\sqrt{T/\rho}$。
-\end{frame}
+% \begin{frame}{例：波速的一个数字}
+%   线密度 $\rho=0.01\,\mathrm{kg/m}$，张力 $T=100\,\mathrm{N}$。
+%   \begin{equation*}
+%     a=\sqrt{T/\rho}=\sqrt{100/0.01}=100\,\mathrm{m/s}.
+%   \end{equation*}
+%   右行鼓包的峰若在 $t=0$ 时位于 $x=0.2\,\mathrm{m}$，则在 $t=0.01\,\mathrm{s}$ 时位于
+%   \begin{equation*}
+%     x=0.2+at=0.2+1=1.2\,\mathrm{m}.
+%   \end{equation*}
+%   张力提高四倍，$a$ 只提高两倍：波速看的是 $\sqrt{T/\rho}$。
+% \end{frame}
 
-\begin{frame}{这个方程什么时候还能用}
-  推导只用了：均匀、柔软、张紧，以及小横向振动。
-  \begin{itemize}
-    \item 振幅很大时，$u_x^2$ 不能丢掉，张力也不再是常数，方程变成非线性。
-    \item 弦若抗弯，恢复力不只来自张力的横向分量，方程里会出现 $u_{xxxx}$（梁方程）。
-  \end{itemize}
-\end{frame}
+% \begin{frame}{这个方程什么时候还能用}
+%   推导只用了：均匀、柔软、张紧，以及小横向振动。
+%   \begin{itemize}
+%     \item 振幅很大时，$u_x^2$ 不能丢掉，张力也不再是常数，方程变成非线性。
+%     \item 弦若抗弯，恢复力不只来自张力的横向分量，方程里会出现 $u_{xxxx}$（梁方程）。
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}{外力与受迫振动}
   设横向外力密度为 $F(x,t)$。它在 $[t,t+\Delta t]$ 内对小段的冲量是
