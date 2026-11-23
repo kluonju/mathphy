@@ -23,7 +23,7 @@
 \raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
 
 
-\newcommand{\duedate}{\zhdate{2024/12/03}}
+\newcommand{\duedate}{\zhdate{2026/12/01}}
 \pagestyle{fancy}
 
 % \fancyhf{}
@@ -65,63 +65,169 @@
 \renewcommand{\labelenumi}{(\arabic{enumi})}
 \renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
 
+
 \begin{problem}
-  一长为 $\ell$ 的均匀金属细杆 (可近似看作一维的), 
-  通有恒定电流。设杆的一端 $(x=0$ )温度恒为 0 , 另一端 $(x=\ell)$ 恒为 $T_0$, 
-  初始时温度分布为 $\frac{T_0}{\ell} x$.
-  试写出杆中温度场所满足的方程, 边界条件与初始条件。
+  用爱因斯坦求和约定改写下列方程. 指标取 $1,2,3$，重复指标表示求和，式中不再出现 $\sum$. 叉积和旋度用 $\varepsilon_{ijk}$.
+  \begin{enumerate}
+    \item 连续性方程 $\partial_t\rho+\nabla\cdot\mathbf{J}=0$;
+    \item 泊松方程 $\nabla^2\varphi=-\rho/\varepsilon_0$;
+    \item 真空中的麦克斯韦方程组
+      \[
+        \begin{aligned}
+          \nabla\cdot\mathbf{E}&=\rho/\varepsilon_0, &
+          \nabla\cdot\mathbf{B}&=0,\\
+          \nabla\times\mathbf{E}&=-\partial_t\mathbf{B}, &
+          \nabla\times\mathbf{B}
+          &=\mu_0\mathbf{J}+\mu_0\varepsilon_0\partial_t\mathbf{E};
+        \end{aligned}
+      \]
+    \item 无源波动方程
+      $\nabla^2\mathbf{E}-c^{-2}\partial_{tt}\mathbf{E}=\mathbf{0}$;
+    \item 洛伦兹力
+      $\mathbf{F}=q\bigl(\mathbf{E}+\mathbf{v}\times\mathbf{B}\bigr)$.
+  \end{enumerate}
 \end{problem}
 
-\vspace{2em}
+\vspace{1.6em}
 
 \begin{problem}
- 将下面的偏微分方程化成标准形式.
- \begin{itemize}
-  \item [(1)] $
-  u_{x x}+4 u_{x y}+5 u_{y y}+u_x+2 u_y=0;
-  $
-  \item [(2)]
-  $
-  u_{x x}+x u_{y y}=0.
-  $
-
- \end{itemize}
-
+  按爱因斯坦约定去掉求和号，再缩并成更短的形式.
+  \begin{enumerate}
+    \item $\displaystyle\sum_{j=1}^{3}\delta_{ij}\,\partial_j\varphi$;
+    \item $\displaystyle\sum_{i=1}^{3}\sum_{j=1}^{3}\delta_{ij}\,\partial_i A_j$;
+    \item $\displaystyle\sum_{j=1}^{3}\sum_{k=1}^{3}\varepsilon_{ijk}\,\delta_{jk}$;
+    \item 不可压缩流动
+      \[
+        \partial_t u_i
+        +\sum_{j=1}^{3}u_j\partial_j u_i
+        =-\frac{1}{\rho}\sum_{j=1}^{3}\delta_{ij}\,\partial_j p
+         +\nu\sum_{j=1}^{3}\partial_j\partial_j u_i,
+        \qquad
+        \sum_{i=1}^{3}\partial_i u_i=0.
+      \]
+  \end{enumerate}
 \end{problem}
   
 
-\begin{problem}
-请利用高斯定理推导出真空中有源静电场方程,请问求解需要初始条件吗？请用文字说明.
-\end{problem}
+% \begin{problem}
+% 请利用高斯定理推导出真空中有源静电场方程,请问求解需要初始条件吗？请用文字说明.
+% \end{problem}
 
-\begin{problem}
-  课堂上，我们将$x,y$变量代换成$\xi, \eta$给出了$u_{xy}$的表达式，请推导验证
-  $$
-  u_{x x} 
-  % =\left(u_{\xi \xi} \xi_x^2+u_{\xi \eta} \xi_x \eta_x+u_{\xi} \xi_{x x}\right)+\left(u_{\eta \xi} \eta_x \xi_x+u_{\eta \eta} \eta_x^2+u_\eta \eta_{x x}\right) \\
-  =u_{\xi \xi} \xi_x^2+2 u_{\xi \eta} \xi_x \eta_x+u_{\eta \eta} \eta_x^2+u_{\xi} \xi_{x x}+u_\eta \eta_{x x}.
-  $$.
-\end{problem}
+% \begin{problem}
+%   课堂上，我们将$x,y$变量代换成$\xi, \eta$给出了$u_{xy}$的表达式，请推导验证
+%   $$
+%   u_{x x} 
+%   % =\left(u_{\xi \xi} \xi_x^2+u_{\xi \eta} \xi_x \eta_x+u_{\xi} \xi_{x x}\right)+\left(u_{\eta \xi} \eta_x \xi_x+u_{\eta \eta} \eta_x^2+u_\eta \eta_{x x}\right) \\
+%   =u_{\xi \xi} \xi_x^2+2 u_{\xi \eta} \xi_x \eta_x+u_{\eta \eta} \eta_x^2+u_{\xi} \xi_{x x}+u_\eta \eta_{x x}.
+%   $$.
+% \end{problem}
    
-\begin{problem}
-  整数$m$阶贝塞尔方程(Bessel's equation)
-  $$
-    x^2 y^{\prime \prime}+x y^{\prime}+\left(x^2-m^2\right) y = 0, 
-  $$
-的Laplace变换($m = 0$)为一阶常微分方程
-  $$
-   (p^2 + 1) f'(p) + pf(p) = 0.
-  $$
-   试求解$f(p)$.
-\end{problem}
+% \begin{problem}
+%   整数$m$阶贝塞尔方程(Bessel's equation)
+%   $$
+%     x^2 y^{\prime \prime}+x y^{\prime}+\left(x^2-m^2\right) y = 0, 
+%   $$
+% 的Laplace变换($m = 0$)为一阶常微分方程
+%   $$
+%    (p^2 + 1) f'(p) + pf(p) = 0.
+%   $$
+%    试求解$f(p)$.
+% \end{problem}
+
+% \begin{problem}
+% 求$$
+% (2x + e^{y^2}) dx + (2xy e^{y^2} -2y ) dy = 0
+% $$
+% 的通解.
+% \end{problem}
+  
+
+
 
 \begin{problem}
-求$$
-(2x + e^{y^2}) dx + (2xy e^{y^2} -2y ) dy = 0
-$$
-的通解.
+  用指标记号证明下列乘积法则. $f$ 是标量场, $\mathbf{A}$、$\mathbf{B}$ 是矢量场, 分量在直角坐标中足够光滑.
+  \begin{enumerate}
+    \item $\displaystyle
+      \nabla\cdot(f\mathbf{A})
+      =f\,\nabla\cdot\mathbf{A}+\mathbf{A}\cdot\nabla f$;
+    \item $\displaystyle
+      \nabla\times(f\mathbf{A})
+      =f\,\nabla\times\mathbf{A}+\nabla f\times\mathbf{A}$;
+    \item $\displaystyle
+      \nabla\cdot(\mathbf{A}\times\mathbf{B})
+      =\mathbf{B}\cdot(\nabla\times\mathbf{A})
+       -\mathbf{A}\cdot(\nabla\times\mathbf{B})$.
+  \end{enumerate}
 \end{problem}
-  
+
+\vspace{1.6em}
+
+\begin{problem}
+  \begin{enumerate}
+    \item 设 $\mathbf{A}=x\,\mathbf{e}_x+y\,\mathbf{e}_y+z\,\mathbf{e}_z$，$V$ 是球 $x^2+y^2+z^2\le R^2$，$S=\partial V$ 取外法向. 分别计算散度定理的两边，验证
+      \[
+        \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+        =\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.
+      \]
+    \item 设 $\mathbf{A}=y\,\mathbf{e}_x+z\,\mathbf{e}_y+x\,\mathbf{e}_z$. $S$ 是正方形 $0\le x\le a$，$0\le y\le a$，$z=0$，法向取 $\mathbf{e}_z$，边界 $L$ 按右手定则定向. 分别计算斯托克斯定理的两边，验证
+      \[
+        \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+        =\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}.
+      \]
+  \end{enumerate}
+\end{problem}
+
+\vspace{1.6em}
+
+\begin{problem}
+  已知
+  $\mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+  =(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{A}\cdot\mathbf{B})\mathbf{C}$.
+  \begin{enumerate}
+    \item 证明
+      \[
+        (\mathbf{A}\times\mathbf{B})\times\mathbf{C}
+        =(\mathbf{A}\cdot\mathbf{C})\mathbf{B}
+         -(\mathbf{B}\cdot\mathbf{C})\mathbf{A}.
+      \]
+    \item 证明
+      \[
+        \mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+        +\mathbf{B}\times(\mathbf{C}\times\mathbf{A})
+        +\mathbf{C}\times(\mathbf{A}\times\mathbf{B})
+        =\mathbf{0}.
+      \]
+    \item 用指标记号证明拉格朗日恒等式
+      \[
+        (\mathbf{A}\times\mathbf{B})\cdot(\mathbf{C}\times\mathbf{D})
+        =(\mathbf{A}\cdot\mathbf{C})(\mathbf{B}\cdot\mathbf{D})
+         -(\mathbf{A}\cdot\mathbf{D})(\mathbf{B}\cdot\mathbf{C}).
+      \]
+  \end{enumerate}
+\end{problem}
+
+\vspace{1.6em}
+
+% \begin{problem}
+%   \begin{enumerate}
+%     \item 设 $u$ 只依赖于球径 $r$，且 $r>0$. 由球坐标中的拉普拉斯算子证明
+%       \[
+%         \nabla^2 u
+%         =\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d}r}
+%           \Bigl(r^2\frac{\mathrm{d}u}{\mathrm{d}r}\Bigr).
+%       \]
+%       对常数 $n$ 计算 $\nabla^2(r^n)$，并求使 $\nabla^2(r^n)=0$（$r>0$）的 $n$.
+%     \item 设 $u$ 只依赖于柱径 $\rho$，且 $\rho>0$，与 $\phi$、$z$ 无关. 由柱坐标中的拉普拉斯算子证明
+%       \[
+%         \nabla^2 u
+%         =\frac{1}{\rho}\frac{\mathrm{d}}{\mathrm{d}\rho}
+%           \Bigl(\rho\frac{\mathrm{d}u}{\mathrm{d}\rho}\Bigr),
+%       \]
+%       并计算 $\nabla^2(\rho^n)$.
+%   \end{enumerate}
+% \end{problem}
+
+\vspace{1.6em}
 
 
 

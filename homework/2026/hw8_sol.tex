@@ -1,0 +1,340 @@
+% Solutions to Homework 8 — Math Physics Methods (数学物理方法)
+
+\PassOptionsToPackage{quiet}{xeCJK}
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{ctex}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{fourier-orns}
+
+\theoremstyle{remark}
+\newtheorem{problem}{}
+\theoremstyle{definition}
+\newtheorem{solution}{解}
+
+\renewcommand{\headrule}{%
+\vspace{-8pt}\hrulefill
+\raisebox{-2.0pt}{\quad\decofourleft\decotwo\decofourright\quad}\hrulefill}
+
+\setlength{\headheight}{15.11996pt}
+\setlength{\topmargin}{-3.11996pt}
+
+\newcommand{\duedate}{\zhdate{2026/12/01}}
+\pagestyle{fancy}
+
+\fancyhead{}
+\fancyhead[L]{数学物理方法}
+\zhnumsetup{style={Traditional,Financial}}
+\fancyhead[R]{课后习题捌 \quad 参考解答}
+
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{截止日期\duedate}
+\fancyfoot[R]{任课教师:罗凯}
+
+\begin{document}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumi}.\arabic{enumii})}
+
+%==========================================================================
+\begin{problem}
+  用爱因斯坦求和约定改写下列方程. 指标取 $1,2,3$，重复指标表示求和，式中不再出现 $\sum$. 叉积和旋度用 $\varepsilon_{ijk}$.
+  \begin{enumerate}
+    \item 连续性方程 $\partial_t\rho+\nabla\cdot\mathbf{J}=0$;
+    \item 泊松方程 $\nabla^2\varphi=-\rho/\varepsilon_0$;
+    \item 真空中的麦克斯韦方程组
+      \[
+        \begin{aligned}
+          \nabla\cdot\mathbf{E}&=\rho/\varepsilon_0, &
+          \nabla\cdot\mathbf{B}&=0,\\
+          \nabla\times\mathbf{E}&=-\partial_t\mathbf{B}, &
+          \nabla\times\mathbf{B}
+          &=\mu_0\mathbf{J}+\mu_0\varepsilon_0\partial_t\mathbf{E};
+        \end{aligned}
+      \]
+    \item 无源波动方程
+      $\nabla^2\mathbf{E}-c^{-2}\partial_{tt}\mathbf{E}=\mathbf{0}$;
+    \item 洛伦兹力
+      $\mathbf{F}=q\bigl(\mathbf{E}+\mathbf{v}\times\mathbf{B}\bigr)$.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+直角坐标里 $\nabla\cdot\mathbf{J}=\partial_i J_i$，$\nabla^2=\partial_i\partial_i$，
+$(\nabla\times\mathbf{A})_i=\varepsilon_{ijk}\partial_j A_k$，
+$(\mathbf{v}\times\mathbf{B})_i=\varepsilon_{ijk}v_j B_k$。矢量方程写成第 $i$ 个分量。
+
+\begin{enumerate}
+  \item $\partial_t\rho+\partial_i J_i=0$.
+  \item $\partial_i\partial_i\varphi=-\rho/\varepsilon_0$.
+  \item
+    \[
+      \begin{aligned}
+        \partial_i E_i&=\rho/\varepsilon_0, &
+        \partial_i B_i&=0,\\
+        \varepsilon_{ijk}\partial_j E_k&=-\partial_t B_i, &
+        \varepsilon_{ijk}\partial_j B_k
+        &=\mu_0 J_i+\mu_0\varepsilon_0\partial_t E_i.
+      \end{aligned}
+    \]
+  \item 直角坐标中矢量拉普拉斯按分量作用，
+    $(\nabla^2\mathbf{E})_i=\partial_j\partial_j E_i$，故
+    \[
+      \partial_j\partial_j E_i-c^{-2}\partial_{tt}E_i=0.
+    \]
+  \item $F_i=q\bigl(E_i+\varepsilon_{ijk}v_j B_k\bigr)$.
+\end{enumerate}
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  按爱因斯坦约定去掉求和号，再缩并成更短的形式.
+  \begin{enumerate}
+    \item $\displaystyle\sum_{j=1}^{3}\delta_{ij}\,\partial_j\varphi$;
+    \item $\displaystyle\sum_{i=1}^{3}\sum_{j=1}^{3}\delta_{ij}\,\partial_i A_j$;
+    \item $\displaystyle\sum_{j=1}^{3}\sum_{k=1}^{3}\varepsilon_{ijk}\,\delta_{jk}$;
+    \item 不可压缩流动
+      \[
+        \partial_t u_i
+        +\sum_{j=1}^{3}u_j\partial_j u_i
+        =-\frac{1}{\rho}\sum_{j=1}^{3}\delta_{ij}\,\partial_j p
+         +\nu\sum_{j=1}^{3}\partial_j\partial_j u_i,
+        \qquad
+        \sum_{i=1}^{3}\partial_i u_i=0.
+      \]
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}
+  \item $\delta_{ij}$ 只在 $j=i$ 时为 $1$，故
+    \[
+      \delta_{ij}\,\partial_j\varphi=\partial_i\varphi.
+    \]
+    这是 $(\nabla\varphi)_i$。自由指标是 $i$。
+  \item $i,j$ 都是哑指标。$\delta_{ij}$ 令 $j=i$，
+    \[
+      \delta_{ij}\,\partial_i A_j=\partial_i A_i=\nabla\cdot\mathbf{A}.
+    \]
+    结果是标量，没有自由指标。
+  \item $\delta_{jk}$ 令 $k=j$，剩下 $\varepsilon_{ijj}$。两个指标相同，$\varepsilon_{ijj}=0$，所以
+    \[
+      \varepsilon_{ijk}\,\delta_{jk}=0.
+    \]
+    自由指标仍是 $i$，三个分量都是零。
+  \item $\delta_{ij}\partial_j p=\partial_i p$，其余只是去掉求和号：
+    \[
+      \partial_t u_i+u_j\partial_j u_i
+      =-\frac{1}{\rho}\partial_i p+\nu\,\partial_j\partial_j u_i,
+      \qquad
+      \partial_i u_i=0.
+    \]
+\end{enumerate}
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  用指标记号证明下列乘积法则. $f$ 是标量场, $\mathbf{A}$、$\mathbf{B}$ 是矢量场, 分量在直角坐标中足够光滑.
+  \begin{enumerate}
+    \item $\displaystyle
+      \nabla\cdot(f\mathbf{A})
+      =f\,\nabla\cdot\mathbf{A}+\mathbf{A}\cdot\nabla f$;
+    \item $\displaystyle
+      \nabla\times(f\mathbf{A})
+      =f\,\nabla\times\mathbf{A}+\nabla f\times\mathbf{A}$;
+    \item $\displaystyle
+      \nabla\cdot(\mathbf{A}\times\mathbf{B})
+      =\mathbf{B}\cdot(\nabla\times\mathbf{A})
+       -\mathbf{A}\cdot(\nabla\times\mathbf{B})$.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}
+  \item
+    \[
+      \nabla\cdot(f\mathbf{A})
+      =\partial_i(f A_i)
+      =(\partial_i f)A_i+f\,\partial_i A_i
+      =\mathbf{A}\cdot\nabla f+f\,\nabla\cdot\mathbf{A}.
+    \]
+  \item 第 $i$ 个分量
+    \begin{align*}
+      \bigl(\nabla\times(f\mathbf{A})\bigr)_i
+      &=\varepsilon_{ijk}\partial_j(f A_k)
+       =\varepsilon_{ijk}(\partial_j f)A_k
+        +f\,\varepsilon_{ijk}\partial_j A_k \\
+      &=(\nabla f\times\mathbf{A})_i
+        +f\,(\nabla\times\mathbf{A})_i.
+    \end{align*}
+  \item $(\mathbf{A}\times\mathbf{B})_i=\varepsilon_{ijk}A_j B_k$，故
+    \[
+      \nabla\cdot(\mathbf{A}\times\mathbf{B})
+      =\varepsilon_{ijk}\partial_i(A_j B_k)
+      =\varepsilon_{ijk}(\partial_i A_j)B_k
+       +\varepsilon_{ijk}A_j(\partial_i B_k).
+    \]
+    第一项：$(i,j,k)\mapsto(k,i,j)$ 是偶置换，$\varepsilon_{kij}=\varepsilon_{ijk}$，而
+    $(\nabla\times\mathbf{A})_k=\varepsilon_{kij}\partial_i A_j$，所以
+    \[
+      \varepsilon_{ijk}(\partial_i A_j)B_k
+      =B_k(\nabla\times\mathbf{A})_k
+      =\mathbf{B}\cdot(\nabla\times\mathbf{A}).
+    \]
+    第二项：对换前两个指标，$\varepsilon_{jik}=-\varepsilon_{ijk}$，而
+    $(\nabla\times\mathbf{B})_j=\varepsilon_{jik}\partial_i B_k$，所以
+    \[
+      \varepsilon_{ijk}A_j(\partial_i B_k)
+      =-A_j(\nabla\times\mathbf{B})_j
+      =-\mathbf{A}\cdot(\nabla\times\mathbf{B}).
+    \]
+    两项相加即得。
+\end{enumerate}
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  \begin{enumerate}
+    \item 设 $\mathbf{A}=x\,\mathbf{e}_x+y\,\mathbf{e}_y+z\,\mathbf{e}_z$，$V$ 是球 $x^2+y^2+z^2\le R^2$，$S=\partial V$ 取外法向. 分别计算散度定理的两边，验证
+      \[
+        \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+        =\int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V.
+      \]
+    \item 设 $\mathbf{A}=y\,\mathbf{e}_x+z\,\mathbf{e}_y+x\,\mathbf{e}_z$. $S$ 是正方形 $0\le x\le a$，$0\le y\le a$，$z=0$，法向取 $\mathbf{e}_z$，边界 $L$ 按右手定则定向. 分别计算斯托克斯定理的两边，验证
+      \[
+        \oint_L\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}
+        =\int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}.
+      \]
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}
+  \item $\nabla\cdot\mathbf{A}=\partial_x x+\partial_y y+\partial_z z=3$。球的体积是 $\tfrac43\pi R^3$，
+    \[
+      \int_V(\nabla\cdot\mathbf{A})\,\mathrm{d}V
+      =3\cdot\frac43\pi R^3
+      =4\pi R^3.
+    \]
+    球面上 $\mathbf{A}=R\,\mathbf{e}_r$，外法向也是 $\mathbf{e}_r$，面积元
+    $\mathrm{d}S=R^2\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi$，故
+    $\mathbf{A}\cdot\mathrm{d}\mathbf{S}=R^3\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi$。
+    \[
+      \oint_S\mathbf{A}\cdot\mathrm{d}\mathbf{S}
+      =\int_0^{2\pi}\!\mathrm{d}\phi\int_0^{\pi}R^3\sin\theta\,\mathrm{d}\theta
+      =2\pi R^3\cdot 2
+      =4\pi R^3.
+    \]
+    两边都是 $4\pi R^3$。
+
+  \item
+    \begin{align*}
+      (\nabla\times\mathbf{A})_x
+      &=\partial_y A_z-\partial_z A_y
+       =\partial_y x-\partial_z z=-1,\\
+      (\nabla\times\mathbf{A})_y
+      &=\partial_z A_x-\partial_x A_z
+       =\partial_z y-\partial_x x=-1,\\
+      (\nabla\times\mathbf{A})_z
+      &=\partial_x A_y-\partial_y A_x
+       =\partial_x z-\partial_y y=-1.
+    \end{align*}
+    所以 $\nabla\times\mathbf{A}=-\mathbf{e}_x-\mathbf{e}_y-\mathbf{e}_z$。
+    正方形上 $\mathrm{d}\mathbf{S}=\mathbf{e}_z\,\mathrm{d}x\,\mathrm{d}y$，
+    \[
+      \int_S(\nabla\times\mathbf{A})\cdot\mathrm{d}\mathbf{S}
+      =\int_0^a\int_0^a(-1)\,\mathrm{d}x\,\mathrm{d}y
+      =-a^2.
+    \]
+    法向 $\mathbf{e}_z$ 对应的边界是从上方看的逆时针方向，四条边依次为
+    \begin{align*}
+      L_1&: y=z=0,\ x:0\to a,
+        &&\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=y\,\mathrm{d}x=0,\\
+      L_2&: x=a,\ z=0,\ y:0\to a,
+        &&\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=z\,\mathrm{d}y=0,\\
+      L_3&: y=a,\ z=0,\ x:a\to 0,
+        &&\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=y\,\mathrm{d}x
+          =\int_a^0 a\,\mathrm{d}x=-a^2,\\
+      L_4&: x=z=0,\ y:a\to 0,
+        &&\mathbf{A}\cdot\mathrm{d}\boldsymbol{\ell}=z\,\mathrm{d}y=0.
+    \end{align*}
+    环量是 $-a^2$，与面积分一致。
+\end{enumerate}
+\end{solution}
+
+%==========================================================================
+\begin{problem}
+  已知
+  $\mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+  =(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{A}\cdot\mathbf{B})\mathbf{C}$.
+  \begin{enumerate}
+    \item 证明
+      \[
+        (\mathbf{A}\times\mathbf{B})\times\mathbf{C}
+        =(\mathbf{A}\cdot\mathbf{C})\mathbf{B}
+         -(\mathbf{B}\cdot\mathbf{C})\mathbf{A}.
+      \]
+    \item 证明
+      \[
+        \mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+        +\mathbf{B}\times(\mathbf{C}\times\mathbf{A})
+        +\mathbf{C}\times(\mathbf{A}\times\mathbf{B})
+        =\mathbf{0}.
+      \]
+    \item 用指标记号证明拉格朗日恒等式
+      \[
+        (\mathbf{A}\times\mathbf{B})\cdot(\mathbf{C}\times\mathbf{D})
+        =(\mathbf{A}\cdot\mathbf{C})(\mathbf{B}\cdot\mathbf{D})
+         -(\mathbf{A}\cdot\mathbf{D})(\mathbf{B}\cdot\mathbf{C}).
+      \]
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}
+  \item $(\mathbf{A}\times\mathbf{B})\times\mathbf{C}
+    =-\mathbf{C}\times(\mathbf{A}\times\mathbf{B})$。
+    把已知公式里的三个矢量换成 $\mathbf{C},\mathbf{A},\mathbf{B}$：
+    \[
+      \mathbf{C}\times(\mathbf{A}\times\mathbf{B})
+      =(\mathbf{C}\cdot\mathbf{B})\mathbf{A}-(\mathbf{C}\cdot\mathbf{A})\mathbf{B}.
+    \]
+    因此
+    \[
+      (\mathbf{A}\times\mathbf{B})\times\mathbf{C}
+      =(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{B}\cdot\mathbf{C})\mathbf{A}.
+    \]
+
+  \item 已知公式及其轮换给出
+    \begin{align*}
+      \mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+      &=(\mathbf{A}\cdot\mathbf{C})\mathbf{B}-(\mathbf{A}\cdot\mathbf{B})\mathbf{C},\\
+      \mathbf{B}\times(\mathbf{C}\times\mathbf{A})
+      &=(\mathbf{B}\cdot\mathbf{A})\mathbf{C}-(\mathbf{B}\cdot\mathbf{C})\mathbf{A},\\
+      \mathbf{C}\times(\mathbf{A}\times\mathbf{B})
+      &=(\mathbf{C}\cdot\mathbf{B})\mathbf{A}-(\mathbf{C}\cdot\mathbf{A})\mathbf{B}.
+    \end{align*}
+    $\mathbf{A}$ 的系数是 $-(\mathbf{B}\cdot\mathbf{C})+(\mathbf{C}\cdot\mathbf{B})=0$，
+    $\mathbf{B}$、$\mathbf{C}$ 的系数同样抵消，三项之和为零。
+
+  \item
+    \begin{align*}
+      (\mathbf{A}\times\mathbf{B})\cdot(\mathbf{C}\times\mathbf{D})
+      &=(\mathbf{A}\times\mathbf{B})_i(\mathbf{C}\times\mathbf{D})_i
+       =\varepsilon_{ijk}A_j B_k\,\varepsilon_{ilm}C_l D_m.
+    \end{align*}
+    用 $\varepsilon_{ijk}\varepsilon_{ilm}=\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}$，
+    \begin{align*}
+      \varepsilon_{ijk}\varepsilon_{ilm}A_j B_k C_l D_m
+      &=(\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl})A_j B_k C_l D_m \\
+      &=A_j C_j\,B_k D_k-A_j D_j\,B_k C_k \\
+      &=(\mathbf{A}\cdot\mathbf{C})(\mathbf{B}\cdot\mathbf{D})
+        -(\mathbf{A}\cdot\mathbf{D})(\mathbf{B}\cdot\mathbf{C}).
+    \end{align*}
+\end{enumerate}
+\end{solution}
+
+\end{document}
