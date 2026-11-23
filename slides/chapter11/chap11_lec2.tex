@@ -1,0 +1,206 @@
+% !TEX program = xelatex
+% 普西函数与黎曼泽塔函数
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{特殊函数简介}
+\subtitle{第二讲：普西函数与泽塔函数}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  普西函数（digamma function）是伽马函数的对数导数。有理分式的无穷级数可以收成它在极点上的值。黎曼泽塔函数（Riemann zeta function）是正整数幂次的倒数和。
+  \begin{enumerate}
+    \item $\psi(z)=\Gamma'(z)/\Gamma(z)$ 的递推和反射；
+    \item 用部分分式求 $\sum p(n)/d(n)$；
+    \item $\zeta(z)=\sum k^{-z}$，以及 $\zeta(2)=\pi^2/6$。
+  \end{enumerate}
+\end{frame}
+
+\section{普西函数}
+
+\begin{frame}{定义}
+  \begin{equation*}
+    \boxed{\displaystyle
+      \psi(z)=\frac{\mathrm{d}}{\mathrm{d}z}\ln\Gamma(z)
+      =\frac{\Gamma'(z)}{\Gamma(z)}.}
+  \end{equation*}
+  $\Gamma$ 在 $z=0,-1,-2,\ldots$ 有一阶极点，$\ln\Gamma$ 在那里有对数奇点，导数是一阶极点，留数都是 $-1$。除此之外 $\psi(z)$ 全平面解析。
+\end{frame}
+
+\begin{frame}{递推}
+  对 $\Gamma(z+1)=z\Gamma(z)$ 取对数再求导，
+  \[
+    \psi(z+1)=\psi(z)+\frac{1}{z}.
+  \]
+  连用 $n$ 次，
+  \begin{equation*}
+    \psi(z+n)
+    =\psi(z)+\frac{1}{z}+\frac{1}{z+1}+\cdots+\frac{1}{z+n-1}.
+  \end{equation*}
+  调和数就是 $H_n=\psi(n+1)-\psi(1)=\psi(n+1)+\gamma$。
+\end{frame}
+
+\begin{frame}{反射与倍乘}
+  对 $\Gamma(z)\Gamma(1-z)=\pi/\sin(\pi z)$ 取对数导数，
+  \begin{equation*}
+    \psi(1-z)=\psi(z)+\pi\cot\pi z.
+  \end{equation*}
+  由此还有
+  \[
+    \psi(z)-\psi(-z)=-\frac{1}{z}-\pi\cot\pi z.
+  \]
+  倍乘公式的对数导数是
+  \[
+    \psi(2z)=\frac12\psi(z)+\frac12\psi\Bigl(z+\frac12\Bigr)+\ln 2.
+  \]
+\end{frame}
+
+\begin{frame}{几个值}
+  欧拉常数就是 $\gamma=-\psi(1)$。倍乘公式取 $z=1/2$，
+  \[
+    \psi(1)=\frac12\psi\Bigl(\frac12\Bigr)+\frac12\psi(1)+\ln 2,
+  \]
+  解出
+  \[
+    \psi(1)=-\gamma,
+    \qquad
+    \psi\Bigl(\frac12\Bigr)=-\gamma-2\ln 2.
+  \]
+  后面的级数要用到
+  \begin{align*}
+    \psi\Bigl(\frac13\Bigr)
+    &=-\gamma-\frac{\pi}{2\sqrt{3}}-\frac32\ln 3,\\
+    \psi\Bigl(\frac23\Bigr)
+    &=-\gamma+\frac{\pi}{2\sqrt{3}}-\frac32\ln 3.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{大 $n$ 时像对数}
+  \[
+    \lim_{n\to\infty}\bigl[\psi(z+n)-\ln n\bigr]=0.
+  \]
+  部分分式求和时，每一项 $\psi(\alpha_k+N)$ 都换成 $\ln N$ 再相加。系数之和为零，对数就消掉，无穷级数只留下 $-\sum a_k\psi(\alpha_k)$。
+\end{frame}
+
+\section{有理级数}
+
+\begin{frame}{部分分式}
+  设 $u_n=p(n)/d(n)$，$p$ 的次数至少比 $d$ 低 $2$，级数才收敛。$d$ 的零点都是一阶时，
+  \[
+    u_n=\sum_{k=1}^{m}\frac{a_k}{n+\alpha_k},
+    \qquad
+    \sum_{k=1}^{m}a_k=0.
+  \]
+  递推把有限和写成普西函数，
+  \[
+    \sum_{n=0}^{N}u_n
+    =\sum_{k=1}^{m}a_k
+      \bigl[\psi(\alpha_k+N)-\psi(\alpha_k)\bigr].
+  \]
+  $N\to\infty$ 时，
+  \begin{equation*}
+    \boxed{\displaystyle
+      \sum_{n=0}^{\infty}u_n
+      =-\sum_{k=1}^{m}a_k\,\psi(\alpha_k).}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：三个线性因子}
+  \[
+    \frac{1}{(3n+1)(3n+2)(3n+3)}
+    =\frac16\frac{1}{n+1/3}
+     -\frac13\frac{1}{n+2/3}
+     +\frac16\frac{1}{n+1}.
+  \]
+  三个系数 $1/6$、$-1/3$、$1/6$ 之和是零。求和公式给出
+  \[
+    \sum_{n=0}^{\infty}
+    =-\frac16\Biggl[
+        \psi\Bigl(\frac13\Bigr)
+        -2\psi\Bigl(\frac23\Bigr)
+        +\psi(1)
+      \Biggr].
+  \]
+\end{frame}
+
+\begin{frame}{代进特殊值}
+  \[
+    \psi\Bigl(\frac13\Bigr)-2\psi\Bigl(\frac23\Bigr)+\psi(1)
+    =-\frac{3\pi}{2\sqrt{3}}+\frac32\ln 3.
+  \]
+  $\gamma$ 在三项里相消。于是
+  \[
+    \sum_{n=0}^{\infty}
+      \frac{1}{(3n+1)(3n+2)(3n+3)}
+    =\frac14\Biggl(\frac{\pi}{\sqrt{3}}-\ln 3\Biggr).
+  \]
+\end{frame}
+
+\begin{frame}{例：$\sum 1/(n^2+a^2)$}
+  $a>0$ 时，
+  \[
+    \frac{1}{n^2+a^2}
+    =\frac{\mathrm{i}}{2a}
+      \Biggl(\frac{1}{n+\mathrm{i}a}-\frac{1}{n-\mathrm{i}a}\Biggr).
+  \]
+  \[
+    \sum_{n=0}^{\infty}\frac{1}{n^2+a^2}
+    =-\frac{\mathrm{i}}{2a}
+      \bigl[\psi(\mathrm{i}a)-\psi(-\mathrm{i}a)\bigr].
+  \]
+  反射差给出 $\psi(\mathrm{i}a)-\psi(-\mathrm{i}a)=\mathrm{i}\bigl[1/a+\pi\coth(\pi a)\bigr]$，所以
+  \begin{equation*}
+    \sum_{n=0}^{\infty}\frac{1}{n^2+a^2}
+    =\frac{1}{2a^2}\bigl[1+\pi a\coth(\pi a)\bigr].
+  \end{equation*}
+\end{frame}
+
+\section{泽塔函数}
+
+\begin{frame}{级数定义}
+  $\operatorname{Re} z>1$ 时，
+  \begin{equation*}
+    \boxed{\displaystyle
+      \zeta(z)=\sum_{k=1}^{\infty} k^{-z}.}
+  \end{equation*}
+  调和级数是 $z=1$ 的边界，那里发散。偶数值是 $\pi$ 的幂，
+  \[
+    \zeta(2)=\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6}.
+  \]
+  $\psi'(1)=\zeta(2)=\pi^2/6$。
+\end{frame}
+
+\begin{frame}{积分表示}
+  \[
+    \zeta(z)
+    =\frac{1}{\Gamma(z)}\int_0^{\infty}\frac{t^{z-1}}{e^{t}-1}\,\mathrm{d}t,
+    \qquad\operatorname{Re} z>1.
+  \]
+  把 $1/(e^t-1)$ 展成 $e^{-t}+e^{-2t}+\cdots$，逐项积分就是 $\Gamma(z)$ 乘 $\sum k^{-z}$。
+  \vspace{0.35em}
+  这个积分把 $\zeta(z)$ 从 $\operatorname{Re} z>1$ 继续延拓。$z=1$ 仍是一阶极点。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  \[
+    \psi(z+1)=\psi(z)+\frac{1}{z},
+    \qquad
+    \psi(1)=-\gamma,
+    \qquad
+    \psi(1-z)=\psi(z)+\pi\cot\pi z.
+  \]
+  一阶极点的有理级数等于 $-\sum a_k\psi(\alpha_k)$。
+  \[
+    \zeta(2)=\frac{\pi^2}{6},
+    \qquad
+    \sum_{n=0}^{\infty}\frac{1}{n^2+a^2}
+    =\frac{1+\pi a\coth(\pi a)}{2a^2}.
+  \]
+\end{frame}
+
+\end{document}

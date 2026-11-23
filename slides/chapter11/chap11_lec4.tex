@@ -1,0 +1,193 @@
+% !TEX program = xelatex
+% 厄米多项式与拉盖尔多项式
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{特殊函数简介}
+\subtitle{第四讲：厄米多项式与拉盖尔多项式}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  勒让德多项式来自球面上的角向方程。谐振子和氢原子再产生两类多项式，它们在无穷区间上带权重正交。
+  \begin{enumerate}
+    \item 谐振子要求厄米多项式在有限项截断，能级是 $\hbar\omega(n+1/2)$；
+    \item 罗德里格斯公式、生成函数和权重 $e^{-\xi^2}$；
+    \item 氢原子的径向函数是广义拉盖尔多项式，能级只依赖 $n$。
+  \end{enumerate}
+\end{frame}
+
+\section{厄米多项式}
+
+\begin{frame}{谐振子}
+  \[
+    -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2}
+    +\frac12 m\omega^2 x^2\,\psi
+    =E\psi.
+  \]
+  令 $\xi=x\sqrt{m\omega/\hbar}$，$\varepsilon=2E/(\hbar\omega)$，
+  \[
+    -\frac{\mathrm{d}^2\psi}{\mathrm{d}\xi^2}+(\xi^2-\varepsilon)\psi=0.
+  \]
+  $\xi\to\infty$ 时可积的解按 $e^{-\xi^2/2}$ 衰减。令 $\psi=v(\xi)\,e^{-\xi^2/2}$，
+  \[
+    v''-2\xi v'+(\varepsilon-1)v=0.
+  \]
+\end{frame}
+
+\begin{frame}{级数必须截断}
+  在 $\xi=0$ 把 $v$ 写成幂级数。递推每一步把次数提高 $2$，一般项像 $\xi^{2k}/k!$ 再乘一个不趋于零的因子。这样 $v$ 比 $e^{\xi^2/2}$ 长得还快，$\psi$ 在无穷远处不可积。
+  \vspace{0.4em}
+  级数在有限项截断的条件是 $\varepsilon-1=2n$，$n=0,1,2,\ldots$。能级因此是
+  \begin{equation*}
+    \boxed{\displaystyle
+      E_n=\hbar\omega\Bigl(n+\frac12\Bigr).}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{罗德里格斯公式}
+  \begin{equation*}
+    \boxed{\displaystyle
+      H_n(\xi)
+      =(-1)^n e^{\xi^2}
+        \frac{\mathrm{d}^n}{\mathrm{d}\xi^n}e^{-\xi^2}.}
+  \end{equation*}
+  $H_0=1$，$H_1=2\xi$。二阶导数
+  \[
+    \frac{\mathrm{d}^2}{\mathrm{d}\xi^2}e^{-\xi^2}=(4\xi^2-2)e^{-\xi^2},
+  \]
+  所以 $H_2=4\xi^2-2$。再求一次，$H_3=8\xi^3-12\xi$。
+\end{frame}
+
+\begin{frame}{核对 $H_2$}
+  $H_2'=8\xi$，$H_2''=8$。厄米方程是 $H_n''-2\xi H_n'+2n H_n=0$。$n=2$ 时
+  \begin{align*}
+    &8-2\xi\cdot 8\xi+4(4\xi^2-2)\\
+    &\qquad=8-16\xi^2+16\xi^2-8=0.
+  \end{align*}
+  这就是 $\varepsilon-1=2n$ 时 $v$ 的方程。
+\end{frame}
+
+\begin{frame}{生成函数}
+  \[
+    e^{2\xi t-t^2}
+    =\sum_{n=0}^{\infty} H_n(\xi)\frac{t^n}{n!}.
+  \]
+  对 $t$ 求导，比较系数，
+  \[
+    H_{n+1}(\xi)=2\xi H_n(\xi)-2n H_{n-1}(\xi).
+  \]
+  $H_0$ 和 $H_1$ 之后，后面的多项式逐个写出来。
+\end{frame}
+
+\begin{frame}{正交与波函数}
+  权重是 $e^{-\xi^2}$，
+  \[
+    \int_{-\infty}^{\infty}
+      e^{-\xi^2} H_m(\xi) H_n(\xi)\,\mathrm{d}\xi
+    =\sqrt{\pi}\,2^n n!\,\delta_{mn}.
+  \]
+  归一化的束缚态是
+  \[
+    \psi_n(x)
+    =(2^n n!)^{-1/2}
+      \Bigl(\frac{m\omega}{\pi\hbar}\Bigr)^{1/4}
+      H_n(\xi)\,e^{-\xi^2/2},
+  \]
+  $\xi=x\sqrt{m\omega/\hbar}$。基态 $n=0$ 没有节点，$H_0=1$，概率密度是一个高斯。
+\end{frame}
+
+\section{拉盖尔多项式}
+
+\begin{frame}{氢原子的径向方程}
+  波函数写成 $R(r)Y_{\ell m}$。令 $u(r)=r R(r)$，
+  \[
+    -\frac{\hbar^2}{2m}u''
+    +\Biggl(-\frac{e^2}{r}
+      +\frac{\hbar^2\ell(\ell+1)}{2m r^2}\Biggr)u
+    =E u.
+  \]
+  束缚态 $E<0$。令 $\kappa=\sqrt{-2mE}/\hbar$，$\rho=2\kappa r$，以及
+  \[
+    n=\frac{m e^2}{\hbar^2\kappa}.
+  \]
+  这里的 $n$ 先只是一个参数。
+\end{frame}
+
+\begin{frame}{能级}
+  $\rho\to\infty$ 时 $u\sim e^{-\rho/2}$，原点附近 $u\sim\rho^{\ell+1}$。提出这两个因子，
+  \[
+    u(r)=\rho^{\ell+1}e^{-\rho/2} w(\rho),
+  \]
+  $w$ 满足广义拉盖尔方程。可积性要求级数截断：$n$ 是正整数，并且 $n\geq\ell+1$。能级是
+  \begin{equation*}
+    \boxed{\displaystyle
+      E_n=-\frac{m e^4}{2\hbar^2}\frac{1}{n^2}.}
+  \end{equation*}
+  高斯单位制下大约是 $-13.6\,\mathrm{eV}/n^2$。能量只依赖 $n$。
+\end{frame}
+
+\begin{frame}{简并度}
+  固定 $n$ 时，$\ell=0,1,\ldots,n-1$，每个 $\ell$ 又有 $2\ell+1$ 个 $m$。
+  \[
+    \sum_{\ell=0}^{n-1}(2\ell+1)=n^2.
+  \]
+  这 $n^2$ 重简并来自库仑势 $1/r$。微扰一般会把这 $n^2$ 个态拆开。
+\end{frame}
+
+\begin{frame}{广义拉盖尔多项式}
+  \begin{equation*}
+    L_n^{(\alpha)}(x)
+    =\frac{e^{x} x^{-\alpha}}{n!}
+      \frac{\mathrm{d}^n}{\mathrm{d}x^n}
+      \bigl(e^{-x} x^{n+\alpha}\bigr),
+    \qquad\alpha>-1.
+  \end{equation*}
+  $\alpha=0$ 时是普通拉盖尔多项式 $L_n$。前几个是
+  \[
+    L_0^{(\alpha)}=1,
+    \qquad
+    L_1^{(\alpha)}=1+\alpha-x.
+  \]
+  权重 $e^{-x}x^{\alpha}$ 下，
+  \[
+    \int_0^{\infty}
+      e^{-x}x^{\alpha}
+      L_n^{(\alpha)} L_m^{(\alpha)}\,\mathrm{d}x
+    =\frac{\Gamma(n+\alpha+1)}{n!}\,\delta_{mn}.
+  \]
+\end{frame}
+
+\begin{frame}{径向波函数}
+  \[
+    w(\rho)=L_{n-\ell-1}^{(2\ell+1)}(\rho),
+    \qquad
+    \rho=\frac{2r}{n a_0},
+    \qquad
+    a_0=\frac{\hbar^2}{m e^2}.
+  \]
+  $n-\ell-1$ 是径向节点数。
+  \vspace{0.35em}
+  基态 $n=1$、$\ell=0$ 没有节点，$L_0^{(1)}=1$。径向概率密度 $r^2|R|^2$ 在 $r=a_0$ 取最大。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  \[
+    H_n(\xi)
+    =(-1)^n e^{\xi^2}\frac{\mathrm{d}^n}{\mathrm{d}\xi^n}e^{-\xi^2},
+    \qquad
+    E_n=\hbar\omega\Bigl(n+\frac12\Bigr).
+  \]
+  \[
+    E_n=-\frac{m e^4}{2\hbar^2 n^2},
+    \qquad
+    w(\rho)=L_{n-\ell-1}^{(2\ell+1)}(\rho).
+  \]
+  厄米多项式的权重是 $e^{-\xi^2}$，拉盖尔多项式的权重是 $e^{-x}x^{\alpha}$。氢原子的 $n$ 能级简并度是 $n^2$。
+\end{frame}
+
+\end{document}

@@ -1,0 +1,171 @@
+% !TEX program = xelatex
+% 波动方程与热传导的格林函数
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{格林函数法}
+\subtitle{第三讲：波动与热传导}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  含时问题的格林函数是单位冲量的响应。因果性要求响应出现在冲量之后。
+  \begin{enumerate}
+    \item 波动方程的表示公式，初值单独成一项；
+    \item 无限长弦上，光锥里 $G=1/(2a)$；
+    \item 驱动力频率碰上固有频率时出现共振；
+    \item 热核是高斯函数，半直线用奇延拓或偶延拓。
+  \end{enumerate}
+\end{frame}
+
+\section{波动}
+
+\begin{frame}{单位冲量}
+  \[
+    u_{tt}-a^2\nabla^2 u=f(\mathbf{r},t),
+  \]
+  初值 $u|_{t=0}=\varphi$，$u_t|_{t=0}=\psi$。连续力是一串冲量。格林函数满足
+  \[
+    G_{tt}-a^2\nabla^2 G
+    =\delta(\mathbf{r}-\mathbf{r}_0)\,\delta(t-t_0),
+  \]
+  边界条件齐次，并且 $G|_{t=0}=G_t|_{t=0}=0$。$t<t_0$ 时 $G=0$。
+\end{frame}
+
+\begin{frame}{三项}
+  原方程和 $G$ 的方程相减，在 $T\times[0,t]$ 上积分。时间部分是全导数，空间部分用格林第二恒等式，
+  \begin{align*}
+    u(\mathbf{r},t)
+    &=\iiint\int_0^{t} G\,f\,\mathrm{d}V_0\,\mathrm{d}t_0\\
+    &\quad+a^2\iint\int_0^{t}
+        \bigl(G\partial_{n_0}u-u\partial_{n_0}G\bigr)
+        \,\mathrm{d}S_0\,\mathrm{d}t_0\\
+    &\quad+\iiint\bigl[G u_{t_0}-u G_{t_0}\bigr]_{t_0=0}\,\mathrm{d}V_0.
+  \end{align*}
+  三项依次是外力、边界数据和初值。$G$ 的边界条件与问题同一类型，未知的边界组合不再出现。
+\end{frame}
+
+\begin{frame}{时间反演}
+  \[
+    G(\mathbf{r},t;\mathbf{r}_0,t_0)
+    =G(\mathbf{r}_0,-t_0;\mathbf{r},-t).
+  \]
+  波动方程对 $t\to -t$ 不变。因果性把未来的源变成过去的响应，所以互易性要带着时间反演。
+\end{frame}
+
+\section{弦}
+
+\begin{frame}{冲量换成初速度}
+  对波动方程，零初位移和单位冲量意味着
+  \[
+    G\big|_{t=\tau+0}=0,
+    \qquad
+    G_t\big|_{t=\tau+0}=\delta(x-\xi).
+  \]
+  热方程对时间是一阶的，跳跃发生在函数值本身，$G|_{t=\tau+0}=\delta(x-\xi)$。
+\end{frame}
+
+\begin{frame}{无限长弦}
+  达朗贝尔公式把时间原点挪到 $\tau$。初位移为零、初速度为 $\delta(x-\xi)$ 时，依赖区间里的积分是 $1/(2a)$，区间外是零，
+  \begin{equation*}
+    \boxed{\displaystyle
+    G=
+    \begin{cases}
+      1/(2a), & |x-\xi|<a(t-\tau),\\
+      0, & |x-\xi|>a(t-\tau).
+    \end{cases}}
+  \end{equation*}
+  扰动不超过速度 $a$。
+\end{frame}
+
+\begin{frame}{叠加}
+  \[
+    u(x,t)
+    =\int_0^{t}\int_{x-a(t-\tau)}^{x+a(t-\tau)}
+      \frac{1}{2a}\,f(\xi,\tau)\,\mathrm{d}\xi\,\mathrm{d}\tau.
+  \]
+  这就是齐次化原理里的那个积分。每个冲量只影响它自己的光锥。
+\end{frame}
+
+\begin{frame}{共振}
+  弦长 $\ell$，两端自由，外力 $A\cos(\pi x/\ell)\sin\omega t$，初值为零。外力已经是 $n=1$ 的余弦模态。令 $u=q(t)\cos(\pi x/\ell)$，$\omega_0=\pi a/\ell$，
+  \[
+    q''+\omega_0^2 q=A\sin\omega t,
+    \qquad q(0)=q'(0)=0.
+  \]
+  $\omega\neq\omega_0$ 时
+  \[
+    q=\frac{A}{\omega_0^2-\omega^2}
+      \Bigl(\sin\omega t-\frac{\omega}{\omega_0}\sin\omega_0 t\Bigr).
+  \]
+  $\omega=\omega_0$ 时
+  \[
+    q=\frac{A}{2\omega_0^2}
+      \bigl(\sin\omega_0 t-\omega_0 t\cos\omega_0 t\Bigr).
+  \]
+  振幅随 $t$ 线性增长。
+\end{frame}
+
+\section{热传导}
+
+\begin{frame}{热方程的表示}
+  \[
+    u_t-a^2\nabla^2 u=f,
+    \qquad u|_{t=0}=\varphi.
+  \]
+  热方程对时间是一阶的，表示公式只留下一个初值项，
+  \begin{align*}
+    u
+    &=\iiint\int_0^{t} G f\,\mathrm{d}V_0\,\mathrm{d}t_0\\
+    &\quad+a^2\iint\int_0^{t}
+        \bigl(G\partial_{n_0}u-u\partial_{n_0}G\bigr)
+        \,\mathrm{d}S_0\,\mathrm{d}t_0\\
+    &\quad+\iiint\bigl[u G\bigr]_{t_0=0}\,\mathrm{d}V_0.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{无限长杆的热核}
+  初值是 $\delta(x-\xi)$ 时，
+  \begin{equation*}
+    \boxed{\displaystyle
+    G
+    =\frac{1}{2a\sqrt{\pi(t-\tau)}}
+      \exp\Bigl(-\frac{(x-\xi)^2}{4a^2(t-\tau)}\Bigr),
+    \quad t>\tau.}
+  \end{equation*}
+  只要 $t>\tau$，$G$ 在整条直线上都不为零。按这个方程，信号的传播速度是无限的。
+\end{frame}
+
+\begin{frame}{半直线}
+  $x>0$、端点 $u|_{x=0}=0$ 时，把热核相减，
+  \[
+    G\propto
+    \exp\Bigl(-\frac{(x-\xi)^2}{4a^2(t-\tau)}\Bigr)
+    -\exp\Bigl(-\frac{(x+\xi)^2}{4a^2(t-\tau)}\Bigr).
+  \]
+  $x=0$ 时两项相同，$G=0$。端点绝热 $u_x|_{x=0}=0$ 时改成相加，偶函数的导数在端点为零。
+\end{frame}
+
+\begin{frame}{有限杆}
+  $0<x<\ell$、两端为零时，把 $\delta(x-\xi)$ 展成正弦级数，每个模态再乘衰减因子，
+  \[
+    G
+    =\frac{2}{\ell}\sum_{n=1}^{\infty}
+      \sin\frac{n\pi x}{\ell}
+      \sin\frac{n\pi\xi}{\ell}
+      \exp\Bigl(-a^2\bigl(\tfrac{n\pi}{\ell}\bigr)^2(t-\tau)\Bigr).
+  \]
+  $t\to\tau^+$ 时它回到 $\delta(x-\xi)$。这和分离变量写出的解是同一件事。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  波动格林函数在光锥里是 $1/(2a)$，锥外是零。互易性要带着 $t\to -t$。
+  \vspace{0.35em}
+  热核是高斯函数。端点为零用奇延拓，端点绝热用偶延拓。有限杆上，每个正弦模态乘 $e^{-a^2 k_n^2(t-\tau)}$。
+\end{frame}
+
+\end{document}

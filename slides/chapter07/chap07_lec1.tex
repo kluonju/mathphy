@@ -1,0 +1,341 @@
+% !TEX program = xelatex
+% 第一讲：second_order.tex
+% 二阶线性常微分方程：奇点、Frobenius 级数、第二个解
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{二阶微分方程}
+\subtitle{第一讲：奇点与级数解}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  分离变量把偏微分方程收成常微分方程。二阶线性方程通常没有初等通解，先看奇点，再在常点或正则奇点附近作幂级数。
+  \begin{enumerate}
+    \item 常点、正则奇点、非正则奇点；
+    \item 常点附近的 Frobenius 级数，用谐振子认出正弦和余弦；
+    \item 正则奇点：贝塞尔方程的第一个解；
+    \item 朗斯基行列式给出第二个线性无关解。
+  \end{enumerate}
+\end{frame}
+
+% =============================================================
+\section{奇点}
+
+\begin{frame}{标准形式}
+  二阶线性齐次方程写成
+  \begin{equation*}
+    y''+p(x)\,y'+q(x)\,y=0.
+  \end{equation*}
+  右端换成已知函数 $g(x)$，就是非齐次方程。叠加只对齐次方程成立：两个解的线性组合仍是解。
+  \vspace{0.4em}
+  通解含两个任意常数。找到两个线性无关的解，通解就是它们的组合。
+\end{frame}
+
+\begin{frame}{常点}
+  若 $p(x)$ 和 $q(x)$ 在 $x_0$ 处都有限，称 $x_0$ 为\textbf{常点}（ordinary point）。
+  \vspace{0.45em}
+  常点附近两个解都解析，可以写成普通幂级数
+  \begin{equation*}
+    y(x)=\sum_{k=0}^{\infty}a_k(x-x_0)^k.
+  \end{equation*}
+  收敛半径至少延伸到最近的奇点。
+\end{frame}
+
+\begin{frame}{奇点}
+  $p$ 或 $q$ 在 $x_0$ 处发散，$x_0$ 就是\textbf{奇点}（singular point）。再看发散有多快。
+  \vspace{0.35em}
+  若 $(x-x_0)p(x)$ 和 $(x-x_0)^2 q(x)$ 在 $x_0$ 处仍有限，称 $x_0$ 为\textbf{正则奇点}（regular singular point）。否则是\textbf{非正则奇点}。
+  \vspace{0.35em}
+  正则奇点附近，至少有一个解形如 $(x-x_0)^s$ 乘上幂级数，$s$ 不必是整数。
+\end{frame}
+
+\begin{frame}{例：勒让德方程}
+  \[
+    (1-x^2)y''-2xy'+\ell(\ell+1)y=0.
+  \]
+  除以 $1-x^2$，
+  \[
+    p(x)=-\frac{2x}{1-x^2},\qquad
+    q(x)=\frac{\ell(\ell+1)}{1-x^2}.
+  \]
+  在 $x=\pm 1$ 发散。在 $x=1$，
+  \[
+    (x-1)p(x)=\frac{2x}{1+x},\qquad
+    (x-1)^2 q(x)=-(x-1)\frac{\ell(\ell+1)}{1+x},
+  \]
+  都有限。$x=-1$ 同样。所以 $\pm 1$ 是正则奇点，其余有限点都是常点。
+\end{frame}
+
+\begin{frame}{例：贝塞尔方程}
+  \[
+    x^2 y''+xy'+(x^2-n^2)y=0.
+  \]
+  除以 $x^2$，
+  \[
+    p(x)=\frac{1}{x},\qquad
+    q(x)=1-\frac{n^2}{x^2}.
+  \]
+  $xp=1$，$x^2 q=x^2-n^2$，在 $x=0$ 有限。原点是正则奇点。
+  \vspace{0.35em}
+  $x\neq 0$ 的有限点上 $p$、$q$ 都有限，都是常点。
+\end{frame}
+
+\begin{frame}{几种方程的奇点}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.25}
+  {\small
+  \begin{tabular}{lc}
+    方程 & 有限处的正则奇点 \\ \hline
+    超几何 & $0,\,1$ \\
+    勒让德、切比雪夫 & $-1,\,1$ \\
+    合流超几何、拉盖尔、贝塞尔 & $0$
+  \end{tabular}}
+  \end{center}
+  \vspace{0.35em}
+  无穷远要另看。令 $x=1/z$，把方程改写成 $w(z)=y(1/z)$ 的方程，再对 $z=0$ 用同一套判据。
+  超几何、勒让德、切比雪夫在无穷远是正则奇点；后三种在无穷远是非正则奇点。
+\end{frame}
+
+\begin{frame}{两种可以直接积分的方程}
+  $y''=f(x)$ 积分两次：
+  \[
+    y=\int^{x}\!\!\int^{t}f(s)\,\mathrm{d}s\,\mathrm{d}t+C_1 x+C_2.
+  \]
+  $y''=f(x,y')$ 不含 $y$。令 $u=y'$，得到一阶方程 $u'=f(x,u)$。解出 $u=\varphi(x,C_1)$ 后再积分，
+  \[
+    y=\int\varphi(x,C_1)\,\mathrm{d}x+C_2.
+  \]
+  系数依赖 $y$ 本身时，这样降不下去，下面改用级数。
+\end{frame}
+
+% =============================================================
+\section{常点：谐振子}
+
+\begin{frame}{Frobenius 级数}
+  在 $x_0=0$ 附近设
+  \begin{equation*}
+    y(x)=\sum_{j=0}^{\infty}a_j x^{s+j},\qquad a_0\neq 0.
+  \end{equation*}
+  $s$ 和 $a_j$ 都待定。求导，
+  \begin{align*}
+    y'&=\sum_{j=0}^{\infty}a_j(s+j)x^{s+j-1},\\
+    y''&=\sum_{j=0}^{\infty}a_j(s+j)(s+j-1)x^{s+j-2}.
+  \end{align*}
+  代进微分方程，每一幂次的系数必须为零。最低次幂给出 $s$ 的\textbf{判别方程}（indicial equation）。
+\end{frame}
+
+\begin{frame}{谐振子}
+  \[
+    y''+\omega^2 y=0.
+  \]
+  $p=0$、$q=\omega^2$，原点是常点，但我们仍保留 $s$，用来对照后面的正则奇点。代入后最低次是 $x^{s-2}$：
+  \[
+    a_0\,s(s-1)=0.
+  \]
+  $a_0\neq 0$，所以 $s=0$ 或 $s=1$。解从 $x^0$ 或 $x^1$ 开始，和解析性一致。
+\end{frame}
+
+\begin{frame}{下一项与递推}
+  $x^{s-1}$ 的系数是 $a_1(s+1)s=0$。
+  $s=1$ 时必须 $a_1=0$；$s=0$ 时 $a_1$ 不受限制。
+  \vspace{0.3em}
+  更高次给出递推
+  \begin{equation*}
+    a_{j+2}=-\frac{\omega^2}{(s+j+2)(s+j+1)}\,a_j,
+    \qquad j\geq 0.
+  \end{equation*}
+  偶次系数由 $a_0$ 定，奇次系数由 $a_1$ 定。取 $a_1=0$，就把两支解分开。
+\end{frame}
+
+\begin{frame}{$s=0$：余弦}
+  \[
+    a_{j+2}=-\frac{\omega^2}{(j+2)(j+1)}a_j.
+  \]
+  \[
+    a_2=-\frac{\omega^2}{2!}a_0,\qquad
+    a_4=\frac{\omega^4}{4!}a_0,\qquad
+    a_6=-\frac{\omega^6}{6!}a_0.
+  \]
+  于是
+  \[
+    y=a_0\sum_{m=0}^{\infty}(-1)^m\frac{(\omega x)^{2m}}{(2m)!}
+    =a_0\cos(\omega x).
+  \]
+\end{frame}
+
+\begin{frame}{$s=1$：正弦}
+  \[
+    a_{j+2}=-\frac{\omega^2}{(j+3)(j+2)}a_j,\qquad a_1=0.
+  \]
+  \[
+    y=a_0 x\left[
+      1-\frac{(\omega x)^2}{3!}
+       +\frac{(\omega x)^4}{5!}
+       -\cdots
+    \right]
+    =\frac{a_0}{\omega}\sin(\omega x).
+  \]
+  两个根给出两个线性无关的解。通解是 $A\cos(\omega x)+B\sin(\omega x)$。
+\end{frame}
+
+\begin{frame}{展开中心可以搬家}
+  常点若在 $x_0$，把幂次换成 $(x-x_0)$：
+  \begin{equation*}
+    y(x)=\sum_{j=0}^{\infty}a_j(x-x_0)^{s+j},\qquad a_0\neq 0.
+  \end{equation*}
+  判别方程和递推的形状不变，只是每一步的导数多一个因子。谐振子的系数是常数，换原点仍然得到正弦和余弦，只是宗量改成 $\omega(x-x_0)$。
+\end{frame}
+
+% =============================================================
+\section{正则奇点：贝塞尔方程}
+
+\begin{frame}{代入贝塞尔方程}
+  \[
+    x^2 y''+x y'+(x^2-n^2)y=0,
+    \qquad
+    y=\sum_{j=0}^{\infty}a_j x^{s+j}.
+  \]
+  $x^2 y''$、$x y'$ 和 $-n^2 y$ 都产生 $x^{s+j}$；$x^2 y$ 产生 $x^{s+j+2}$，比它们高两阶。
+  \vspace{0.3em}
+  最低次 $x^s$ 只含 $a_0$：
+  \[
+    a_0\bigl[s(s-1)+s-n^2\bigr]=0.
+  \]
+  判别方程是 $s^2-n^2=0$，根为 $s=\pm n$。下面先做 $s=n$，并设 $n\geq 0$。
+\end{frame}
+
+\begin{frame}{奇次系数为零}
+  $x^{s+1}$ 的系数是
+  \[
+    a_1(s+1-n)(s+1+n)=0.
+  \]
+  $s=n$ 时两个因子是 $1$ 和 $2n+1$，都不为零，所以 $a_1=0$。递推每步跳两阶，所有奇次系数都是零。
+\end{frame}
+
+\begin{frame}{递推}
+  把 $x^{s+j}$ 的系数收成
+  \[
+    a_j\,j(2n+j)+a_{j-2}=0.
+  \]
+  改记指标，
+  \begin{equation*}
+    \boxed{\displaystyle
+      a_{j+2}=-\frac{a_j}{(j+2)(2n+j+2)},
+      \qquad j\geq 0.}
+  \end{equation*}
+  偶数项可以一直写下去：
+  \[
+    a_{2m}=(-1)^m\frac{a_0\,n!}{2^{2m}\,m!\,(n+m)!}.
+  \]
+\end{frame}
+
+\begin{frame}{第一类贝塞尔函数}
+  \[
+    y=a_0\sum_{m=0}^{\infty}(-1)^m
+      \frac{n!}{2^{2m}\,m!\,(n+m)!}\,x^{n+2m}.
+  \]
+  取 $a_0=1/(2^n n!)$，这个级数定义为 $J_n(x)$：
+  \begin{equation*}
+    \boxed{\displaystyle
+      J_n(x)
+      =\sum_{m=0}^{\infty}(-1)^m
+        \frac{1}{m!\,(n+m)!}
+        \left(\frac{x}{2}\right)^{n+2m}.}
+  \end{equation*}
+  $n$ 不是整数时，$(n+m)!$ 理解成 $\Gamma(n+m+1)$。$s=-n$ 且 $n$ 不是整数，同样的步骤给出另一个解 $J_{-n}(x)$。
+\end{frame}
+
+\begin{frame}{整数阶时第二个根失败}
+  $n$ 是非负整数时，$s=-n$ 的递推会走到分母为零的一步，级数无法按 $x^{-n}$ 开头继续下去。得到的解与 $J_n$ 成比例，不是第二个独立解。
+  \vspace{0.4em}
+  判别根之差为整数时，Frobenius 方法常常只给出一个解。第二个解要用降阶，一般会含 $\ln x$。
+\end{frame}
+
+% =============================================================
+\section{第二个解}
+
+\begin{frame}{朗斯基行列式}
+  两个解 $y_1,y_2$ 的\textbf{朗斯基行列式}（Wronskian）是
+  \begin{equation*}
+    \Delta(x)
+    =y_1 y_2'-y_2 y_1'
+    =\begin{vmatrix}
+      y_1 & y_2 \\ y_1' & y_2'
+    \end{vmatrix}.
+  \end{equation*}
+  $\Delta\not\equiv 0$ 当且仅当两个解线性无关。
+  \vspace{0.3em}
+  它们都满足 $y''+py'+qy=0$，相减消去 $q$：
+  \[
+    y_1 y_2''-y_2 y_1''+p\,(y_1 y_2'-y_2 y_1')=0,
+  \]
+  也就是 $\Delta'+p\,\Delta=0$。
+\end{frame}
+
+\begin{frame}{阿贝尔公式}
+  分离变量，$\mathrm{d}\Delta/\Delta=-p\,\mathrm{d}x$，
+  \begin{equation*}
+    \boxed{\displaystyle
+      \Delta(x)=\Delta_0\exp\Bigl(-\int^{x}p(t)\,\mathrm{d}t\Bigr).}
+  \end{equation*}
+  知道一个解以后，
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}x}\Bigl(\frac{y_2}{y_1}\Bigr)
+    =\frac{\Delta}{y_1^2},
+  \]
+  所以
+  \begin{equation*}
+    \boxed{\displaystyle
+      y_2(x)=y_1(x)\int^{x}\frac{\Delta(t)}{y_1(t)^2}\,\mathrm{d}t.}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：从余弦回到正弦}
+  谐振子 $p=0$，故 $\Delta$ 是常数。取 $y_1=\cos(\omega x)$，$\Delta_0=\omega$，
+  \[
+    y_2=\cos(\omega x)\int\frac{\omega}{\cos^2(\omega x)}\,\mathrm{d}x
+    =\cos(\omega x)\cdot\tan(\omega x)
+    =\sin(\omega x).
+  \]
+  和 Frobenius 的第二支一致。这里 $p=0$，积分里没有对数。
+\end{frame}
+
+\begin{frame}{根差为整数时的对数}
+  贝塞尔方程 $p=1/x$，$\Delta\propto 1/x$。第一个解 $y_1\sim x^n$ 时，
+  \[
+    y_2=y_1\int\frac{\mathrm{d}x}{x\,y_1^2}.
+  \]
+  $n$ 是整数，被积函数含 $x^{-1}$ 或更低的整数幂，积分产生 $\ln x$，再乘上 $y_1$ 的级数。
+  \vspace{0.35em}
+  一般地，判别根之差为整数时，第二个解写成
+  \[
+    y_2=A\,y_1\ln|x-x_0|
+    +\sum_{k=0}^{\infty}b_k(x-x_0)^{s_2+k}.
+  \]
+  $A=0$ 时对数项不出现，两个解都是纯级数。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  正则奇点的判据：$(x-x_0)p$ 与 $(x-x_0)^2 q$ 有限。
+  \vspace{0.35em}
+  Frobenius 级数 $\sum a_j(x-x_0)^{s+j}$，最低次决定 $s$。谐振子给出 $\cos(\omega x)$ 与 $\sin(\omega x)$；贝塞尔方程给出
+  \[
+    J_n(x)
+    =\sum_{m=0}^{\infty}(-1)^m
+      \frac{1}{m!\,(n+m)!}
+      \left(\frac{x}{2}\right)^{n+2m}.
+  \]
+  只有一个级数解时，
+  \[
+    y_2=y_1\int\frac{\Delta}{y_1^2}\,\mathrm{d}x,
+    \qquad
+    \Delta=\Delta_0 e^{-\int p\,\mathrm{d}x}.
+  \]
+\end{frame}
+
+\end{document}

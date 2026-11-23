@@ -1,0 +1,191 @@
+% !TEX program = xelatex
+% 格林函数：恒等式、三类边界、一维例子
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{格林函数法}
+\subtitle{第一讲：格林恒等式}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  分离变量把定解问题拆成本征模态。格林函数走另一条路：先求单位点源在同样边界下的场，再线性叠加。
+  \begin{enumerate}
+    \item 方程写成 $\nabla^2 u=f$，基本解取负号；
+    \item 格林第二恒等式，挖掉点源处的小球；
+    \item 三类边界各留下一个积分公式；
+    \item 区间 $(0,l)$ 上把公式算到底。
+  \end{enumerate}
+\end{frame}
+
+\section{恒等式}
+
+\begin{frame}{符号约定}
+  这一章的泊松方程写成
+  \begin{equation*}
+    \boxed{\displaystyle \nabla^2 u=f.}
+  \end{equation*}
+  自由空间的基本解因此是负的，
+  \[
+    \nabla^2\Bigl(-\frac{1}{4\pi R}\Bigr)=\delta^3(\mathbf{r}).
+  \]
+  若方程改成 $-\nabla^2 u=\rho$，格林函数整体差一个负号，下面每个公式都要改号。
+\end{frame}
+
+\begin{frame}{格林第一恒等式}
+  对 $u\nabla v$ 用散度定理，
+  \[
+    \iint_{\Sigma} u\,\nabla v\cdot\mathrm{d}\mathbf{S}
+    =\iiint_{T}\bigl(u\nabla^2 v+\nabla u\cdot\nabla v\bigr)\,\mathrm{d}V.
+  \]
+  $\partial/\partial n$ 取区域 $T$ 的外法向。$u$ 和 $v$ 在 $T$ 上要有连续的二阶导数，边界分段光滑。
+\end{frame}
+
+\begin{frame}{格林第二恒等式}
+  把 $u$ 和 $v$ 对调再相减，梯度内积消去，
+  \begin{equation*}
+    \boxed{\displaystyle
+    \iint_{\Sigma}\Bigl(
+      u\frac{\partial v}{\partial n}-v\frac{\partial u}{\partial n}
+    \Bigr)\,\mathrm{d}S
+    =\iiint_{T}\bigl(u\nabla^2 v-v\nabla^2 u\bigr)\,\mathrm{d}V.}
+  \end{equation*}
+  点源在 $\mathbf{r}_0$ 处不可导，不能把 $u$ 和 $v$ 直接代进去。
+\end{frame}
+
+\section{点源}
+
+\begin{frame}{三类边界}
+  边界上给定
+  \[
+    \Bigl[\alpha\frac{\partial u}{\partial n}+\beta u\Bigr]_{\Sigma}=\varphi.
+  \]
+  $\alpha=0$ 是狄利克雷，$\beta=0$ 是诺伊曼，两者都不为零是罗宾。
+  \vspace{0.4em}
+  单位点源的场满足 $\nabla^2 v=\delta(\mathbf{r}-\mathbf{r}_0)$。它在源点发散，先挖掉以 $\mathbf{r}_0$ 为心、半径 $\varepsilon$ 的小球。
+\end{frame}
+
+\begin{frame}{挖去小球}
+  剩下的区域里 $v$ 调和，$\nabla^2 u=f$。第二恒等式写成
+  \begin{align*}
+    &\iint_{\Sigma}\Bigl(v\partial_n u-u\partial_n v\Bigr)\,\mathrm{d}S
+    +\iint_{\Sigma_{\varepsilon}}\Bigl(v\partial_n u-u\partial_n v\Bigr)\,\mathrm{d}S\\
+    &\qquad=\iiint_{T\setminus K_{\varepsilon}} v\,f\,\mathrm{d}V.
+  \end{align*}
+  小球的外法向指向球心，$\partial/\partial n=-\partial/\partial\varepsilon$。附近 $v\sim -1/(4\pi|\mathbf{r}-\mathbf{r}_0|)$。
+\end{frame}
+
+\begin{frame}{小球上的极限}
+  $v$ 是 $O(1/\varepsilon)$，面积是 $4\pi\varepsilon^2$，所以
+  \[
+    \iint_{\Sigma_{\varepsilon}} v\frac{\partial u}{\partial n}\,\mathrm{d}S\to 0.
+  \]
+  $\partial v/\partial\varepsilon\sim 1/(4\pi\varepsilon^2)$，法向反向，
+  \[
+    \iint_{\Sigma_{\varepsilon}} u\frac{\partial v}{\partial n}\,\mathrm{d}S\to -u(\mathbf{r}_0).
+  \]
+  令 $\varepsilon\to 0$，
+  \begin{equation*}
+    u(\mathbf{r}_0)
+    =\iiint_T v\,f\,\mathrm{d}V
+    -\iint_{\Sigma}\Bigl(
+      v\partial_n u-u\partial_n v
+    \Bigr)\,\mathrm{d}S.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{未知的边界值要消掉}
+  上面的公式同时用到边界上的 $u$ 和 $\partial u/\partial n$。定解问题只给它们的一个线性组合。
+  \vspace{0.4em}
+  把 $v$ 选成满足同样类型的齐次边界条件，未知的那一组边界值就不再出现。这样选出的 $v$ 记作格林函数 $G$。
+\end{frame}
+
+\section{三类公式}
+
+\begin{frame}{狄利克雷}
+  要求 $G|_{\Sigma}=0$。表示公式变成
+  \begin{equation*}
+    \boxed{\displaystyle
+    u(\mathbf{r}_0)
+    =\iiint_T G\,f\,\mathrm{d}V
+    +\iint_{\Sigma}\phi\,\frac{\partial G}{\partial n}\,\mathrm{d}S,}
+  \end{equation*}
+  其中 $\phi=u|_{\Sigma}$。$f=0$ 时只剩面积分：调和函数由边界值经 $\partial G/\partial n$ 再生。
+\end{frame}
+
+\begin{frame}{罗宾}
+  $G$ 满足同一系数的齐次条件，边界上 $\partial G/\partial n=-(\beta/\alpha)G$。代入后，含未知 $u$ 的面积分两两抵消，
+  \[
+    u(\mathbf{r}_0)
+    =\iiint_T G f\,\mathrm{d}V
+    -\frac{1}{\alpha}\iint_{\Sigma} G\,\psi\,\mathrm{d}S.
+  \]
+  $\psi$ 是边界上给定的那个线性组合。
+\end{frame}
+
+\begin{frame}{诺伊曼要相容}
+  不能同时要求 $\nabla^2 G=\delta$ 和 $\partial G/\partial n|_{\Sigma}=0$。对方程积分，左边是边界上法向导数的积分，等于零，右边是 $1$。
+  \vspace{0.4em}
+  三维里改成
+  \[
+    \nabla^2 G=\delta(\mathbf{r}-\mathbf{r}_0)-\frac{1}{V_T},
+    \qquad
+    \frac{\partial G}{\partial n}\Big|_{\Sigma}=0.
+  \]
+  $V_T$ 是区域体积。均匀汇把点源的总量抵消。二维用面积代替体积。原问题也要满足 $\iiint f=\iint\partial u/\partial n$。
+\end{frame}
+
+\begin{frame}{互易}
+  \begin{equation*}
+    \boxed{\displaystyle G(\mathbf{r},\mathbf{r}_0)=G(\mathbf{r}_0,\mathbf{r}).}
+  \end{equation*}
+  两个源点都挖成小球，对 $G(\cdot,\mathbf{r}_1)$ 和 $G(\cdot,\mathbf{r}_2)$ 用第二恒等式。体积内被积函数是零，外边界上齐次条件使面积分为零，两个小球的极限留下 $G(\mathbf{r}_1,\mathbf{r}_2)-G(\mathbf{r}_2,\mathbf{r}_1)=0$。
+  \vspace{0.35em}
+  观察点和源点可以换写。常用形式是对 $\mathbf{r}_0$ 积分，在 $\mathbf{r}$ 处读出 $u$。
+\end{frame}
+
+\section{一维}
+
+\begin{frame}{区间上的格林函数}
+  $0<x<l$，$u''=f$，$u(0)=u(l)=0$。两侧是直线，
+  \[
+    G=
+    \begin{cases}
+      A x, & 0\leq x\leq x_0,\\
+      C(x-l), & x_0\leq x\leq l.
+    \end{cases}
+  \]
+  连续给出 $A x_0=C(x_0-l)$。越过 $x_0$ 积分，$G'(x_0+)-G'(x_0-)=1$，即 $C-A=1$。
+\end{frame}
+
+\begin{frame}{解出来}
+  \begin{equation*}
+    \boxed{\displaystyle
+    G(x,x_0)=
+    \begin{cases}
+      (x_0-l)x/l, & x\leq x_0,\\
+      x_0(x-l)/l, & x\geq x_0.
+    \end{cases}}
+  \end{equation*}
+  它对 $x$ 和 $x_0$ 对称，区间内部为负，和基本解 $-1/(4\pi R)$ 的符号一致。
+  \vspace{0.35em}
+  取 $f=-1$，则 $u=\int_0^l G(x,x_0)(-1)\,\mathrm{d}x_0=x(l-x)/2$。直接积分 $u''=-1$ 得到同一条抛物线。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  方程是 $\nabla^2 u=f$，基本解是 $-1/(4\pi R)$。
+  \vspace{0.35em}
+  狄利克雷格林函数在边界上为零，
+  \[
+    u(\mathbf{r}_0)
+    =\iiint G f\,\mathrm{d}V
+    +\iint\phi\,\partial_n G\,\mathrm{d}S.
+  \]
+  诺伊曼问题要先把源的总量用均匀汇抵消。一维区间上，$G$ 是折线，斜率在源点跳 $1$。
+\end{frame}
+
+\end{document}

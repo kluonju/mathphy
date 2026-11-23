@@ -1,0 +1,218 @@
+% !TEX program = xelatex
+% 球坐标分离变量：方位角、径向幂、勒让德多项式
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{球坐标下的分离变量法}
+\subtitle{第一讲：勒让德多项式}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  球面上的边界贴着 $r=a$。拉普拉斯方程在球坐标里分成径向和两个角度。
+  \begin{enumerate}
+    \item 方位角的周期性把 $m$ 收成整数；
+    \item 径向是欧拉方程，解是 $r^{\ell}$ 和 $r^{-(\ell+1)}$；
+    \item 极角在 $x=\cos\theta$ 上变成勒让德方程；
+    \item 勒让德多项式正交，轴对称的边界值按它们展开。
+  \end{enumerate}
+\end{frame}
+
+\section{分离}
+
+\begin{frame}{球坐标中的拉普拉斯方程}
+  无源区域里势、稳态温度和引力势都满足 $\nabla^2 u=0$。球坐标中
+  \[
+    \nabla^2 u
+    =\frac{1}{r^2}\partial_r(r^2\partial_r u)
+     +\frac{1}{r^2\sin\theta}\partial_{\theta}(\sin\theta\,\partial_{\theta}u)
+     +\frac{1}{r^2\sin^2\theta}\partial_{\phi\phi}u.
+  \]
+  设 $u=R(r)\,\Theta(\theta)\,\Phi(\phi)$。乘上 $r^2/(R\Theta\Phi)$ 之后，左边只含 $r$，右边只含角度。
+\end{frame}
+
+\begin{frame}{方位角}
+  $\phi$ 增加 $2\pi$ 回到同一点，所以 $\Phi(\phi+2\pi)=\Phi(\phi)$。分离出来
+  \begin{equation*}
+    \Phi''+m^2\Phi=0,
+    \qquad
+    \Phi=e^{\mathrm{i}m\phi},
+    \qquad m\in\mathbb{Z}.
+  \end{equation*}
+  $m=0$ 是轴对称。$|m|$ 还要不超过下面的 $\ell$，极点上的解才有限。
+\end{frame}
+
+\begin{frame}{径向欧拉方程}
+  极角在 $\theta=0,\pi$ 有限，把分离常数写成 $\ell(\ell+1)$，$\ell=0,1,2,\ldots$。径向方程是
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}r}\Bigl(r^2\frac{\mathrm{d}R}{\mathrm{d}r}\Bigr)
+    -\ell(\ell+1)R=0.
+  \]
+  试 $R=r^{\alpha}$，得到 $\alpha(\alpha+1)=\ell(\ell+1)$。两个根是 $\alpha=\ell$ 和 $\alpha=-(\ell+1)$，
+  \begin{equation*}
+    \boxed{\displaystyle
+      R(r)=A\,r^{\ell}+B\,r^{-(\ell+1)}.}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{哪一项留下}
+  $r^{\ell}$ 在原点有限，在无穷远处增长。$r^{-(\ell+1)}$ 在无穷远处消失，在原点发散。
+  \vspace{0.4em}
+  含原点的区域丢掉负幂。外部问题在无穷远处丢掉正幂。两边都有边界时，两项先都写上，再由边界配对。
+  \vspace{0.35em}
+  这是拉普拉斯方程。亥姆霍兹方程 $\nabla^2 u+k^2 u=0$ 的角度部分不变，径向换成球贝塞尔函数，放到下一讲。
+\end{frame}
+
+\section{勒让德方程}
+
+\begin{frame}{极角换成 $x=\cos\theta$}
+  极角方程是
+  \[
+    \frac{1}{\sin\theta}\frac{\mathrm{d}}{\mathrm{d}\theta}
+      \Bigl(\sin\theta\frac{\mathrm{d}\Theta}{\mathrm{d}\theta}\Bigr)
+    +\Biggl[\ell(\ell+1)-\frac{m^2}{\sin^2\theta}\Biggr]\Theta=0.
+  \]
+  令 $x=\cos\theta$。因为 $\mathrm{d}/\mathrm{d}\theta=-\sin\theta\,\mathrm{d}/\mathrm{d}x$，左边变成
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}x}\Biggl((1-x^2)\frac{\mathrm{d}P}{\mathrm{d}x}\Biggr).
+  \]
+  这就是连带勒让德方程，$x\in[-1,1]$。
+\end{frame}
+
+\begin{frame}{$m=0$：勒让德方程}
+  轴对称时 $m=0$，
+  \begin{equation*}
+    (1-x^2)P_{\ell}''-2x P_{\ell}'+\ell(\ell+1)P_{\ell}=0.
+  \end{equation*}
+  在 $x=\pm 1$ 作级数，一般项带对数奇性。$\ell$ 是非负整数时级数在 $\ell$ 次截断，解是多项式，端点上有限。
+  \vspace{0.35em}
+  自伴形式是
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}x}\bigl[(1-x^2)P_{\ell}'\bigr]+\ell(\ell+1)P_{\ell}=0.
+  \]
+  权是 $1$。$1-x^2$ 在端点为零，不同的 $\ell$ 正交。
+\end{frame}
+
+\begin{frame}{罗德里格斯公式}
+  \begin{equation*}
+    \boxed{\displaystyle
+      P_{\ell}(x)
+      =\frac{1}{2^{\ell}\ell!}
+        \frac{\mathrm{d}^{\ell}}{\mathrm{d}x^{\ell}}(x^2-1)^{\ell}.}
+  \end{equation*}
+  $(x^2-1)^{\ell}$ 是 $2\ell$ 次多项式，求导 $\ell$ 次后是 $\ell$ 次多项式。这个归一化保证 $P_{\ell}(1)=1$。
+\end{frame}
+
+\begin{frame}{$P_0,P_1,P_2$}
+  $\ell=0$ 没有求导，$P_0=1$。
+  \[
+    P_1=\frac12\frac{\mathrm{d}}{\mathrm{d}x}(x^2-1)=x.
+  \]
+  $(x^2-1)^2=x^4-2x^2+1$，二阶导数是 $12x^2-4$，
+  \[
+    P_2=\frac{1}{8}(12x^2-4)=\frac12(3x^2-1).
+  \]
+  三个都满足 $P_{\ell}(1)=1$。$P_{\ell}$ 在 $(-1,1)$ 里有 $\ell$ 个零点。
+\end{frame}
+
+\begin{frame}{核对 $P_2$}
+  $P_2'=3x$，$P_2''=3$。代入勒让德方程，$\ell=2$，
+  \begin{align*}
+    &(1-x^2)\cdot 3-2x\cdot 3x+6\cdot\frac12(3x^2-1)\\
+    &\qquad=3-3x^2-6x^2+9x^2-3=0.
+  \end{align*}
+  后面的多项式不必每次从罗德里格斯公式求导，用递推即可。
+\end{frame}
+
+\section{正交与展开}
+
+\begin{frame}{正交}
+  $\ell\neq\ell'$ 时，用 $P_{\ell'}$ 和 $P_{\ell}$ 分别乘对方的自伴方程，相减后从 $-1$ 积到 $1$。左边是
+  \[
+    \Bigl[(1-x^2)\bigl(P_{\ell'}P_{\ell}'-P_{\ell}P_{\ell'}'\bigr)\Bigr]_{-1}^{1}.
+  \]
+  $1-x^2$ 在端点为零，多项式的导数有限，边界项消失。因此
+  \begin{equation*}
+    \int_{-1}^{1}P_{\ell}(x)P_{\ell'}(x)\,\mathrm{d}x=0,
+    \qquad\ell\neq\ell'.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{生成函数}
+  \begin{equation*}
+    \frac{1}{\sqrt{1-2xt+t^2}}
+    =\sum_{\ell=0}^{\infty}P_{\ell}(x)\,t^{\ell},
+    \qquad |t|<1.
+  \end{equation*}
+  $t=0$ 时左边是 $1$，所以 $P_0=1$。对 $t$ 求导再令 $t=0$，得到 $P_1=x$。
+  \vspace{0.3em}
+  $x=1$ 时左边是 $1/(1-t)=\sum t^{\ell}$，因此每个 $P_{\ell}(1)=1$，和罗德里格斯公式一致。
+\end{frame}
+
+\begin{frame}{范数}
+  把生成函数记作 $G$。正交性去掉交叉项，
+  \[
+    \int_{-1}^{1}G(x,t)^2\,\mathrm{d}x
+    =\sum_{\ell=0}^{\infty}t^{2\ell}\int_{-1}^{1}P_{\ell}^2\,\mathrm{d}x.
+  \]
+  左边是
+  \[
+    \int_{-1}^{1}\frac{\mathrm{d}x}{1-2xt+t^2}
+    =\frac1t\ln\frac{1+t}{1-t}
+    =2\sum_{\ell=0}^{\infty}\frac{t^{2\ell}}{2\ell+1}.
+  \]
+  比较系数，
+  \begin{equation*}
+    \boxed{\displaystyle
+      \int_{-1}^{1}P_{\ell}(x)^2\,\mathrm{d}x=\frac{2}{2\ell+1}.}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{勒让德级数}
+  \begin{equation*}
+    f(x)=\sum_{\ell=0}^{\infty}a_{\ell}P_{\ell}(x),
+    \qquad
+    a_{\ell}=\frac{2\ell+1}{2}\int_{-1}^{1}f(x)P_{\ell}(x)\,\mathrm{d}x.
+  \end{equation*}
+  因子 $(2\ell+1)/2$ 就是范数的倒数。轴对称的球面电位先换成 $x=\cos\theta$，再用这个级数。
+\end{frame}
+
+\begin{frame}{例：$x^2$}
+  由 $P_2=\frac12(3x^2-1)$ 直接读出
+  \[
+    x^2=\frac23 P_2+\frac13 P_0.
+  \]
+  用系数公式核对：$a_0=\frac12\int_{-1}^{1}x^2\,\mathrm{d}x=\frac13$，
+  \[
+    a_2=\frac52\int_{-1}^{1}x^2\cdot\frac{3x^2-1}{2}\,\mathrm{d}x
+    =\frac52\cdot\frac{4}{15}=\frac23.
+  \]
+  $\ell\geq 3$ 与 $x^2$ 正交。球面上这就是轴对称势的 $\ell=0$ 和 $\ell=2$。
+\end{frame}
+
+\begin{frame}{递推}
+  对生成函数作 $\partial/\partial t$，用 $(1-2xt+t^2)\partial G/\partial t=(x-t)G$，比较 $t^{\ell}$ 的系数，
+  \begin{equation*}
+    (\ell+1)P_{\ell+1}(x)
+    =(2\ell+1)x\,P_{\ell}(x)-\ell\,P_{\ell-1}(x).
+  \end{equation*}
+  $P_0=1$、$P_1=x$ 之后，后面的多项式逐个写出来。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  径向解 $R=A r^{\ell}+B r^{-(\ell+1)}$。含原点留正幂，外部问题留负幂。
+  \vspace{0.35em}
+  \[
+    P_{\ell}(x)
+    =\frac{1}{2^{\ell}\ell!}\frac{\mathrm{d}^{\ell}}{\mathrm{d}x^{\ell}}(x^2-1)^{\ell},
+    \qquad
+    \int_{-1}^{1}P_{\ell}^2\,\mathrm{d}x=\frac{2}{2\ell+1}.
+  \]
+  $P_0=1$，$P_1=x$，$P_2=\frac12(3x^2-1)$。
+\end{frame}
+
+\end{document}

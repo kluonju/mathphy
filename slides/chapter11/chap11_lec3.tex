@@ -1,0 +1,204 @@
+% !TEX program = xelatex
+% 贝塞尔函数：一般阶、递推、正交、圆膜
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{特殊函数简介}
+\subtitle{第三讲：贝塞尔函数}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  圆膜、圆柱导热和圆波导的径向方程都是贝塞尔方程。整数阶的幂级数已经由弗罗贝尼乌斯方法得到，这里写成一般阶，并补上递推和正交性。
+  \begin{enumerate}
+    \item $J_{\nu}$ 的级数，整数阶时的第二类解；
+    \item 生成函数和递推；
+    \item 权重 $x$ 下的正交与模；
+    \item 圆膜的本征频率，以及球贝塞尔函数。
+  \end{enumerate}
+\end{frame}
+
+\section{级数}
+
+\begin{frame}{方程}
+  $\nu$ 阶贝塞尔方程是
+  \begin{equation*}
+    x^2 y''+x y'+(x^2-\nu^2)y=0.
+  \end{equation*}
+  $x=0$ 是正则奇点。第一类解
+  \begin{equation*}
+    \boxed{\displaystyle
+      J_{\nu}(x)
+      =\sum_{k=0}^{\infty}
+        \frac{(-1)^k}{k!\,\Gamma(k+\nu+1)}
+        \Bigl(\frac{x}{2}\Bigr)^{2k+\nu}.}
+  \end{equation*}
+  级数对所有 $x$ 收敛。$\nu=n$ 为非负整数时 $\Gamma(k+n+1)=(n+k)!$，回到前面的 $J_n$。
+\end{frame}
+
+\begin{frame}{第二个解}
+  $\nu$ 不是整数时，$J_{\nu}$ 和 $J_{-\nu}$ 线性无关，通解是
+  \[
+    y=A J_{\nu}(x)+B J_{-\nu}(x).
+  \]
+  $\nu=n$ 为整数时 $J_{-n}=(-1)^n J_n$。第二个解是第二类贝塞尔函数 $Y_n$，在 $x=0$ 附近含 $\ln x$。包含原点的圆域里通常只留 $J_n$。
+\end{frame}
+
+\begin{frame}{虚宗量}
+  把 $x$ 换成 $\mathrm{i}x$，方程里 $x^2$ 的符号反过来，
+  \[
+    x^2 y''+x y'-(x^2+\nu^2)y=0.
+  \]
+  原点有限的解是修正贝塞尔函数
+  \[
+    I_{\nu}(x)=\mathrm{i}^{-\nu}J_{\nu}(\mathrm{i}x).
+  \]
+  圆柱上的拉普拉斯方程，轴向取指数或双曲函数时，径向就是 $I_{\nu}$。
+\end{frame}
+
+\section{递推}
+
+\begin{frame}{生成函数}
+  整数阶有
+  \begin{equation*}
+    \exp\Bigl(\frac{x}{2}\Bigl(t-\frac{1}{t}\Bigr)\Bigr)
+    =\sum_{n=-\infty}^{\infty} J_n(x)\,t^n,
+    \qquad t\neq 0.
+  \end{equation*}
+  对 $x$ 求导，左边多一个因子 $\frac12(t-1/t)$。对 $t$ 求导，左边多一个因子 $(x/2)(1+1/t^2)$。比较 $t^n$ 的系数，
+  \begin{align*}
+    J_{n-1}(x)+J_{n+1}(x)&=\frac{2n}{x}J_n(x),\\
+    J_{n-1}(x)-J_{n+1}(x)&=2J_n'(x).
+  \end{align*}
+\end{frame}
+
+\begin{frame}{对一般阶也成立}
+  把 $n$ 写成 $\nu$，两式仍成立，可以直接用级数核对。由此
+  \begin{equation*}
+    \frac{\mathrm{d}}{\mathrm{d}x}\bigl[x^{\nu}J_{\nu}(x)\bigr]
+    =x^{\nu}J_{\nu-1}(x),
+  \end{equation*}
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}x}\bigl[x^{-\nu}J_{\nu}(x)\bigr]
+    =-x^{-\nu}J_{\nu+1}(x).
+  \]
+  有限圆柱上对 $\rho J_0(k\rho)$ 积分，用的就是第一式在 $\nu=1$ 的积分形式 $\mathrm{d}[u J_1(u)]/\mathrm{d}u=u J_0(u)$。
+\end{frame}
+
+\begin{frame}{积分表示}
+  令 $t=e^{\mathrm{i}\theta}$，生成函数变成
+  \[
+    e^{\mathrm{i}x\sin\theta}
+    =\sum_{n=-\infty}^{\infty} J_n(x)\,e^{\mathrm{i}n\theta}.
+  \]
+  取实部，对 $\theta$ 从 $0$ 积到 $\pi$，
+  \[
+    J_n(x)
+    =\frac{1}{\pi}\int_0^{\pi}
+      \cos(n\theta-x\sin\theta)\,\mathrm{d}\theta.
+  \]
+  $x=0$、$n=0$ 时被积函数是 $1$，所以 $J_0(0)=1$。对 $x$ 在积分号下求导得 $J_0'=-J_1$，因而 $J_1(0)=0$，$J_1(x)\sim x/2$。
+\end{frame}
+
+\begin{frame}{大 $x$ 的主项}
+  \[
+    J_{\nu}(x)
+    \sim\sqrt{\frac{2}{\pi x}}
+      \cos\Bigl(x-\frac{\nu\pi}{2}-\frac{\pi}{4}\Bigr).
+  \]
+  振幅按 $x^{-1/2}$ 衰减，相邻零点的间距趋于 $\pi$。零点本身没有初等表达式。数值上 $J_0$ 的前两个正零点是
+  \[
+    j_{0,1}\approx 2.4048,
+    \qquad
+    j_{0,2}\approx 5.5201.
+  \]
+\end{frame}
+
+\section{正交}
+
+\begin{frame}{不同零点}
+  设 $J_{\nu}(\alpha)=J_{\nu}(\beta)=0$，$\nu\geq 0$。$u(x)=J_{\nu}(\alpha x)$ 满足
+  \[
+    (xu')'+\Bigl(\alpha^2 x-\frac{\nu^2}{x}\Bigr)u=0,
+  \]
+  $v(x)=J_{\nu}(\beta x)$ 把 $\alpha$ 换成 $\beta$。相减后
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}x}\bigl[x(uv'-vu')\bigr]
+    =(\alpha^2-\beta^2)\,x\,uv.
+  \]
+  从 $0$ 积到 $1$。$x=0$ 处因子 $x$ 把边界项压成零，$x=1$ 处 $u=v=0$。$\alpha\neq\beta$ 时
+  \[
+    \int_0^{1} x\,J_{\nu}(\alpha x)\,J_{\nu}(\beta x)\,\mathrm{d}x=0.
+  \]
+  权重是 $x$。
+\end{frame}
+
+\begin{frame}{模}
+  令 $\beta\to\alpha$。在 $J_{\nu}(\alpha)=0$ 处，$J_{\nu}'(\alpha)=-J_{\nu+1}(\alpha)$，
+  \begin{equation*}
+    \boxed{\displaystyle
+      \int_0^{1} x\,J_{\nu}(\alpha x)^2\,\mathrm{d}x
+      =\frac12 J_{\nu+1}(\alpha)^2.}
+  \end{equation*}
+  零点记成 $j_{\nu,m}$。区间改成 $[0,a]$、$J_{\nu}(ka)=0$ 时，模是
+  \[
+    \int_0^{a}\rho\,J_{\nu}(k\rho)^2\,\mathrm{d}\rho
+    =\frac{a^2}{2}J_{\nu+1}(ka)^2.
+  \]
+\end{frame}
+
+\begin{frame}{圆膜}
+  半径 $a$、边缘固定、只看轴对称振动，
+  \[
+    u_{tt}
+    =c^2\Bigl(u_{\rho\rho}+\frac{1}{\rho}u_{\rho}\Bigr),
+    \qquad u(a,t)=0.
+  \]
+  分离后 $R=J_0(k\rho)$，$J_0(ka)=0$，所以 $k_m=j_{0,m}/a$，频率 $\omega_m=c k_m$。初速度为零时
+  \[
+    u(\rho,t)
+    =\sum_{m=1}^{\infty} A_m J_0(k_m\rho)\cos(c k_m t),
+  \]
+  \[
+    A_m
+    =\frac{2}{a^2 J_1(k_m a)^2}
+      \int_0^{a} f(\rho)\,J_0(k_m\rho)\,\rho\,\mathrm{d}\rho.
+  \]
+  基频是 $c j_{0,1}/a$。
+\end{frame}
+
+\begin{frame}{球贝塞尔函数}
+  球坐标里的亥姆霍兹方程，径向因子是
+  \[
+    j_n(x)=\sqrt{\frac{\pi}{2x}}\,J_{n+1/2}(x).
+  \]
+  前两个是初等函数，
+  \[
+    j_0(x)=\frac{\sin x}{x},
+    \qquad
+    j_1(x)=\frac{\sin x}{x^2}-\frac{\cos x}{x}.
+  \]
+  $j_0(0)=1$。边界上 $j_0(ka)=0$ 就是 $\sin(ka)=0$，径向波数是 $n\pi/a$。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  \[
+    J_{\nu}(x)
+    =\sum_{k=0}^{\infty}
+      \frac{(-1)^k}{k!\,\Gamma(k+\nu+1)}
+      \Bigl(\frac{x}{2}\Bigr)^{2k+\nu}.
+  \]
+  \[
+    J_{\nu-1}+J_{\nu+1}=\frac{2\nu}{x}J_{\nu},
+    \qquad
+    \int_0^{1} x J_{\nu}(\alpha x)^2\,\mathrm{d}x
+    =\frac12 J_{\nu+1}(\alpha)^2.
+  \]
+  整数阶在原点的第二个解含对数。圆膜的径向函数是 $J_0(j_{0,m}\rho/a)$。
+\end{frame}
+
+\end{document}

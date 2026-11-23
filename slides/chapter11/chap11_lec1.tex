@@ -1,0 +1,229 @@
+% !TEX program = xelatex
+% 伽马函数与贝塔函数
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{特殊函数简介}
+\subtitle{第一讲：伽马函数与贝塔函数}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  阶乘只对正整数有定义。伽马函数（Gamma function）把它延拓到复数，贝塔函数（Beta function）是两个伽马函数的商。
+  \begin{enumerate}
+    \item 极限、积分、无穷乘积三种定义；
+    \item 递推、反射公式和倍乘公式；
+    \item 贝塔函数与伽马函数的关系；
+    \item 麦克斯韦分布里的平均能量。
+  \end{enumerate}
+\end{frame}
+
+\section{伽马函数}
+
+\begin{frame}{欧拉的极限}
+  \begin{equation*}
+    \Gamma(z)
+    =\lim_{n\to\infty}
+      \frac{1\cdot 2\cdots n}{z(z+1)\cdots(z+n)}\,n^{z},
+  \end{equation*}
+  $z\neq 0,-1,-2,\ldots$。$z$ 可以是复数。
+  \vspace{0.4em}
+  把 $z$ 换成 $z+1$，分子多一个 $n$，分母多一个 $z+n+1$，
+  \[
+    \Gamma(z+1)
+    =\lim_{n\to\infty}\frac{nz}{z+n+1}\,\Gamma(z)
+    =z\,\Gamma(z).
+  \]
+\end{frame}
+
+\begin{frame}{阶乘}
+  \[
+    \Gamma(1)
+    =\lim_{n\to\infty}\frac{n!}{1\cdot 2\cdots n\cdot(n+1)}\,n
+    =1.
+  \]
+  递推 $n-1$ 次，
+  \begin{equation*}
+    \boxed{\displaystyle
+      \Gamma(n)=(n-1)!,
+      \qquad n=1,2,3,\ldots.}
+  \end{equation*}
+  $\Gamma(2)=1$，$\Gamma(3)=2$，$\Gamma(4)=6$。
+\end{frame}
+
+\begin{frame}{欧拉积分}
+  $\operatorname{Re} z>0$ 时，
+  \begin{equation*}
+    \boxed{\displaystyle
+      \Gamma(z)=\int_0^{\infty} e^{-t} t^{z-1}\,\mathrm{d}t.}
+  \end{equation*}
+  分部积分立刻回到 $\Gamma(z+1)=z\Gamma(z)$。实部不大于零时，用这个递推向左延拓。
+  \vspace{0.35em}
+  常用的两个换元是
+  \[
+    \Gamma(z)=2\int_0^{\infty} e^{-t^2} t^{2z-1}\,\mathrm{d}t
+    =\int_0^{1}\Bigl(\ln\frac{1}{t}\Bigr)^{z-1}\,\mathrm{d}t.
+  \]
+\end{frame}
+
+\begin{frame}{$\Gamma(1/2)$}
+  高斯积分 $\int_{-\infty}^{\infty}e^{-t^2}\,\mathrm{d}t=\sqrt{\pi}$。上面的换元在 $z=1/2$ 时只积正半轴，
+  \[
+    \Gamma\Bigl(\frac12\Bigr)
+    =2\int_0^{\infty} e^{-t^2}\,\mathrm{d}t
+    =\sqrt{\pi}.
+  \]
+  递推给出半整数，
+  \[
+    \Gamma\Bigl(\frac32\Bigr)=\frac12\sqrt{\pi},
+    \qquad
+    \Gamma\Bigl(\frac52\Bigr)=\frac34\sqrt{\pi}.
+  \]
+\end{frame}
+
+\begin{frame}{魏尔斯特拉斯乘积}
+  \[
+    \frac{1}{\Gamma(z)}
+    =z\,e^{\gamma z}
+      \prod_{n=1}^{\infty}\Bigl(1+\frac{z}{n}\Bigr)e^{-z/n}.
+  \]
+  $\gamma=0.57721\ldots$ 是欧拉--马斯凯罗尼常数（Euler--Mascheroni constant）。
+  \vspace{0.4em}
+  乘积在 $z=0,-1,-2,\ldots$ 有一阶零点，所以 $\Gamma(z)$ 在这些点有一阶极点，其余地方解析。
+\end{frame}
+
+\begin{frame}{极点上的留数}
+  $\Gamma(z+1)=z\Gamma(z)$，所以 $z=0$ 附近 $\Gamma(z)\sim 1/z$，留数是 $1$。
+  \vspace{0.3em}
+  用递推把 $\Gamma(-n+\varepsilon)$ 推到 $\Gamma(1+\varepsilon)$，分母是
+  \[
+    (-n+\varepsilon)(-n+1+\varepsilon)\cdots\varepsilon.
+  \]
+  $\varepsilon\to 0$ 时它变成 $(-1)^n n!\,\varepsilon$，因此
+  \begin{equation*}
+    \operatorname{Res}_{z=-n}\Gamma(z)=\frac{(-1)^n}{n!},
+    \qquad n=0,1,2,\ldots.
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{反射公式}
+  \begin{equation*}
+    \boxed{\displaystyle
+      \Gamma(z)\Gamma(1-z)=\frac{\pi}{\sin\pi z}.}
+  \end{equation*}
+  $z=1/2$ 时两边都是 $\pi$，和 $\Gamma(1/2)=\sqrt{\pi}$ 一致。
+  \vspace{0.35em}
+  它说明正半轴上的值决定负半轴：$\Gamma(1-z)$ 由 $\Gamma(z)$ 和正弦给出。极点正好落在正弦的零点上。
+\end{frame}
+
+\begin{frame}{倍乘公式}
+  \begin{equation*}
+    \boxed{\displaystyle
+      \Gamma(1+z)\,\Gamma\Bigl(z+\frac12\Bigr)
+      =2^{-2z}\sqrt{\pi}\,\Gamma(2z+1).}
+  \end{equation*}
+  等价的写法是
+  \[
+    \Gamma(z)\,\Gamma\Bigl(z+\frac12\Bigr)
+    =2^{1-2z}\sqrt{\pi}\,\Gamma(2z).
+  \]
+  半整数的伽马函数都可以用它化成 $\sqrt{\pi}$ 乘一个有理数。
+\end{frame}
+
+\section{贝塔函数}
+
+\begin{frame}{定义}
+  $\operatorname{Re} p>0$，$\operatorname{Re} q>0$ 时，
+  \begin{equation*}
+    B(p,q)=\int_0^{1} t^{p-1}(1-t)^{q-1}\,\mathrm{d}t.
+  \end{equation*}
+  令 $t=\sin^2\theta$，
+  \[
+    B(p,q)
+    =2\int_0^{\pi/2}
+      \sin^{2p-1}\theta\,\cos^{2q-1}\theta\,\mathrm{d}\theta.
+  \]
+  $B(p,q)=B(q,p)$。
+\end{frame}
+
+\begin{frame}{化成伽马函数}
+  把两个高斯型积分写成
+  \[
+    \Gamma(p)\Gamma(q)
+    =4\int_0^{\infty}\!\!\int_0^{\infty}
+      s^{2p-1}t^{2q-1}e^{-(s^2+t^2)}\,\mathrm{d}s\,\mathrm{d}t.
+  \]
+  极坐标 $s=r\cos\theta$、$t=r\sin\theta$，径向积出 $\Gamma(p+q)$，角度积出 $B(p,q)$。于是
+  \begin{equation*}
+    \boxed{\displaystyle
+      B(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}.}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{反射公式从这里出来}
+  \[
+    B(z,1-z)
+    =\int_0^{1} t^{z-1}(1-t)^{-z}\,\mathrm{d}t.
+  \]
+  令 $x=t/(1-t)$，积分变成
+  \[
+    \int_0^{\infty}\frac{x^{z-1}}{1+x}\,\mathrm{d}x
+    =\frac{\pi}{\sin\pi z}.
+  \]
+  左边又是 $\Gamma(z)\Gamma(1-z)$，这就是反射公式。倍乘公式同样由 $B(z,z)$ 作代换 $t=(1-\sqrt{\xi})/2$ 得到。
+\end{frame}
+
+\section{麦克斯韦分布}
+
+\begin{frame}{归一化}
+  理想气体的态密度正比于 $E^{1/2}$。记 $\beta=1/kT$，占据概率里的常数由
+  \[
+    1=C\int_0^{\infty} E^{1/2}e^{-\beta E}\,\mathrm{d}E
+  \]
+  定出。令 $u=\beta E$，
+  \[
+    \int_0^{\infty} E^{1/2}e^{-\beta E}\,\mathrm{d}E
+    =\beta^{-3/2}\Gamma\Bigl(\frac32\Bigr)
+    =\frac{\sqrt{\pi}}{2}\,\beta^{-3/2}.
+  \]
+  因此 $C=2\beta^{3/2}/\sqrt{\pi}$。
+\end{frame}
+
+\begin{frame}{平均能量}
+  \[
+    \langle E\rangle
+    =C\int_0^{\infty} E^{3/2}e^{-\beta E}\,\mathrm{d}E
+    =C\,\beta^{-5/2}\Gamma\Bigl(\frac52\Bigr).
+  \]
+  $\Gamma(5/2)=\frac12\cdot\frac32\sqrt{\pi}$，代入 $C$，
+  \[
+    \langle E\rangle
+    =\frac{2\beta^{3/2}}{\sqrt{\pi}}
+      \cdot\frac{3\sqrt{\pi}}{4}\,\beta^{-5/2}
+    =\frac{3}{2\beta}
+    =\frac32 kT.
+  \]
+  每个二次方自由度贡献 $\frac12 kT$，平动有三个。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  \[
+    \Gamma(z+1)=z\Gamma(z),
+    \qquad
+    \Gamma(n)=(n-1)!,
+    \qquad
+    \Gamma\Bigl(\frac12\Bigr)=\sqrt{\pi}.
+  \]
+  \[
+    \Gamma(z)\Gamma(1-z)=\frac{\pi}{\sin\pi z},
+    \qquad
+    B(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}.
+  \]
+  $z=-n$ 处的留数是 $(-1)^n/n!$。
+\end{frame}
+
+\end{document}

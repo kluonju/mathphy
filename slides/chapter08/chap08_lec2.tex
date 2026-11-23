@@ -1,0 +1,256 @@
+% !TEX program = xelatex
+% 球谐函数，均匀电场中的导体球，球面上的电位
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{球坐标下的分离变量法}
+\subtitle{第二讲：球谐函数与边值}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  $m\neq 0$ 时极角方程是连带勒让德方程。把它和 $e^{\mathrm{i}m\phi}$ 乘在一起，得到球面上的归一化基。然后用这组基做两个边值问题。
+  \begin{enumerate}
+    \item 连带勒让德函数和球谐函数；
+    \item 均匀电场中的导体球，表面场是 $3E_0$；
+    \item 球面上给定电位，球内、球外各留一支径向解；
+    \item 球内的亥姆霍兹方程，径向是球贝塞尔函数。
+  \end{enumerate}
+\end{frame}
+
+\section{球谐函数}
+
+\begin{frame}{连带勒让德函数}
+  $m\geq 0$ 时，由勒让德多项式定义
+  \begin{equation*}
+    P_{\ell}^{m}(x)
+    =(-1)^{m}(1-x^2)^{m/2}
+      \frac{\mathrm{d}^{m}}{\mathrm{d}x^{m}}P_{\ell}(x).
+  \end{equation*}
+  前面的 $(-1)^{m}$ 是 Condon--Shortley 相位。$m>\ell$ 时，$\ell$ 次多项式的 $m$ 阶导数是零，所以 $|m|\leq\ell$。
+  \vspace{0.3em}
+  负阶由正阶定出，
+  \[
+    P_{\ell}^{-m}
+    =(-1)^{m}\frac{(\ell-m)!}{(\ell+m)!}P_{\ell}^{m}.
+  \]
+\end{frame}
+
+\begin{frame}{例：$P_1^{1}$ 与 $P_2^{1}$}
+  $P_1=x$，所以
+  \[
+    P_1^{1}=-(1-x^2)^{1/2}=-\sin\theta.
+  \]
+  $P_2'=3x$，
+  \[
+    P_2^{1}(x)=-3x\sqrt{1-x^2}=-3\cos\theta\sin\theta.
+  \]
+  $x=\pm 1$ 时 $\sqrt{1-x^2}=0$。$m\neq 0$ 的连带函数在两极消失，方位角在极点才可以不确定。
+\end{frame}
+
+\begin{frame}{连带函数的范数}
+  固定 $m$，不同的 $\ell$ 在 $[-1,1]$ 上正交，
+  \begin{equation*}
+    \int_{-1}^{1}P_{\ell}^{m}P_{\ell'}^{m}\,\mathrm{d}x
+    =\frac{2}{2\ell+1}\frac{(\ell+m)!}{(\ell-m)!}\,\delta_{\ell\ell'}.
+  \end{equation*}
+  $m=0$ 时因子 $(\ell+m)!/(\ell-m)!$ 是 $1$，回到 $2/(2\ell+1)$。
+\end{frame}
+
+\begin{frame}{球谐函数}
+  球面上的归一化本征函数是
+  \begin{equation*}
+    \boxed{\displaystyle
+      Y_{\ell}^{m}(\theta,\phi)
+      =N_{\ell m}\,P_{\ell}^{m}(\cos\theta)\,e^{\mathrm{i}m\phi},}
+  \end{equation*}
+  \[
+    N_{\ell m}
+    =\sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}}.
+  \]
+  相位已经放在 $P_{\ell}^{m}$ 的定义里。面积元 $\mathrm{d}\Omega=\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi$，
+  \[
+    \int Y_{\ell}^{m}\,\overline{Y_{\ell'}^{m'}}\,\mathrm{d}\Omega
+    =\delta_{\ell\ell'}\delta_{mm'}.
+  \]
+\end{frame}
+
+\begin{frame}{前几个}
+  \begin{align*}
+    Y_0^{0}&=\frac{1}{\sqrt{4\pi}},\\
+    Y_1^{0}&=\sqrt{\frac{3}{4\pi}}\cos\theta,\\
+    Y_1^{\pm 1}&=\mp\sqrt{\frac{3}{8\pi}}\sin\theta\,e^{\pm\mathrm{i}\phi}.
+  \end{align*}
+  $Y_1^{0}$ 的归一化可以手算。方位角积出 $2\pi$，再令 $u=\cos\theta$，
+  \[
+    \int|Y_1^{0}|^2\,\mathrm{d}\Omega
+    =\frac{3}{4\pi}\cdot 2\pi\int_{-1}^{1}u^2\,\mathrm{d}u
+    =\frac32\cdot\frac23=1.
+  \]
+\end{frame}
+
+\begin{frame}{球面上的展开}
+  \[
+    F(\theta,\phi)
+    =\sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell}
+      c_{\ell m}Y_{\ell}^{m}(\theta,\phi),
+  \]
+  \[
+    c_{\ell m}=\int F\,\overline{Y_{\ell}^{m}}\,\mathrm{d}\Omega.
+  \]
+  轴对称时只剩 $m=0$。$Y_{\ell}^{0}$ 正比于 $P_{\ell}(\cos\theta)$，展开回到上一讲的勒让德级数。
+\end{frame}
+
+\section{导体球}
+
+\begin{frame}{均匀电场中的导体球}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      半径 $a$ 的导体球放在沿 $z$ 轴的均匀电场 $\mathbf{E}_0$ 里，球面电位取为零。球外 $\nabla^2 V=0$，而且轴对称。
+      \vspace{0.4em}
+      远处 $V\sim -E_0 z=-E_0 r\cos\theta$。$\cos\theta=P_1(\cos\theta)$，所以远场只有 $\ell=1$。
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \scalebox{0.78}{\input{tikz/sphere_field.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{配上球面}
+  轴对称的外部解是
+  \[
+    V=\sum_{\ell=0}^{\infty}
+      \bigl(A_{\ell}r^{\ell}+B_{\ell}r^{-(\ell+1)}\bigr)P_{\ell}(\cos\theta).
+  \]
+  远处 $V\sim -E_0 r P_1$，故 $A_1=-E_0$，其余 $A_{\ell}=0$。负幂在无穷远自己消失。
+  \vspace{0.3em}
+  $V(a,\theta)=0$ 要求 $B_1=-A_1 a^3=E_0 a^3$，其它 $B_{\ell}=0$。于是
+  \begin{equation*}
+    \boxed{\displaystyle
+      V(r,\theta)
+      =-E_0\Bigl(r-\frac{a^3}{r^2}\Bigr)\cos\theta,
+      \qquad r\geq a.}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{表面场是 $3E_0$}
+  \[
+    E_r=-\partial_r V
+    =E_0\Bigl(1+\frac{2a^3}{r^3}\Bigr)\cos\theta.
+  \]
+  $r=a$ 时 $E_r=3E_0\cos\theta$。两极是 $3E_0$。赤道 $\theta=\pi/2$ 上 $\cos\theta=0$，法向场为零。
+  \vspace{0.35em}
+  无限长圆柱的对应结果是 $2E_0$。多出来的一倍来自负幂 $r^{-2}$：球的感应项比圆柱衰减得快，但贴在表面上更强。
+  \vspace{0.3em}
+  感应面电荷 $\sigma=\varepsilon_0 E_r=3\varepsilon_0 E_0\cos\theta$。南北半球反号，总电荷为零。
+\end{frame}
+
+\section{给定的球面电位}
+
+\begin{frame}{球面电位是 $V_0\cos\theta$}
+  球内势在原点有限，丢掉 $r^{-(\ell+1)}$。边界是 $P_1$，只留下
+  \[
+    V(r,\theta)=V_0\frac{r}{a}\cos\theta=V_0\frac{z}{a},
+    \qquad r\leq a.
+  \]
+  这是直角坐标里的线性函数，拉普拉斯算子是零。
+  \vspace{0.4em}
+  球外、无穷远处趋于零，则丢掉 $r^{\ell}$，
+  \[
+    V(r,\theta)=V_0\frac{a^2}{r^2}\cos\theta,
+    \qquad r\geq a.
+  \]
+\end{frame}
+
+\begin{frame}{一般的轴对称边界}
+  把 $f(\theta)$ 按 $x=\cos\theta$ 展开，$a_{\ell}$ 用勒让德系数公式。然后
+  \begin{align*}
+    r\leq a&\colon&
+      V&=\sum_{\ell}a_{\ell}\Bigl(\frac{r}{a}\Bigr)^{\ell}P_{\ell}(\cos\theta),\\[4pt]
+    r\geq a&\colon&
+      V&=\sum_{\ell}a_{\ell}\Bigl(\frac{a}{r}\Bigr)^{\ell+1}P_{\ell}(\cos\theta).
+  \end{align*}
+  球内每个 $\ell$ 配 $r^{\ell}$，球外每个 $\ell$ 配 $r^{-(\ell+1)}$。$r=a$ 时两式都回到 $f$。
+\end{frame}
+
+\begin{frame}{没有轴对称时}
+  边界值先按球谐函数展开，系数是 $c_{\ell m}$。径向仍是 $r^{\ell}$ 或 $r^{-(\ell+1)}$，角度因子换成 $Y_{\ell}^{m}$。
+  \vspace{0.4em}
+  轴对称是 $m=0$ 的特例。均匀电场沿 $z$ 轴时只有 $Y_1^{0}$，也就是 $P_1(\cos\theta)$。
+\end{frame}
+
+\section{亥姆霍兹方程}
+
+\begin{frame}{从波动方程分离出 $k^2$}
+  球 $r\leq a$ 内的波动方程是 $u_{tt}=c^2\nabla^2 u$，球面 $u=0$ 或 $u_r=0$。令 $u=v(r,\theta,\phi)\,T(t)$，
+  \[
+    \frac{T''}{c^2 T}=\frac{\nabla^2 v}{v}=-k^2,
+    \qquad \omega=ck.
+  \]
+  空间部分是亥姆霍兹方程
+  \begin{equation*}
+    \boxed{\displaystyle \nabla^2 v+k^2 v=0.}
+  \end{equation*}
+  $k^2$ 只进径向。方位角和极角仍分开成 $e^{\mathrm{i}m\phi}$ 和 $Y_{\ell}^{m}$，$\ell(\ell+1)$ 的来源与拉普拉斯方程相同。
+\end{frame}
+
+\begin{frame}{径向方程}
+  把 $v=R(r)Y_{\ell}^{m}$ 代入，角度部分贡献 $-\ell(\ell+1)/r^2$，
+  \begin{equation*}
+    \boxed{\displaystyle
+      r^2 R''+2r R'+\bigl(k^2 r^2-\ell(\ell+1)\bigr)R=0.}
+  \end{equation*}
+  $k=0$ 时它回到欧拉方程，解是 $r^{\ell}$ 和 $r^{-(\ell+1)}$。$k\neq 0$ 时原点有限的解是球贝塞尔函数 $j_{\ell}(kr)$。
+\end{frame}
+
+\begin{frame}{$\ell=0$：化成正弦}
+  $\ell=0$ 时令 $R=S/r$。代入后 $S''+k^2 S=0$。原点有限要求 $S(0)=0$，所以 $S=\sin(kr)$，
+  \[
+    R(r)=\frac{\sin(kr)}{r}=k\,j_0(kr),
+    \qquad
+    j_0(x)=\frac{\sin x}{x}.
+  \]
+  $j_0(0)=1$。球面 $u=0$ 要求 $\sin(ka)=0$，
+  \[
+    k_n=\frac{n\pi}{a},
+    \qquad n=1,2,\ldots.
+  \]
+  对应的频率是 $\omega_n=c k_n$。$n=0$ 是零解。
+\end{frame}
+
+\begin{frame}{一般的 $\ell$}
+  \[
+    j_{\ell}(x)=\sqrt{\frac{\pi}{2x}}\,J_{\ell+1/2}(x).
+  \]
+  球心有限的径向解是 $R=j_{\ell}(kr)$。球面 $u=0$ 把波数定在
+  \[
+    j_{\ell}(k a)=0.
+  \]
+  球面 $u_r=0$ 则要求 $\partial_r j_{\ell}(kr)$ 在 $r=a$ 为零。每个零点给一个 $k$，时间因子是 $\cos(ckt)$ 和 $\sin(ckt)$。
+  \vspace{0.35em}
+  同一个 $\ell$ 的 $2\ell+1$ 个 $m$ 共用这些 $k$。频率只依赖 $\ell$ 和径向零点的序号。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  \[
+    Y_{\ell}^{m}
+    =N_{\ell m}\,P_{\ell}^{m}(\cos\theta)\,e^{\mathrm{i}m\phi},
+    \qquad
+    N_{\ell m}
+    =\sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}}.
+  \]
+  均匀电场中的中性导体球，
+  \[
+    V=-E_0\Bigl(r-\frac{a^3}{r^2}\Bigr)\cos\theta,
+    \qquad
+    E_r\big|_{r=a}=3E_0\cos\theta.
+  \]
+  球内亥姆霍兹方程的径向解是 $j_{\ell}(kr)$。$\ell=0$ 时 $k_n=n\pi/a$。
+\end{frame}
+
+\end{document}

@@ -1,0 +1,274 @@
+% !TEX program = xelatex
+% 柱坐标分离变量：极坐标一般解、导体圆柱、有限圆柱
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{柱坐标下的分离变量法}
+\subtitle{圆边界与有限圆柱}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  圆边界在直角坐标里拆不开。改到极坐标以后，$\rho=a$ 把一个变量固定住。
+  \begin{enumerate}
+    \item 角向周期选出整数 $m$，径向是欧拉方程；
+    \item 均匀电场中的导体圆柱，表面场增强到 $2E_0$；
+    \item 圆内给定边界值；
+    \item 有限圆柱：径向变成贝塞尔函数，轴向是双曲函数；
+    \item 亥姆霍兹方程：圆膜的 $J_m(ka)=0$，有限圆柱把 $k^2$ 拆成 $\alpha^2+\beta^2$。
+  \end{enumerate}
+\end{frame}
+
+\section{极坐标}
+
+\begin{frame}{圆边界}
+  边界 $x^2+y^2=a^2$ 上，若仍设 $V=X(x)Y(y)$，条件
+  \[
+    X(x)\,Y\bigl(\sqrt{a^2-x^2}\bigr)=0
+  \]
+  分不出只约束 $X$ 或只约束 $Y$ 的式子。
+  \vspace{0.4em}
+  改用极坐标 $(\rho,\phi)$，同一条边界是 $\rho=a$。与 $z$ 无关时，拉普拉斯方程是
+  \[
+    V_{\rho\rho}+\frac1\rho V_{\rho}+\frac{1}{\rho^2}V_{\phi\phi}=0.
+  \]
+\end{frame}
+
+\begin{frame}{角向与径向分开}
+  设 $V=R(\rho)\Phi(\phi)$。乘 $\rho^2$ 再除以 $R\Phi$，
+  \[
+    \frac{\rho}{R}\frac{\mathrm{d}}{\mathrm{d}\rho}
+      \Bigl(\rho\frac{\mathrm{d}R}{\mathrm{d}\rho}\Bigr)
+    =-\frac{\Phi''}{\Phi}=m^2.
+  \]
+  写成 $m^2$，是为了让角向的周期解取正频率。
+  \vspace{0.3em}
+  $\Phi(\phi+2\pi)=\Phi(\phi)$，所以 $m=0,1,2,\ldots$。本征函数是常数，以及 $\cos(m\phi)$ 和 $\sin(m\phi)$。单值性把 $m$ 离散化，作用和固定端把弦的波数离散化相同。
+\end{frame}
+
+\begin{frame}{径向欧拉方程}
+  \[
+    \rho^2 R''+\rho R'-m^2 R=0.
+  \]
+  令 $\rho=e^{s}$，则 $\rho R_{\rho}=R_s$，$\rho^2 R_{\rho\rho}=R_{ss}-R_s$。代入得 $R_{ss}-m^2 R=0$。
+  \vspace{0.35em}
+  $m\geq 1$ 时 $R=A\rho^{m}+C\rho^{-m}$。$m=0$ 时 $R=C_0+D_0\ln\rho$。
+  \vspace{0.3em}
+  $\rho^{m}$ 在无穷远增长，$\rho^{-m}$ 和 $\ln\rho$ 在原点发散。区域包不包原点、包不包无穷远，决定哪一组系数必须为零。
+\end{frame}
+
+\begin{frame}{内部与外部}
+  外部 $\rho>a$ 的一般解先把两项都写上，
+  \begin{align*}
+    V={}&C_0+D_0\ln\rho\\
+    &+\sum_{m=1}^{\infty}\Big[
+      (A_m\rho^{m}+C_m\rho^{-m})\cos(m\phi)\\
+      &\qquad+(B_m\rho^{m}+D_m\rho^{-m})\sin(m\phi)
+    \Big].
+  \end{align*}
+  内部 $\rho<a$ 丢掉 $\ln\rho$ 和 $\rho^{-m}$，只留非负幂，圆心才有限。
+\end{frame}
+
+\section{导体圆柱}
+
+\begin{frame}{均匀电场}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      半径 $a$ 的无限长导体圆柱，轴为 $z$，均匀电场 $\mathbf{E}_0$ 沿 $x$。导体以外 $\nabla^2 V=0$，柱面电位取为零，即 $V(a,\phi)=0$。
+      \vspace{0.45em}
+      远处 $V\sim -E_0 x=-E_0\rho\cos\phi$。单位长度电荷 $q_0$ 再贡献一项对数。
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \scalebox{0.72}{\input{tikz/cylinder_field.tex}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{柱面把幂次配成对}
+  $V(a,\phi)=0$ 对每个傅里叶系数成立，
+  \[
+    C_0=-D_0\ln a,
+    \qquad
+    C_m=-a^{2m}A_m,
+    \qquad
+    D_m=-a^{2m}B_m.
+  \]
+  远场最高只到 $\rho$ 的一次，所以 $m\geq 2$ 的系数全是零。远场没有 $\sin\phi$，故 $B_1=D_1=0$。
+  \vspace{0.3em}
+  余弦一次项配上 $-E_0\rho\cos\phi$，因此 $A_1=-E_0$，$C_1=E_0 a^2$。对数项 $D_0=-q_0/(2\pi\varepsilon_0)$。
+\end{frame}
+
+\begin{frame}{柱外的势}
+  \begin{equation*}
+    \boxed{\displaystyle
+      V(\rho,\phi)
+      =\frac{q_0}{2\pi\varepsilon_0}\ln\frac{a}{\rho}
+       -E_0\Bigl(\rho-\frac{a^2}{\rho}\Bigr)\cos\phi.}
+  \end{equation*}
+  中性时 $q_0=0$。在 $\rho=a$ 上括号为零，导体保持零势。$\rho\to\infty$ 时修正项消失，势回到均匀场。
+\end{frame}
+
+\begin{frame}{表面场增强到 $2E_0$}
+  中性圆柱，
+  \[
+    E_{\rho}=-\partial_{\rho}V
+    =E_0\Bigl(1+\frac{a^2}{\rho^2}\Bigr)\cos\phi.
+  \]
+  $\rho=a$ 时 $E_{\rho}=2E_0\cos\phi$。$\phi=0$ 和 $\phi=\pi$ 两点，法向场的大小是背景场的两倍，电击穿先从这里开始。
+  \vspace{0.35em}
+  $\phi=\pm\pi/2$ 时 $\cos\phi=0$。中性圆柱在这两条射线上的势等于导体的势。
+\end{frame}
+
+\section{圆内边值}
+
+\begin{frame}{边界是 $V_0\cos\phi$}
+  圆盘 $\rho<a$，盘内无电荷，势在圆心有限。内部解丢掉负幂和对数，
+  \[
+    V=A_0+\sum_{m=1}^{\infty}\rho^{m}
+      \bigl(A_m\cos(m\phi)+B_m\sin(m\phi)\bigr).
+  \]
+  边界只有 $\cos\phi$，所以只留 $m=1$ 的余弦，$A_1 a=V_0$，
+  \[
+    V(\rho,\phi)=V_0\frac{\rho}{a}\cos\phi=V_0\frac{x}{a}.
+  \]
+  它在直角坐标里是线性函数，拉普拉斯算子是零。圆形边界把这一项从傅里叶级数里挑出来。
+\end{frame}
+
+\section{有限圆柱}
+
+\begin{frame}{侧面和底面为零}
+  圆柱 $0\leq\rho<a$，$0\leq z\leq L$。侧面和底面保持零度，顶面给定轴对称温度 $f(\rho)$，
+  \[
+    \nabla^2 T=0,\quad
+    T(a,z)=T(\rho,0)=0,\quad
+    T(\rho,L)=f(\rho).
+  \]
+  解与 $\phi$ 无关。为了让 $R(a)=0$ 而且 $R$ 在轴上有限，分离常数取正，
+  \[
+    \frac{1}{\rho R}\frac{\mathrm{d}}{\mathrm{d}\rho}
+      \Bigl(\rho\frac{\mathrm{d}R}{\mathrm{d}\rho}\Bigr)
+    =-k^2
+    =\frac{Z''}{Z}.
+  \]
+\end{frame}
+
+\begin{frame}{贝塞尔函数的零点}
+  令 $\xi=k\rho$，径向方程变成 $0$ 阶贝塞尔方程
+  \[
+    \xi^2 R''+\xi R'+\xi^2 R=0.
+  \]
+  在 $\xi=0$ 有限的解是 $J_0(k\rho)$。侧面 $J_0(ka)=0$，所以
+  \[
+    k_m=\frac{j_{0,m}}{a},
+    \qquad m=1,2,\ldots,
+  \]
+  $j_{0,m}$ 是 $J_0$ 的第 $m$ 个正零点。
+  \vspace{0.3em}
+  轴向 $Z''-k_m^2 Z=0$，底面 $Z(0)=0$ 选出 $\sinh(k_m z)$。
+\end{frame}
+
+\begin{frame}{系数}
+  \[
+    T(\rho,z)
+    =\sum_{m=1}^{\infty}A_m J_0(k_m\rho)\sinh(k_m z).
+  \]
+  顶面用权 $\rho$ 的正交性。模是
+  \[
+    \int_0^{a}\rho\,J_0(k_m\rho)^2\,\mathrm{d}\rho
+    =\frac{a^2}{2}J_1(k_m a)^2.
+  \]
+  因此
+  \[
+    A_m\sinh(k_m L)
+    =\frac{2}{a^2 J_1(k_m a)^2}
+      \int_0^{a}f(\rho)\,J_0(k_m\rho)\,\rho\,\mathrm{d}\rho.
+  \]
+\end{frame}
+
+\begin{frame}{顶面是常数 $T_0$}
+  用 $\mathrm{d}[u J_1(u)]/\mathrm{d}u=u J_0(u)$，
+  \[
+    \int_0^{a}\rho\,J_0(k_m\rho)\,\mathrm{d}\rho
+    =\frac{a}{k_m}J_1(k_m a).
+  \]
+  于是
+  \[
+    A_m
+    =\frac{2T_0}{k_m a\,J_1(k_m a)\,\sinh(k_m L)}.
+  \]
+  $k_m a=j_{0,m}$，温度是
+  \[
+    T=\sum_{m=1}^{\infty}
+      \frac{2T_0\,J_0(k_m\rho)\sinh(k_m z)}
+           {j_{0,m}J_1(j_{0,m})\,\sinh(k_m L)}.
+  \]
+  $z=0$ 时每一项为零；侧面 $\rho=a$ 上 $J_0(k_m a)=0$。
+\end{frame}
+
+\section{亥姆霍兹方程}
+
+\begin{frame}{圆膜}
+  振动膜满足 $u_{tt}=c^2\nabla^2 u$。令 $u=v(\rho,\phi)\,T(t)$，
+  \[
+    \frac{T''}{c^2 T}=\frac{\nabla^2 v}{v}=-k^2,
+    \qquad \omega=ck.
+  \]
+  空间部分是亥姆霍兹方程
+  \begin{equation*}
+    \boxed{\displaystyle \nabla^2 v+k^2 v=0.}
+  \end{equation*}
+  拉普拉斯方程是 $k=0$ 的特例。$k\neq 0$ 时径向不再是幂次。
+\end{frame}
+
+\begin{frame}{角向仍是整数 $m$}
+  设 $v=R(\rho)\,e^{\mathrm{i}m\phi}$，$m\in\mathbb{Z}$。$k^2$ 不进入 $\phi$ 的方程，$\Phi''+m^2\Phi=0$ 照旧。径向变成
+  \begin{equation*}
+    \boxed{\displaystyle
+      \rho^2 R''+\rho R'+(k^2\rho^2-m^2)R=0.}
+  \end{equation*}
+  令 $\xi=k\rho$，这是 $m$ 阶贝塞尔方程。圆心有界的解是 $R=J_m(k\rho)$。
+\end{frame}
+
+\begin{frame}{边缘固定}
+  圆周 $\rho=a$ 上 $v=0$，要求
+  \[
+    J_m(ka)=0.
+  \]
+  $J_m$ 的第 $s$ 个正零点 $j_{m,s}$ 给出
+  \[
+    k_{m,s}=\frac{j_{m,s}}{a}.
+  \]
+  $m\geq 1$ 时 $\cos(m\phi)$ 和 $\sin(m\phi)$ 共用这个 $k$。时间因子是 $\cos(ckt)$ 和 $\sin(ckt)$。
+  \vspace{0.3em}
+  轴对称膜是 $m=0$，基频 $\omega=c j_{0,1}/a$，$j_{0,1}\approx 2.4048$。
+\end{frame}
+
+\begin{frame}{有限圆柱上的振动}
+  圆柱 $0\leq\rho\leq a$、$0\leq z\leq L$ 上 $\nabla^2 u+k^2 u=0$，侧面为零，振动与 $\phi$ 无关。把波数拆开，
+  \[
+    k^2=\alpha^2+\beta^2.
+  \]
+  径向仍是 $J_0(\alpha\rho)$。侧面 $J_0(\alpha a)=0$ 定出 $\alpha_m=j_{0,m}/a$。
+  \vspace{0.35em}
+  上下底面为零时，轴向是 $\sin(\beta z)$，$\beta_p=p\pi/L$。两个方向都振荡，每个 $(m,p)$ 的频率是
+  \[
+    \omega_{mp}=c\sqrt{\alpha_m^2+\beta_p^2}.
+  \]
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  极坐标里 $m$ 是整数。内部留 $\rho^{m}$，外部把 $\rho^{m}$ 和 $\rho^{-m}$ 配成对。中性导体圆柱
+  \[
+    V=-E_0\Bigl(\rho-\frac{a^2}{\rho}\Bigr)\cos\phi,
+    \qquad
+    E_{\rho}\big|_{\rho=a}=2E_0\cos\phi.
+  \]
+  有限圆柱上的拉普拉斯方程，径向因子是 $J_0(j_{0,m}\rho/a)$，轴向因子是 $\sinh(k_m z)$。亥姆霍兹方程里圆周条件是 $J_m(ka)=0$，有限圆柱的频率是 $c\sqrt{\alpha_m^2+\beta_p^2}$。
+\end{frame}
+
+\end{document}

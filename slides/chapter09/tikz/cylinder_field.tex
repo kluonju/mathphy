@@ -1,0 +1,16 @@
+\begin{tikzpicture}[font=\small, >=Stealth,
+    vec/.style={-{Stealth[length=2mm]}, line width=0.7pt}]
+  \draw[gray!35, thin] (-2.6,0) -- (2.6,0) node[right] {$x$};
+  \draw[gray!35, thin] (0,-1.9) -- (0,1.9) node[above] {$y$};
+  \fill[blue!8] (0,0) circle (0.85);
+  \draw[blue!70!black, thick] (0,0) circle (0.85);
+  \node at (0,0) {导体};
+  \foreach \y in {-1.35,-0.45,0.45,1.35} {
+    \draw[vec, gray!80] (-2.45,\y) -- (-1.15,\y);
+    \draw[vec, gray!80] (1.15,\y) -- (2.45,\y);
+  }
+  \draw[vec, red!70!black] (0.85,0) -- (1.55,0) node[midway, above] {$2E_0$};
+  \draw[vec, red!70!black] (-1.55,0) -- (-0.85,0);
+  \node[font=\scriptsize, gray] at (2.05,1.55) {$\mathbf{E}_0$};
+  \node[font=\scriptsize] at (0,-1.55) {$r=a$};
+\end{tikzpicture}

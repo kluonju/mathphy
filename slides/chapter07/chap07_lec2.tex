@@ -1,0 +1,278 @@
+% !TEX program = xelatex
+% 第二讲：sturm_liouville.tex
+% 自伴形式、权、边界条件、本征值与正交
+\documentclass[fontset=windows, chinese, 10pt, xcolor=dvipsnames]{beamer}
+\input{preamble}
+
+\title{二阶微分方程}
+\subtitle{第二讲：斯图姆--刘维尔理论}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{本讲提纲}
+  分离变量留下一串本征值问题。斯图姆--刘维尔理论说明：写成自伴形式以后，本征值是实数，不同本征值的本征函数按一个权正交，可以用来展开函数。
+  \begin{enumerate}
+    \item 把一般的二阶算子乘上权，写成自伴形式；
+    \item 边界条件要让边界项消失；
+    \item 本征值为实，本征函数正交；
+    \item 弦、勒让德方程和贝塞尔方程。
+  \end{enumerate}
+\end{frame}
+
+% =============================================================
+\section{自伴形式}
+
+\begin{frame}{从弦上来}
+  两端固定的弦分离变量以后，
+  \[
+    -X''=\lambda X,\qquad X(0)=X(\ell)=0.
+  \]
+  本征值 $\lambda_n=(n\pi/\ell)^2$，本征函数 $\sin(n\pi x/\ell)$。不同的 $n$ 在 $[0,\ell]$ 上正交，初值就按它们展开。
+  \vspace{0.35em}
+  这一讲把这件事写成一般的二阶算子。权不一定是 $1$，边界也不一定是函数值为零。
+\end{frame}
+
+\begin{frame}{加权内积}
+  在区间 $[a,b]$ 上，权 $w(x)>0$。实函数的内积是
+  \begin{equation*}
+    \langle f,g\rangle_w
+    =\int_a^b f(x)\,g(x)\,w(x)\,\mathrm{d}x.
+  \end{equation*}
+  算子 $\mathcal{L}$ 的作用写成 $\mathcal{L}y=\lambda y$ 时，$\lambda$ 和 $y$ 就相对这个内积来讨论。
+  \vspace{0.3em}
+  若对所讨论的函数都有 $\langle\mathcal{L}u,v\rangle_w=\langle u,\mathcal{L}v\rangle_w$，称 $\mathcal{L}$ 为\textbf{自伴}（self-adjoint）算子。
+\end{frame}
+
+\begin{frame}{斯图姆--刘维尔形式}
+  \begin{equation*}
+    \boxed{\displaystyle
+      -\frac{\mathrm{d}}{\mathrm{d}x}\Bigl(p(x)\frac{\mathrm{d}y}{\mathrm{d}x}\Bigr)
+      +q(x)\,y
+      =\lambda\,w(x)\,y.}
+  \end{equation*}
+  其中在 $(a,b)$ 内 $p>0$、$w>0$，$p'$、$q$、$w$ 连续。对应的算子是
+  \[
+    \mathcal{L}y
+    =\frac{1}{w}\Biggl[
+      -\bigl(p y'\bigr)'+q y
+    \Biggr].
+  \]
+  左边的微分式本身已经是对称的，自伴与否还要看边界项是否为零。
+\end{frame}
+
+\begin{frame}{分部积分留下边界项}
+  对两个足够光滑的函数 $u,v$，
+  \begin{equation*}
+    \int_a^b\bigl(v\,\mathcal{L}u-u\,\mathcal{L}v\bigr)w\,\mathrm{d}x
+    =\Bigl[p\bigl(u v'-v u'\bigr)\Bigr]_a^b.
+  \end{equation*}
+  右端称为边界项。它在 $a$ 和 $b$ 都为零时，
+  \[
+    \langle\mathcal{L}u,v\rangle_w=\langle u,\mathcal{L}v\rangle_w,
+  \]
+  算子在这组函数上自伴。
+\end{frame}
+
+\begin{frame}{一般二阶算子}
+  分离变量得到的常常不是自伴形式，而是
+  \[
+    L[y]=a_2(x)y''+a_1(x)y'+a_0(x)y.
+  \]
+  先除以 $a_2$，变成 $y''+P y'+Q y$，其中 $P=a_1/a_2$。乘上
+  \begin{equation*}
+    \mu(x)=\exp\Bigl(\int^{x}P(t)\,\mathrm{d}t\Bigr)
+    =\exp\Bigl(\int^{x}\frac{a_1(t)}{a_2(t)}\,\mathrm{d}t\Bigr),
+  \end{equation*}
+  含导数的两项合成全导数：
+  \[
+    \mu y''+\mu P y'=(\mu y')'.
+  \]
+\end{frame}
+
+\begin{frame}{权怎么读出来}
+  本征值问题 $L[y]+\lambda y=0$ 乘上 $\mu/a_2$ 以后，
+  \begin{equation*}
+    \boxed{\displaystyle
+      (\mu y')'+\frac{\mu a_0}{a_2}y
+      +\lambda\,\frac{\mu}{a_2}\,y=0.}
+  \end{equation*}
+  对照标准形式，
+  \[
+    p=\mu,\qquad
+    q=-\frac{\mu a_0}{a_2},\qquad
+    w=\frac{\mu}{a_2}.
+  \]
+  $\mu$ 差一个正的常数因子不影响正交关系，常数收到归一化里。
+\end{frame}
+
+\begin{frame}{例：拉盖尔算子}
+  \[
+    x y''+(1-x)y'+\lambda y=0,\qquad x>0.
+  \]
+  $a_2=x$，$a_1=1-x$，$P=(1-x)/x=1/x-1$，
+  \[
+    \mu=\exp\bigl(\ln x-x\bigr)=x e^{-x}.
+  \]
+  乘上 $\mu/a_2=e^{-x}$：
+  \[
+    \bigl(x e^{-x} y'\bigr)'+\lambda e^{-x} y=0.
+  \]
+  因此 $p(x)=x e^{-x}$，权是 $w(x)=e^{-x}$。
+\end{frame}
+
+% =============================================================
+\section{边界条件}
+
+\begin{frame}{边界项何时为零}
+  边界项是 $p(uv'-vu')$ 在两端的值。分离的边界条件把每端的 $y$ 和 $y'$ 锁成同一个比例：
+  \begin{equation*}
+    \alpha_1 y(a)+\alpha_2 p(a)y'(a)=0,
+    \qquad
+    \beta_1 y(b)+\beta_2 p(b)y'(b)=0.
+  \end{equation*}
+  $u$ 和 $v$ 在同一端满足同一关系，所以 $uv'-vu'=0$。
+\end{frame}
+
+\begin{frame}{三类分离条件}
+  \begin{itemize}
+    \item 狄利克雷：$y(a)=0$ 或 $y(b)=0$。
+    \item 诺伊曼：$y'(a)=0$ 或 $y'(b)=0$。
+    \item 罗宾：$\alpha_1 y+\alpha_2 p y'=0$，两端的系数不必相同。
+  \end{itemize}
+  \vspace{0.35em}
+  固定端的弦是两端狄利克雷。自由端是诺伊曼。一端固定、一端自由，就是一端狄利克雷、一端诺伊曼。
+\end{frame}
+
+\begin{frame}{周期条件}
+  若 $p(a)=p(b)$，并且
+  \[
+    y(a)=y(b),\qquad y'(a)=y'(b),
+  \]
+  则 $a$ 端的 $p(uv'-vu')$ 与 $b$ 端相消。圆环上的变量分离用的就是这组条件。
+  \vspace{0.4em}
+  奇异端点上若 $p(a)=0$ 或 $p(b)=0$，只要 $y$ 和 $y'$ 在该点保持有限，边界项同样消失。勒让德方程的 $p=1-x^2$ 在 $x=\pm 1$ 为零，属于这一类。
+\end{frame}
+
+% =============================================================
+\section{本征值与正交}
+
+\begin{frame}{本征值是实数}
+  设 $\mathcal{L}y=\lambda y$，系数和权都是实的。$\bar y$ 满足 $\mathcal{L}\bar y=\bar\lambda\,\bar y$。自伴把边界项去掉，
+  \[
+    \int_a^b\bigl(\bar y\,\mathcal{L}y-y\,\mathcal{L}\bar y\bigr)w\,\mathrm{d}x=0.
+  \]
+  代入本征方程，
+  \[
+    (\lambda-\bar\lambda)\int_a^b |y|^2 w\,\mathrm{d}x=0.
+  \]
+  积分是正的，所以 $\lambda=\bar\lambda$。本征值是实数。
+\end{frame}
+
+\begin{frame}{不同本征值互相正交}
+  $\mathcal{L}y_m=\lambda_m y_m$，$\mathcal{L}y_n=\lambda_n y_n$，两边都满足同一组边界条件。于是
+  \[
+    \int_a^b\bigl(y_n\mathcal{L}y_m-y_m\mathcal{L}y_n\bigr)w\,\mathrm{d}x=0,
+  \]
+  即
+  \[
+    (\lambda_m-\lambda_n)\int_a^b y_m y_n\,w\,\mathrm{d}x=0.
+  \]
+  $\lambda_m\neq\lambda_n$ 时，
+  \begin{equation*}
+    \boxed{\displaystyle
+      \int_a^b y_m(x)\,y_n(x)\,w(x)\,\mathrm{d}x=0.}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{展开}
+  正则问题里，$p$ 在闭区间上为正，边界是分离条件。这时本征值离散、下有界，本征函数构成加权平方可积函数的完备系。
+  \vspace{0.35em}
+  \[
+    f(x)=\sum_n c_n y_n(x),
+    \qquad
+    c_n
+    =\frac{\displaystyle\int_a^b f\,y_n\,w\,\mathrm{d}x}
+          {\displaystyle\int_a^b y_n^2\,w\,\mathrm{d}x}.
+  \]
+  分母是 $y_n$ 的范数平方。弦的傅里叶正弦系数就是 $w=1$ 的情形。
+\end{frame}
+
+% =============================================================
+\section{三个例子}
+
+\begin{frame}{弦}
+  $-y''=\lambda y$，$y(0)=y(\ell)=0$。这里 $p=1$，$q=0$，$w=1$。
+  \[
+    \lambda_n=\Bigl(\frac{n\pi}{\ell}\Bigr)^2,
+    \qquad
+    y_n(x)=\sin\Bigl(\frac{n\pi x}{\ell}\Bigr),
+    \qquad n=1,2,\ldots.
+  \]
+  正交关系
+  \[
+    \int_0^{\ell}
+      \sin\Bigl(\frac{n\pi x}{\ell}\Bigr)
+      \sin\Bigl(\frac{m\pi x}{\ell}\Bigr)
+      \,\mathrm{d}x
+    =\frac{\ell}{2}\,\delta_{mn}
+  \]
+  就是上一张系数公式在这个权下的分母。
+\end{frame}
+
+\begin{frame}{勒让德方程}
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}x}\Bigl[(1-x^2)y'\Bigr]
+    +\ell(\ell+1)y=0,
+    \qquad x\in(-1,1).
+  \]
+  已经是自伴形式：$p=1-x^2$，$q=0$，$w=1$，$\lambda=\ell(\ell+1)$。
+  \vspace{0.3em}
+  $p(\pm 1)=0$。要求解在端点有限，边界项就消失。$\ell=0,1,2,\ldots$ 时解是勒让德多项式，不同的 $\ell$ 在 $[-1,1]$ 上以权 $1$ 正交。
+\end{frame}
+
+\begin{frame}{贝塞尔方程}
+  \[
+    (x y')'+\Bigl(\lambda x-\frac{\nu^2}{x}\Bigr)y=0,
+    \qquad 0<x<R.
+  \]
+  $p(x)=x$，$q=\nu^2/x$，$w(x)=x$。解是 $J_{\nu}(\sqrt{\lambda}\,x)$。
+  \vspace{0.3em}
+  在 $x=R$ 上取 $y(R)=0$，即 $J_{\nu}(\sqrt{\lambda}\,R)=0$。每个正零点给出一个 $\lambda$。不同零点对应的本征函数以权 $x$ 正交：
+  \[
+    \int_0^R J_{\nu}(k_m x)\,J_{\nu}(k_n x)\,x\,\mathrm{d}x=0,
+    \qquad m\neq n.
+  \]
+\end{frame}
+
+\begin{frame}{和分离变量接上}
+  齐次方程加齐次边界，分离变量得到斯图姆--刘维尔问题。本征函数 $\{y_n\}$ 和权 $w$ 定了，初始条件或非齐次项就按
+  \[
+    c_n
+    =\frac{1}{\|y_n\|^2}
+     \int_a^b f(x)\,y_n(x)\,w(x)\,\mathrm{d}x
+  \]
+  投影。弦用权 $1$，圆膜的径向部分用权 $r$，球面上的勒让德展开用权 $1$。
+\end{frame}
+
+\begin{frame}{这一讲留下的公式}
+  自伴形式
+  \[
+    -(p y')'+q y=\lambda w y.
+  \]
+  一般方程 $a_2 y''+a_1 y'+a_0 y+\lambda y=0$ 的权是
+  \[
+    w=\frac{1}{a_2}
+    \exp\Bigl(\int\frac{a_1}{a_2}\,\mathrm{d}x\Bigr).
+  \]
+  边界项为零时，本征值是实数，
+  \[
+    \int_a^b y_m y_n\,w\,\mathrm{d}x=0
+    \qquad(\lambda_m\neq\lambda_n).
+  \]
+\end{frame}
+
+\end{document}
