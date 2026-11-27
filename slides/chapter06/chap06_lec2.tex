@@ -471,8 +471,8 @@
 
 \subsection{从演化到平衡}
 
-\begin{frame}{稳态留下椭圆型方程}
-  等力和通量彼此抵消，时间导数就消失了，留下的是椭圆型方程。三维里最常见的两个是
+\begin{frame}{稳态方程}
+ 三维里最常见的两个是
   \begin{equation*}
     \boxed{\nabla^2u=0}
     \qquad\text{与}\qquad
@@ -482,16 +482,16 @@
   直角坐标里 $\nabla^2u=u_{xx}+u_{yy}+u_{zz}$。
 \end{frame}
 
-\begin{frame}{源项的符号}
-  $f$ 前面的符号要看具体模型怎么写。先记住两句：没有源的区域用拉普拉斯方程，有分布源时用泊松方程。
-  \vspace{0.4em}
-  下面三个例子里，$f$ 分别写成 $-F/T$、$-F/k$ 和 $-\rho_e/\varepsilon_0$。负号来自恢复力、傅里叶定律，或者 $\mathbf{E}=-\nabla V$。
-\end{frame}
+% \begin{frame}{源项的符号}
+%   $f$ 前面的符号要看具体模型怎么写。先记住两句：没有源的区域用拉普拉斯方程，有分布源时用泊松方程。
+%   \vspace{0.4em}
+%   下面三个例子里，$f$ 分别写成 $-F/T$、$-F/k$ 和 $-\rho_e/\varepsilon_0$。负号来自恢复力、傅里叶定律，或者 $\mathbf{E}=-\nabla V$。
+% \end{frame}
 
 \subsection{膜与稳态热流}
 
 \begin{frame}{薄膜的平衡}
-  薄膜的张力和面密度都是常数，横向位移是 $u(x,y,t)$，横向力密度是 $F$。小振动时，推法和弦一样，得到
+  薄膜的张力和面密度都是常数，横向位移是 $u(x,y,t)$，横向力密度是 $F$。小振动时，推法和弦振动方程一样，得到
   \begin{equation*}
     \rho u_{tt}=T(u_{xx}+u_{yy})+F.
   \end{equation*}
@@ -511,7 +511,7 @@
   \end{equation*}
   内部不产热，稳态温度就是调和函数。
   \vspace{0.35em}
-  所以同一组方程既可以写平衡的形状，也可以写平衡的温度。
+  % 所以同一组方程既可以写平衡的形状，也可以写平衡的温度。
 \end{frame}
 
 % \begin{frame}{例：均匀加热的平板}
@@ -573,7 +573,7 @@
 \section{泛定方程与定解问题}
 
 \begin{frame}{泛定方程}
-  未知量在区域\textbf{内部}必须满足的那条偏微分方程，叫做\textbf{泛定方程}。
+  未知量在区域\textbf{内部}必须满足的偏微分方程，叫做\textbf{泛定方程}。
   刚才导出的波动、热传导、拉普拉斯和泊松方程都是泛定方程：它们写的是这一类问题共同的规律。
   \vspace{0.4em}
   代进去能使方程变成恒等式的函数，就是这条泛定方程的解。
@@ -591,13 +591,13 @@
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{三种条件}
-  初始条件给出某一时刻的状态。对时间的导数有多高，就要给多少项。方程里若没有时间，也就没有初始条件。
-  \vspace{0.4em}
-  边界条件写在区域边上。常见三类：给定未知量本身，这是第一类；给定它的法向导数，这是第二类；给定二者的线性组合，这是第三类。
-  \vspace{0.4em}
-  衔接条件写在区域内部的分界面上。通常要求未知量连续，并且两侧的力或通量互相平衡。
-\end{frame}
+% \begin{frame}{三种条件}
+%   初始条件给出某一时刻的状态。对时间的导数有多高，就要给多少项。方程里若没有时间，也就没有初始条件。
+%   \vspace{0.4em}
+%   边界条件写在区域边上。常见三类：给定未知量本身，这是第一类；给定它的法向导数，这是第二类；给定二者的线性组合，这是第三类。
+%   \vspace{0.4em}
+%   衔接条件写在区域内部的分界面上。通常要求未知量连续，并且两侧的力或通量互相平衡。
+% \end{frame}
 
 \begin{frame}{定解问题}
   一条泛定方程，加上为这次过程配好的定解条件，合在一起就是一个\textbf{定解问题}。
@@ -622,11 +622,11 @@
 \end{frame}
 
 \begin{frame}{适定}
-  若解存在、唯一，而且定解数据只作小改动时解也只作小改动，这个定解问题就叫做\textbf{适定}的。最后这一点称为稳定。
+  若解存在、唯一，而且定解数据只作小改动时解也只作小改动，表示这个解是稳定的，称这个定解问题就叫做\textbf{适定}的。%最后这一点称为稳定。
   \vspace{0.4em}
-  条件给得不够，解会不唯一；条件互相矛盾，解可能不存在。这两种情形本讲都不讨论。
+  条件给得不够，解会不唯一；条件互相矛盾，解可能不存在。这两种情形我们都不讨论。
   \vspace{0.35em}
-  以后只讨论适定的定解问题：泛定方程配上与类型相称的定解条件。分类之后会说明，波动、热传导和拉普拉斯通常各该给哪些数据。
+  以后只讨论适定的定解问题：泛定方程配上与类型相称的定解条件。%分类之后会说明，波动、热传导和拉普拉斯通常各该给哪些数据。
 \end{frame}
 
 \subsection{写到三类方程上}
@@ -734,9 +734,9 @@
     \qquad
     u_{xx}+u_{yy}=0.
   \end{equation*}
-  它们的解走法不同：波动以有限速度传播，热传导把差异抹平，拉普拉斯方程描述已经平衡的场。
+  它们的解的性质不同：波动以有限速度传播，热传导把差异抹平，拉普拉斯方程描述平衡态的场。
   \vspace{0.35em}
-  差别出在\textbf{最高阶导数}那一块，叫做方程的\textbf{主部}。
+  \textbf{最高阶导数}那一项，叫做方程的\textbf{主部}。
   % 低阶项可以改衰减或加源，但不决定下面要说的类型。
 \end{frame}
 
@@ -756,13 +756,13 @@
     a u_{xx}+2b u_{xy}+c u_{yy}
     +d u_x+e u_y+fu=g.
   \end{equation*}
-  系数 $a,b,c,d,e,f,g$ 是 $x,y$ 的已知实函数。$x$ 和 $y$ 可以都是空间坐标，也可以一个是时间。
+  系数 $a,b,c,d,e,f,g$ 是 $x,y$ 的已知实函数，不依赖未知函数 $u$。$x$ 和 $y$ 可以都是空间坐标，也可以一个是时间。
   \vspace{0.3em}
-  主部是 $a u_{xx}+2b u_{xy}+c u_{yy}$。后面的分类都针对这一写法。
+  主部是 $a u_{xx}+2b u_{xy}+c u_{yy}$。后面的分类只用于这种线性写法。
 \end{frame}
 
 \begin{frame}{判别式与三种类型}
-  用主部的三个系数定义\textbf{判别式}
+  下面只讨论二阶线性方程。用主部的三个系数定义\textbf{判别式}
   \begin{equation*}
     \Delta=b^2-ac.
   \end{equation*}
@@ -774,11 +774,12 @@
     $\Delta<0$ & \textbf{椭圆型}（elliptic）
   \end{tabular}
   \end{center}
-  系数随点变化时，同一条方程在不同区域可以属于不同类型。
+  系数随点变化时，同一条线性方程在不同区域可以属于不同类型。
 \end{frame}
 
-\begin{frame}{例：特里科米方程的类型随区域变}
-  看特里科米方程
+\begin{frame}{例}
+  看%特里科米(Trickiomi)
+  方程
   \begin{equation*}
     y\,u_{xx}+u_{yy}=0.
   \end{equation*}
@@ -804,155 +805,202 @@
   三种符号正好对上前面看到的三种行为。
 \end{frame}
 
-\begin{frame}{练习：这些方程属哪一类}
-  能用 $\Delta=b^2-ac$ 的，请算出类型；用不上的，说明原因。
+\begin{frame}{练习}
+  下列都是二阶线性方程。请算出 $\Delta$，并判定类型。
   \vspace{0.4em}
   \begin{enumerate}
-    \item 正弦--戈登方程
-      $u_{tt}-u_{xx}+\sin u=0$。
-    \item 一维含时薛定谔方程
-      $i\hbar\,\psi_t=-(\hbar^2/2m)\psi_{xx}+V(x)\psi$。
-    \item KdV 方程
-      $u_t+6u\,u_x+u_{xxx}=0$。
+    \item 电报方程
+      $u_{tt}+2\gamma u_t-a^2 u_{xx}=0$。
+    \item Helmholtz 方程
+      $u_{xx}+u_{yy}+k^2 u=0$。
+    \item
+      $u_{xx}-2u_{xy}+u_{yy}+u_x=0$。
   \end{enumerate}
 \end{frame}
 
-\begin{frame}{判断：这些方程属哪一类}
+\begin{frame}{判断}
   \begin{enumerate}
-    \item 正弦--戈登的主部和波动方程一样，系数是 $1,0,-1$，$\Delta=1>0$，所以是双曲型。$\sin u$ 不进主部，类型不变。
-    \item 薛定谔方程的二阶导数只有 $\psi_{xx}$。写成 $a\psi_{xx}+2b\psi_{xt}+c\psi_{tt}$ 时 $b=c=0$，$\Delta=0$，按判别式是抛物型。时间导数前面还有因子 $i$，解随时间振荡。判别式只看主部。
-    \item KdV 最高是三阶。$\Delta=b^2-ac$ 只用于二阶主部，这里用不上。
+    \item 电报方程取 $(x,y)=(t,x)$，主部系数 $1,0,-a^2$，$\Delta=a^2>0$，双曲型。$2\gamma u_t$ 是低阶项，不进 $\Delta$。
+    \item Helmholtz 的主部系数 $1,0,1$，$\Delta=-1<0$，椭圆型。$k^2 u$ 不进主部。
+    \item 主部系数 $a=1$，$2b=-2$ 故 $b=-1$，$c=1$。$\Delta=1-1=0$，抛物型。$u_x$ 是低阶项。
   \end{enumerate}
 \end{frame}
 
-\subsection{坐标变换与特征线}
+\section{三类方程的标准形式}
 
-\begin{frame}{为什么要作坐标变换}
-  分类只看主部。若换一组新自变量 $\xi,\eta$，把主部写成更简单的标准形式，后面的讨论和解都会方便。
+\begin{frame}{换坐标是为了把方程写简单}
+  类型已经由 $\Delta$ 定下来了。下一步是换自变量，把主部写成三种标准样子之一：
+  \begin{equation*}
+    u_{\xi\eta},\qquad
+    u_{\eta\eta},\qquad
+    u_{\xi\xi}+u_{\eta\eta}.
+  \end{equation*}
+  分别对应双曲、抛物、椭圆。写成这样以后，积分或分离变量都更容易下手。
   \vspace{0.35em}
-  变换要是\textbf{非奇异}的：
+  % 先用波动方程走一遍：选对坐标之后，方程会变成 $u_{\xi\eta}=0$。
+\end{frame}
+
+\begin{frame}{例：给波动方程换坐标}
+  取
   \begin{equation*}
-    \xi=\xi(x,y),\qquad \eta=\eta(x,y),
+    \xi=x-at,\qquad \eta=x+at.
+  \end{equation*}
+  把 $u$ 看成 $u(\xi,\eta)$。链式法则给出
+  \begin{equation*}
+    u_x=u_\xi+u_\eta,
     \qquad
-    J=\xi_x\eta_y-\xi_y\eta_x\neq 0,
+    u_t=-a u_\xi+a u_\eta.
   \end{equation*}
-  这时变换在局部可逆，新旧变量互为光滑函数。
-\end{frame}
-
-\begin{frame}{一阶导数的链式法则}
-  $u$ 通过 $\xi,\eta$ 依赖 $x,y$，所以
+  再求一次：
   \begin{align*}
-    u_x&=u_\xi\xi_x+u_\eta\eta_x,\\
-    u_y&=u_\xi\xi_y+u_\eta\eta_y.
+    u_{xx}&=u_{\xi\xi}+2u_{\xi\eta}+u_{\eta\eta},\\
+    u_{tt}&=a^2\bigl(u_{\xi\xi}-2u_{\xi\eta}+u_{\eta\eta}\bigr).
   \end{align*}
-  再对 $x$ 或 $y$ 求一次，就能把 $u_{xx}$、$u_{xy}$、$u_{yy}$ 写成 $u_{\xi\xi}$、$u_{\xi\eta}$、$u_{\eta\eta}$ 以及低阶项。
+  因此
+  \begin{equation*}
+    u_{tt}-a^2 u_{xx}=-4a^2 u_{\xi\eta}.
+  \end{equation*}
+  原方程变成 $u_{\xi\eta}=0$。
 \end{frame}
 
-\begin{frame}{从 $u_x$ 再对 $x$ 求导}
-  $u_\xi$ 和 $u_\eta$ 自己还依赖 $\xi,\eta$，对 $x$ 再求一次，链式法则给出
-  \begin{align*}
-    (u_\xi)_x&=u_{\xi\xi}\xi_x+u_{\xi\eta}\eta_x,\\
-    (u_\eta)_x&=u_{\eta\xi}\xi_x+u_{\eta\eta}\eta_x.
-  \end{align*}
-  回到 $u_x=u_\xi\xi_x+u_\eta\eta_x$，对两项分别用乘积法则：
+\begin{frame}{从 $u_{\xi\eta}=0$ 读出解}
+  $u_{\xi\eta}=0$ 对 $\eta$ 积分一次：$u_\xi$ 不再依赖 $\eta$，只是 $\xi$ 的函数。再对 $\xi$ 积分，
   \begin{equation*}
-    u_{xx}=(u_\xi)_x\,\xi_x+u_\xi\xi_{xx}
-      +(u_\eta)_x\,\eta_x+u_\eta\eta_{xx}.
+    u=f(\xi)+g(\eta)=f(x-at)+g(x+at).
   \end{equation*}
-  代进去，并用 $u_{\xi\eta}=u_{\eta\xi}$，交叉项合成 $2u_{\xi\eta}\xi_x\eta_x$：
-  \begin{equation*}
-    u_{xx}=u_{\xi\xi}\xi_x^2+2u_{\xi\eta}\xi_x\eta_x
-      +u_{\eta\eta}\eta_x^2
-      +u_\xi\xi_{xx}+u_\eta\eta_{xx}.
-  \end{equation*}
+  $f(x-at)$ 向右跑，$g(x+at)$ 向左跑，波速都是 $a$。
+  \vspace{0.35em}
+  问题变成：一般的二阶线性方程，怎样找到像 $x\pm at$ 这样的新坐标？
 \end{frame}
 
-\begin{frame}{二阶导数的展开}
-  对 $y$ 再做一遍，只是把下标 $x$ 换成 $y$：
-  \begin{equation*}
-    u_{yy}=u_{\xi\xi}\xi_y^2+2u_{\xi\eta}\xi_y\eta_y
-      +u_{\eta\eta}\eta_y^2
-      +u_\xi\xi_{yy}+u_\eta\eta_{yy}.
-  \end{equation*}
-  混合导数则是对 $u_x$ 再对 $y$ 求导。先有
-  $(u_\xi)_y=u_{\xi\xi}\xi_y+u_{\xi\eta}\eta_y$，
-  乘积法则给出
-  \begin{equation*}
-    u_{xy}=(u_\xi)_y\,\xi_x+u_\xi\xi_{xy}
-      +(u_\eta)_y\,\eta_x+u_\eta\eta_{xy}.
-  \end{equation*}
-  整理后
-  \begin{equation*}
-    u_{xy}=u_{\xi\xi}\xi_x\xi_y
-      +u_{\xi\eta}(\xi_x\eta_y+\xi_y\eta_x)
-      +u_{\eta\eta}\eta_x\eta_y
-      +u_\xi\xi_{xy}+u_\eta\eta_{xy}.
-  \end{equation*}
+\begin{frame}{特征曲线是什么}
+  我们要找平面上的曲线，让未知函数沿着它的变化满足一个更简单的关系。这样的曲线叫做\textbf{特征曲线}。
+  \vspace{0.4em}
+  波动方程里，右行波 $u=f(x-at)$ 在直线 $x-at=\mathrm{const}$ 上取常值。这条直线就是一条特征线。
+  \vspace{0.35em}
+  几何上：若新坐标 $\xi(x,y)$ 沿着某族曲线为常数，就取这族曲线为坐标线。
 \end{frame}
 
-\begin{frame}{变换后的方程}
-  把这些展开代回原方程，得到的仍是 $u(\xi,\eta)$ 的线性二阶方程。新的系数用大写：
+\begin{frame}{等值线的斜率}
+  设 $\xi(x,y)=\mathrm{const}$。沿这条曲线微分，
   \begin{equation*}
-    A_{11}u_{\xi\xi}+2A_{12}u_{\xi\eta}+A_{22}u_{\eta\eta}
-    +B_1u_\xi+B_2u_\eta+Cu=G.
+    \xi_x\,\mathrm{d}x+\xi_y\,\mathrm{d}y=0,
+    \qquad
+    p=\frac{\mathrm{d}y}{\mathrm{d}x}=-\frac{\xi_x}{\xi_y}.
   \end{equation*}
-  其中主部系数为
+  $p$ 就是这条等值线的斜率。后面只需要 $p$，不必先写出 $\xi$ 的表达式。
+\end{frame}
+
+\begin{frame}{换坐标之后主部变成什么}
+  令 $\xi=\xi(x,y)$，$\eta=\eta(x,y)$，并且雅可比
+  $J=\xi_x\eta_y-\xi_y\eta_x\neq 0$，这样变换局部可逆。
+  \vspace{0.3em}
+  代入链式法则，方程仍是线性二阶的。新的主部系数是
   \begin{align*}
     A_{11}&=a\xi_x^2+2b\xi_x\xi_y+c\xi_y^2,\\
     A_{12}&=a\xi_x\eta_x+b(\xi_x\eta_y+\xi_y\eta_x)+c\xi_y\eta_y,\\
-    A_{22}&=a\eta_x^2+2b\eta_x\eta_y+c\eta_y^2,
+    A_{22}&=a\eta_x^2+2b\eta_x\eta_y+c\eta_y^2.
   \end{align*}
-  其中 $C=f$，$G=g$。低阶系数 $B_1$、$B_2$ 里还会出现 $\xi$、$\eta$ 的二阶导数。
+  $A_{11}$ 是 $u_{\xi\xi}$ 前面的系数。若能选到 $\xi$ 使 $A_{11}=0$，主部里就没有 $u_{\xi\xi}$。
 \end{frame}
 
-\begin{frame}{类型在非奇异变换下不变}
-  把新的主部系数乘开，得到
-  \begin{equation*}
-    A_{12}^2-A_{11}A_{22}
-    =(b^2-ac)\,J^2
-    =\Delta\,J^2.
-  \end{equation*}
-  $J\neq 0$ 时 $J^2>0$，新判别式与原来的 $\Delta$ 同号。
-  \vspace{0.35em}
-  所以双曲、抛物、椭圆是方程自己的性质，换坐标不会把它换掉。化成\textbf{标准形}，只是把主部写成更干净的样子。
-\end{frame}
-
-\begin{frame}{怎样消掉 $u_{\xi\xi}$：特征方程}
-  若能选到 $\xi(x,y)$ 使 $A_{11}=0$，主部里就不再出现 $u_{\xi\xi}$。这要求
+\begin{frame}{特征方程}
+  $A_{11}=0$ 就是
   \begin{equation*}
     a\xi_x^2+2b\xi_x\xi_y+c\xi_y^2=0.
   \end{equation*}
-  沿着等值线 $\xi=\mathrm{const}$，$p=\mathrm{d}y/\mathrm{d}x=-\xi_x/\xi_y$。
-  代进去整理，就得到\textbf{特征方程}
+  用上一页的 $p=-\xi_x/\xi_y$ 除以 $\xi_y^2$（$\xi_y\neq 0$），得到关于斜率的二次方程
   \begin{equation*}
-    a p^2-2b p+c=0.
+    \boxed{a p^2-2b p+c=0.}
   \end{equation*}
+  这叫做\textbf{特征方程}。解出 $p$，再积分 $\mathrm{d}y/\mathrm{d}x=p$，就得到特征曲线。
 \end{frame}
 
-\begin{frame}{特征方程的根与类型}
-  设 $a\neq 0$，则
+\begin{frame}{根的个数由 $\Delta$ 决定}
+  设 $a\neq 0$。特征方程的根是
   \begin{equation*}
-    p=\frac{b\pm\sqrt{\Delta}}{a}.
+    p=\frac{b\pm\sqrt{\Delta}}{a},\qquad \Delta=b^2-ac.
   \end{equation*}
-  若 $a=0$ 而 $c\neq 0$，把 $x$ 和 $y$ 对调即可。
+  （若 $a=0$ 而 $c\neq 0$，把 $x$ 和 $y$ 对调。）
   \begin{itemize}
-    \item $\Delta>0$：两个不同实根 $\Rightarrow$ 两族实\textbf{特征曲线}；
-    \item $\Delta=0$：一个实重根 $\Rightarrow$ 一族实特征曲线；
-    \item $\Delta<0$：无实根 $\Rightarrow$ 无实特征曲线。
+    \item $\Delta>0$：两个不同实根，两族实特征曲线；
+    \item $\Delta=0$：一个实重根，一族实特征曲线；
+    \item $\Delta<0$：没有实根，没有实特征曲线。
   \end{itemize}
-  新坐标 $\xi$、$\eta$ 就沿着这些特征曲线来取。
+  这和用 $\Delta$ 分出的三种类型是同一件事。
+\end{frame}
+
+\begin{frame}{三类方程的特征线}
+  \begin{columns}[c]
+    \begin{column}{0.33\textwidth}
+      \centering
+      双曲\\
+      \begin{tikzpicture}[scale=0.42]
+        \draw[->] (0,0) -- (3.4,0) node[right] {$x$};
+        \draw[->] (0,0) -- (0,3.4) node[above] {$t$};
+        \draw[blue] (0,0.2) -- (2.8,3.0);
+        \draw[blue] (0,3.0) -- (2.8,0.2);
+      \end{tikzpicture}\\
+      {\small $x\pm at=\mathrm{const}$}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \centering
+      抛物\\
+      \begin{tikzpicture}[scale=0.42]
+        \draw[->] (0,0) -- (3.4,0) node[right] {$x$};
+        \draw[->] (0,0) -- (0,3.4) node[above] {$t$};
+        \draw[blue] (0,0.8) -- (3.0,0.8);
+        \draw[blue] (0,1.8) -- (3.0,1.8);
+        \draw[blue] (0,2.8) -- (3.0,2.8);
+      \end{tikzpicture}\\
+      {\small 热方程：$t=\mathrm{const}$}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \centering
+      椭圆\\
+      \begin{tikzpicture}[scale=0.42]
+        \draw[->] (0,0) -- (3.4,0) node[right] {$x$};
+        \draw[->] (0,0) -- (0,3.4) node[above] {$y$};
+        \draw[gray] (1.6,1.6) circle (1.05);
+        \node at (1.6,1.6) {\small 无实特征};
+      \end{tikzpicture}\\
+      {\small 数据落在边界上}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{例：波动方程的特征线}
-  对 $u_{tt}-a^2u_{xx}=0$，特征方程给出 $\mathrm{d}x/\mathrm{d}t=\pm a$，也就是
+  $u_{tt}-a^2 u_{xx}=0$。取自变量为 $(t,x)$，主部系数 $1,0,-a^2$。特征方程是
+  \begin{equation*}
+    p^2-a^2=0,\qquad p=\frac{\mathrm{d}x}{\mathrm{d}t}=\pm a.
+  \end{equation*}
+  积分得到
   \begin{equation*}
     x-at=\mathrm{const},
     \qquad
     x+at=\mathrm{const}.
   \end{equation*}
-  右行波 $u=g(x-at)$ 沿着第一条特征线取常值。
-  \vspace{0.3em}
-  扰动沿着特征线传播，速度不超过 $a$。
+  这正是前面换坐标时用的 $\xi$、$\eta$。扰动沿着这两族直线走，速度是 $a$。
+\end{frame}
+
+\begin{frame}{例：热方程的特征线}
+  $u_t-\kappa u_{xx}=0$。取自变量为 $(x,t)$，主部系数 $-\kappa,0,0$。特征方程是
+  \begin{equation*}
+    -\kappa\, p^2=0,\qquad p=\frac{\mathrm{d}t}{\mathrm{d}x}=0.
+  \end{equation*}
+  所以特征线是 $t=\mathrm{const}$，也就是水平线。只有一族。
+  \vspace{0.35em}
+  拉普拉斯方程 $u_{xx}+u_{yy}=0$ 的 $\Delta=-1<0$，特征方程没有实根，平面上画不出实的特征线。
+\end{frame}
+
+\begin{frame}{类型换坐标不会变}
+  变换非奇异时，$J\neq 0$。新判别式满足
+  \begin{equation*}
+    A_{12}^2-A_{11}A_{22}=\Delta\, J^2.
+  \end{equation*}
+  $J^2>0$，所以新、旧 $\Delta$ 同号：双曲还是双曲，椭圆还是椭圆。
+  \vspace{0.35em}
+  标准形只是把主部写成更干净的样子，并不改变类型。
 \end{frame}
 
 % \begin{frame}{三类方程的特征线示意}
@@ -1009,13 +1057,11 @@
 \end{frame}
 
 \begin{frame}{行波法}
-  从 $u_{\xi\eta}=0$ 出发：先对 $\eta$ 积分，$u_\xi$ 只依赖 $\xi$；再对 $\xi$ 积分，
+  前面已经得到 $u_{\xi\eta}=0$ 的通解
   \begin{equation*}
-    u=f(\xi)+g(\eta)=f(x-at)+g(x+at).
+    u=f(x-at)+g(x+at).
   \end{equation*}
-  $f(x-at)$ 是向右跑的行波，$g(x+at)$ 向左跑，波速都是 $a$，波形在传播中保持不变。
-  \vspace{0.35em}
-  $f$ 和 $g$ 是任意可微函数。弦若没有边界，这两列行波就是通解。初值用来把它们定出来。
+  $f$ 和 $g$ 是任意可微函数。无限长弦没有边界，这两列行波就是通解。下一步用初值把它们定出来。
 \end{frame}
 
 \begin{frame}{达朗贝尔公式}
@@ -1027,7 +1073,7 @@
     =\frac{\varphi(x-at)+\varphi(x+at)}{2}
     +\frac{1}{2a}\int_{x-at}^{x+at}\psi(s)\,\mathrm{d}s.
   \end{equation*}
-  点 $(x,t)$ 的位移只依赖区间 $[x-at,x+at]$ 上的初值。过该点的两条特征线在 $t=0$ 上切出的这段，叫做依赖区间。扰动的传播速度不超过 $a$。
+  点 $(x,t)$ 的位移只依赖区间 $[x-at,x+at]$ 上的初值。%过该点的两条特征线在 $t=0$ 上切出的这段，叫做依赖区间。扰动的传播速度不超过 $a$。
 \end{frame}
 
 \begin{frame}{抛物型标准形}
@@ -1038,12 +1084,81 @@
   主部只剩下一个二阶导数。热传导方程就是这样：时间方向是一阶，空间方向是二阶。
 \end{frame}
 
-\begin{frame}{椭圆型标准形}
-  $\Delta<0$ 时没有实的特征曲线。先用一对共轭复特征作中间变量，再回到实坐标 $\alpha$、$\beta$，主部化成
+\begin{frame}{椭圆型：特征根是共轭复数}
+  $\Delta<0$ 时特征方程没有实根。设 $a\neq 0$，两个根是共轭的：
   \begin{equation*}
-    u_{\alpha\alpha}+u_{\beta\beta}.
+    p=\frac{b\pm\mathrm{i}\sqrt{-\Delta}}{a}.
   \end{equation*}
-  拉普拉斯方程 $u_{xx}+u_{yy}=0$ 已经是这种和的形式。
+  形式上仍可积分 $\mathrm{d}y/\mathrm{d}x=p$，得到一对共轭的复特征
+  \begin{equation*}
+    \xi(x,y)=\mathrm{const},
+    \qquad
+    \eta(x,y)=\overline{\xi(x,y)}=\mathrm{const}.
+  \end{equation*}
+  它们不能在实平面上画出来。下面只用它们当中间变量，最后回到实坐标。
+\end{frame}
+
+\begin{frame}{先当双曲型那样写}
+  把 $\xi$、$\eta$ 暂时当成新坐标，和双曲型一样会有 $A_{11}=A_{22}=0$，主部只剩下交叉项
+  \begin{equation*}
+    2A_{12}u_{\xi\eta}.
+  \end{equation*}
+  现在 $\xi$、$\eta$ 是共轭复数。令实部、虚部为新的实自变量：
+  \begin{equation*}
+    \alpha=\frac{\xi+\eta}{2}=\operatorname{Re}\xi,
+    \qquad
+    \beta=\frac{\xi-\eta}{2\mathrm{i}}=\operatorname{Im}\xi,
+  \end{equation*}
+  也就是 $\xi=\alpha+\mathrm{i}\beta$，$\eta=\alpha-\mathrm{i}\beta$。这样 $\alpha$、$\beta$ 都是 $x,y$ 的实函数，并且 $J\neq 0$。
+\end{frame}
+
+\begin{frame}{回到实坐标：交叉项变成和}
+  链式法则给出
+  \begin{equation*}
+    u_\xi=\frac12\bigl(u_\alpha-\mathrm{i}u_\beta\bigr),
+    \qquad
+    u_\eta=\frac12\bigl(u_\alpha+\mathrm{i}u_\beta\bigr).
+  \end{equation*}
+  再求一次混合导数，
+  \begin{equation*}
+    u_{\xi\eta}
+    =\frac14\bigl(u_{\alpha\alpha}+u_{\beta\beta}\bigr).
+  \end{equation*}
+  因此主部 $2A_{12}u_{\xi\eta}$ 化成 $u_{\alpha\alpha}+u_{\beta\beta}$ 的常数倍。椭圆型的标准形就是
+  \begin{equation*}
+    \boxed{u_{\alpha\alpha}+u_{\beta\beta}+\text{低阶项}=0.}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{例：拉普拉斯方程已经是标准形}
+  $u_{xx}+u_{yy}=0$。主部系数 $a=1$，$b=0$，$c=1$，$\Delta=-1$。特征方程 $p^2+1=0$，故 $p=\pm\mathrm{i}$。
+  \vspace{0.3em}
+  积分 $\mathrm{d}y/\mathrm{d}x=\mathrm{i}$ 得到 $y-\mathrm{i}x=\mathrm{const}$。取
+  \begin{equation*}
+    \xi=x+\mathrm{i}y,
+    \qquad
+    \eta=x-\mathrm{i}y.
+  \end{equation*}
+  实部、虚部正好是原来的 $x$、$y$：
+  \begin{equation*}
+    \alpha=x,\qquad \beta=y.
+  \end{equation*}
+  所以拉普拉斯方程本身已经是 $u_{\alpha\alpha}+u_{\beta\beta}=0$。
+\end{frame}
+
+\begin{frame}{例：主部带交叉项}
+  看 $u_{xx}+u_{xy}+u_{yy}=0$。这里 $a=1$，$b=1/2$，$c=1$，$\Delta=1/4-1=-3/4<0$。
+  特征根 $p=(1\pm\mathrm{i}\sqrt{3})/2$。积分后可取
+  \begin{equation*}
+    \xi=y-\frac12 x-\mathrm{i}\frac{\sqrt{3}}{2}x.
+  \end{equation*}
+  实部、虚部是
+  \begin{equation*}
+    \alpha=y-\frac{x}{2},
+    \qquad
+    \beta=-\frac{\sqrt{3}}{2}x.
+  \end{equation*}
+  换成 $\alpha,\beta$ 以后，主部成为 $u_{\alpha\alpha}+u_{\beta\beta}$ 的倍数。交叉项 $u_{xy}$ 被坐标变换消掉了。
 \end{frame}
 
 % \begin{frame}{类型与定解条件}
